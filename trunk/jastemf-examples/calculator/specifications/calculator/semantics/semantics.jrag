@@ -1,0 +1,222 @@
+import java.util.*;
+
+import calculator.semantics.*;
+
+/**
+ * @author C. Bürger
+ */
+aspect AccessSupport {
+	syn CompilationUnit ASTNode.ASTRoot() = getParent().ASTRoot();
+	eq CompilationUnit.ASTRoot() = this;
+	
+	inh DeweyAddress ASTNode.NodeAddress();
+	syn DeweyAddress CompilationUnit.NodeAddress() =
+		new DeweyAddress().addAddressPart(1);
+	eq ASTNode.getChild(int index).NodeAddress() =
+		NodeAddress().clone().addAddressPart(index + 1);
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect NameAnalysis {
+	/** Variable declaration name analysis */
+	
+	public interface INamedElement {String getName();}
+	Reference implements INamedElement;
+	VariableDeclaration implements INamedElement;
+	VariableAssignment implements INamedElement;
+		public String VariableAssignment.getName() {return getLValue();}
+	
+	public class NamedElementFilter<T extends INamedElement>
+	extends CollectionFilter.AFilterCriteria<T> {
+		private String name;
+		public NamedElementFilter(String name) {super(); this.name = name;}
+		public boolean _passed(INamedElement elem) {return elem.getName().equals(name);}
+	}
+	
+	public class AddressFilter<T extends ASTNode>
+	extends CollectionFilter.AFilterCriteria<ASTNode<T>> {
+		private DeweyAddress upToAddress;
+		public AddressFilter(
+				CollectionFilter.AFilterCriteria<ASTNode<T>> filterThisOneDependsOn,
+				DeweyAddress upToAddress) {
+			super(filterThisOneDependsOn);
+			this.upToAddress = upToAddress;
+		}
+		public AddressFilter(DeweyAddress upToAddress) {
+			super();
+			this.upToAddress = upToAddress;
+		}
+		public boolean _passed(ASTNode elem) {
+			return elem.NodeAddress().compareTo(upToAddress) > 0 ||
+				elem.NodeAddress().isSuccessor(upToAddress) ||
+				elem.NodeAddress().equals(upToAddress);
+		}
+	}
+	
+	coll Collection<VariableDeclaration> Block.VDecls()
+		[new ArrayList<VariableDeclaration>()] with add;
+	VariableDeclaration contributes this when CurrentVDeclBlock() != null to
+		Block.VDecls() for CurrentVDeclBlock();
+	
+	inh Block ASTNode.CurrentVDeclBlock();
+	syn Block CompilationUnit.CurrentVDeclBlock() = null;
+	syn Block Block.CurrentVDeclBlock() = this;
+	eq Block.getStatement(int index).CurrentVDeclBlock() = this;
+	
+	syn Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name) {
+		Block block = CurrentVDeclBlock();
+		Collection result = CollectionFilter.filter(
+					block.VDecls(),
+					new AddressFilter(new NamedElementFilter(name), NodeAddress()),
+					new LinkedList<VariableDeclaration>());
+		return !result.isEmpty() ? result : (block.getParent() == null ||
+				block.getParent() instanceof CompilationUnit ?
+						new ArrayList<VariableDeclaration>(0) :
+						block.getParent().LookUpVDecl(name));
+	}
+	
+	syn VariableDeclaration Reference.Declaration() = LookUpVDecl(getName()).size() == 1 ?
+			LookUpVDecl(getName()).iterator().next() :
+			null;
+
+	syn VariableDeclaration VariableAssignment.Declaration() = LookUpVDecl(getName()).size() == 1 ?
+			LookUpVDecl(getName()).iterator().next() :
+			null;
+	
+	/** Assignment name analysis */
+	
+	public class DeclarationFilter
+	extends CollectionFilter.AFilterCriteria<VariableAssignment> {
+		private VariableDeclaration declaration;
+		public DeclarationFilter(VariableDeclaration declaration) {
+			super(); this.declaration = declaration;
+		}
+		public boolean _passed(VariableAssignment assignment) {
+			return assignment.Declaration() == declaration;
+		}
+	}
+	
+	coll java.util.List<VariableAssignment> CompilationUnit.Assignments()
+		[new ArrayList<VariableAssignment>()] with add;
+	VariableAssignment contributes this to
+		CompilationUnit.Assignments() for ASTRoot();
+	
+	syn VariableAssignment ASTNode.LookUpVAssignment(VariableDeclaration decl) {
+		java.util.List<VariableAssignment> result =
+			(java.util.List)CollectionFilter.filter(
+					ASTRoot().Assignments(),
+					new DeclarationFilter(decl),
+					new LinkedList<VariableAssignment>());
+		if (result.isEmpty())
+			return null;
+		Collections.sort(
+			result,
+			new Comparator<VariableAssignment>() {
+				public int compare(VariableAssignment o1, VariableAssignment o2) {
+					return o1.NodeAddress().compareTo(o2.NodeAddress());
+				}
+			});
+		return result.get(0);
+	}
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect TypeAnalysis {
+	syn Type VariableDeclaration.Type() = getVariableType();
+	syn Type VariableAssignment.Type() = LookUpVDecl(getLValue()).size() != 1 ?
+			Type.ERROR_TYPE :
+			Type.computeCompatibleType(
+					LookUpVDecl(getLValue()).iterator().next().Type(),
+					getRValue().Type()
+			) != LookUpVDecl(getLValue()).iterator().next().Type() ?
+					Type.ERROR_TYPE :
+					LookUpVDecl(getLValue()).iterator().next().Type();
+	
+	syn Type Expression.Type();
+	eq BinaryExpression.Type() = Type.computeCompatibleType(
+			getOperand1().Type(),
+			getOperand2().Type());
+	eq Equal.Type() = Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ?
+			Type.ERROR_TYPE :
+			Type.Bool;
+	eq And.Type() = getOperand1().Type() == Type.Bool && getOperand2().Type() == Type.Bool ?
+			Type.Bool :
+			Type.ERROR_TYPE;
+	eq Or.Type() = getOperand1().Type() == Type.Bool && getOperand2().Type() == Type.Bool ?
+			Type.Bool :
+			Type.ERROR_TYPE;
+	eq Not.Type() = getOperand().Type() == Type.Bool ?
+			Type.Bool :
+			Type.ERROR_TYPE;
+	eq UMinus.Type() = getOperand().Type() == Type.Bool ?
+			Type.ERROR_TYPE :
+			getOperand().Type();
+	eq Reference.Type() = LookUpVDecl(getName()).size() == 1 && LookUpVAssignment(Declaration()) != null ?
+			Type.computeCompatibleType(
+					LookUpVDecl(getName()).iterator().next().Type(),
+					LookUpVAssignment(Declaration()).Type()
+			) :
+			Type.ERROR_TYPE;
+	eq Constant.Type() = Type.typeOf(getConstantValue());
+	eq NestedExpression.Type() = getExpression().Type();
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect Interpretation {
+	syn Value VariableAssignment.Value() = Type() == Type.ERROR_TYPE ?
+			new ErrorValue() :
+			getRValue().Value();
+	
+	syn Value Expression.Value();
+	eq Constant.Value() = Type() == Type.Bool ?
+			new BooleanValue(new Boolean(getConstantValue())) :
+			Type() == Type.Integer ?
+					new IntegerValue(new Integer(getConstantValue())) :
+					Type() == Type.Float ?
+							new FloatValue(new Float(getConstantValue())) :
+							new ErrorValue();
+	eq Reference.Value() =
+		LookUpVAssignment(Declaration()) == null ?
+		new ErrorValue() :
+		LookUpVAssignment(Declaration()).Value();
+	eq Not.Value() = getOperand().Value().not();
+	eq UMinus.Value() = getOperand().Value().uminus();
+	eq And.Value() = getOperand1().Value().and(getOperand2().Value());
+	eq Or.Value() = getOperand1().Value().or(getOperand2().Value());
+	eq Equal.Value() = getOperand1().Value().equal(getOperand2().Value());
+	eq Addition.Value() = getOperand1().Value().add(getOperand2().Value());
+	eq Subtraction.Value() = getOperand1().Value().sub(getOperand2().Value());
+	eq Multiplication.Value() = getOperand1().Value().mul(getOperand2().Value());
+	eq Division.Value() = getOperand1().Value().div(getOperand2().Value());
+		// chain rule for nested expression value
+	eq NestedExpression.Value() = getExpression().Value();
+	
+	syn String ASTNode.Interpret() = "";
+	eq CompilationUnit.Interpret() = getBlock().Interpret();
+	eq Block.Interpret() {
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < getNumStatement(); i++)
+			result.append(
+					(getStatement(i) instanceof Expression ? "\n" : "")+
+					getStatement(i).Interpret());
+		return result.toString();
+	}
+	eq VariableAssignment.Interpret() = "\n"+ getLValue() +":"+ Type() +" := "+ getRValue().Interpret();
+	eq Reference.Interpret() = Value() +":"+ Type();
+	eq Constant.Interpret() = Value() +":"+ Type();
+	eq Not.Interpret() = "!("+ getOperand().Interpret() +":"+ Type() +") = "+ Value();
+	eq UMinus.Interpret() = "-("+ getOperand().Interpret() +") = "+ Value();
+	eq And.Interpret() = "("+ getOperand1().Interpret() +" & "+ getOperand2().Interpret() +") = "+ Value();
+	eq Or.Interpret() = "("+ getOperand1().Interpret() +" | "+ getOperand2().Interpret() +") = "+ Value();
+	eq Equal.Interpret() = "("+ getOperand1().Interpret() +" = "+ getOperand2().Interpret() +") = "+ Value();
+	eq Addition.Interpret() = "("+ getOperand1().Interpret() +" + "+ getOperand2().Interpret() +") = "+ Value();
+	eq Subtraction.Interpret() = "("+ getOperand1().Interpret() +" - "+ getOperand2().Interpret() +") = "+ Value();
+	eq Division.Interpret() = "("+ getOperand1().Interpret() +" / "+ getOperand2().Interpret() +") = "+ Value();
+	eq Multiplication.Interpret() = "("+ getOperand1().Interpret() +" * "+ getOperand2().Interpret() +") = "+ Value();
+}

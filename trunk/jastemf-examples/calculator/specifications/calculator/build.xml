@@ -1,0 +1,223 @@
+<!--
+	@author cbuerger
+-->
+<project name="Regression Test Archive" default="EMF Calculator">
+	<path id="_basedir">
+		<pathelement location="./../.."/>
+	</path>
+	<property name="_basedir" refid="_basedir"/>
+	
+	<!-- Declare JastEMF's Ant tasks -->
+	<taskdef resource="org/jastemf/ant/taskdef.properties">
+		<classpath path="${_basedir}/sources/libraries/jastadd2.jar"/>
+		<classpath path="${_basedir}/sources/libraries/jastemf.jar"/>
+		<classpath path="${_basedir}/sources/libraries/jastemf-converters.jar"/>
+		<!--
+			HACK; The following classpath entry is not required anymore
+			as soon as JastEMF is deployed as plugin.
+		-->
+		<classpath>
+			<fileset dir="${eclipse.home}">
+				<include name="/plugins/**/*.jar"/>
+			</fileset>
+		</classpath>
+	</taskdef>
+	
+	<!-- Declare JastEMF's Ant tasks -->
+	<taskdef resource="org/jastemf/converter/ant/taskdef.properties">
+		<classpath path="${_basedir}/sources/libraries/jastemf.jar"/>
+		<classpath path="${_basedir}/sources/libraries/jastemf-converters.jar"/>
+		<classpath> 
+			<fileset dir="${eclipse.home}">
+				<include name="/plugins/**/*.jar"/>
+			</fileset>
+		</classpath>
+	</taskdef>
+	
+	<target name="Clean">
+		<delete>
+			<fileset dir="${_basedir}">
+				<!-- these artefacts are not generated -->
+				<exclude name="implementation/calculator/*.java"/>
+				<exclude name="implementation/calculator/semantics/*.java"/>
+				<exclude name="implementation/beaver/**/*"/>
+				<exclude name="specifications/**/*"/>
+				<!-- all other classes are generated -->
+				<include name="implementation/**/*.java"/>
+				<include name="implementation/**/*.aj"/>
+				<include name="implementation/**/*.xml"/>
+				<include name="implementation/**/*.jadd"/>
+				<include name="implementation/**/*.jrag"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="JastAdd Calculator">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                         (JastAdd Version)                          ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<antcall target="JFlex Lexer"/>
+		<antcall target="Beaver Parser"/>
+		<antcall target="JastAdd Semantic"/>
+		<antcall target="RTT JastAdd Integration"/>
+	</target>
+	
+	<target name="EMF Calculator">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                           (EMF Version)                            ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<antcall target="JFlex Lexer"/>
+		<antcall target="Beaver Parser"/>
+		<antcall target="EMF Semantic"/>
+		<antcall target="RTT EMF Integration"/>
+	</target>
+	
+	<target name="EMFText Calculator">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                         (EMFText Version)                            ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<antcall target="EMF Semantic"/>
+		<antcall target="EMFText Resources"/>
+		<antcall target="RTT EMF Integration"/>
+	</target>
+	
+	<!-- 
+		 This will generate two plugin projects. One for the emftext editor plugin (calculator.semantics.resource.expr)
+	     and one containing an ANTLR runtime distribution plugin (org.emftext.commons.antlr3_2_0) in your workspace
+	     folder. Normally, the folder should appear as a project automatically, if not, you have to import the folder
+	     as a project it manually.       
+	 -->
+	<target name="EMFText Resources" description="Generate the EMF text resource plug-in">
+		<emftext.GenerateTextResource 
+			syntax="syntax/calculator.cs" 
+			rootFolder="${_basedir}/.." 
+			syntaxProjectName="calculator.semantics.resource.expr" 
+		/>
+		<copy overwrite="true" todir="${_basedir}/../calculator.semantics.resource.expr/src/calculator/semantics/resource/expr/analysis">
+			<fileset dir="${_basedir}/specifications/calculator/syntax">
+				<include name="ExprTYPETokenResolver.java"/>
+			</fileset>
+		</copy>
+		<eclipse.refreshLocal depth="infinite" resource="/"/>
+		
+	</target>
+	
+	<target name="JFlex Lexer">
+		<echo message="========================> Generate JFlex Lexer &lt;========================"/>
+		<taskdef
+			classname	= "JFlex.anttask.JFlexTask"
+			name		= "jflex"
+			classpath	= "${_basedir}/sources/libraries/JFlex.jar"
+		/>
+		<jflex
+			file		= "symbols/lexer.jflex"
+			destdir		= "${_basedir}/implementation"
+			nobak		= "on"
+			verbose		= "off"
+		/>
+	</target>
+	
+	<target name="Beaver Parser">
+		<echo message="========================> Generate Beaver Parser &lt;======================"/>
+		<taskdef
+			name		= "beaver"
+			classname	= "beaver.comp.run.AntTask"
+			classpath	= "${_basedir}/sources/libraries/beaver.jar"
+		/>
+		<property name="beaver.available" value="yes"/>
+		<beaver
+			file				= "syntax/parser.beaver"
+			destdir				= "${_basedir}/implementation"
+			compress			= "yes"
+			exportTables		= "no"
+			sortTerminals		= "no"
+			terminalNames		= "yes"
+			exportTerminals		= "no"
+			useSwitch			= "no"
+			anonymousActions	= "yes"
+			reportActions		= "no"
+		/>
+	</target>
+	
+	<target name="JastAdd Semantic">
+		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
+		<taskdef
+			classname="jastadd.JastAddTask"
+			name="jastadd"
+			classpath="${_basedir}/sources/libraries/jastadd2.jar"
+		/>
+		<jastadd
+			outdir="${_basedir}/implementation"
+			package="calculator.semantics.ast"
+			rewrite		= "true">
+			<fileset dir="${_basedir}/specifications">
+				<include name="calculator/semantics/**/*.ast"/>
+				<include name="calculator/semantics/**/*.jrag"/>
+				<include name="calculator/semantics/**/*.jadd"/>
+			</fileset>
+		</jastadd>
+	</target>
+	
+	<target name="EMF Semantic">
+		<echo message="========================> Generate EMF Semantic &lt;======================="/>
+		<jastemf
+			genmodel="${_basedir}/specifications/calculator/model/calculator.genmodel"
+			outpackage="jastemf.adaptation"
+			astpackage="calculator.semantics.ast">
+			<jastadd
+				rewrite		= "true">
+				<fileset dir="${_basedir}/specifications">
+					<include name="calculator/semantics/**/*.ast"/>
+					<include name="calculator/semantics/**/*.jrag"/>
+					<include name="calculator/semantics/**/*.jadd"/>
+				</fileset>
+			</jastadd>
+		</jastemf>
+	</target>
+	
+	<target name="RTT JastAdd Integration">
+		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
+		<copy todir="${_basedir}/implementation/rtt/adaptation">
+			<fileset dir="${_basedir}/tests/adaptation/JastAdd">
+				<include name="**/*.aj"/>
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="RTT EMF Integration">
+		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
+		<copy todir="${_basedir}/implementation/rtt/adaptation">
+			<fileset dir="${_basedir}/tests/adaptation/EMF">
+				<include name="**/*.aj"/>
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="Generate AST Spec">
+		<echo message="========================> Generate AST Spec &lt;======================="/>
+		<jastemf.ecore2ast
+			modelFile="${_basedir}/specifications/calculator/model/calculator.ecore"
+			outputDirectory="${_basedir}/implementation/jastemf/adaptation">
+		</jastemf.ecore2ast>
+	</target>
+	
+	<target name="Generate initial Jrag Spec">
+		<echo message="========================> Generate AST Spec &lt;======================="/>
+		<jastemf.ecore2jrag
+			modelFile="${_basedir}/specifications/calculator/model/calculator.ecore"
+			outputDirectory="${_basedir}/implementation/jastemf/adaptation">
+		</jastemf.ecore2jrag>
+	</target>
+		
+</project>

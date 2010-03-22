@@ -1,0 +1,29 @@
+% @author C. Bürger
+VAR t:BOOL;
+VAR f:BOOL;
+
+t = true;
+f = false;
+
+t;
+f;
+
+t == t;
+t == f;
+f == t;
+f == f;
+
+!t;
+!f;
+
+t && t;
+t && f;
+f && t;
+f && f;
+
+t || t;
+t || f;
+f || t;
+f || f;
+
+!(f || (t && t) && f);

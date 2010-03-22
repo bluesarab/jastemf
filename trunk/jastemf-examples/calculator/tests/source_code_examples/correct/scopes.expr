@@ -1,0 +1,49 @@
+% @author C. Bürger
+VAR x:INT;
+VAR y:INT;
+
+x = 1;
+y = 2;
+
+x;
+y;
+
+BEGIN
+	x;
+	y;
+	
+	VAR x:BOOL;
+	x = true;
+	
+	x;
+	y;
+	
+	BEGIN
+		x;
+		y;
+		VAR y:BOOL;
+		y = true;
+		x;
+		y;
+	END;
+	
+	x;
+	y;
+	
+	BEGIN
+		x;
+		y;
+		VAR x:FLOAT;
+		VAR y:FLOAT;
+		x = 1.0;
+		y = 2.0;
+		x;
+		y;
+	END;
+	
+	x;
+	y;
+END;
+
+x;
+y;

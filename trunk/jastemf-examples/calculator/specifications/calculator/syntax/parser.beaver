@@ -1,0 +1,163 @@
+/*
+ * @author C. Bürger
+ */
+%package "calculator.syntax";
+%import "calculator.semantics.ast.*","calculator.semantics.Type";
+
+%class "CalculatorParser";
+
+// (, )
+%terminals pBRACKETOPENROUND, pBRACKETCLOSEROUND;
+// *, +, -, /, !
+%terminals pSTAR, pPLUS, pMINUS, pSLASH,pEXCLAMATIONMARK;
+// =
+%terminals pEQUALS;
+// :, ;
+%terminals pCOLON,pSEMICOLON;
+%terminals IDENTIFIER, CONSTANT;
+// &&, || , ==
+%terminals pAND_AND, pLINEVERTICAL_LINEVERTICAL, pEQUALS_EQUALS;
+// VAR, INT, FLOAT, BEGIN, END
+%terminals kVAR, kINT, kFLOAT, kBOOL, kBEGIN, kEND;
+
+%goal S;
+
+%typeof IDENTIFIER = "String";
+%typeof CONSTANT = "String";
+
+%typeof S = "CompilationUnit";
+%typeof CompilationUnit = "CompilationUnit";
+%typeof Block = "Block";
+%typeof Statement = "Statement";
+%typeof StatementList = "List<Statement>";
+%typeof Expression = "Expression";
+%typeof OrExpr = "Expression";
+%typeof AndExpr = "Expression";
+%typeof EqExpr = "Expression";
+%typeof AddExpr = "Expression";
+%typeof MulExpr = "Expression";
+%typeof UnaryExpr = "Expression";
+%typeof PrimExpr = "Expression";
+%typeof NestedExpr = "Expression";
+%typeof TYPE = "Type";
+
+S = CompilationUnit;
+
+CompilationUnit = Block.block {: return new Symbol(new CompilationUnit(block)); :};
+
+Block = Statement.stmt pSEMICOLON
+	{: 
+		return new Symbol(new Block(new List<Statement>().add(stmt)));
+	:}
+	| Statement.stmt pSEMICOLON StatementList.rest
+	{:
+		List<Statement> statements = new List<Statement>().add(stmt);
+		for (Statement s: rest)
+			statements.add(s);
+		return new Symbol(new Block(statements));
+	:}
+	;
+
+StatementList = Statement.stmt pSEMICOLON
+	{:
+		return new Symbol(new List<Statement>().add(stmt));
+	:}
+	| Statement.stmt pSEMICOLON StatementList.rest
+	{:
+		List<Statement> statements = new List<Statement>().add(stmt);
+		for (Statement s: rest)
+			statements.add(s);
+		return new Symbol(statements);
+	:}
+	;
+
+Statement = kBEGIN Block.block kEND
+	| kVAR IDENTIFIER.id pCOLON TYPE.type
+	{:
+		return new Symbol(new VariableDeclaration(id,type));
+	:}
+	| Expression
+	| IDENTIFIER.id pEQUALS Expression.expr
+	{:
+		return new Symbol(new VariableAssignment(id, expr));
+	:}
+	;
+	
+Expression = OrExpr
+	;
+
+OrExpr = OrExpr.expr1 pLINEVERTICAL_LINEVERTICAL AndExpr.expr2
+	{:
+		return new Symbol(new Or(expr1, expr2));
+	:}
+	| AndExpr
+	;
+
+AndExpr = AndExpr.expr1 pAND_AND EqExpr.expr2
+	{:
+		return new Symbol(new And(expr1, expr2));
+	:}
+	| EqExpr
+	;
+
+EqExpr = EqExpr.expr1 pEQUALS_EQUALS AddExpr.expr2
+	{:
+		return new Symbol(new Equal(expr1, expr2));
+	:}
+	| AddExpr
+	;
+
+AddExpr = AddExpr.expr1 pPLUS MulExpr.expr2
+	{:
+		return new Symbol(new Addition(expr1, expr2));
+	:}
+	| AddExpr.expr1 pMINUS MulExpr.expr2
+	{:
+		return new Symbol(new Subtraction(expr1, expr2));
+	:}
+	| MulExpr
+	;
+
+MulExpr = MulExpr.expr1 pSTAR UnaryExpr.expr2
+	{:
+		return new Symbol(new Multiplication(expr1, expr2));
+	:}
+	| MulExpr.expr1 pSLASH UnaryExpr.expr2
+	{:
+		return new Symbol(new Division(expr1, expr2));
+	:}
+	| UnaryExpr
+	;
+
+UnaryExpr = pMINUS PrimExpr.expr
+	{:
+		return new Symbol(new UMinus(expr));
+	:}
+	| pEXCLAMATIONMARK PrimExpr.expr
+	{:
+		return new Symbol(new Not(expr));
+	:}
+	| PrimExpr
+	;
+
+PrimExpr = CONSTANT.co
+	{:
+		return new Symbol(new Constant(co));
+	:}
+	| IDENTIFIER.id
+	{:
+		return new Symbol(new Reference(id));
+	:}
+	| NestedExpr
+	;
+	
+NestedExpr = pBRACKETOPENROUND Expression.expr pBRACKETCLOSEROUND
+	{:
+		return new Symbol(new NestedExpression(expr));
+	:}
+	;
+	
+TYPE = kINT.type {: return new Symbol(Type.Integer); :}
+	| kFLOAT.type {: return new Symbol(Type.Float); :}
+	| kBOOL.type {: return new Symbol(Type.Bool); :}
+	;
