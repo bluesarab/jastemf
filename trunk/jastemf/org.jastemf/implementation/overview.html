@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+</head>
+<body bgcolor="white">
+<b><h2>Overview and Application Domain</h2></b>
+<i>JastEMF</i> is a tool to support the integrated use of the <i>JastAdd</i>
+system -- a <i>rewriteable, circular, reference attribute grammar (ReCRAG)</i>
+generator -- and the <i>Eclipse Modeling Framework (EMF)</i> -- a <i>Java</i>
+based metamodeling framework build around the <i>ECore</i> metamodeling
+language. The objective of <i>JastEMF</i> is to permit the specification of an
+<i>ECore</i> metamodel's semantics using a <i>JastAdd</i> <i>ReCRAG</i>. Given
+an <i>ECore</i> metamodel and an <a href="#integration_project_requirements">
+appropriate</a> <i>JastAdd</i> abstract syntax tree (AST) the metamodel's
+semantics -- i.e. the value and behavior of its derived attributes,
+non-containment references and operations -- can be specified using
+<i>JastAdd</i>. In essence, <i>JastAdd</i> can be used to <b>define</b> the
+metamodel elements that are only <b>declared</b> in the metamodel.
+<p>
+<i>JastEMF</i> has three main use-cases, summarized in Figure I:
+<ul>
+	<li>Given a metamodel one likes to specify its semantics, i.e. implement
+	the evaluation and resolution routines for some or all of its derived
+	attributes, non-containment references and operations.</li>
+	<li>Given a metamodel one likes to build a tool that somehow reasons about
+	model instances, e.g. to produce some model dependent output or to
+	manipulate the model.</li>
+	<li>Given a <i>JastAdd</i> compiler one likes to integrate it into the
+	<i>EMF</i> world, i.e. provide the compiler internal API for other
+	<i>EMF</i> based tools by supporting a metamodel for the compiler.</li>
+</ul>
+<div align="center">
+<image src="JastEMF_Use_Cases.png" alt="JastEMF_Use_Cases.png" title="JastEMF's Use-Cases"/>
+<br><b>Fig. I:</b> <i>JastEMF's</i> Use-Cases
+</div>
+<p>
+For convenient reasons we will call the first two use-cases the specification
+of metamodel semantics and the last use-case a <i>JastAdd</i> evaluator
+adaptation against the <i>EMF</i>. Since <i>JastEMF's</i> integration process
+is equal for all its use-cases, we will in the following just speak about the
+specification of metamodel semantics.
+
+<a name="definition_metamodel_semantics"><h2>Metamodels, ReCRAGs and Metamodel Semantics</h2></a>
+
+<b>Definition <i>(Metamodel Semantic)</i>:</b> Let <i>MM</i> be a metamodel
+and <i>MME(MM)</i> be the finite set of its elements. Let <i>MME_syntax(MM)</i>
+and <i> MME_semantic(MM)</i> be disjunct subsets of <i>MME(MM)</i>, whereas <i>MME(MM) =
+MME_syntax(MM) + MME_semantic(MM)</i>. Let <i>ME(M)</i> be the set of entities of a
+model instance <i>M\MM</i>. Since <i>M\MM</i>, all
+entities <i>e\ME(M)</i> have a type <i>t(e)\MME(MM)</i>. Let <i>S(MM)</i> be a function that
+defines for all <i>M\MM</i> for
+each entity <i>e\ME(M)</i> with <i>t(e)\E_semantic(MM)</i> the value of <i>e</i>.
+We call <i>S(MM)</i> a metamodel semantic for <i>MM</i>.
+<p>
+A metamodel semantic defines -- based on the metamodel -- for any model instance
+the values of model entities of certain types. Usually, the specification is based
+on arbitrary other model entities and their values. We call the entities
+defined semantic entities and the specification of their values semantic
+specification. To specify the existence of semantic entities we call a
+declaration and say the entity is declared.
+
+If the semantic specification for a semantic construct is known,
+we say the construct is defined. Consequently, any defined semantic construct
+is also declared, but not necessary vice-versa. With metamodel semantics we
+mean declaration
+
+<h2>Integration Projects</h2>
+
+Starting point for <i>JastEMF</i> is a project containing an <i>ECore</i>
+metamodel -- represented by a generator model (GenModel) -- and arbitrary many
+<i>JastAdd</i> <i>ReCRAG</i> specifications for its semantics. As context-free
+structure for the <i>ReCRAG</i> specifications -- i.e. the AST the project's
+<i>rewriteable, circular, reference, attribute grammar</i> is based on -- the
+metamodel's non-containment references are used. <a
+name="integration_project_requirements"> Thus, <b>the <i>ReCRAG's</i> AST must
+be isomorph to the metamodel's non-containment reference graph</b>.</a>
+<br>
+We call a project satisfying these conditions an integration project. Using
+only <i>EMF</i> tools and <i>JastAdd</i> a developer can generate an <i>EMF</i>
+implementation for the metamodel and a <i>JastAdd</i> evaluator for the
+<i>ReCRAG</i>, but he cannot use the evaluator to reason about model instances.
+Both, the metamodel and the evaluator, have absolutely no knowledge about each
+other. Even worse, the evaluator maintains its own AST repository and the model
+has only method skeletons for its <a href="#definition_metamodel_semantics">
+semantics</a>. However, if <i>JastEMF</i> is used
+to steer the model and evaluator generation -- i.e. to call <i>EMF</i> and
+<i>JastAdd</i> throughout its execution -- the result would be an <i>EMF</i>
+model whose semantic methods are implemented. The integrated project has the
+API of the metamodel and the semantics of the evaluator. Additionally,
+<i>JastEMF</i> produces a tightly integration. With tightly, we mean that the
+result is one class hierarchy. The evaluator is woven into the <i>EMF</i>
+model. There is no need for adapters from the evaluator to the model or vice
+versa. In fact, <i>JastAdd's</i> internal AST repository (non-terminals and
+terminals) is completely deleted and instead the model repository is used, such
+that <i>EMF's</i> model manipulation semantics -- notifications, interfaces
+etc. -- are satisfied. On the other hand, any semantic constructs within the
+model are deleted from the model's implementation and instead the ones
+generated by <i>JastAdd</i> are used. In the end, both, repository and
+semantics, are integrated within the same classes -- thus, it is a tightly
+integration.
+
+<h2>Integration Process</h2>
+
+The complete integration process is observed and steered by an {@link
+org.jastemf.IntegrationManager integration manager}, which is responsible to
+interact with <i>JastAdd</i>, the <i>EMF</i> and the components that generate
+integration related artefacts like <a href="#refactoring_scripts">refactoring
+scripts</a> or <a href="#repository_adaptations">repository adaptations</a>.
+The following figure summarizes <i>JastEMF's</i> integration process:
+<p>
+<div align="center">
+<image src="JastEMF_Integration_Process.png" alt="JastEMF_Integration_Process.png" title="JastEMF's Integration Process"/>
+<br><b>Fig. II:</b> <i>JastEMF's</i> Integration Process
+</div>
+<p>
+It consists of three phases. Starting from the project to integrate,
+<b>phase I</b> generates based on the generator model a <i>JastAdd</i>
+specification that weaves methods ... TODO
+
+<h2>User Interface</h2>
+
+The user has not to be aware of the integration process. For him <i>JastEMF</i>
+is a black-box he can call using an {@link org.jastemf.ant.JastemfTask
+<i>Ant</i> task}. The task is configurated with the generator model to use, the
+package for the generated integration artefacts, the package for the
+<i>JastAdd</i> generated AST classes and an embedded call to <i>JastAdd's</i>
+own <i>Ant</i> task, such that it is no problem to configurate <i>JastAdd</i>
+as used to. Of course, the embedded <i>JastAdd</i> call has not to specify the
+AST classes' package and output directory again.
+</body>
+</html>
