@@ -1,0 +1,7 @@
+import ecore;
+
+eContainments(EClass class): class.eReferences.select(r | r.containment==true);
+eReferences(EClass class): class.eReferences.select(r | r.containment==false);
+
+cached String timeStamp():
+	JAVA org.jastemf.util.IOSupport.timeStamp();
