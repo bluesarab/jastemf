@@ -1,3 +1,11 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
 package calculator;
 
 import java.io.*;
@@ -23,7 +31,7 @@ public class Calculator {
 	public static void main(String[] args) throws IOException, beaver.Parser.Exception {
 		CalculatorLexer scanner = new CalculatorLexer(new FileReader(new File(args[0])));
 		CalculatorParser parser = new CalculatorParser();
-		CompilationUnitImpl ast = (CompilationUnitImpl)parser.parse(scanner);
+		CompilationUnit ast = (CompilationUnit)parser.parse(scanner);
 		System.out.println(ast.Interpret());
 	}
 }
