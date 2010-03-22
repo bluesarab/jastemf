@@ -1,0 +1,35 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+<project name="JastEMF Converters" default="Jar">
+	<path id="_basedir">
+		<pathelement location="."/>
+	</path>
+	<property name="_basedir" refid="_basedir"/>
+	
+	<!-- Create the *.jar distribution (not the plugin distribution) -->
+	<target name="Jar">
+		<jar
+			destfile="${_basedir}/distribution/jastemf-converters.jar"
+			manifest="${_basedir}/META-INF/MANIFEST.MF"
+			index="false"
+			update="false"
+			compress="false">
+			<fileset dir="${_basedir}">
+				<include name="License.txt"/>
+			</fileset>
+			<fileset dir="${_basedir}/src">
+				<include name="**/*.xpt"/>
+				<include name="**/*.oaw"/>
+				<include name="**/*.mwe"/>
+				<include name="**/*.ext"/>
+				<include name="**/taskdef.properties"/>
+			</fileset>
+			<fileset dir="${_basedir}/bin">
+				<include name="**/*.class"/>
+			</fileset>
+		</jar>
+	</target>
+</project>
