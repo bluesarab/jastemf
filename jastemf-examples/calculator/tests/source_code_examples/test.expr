@@ -1,0 +1,4 @@
+% Program for ad hoc testing from the command line.
+% Can be changed arbitrary; is not part of the test-suite.
+
+true;

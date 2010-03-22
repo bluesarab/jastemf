@@ -1,0 +1,28 @@
+% @author C. Bürger
+VAR i:INT;
+VAR f:FLOAT;
+VAR b:BOOL;
+
+i = 3;
+f = 3.5;
+b = true;
+
+b + i;
+b + f;
+b - i;
+b - f;
+b * i;
+b * f;
+b / i;
+b / f;
+
+i + b;
+f + b;
+i - b;
+f - b;
+i * b;
+f * b;
+i / b;
+f / b;
+
+i * ((f + 2) - b) + f;

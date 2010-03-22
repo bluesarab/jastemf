@@ -1,0 +1,28 @@
+% @author C. Bürger
+VAR b:BOOL;
+VAR i:INT;
+VAR f:FLOAT;
+
+b = true;
+i = 1;
+f = 1.0;
+
+b == i;
+b == f;
+i == b;
+f == b;
+
+!i;
+!f;
+
+b && i;
+b && f;
+i && b;
+f && b;
+
+b || i;
+b || f;
+i || b;
+f || b;
+
+b || (b && i == f) == i;

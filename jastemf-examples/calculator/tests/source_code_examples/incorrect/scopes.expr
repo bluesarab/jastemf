@@ -1,0 +1,73 @@
+% @author C. Bürger
+% x: declared but never defined
+% y: undeclared
+% z: declared but not within scope
+VAR x:INT;
+
+BEGIN
+	VAR z:INT;
+	z = 1; % The only correct statement of the program
+END;
+
+x;
+y;
+z;
+y = 1;
+z = 1;
+y;
+z;
+
+BEGIN
+	x;
+	y;
+	z;
+	y = 1;
+	z = 1;
+	y;
+	z;
+	
+	VAR x:BOOL;
+	
+	x;
+	y;
+	z;
+	y = 1;
+	z = 1;
+	y;
+	z;
+	
+	BEGIN
+		x;
+		y;
+		z;
+		y = 1;
+		z = 1;
+		y;
+		z;
+		
+		VAR x:FLOAT;
+		VAR y:FLOAT;
+		
+		x;
+		y;
+		z;
+		z = 1;
+		z;
+	END;
+	
+	x;
+	y;
+	z;
+	y = 1;
+	z = 1;
+	y;
+	z;
+END;
+
+x;
+y;
+z;
+y = 1;
+z = 1;
+y;
+z;

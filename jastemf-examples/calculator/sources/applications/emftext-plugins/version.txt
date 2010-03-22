@@ -1,0 +1,5 @@
+This is version 8805 of the EMFText Trunk (www.emftext.org) including support for
+operator precedences. The easiest way to install this version in your eclipse is to
+copy all plugin jars in this folder into your ${eclipse.home}/dropins folder.
+
+Least required Eclipse version: 3.5 Modeling Tools
