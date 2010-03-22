@@ -1,3 +1,6 @@
+/**
+ * @author C. Bürger
+ */
 package calculator.symbols;
 
 import beaver.Symbol;

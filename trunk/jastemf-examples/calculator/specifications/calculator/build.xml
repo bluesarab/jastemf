@@ -1,5 +1,5 @@
 <!--
-	@author cbuerger
+	@author C. Bürger
 -->
 <project name="Regression Test Archive" default="EMF Calculator">
 	<path id="_basedir">
