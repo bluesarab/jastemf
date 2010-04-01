@@ -6,12 +6,6 @@ There exist no known bugs.
                                  NEW FEATURES
 ===============================================================================
 
-Easier name analysis specification, that depends on inherited attributes
-instead of collection filers.
-
-Splitting the example's semantic specification in several files w.r.t. to the
-specified aspects.
-
 Representing the different constant types within the AST:
 	- New node type BooleanValue:Constant
 	- New node type IntegerValue:Constant

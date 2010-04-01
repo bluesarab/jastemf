@@ -1,0 +1,50 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+
+/**
+ * @author C. Bürger
+ */
+aspect TypeAnalysis {
+	eq VariableDeclaration.Type() = getVariableType();
+	eq VariableAssignment.Type() = LookUpVDecl(getLValue()).size() != 1 ?
+			Type.ERROR_TYPE :
+			Type.computeCompatibleType(
+					LookUpVDecl(getLValue()).iterator().next().Type(),
+					getRValue().Type()
+			) != LookUpVDecl(getLValue()).iterator().next().Type() ?
+					Type.ERROR_TYPE :
+					LookUpVDecl(getLValue()).iterator().next().Type();
+	
+	eq BinaryExpression.Type() = Type.computeCompatibleType(
+			getOperand1().Type(),
+			getOperand2().Type());
+	eq Equal.Type() = Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ?
+			Type.ERROR_TYPE :
+			Type.Bool;
+	eq And.Type() = getOperand1().Type() == Type.Bool && getOperand2().Type() == Type.Bool ?
+			Type.Bool :
+			Type.ERROR_TYPE;
+	eq Or.Type() = getOperand1().Type() == Type.Bool && getOperand2().Type() == Type.Bool ?
+			Type.Bool :
+			Type.ERROR_TYPE;
+	eq Not.Type() = getOperand().Type() == Type.Bool ?
+			Type.Bool :
+			Type.ERROR_TYPE;
+	eq UMinus.Type() = getOperand().Type() == Type.Bool ?
+			Type.ERROR_TYPE :
+			getOperand().Type();
+	eq Reference.Type() = LookUpVDecl(getName()).size() == 1 && LookUpVAssignment(Declaration()) != null ?
+			Type.computeCompatibleType(
+					LookUpVDecl(getName()).iterator().next().Type(),
+					LookUpVAssignment(Declaration()).Type()
+			) :
+			Type.ERROR_TYPE;
+	eq Constant.Type() = Type.typeOf(getConstantValue());
+	eq NestedExpression.Type() = getExpression().Type();
+}

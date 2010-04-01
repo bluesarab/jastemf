@@ -1,0 +1,50 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+import java.util.*;
+
+import calculator.semantics.*;
+
+/**
+ * @author C. Bürger
+ */
+aspect AccessSupport {
+	syn CompilationUnit ASTNode.ASTRoot();
+	inh DeweyAddress ASTNode.NodeAddress();
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect NameAnalysis {
+	inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
+	syn VariableDeclaration Reference.Declaration();
+	syn VariableDeclaration VariableAssignment.Declaration();
+	
+	coll java.util.List<VariableAssignment> CompilationUnit.Assignments()
+		[new ArrayList<VariableAssignment>()] with add;
+	syn VariableAssignment ASTNode.LookUpVAssignment(VariableDeclaration decl);
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect TypeAnalysis {
+	syn Type VariableDeclaration.Type();
+	syn Type VariableAssignment.Type();
+	syn Type Expression.Type();
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect Interpretation {
+	syn Value VariableAssignment.Value();
+	syn Value Expression.Value();
+	syn String ASTNode.Interpret();
+}
