@@ -1,4 +1,41 @@
-- rtt does not work out of the box, pathes in zip file are absolute
- [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/bin
- [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/sources/libraries/beaver-rt.jar
- [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/sources/libraries/aspectjrt.jar
+                                     BUGS
+===============================================================================
+
+There exist no known bugs.
+
+                                 NEW FEATURES
+===============================================================================
+
+Easier name analysis specification, that depends on inherited attributes
+instead of collection filers.
+
+Splitting the example's semantic specification in several files w.r.t. to the
+specified aspects.
+
+Representing the different constant types within the AST:
+	- New node type BooleanValue:Constant
+	- New node type IntegerValue:Constant
+	- New node type RealValue:Constant
+	- New node type ErrorValue:Constant
+	- Constant becomes abstract type without any children
+
+Extending the example to a small, Turing complete, imperative programming
+language:
+	- Delete Interpret() attribute.
+	- Delete LookUpVAssignment(VariableDeclaration decl) attribute.
+	- Rename to IPLE (Imperative Programming Language Example).
+	- Add syntax for if, while, procedure declaration and procedure call.
+	- Add static semantic of the new constructs.
+	- Add machine state representation (preferable by VM metamodel).
+	- Add execution semantic, i.e. for each statement a method exists, that
+	  takes an input state and computes an output state.
+	- Change expressions' value computation (the Value() attribute) to depend
+	  on a state parameter, i.e. a value is computed based on the given state.
+	- Add constant folding, i.e. each expression has a new attribute
+	  ConstantValue(), that behaves like the old Value() attribute and has a
+	  value iff the expression's value does not depend on a state (Expressions
+	  depend on a state iff they depend on any value computed by a procedure
+	  call or a while loop; Rationale: Procedures and while loops are possibly
+	  non-terminating).
+	- Add control-flow analysis as described in "Declarative Intraprocedural
+	  Flow Analysis of Java Source Code".

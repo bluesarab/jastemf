@@ -22,7 +22,7 @@ abstract Statement;
 	abstract Expression:Statement;
 		
 		Reference:Expression ::= <Name:String>;
-		Constant:Expression ::= <ConstantValue:String> ;
+		Constant:Expression ::= <ConstantValue:String>;
 		NestedExpression:Expression ::= Expression:Expression;
 		
 		abstract UnaryExpression:Expression ::= Operand:Expression;
