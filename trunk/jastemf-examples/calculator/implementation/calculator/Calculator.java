@@ -31,7 +31,7 @@ public class Calculator {
 	public static void main(String[] args) throws IOException, beaver.Parser.Exception {
 		CalculatorLexer scanner = new CalculatorLexer(new FileReader(new File(args[0])));
 		CalculatorParser parser = new CalculatorParser();
-		CompilationUnit ast = (CompilationUnit)parser.parse(scanner);
+		CompilationUnitImpl ast = (CompilationUnitImpl)parser.parse(scanner);
 		System.out.println(ast.Interpret());
 	}
 }

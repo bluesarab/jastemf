@@ -124,10 +124,10 @@
 			workspace. If not, they must be manually imported.
 	-->
 	<target name="EMFText Resources" description="Generate the EMF text resource plug-in">
-		<emftext.GenerateTextResource 
-			syntax="syntax/calculator.cs" 
-			rootFolder="${_basedir}/.." 
-			syntaxProjectName="calculator.semantics.resource.expr" 
+		<emftext.GenerateTextResource
+			syntax="syntax/calculator.cs"
+			rootFolder="${_basedir}/.."
+			syntaxProjectName="calculator.semantics.resource.expr"
 		/>
 		<copy
 			overwrite="true"
