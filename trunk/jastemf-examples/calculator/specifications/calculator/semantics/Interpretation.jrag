@@ -1,0 +1,63 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+
+/**
+ * @author C. Bürger
+ */
+aspect Interpretation {
+	eq VariableAssignment.Value() = Type() == Type.ERROR_TYPE ?
+			new ErrorValue() :
+			getRValue().Value();
+	
+	eq Constant.Value() = Type() == Type.Bool ?
+			new BooleanValue(new Boolean(getConstantValue())) :
+			Type() == Type.Integer ?
+					new IntegerValue(new Integer(getConstantValue())) :
+					Type() == Type.Float ?
+							new FloatValue(new Float(getConstantValue())) :
+							new ErrorValue();
+	eq Reference.Value() =
+		LookUpVAssignment(Declaration()) == null ?
+		new ErrorValue() :
+		LookUpVAssignment(Declaration()).Value();
+	eq Not.Value() = getOperand().Value().not();
+	eq UMinus.Value() = getOperand().Value().uminus();
+	eq And.Value() = getOperand1().Value().and(getOperand2().Value());
+	eq Or.Value() = getOperand1().Value().or(getOperand2().Value());
+	eq Equal.Value() = getOperand1().Value().equal(getOperand2().Value());
+	eq Addition.Value() = getOperand1().Value().add(getOperand2().Value());
+	eq Subtraction.Value() = getOperand1().Value().sub(getOperand2().Value());
+	eq Multiplication.Value() = getOperand1().Value().mul(getOperand2().Value());
+	eq Division.Value() = getOperand1().Value().div(getOperand2().Value());
+		// chain rule for nested expression value
+	eq NestedExpression.Value() = getExpression().Value();
+	
+	eq ASTNode.Interpret() = "";
+	eq CompilationUnit.Interpret() = getBlock().Interpret();
+	eq Block.Interpret() {
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < getNumStatement(); i++)
+			result.append(
+					(getStatement(i) instanceof Expression ? "\n" : "")+
+					getStatement(i).Interpret());
+		return result.toString();
+	}
+	eq VariableAssignment.Interpret() = "\n"+ getLValue() +":"+ Type() +" := "+ getRValue().Interpret();
+	eq Reference.Interpret() = Value() +":"+ Type();
+	eq Constant.Interpret() = Value() +":"+ Type();
+	eq Not.Interpret() = "!("+ getOperand().Interpret() +":"+ Type() +") = "+ Value();
+	eq UMinus.Interpret() = "-("+ getOperand().Interpret() +") = "+ Value();
+	eq And.Interpret() = "("+ getOperand1().Interpret() +" & "+ getOperand2().Interpret() +") = "+ Value();
+	eq Or.Interpret() = "("+ getOperand1().Interpret() +" | "+ getOperand2().Interpret() +") = "+ Value();
+	eq Equal.Interpret() = "("+ getOperand1().Interpret() +" = "+ getOperand2().Interpret() +") = "+ Value();
+	eq Addition.Interpret() = "("+ getOperand1().Interpret() +" + "+ getOperand2().Interpret() +") = "+ Value();
+	eq Subtraction.Interpret() = "("+ getOperand1().Interpret() +" - "+ getOperand2().Interpret() +") = "+ Value();
+	eq Division.Interpret() = "("+ getOperand1().Interpret() +" / "+ getOperand2().Interpret() +") = "+ Value();
+	eq Multiplication.Interpret() = "("+ getOperand1().Interpret() +" * "+ getOperand2().Interpret() +") = "+ Value();
+}
