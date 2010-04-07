@@ -15,14 +15,16 @@ CompilationUnit ::= Block;
 
 abstract Statement;
 	
-	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
-	VariableDeclaration:Statement ::= <Name:String> <VariableType:Type>; 
+	ProcedureDeclaration:Statement ::= <Name:String> <ReturnType:Type> Body:Block;
+	VariableDeclaration:Statement ::= <Name:String> <DeclaredType:Type>;
 	Block:Statement ::= Statement*;
+	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
 	
 	abstract Expression:Statement;
 		
+		Constant:Expression ::= <Lexem:String>;
 		Reference:Expression ::= <Name:String>;
-		Constant:Expression ::= <ConstantValue:String>;
+		ProcedureCall:Expression ::= <Name:String>;
 		NestedExpression:Expression ::= Expression:Expression;
 		
 		abstract UnaryExpression:Expression ::= Operand:Expression;

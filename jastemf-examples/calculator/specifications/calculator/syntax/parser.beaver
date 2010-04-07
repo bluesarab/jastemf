@@ -83,7 +83,7 @@ StatementList = Statement.stmt pSEMICOLON
 Statement = kBEGIN Block.block kEND
 	| kVAR IDENTIFIER.id pCOLON TYPE.type
 	{:
-		return new Symbol(new VariableDeclaration(id,type));
+		return new Symbol(new VariableDeclaration(id, type));
 	:}
 	| Expression
 	| IDENTIFIER.id pEQUALS Expression.expr
@@ -167,6 +167,6 @@ NestedExpr = pBRACKETOPENROUND Expression.expr pBRACKETCLOSEROUND
 	;
 	
 TYPE = kINT.type {: return new Symbol(Type.Integer); :}
-	| kFLOAT.type {: return new Symbol(Type.Float); :}
-	| kBOOL.type {: return new Symbol(Type.Bool); :}
+	| kFLOAT.type {: return new Symbol(Type.Real); :}
+	| kBOOL.type {: return new Symbol(Type.Boolean); :}
 	;

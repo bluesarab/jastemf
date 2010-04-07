@@ -11,53 +11,70 @@
  * @author C. Bürger
  */
 aspect Interpretation {
-	eq VariableAssignment.Value() = Type() == Type.ERROR_TYPE ?
-			new ErrorValue() :
-			getRValue().Value();
-	
-	eq Constant.Value() = Type() == Type.Bool ?
-			new BooleanValue(new Boolean(getConstantValue())) :
-			Type() == Type.Integer ?
-					new IntegerValue(new Integer(getConstantValue())) :
-					Type() == Type.Float ?
-							new FloatValue(new Float(getConstantValue())) :
-							new ErrorValue();
-	eq Reference.Value() =
-		LookUpVAssignment(Declaration()) == null ?
-		new ErrorValue() :
-		LookUpVAssignment(Declaration()).Value();
-	eq Not.Value() = getOperand().Value().not();
-	eq UMinus.Value() = getOperand().Value().uminus();
-	eq And.Value() = getOperand1().Value().and(getOperand2().Value());
-	eq Or.Value() = getOperand1().Value().or(getOperand2().Value());
-	eq Equal.Value() = getOperand1().Value().equal(getOperand2().Value());
-	eq Addition.Value() = getOperand1().Value().add(getOperand2().Value());
-	eq Subtraction.Value() = getOperand1().Value().sub(getOperand2().Value());
-	eq Multiplication.Value() = getOperand1().Value().mul(getOperand2().Value());
-	eq Division.Value() = getOperand1().Value().div(getOperand2().Value());
-		// chain rule for nested expression value
-	eq NestedExpression.Value() = getExpression().Value();
-	
-	eq ASTNode.Interpret() = "";
-	eq CompilationUnit.Interpret() = getBlock().Interpret();
-	eq Block.Interpret() {
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < getNumStatement(); i++)
-			result.append(
-					(getStatement(i) instanceof Expression ? "\n" : "")+
-					getStatement(i).Interpret());
-		return result.toString();
+	eq Constant.Value(State vm) {
+		if (Type() == Type.Boolean)
+			return AsBoolean();
+		if (Type() == Type.Integer)
+			return AsInteger();
+		return AsReal();
 	}
-	eq VariableAssignment.Interpret() = "\n"+ getLValue() +":"+ Type() +" := "+ getRValue().Interpret();
-	eq Reference.Interpret() = Value() +":"+ Type();
-	eq Constant.Interpret() = Value() +":"+ Type();
-	eq Not.Interpret() = "!("+ getOperand().Interpret() +":"+ Type() +") = "+ Value();
-	eq UMinus.Interpret() = "-("+ getOperand().Interpret() +") = "+ Value();
-	eq And.Interpret() = "("+ getOperand1().Interpret() +" & "+ getOperand2().Interpret() +") = "+ Value();
-	eq Or.Interpret() = "("+ getOperand1().Interpret() +" | "+ getOperand2().Interpret() +") = "+ Value();
-	eq Equal.Interpret() = "("+ getOperand1().Interpret() +" = "+ getOperand2().Interpret() +") = "+ Value();
-	eq Addition.Interpret() = "("+ getOperand1().Interpret() +" + "+ getOperand2().Interpret() +") = "+ Value();
-	eq Subtraction.Interpret() = "("+ getOperand1().Interpret() +" - "+ getOperand2().Interpret() +") = "+ Value();
-	eq Division.Interpret() = "("+ getOperand1().Interpret() +" / "+ getOperand2().Interpret() +") = "+ Value();
-	eq Multiplication.Interpret() = "("+ getOperand1().Interpret() +" * "+ getOperand2().Interpret() +") = "+ Value();
+	eq Reference.Value(State vm) = vm.lookUpValue(Declaration()) != null ?
+			vm.lookUpValue(Declaration()) :
+			new ErrorValue();
+	eq ProcedureCall.Value(State vm) {
+		// TODO
+		return new ErrorValue();
+	}
+	eq NestedExpression.Value(State vm) = getExpression().Value(vm);
+	eq Not.Value(State vm) = Type() == Type.Boolean ?
+			!(Boolean)getOperand().Value(vm) :
+			new ErrorValue();
+	eq UMinus.Value(State vm) {
+		if (Type() == Type.Real)
+			return -(Float)getOperand().Value(vm);
+		if (Type() == Type.Integer)
+			return -(Integer)getOperand().Value(vm);
+		return new ErrorValue();
+	}
+	eq And.Value(State vm) = Type() == Type.Boolean ?
+			(Boolean)getOperand1().Value(vm) && (Boolean)getOperand2().Value(vm) :
+			new ErrorValue();
+	eq Or.Value(State vm) = Type() == Type.Boolean ?
+			(Boolean)getOperand1().Value(vm) || (Boolean)getOperand2().Value(vm) :
+			new ErrorValue();
+	eq Equal.Value(State vm) {
+		if (Type() != Type.Boolean)
+			return new ErrorValue();
+		if (getOperand1().Type() == Type.Boolean)
+			return (Boolean)getOperand1().Value(vm) == (Boolean)getOperand2().Value(vm);
+		return ((Number)getOperand1().Value(vm)).floatValue() == ((Number)getOperand2().Value(vm)).floatValue();
+	}
+	eq Addition.Value(State vm) {
+		if (Type() == Type.Integer)
+			return (Integer)getOperand1().Value(vm) + (Integer)getOperand2().Value(vm);
+		if (Type() == Type.Real)
+			return ((Number)getOperand1().Value(vm)).floatValue() + ((Number)getOperand2().Value(vm)).floatValue();
+		return new ErrorValue();
+	}
+	eq Subtraction.Value(State vm) {
+		if (Type() == Type.Integer)
+			return (Integer)getOperand1().Value(vm) - (Integer)getOperand2().Value(vm);
+		if (Type() == Type.Real)
+			return ((Number)getOperand1().Value(vm)).floatValue() - ((Number)getOperand2().Value(vm)).floatValue();
+		return new ErrorValue();
+	}
+	eq Multiplication.Value(State vm) {
+		if (Type() == Type.Integer)
+			return (Integer)getOperand1().Value(vm) * (Integer)getOperand2().Value(vm);
+		if (Type() == Type.Real)
+			return ((Number)getOperand1().Value(vm)).floatValue() * ((Number)getOperand2().Value(vm)).floatValue();
+		return new ErrorValue();
+	}
+	eq Division.Value(State vm) {
+		if (Type() == Type.Integer && (Integer)getOperand2().Value(vm) != 0)
+			return (Integer)getOperand1().Value(vm) / (Integer)getOperand2().Value(vm);
+		if (Type() == Type.Real && ((Number)getOperand2().Value(vm)).floatValue() != 0)
+			return ((Number)getOperand1().Value(vm)).floatValue() / ((Number)getOperand2().Value(vm)).floatValue();
+		return new ErrorValue();
+	}
 }

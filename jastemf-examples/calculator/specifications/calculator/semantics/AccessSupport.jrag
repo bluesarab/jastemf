@@ -18,4 +18,20 @@ aspect AccessSupport {
 		new DeweyAddress().addAddressPart(1);
 	eq ASTNode.getChild(int index).NodeAddress() =
 		NodeAddress().clone().addAddressPart(index + 1);
+	
+	eq Constant.AsBoolean() {
+		try {
+		return Boolean.parseBoolean(getLexem());
+		} catch (Exception e) {return null;}
+	}
+	eq Constant.AsInteger() {
+		try {
+		return Integer.parseInt(getLexem());
+		} catch (Exception e) {return null;}
+	}
+	eq Constant.AsReal() {
+		try {
+		return Float.parseFloat(getLexem());
+		} catch (Exception e) {return null;}
+	}
 }

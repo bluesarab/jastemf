@@ -16,12 +16,19 @@ import calculator.semantics.*;
 aspect AccessSupport {
 	syn CompilationUnit ASTNode.ASTRoot();
 	inh DeweyAddress ASTNode.NodeAddress();
+	
+	syn Boolean Constant.AsBoolean();
+	syn Integer Constant.AsInteger();
+	syn Float Constant.AsReal();
 }
 
 /**
  * @author C. Bürger
  */
 aspect NameAnalysis {
+	inh Collection<ProcedureDeclaration> ASTNode.LookUpPDecl(String name);
+	syn ProcedureDeclaration ProcedureCall.Declaration();
+	
 	inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
 	syn VariableDeclaration Reference.Declaration();
 	syn VariableDeclaration VariableAssignment.Declaration();
@@ -44,7 +51,6 @@ aspect TypeAnalysis {
  * @author C. Bürger
  */
 aspect Interpretation {
-	syn Value VariableAssignment.Value();
-	syn Value Expression.Value();
-	syn String ASTNode.Interpret();
+	//syn Object Expression.ConstantValue();
+	syn Object Expression.Value(State vm);
 }

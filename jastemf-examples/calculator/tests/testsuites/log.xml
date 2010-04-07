@@ -101,4 +101,12 @@
         <passed testSuite="incorrect" test="boolean_arithmetics"/>
         <passed testSuite="incorrect" test="scopes"/>
     </testrun>
+    <testrun configuration="JastAdd" date="2010-04-01+02:00">
+        <passed testSuite="correct" test="arithmetics"/>
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="arithmetics"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
 </archiveLog>
