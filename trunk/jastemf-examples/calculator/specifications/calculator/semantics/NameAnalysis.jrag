@@ -11,6 +11,34 @@
  * @author C. Bürger
  */
 aspect NameAnalysis {
+	/** Procedure declaration name analysis */
+	
+	syn Collection<ProcedureDeclaration> CompilationUnit.LookUpPDecl(String name) =
+		new LinkedList<ProcedureDeclaration>();
+	eq CompilationUnit.getBlock().LookUpPDecl(String name) =
+		new LinkedList<ProcedureDeclaration>();
+	eq Block.getStatement(int index).LookUpPDecl(String name) {
+		Collection<ProcedureDeclaration> result =
+			new LinkedList<ProcedureDeclaration>();
+		for (int i = 0; i < getNumStatement(); i++) // Declared within block
+			result.addAll(getStatement(i).LookUpPLocal(name));
+		return !result.isEmpty() ? result : LookUpPDecl(name);
+	}
+	syn Collection<ProcedureDeclaration> Statement.LookUpPLocal(String name) =
+		new LinkedList<ProcedureDeclaration>();
+	eq ProcedureDeclaration.LookUpPLocal(String name) {
+		if (!getName().equals(name))
+			return new LinkedList<ProcedureDeclaration>();
+		Collection<ProcedureDeclaration> result =
+			new LinkedList<ProcedureDeclaration>();
+		result.add(this);
+		return result;
+	}
+	
+	eq ProcedureCall.Declaration() = LookUpPDecl(getName()).size() == 1 ?
+			LookUpPDecl(getName()).iterator().next() :
+			null;
+	
 	/** Variable declaration name analysis */
 	
 	syn Collection<VariableDeclaration> CompilationUnit.LookUpVDecl(String name) =
@@ -20,13 +48,13 @@ aspect NameAnalysis {
 	eq Block.getStatement(int index).LookUpVDecl(String name) {
 		Collection<VariableDeclaration> result =
 			new LinkedList<VariableDeclaration>();
-		for (int i = 0; i < index; i++)
-			result.addAll(getStatement(i).LookUpLocal(name));
+		for (int i = 0; i < index; i++) // Declare before use
+			result.addAll(getStatement(i).LookUpVLocal(name));
 		return !result.isEmpty() ? result : LookUpVDecl(name);
 	}
-	syn Collection<VariableDeclaration> Statement.LookUpLocal(String name) =
+	syn Collection<VariableDeclaration> Statement.LookUpVLocal(String name) =
 		new LinkedList<VariableDeclaration>();
-	eq VariableDeclaration.LookUpLocal(String name) {
+	eq VariableDeclaration.LookUpVLocal(String name) {
 		if (!getName().equals(name))
 			return new LinkedList<VariableDeclaration>();
 		Collection<VariableDeclaration> result =
@@ -53,7 +81,7 @@ aspect NameAnalysis {
 		java.util.List<VariableAssignment> assigns =
 			new LinkedList<VariableAssignment>();
 		for (VariableAssignment assign:ASTRoot().Assignments())
-			if (assign.Declaration() == decl)
+			if (assign.Declaration() == decl && assign.NodeAddress().compareTo(NodeAddress()) >= 0)
 				assigns.add(assign);
 		Collections.sort(
 				assigns,

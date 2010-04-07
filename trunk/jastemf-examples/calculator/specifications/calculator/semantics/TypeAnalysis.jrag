@@ -11,40 +11,46 @@
  * @author C. Bürger
  */
 aspect TypeAnalysis {
-	eq VariableDeclaration.Type() = getVariableType();
-	eq VariableAssignment.Type() = LookUpVDecl(getLValue()).size() != 1 ?
-			Type.ERROR_TYPE :
-			Type.computeCompatibleType(
-					LookUpVDecl(getLValue()).iterator().next().Type(),
-					getRValue().Type()
-			) != LookUpVDecl(getLValue()).iterator().next().Type() ?
-					Type.ERROR_TYPE :
-					LookUpVDecl(getLValue()).iterator().next().Type();
+	eq VariableDeclaration.Type() = getDeclaredType();
+	eq VariableAssignment.Type() {
+		VariableDeclaration decl = Declaration();
+		if (decl == null)
+			return Type.ERROR_TYPE;
+		Type cT = Type.computeCompatibleType(decl.Type(), getRValue().Type());
+		return cT != decl.Type() ? Type.ERROR_TYPE : decl.Type();
+	}
 	
+	eq Constant.Type() {
+		if (AsBoolean() != null)
+			return Type.Boolean;
+		if (AsReal() != null)
+			return Type.Real;
+		if (AsInteger() != null)
+			return Type.Integer;
+		return Type.ERROR_TYPE;
+	}
+	eq Reference.Type() = Declaration() != null ?
+			Declaration().Type() : Type.ERROR_TYPE;
+	eq ProcedureCall.Type() = Declaration() != null ?
+			Declaration().getReturnType() :
+			Type.ERROR_TYPE;
+	eq NestedExpression.Type() = getExpression().Type();
+	eq UMinus.Type() = getOperand().Type() == Type.Boolean ?
+			Type.ERROR_TYPE :
+			getOperand().Type();
+	eq Not.Type() = getOperand().Type() == Type.Boolean ?
+			Type.Boolean :
+			Type.ERROR_TYPE;
+	eq Or.Type() = getOperand1().Type() == Type.Boolean && getOperand2().Type() == Type.Boolean ?
+			Type.Boolean :
+			Type.ERROR_TYPE;
+	eq And.Type() = getOperand1().Type() == Type.Boolean && getOperand2().Type() == Type.Boolean ?
+			Type.Boolean :
+			Type.ERROR_TYPE;
+	eq Equal.Type() = Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ?
+			Type.ERROR_TYPE :
+			Type.Boolean;
 	eq BinaryExpression.Type() = Type.computeCompatibleType(
 			getOperand1().Type(),
 			getOperand2().Type());
-	eq Equal.Type() = Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ?
-			Type.ERROR_TYPE :
-			Type.Bool;
-	eq And.Type() = getOperand1().Type() == Type.Bool && getOperand2().Type() == Type.Bool ?
-			Type.Bool :
-			Type.ERROR_TYPE;
-	eq Or.Type() = getOperand1().Type() == Type.Bool && getOperand2().Type() == Type.Bool ?
-			Type.Bool :
-			Type.ERROR_TYPE;
-	eq Not.Type() = getOperand().Type() == Type.Bool ?
-			Type.Bool :
-			Type.ERROR_TYPE;
-	eq UMinus.Type() = getOperand().Type() == Type.Bool ?
-			Type.ERROR_TYPE :
-			getOperand().Type();
-	eq Reference.Type() = LookUpVDecl(getName()).size() == 1 && LookUpVAssignment(Declaration()) != null ?
-			Type.computeCompatibleType(
-					LookUpVDecl(getName()).iterator().next().Type(),
-					LookUpVAssignment(Declaration()).Type()
-			) :
-			Type.ERROR_TYPE;
-	eq Constant.Type() = Type.typeOf(getConstantValue());
-	eq NestedExpression.Type() = getExpression().Type();
 }

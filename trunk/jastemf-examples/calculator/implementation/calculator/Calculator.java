@@ -21,7 +21,6 @@ import calculator.semantics.impl.*;
  *
  */
 public class Calculator {
-
 	/**
 	 * Interpret the source file <tt>args[0]</tt>, i.e. do a lexic, syntactic
 	 * and semantic analysis and finally call the root node's
@@ -32,6 +31,5 @@ public class Calculator {
 		CalculatorLexer scanner = new CalculatorLexer(new FileReader(new File(args[0])));
 		CalculatorParser parser = new CalculatorParser();
 		CompilationUnit ast = (CompilationUnit)parser.parse(scanner);
-		System.out.println(ast.Interpret());
 	}
 }
