@@ -19,6 +19,20 @@ aspect TypeAnalysis {
 		Type cT = Type.computeCompatibleType(decl.Type(), getRValue().Type());
 		return cT != decl.Type() ? Type.ERROR_TYPE : decl.Type();
 	}
+	eq ProcedureReturn.Type() {
+		ProcedureDeclaration decl = ProcedureInContext();
+		if (decl == null)
+			return Type.ERROR_TYPE;
+		if (!hasExpression())
+			if (decl.getReturnType() != Type.Undefined)
+				return Type.ERROR_TYPE;
+			else return Type.Undefined;
+		final Type cT = Type.computeCompatibleType(decl.getReturnType(),
+				getExpression.Type());
+		if (cT != decl.getReturnType())
+			return Type.ERROR_TYPE;
+		return cT;
+	}
 	
 	eq Constant.Type() {
 		if (AsBoolean() != null)
@@ -31,14 +45,29 @@ aspect TypeAnalysis {
 	}
 	eq Reference.Type() = Declaration() != null ?
 			Declaration().Type() : Type.ERROR_TYPE;
-	eq ProcedureCall.Type() = Declaration() != null ?
-			Declaration().getReturnType() :
-			Type.ERROR_TYPE;
+	eq ProcedureCall.Type() {
+		ProcedureDeclaration decl = Declaration();
+		if (decl == null)
+			return Type.ERROR_TYPE;
+		if (getNumArguments() != decl.getNumParameter())
+			return Type.ERROR_TYPE;
+		for (int i = 0; i < getNumArguments(); i++) {
+			final Type cT = Type.computeCompatibleType(
+					decl.getParameter(i).Type(),
+					getArgument(i).Type());
+			if (cT != decl.getParameter(i).Type())
+				return Type.ERROR_TYPE;
+		}
+		for (ProcedureReturn ret:decl.Returns())
+			if (ret.Type() == Type.ERROR_TYPE)
+				return Type.ERROR_TYPE;
+		return decl.getReturnType();
+	}
 	eq NestedExpression.Type() = getExpression().Type();
-	eq UMinus.Type() = getOperand().Type() == Type.Boolean ?
+	eq UMinus.Type() = getOperand().Type() == Type.Boolean || getOperand().Type() == Type.Undefined ?
 			Type.ERROR_TYPE :
 			getOperand().Type();
-	eq Not.Type() = getOperand().Type() == Type.Boolean ?
+	eq Not.Type() = getOperand().Type() == Type.Boolean || getOperand().Type() == Type.Undefined ?
 			Type.Boolean :
 			Type.ERROR_TYPE;
 	eq Or.Type() = getOperand1().Type() == Type.Boolean && getOperand2().Type() == Type.Boolean ?
@@ -50,6 +79,11 @@ aspect TypeAnalysis {
 	eq Equal.Type() = Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ?
 			Type.ERROR_TYPE :
 			Type.Boolean;
+	eq GreaterThan.Type() =
+			Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+			getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+					Type.ERROR_TYPE :
+					Type.Boolean;
 	eq BinaryExpression.Type() = Type.computeCompatibleType(
 			getOperand1().Type(),
 			getOperand2().Type());

@@ -74,14 +74,16 @@ aspect NameAnalysis {
 	
 	/** Assignment name analysis */
 	
-	VariableAssignment contributes this to
-		CompilationUnit.Assignments() for ASTRoot();
+	/*
+	VariableAssignment contributes this when Declaration() != null
+		to VariableDeclaration.Assignments() for Declaration();
 	
-	eq ASTNode.LookUpVAssignment(VariableDeclaration decl) {
+	eq Reference.LastAssignment() {
 		java.util.List<VariableAssignment> assigns =
 			new LinkedList<VariableAssignment>();
-		for (VariableAssignment assign:ASTRoot().Assignments())
-			if (assign.Declaration() == decl && assign.NodeAddress().compareTo(NodeAddress()) >= 0)
+		for (VariableAssignment assign:Declaration().Assignments())
+			if (assign.NodeAddress().compareTo(NodeAddress()) > 0 &&
+					!assign.NodeAddress().isAncestor(NodeAddress()))
 				assigns.add(assign);
 		Collections.sort(
 				assigns,
@@ -92,4 +94,5 @@ aspect NameAnalysis {
 				});
 		return !assigns.isEmpty() ? assigns.get(0) : null;
 	}
+	*/
 }

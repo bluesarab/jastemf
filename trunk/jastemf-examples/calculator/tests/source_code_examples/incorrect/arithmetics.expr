@@ -2,30 +2,32 @@
 % terms of the BSD 3-clause license which accompanies this distribution.
 
 % @author C. Bürger
-VAR i:INT;
-VAR f:FLOAT;
-VAR b:BOOL;
-
-i = 3;
-f = 3.5;
-b = true;
-
-b + i;
-b + f;
-b - i;
-b - f;
-b * i;
-b * f;
-b / i;
-b / f;
-
-i + b;
-f + b;
-i - b;
-f - b;
-i * b;
-f * b;
-i / b;
-f / b;
-
-i * ((f + 2) - b) + f;
+Procedure main() Begin
+	Var b:Boolean;
+	Var i:Integer;
+	Var r:Real;
+	
+	i := 3;
+	r := 3.5;
+	b := true;
+	
+	b + i;
+	b + r;
+	b - i;
+	b - r;
+	b * i;
+	b * r;
+	b / i;
+	b / r;
+	
+	i + b;
+	r + b;
+	i - b;
+	r - b;
+	i * b;
+	r * b;
+	i / b;
+	r / b;
+	
+	i * ((r + 2) - b) + r;
+End

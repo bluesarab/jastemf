@@ -47,25 +47,39 @@ IntegerNumber  = [0-9]+
 %%
 
 <YYINITIAL> {
-	"VAR"			{ return createPrimitiveToken(Terminals.kVAR); }
-	"BEGIN"			{ return createPrimitiveToken(Terminals.kBEGIN); }
-	"END"			{ return createPrimitiveToken(Terminals.kEND); }
-	"INT"			{ return createPrimitiveToken(Terminals.kINT); }
-	"FLOAT"			{ return createPrimitiveToken(Terminals.kFLOAT); }
-	"BOOL"			{ return createPrimitiveToken(Terminals.kBOOL); }
-	"("				{ return createPrimitiveToken(Terminals.pBRACKETOPENROUND); }
-	")"				{ return createPrimitiveToken(Terminals.pBRACKETCLOSEROUND); }
-	"*"				{ return createPrimitiveToken(Terminals.pSTAR); }
+	"Var"			{ return createPrimitiveToken(Terminals.kVAR); }
+	"Begin"			{ return createPrimitiveToken(Terminals.kBEGIN); }
+	"End"			{ return createPrimitiveToken(Terminals.kEND); }
+	"If"			{ return createPrimitiveToken(Terminals.kIF); }
+	"Then"			{ return createPrimitiveToken(Terminals.kTHEN); }
+	"Else"			{ return createPrimitiveToken(Terminals.kELSE); }
+	"Fi"			{ return createPrimitiveToken(Terminals.kFI); }
+	"While"			{ return createPrimitiveToken(Terminals.kWHILE); }
+	"Do"			{ return createPrimitiveToken(Terminals.kDO); }
+	"Od"			{ return createPrimitiveToken(Terminals.kOD); }
+	"Return"		{ return createPrimitiveToken(Terminals.kRETURN); }
+	"Boolean"		{ return createPrimitiveToken(Terminals.kBOOL); }
+	"Integer"		{ return createPrimitiveToken(Terminals.kINT); }
+	"Real"			{ return createPrimitiveToken(Terminals.kFLOAT); }
+	"Not"			{ return createPrimitiveToken(Terminals.kNOT); }
+	"And"			{ return createPrimitiveToken(Terminals.kAND); }
+	"Or"			{ return createPrimitiveToken(Terminals.kOR); }
+	":="			{ return createPrimitiveToken(Terminals.pCOLON_EQUALS); }
 	"+"				{ return createPrimitiveToken(Terminals.pPLUS); }
 	"-"				{ return createPrimitiveToken(Terminals.pMINUS); }
+	"*"				{ return createPrimitiveToken(Terminals.pSTAR); }
 	"/"				{ return createPrimitiveToken(Terminals.pSLASH); }
-	"!"				{ return createPrimitiveToken(Terminals.pEXCLAMATIONMARK); }
+	"<="			{ return createPrimitiveToken(Terminals.pANGLEBRACKETLEFT_EQUALS); }
+	">="			{ return createPrimitiveToken(Terminals.pANGLEBRACKETRIGHT_EQUALS); }
+	"<"				{ return createPrimitiveToken(Terminals.pANGLEBRACKETLEFT); }
+	">"				{ return createPrimitiveToken(Terminals.pANGLEBRACKETRIGHT); }
 	"="				{ return createPrimitiveToken(Terminals.pEQUALS); }
+	"#"				{ return createPrimitiveToken(Terminals.pSHARP); }
+	"("				{ return createPrimitiveToken(Terminals.pBRACKETOPENROUND); }
+	")"				{ return createPrimitiveToken(Terminals.pBRACKETCLOSEROUND); }
 	":"				{ return createPrimitiveToken(Terminals.pCOLON); }
 	";"				{ return createPrimitiveToken(Terminals.pSEMICOLON); }
-	"&&"			{ return createPrimitiveToken(Terminals.pAND_AND); }
-	"||"			{ return createPrimitiveToken(Terminals.pLINEVERTICAL_LINEVERTICAL); }
-	"=="			{ return createPrimitiveToken(Terminals.pEQUALS_EQUALS); }
+	","				{ return createPrimitiveToken(Terminals.pCOMMA); }
 	"true"			{ return createPrimitiveToken(Terminals.CONSTANT); }
 	"false"			{ return createPrimitiveToken(Terminals.CONSTANT); }
 	{RealNumber}	{ return createPrimitiveToken(Terminals.CONSTANT); }

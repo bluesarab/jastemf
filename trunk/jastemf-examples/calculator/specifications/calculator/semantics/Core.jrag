@@ -14,8 +14,18 @@ import calculator.semantics.*;
  * @author C. Bürger
  */
 aspect AccessSupport {
+	ASTNode implements Comparable<ASTNode>;
+	public int ASTNode.compareTo(ASTNode o) {
+		return o2.NodeAddress().compareTo(NodeAddress());
+	}
+	
 	syn CompilationUnit ASTNode.ASTRoot();
 	inh DeweyAddress ASTNode.NodeAddress();
+	
+	inh ProcedureDeclaration Statement.ProcedureInContext();
+	
+	coll java.util.List<ProcedureReturn> ProcedureDeclaration.Returns()
+		[new ArrayList<ProcedureReturn>()] with add;
 	
 	syn Boolean Constant.AsBoolean();
 	syn Integer Constant.AsInteger();
@@ -33,9 +43,11 @@ aspect NameAnalysis {
 	syn VariableDeclaration Reference.Declaration();
 	syn VariableDeclaration VariableAssignment.Declaration();
 	
-	coll java.util.List<VariableAssignment> CompilationUnit.Assignments()
+	/*
+	coll java.util.List<VariableAssignment> VariableDeclaration.Assignments()
 		[new ArrayList<VariableAssignment>()] with add;
-	syn VariableAssignment ASTNode.LookUpVAssignment(VariableDeclaration decl);
+	syn VariableAssignment Reference.LastAssignment();
+	*/
 }
 
 /**
@@ -44,13 +56,26 @@ aspect NameAnalysis {
 aspect TypeAnalysis {
 	syn Type VariableDeclaration.Type();
 	syn Type VariableAssignment.Type();
+	syn Type ProcedureReturn.Type();
+	
 	syn Type Expression.Type();
 }
 
 /**
  * @author C. Bürger
  */
+aspect DataflowAnalysis {
+	inh Statement Statement.LastAssignment(VariableDeclaration decl);
+	syn Statment Reference.LastAssignment();
+	
+	syn boolean Statement.MaybeUndecidable();
+}
+
+/**
+ * @author C. Bürger
+ */
 aspect Interpretation {
-	//syn Object Expression.ConstantValue();
+	syn Object Expression.ConstantValue();
 	syn Object Expression.Value(State vm);
+	syn State Statement.Interpret(State vm);
 }
