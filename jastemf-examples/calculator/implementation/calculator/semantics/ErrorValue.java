@@ -9,8 +9,10 @@
 package calculator.semantics;
 
 /**
+ * Dummy class, whose instances represent results of erroneous computations.
+ * E.g. the value of "true && 3" is an {@link ErrorValue}.
  * @author C. Bürger
  */
-public class ErrorValue {
+public final class ErrorValue {
 	public String toString() {return "Error Value";}
 }

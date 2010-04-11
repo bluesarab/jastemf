@@ -60,7 +60,7 @@ public class DeweyAddress implements Comparable<DeweyAddress>, Cloneable {
 	 * <tt>na.addAddressPart(23).addAddressPart(2)</tt> results into the
 	 * address <tt>1.5.23.2</tt>.
 	 * @param part The part to add.
-	 * @return This NodeAddress.
+	 * @return This address.
 	 */
 	public DeweyAddress addAddressPart(int part) {
 		address.add(part);

@@ -6,72 +6,74 @@
 % x: declared but never defined
 % y: undeclared
 % z: declared but not within scope
-VAR x:INT;
-
-BEGIN
-	VAR z:INT;
-	z = 1; % The only correct statement of the program
-END;
-
-x;
-y;
-z;
-y = 1;
-z = 1;
-y;
-z;
-
-BEGIN
-	x;
-	y;
-	z;
-	y = 1;
-	z = 1;
-	y;
-	z;
+Procedure main() Begin
+	Var x:Integer;
 	
-	VAR x:BOOL;
+	Begin
+		Var z:Integer;
+		z := 1; % The only correct statement of the program
+	End;
 	
 	x;
 	y;
 	z;
-	y = 1;
-	z = 1;
+	y := 1;
+	z := 1;
 	y;
 	z;
 	
-	BEGIN
+	Begin
 		x;
 		y;
 		z;
-		y = 1;
-		z = 1;
+		y := 1;
+		z := 1;
 		y;
 		z;
 		
-		VAR x:FLOAT;
-		VAR y:FLOAT;
+		Var x:Boolean;
 		
 		x;
 		y;
 		z;
-		z = 1;
+		y := 1;
+		z := 1;
+		y;
 		z;
-	END;
+		
+		Begin
+			x;
+			y;
+			z;
+			y := 1;
+			z := 1;
+			y;
+			z;
+			
+			Var x:Real;
+			Var y:Real;
+			
+			x;
+			y;
+			z;
+			z := 1;
+			z;
+		End;
+		
+		x;
+		y;
+		z;
+		y := 1;
+		z := 1;
+		y;
+		z;
+	End;
 	
 	x;
 	y;
 	z;
-	y = 1;
-	z = 1;
+	y := 1;
+	z := 1;
 	y;
 	z;
-END;
-
-x;
-y;
-z;
-y = 1;
-z = 1;
-y;
-z;
+End
