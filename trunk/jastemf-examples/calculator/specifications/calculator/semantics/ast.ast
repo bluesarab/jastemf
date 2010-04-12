@@ -20,15 +20,14 @@ abstract Statement;
 	While:Statement ::= Condition:Expression Body:Block;
 	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
 	ProcedureReturn:Statement ::= [Expression];
+	Write:Statement ::= Expression <NewLine:boolean>;
 	
-	abstract Declaration:Statement;
+	abstract Declaration:Statement ::= <Name:String>;
 		
 		ProcedureDeclaration:Declaration ::=
-				<Name:String>
 				Parameter:VariableDeclaration*
 				<ReturnType:Type> Body:Block;
 		VariableDeclaration:Declaration ::=
-				<Name:String>
 				<DeclaredType:Type>;
 	
 	abstract Expression:Statement;

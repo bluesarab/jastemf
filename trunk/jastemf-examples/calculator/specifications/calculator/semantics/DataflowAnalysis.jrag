@@ -13,6 +13,7 @@
 aspect DataflowAnalysis {
 	/** Assignment Analysis */
 	
+	/*
 	eq CompilationUnit.LastAssignment(VariableDeclaration decl) = null;
 	eq CompilationUnit.getBlock().LastAssignment(VariableDeclaration decl) = null;
 	eq Block.getStatement(int index).LastAssignment(VariableDeclaration decl) {
@@ -46,6 +47,7 @@ aspect DataflowAnalysis {
 		getBody().LastAssignmentLocal(decl);
 	
 	eq Reference.LastAssignment() = LastAssignment(Declaration());
+	*/
 	
 	/** Decidability Analysis */
 	

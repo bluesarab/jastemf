@@ -12,6 +12,7 @@ import java.io.*;
 
 import calculator.symbols.*;
 import calculator.syntax.*;
+import calculator.semantics.*;
 import calculator.semantics.ast.*;
 import calculator.semantics.impl.*;
 
@@ -31,5 +32,7 @@ public class Calculator {
 		CalculatorLexer scanner = new CalculatorLexer(new FileReader(new File(args[0])));
 		CalculatorParser parser = new CalculatorParser();
 		CompilationUnit ast = (CompilationUnit)parser.parse(scanner);
+		State vm = ast.Interpret();
+		System.out.println(vm.getStdOut());
 	}
 }

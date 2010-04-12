@@ -13,14 +13,19 @@
 aspect NameAnalysis {
 	/** Procedure declaration name analysis */
 	
-	syn Collection<ProcedureDeclaration> CompilationUnit.LookUpPDecl(String name) =
-		new LinkedList<ProcedureDeclaration>();
-	eq CompilationUnit.getBlock().LookUpPDecl(String name) =
-		new LinkedList<ProcedureDeclaration>();
+	syn Collection<ProcedureDeclaration> CompilationUnit.LookUpPDecl(String name) {
+		Collection<ProcedureDeclaration> result =
+			new LinkedList<ProcedureDeclaration>();
+		for (int i = 0; i < getNumDeclaration(); i++) // Declared within compilation unit
+			result.addAll(getDeclaration(i).LookUpPLocal(name));
+		return result;
+	}
+	eq CompilationUnit.getDeclaration(int index).LookUpPDecl(String name) =
+		LookUpPDecl(name);
 	eq Block.getStatement(int index).LookUpPDecl(String name) {
 		Collection<ProcedureDeclaration> result =
 			new LinkedList<ProcedureDeclaration>();
-		for (int i = 0; i < getNumStatement(); i++) // Declared within block
+		for (int i = 0; i <= index; i++) // Declare before use
 			result.addAll(getStatement(i).LookUpPLocal(name));
 		return !result.isEmpty() ? result : LookUpPDecl(name);
 	}
@@ -39,16 +44,25 @@ aspect NameAnalysis {
 			LookUpPDecl(getName()).iterator().next() :
 			null;
 	
+	eq CompilationUnit.MainProcedure() = LookUpPDecl("main").size() == 1 ?
+			LookUpPDecl("main").iterator().next() :
+			null;
+	
 	/** Variable declaration name analysis */
 	
-	syn Collection<VariableDeclaration> CompilationUnit.LookUpVDecl(String name) =
-		new LinkedList<VariableDeclaration>();
-	eq CompilationUnit.getBlock().LookUpVDecl(String name) =
-		new LinkedList<VariableDeclaration>();
+	syn Collection<VariableDeclaration> CompilationUnit.LookUpVDecl(String name) {
+		Collection<VariableDeclaration> result =
+			new LinkedList<VariableDeclaration>();
+		for (int i = 0; i < getNumDeclaration(); i++) // Declared within compilation unit
+			result.addAll(getDeclaration(i).LookUpVLocal(name));
+		return result;
+	}
+	eq CompilationUnit.getDeclaration(int index).LookUpVDecl(String name) =
+		LookUpVDecl(name);
 	eq Block.getStatement(int index).LookUpVDecl(String name) {
 		Collection<VariableDeclaration> result =
 			new LinkedList<VariableDeclaration>();
-		for (int i = 0; i < index; i++) // Declare before use
+		for (int i = 0; i <= index; i++) // Declare before use
 			result.addAll(getStatement(i).LookUpVLocal(name));
 		return !result.isEmpty() ? result : LookUpVDecl(name);
 	}
@@ -67,32 +81,7 @@ aspect NameAnalysis {
 			LookUpVDecl(getName()).iterator().next() :
 			null;
 
-	eq VariableAssignment.Declaration() =
-		LookUpVDecl(getLValue()).size() == 1 ?
+	eq VariableAssignment.Declaration() = LookUpVDecl(getLValue()).size() == 1 ?
 			LookUpVDecl(getLValue()).iterator().next() :
 			null;
-	
-	/** Assignment name analysis */
-	
-	/*
-	VariableAssignment contributes this when Declaration() != null
-		to VariableDeclaration.Assignments() for Declaration();
-	
-	eq Reference.LastAssignment() {
-		java.util.List<VariableAssignment> assigns =
-			new LinkedList<VariableAssignment>();
-		for (VariableAssignment assign:Declaration().Assignments())
-			if (assign.NodeAddress().compareTo(NodeAddress()) > 0 &&
-					!assign.NodeAddress().isAncestor(NodeAddress()))
-				assigns.add(assign);
-		Collections.sort(
-				assigns,
-				new Comparator<VariableAssignment>() {
-					public int compare(VariableAssignment o1, VariableAssignment o2) {
-						return o1.NodeAddress().compareTo(o2.NodeAddress());
-					}
-				});
-		return !assigns.isEmpty() ? assigns.get(0) : null;
-	}
-	*/
 }

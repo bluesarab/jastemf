@@ -13,12 +13,14 @@
 aspect Interpretation {
 	/** Constant Evaluation */
 	
+	/*
 	syn SortedSet<Statement> Expression.RequiredComputations() {
 		SortedSet<Statement> result = new TreeSet<Statement>();
 		
 	}
+	*/
 	
-	eq Expression.ConstantValue() {
+	eq Expression.ConstantValue() { // TODO:
 		/*
 		Collections.sort(
 				toInterpret,
@@ -28,6 +30,8 @@ aspect Interpretation {
 					}
 				});
 		*/
+		
+		/*
 		if (MaybeUndecidable())
 			return null;
 		State vm = new State();
@@ -37,6 +41,8 @@ aspect Interpretation {
 			instr.Interpret(vm);
 		}
 		return Value(vm);
+		*/
+		return null;
 	}
 	
 	/** Expression Evaluation */
@@ -52,14 +58,17 @@ aspect Interpretation {
 			vm.lookUpValue(Declaration()) :
 			new ErrorValue();
 	eq ProcedureCall.Value(State vm) {
+		if (Type() == Type.ERROR_TYPE)
+			return new ErrorValue();
 		vm.newFrame();
-		Declaration().getBody().Interpret(vm);
-		final Object value;
-		if (Type() != Type.Undefined && Type() != Type.ERROR_TYPE)
-			value = vm.getReturnValue();
-		else value = new ErrorValue();
-		vm.deleteFrame();
-		return value;
+		try {
+			Declaration().getBody().Interpret(vm); // Can fail!
+			if (Type() != Type.Undefined)
+				return vm.getReturnValue();
+			return null;
+		} finally {
+			vm.deleteFrame(); /* Expressions never change the state. */
+		}
 	}
 	eq NestedExpression.Value(State vm) = getExpression().Value(vm);
 	eq Not.Value(State vm) = Type() == Type.Boolean ?
@@ -127,16 +136,91 @@ aspect Interpretation {
 		return new ErrorValue();
 	}
 	eq Division.Value(State vm) {
-		if (Type() == Type.Integer && (Integer)getOperand2().Value(vm) != 0)
-			return (Integer)getOperand1().Value(vm) /
-				(Integer)getOperand2().Value(vm);
-		if (Type() == Type.Real && ((Number)getOperand2().Value(vm)).floatValue() != 0)
-			return ((Number)getOperand1().Value(vm)).floatValue() /
-				((Number)getOperand2().Value(vm)).floatValue();
+		if (Type() == Type.Integer)
+			if ((Integer)getOperand2().Value(vm) != 0)
+				return (Integer)getOperand1().Value(vm) /
+					(Integer)getOperand2().Value(vm);
+			else throw new InterpretationException("Devision by zero.");
+		if (Type() == Type.Real)
+			if (((Number)getOperand2().Value(vm)).floatValue() != 0)
+				return ((Number)getOperand1().Value(vm)).floatValue() /
+					((Number)getOperand2().Value(vm)).floatValue();
+			else throw new InterpretationException("Devision by zero.");
 		return new ErrorValue();
 	}
 	
 	/** Program Interpretation */
 	
-	eq Statement.Interpret(State vm) = vm;
+	eq CompilationUnit.Interpret() {
+		try {
+			if (MainProcedure() == null)
+				throw new InterpretationException();
+			State vm = new State();
+			for (int i = 0; i < getNumDeclaration(); i++)
+				getDeclaration(i).Interpret(vm);
+			MainProcedure().getBody().Interpret(vm);
+			return vm;
+		} catch (InterpretationException rte) {
+			System.out.println(rte.getMessage());
+			return null;
+		}
+	}
+	
+	public void ProcedureDeclaration.Interpret(State vm) {
+		if (LookUpPDecl(getName()).size() >= 2)
+			throw new InterpretationException();
+	}
+	public void VariableDeclaration.Interpret(State vm) {
+		if (LookUpVDecl(getName()).size() >= 2)
+			throw new InterpretationException();
+		vm.allocateVariable(this);
+	}
+	public void Block.Interpret(State vm) {
+		for (int i = 0; i < getNumStatement(); i++) {
+			getStatement(i).Interpret(vm);
+			if (vm.getReturnValue() != null)
+				return;
+		}
+	}
+	public void If.Interpret(State vm) {
+		if (getCondition().Type() != Type.Boolean)
+			throw new InterpretationException();
+		if ((Boolean)getCondition().Value(vm))
+			getBody().Interpret(vm);
+		else if (hasAlternative())
+			getAlternative().Interpret(vm);
+	}
+	public void While.Interpret(State vm) {
+		if (getCondition().Type() != Type.Boolean)
+			throw new InterpretationException();
+		while ((Boolean)getCondition().Value(vm)) {
+			getBody().Interpret(vm);
+			if (vm.getReturnValue() != null)
+				return;
+		}
+	}
+	public void VariableAssignment.Interpret(State vm) {
+		if (Type() == Type.ERROR_TYPE)
+			throw new InterpretationException();
+		vm.setValue(Declaration(), getRValue().Value(vm));
+	}
+	public void ProcedureReturn.Interpret(State vm) {
+		if (Type() == Type.ERROR_TYPE)
+			throw new InterpretationException();
+		if (hasExpression())
+			vm.setReturnValue(getExpression().Value(vm));
+		else vm.setReturnValue(Type.Undefined);
+	}
+	public void Write.Interpret(State vm) {
+		if (getExpression().Type() == Type.ERROR_TYPE)
+			throw new InterpretationException();
+		final Object toWrite = getExpression().Value(vm);
+		if (getNewLine()) {
+			vm.getStdOut().append(toWrite);
+			vm.getStdOut().append("\n");
+		} else vm.getStdOut().append(toWrite);
+	}
+	public void Expression.Interpret(State vm) {
+		/* Expressions don't change the state. */
+	}
 }

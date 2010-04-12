@@ -47,6 +47,7 @@ IntegerNumber  = [0-9]+
 %%
 
 <YYINITIAL> {
+	"Procedure"		{ return createPrimitiveToken(Terminals.kPROCEDURE); }
 	"Var"			{ return createPrimitiveToken(Terminals.kVAR); }
 	"Begin"			{ return createPrimitiveToken(Terminals.kBEGIN); }
 	"End"			{ return createPrimitiveToken(Terminals.kEND); }
@@ -58,9 +59,11 @@ IntegerNumber  = [0-9]+
 	"Do"			{ return createPrimitiveToken(Terminals.kDO); }
 	"Od"			{ return createPrimitiveToken(Terminals.kOD); }
 	"Return"		{ return createPrimitiveToken(Terminals.kRETURN); }
-	"Boolean"		{ return createPrimitiveToken(Terminals.kBOOL); }
-	"Integer"		{ return createPrimitiveToken(Terminals.kINT); }
-	"Real"			{ return createPrimitiveToken(Terminals.kFLOAT); }
+	"Write"			{ return createPrimitiveToken(Terminals.kWRITE); }
+	"Writeln"		{ return createPrimitiveToken(Terminals.kWRITELN); }
+	"Boolean"		{ return createPrimitiveToken(Terminals.kBOOLEAN); }
+	"Integer"		{ return createPrimitiveToken(Terminals.kINTEGER); }
+	"Real"			{ return createPrimitiveToken(Terminals.kREAL); }
 	"Not"			{ return createPrimitiveToken(Terminals.kNOT); }
 	"And"			{ return createPrimitiveToken(Terminals.kAND); }
 	"Or"			{ return createPrimitiveToken(Terminals.kOR); }

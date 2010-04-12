@@ -11,23 +11,23 @@ Procedure main() Begin
 	i := 1;
 	r := 1.0;
 	
-	b = i;
-	b = r;
-	i = b;
-	r = b;
+	Writeln b = i;
+	Writeln b = r;
+	Writeln i = b;
+	Writeln r = b;
 	
-	Not i;
-	Not r;
+	Writeln Not i;
+	Writeln Not r;
 	
-	b And i;
-	b And r;
-	i And b;
-	r And b;
+	Writeln b And i;
+	Writeln b And r;
+	Writeln i And b;
+	Writeln r And b;
 	
-	b Or i;
-	b Or r;
-	i Or b;
-	r Or b;
+	Writeln b Or i;
+	Writeln b Or r;
+	Writeln i Or b;
+	Writeln r Or b;
 	
-	b Or (b And i = r) = i;
-End
+	Writeln b Or (b And i = r) = i;
+End;

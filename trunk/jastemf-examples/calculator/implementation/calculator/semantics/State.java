@@ -9,8 +9,11 @@ import calculator.semantics.ast.*;
  */
 public final class State {
 	private Stack<Frame> stack = new Stack<Frame>();
+	private StringBuilder stdOut = new StringBuilder();
 	
 	public State() {stack.push(new Frame());}
+	
+	public StringBuilder getStdOut() {return stdOut;}
 	
 	public Object lookUpValue(VariableDeclaration decl) {
 		for (int i = stack.size() - 1; i >= 0; i--) {
@@ -18,8 +21,8 @@ public final class State {
 			if (value != null)
 				return value;
 		}
-		throw new IllegalStateException(
-				"State Error: Read access to unallocated variable.");
+		throw new InterpretationException(
+				"Read access to unallocated variable.");
 	}
 	
 	public void setValue(VariableDeclaration decl, Object newValue) {
@@ -29,28 +32,23 @@ public final class State {
 				return;
 			}
 		}
-		throw new IllegalStateException(
-				"State Error: Write access to unallocated variable.");
+		throw new InterpretationException(
+				"Write access to unallocated variable.");
 	}
 	
 	public void allocateVariable(VariableDeclaration decl) {
-		if (stack.peek().env.containsKey(decl))
-			throw new IllegalStateException(
-					"State Error: Dupliated variable allocation.");
-		stack.peek().env.put(decl, null);
+		if (!stack.peek().env.containsKey(decl))
+			stack.peek().env.put(decl, null);
 	}
 	
-	public Object getReturnValue(Object value) {
-		if (stack.peek().returnValue == null)
-			throw new IllegalStateException(
-					"State Error: Read access to unspecified return value.");
+	public Object getReturnValue() {
 		return stack.peek().returnValue;
 	}
 	
 	public void setReturnValue(Object value) {
 		if (stack.peek().returnValue != null)
-			throw new IllegalStateException(
-					"State Error: Duplicated return value specification.");
+			throw new InterpretationException(
+					"Duplicated return value specification.");
 		stack.peek().returnValue = value;
 	}
 	

@@ -28,7 +28,7 @@ aspect TypeAnalysis {
 				return Type.ERROR_TYPE;
 			else return Type.Undefined;
 		final Type cT = Type.computeCompatibleType(decl.getReturnType(),
-				getExpression.Type());
+				getExpression().Type());
 		if (cT != decl.getReturnType())
 			return Type.ERROR_TYPE;
 		return cT;
@@ -49,18 +49,15 @@ aspect TypeAnalysis {
 		ProcedureDeclaration decl = Declaration();
 		if (decl == null)
 			return Type.ERROR_TYPE;
-		if (getNumArguments() != decl.getNumParameter())
+		if (getNumArgument() != decl.getNumParameter())
 			return Type.ERROR_TYPE;
-		for (int i = 0; i < getNumArguments(); i++) {
+		for (int i = 0; i < getNumArgument(); i++) {
 			final Type cT = Type.computeCompatibleType(
 					decl.getParameter(i).Type(),
 					getArgument(i).Type());
 			if (cT != decl.getParameter(i).Type())
 				return Type.ERROR_TYPE;
 		}
-		for (ProcedureReturn ret:decl.Returns())
-			if (ret.Type() == Type.ERROR_TYPE)
-				return Type.ERROR_TYPE;
 		return decl.getReturnType();
 	}
 	eq NestedExpression.Type() = getExpression().Type();
