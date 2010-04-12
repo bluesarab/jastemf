@@ -14,66 +14,66 @@ Procedure main() Begin
 		z := 1; % The only correct statement of the program
 	End;
 	
-	x;
-	y;
-	z;
+	Writeln x;
+	Writeln y;
+	Writeln z;
 	y := 1;
 	z := 1;
-	y;
-	z;
+	Writeln y;
+	Writeln z;
 	
 	Begin
-		x;
-		y;
-		z;
+		Writeln x;
+		Writeln y;
+		Writeln z;
 		y := 1;
 		z := 1;
-		y;
-		z;
+		Writeln y;
+		Writeln z;
 		
 		Var x:Boolean;
 		
-		x;
-		y;
-		z;
+		Writeln x;
+		Writeln y;
+		Writeln z;
 		y := 1;
 		z := 1;
-		y;
-		z;
+		Writeln y;
+		Writeln z;
 		
 		Begin
-			x;
-			y;
-			z;
+			Writeln x;
+			Writeln y;
+			Writeln z;
 			y := 1;
 			z := 1;
-			y;
-			z;
+			Writeln y;
+			Writeln z;
 			
 			Var x:Real;
 			Var y:Real;
 			
-			x;
-			y;
-			z;
+			Writeln x;
+			Writeln y;
+			Writeln z;
 			z := 1;
-			z;
+			Writeln z;
 		End;
 		
-		x;
-		y;
-		z;
+		Writeln x;
+		Writeln y;
+		Writeln z;
 		y := 1;
 		z := 1;
-		y;
-		z;
+		Writeln y;
+		Writeln z;
 	End;
 	
-	x;
-	y;
-	z;
+	Writeln x;
+	Writeln y;
+	Writeln z;
 	y := 1;
 	z := 1;
-	y;
-	z;
-End
+	Writeln y;
+	Writeln z;
+End;

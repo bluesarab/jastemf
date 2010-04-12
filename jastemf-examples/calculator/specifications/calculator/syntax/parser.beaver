@@ -11,16 +11,20 @@
  * @author C. Bürger
  */
 %package "calculator.syntax";
-%import "calculator.semantics.ast.*","calculator.semantics.Type";
+%import "calculator.semantics.ast.*", "calculator.semantics.Type";
 
 %class "CalculatorParser";
 
-// Var, Begin, End
-%terminals kVAR, kBEGIN, kEND;
+// Procedure, Var, Begin, End
+%terminals kPROCEDURE, kVAR, kBEGIN, kEND;
 // If, Then, Else, Fi
 %terminals kIF, kTHEN, kELSE, kFI;
 // While, Do, Od
 %terminals kWHILE, kDO, kOD;
+// Return
+%terminals kRETURN;
+// Write, Writeln
+%terminals kWRITE, kWRITELN;
 // Boolean, Integer, Real
 %terminals kBOOLEAN, kINTEGER, kREAL;
 // Not, And, Or
@@ -32,8 +36,8 @@
 	pANGLEBRACKETRIGHT_EQUALS, pANGLEBRACKETLEFT, pANGLEBRACKETRIGHT;
 // (, )
 %terminals pBRACKETOPENROUND, pBRACKETCLOSEROUND;
-// :, ;, ,
-%terminals pCOLON, pSEMICOLON, pCOMMA;
+// :=, :, ;, ,
+%terminals pCOLON_EQUALS, pCOLON, pSEMICOLON, pCOMMA;
 %terminals IDENTIFIER, CONSTANT;
 
 %goal CompilationUnit;
@@ -51,6 +55,7 @@
 %typeof OrExpr = "Expression";
 %typeof AndExpr = "Expression";
 %typeof EqExpr = "Expression";
+%typeof RelExpr = "Expression";
 %typeof AddExpr = "Expression";
 %typeof MulExpr = "Expression";
 %typeof UnaryExpr = "Expression";
@@ -78,8 +83,14 @@ DeclarationList = Declaration.decl
 	:}
 	;
 
-Declaration = VariableDeclaration
-	| ProcedureDeclaration
+Declaration = VariableDeclaration.decl pSEMICOLON
+	{:
+		return _symbol_decl;
+	:}
+	| ProcedureDeclaration.decl pSEMICOLON
+	{:
+		return _symbol_decl;
+	:}
 	;
 
 VariableDeclaration = kVAR IDENTIFIER.id pCOLON Type.type
@@ -92,9 +103,17 @@ ProcedureDeclaration = kPROCEDURE IDENTIFIER.id pBRACKETOPENROUND ParameterList.
 	{:
 		return new Symbol(new ProcedureDeclaration(id, paras, returnType, body));
 	:}
+	| kPROCEDURE IDENTIFIER.id pBRACKETOPENROUND pBRACKETCLOSEROUND pCOLON Type.returnType Block.body
+	{:
+		return new Symbol(new ProcedureDeclaration(id, new List<VariableDeclaration>(), returnType, body));
+	:}
 	| kPROCEDURE IDENTIFIER.id pBRACKETOPENROUND ParameterList.paras pBRACKETCLOSEROUND Block.body
 	{:
 		return new Symbol(new ProcedureDeclaration(id, paras, Type.Undefined, body));
+	:}
+	| kPROCEDURE IDENTIFIER.id pBRACKETOPENROUND pBRACKETCLOSEROUND Block.body
+	{:
+		return new Symbol(new ProcedureDeclaration(id, new List<VariableDeclaration>(), Type.Undefined, body));
 	:}
 	;
 
@@ -119,7 +138,7 @@ StatementList =
 	{:
 		return new Symbol(new List<Statement>());
 	:}
-	| StatementList.list Statement.stmt pSEMICOLON
+	| StatementList.list Statement.stmt
 	{:
 		list.add(stmt);
 		return _symbol_list;
@@ -127,54 +146,68 @@ StatementList =
 	;
 
 Statement = Declaration
-	| Block
-	| kIF Expression.cond kTHEN StatementList.body kELSE StatementList.alternative kFI
+	| Block.stmt pSEMICOLON
+	{:
+		return _symbol_stmt;
+	:}
+	| kIF Expression.cond kTHEN StatementList.body kELSE StatementList.alternative kFI pSEMICOLON
 	{:
 		return new Symbol(new If(cond, new Block(body), new Opt(new Block(alternative))));
 	:}
-	| kIF Expression.cond kTHEN StatementList.body kFI
+	| kIF Expression.cond kTHEN StatementList.body kFI pSEMICOLON
 	{:
 		return new Symbol(new If(cond, new Block(body), new Opt()));
 	:}
-	| kWHILE Expression.cond kDO StatementList.body kOD
+	| kWHILE Expression.cond kDO StatementList.body kOD pSEMICOLON
 	{:
 		return new Symbol(new While(cond, new Block(body)));
 	:}
-	| IDENTIFIER.id pCOLON_EQUALS Expression.expr
+	| IDENTIFIER.id pCOLON_EQUALS Expression.expr pSEMICOLON
 	{:
 		return new Symbol(new VariableAssignment(id, expr));
 	:}
-	| kRETURN Expression.expr
+	| kRETURN Expression.expr pSEMICOLON
 	{:
 		return new Symbol(new ProcedureReturn(new Opt(expr)));
 	:}
-	| kRETURN
+	| kRETURN pSEMICOLON
 	{:
 		return new Symbol(new ProcedureReturn(new Opt()));
 	:}
-	| Expression
+	| kWRITE Expression.expr pSEMICOLON
+	{:
+		return new Symbol(new Write(expr, false));
+	:}
+	| kWRITELN Expression.expr pSEMICOLON
+	{:
+		return new Symbol(new Write(expr, true));
+	:}
 	;
 
 Expression = OrExpr
 	;
 
-OrExpr = OrExpr.expr1 pLINEVERTICAL_LINEVERTICAL AndExpr.expr2
+OrExpr = OrExpr.expr1 kOR AndExpr.expr2
 	{:
 		return new Symbol(new Or(expr1, expr2));
 	:}
 	| AndExpr
 	;
 
-AndExpr = AndExpr.expr1 pAND_AND EqExpr.expr2
+AndExpr = AndExpr.expr1 kAND EqExpr.expr2
 	{:
 		return new Symbol(new And(expr1, expr2));
 	:}
 	| EqExpr
 	;
 
-EqExpr = EqExpr.expr1 pEQUALS_EQUALS RelExpr.expr2
+EqExpr = EqExpr.expr1 pEQUALS RelExpr.expr2
 	{:
 		return new Symbol(new Equal(expr1, expr2));
+	:}
+	| EqExpr.expr1 pSHARP RelExpr.expr2
+	{:
+		return new Symbol(new Not(new Equal(expr1, expr2)));
 	:}
 	| RelExpr
 	;
@@ -188,14 +221,18 @@ RelExpr = RelExpr.expr1 pANGLEBRACKETRIGHT AddExpr.expr2
 		// A < B iff Not (A > B) And Not (A = B)
 		return new Symbol(new And(
 			new Not(new GreaterThan(expr1, expr2)),
-			new Not(new Equal(expr1.fullCopy(), expr2.fullCopy()))));
+			new Not(new Equal(
+				(Expression)expr1.fullCopy(),
+				(Expression)expr2.fullCopy()))));
 	:}
 	| RelExpr.expr1 pANGLEBRACKETRIGHT_EQUALS AddExpr.expr2
 	{:
 		// A >= B iff A > B Or A = B
 		return new Symbol(new Or(
 			new GreaterThan(expr1, expr2),
-			new Equal(expr1.fullCopy(), expr2.fullCopy())));
+			new Equal(
+				(Expression)expr1.fullCopy(),
+				(Expression)expr2.fullCopy())));
 	:}
 	| RelExpr.expr1 pANGLEBRACKETLEFT_EQUALS AddExpr.expr2
 	{:
@@ -231,7 +268,7 @@ UnaryExpr = pMINUS PrimExpr.expr
 	{:
 		return new Symbol(new UMinus(expr));
 	:}
-	| pEXCLAMATIONMARK PrimExpr.expr
+	| kNOT PrimExpr.expr
 	{:
 		return new Symbol(new Not(expr));
 	:}
@@ -258,16 +295,16 @@ PrimExpr = CONSTANT.co
 
 ArgumentList =
 	{:
-		return new List<Expression>();
+		return new Symbol(new List<Expression>());
 	:}
-	| ExpressionList.list pCOMMA Expression.expr
+	| ArgumentList.list pCOMMA Expression.expr
 	{:
 		list.add(expr);
 		return _symbol_list;
 	:}
 	;
 	
-Type = kINT.type {: return new Symbol(Type.Integer); :}
-	| kFLOAT.type {: return new Symbol(Type.Real); :}
-	| kBOOL.type {: return new Symbol(Type.Boolean); :}
+Type = kINTEGER.type {: return new Symbol(Type.Integer); :}
+	| kREAL.type {: return new Symbol(Type.Real); :}
+	| kBOOLEAN.type {: return new Symbol(Type.Boolean); :}
 	;

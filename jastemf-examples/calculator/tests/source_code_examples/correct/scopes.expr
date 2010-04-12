@@ -9,46 +9,46 @@ Procedure main() Begin
 	x := 1;
 	y := 2;
 	
-	x;
-	y;
+	Writeln x;
+	Writeln y;
 	
 	Begin
-		x;
-		y;
+		Writeln x;
+		Writeln y;
 		
 		Var x:Boolean;
 		x := true;
 		
-		x;
-		y;
+		Writeln x;
+		Writeln y;
 		
 		Begin
-			x;
-			y;
+			Writeln x;
+			Writeln y;
 			Var y:Boolean;
 			y := true;
-			x;
-			y;
+			Writeln x;
+			Writeln y;
 		End;
 		
-		x;
-		y;
+		Writeln x;
+		Writeln y;
 		
 		Begin
-			x;
-			y;
+			Writeln x;
+			Writeln y;
 			Var x:Real;
 			Var y:Real;
 			x := 1.0;
 			y := 2.0;
-			x;
-			y;
+			Writeln x;
+			Writeln y;
 		End;
 		
-		x;
-		y;
+		Writeln x;
+		Writeln y;
 	End;
 	
-	x;
-	y;
-End
+	Writeln x;
+	Writeln y;
+End;

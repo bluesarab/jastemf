@@ -9,23 +9,23 @@ Procedure main() Begin
 	i := 3;
 	r := 3.5;
 	
-	i + i;
-	i + r;
-	i - i;
-	i - r;
-	i * i;
-	i * r;
-	i / i;
-	i / r;
+	Writeln i + i;
+	Writeln i + r;
+	Writeln i - i;
+	Writeln i - r;
+	Writeln i * i;
+	Writeln i * r;
+	Writeln i / i;
+	Writeln i / r;
 	
-	r + r;
-	r + i;
-	r - r;
-	r - i;
-	r * r;
-	r * i;
-	r / r;
-	r / i;
+	Writeln r + r;
+	Writeln r + i;
+	Writeln r - r;
+	Writeln r - i;
+	Writeln r * r;
+	Writeln r * i;
+	Writeln r / r;
+	Writeln r / i;
 	
-	i * (r - i) + r;
-End
+	Writeln i * (r - i) + r;
+End;

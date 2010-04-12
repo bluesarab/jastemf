@@ -16,7 +16,7 @@ import calculator.semantics.*;
 aspect AccessSupport {
 	ASTNode implements Comparable<ASTNode>;
 	public int ASTNode.compareTo(ASTNode o) {
-		return o2.NodeAddress().compareTo(NodeAddress());
+		return o.NodeAddress().compareTo(NodeAddress());
 	}
 	
 	syn CompilationUnit ASTNode.ASTRoot();
@@ -38,16 +38,11 @@ aspect AccessSupport {
 aspect NameAnalysis {
 	inh Collection<ProcedureDeclaration> ASTNode.LookUpPDecl(String name);
 	syn ProcedureDeclaration ProcedureCall.Declaration();
+	syn ProcedureDeclaration CompilationUnit.MainProcedure();
 	
 	inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
 	syn VariableDeclaration Reference.Declaration();
 	syn VariableDeclaration VariableAssignment.Declaration();
-	
-	/*
-	coll java.util.List<VariableAssignment> VariableDeclaration.Assignments()
-		[new ArrayList<VariableAssignment>()] with add;
-	syn VariableAssignment Reference.LastAssignment();
-	*/
 }
 
 /**
@@ -65,8 +60,8 @@ aspect TypeAnalysis {
  * @author C. Bürger
  */
 aspect DataflowAnalysis {
-	inh Statement Statement.LastAssignment(VariableDeclaration decl);
-	syn Statment Reference.LastAssignment();
+	// inh Statement Statement.LastAssignment(VariableDeclaration decl);
+	// syn Statment Reference.LastAssignment();
 	
 	syn boolean Statement.MaybeUndecidable();
 }
@@ -77,5 +72,8 @@ aspect DataflowAnalysis {
 aspect Interpretation {
 	syn Object Expression.ConstantValue();
 	syn Object Expression.Value(State vm);
-	syn State Statement.Interpret(State vm);
+	
+	syn State CompilationUnit.Interpret();
+	public abstract void Statement.Interpret(State vm)
+		throws InterpretationException;
 }

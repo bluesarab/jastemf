@@ -4,4 +4,30 @@
 % Program for ad hoc testing from the command line.
 % Can be changed arbitrary; is not part of the test-suite.
 
-true;
+Procedure main() Begin
+	Var i:Integer;
+	Var r:Real;
+	
+	i := 3;
+	r := 3.5;
+	
+	Writeln i + i;
+	Writeln i + r;
+	Writeln i - i;
+	Writeln i - r;
+	Writeln i * i;
+	Writeln i * r;
+	Writeln i / i;
+	Writeln i / r;
+	
+	Writeln r + r;
+	Writeln r + i;
+	Writeln r - r;
+	Writeln r - i;
+	Writeln r * r;
+	Writeln r * i;
+	Writeln r / r;
+	Writeln r / i;
+	
+	Writeln i * (r - i) + r;
+End;

@@ -19,7 +19,7 @@ aspect AccessSupport {
 	eq ASTNode.getChild(int index).NodeAddress() =
 		NodeAddress().clone().addAddressPart(index + 1);
 	
-	eq CompilationUnit.getBlock().ProcedureInContext() = null;
+	eq CompilationUnit.getDeclaration(int index).ProcedureInContext() = null;
 	eq ProcedureDeclaration.getBody().ProcedureInContext() = this;
 	
 	ProcedureReturn contributes this when ProcedureInContext() != null
