@@ -36,10 +36,12 @@ aspect AccessSupport {
  * @author C. Bürger
  */
 aspect NameAnalysis {
+	//not in ecore
 	inh Collection<ProcedureDeclaration> ASTNode.LookUpPDecl(String name);
 	syn ProcedureDeclaration ProcedureCall.Declaration();
 	syn ProcedureDeclaration CompilationUnit.MainProcedure();
 	
+	//not in ecore
 	inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
 	syn VariableDeclaration Reference.Declaration();
 	syn VariableDeclaration VariableAssignment.Declaration();
@@ -74,6 +76,7 @@ aspect Interpretation {
 	syn Object Expression.Value(State vm);
 	
 	syn State CompilationUnit.Interpret();
+	//problem: operations cannot be declared as abstract in ecore
 	public abstract void Statement.Interpret(State vm)
 		throws InterpretationException;
 }
