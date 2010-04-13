@@ -99,7 +99,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
-        defaultValueLiteral="" derived="true"/>
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Write" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
