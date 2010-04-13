@@ -23,8 +23,8 @@
 %terminals kWHILE, kDO, kOD;
 // Return
 %terminals kRETURN;
-// Write, Writeln
-%terminals kWRITE, kWRITELN;
+// Write
+%terminals kWRITE;
 // Boolean, Integer, Real
 %terminals kBOOLEAN, kINTEGER, kREAL;
 // Not, And, Or
@@ -60,6 +60,7 @@
 %typeof MulExpr = "Expression";
 %typeof UnaryExpr = "Expression";
 %typeof PrimExpr = "Expression";
+%typeof ProcedureCall = "ProcedureCall";
 %typeof Type = "Type";
 %typeof DeclarationList = "List<Declaration>";
 %typeof ParameterList = "List<VariableDeclaration>";
@@ -119,7 +120,7 @@ ProcedureDeclaration = kPROCEDURE IDENTIFIER.id pBRACKETOPENROUND ParameterList.
 
 ParameterList = VariableDeclaration.decl
 	{:
-		return new Symbol(new List<Declaration>());
+		return new Symbol(new List<Declaration>().add(decl));
 	:}
 	| ParameterList.list pCOMMA VariableDeclaration.decl
 	{:
@@ -176,11 +177,11 @@ Statement = Declaration
 	:}
 	| kWRITE Expression.expr pSEMICOLON
 	{:
-		return new Symbol(new Write(expr, false));
+		return new Symbol(new Write(expr));
 	:}
-	| kWRITELN Expression.expr pSEMICOLON
+	| ProcedureCall.call pSEMICOLON
 	{:
-		return new Symbol(new Write(expr, true));
+		return _symbol_call;
 	:}
 	;
 
@@ -283,19 +284,26 @@ PrimExpr = CONSTANT.co
 	{:
 		return new Symbol(new Reference(id));
 	:}
-	| IDENTIFIER.id pBRACKETOPENROUND ArgumentList.list pBRACKETCLOSEROUND
-	{:
-		return new Symbol(new ProcedureCall(id, list));
-	:}
+	| ProcedureCall
 	| pBRACKETOPENROUND Expression.expr pBRACKETCLOSEROUND
 	{:
 		return new Symbol(new NestedExpression(expr));
 	:}
 	;
 
-ArgumentList =
+ProcedureCall = IDENTIFIER.id pBRACKETOPENROUND ArgumentList.list pBRACKETCLOSEROUND
 	{:
-		return new Symbol(new List<Expression>());
+		return new Symbol(new ProcedureCall(id, list));
+	:}
+	| IDENTIFIER.id pBRACKETOPENROUND pBRACKETCLOSEROUND
+	{:
+		return new Symbol(new ProcedureCall(id, new List<Expression>()));
+	:}
+	;
+
+ArgumentList = Expression.expr
+	{:
+		return new Symbol(new List<Expression>().add(expr));
 	:}
 	| ArgumentList.list pCOMMA Expression.expr
 	{:

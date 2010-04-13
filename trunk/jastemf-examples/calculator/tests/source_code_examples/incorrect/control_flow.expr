@@ -4,26 +4,19 @@
 % @author C. Bürger
 
 Procedure main() Begin
-	Var b:Boolean;
 	Var i:Integer;
 	Var r:Real;
-	
-	b := true;
 	i := 1;
 	r := 1.0;
 	
-	Write Not i;
-	Write Not r;
+	If i Then Write 1; Fi;
+	If i Then Write 2; Else Write 3; Fi;
+	If r Then Write 4; Fi;
+	If r Then Write 5; Else Write 6; Fi;
 	
-	Write b And i;
-	Write b And r;
-	Write i And b;
-	Write r And b;
-	
-	Write b Or i;
-	Write b Or r;
-	Write i Or b;
-	Write r Or b;
-	
-	Write b Or (b And i = r) = i;
+	% Compute the faculty of r
+	While i Do
+	Od;
+	While r Do
+	Od;
 End;

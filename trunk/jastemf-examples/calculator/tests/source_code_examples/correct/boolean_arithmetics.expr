@@ -2,6 +2,7 @@
 % terms of the BSD 3-clause license which accompanies this distribution.
 
 % @author C. Bürger
+
 Procedure main() Begin
 	Var t:Boolean;
 	Var f:Boolean;
@@ -9,26 +10,21 @@ Procedure main() Begin
 	t := true;
 	f := false;
 	
-	Writeln t;
-	Writeln f;
+	Write t;
+	Write f;
 	
-	Writeln t = t;
-	Writeln t = f;
-	Writeln f = t;
-	Writeln f = f;
+	Write Not t;
+	Write Not f;
 	
-	Writeln Not t;
-	Writeln Not f;
+	Write t And t;
+	Write t And f;
+	Write f And t;
+	Write f And f;
 	
-	Writeln t And t;
-	Writeln t And f;
-	Writeln f And t;
-	Writeln f And f;
+	Write t Or t;
+	Write t Or f;
+	Write f Or t;
+	Write f Or f;
 	
-	Writeln t Or t;
-	Writeln t Or f;
-	Writeln f Or t;
-	Writeln f Or f;
-	
-	Writeln Not (f Or (t And t) And f);
+	Write Not (f Or (t And t) And f);
 End;

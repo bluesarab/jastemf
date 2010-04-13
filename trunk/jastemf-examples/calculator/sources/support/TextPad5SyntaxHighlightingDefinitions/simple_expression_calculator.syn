@@ -44,6 +44,9 @@ Fi
 While
 Do
 Od
+Return
+Write
+Writeln
 Not
 And
 Or
@@ -54,7 +57,5 @@ true
 false
 
 [Keywords 2]
-Write
-Writeln
 
 [Preprocessor keywords]
