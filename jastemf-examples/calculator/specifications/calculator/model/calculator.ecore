@@ -36,7 +36,7 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
         derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ContantValue" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConstantValue" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
         derived="true"/>
   </eClassifiers>

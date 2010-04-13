@@ -31,7 +31,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="calculator.ecore#//Expression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Expression/Type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Expression/ContantValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Expression/ConstantValue"/>
       <genOperations ecoreOperation="calculator.ecore#//Expression/Value">
         <genParameters ecoreParameter="calculator.ecore#//Expression/Value/vm"/>
       </genOperations>
