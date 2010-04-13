@@ -24,3 +24,18 @@ language:
 
 Add control-flow analysis as described in "Declarative Intraprocedural Flow
 Analysis of Java Source Code".
+
+Re-sync with ecore models and emftext
+
+@C.Buerger: Please add a distinction between attributes that should be declared 
+in the MM and which should not.
+
+Extend the converter to transform semantic interfaces in ast+jrag
+to ecore.
+
+Use ticket system on google code instead of this document
+
+ 
+
+
+
