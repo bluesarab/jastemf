@@ -528,7 +528,7 @@
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_9nfZkcJSEd6vJ-2vdAxrQw"/>
   <element xmi:type="ecore:EPackage" href="calculator.ecore#/"/>
-  <edges xmi:type="notation:Edge" xmi:id="_9nyUgcJSEd6vJ-2vdAxrQw" type="3002" source="_9nfZksJSEd6vJ-2vdAxrQw" target="_9nfZnsJSEd6vJ-2vdAxrQw">
+  <edges xmi:type="notation:Edge" xmi:id="_9nyUgcJSEd6vJ-2vdAxrQw" type="3002" source="_9nfZksJSEd6vJ-2vdAxrQw" target="_i_voMEbTEd-EvYfa-N2FSQ">
     <children xmi:type="notation:Node" xmi:id="_9nyUhcJSEd6vJ-2vdAxrQw" type="4011">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_9nyUhsJSEd6vJ-2vdAxrQw" x="-10" y="-10"/>
     </children>
@@ -537,10 +537,9 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_9nyUgsJSEd6vJ-2vdAxrQw" lineColor="0"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_9nyUg8JSEd6vJ-2vdAxrQw" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="calculator.ecore#//CompilationUnit/Block"/>
+    <element xmi:type="ecore:EReference" href="calculator.ecore#//CompilationUnit/Declaration"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9nyUhMJSEd6vJ-2vdAxrQw" points="[55, -6, -154, 33]$[153, -15, -56, 24]$[158, -18, -51, 21]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9pRiXMJSEd6vJ-2vdAxrQw" id="(0.9035087719298246,0.5348837209302325)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9pRiXcJSEd6vJ-2vdAxrQw" id="(0.0,0.23255813953488372)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_9nyUicJSEd6vJ-2vdAxrQw" type="3002" source="_9nfZnsJSEd6vJ-2vdAxrQw" target="_9nfZqsJSEd6vJ-2vdAxrQw">
     <children xmi:type="notation:Node" xmi:id="_9nyUjcJSEd6vJ-2vdAxrQw" type="4011">

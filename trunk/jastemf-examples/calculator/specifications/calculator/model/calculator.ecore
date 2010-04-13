@@ -5,8 +5,8 @@
     nsURI="http://calculator/1.0" nsPrefix="semantics">
   <eClassifiers xsi:type="ecore:EClass" name="CompilationUnit">
     <eOperations name="Interpret" lowerBound="1" eType="#//State"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Block" lowerBound="1" eType="#//Block"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" lowerBound="1"
+        upperBound="-1" eType="#//Declaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="MainProcedure" eType="#//ProcedureDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
