@@ -92,7 +92,7 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_9nfZ08JSEd6vJ-2vdAxrQw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_9nfZ1MJSEd6vJ-2vdAxrQw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="calculator.ecore#//Expression/ContantValue"/>
+        <element xmi:type="ecore:EAttribute" href="calculator.ecore#//Expression/ConstantValue"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_9nfZ1cJSEd6vJ-2vdAxrQw"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_9nfZy8JSEd6vJ-2vdAxrQw"/>

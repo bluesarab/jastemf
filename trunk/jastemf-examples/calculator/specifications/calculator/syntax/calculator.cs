@@ -9,9 +9,9 @@ OPTIONS {
 	//generateCodeFromGeneratorModel = "true";
 	usePredefinedTokens = "false";
 }
-
+  
 TOKENS {
-	DEFINE TYPE $('INT' | 'FLOAT' | 'BOOL')$;
+	DEFINE TYPE $('Integer' | 'Real' | 'Boolean')$;
 	DEFINE VALUE $(('0'..'9')+) | (('0'..'9')+ ( '.' ('0'..'9')+ )) | 'true' | 'false'$;
 	DEFINE IDENTIFIER $('A'..'Z'|'a'..'z') ('A'..'Z'|'a'..'z'|'0'..'9'|'_')*$;
 	DEFINE COMMENT $'%'(~('\n'|'\r'))*$;
@@ -19,11 +19,10 @@ TOKENS {
 	DEFINE LINEBREAK $('\r\n'|'\r'|'\n')$;
 }
 
-RULES {
-	CompilationUnit ::= Block;
+RULES { 
+	CompilationUnit ::= ( Declaration ";" )*;
 	
-	Block ::= (( "BEGIN" Statement:Block "END" ";")
-		| (Statement:VariableDeclaration,VariableAssignment,Expression ";"))*;
+	Block ::= "Begin" (Statement:Block,VariableDeclaration,ProcedureDeclaration,VariableAssignment,Expression,If,While,ProcedureReturn,Write ";")* "End";
 		
 	If ::= 	"If" Condition "Then" Body ("Else" Alternative)? "Fi";
 	
@@ -35,21 +34,21 @@ RULES {
 	
 	VariableDeclaration ::= "Var" Name[IDENTIFIER] ":" DeclaredType[TYPE];
 	
-	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] ) Body;
+	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] )? Body:Block ;
 	
 	// We do not use the standard reference revolving mechanism,
 	// since we are using JastEMF
 	
-	VariableAssignment ::= LValue[IDENTIFIER] "=" RValue;
+	VariableAssignment ::= LValue[IDENTIFIER] ":=" RValue; 
 	
 	@operator(type="binary_left_associative",weight="101",identifier="Expression")
-	Or ::= Operand1 "||" Operand2;
+	Or ::= Operand1 "Or" Operand2;
 	
 	@operator(type="binary_left_associative",weight="102",identifier="Expression")
-	And ::= Operand1 "&&" Operand2;
+	And ::= Operand1 "And" Operand2;
 	
 	@operator(type="binary_left_associative",weight="104",identifier="Expression")
-	Equal ::= Operand1 "==" Operand2;
+	Equal ::= Operand1 "=" Operand2;
 	
 	@operator(type="binary_left_associative",weight="104",identifier="Expression")
 	GreaterThan ::= Operand1 ">" Operand2;
@@ -68,7 +67,7 @@ RULES {
 	Division ::= Operand1 "/" Operand2;
 	
 	@operator(type="unary",weight="301",identifier="Expression")
-	Not ::= "!" Operand;
+	Not ::= "Not" Operand;
 	
 	@operator(type="unary",weight="302",identifier="Expression")
 	UMinus ::= "-" Operand;
@@ -83,4 +82,7 @@ RULES {
 	
 	@operator(type="primitive",weight="303",identifier="Expression")
 	NestedExpression ::= "(" Expression ")";
+	
+	@operator(type="primitive",weight="303",identifier="Expression")
+	ProcedureCall ::= Name[IDENTIFIER] "(" ( Argument ("," Argument)*)? ")";
 }
