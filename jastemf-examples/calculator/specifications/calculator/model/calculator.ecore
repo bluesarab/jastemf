@@ -128,5 +128,4 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GreaterThan" eSuperTypes="#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EDataType" name="State" instanceClassName="calculator.semantics.State"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum0"/>
 </ecore:EPackage>

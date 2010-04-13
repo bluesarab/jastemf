@@ -547,7 +547,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_9nyUjsJSEd6vJ-2vdAxrQw" x="-10" y="-10"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_9nyUj8JSEd6vJ-2vdAxrQw" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_9nyUkMJSEd6vJ-2vdAxrQw" x="10" y="10"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9nyUkMJSEd6vJ-2vdAxrQw" x="-1" y="10"/>
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_9nyUisJSEd6vJ-2vdAxrQw" lineColor="0"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_9nyUi8JSEd6vJ-2vdAxrQw" fontName="Segoe UI" fontHeight="10"/>
