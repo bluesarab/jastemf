@@ -24,8 +24,18 @@ RULES {
 	
 	Block ::= (( "BEGIN" Statement:Block "END" ";")
 		| (Statement:VariableDeclaration,VariableAssignment,Expression ";"))*;
+		
+	If ::= 	"If" Condition "Then" Body ("Else" Alternative)? "Fi";
 	
-	VariableDeclaration ::= "VAR" Name[IDENTIFIER] ":" VariableType[TYPE];
+	While ::= "While" Condition "Do" Body "oD";
+	
+	Write ::= "Write" Expression | "Writeln" Expression;
+	
+	ProcedureReturn ::= "Return" (Expression)?;
+	
+	VariableDeclaration ::= "Var" Name[IDENTIFIER] ":" DeclaredType[TYPE];
+	
+	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] ) Body;
 	
 	// We do not use the standard reference revolving mechanism,
 	// since we are using JastEMF
@@ -40,6 +50,10 @@ RULES {
 	
 	@operator(type="binary_left_associative",weight="104",identifier="Expression")
 	Equal ::= Operand1 "==" Operand2;
+	
+	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	GreaterThan ::= Operand1 ">" Operand2;
+	
 	
 	@operator(type="binary_left_associative",weight="201",identifier="Expression")
 	Addition ::= Operand1 "+" Operand2;
@@ -60,7 +74,7 @@ RULES {
 	UMinus ::= "-" Operand;
 	
 	@operator(type="primitive",weight="303",identifier="Expression")
-	Constant ::= ConstantValue[VALUE];
+	Constant ::= Lexem[VALUE];
 	
 	// We do not use the standard reference revolving mechanism,
 	// since we are using JastEMF

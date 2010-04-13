@@ -7,7 +7,6 @@
   <foreignModel>calculator.ecore</foreignModel>
   <genPackages prefix="semantics" basePackage="calculator" disposableProviderFactory="true"
       interfacePackageSuffix="interfaces" metaDataPackageSuffix="meta" ecorePackage="calculator.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="calculator.ecore#//EEnum0"/>
     <genDataTypes ecoreDataType="calculator.ecore#//Type"/>
     <genDataTypes ecoreDataType="calculator.ecore#//State"/>
     <genClasses ecoreClass="calculator.ecore#//CompilationUnit">
