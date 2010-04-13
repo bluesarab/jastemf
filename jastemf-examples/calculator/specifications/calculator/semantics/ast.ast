@@ -20,13 +20,14 @@ abstract Statement;
 	While:Statement ::= Condition:Expression Body:Block;
 	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
 	ProcedureReturn:Statement ::= [Expression];
-	Write:Statement ::= Expression <NewLine:boolean>;
+	Write:Statement ::= Expression;
 	
 	abstract Declaration:Statement ::= <Name:String>;
 		
 		ProcedureDeclaration:Declaration ::=
 				Parameter:VariableDeclaration*
-				<ReturnType:Type> Body:Block;
+				<ReturnType:Type>
+				Body:Block;
 		VariableDeclaration:Declaration ::=
 				<DeclaredType:Type>;
 	
@@ -52,5 +53,5 @@ abstract Statement;
 			GreaterThan:BinaryExpression;
 			Addition:BinaryExpression;
 			Subtraction:BinaryExpression;
-			Division:BinaryExpression;
 			Multiplication:BinaryExpression;
+			Division:BinaryExpression;

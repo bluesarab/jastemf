@@ -16,11 +16,9 @@ public final class State {
 	public StringBuilder getStdOut() {return stdOut;}
 	
 	public Object lookUpValue(VariableDeclaration decl) {
-		for (int i = stack.size() - 1; i >= 0; i--) {
-			final Object value = stack.get(i).env.get(decl);
-			if (value != null)
-				return value;
-		}
+		for (int i = stack.size() - 1; i >= 0; i--)
+			if (stack.get(i).env.containsKey(decl))
+				return stack.get(i).env.get(decl);
 		throw new InterpretationException(
 				"Read access to unallocated variable.");
 	}
@@ -36,9 +34,9 @@ public final class State {
 				"Write access to unallocated variable.");
 	}
 	
-	public void allocateVariable(VariableDeclaration decl) {
+	public void allocateVariable(VariableDeclaration decl, Object value) {
 		if (!stack.peek().env.containsKey(decl))
-			stack.peek().env.put(decl, null);
+			stack.peek().env.put(decl, value);
 	}
 	
 	public Object getReturnValue() {

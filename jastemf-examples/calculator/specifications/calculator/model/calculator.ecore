@@ -5,95 +5,47 @@
     nsURI="http://calculator/1.0" nsPrefix="semantics">
   <eClassifiers xsi:type="ecore:EClass" name="CompilationUnit">
     <eOperations name="Interpret" lowerBound="1" eType="#//State"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" lowerBound="1"
-        upperBound="-1" eType="#//Declaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="MainProcedure" eType="#//ProcedureDeclaration"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Statement" upperBound="-1"
-        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Block" lowerBound="1" eType="#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="MainProcedure" eType="#//ProcedureDeclaration"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true">
-    <eOperations name="Interpret" lowerBound="1">
-      <eParameters name="vm" eType="#//State"/>
+    <eOperations name="Interpret">
+      <eParameters name="vm" lowerBound="1" eType="#//State"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="MaybeUndecidable" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" derived="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Statement" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="IsProcedureBody" eType="#//ProcedureDeclaration"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Alternative" eType="#//Statement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Statement"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableAssignment" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="LValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="RValue" lowerBound="1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//VariableDeclaration"
         derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
         derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="LValue" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Statement">
-    <eOperations name="Value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
-      <eParameters name="vm" eType="#//State"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
-        derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConstantValue" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
-        derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression" abstract="true" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Operand1" lowerBound="1"
-        eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Operand2" lowerBound="1"
-        eType="#//Expression" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpression" abstract="true" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Operand" lowerBound="1"
-        eType="#//Expression" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="#//Declaration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DeclaredType" lowerBound="1"
-        eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
-        derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UMinus" eSuperTypes="#//UnaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//UnaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//VariableDeclaration"
-        derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//Expression">
-    <eOperations name="AsBoolean" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-    <eOperations name="AsInteger" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eOperations name="AsReal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Lexem" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="Type" instanceClassName="calculator.semantics.Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NestedExpression" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
-        eType="#//Expression" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
-        eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Block"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Alternative" eType="#//Block"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
-        eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Block"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureReturn" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" eType="#//Expression"
@@ -104,28 +56,71 @@
   <eClassifiers xsi:type="ecore:EClass" name="Write" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="NewLine" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Declaration" abstract="true" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="Declaration" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsParameterDeclaration"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DeclaredType" lowerBound="1"
+        eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureDeclaration" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Parameter" upperBound="-1"
         eType="#//VariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ReturnType" lowerBound="1"
         eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Block"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ProcedureReturn" upperBound="-1"
-        eType="#//ProcedureReturn"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Statement">
+    <eOperations name="Value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+      <eParameters name="vm" lowerBound="1" eType="#//State"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Lexem" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//VariableDeclaration"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureCall" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Argument" upperBound="-1"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//ProcedureDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//ProcedureDeclaration"
+        derived="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpression" abstract="true" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Operand" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//UnaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UMinus" eSuperTypes="#//UnaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression" abstract="true" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Operand1" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Operand2" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="GreaterThan" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Type" instanceClassName="calculator.semantics.Type"/>
   <eClassifiers xsi:type="ecore:EDataType" name="State" instanceClassName="calculator.semantics.State"/>
 </ecore:EPackage>

@@ -22,6 +22,8 @@ aspect AccessSupport {
 	syn CompilationUnit ASTNode.ASTRoot();
 	inh DeweyAddress ASTNode.NodeAddress();
 	
+	inh boolean Declaration.IsParameterDeclaration();
+	inh ProcedureDeclaration Block.IsProcedureBody();
 	inh ProcedureDeclaration Statement.ProcedureInContext();
 	
 	coll java.util.List<ProcedureReturn> ProcedureDeclaration.Returns()
@@ -33,28 +35,41 @@ aspect AccessSupport {
 }
 
 /**
+ * SIPLE has two separate name spaces, one for procedures and one for
+ * variables. Both are block-structured. Procedure declarations can be nested
+ * and consequently procedures have a closure. All globally declared entities
+ * can be used before their declaration. For all other entities the declare
+ * before use rule applies. The supported name analysis provides facillities to
+ * search in both name spaces for an entity by name. The search returns all
+ * appropriate entities in scope. Additionally, each construct that must be
+ * associated with exactly one entity (E.g. references or procedure calls) has
+ * an attribute, that refers to the associated construct or is null, iff the
+ * construct does not exist or is ambiguous.
  * @author C. Bürger
  */
 aspect NameAnalysis {
-	//not in ecore
+	// Procedure name space:
 	inh Collection<ProcedureDeclaration> ASTNode.LookUpPDecl(String name);
 	syn ProcedureDeclaration ProcedureCall.Declaration();
 	syn ProcedureDeclaration CompilationUnit.MainProcedure();
 	
-	//not in ecore
+	// Variable name space:
 	inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
 	syn VariableDeclaration Reference.Declaration();
 	syn VariableDeclaration VariableAssignment.Declaration();
 }
 
 /**
+ * SIPLE is a statically, strongly typed language. The supported type analysis
+ * is program execution independent and specifies a type for all expressions,
+ * variable assignments and procedure returns. Iff such constructs' type
+ * constraints are not satisfied, their type is a special error type. 
  * @author C. Bürger
  */
 aspect TypeAnalysis {
-	syn Type VariableDeclaration.Type();
+	syn Type VariableDeclaration.Type(); // For convenient reasons only.
 	syn Type VariableAssignment.Type();
 	syn Type ProcedureReturn.Type();
-	
 	syn Type Expression.Type();
 }
 
@@ -69,14 +84,40 @@ aspect DataflowAnalysis {
 }
 
 /**
+ * SIPLE programs can be interpreted. To interpret a SIPLE program means to
+ * execute its statements, starting with a call to the main procedure. Each
+ * statement can change the program's internal state. The interpretation's
+ * result is either, an interpretation exception if the program is erroneous
+ * or the final state otherwise.
  * @author C. Bürger
  */
 aspect Interpretation {
+	/**
+	 * Compute the expression's value, iff it is constant. Otherwise, return
+	 * null. Iff the expression is constant but its value depends on erroneous
+	 * program parts, an error value is returned.
+	 */
 	syn Object Expression.ConstantValue();
-	syn Object Expression.Value(State vm);
+	/**
+	 * Compute the expression's value w.r.t. the given state. The result is a
+	 * null pointer, iff the expression is the call and successful execution of
+	 * a procedure that does not return anything. The state may change. The
+	 * computation can fail, in which case an interpretation exception is
+	 * thrown.
+	 */
+	public abstract Object Expression.Value(State vm)
+		throws InterpretationException;
 	
+	/**
+	 * Interpret the complete program and return the result state. Any
+	 * encountered error triggers an interpretation exception.
+	 */
 	syn State CompilationUnit.Interpret();
-	//problem: operations cannot be declared as abstract in ecore
+	/**
+	 * Interpret the statement with the given state. The state may change.
+	 * The interpretation can fail, in which case an interpretation exception
+	 * is thrown.
+	 */
 	public abstract void Statement.Interpret(State vm)
 		throws InterpretationException;
 }

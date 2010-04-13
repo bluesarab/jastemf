@@ -47,49 +47,65 @@ aspect Interpretation {
 	
 	/** Expression Evaluation */
 	
-	eq Constant.Value(State vm) {
-		if (Type() == Type.Boolean)
-			return AsBoolean();
-		if (Type() == Type.Integer)
-			return AsInteger();
-		return AsReal();
-	}
-	eq Reference.Value(State vm) = vm.lookUpValue(Declaration()) != null ?
-			vm.lookUpValue(Declaration()) :
-			new ErrorValue();
-	eq ProcedureCall.Value(State vm) {
-		if (Type() == Type.ERROR_TYPE)
-			return new ErrorValue();
-		vm.newFrame();
-		try {
-			Declaration().getBody().Interpret(vm); // Can fail!
-			if (Type() != Type.Undefined)
-				return vm.getReturnValue();
-			return null;
-		} finally {
-			vm.deleteFrame(); /* Expressions never change the state. */
+	public Object Constant.Value(State vm) {
+		switch (Type()) {
+		case Boolean: return AsBoolean();
+		case Integer: return AsInteger();
+		case Real: return AsReal();
+		default: throw new InterpretationException();
 		}
 	}
-	eq NestedExpression.Value(State vm) = getExpression().Value(vm);
-	eq Not.Value(State vm) = Type() == Type.Boolean ?
-			!(Boolean)getOperand().Value(vm) :
-			new ErrorValue();
-	eq UMinus.Value(State vm) {
+	public Object Reference.Value(State vm) {
+		if (Type() != Type.ERROR_TYPE)
+			return vm.lookUpValue(Declaration());
+		throw new InterpretationException();
+	}
+	public Object ProcedureCall.Value(State vm) {
+		if (Type() == Type.ERROR_TYPE)
+			throw new InterpretationException();
+		Object[] args = new Object[getNumArgument()];
+		for (int i = 0; i < args.length; i++)
+			args[i] = getArgument(i).Value(vm);
+		vm.newFrame();
+		for (int i = 0; i < args.length; i++)
+			vm.allocateVariable(
+					Declaration().getParameter(i),
+					args[i]);
+		Declaration().getBody().Interpret(vm);
+		Object value = null;
+		if (Type() != Type.Undefined)
+			value = vm.getReturnValue();
+		vm.deleteFrame();
+		return value;
+	}
+	public Object NestedExpression.Value(State vm) {
+		return getExpression().Value(vm);
+	}
+	public Object Not.Value(State vm) {
+		if (Type() == Type.Boolean)
+			return !(Boolean)getOperand().Value(vm);
+		throw new InterpretationException();
+	}
+	public Object UMinus.Value(State vm) {
 		if (Type() == Type.Real)
 			return -(Float)getOperand().Value(vm);
 		if (Type() == Type.Integer)
 			return -(Integer)getOperand().Value(vm);
-		return new ErrorValue();
+		throw new InterpretationException();
 	}
-	eq And.Value(State vm) = Type() == Type.Boolean ?
-			(Boolean)getOperand1().Value(vm) && (Boolean)getOperand2().Value(vm) :
-			new ErrorValue();
-	eq Or.Value(State vm) = Type() == Type.Boolean ?
-			(Boolean)getOperand1().Value(vm) || (Boolean)getOperand2().Value(vm) :
-			new ErrorValue();
-	eq Equal.Value(State vm) {
+	public Object And.Value(State vm) {
+		if (Type() == Type.Boolean)
+			return (Boolean)getOperand1().Value(vm) && (Boolean)getOperand2().Value(vm);
+		throw new InterpretationException();
+	}
+	public Object Or.Value(State vm) {
+		if (Type() == Type.Boolean)
+			return (Boolean)getOperand1().Value(vm) || (Boolean)getOperand2().Value(vm);
+		throw new InterpretationException();
+	}
+	public Object Equal.Value(State vm) {
 		if (Type() != Type.Boolean)
-			return new ErrorValue();
+			throw new InterpretationException();
 		if (getOperand1().Type() == Type.Boolean)
 			return (Boolean)getOperand1().Value(vm) ==
 				(Boolean)getOperand2().Value(vm);
@@ -99,43 +115,43 @@ aspect Interpretation {
 		return ((Number)getOperand1().Value(vm)).floatValue() ==
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
-	eq GreaterThan.Value(State vm) {
+	public Object GreaterThan.Value(State vm) {
 		if (Type() != Type.Boolean)
-			return new ErrorValue();
+			throw new InterpretationException();
 		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) >
 				(Integer)getOperand2().Value(vm);
 		return ((Number)getOperand1().Value(vm)).floatValue() >
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
-	eq Addition.Value(State vm) {
+	public Object Addition.Value(State vm) {
 		if (Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) +
 				(Integer)getOperand2().Value(vm);
 		if (Type() == Type.Real)
 			return ((Number)getOperand1().Value(vm)).floatValue() +
 				((Number)getOperand2().Value(vm)).floatValue();
-		return new ErrorValue();
+		throw new InterpretationException();
 	}
-	eq Subtraction.Value(State vm) {
+	public Object Subtraction.Value(State vm) {
 		if (Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) -
 				(Integer)getOperand2().Value(vm);
 		if (Type() == Type.Real)
 			return ((Number)getOperand1().Value(vm)).floatValue() -
 				((Number)getOperand2().Value(vm)).floatValue();
-		return new ErrorValue();
+		throw new InterpretationException();
 	}
-	eq Multiplication.Value(State vm) {
+	public Object Multiplication.Value(State vm) {
 		if (Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) *
 				(Integer)getOperand2().Value(vm);
 		if (Type() == Type.Real)
 			return ((Number)getOperand1().Value(vm)).floatValue() *
 				((Number)getOperand2().Value(vm)).floatValue();
-		return new ErrorValue();
+		throw new InterpretationException();
 	}
-	eq Division.Value(State vm) {
+	public Object Division.Value(State vm) {
 		if (Type() == Type.Integer)
 			if ((Integer)getOperand2().Value(vm) != 0)
 				return (Integer)getOperand1().Value(vm) /
@@ -146,24 +162,23 @@ aspect Interpretation {
 				return ((Number)getOperand1().Value(vm)).floatValue() /
 					((Number)getOperand2().Value(vm)).floatValue();
 			else throw new InterpretationException("Devision by zero.");
-		return new ErrorValue();
+		throw new InterpretationException();
 	}
 	
 	/** Program Interpretation */
 	
 	eq CompilationUnit.Interpret() {
-		try {
-			if (MainProcedure() == null)
-				throw new InterpretationException();
-			State vm = new State();
-			for (int i = 0; i < getNumDeclaration(); i++)
-				getDeclaration(i).Interpret(vm);
-			MainProcedure().getBody().Interpret(vm);
-			return vm;
-		} catch (InterpretationException rte) {
-			System.out.println(rte.getMessage());
-			return null;
-		}
+		if (MainProcedure() == null)
+			throw new InterpretationException();
+		State vm = new State();
+		// Allocate all global variables:
+		for (int i = 0; i < getNumDeclaration(); i++)
+			getDeclaration(i).Interpret(vm);
+		// Execute the main function:
+		vm.newFrame();
+		MainProcedure().getBody().Interpret(vm);
+		vm.deleteFrame();
+		return vm;
 	}
 	
 	public void ProcedureDeclaration.Interpret(State vm) {
@@ -173,7 +188,11 @@ aspect Interpretation {
 	public void VariableDeclaration.Interpret(State vm) {
 		if (LookUpVDecl(getName()).size() >= 2)
 			throw new InterpretationException();
-		vm.allocateVariable(this);
+		switch (Type()) {
+		case Boolean: vm.allocateVariable(this, false); break;
+		case Integer: vm.allocateVariable(this, 0); break;
+		case Real: vm.allocateVariable(this, 0.0); break;
+		}
 	}
 	public void Block.Interpret(State vm) {
 		for (int i = 0; i < getNumStatement(); i++) {
@@ -214,13 +233,10 @@ aspect Interpretation {
 	public void Write.Interpret(State vm) {
 		if (getExpression().Type() == Type.ERROR_TYPE)
 			throw new InterpretationException();
-		final Object toWrite = getExpression().Value(vm);
-		if (getNewLine()) {
-			vm.getStdOut().append(toWrite);
-			vm.getStdOut().append("\n");
-		} else vm.getStdOut().append(toWrite);
+		vm.getStdOut().append(getExpression().Value(vm));
+		vm.getStdOut().append("\n");
 	}
 	public void Expression.Interpret(State vm) {
-		/* Expressions don't change the state. */
+		Value(vm); /* May contain procedure calls with side effects. */
 	}
 }

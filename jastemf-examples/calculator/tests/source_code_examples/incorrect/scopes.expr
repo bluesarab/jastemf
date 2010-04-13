@@ -3,77 +3,40 @@
 
 % @author C. Bürger
 
-% x: declared but never defined
 % y: undeclared
 % z: declared but not within scope
 Procedure main() Begin
-	Var x:Integer;
+	Write y;
+	Write z;
 	
 	Begin
 		Var z:Integer;
-		z := 1; % The only correct statement of the program
 	End;
 	
-	Writeln x;
-	Writeln y;
-	Writeln z;
-	y := 1;
-	z := 1;
-	Writeln y;
-	Writeln z;
+	Write y;
+	Write z;
 	
 	Begin
-		Writeln x;
-		Writeln y;
-		Writeln z;
-		y := 1;
-		z := 1;
-		Writeln y;
-		Writeln z;
-		
-		Var x:Boolean;
-		
-		Writeln x;
-		Writeln y;
-		Writeln z;
-		y := 1;
-		z := 1;
-		Writeln y;
-		Writeln z;
+		Write y;
+		Write z;
 		
 		Begin
-			Writeln x;
-			Writeln y;
-			Writeln z;
-			y := 1;
-			z := 1;
-			Writeln y;
-			Writeln z;
+			Write y;
+			Write z;
 			
-			Var x:Real;
-			Var y:Real;
+			Var z:Real;
 			
-			Writeln x;
-			Writeln y;
-			Writeln z;
-			z := 1;
-			Writeln z;
+			Write y;
 		End;
 		
-		Writeln x;
-		Writeln y;
-		Writeln z;
-		y := 1;
-		z := 1;
-		Writeln y;
-		Writeln z;
+		Write y;
+		Write z;
+		
+		Var z:Real;
+		
+		Write y;
 	End;
 	
-	Writeln x;
-	Writeln y;
-	Writeln z;
-	y := 1;
-	z := 1;
-	Writeln y;
-	Writeln z;
+	Write y;
+	Write z;
 End;

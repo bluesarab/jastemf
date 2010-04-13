@@ -2,6 +2,7 @@
 % terms of the BSD 3-clause license which accompanies this distribution.
 
 % @author C. Bürger
+
 Procedure main() Begin
 	Var x:Integer;
 	Var y:Integer;
@@ -9,46 +10,50 @@ Procedure main() Begin
 	x := 1;
 	y := 2;
 	
-	Writeln x;
-	Writeln y;
+	Write x;
+	Write y;
 	
 	Begin
-		Writeln x;
-		Writeln y;
+		Write x;
+		Write y;
 		
 		Var x:Boolean;
 		x := true;
 		
-		Writeln x;
-		Writeln y;
+		Write x;
+		Write y;
 		
 		Begin
-			Writeln x;
-			Writeln y;
+			Write x;
+			Write y;
+			
 			Var y:Boolean;
 			y := true;
-			Writeln x;
-			Writeln y;
+			
+			Write x;
+			Write y;
 		End;
 		
-		Writeln x;
-		Writeln y;
+		Write x;
+		Write y;
 		
 		Begin
-			Writeln x;
-			Writeln y;
+			Write x;
+			Write y;
+			
 			Var x:Real;
 			Var y:Real;
 			x := 1.0;
 			y := 2.0;
-			Writeln x;
-			Writeln y;
+			
+			Write x;
+			Write y;
 		End;
 		
-		Writeln x;
-		Writeln y;
+		Write x;
+		Write y;
 	End;
 	
-	Writeln x;
-	Writeln y;
+	Write x;
+	Write y;
 End;
