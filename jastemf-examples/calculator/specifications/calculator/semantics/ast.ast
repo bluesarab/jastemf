@@ -11,45 +11,30 @@
  * @author C. Bürger
  */
 
-CompilationUnit ::= Declaration*;
+CompilationUnit ::= Block;
 
 abstract Statement;
 	
-	Block:Statement ::= Statement*;
-	If:Statement ::= Condition:Expression Body:Block [Alternative:Block];
-	While:Statement ::= Condition:Expression Body:Block;
 	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
-	ProcedureReturn:Statement ::= [Expression];
-	Write:Statement ::= Expression <NewLine:boolean>;
-	
-	abstract Declaration:Statement ::= <Name:String>;
-		
-		ProcedureDeclaration:Declaration ::=
-				Parameter:VariableDeclaration*
-				<ReturnType:Type> Body:Block;
-		VariableDeclaration:Declaration ::=
-				<DeclaredType:Type>;
+	VariableDeclaration:Statement ::= <Name:String> <VariableType:Type>; 
+	Block:Statement ::= Statement*;
 	
 	abstract Expression:Statement;
 		
-		Constant:Expression ::= <Lexem:String>;
 		Reference:Expression ::= <Name:String>;
-		ProcedureCall:Expression ::= <Name:String> Argument:Expression*;
-		NestedExpression:Expression ::= Expression;
+		Constant:Expression ::= <ConstantValue:String> ;
+		NestedExpression:Expression ::= Expression:Expression;
 		
 		abstract UnaryExpression:Expression ::= Operand:Expression;
 			
 			Not:UnaryExpression;
 			UMinus:UnaryExpression;
 			
-		abstract BinaryExpression:Expression ::=
-				Operand1:Expression
-				Operand2:Expression;
+		abstract BinaryExpression:Expression ::= Operand1:Expression Operand2:Expression;
 			
 			And:BinaryExpression;
 			Or:BinaryExpression;
 			Equal:BinaryExpression;
-			GreaterThan:BinaryExpression;
 			Addition:BinaryExpression;
 			Subtraction:BinaryExpression;
 			Division:BinaryExpression;

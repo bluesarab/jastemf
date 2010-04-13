@@ -11,7 +11,9 @@ package calculator.semantics;
 /**
  * @author C. Bürger
  */
-public class ErrorValue extends Value {
-	public ErrorValue asErrorValue() {return this;}
-	public String toString() {return "Error";}
+public class IntegerValue extends Value {
+	public int value;
+	public IntegerValue(int v) {value = v;}
+	public IntegerValue asIntegerValue() {return this;}
+	public String toString() {return ""+ value;}
 }

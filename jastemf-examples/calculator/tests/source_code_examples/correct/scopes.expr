@@ -2,53 +2,51 @@
 % terms of the BSD 3-clause license which accompanies this distribution.
 
 % @author C. Bürger
-Procedure main() Begin
-	Var x:Integer;
-	Var y:Integer;
+VAR x:INT;
+VAR y:INT;
+
+x = 1;
+y = 2;
+
+x;
+y;
+
+BEGIN
+	x;
+	y;
 	
-	x := 1;
-	y := 2;
+	VAR x:BOOL;
+	x = true;
 	
-	Writeln x;
-	Writeln y;
+	x;
+	y;
 	
-	Begin
-		Writeln x;
-		Writeln y;
-		
-		Var x:Boolean;
-		x := true;
-		
-		Writeln x;
-		Writeln y;
-		
-		Begin
-			Writeln x;
-			Writeln y;
-			Var y:Boolean;
-			y := true;
-			Writeln x;
-			Writeln y;
-		End;
-		
-		Writeln x;
-		Writeln y;
-		
-		Begin
-			Writeln x;
-			Writeln y;
-			Var x:Real;
-			Var y:Real;
-			x := 1.0;
-			y := 2.0;
-			Writeln x;
-			Writeln y;
-		End;
-		
-		Writeln x;
-		Writeln y;
-	End;
+	BEGIN
+		x;
+		y;
+		VAR y:BOOL;
+		y = true;
+		x;
+		y;
+	END;
 	
-	Writeln x;
-	Writeln y;
-End;
+	x;
+	y;
+	
+	BEGIN
+		x;
+		y;
+		VAR x:FLOAT;
+		VAR y:FLOAT;
+		x = 1.0;
+		y = 2.0;
+		x;
+		y;
+	END;
+	
+	x;
+	y;
+END;
+
+x;
+y;

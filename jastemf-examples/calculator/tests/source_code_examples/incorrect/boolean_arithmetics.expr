@@ -2,32 +2,30 @@
 % terms of the BSD 3-clause license which accompanies this distribution.
 
 % @author C. Bürger
-Procedure main() Begin
-	Var b:Boolean;
-	Var i:Integer;
-	Var r:Real;
-	
-	b := true;
-	i := 1;
-	r := 1.0;
-	
-	Writeln b = i;
-	Writeln b = r;
-	Writeln i = b;
-	Writeln r = b;
-	
-	Writeln Not i;
-	Writeln Not r;
-	
-	Writeln b And i;
-	Writeln b And r;
-	Writeln i And b;
-	Writeln r And b;
-	
-	Writeln b Or i;
-	Writeln b Or r;
-	Writeln i Or b;
-	Writeln r Or b;
-	
-	Writeln b Or (b And i = r) = i;
-End;
+VAR b:BOOL;
+VAR i:INT;
+VAR f:FLOAT;
+
+b = true;
+i = 1;
+f = 1.0;
+
+b == i;
+b == f;
+i == b;
+f == b;
+
+!i;
+!f;
+
+b && i;
+b && f;
+i && b;
+f && b;
+
+b || i;
+b || f;
+i || b;
+f || b;
+
+b || (b && i == f) == i;

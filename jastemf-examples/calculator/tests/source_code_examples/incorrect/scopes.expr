@@ -6,74 +6,72 @@
 % x: declared but never defined
 % y: undeclared
 % z: declared but not within scope
-Procedure main() Begin
-	Var x:Integer;
+VAR x:INT;
+
+BEGIN
+	VAR z:INT;
+	z = 1; % The only correct statement of the program
+END;
+
+x;
+y;
+z;
+y = 1;
+z = 1;
+y;
+z;
+
+BEGIN
+	x;
+	y;
+	z;
+	y = 1;
+	z = 1;
+	y;
+	z;
 	
-	Begin
-		Var z:Integer;
-		z := 1; % The only correct statement of the program
-	End;
+	VAR x:BOOL;
 	
-	Writeln x;
-	Writeln y;
-	Writeln z;
-	y := 1;
-	z := 1;
-	Writeln y;
-	Writeln z;
+	x;
+	y;
+	z;
+	y = 1;
+	z = 1;
+	y;
+	z;
 	
-	Begin
-		Writeln x;
-		Writeln y;
-		Writeln z;
-		y := 1;
-		z := 1;
-		Writeln y;
-		Writeln z;
+	BEGIN
+		x;
+		y;
+		z;
+		y = 1;
+		z = 1;
+		y;
+		z;
 		
-		Var x:Boolean;
+		VAR x:FLOAT;
+		VAR y:FLOAT;
 		
-		Writeln x;
-		Writeln y;
-		Writeln z;
-		y := 1;
-		z := 1;
-		Writeln y;
-		Writeln z;
-		
-		Begin
-			Writeln x;
-			Writeln y;
-			Writeln z;
-			y := 1;
-			z := 1;
-			Writeln y;
-			Writeln z;
-			
-			Var x:Real;
-			Var y:Real;
-			
-			Writeln x;
-			Writeln y;
-			Writeln z;
-			z := 1;
-			Writeln z;
-		End;
-		
-		Writeln x;
-		Writeln y;
-		Writeln z;
-		y := 1;
-		z := 1;
-		Writeln y;
-		Writeln z;
-	End;
+		x;
+		y;
+		z;
+		z = 1;
+		z;
+	END;
 	
-	Writeln x;
-	Writeln y;
-	Writeln z;
-	y := 1;
-	z := 1;
-	Writeln y;
-	Writeln z;
-End;
+	x;
+	y;
+	z;
+	y = 1;
+	z = 1;
+	y;
+	z;
+END;
+
+x;
+y;
+z;
+y = 1;
+z = 1;
+y;
+z;

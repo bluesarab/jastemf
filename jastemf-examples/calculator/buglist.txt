@@ -1,26 +1,4 @@
-                                     BUGS
-===============================================================================
-
-There exist no known bugs.
-
-                                 NEW FEATURES
-===============================================================================
-
-Testing the new interpretation features and constructs (if, while, procedure
-calls).
-
-Updating the RTT integration.
-
-Finishing the extension to a small, Turing complete, imperative programming
-language:
-	- Fix variable name space w.r.t. parameters, i.e. extend declared
-	  parameters' scope to their procedure's body.
-	- Rename to SIPLE (Simple Imperative Programming Language Example).
-	- Add constant folding, i.e. each expression has a new attribute
-	  ConstantValue() that has a value iff the expression's value does not
-	  depend on a state (Expressions depend on a state iff they depend on any
-	  value computed by a procedure call or a while loop; Rationale: Procedures
-	  and while loops are possibly non-terminating).
-
-Add control-flow analysis as described in "Declarative Intraprocedural Flow
-Analysis of Java Source Code".
+- rtt does not work out of the box, pathes in zip file are absolute
+ [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/bin
+ [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/sources/libraries/beaver-rt.jar
+ [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/sources/libraries/aspectjrt.jar

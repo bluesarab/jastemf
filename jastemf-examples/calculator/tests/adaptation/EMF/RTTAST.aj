@@ -52,7 +52,7 @@ public aspect RTTAST {
 	declare @method:
 		public * VariableDeclarationImpl+.getName() : @Parser.Node.Compare;
 	declare @method:
-		public * VariableDeclarationImpl+.getDeclaredType() : @Parser.Node.Compare;
+		public * VariableDeclarationImpl+.getVariableType() : @Parser.Node.Compare;
 	declare @method:
 		public * ReferenceImpl+.getName() : @Parser.Node.Compare;
 	
