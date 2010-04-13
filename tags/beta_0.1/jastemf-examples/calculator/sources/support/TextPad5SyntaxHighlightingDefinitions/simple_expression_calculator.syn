@@ -1,0 +1,52 @@
+; This program and the accompanying materials are made available under the
+; terms of the BSD 3-clause license which accompanies this distribution.
+
+; TextPad5 syntax definition for the Calculator.
+;
+; @author C. Bürger
+
+C=1
+
+[Syntax]
+Namespace1 = 6
+IgnoreCase = No
+KeyWordLength =
+BracketChars =
+OperatorChars = ;:()+-*/!=&|
+PreprocStart =
+SyntaxStart =
+SyntaxEnd =
+HexPrefix =
+CommentStart =
+CommentEnd =
+CommentStartAlt =
+CommentEndAlt =
+SingleComment = %
+SingleCommentCol =
+SingleCommentAlt =
+SingleCommentColAlt =
+SingleCommentEsc =
+StringsSpanLines = Yes
+StringStart =
+StringEnd =
+StringAlt =
+StringEsc =
+CharStart =
+CharEnd =
+CharEsc =
+
+[Keywords 1]
+BEGIN
+END
+VAR
+INT
+FLOAT
+BOOL
+True
+true
+False
+false
+
+[Keywords 2]
+
+[Preprocessor keywords]

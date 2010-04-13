@@ -1,0 +1,40 @@
+<?xml version='1.0'?><?xml-stylesheet type='text/xsl' href='log.xslt' ?>
+<archiveLog>
+    <info msg="Configuration [JastAdd] changed" date="2010-03-22+01:00">
+        <testInformation priority="0" test="JastAdd" msg="Configuration JastAdd added. (Lexer: calculator.symbols.CalculatorLexer, Parser: calculator.syntax.CalculatorParser)"/>
+    </info>
+    <info msg="New Files added for testsuite [correct]" date="2010-03-22+01:00">
+        <testInformation priority="0" test="arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\arithmetics.expr as Testcase arithmetics [Testsuite: correct]"/>
+        <testInformation priority="0" test="boolean_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: correct]"/>
+        <testInformation priority="0" test="scopes" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\scopes.expr as Testcase scopes [Testsuite: correct]"/>
+    </info>
+    <info msg="New Files added for testsuite [incorrect]" date="2010-03-22+01:00">
+        <testInformation priority="0" test="arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\arithmetics.expr as Testcase arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="0" test="boolean_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="0" test="scopes" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\scopes.expr as Testcase scopes [Testsuite: incorrect]"/>
+    </info>
+    <info msg="Testresults generated for configuration: JastAdd" date="2010-03-22+01:00">
+        <testInformation priority="1" test="arithmetics" msg="Generated Results for testCase: arithmetics [Testsuite: correct]"/>
+        <testInformation priority="1" test="boolean_arithmetics" msg="Generated Results for testCase: boolean_arithmetics [Testsuite: correct]"/>
+        <testInformation priority="1" test="scopes" msg="Generated Results for testCase: scopes [Testsuite: correct]"/>
+        <testInformation priority="1" test="arithmetics" msg="Generated Results for testCase: arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="1" test="boolean_arithmetics" msg="Generated Results for testCase: boolean_arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="1" test="scopes" msg="Generated Results for testCase: scopes [Testsuite: incorrect]"/>
+    </info>
+    <testrun configuration="JastAdd" date="2010-03-22+01:00">
+        <passed testSuite="correct" test="arithmetics"/>
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="arithmetics"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-03-22+01:00">
+        <passed testSuite="correct" test="arithmetics"/>
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="arithmetics"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+</archiveLog>

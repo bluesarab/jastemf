@@ -1,0 +1,32 @@
+% This program and the accompanying materials are made available under the
+% terms of the BSD 3-clause license which accompanies this distribution.
+
+% @author C. Bürger
+VAR t:BOOL;
+VAR f:BOOL;
+
+t = true;
+f = false;
+
+t;
+f;
+
+t == t;
+t == f;
+f == t;
+f == f;
+
+!t;
+!f;
+
+t && t;
+t && f;
+f && t;
+f && f;
+
+t || t;
+t || f;
+f || t;
+f || f;
+
+!(f || (t && t) && f);

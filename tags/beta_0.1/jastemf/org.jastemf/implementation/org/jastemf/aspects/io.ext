@@ -1,0 +1,57 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+import genmodel;
+import ecore;
+
+asDirectory(String package):
+	"/" + package == null ? "" : (package.replaceAll("\\.", "/") + "/");
+
+cached String timeStamp():
+	JAVA org.jastemf.util.IOSupport.timeStamp();
+
+cached String ecorePackage(GenPackage genPackage):
+	(genPackage.basePackage != null ?
+		genPackage.basePackage + "." :
+		"")
+	+
+	genPackage.ecorePackage.name;
+	 
+String qualifiedPackage(GenPackage genPackage, String packageSuffix):
+	ecorePackage(genPackage) +
+	((packageSuffix == null || packageSuffix.length == 0) ?
+		"" : ("." + packageSuffix));
+
+String getTypeString(EOperation operation):
+	(operation.many?"org.eclipse.emf.common.util.EList":operation.eType.getClassifierTypeString())
+	;
+
+String getGenericTypeString(EOperation operation):
+	(operation.many?"org.eclipse.emf.common.util.EList<"+getGenericTypeString(operation.eGenericType)+">":getGenericTypeString(operation.eGenericType))
+	;
+
+String getParameterListString(EOperation operation):
+	operation.eParameters.collect(e| getParameterTypeString(e) + " " + e.name).toString(",")
+;
+
+String getArgumentListString(EOperation operation):
+	operation.eParameters.collect(e|e.name).toString(",")
+;
+
+String getParameterTypeString(EParameter parameter):
+	(parameter.many?"org.eclipse.emf.common.util.EList<"+getGenericTypeString(parameter.eGenericType)+">":getGenericTypeString(parameter.eGenericType))
+;
+
+String getGenericTypeString(EGenericType genericType):
+	genericType.eClassifier.getClassifierTypeString()
+	+ (genericType.eTypeArguments.isEmpty?"":"<"+genericType.eTypeArguments.collect(e|getGenericTypeString(e)).toString(",")+">")
+;
+
+String getClassifierTypeString(EClassifier classifier):
+	classifier.instanceTypeName!=null?classifier.instanceTypeName:classifier.name
+;

@@ -1,0 +1,41 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+
+/**
+ * @author C. Bürger
+ */
+
+CompilationUnit ::= Block;
+
+abstract Statement;
+	
+	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
+	VariableDeclaration:Statement ::= <Name:String> <VariableType:Type>; 
+	Block:Statement ::= Statement*;
+	
+	abstract Expression:Statement;
+		
+		Reference:Expression ::= <Name:String>;
+		Constant:Expression ::= <ConstantValue:String> ;
+		NestedExpression:Expression ::= Expression:Expression;
+		
+		abstract UnaryExpression:Expression ::= Operand:Expression;
+			
+			Not:UnaryExpression;
+			UMinus:UnaryExpression;
+			
+		abstract BinaryExpression:Expression ::= Operand1:Expression Operand2:Expression;
+			
+			And:BinaryExpression;
+			Or:BinaryExpression;
+			Equal:BinaryExpression;
+			Addition:BinaryExpression;
+			Subtraction:BinaryExpression;
+			Division:BinaryExpression;
+			Multiplication:BinaryExpression;

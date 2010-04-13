@@ -1,0 +1,270 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+<!--
+	Ant script to generate a Calculator implementation, i.e. a compiler for
+	Calculator specifications. There exist three different implementations:
+	 1) A standard compiler implemented based on JFlex, Beaver and JastAdd.
+	 2) A compiler with an EMF repository implemented based on JFlex, Beaver,
+	 	JastAdd and JastEMF.
+	 3) A compiler with EMF repository and an Eclipse editor with syntax
+	 	highlighting, code completion and semantic property view implemented
+	 	based on EMFText (including AntLR), JastAdd and JastEMF.
+	@author C. Bürger
+-->
+<project name="Regression Test Archive" default="EMF Calculator">
+	<path id="_basedir">
+		<pathelement location="./../.."/>
+	</path>
+	<property name="_basedir" refid="_basedir"/>
+	
+	<!-- Declare JastEMF's Ant tasks -->
+	<taskdef resource="org/jastemf/ant/taskdef.properties">
+		<classpath path="${_basedir}/sources/libraries/jastadd2.jar"/>
+		<classpath path="${_basedir}/sources/libraries/jastemf.jar"/>
+		<classpath path="${_basedir}/sources/libraries/jastemf-converters.jar"/>
+		<!--
+			HACK; The following classpath entry is not required anymore
+			as soon as JastEMF is deployed as plugin.
+		-->
+		<classpath>
+			<fileset dir="${eclipse.home}">
+				<include name="/plugins/**/*.jar"/>
+			</fileset>
+		</classpath>
+	</taskdef>
+	
+	<!-- Declare the JastEMF converter's Ant tasks -->
+	<taskdef resource="org/jastemf/converter/ant/taskdef.properties">
+		<classpath path="${_basedir}/sources/libraries/jastemf.jar"/>
+		<classpath path="${_basedir}/sources/libraries/jastemf-converters.jar"/>
+		<!--
+			HACK; The following classpath entry is not required anymore
+			as soon as JastEMF is deployed as plugin.
+		-->
+		<classpath> 
+			<fileset dir="${eclipse.home}">
+				<include name="/plugins/**/*.jar"/>
+			</fileset>
+		</classpath>
+	</taskdef>
+	
+	<!-- Delete all generated artefacts. -->
+	<target name="Clean">
+		<delete>
+			<fileset dir="${_basedir}">
+				<!-- these artefacts are not generated -->
+				<exclude name="implementation/calculator/*.java"/>
+				<exclude name="implementation/calculator/semantics/*.java"/>
+				<exclude name="implementation/beaver/**/*"/>
+				<exclude name="specifications/**/*"/>
+				<!-- all other classes are generated -->
+				<include name="implementation/**/*.java"/>
+				<include name="implementation/**/*.aj"/>
+				<include name="implementation/**/*.xml"/>
+				<include name="implementation/**/*.jadd"/>
+				<include name="implementation/**/*.jrag"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!-- Generate the standard compiler. -->
+	<target name="JastAdd Calculator">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                         (JastAdd Version)                          ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<antcall target="JFlex Lexer"/>
+		<antcall target="Beaver Parser"/>
+		<antcall target="JastAdd Semantic"/>
+		<antcall target="RTT JastAdd Integration"/>
+	</target>
+	
+	<!-- Generate the EMF adapted compiler. -->
+	<target name="EMF Calculator">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                           (EMF Version)                            ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<antcall target="JFlex Lexer"/>
+		<antcall target="Beaver Parser"/>
+		<antcall target="EMF Semantic"/>
+		<antcall target="RTT EMF Integration"/>
+	</target>
+	
+	<!-- Generate the EMF adapted compiler with editor support. -->
+	<target name="EMFText Calculator">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                         (EMFText Version)                          ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<antcall target="EMF Semantic"/>
+		<antcall target="EMFText Resources"/>
+	</target>
+	
+	<!--
+		Generate the AntLR lexer and parser and the Eclipse editor used by the
+		compiler version 3.
+		
+		Two plugin projects required by the Calculator's EMFText implementation
+		will be generated. The first plugin "calculator.semantics.resource.expr"
+		is the EMFText editor for Calculator files (*.expr) and the second
+		plugin "org.emftext.commons.antlr3_2_0" is the AntLR runtime the
+		editor plugin requires.
+		
+		BEWARE: The two plugin projects should automatically appear within the
+			workspace. If not, they must be manually imported.
+	-->
+	<target name="EMFText Resources" description="Generate the EMF text resource plug-in">
+		<emftext.GenerateTextResource 
+			syntax="syntax/calculator.cs" 
+			rootFolder="${_basedir}/.." 
+			syntaxProjectName="calculator.semantics.resource.expr" 
+		/>
+		<copy
+			overwrite="true"
+			todir="${_basedir}/../calculator.semantics.resource.expr/src/calculator/semantics/resource/expr/analysis">
+			<fileset dir="${_basedir}/specifications/calculator/syntax">
+				<include name="ExprTYPETokenResolver.java"/>
+			</fileset>
+		</copy>
+		<eclipse.refreshLocal depth="infinite" resource="/"/>
+	</target>
+	
+	<!-- Generate the lexer used by the compiler versions 1 and 2. -->
+	<target name="JFlex Lexer">
+		<echo message="========================> Generate JFlex Lexer &lt;========================"/>
+		<taskdef
+			classname	= "JFlex.anttask.JFlexTask"
+			name		= "jflex"
+			classpath	= "${_basedir}/sources/libraries/JFlex.jar"
+		/>
+		<jflex
+			file		= "symbols/lexer.jflex"
+			destdir		= "${_basedir}/implementation"
+			nobak		= "on"
+			verbose		= "off"
+		/>
+	</target>
+	
+	<!-- Generate the parser used by the compiler versions 1 and 2. -->
+	<target name="Beaver Parser">
+		<echo message="========================> Generate Beaver Parser &lt;======================"/>
+		<taskdef
+			name		= "beaver"
+			classname	= "beaver.comp.run.AntTask"
+			classpath	= "${_basedir}/sources/libraries/beaver.jar"
+		/>
+		<property name="beaver.available" value="yes"/>
+		<beaver
+			file				= "syntax/parser.beaver"
+			destdir				= "${_basedir}/implementation"
+			compress			= "yes"
+			exportTables		= "no"
+			sortTerminals		= "no"
+			terminalNames		= "yes"
+			exportTerminals		= "no"
+			useSwitch			= "no"
+			anonymousActions	= "yes"
+			reportActions		= "no"
+		/>
+	</target>
+	
+	<!-- Generate the semantic evaluator used by the compiler version 1. -->
+	<target name="JastAdd Semantic">
+		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
+		<taskdef
+			classname="jastadd.JastAddTask"
+			name="jastadd"
+			classpath="${_basedir}/sources/libraries/jastadd2.jar"
+		/>
+		<jastadd
+			outdir="${_basedir}/implementation"
+			package="calculator.semantics.ast"
+			rewrite		= "true">
+			<fileset dir="${_basedir}/specifications">
+				<include name="calculator/semantics/**/*.ast"/>
+				<include name="calculator/semantics/**/*.jrag"/>
+				<include name="calculator/semantics/**/*.jadd"/>
+			</fileset>
+		</jastadd>
+	</target>
+	
+	<!-- Generate the semantic evaluator used by the compiler version 2 and 3. -->
+	<target name="EMF Semantic">
+		<echo message="========================> Generate EMF Semantic &lt;======================="/>
+		<jastemf
+			genmodel="${_basedir}/specifications/calculator/model/calculator.genmodel"
+			outpackage="jastemf.adaptation"
+			astpackage="calculator.semantics.ast">
+			<jastadd
+				rewrite		= "true">
+				<fileset dir="${_basedir}/specifications">
+					<include name="calculator/semantics/**/*.ast"/>
+					<include name="calculator/semantics/**/*.jrag"/>
+					<include name="calculator/semantics/**/*.jadd"/>
+				</fileset>
+			</jastadd>
+		</jastemf>
+	</target>
+	
+	<!-- Generate regression test tool support for compiler version 1. -->
+	<target name="RTT JastAdd Integration">
+		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
+		<copy todir="${_basedir}/implementation/rtt/adaptation">
+			<fileset dir="${_basedir}/tests/adaptation/JastAdd">
+				<include name="**/*.aj"/>
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<!-- Generate regression test tool support for compiler version 2. -->
+	<target name="RTT EMF Integration">
+		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
+		<copy todir="${_basedir}/implementation/rtt/adaptation">
+			<fileset dir="${_basedir}/tests/adaptation/EMF">
+				<include name="**/*.aj"/>
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<!--
+		Generate a JastAdd AST specification based on the Calculator's
+		generator model.
+		
+		BEWARE: The JastEMF converter is a research prototyp in alpha state
+			and does not yet satisfy JastEMF's quality criteria.
+	-->
+	<target name="Generate AST Spec">
+		<echo message="========================> Generate AST Spec &lt;======================="/>
+		<jastemf.ecore2ast
+			modelFile="${_basedir}/specifications/calculator/model/calculator.ecore"
+			outputDirectory="${_basedir}/implementation/jastemf/adaptation">
+		</jastemf.ecore2ast>
+	</target>
+	
+	<!--
+		Generate a JastAdd *.jrag attribution skeleton based on the
+		Calculator's generator model.
+		
+		BEWARE: The JastEMF converter is a research prototyp in alpha state
+			and does not yet satisfy JastEMF's quality criteria.
+	-->
+	<target name="Generate initial Jrag Spec">
+		<echo message="========================> Generate AST Spec &lt;======================="/>
+		<jastemf.ecore2jrag
+			modelFile="${_basedir}/specifications/calculator/model/calculator.ecore"
+			outputDirectory="${_basedir}/implementation/jastemf/adaptation">
+		</jastemf.ecore2jrag>
+	</target>
+</project>

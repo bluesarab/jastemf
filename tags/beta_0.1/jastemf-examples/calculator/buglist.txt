@@ -1,0 +1,4 @@
+- rtt does not work out of the box, pathes in zip file are absolute
+ [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/bin
+ [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/sources/libraries/beaver-rt.jar
+ [runTests] Classpath does not exist: D:\Development\Java\JastAdd2ECore_26_10_2009\calculator/sources/libraries/aspectjrt.jar
