@@ -2,18 +2,18 @@
 % terms of the BSD 3-clause license which accompanies this distribution.
  
 Procedure main() Begin
-	Var count:Integer;
-	count := 10;
-	
-	Procedure fibunacci(Var n:Integer) : Integer 
-	Begin
+	Procedure fibunacci(Var n:Integer) : Integer Begin
+		Var result:Integer;
 		If(n>1) 
 			Then Begin 
-				Return fibunacci(n-1) + fibunacci(n-2);
+				result := fibunacci(n-1) + fibunacci(n-2);
 			End
 		Else Begin 
-			Return 1;
+			result := 1;
 		End
 		Fi;
+		Writeln result;
+		Return result;
 	End;
+	fibunacci(10);
 End;
