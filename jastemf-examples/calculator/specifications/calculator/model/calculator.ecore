@@ -5,8 +5,8 @@
     nsURI="http://calculator/1.0" nsPrefix="semantics">
   <eClassifiers xsi:type="ecore:EClass" name="CompilationUnit">
     <eOperations name="Interpret" lowerBound="1" eType="#//State"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Block" lowerBound="1" eType="#//Block"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" upperBound="-1"
+        eType="#//Declaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="MainProcedure" eType="#//ProcedureDeclaration"
         derived="true"/>
   </eClassifiers>
@@ -14,6 +14,8 @@
     <eOperations name="Interpret">
       <eParameters name="vm" lowerBound="1" eType="#//State"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ProcedureInContext" eType="#//ProcedureDeclaration"
+        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="MaybeUndecidable" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" derived="true"/>
   </eClassifiers>
@@ -26,15 +28,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Statement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Alternative" eType="#//Statement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Alternative" eType="#//Block"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Statement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Block"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableAssignment" eSuperTypes="#//Statement">
@@ -74,16 +76,28 @@
         eType="#//VariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ReturnType" lowerBound="1"
         eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Returns" upperBound="-1"
+        eType="#//ProcedureReturn" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Statement">
     <eOperations name="Value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
       <eParameters name="vm" lowerBound="1" eType="#//State"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConstantValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
+        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
         derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Lexem" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AsInteger" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AsReal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
