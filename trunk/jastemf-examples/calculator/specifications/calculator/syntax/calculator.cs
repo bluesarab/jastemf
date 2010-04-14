@@ -28,7 +28,7 @@ RULES {
 	
 	While ::= "While" Condition "Do" Body "oD";
 	
-	Write ::= "Write" Expression | "Writeln" Expression;
+	Write ::= "Write" Expression;
 	
 	ProcedureReturn ::= "Return" (Expression)?;
 	
@@ -36,7 +36,7 @@ RULES {
 	
 	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] )? Body:Block ;
 	
-	// We do not use the standard reference revolving mechanism,
+	// We do not use the standard reference resolving mechanism,
 	// since we are using JastEMF
 	
 	VariableAssignment ::= LValue[IDENTIFIER] ":=" RValue; 

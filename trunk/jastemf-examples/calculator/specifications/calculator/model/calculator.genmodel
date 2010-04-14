@@ -10,7 +10,7 @@
     <genDataTypes ecoreDataType="calculator.ecore#//Type"/>
     <genDataTypes ecoreDataType="calculator.ecore#//State"/>
     <genClasses ecoreClass="calculator.ecore#//CompilationUnit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference calculator.ecore#//CompilationUnit/Block"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference calculator.ecore#//CompilationUnit/Declaration"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference calculator.ecore#//CompilationUnit/MainProcedure"/>
       <genOperations ecoreOperation="calculator.ecore#//CompilationUnit/Interpret"/>
     </genClasses>
@@ -57,6 +57,7 @@
     <genClasses ecoreClass="calculator.ecore#//ProcedureDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference calculator.ecore#//ProcedureDeclaration/Parameter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//ProcedureDeclaration/ReturnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference calculator.ecore#//ProcedureDeclaration/Body"/>
     </genClasses>
     <genClasses image="false" ecoreClass="calculator.ecore#//Expression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Expression/Type"/>
