@@ -16,25 +16,25 @@ import calculator.symbols.*;
 import calculator.syntax.*;
 
 /**
- * AspectJ specification to adapt the Caclulator's Parser for RTT.
+ * AspectJ specification to adapt the Parser for RTT.
  * @author C. Bürger
  */
 public aspect RTTParser {
 	// Specify parser class:
-	declare @type: CalculatorParser : @Parser;
+	declare @type: SIPLEParser : @Parser;
 
 	// Insert initialization method:
 	declare @method:
-		public void CalculatorParser.initParser(InputStream) : @Parser.Initialize;
-	private CalculatorLexer CalculatorParser.lexer;
-	public void CalculatorParser.initParser(InputStream is) {
-		lexer = new CalculatorLexer(is);
+		public void SIPLEParser.initParser(InputStream) : @Parser.Initialize;
+	private SIPLELexer SIPLEParser.lexer;
+	public void SIPLEParser.initParser(InputStream is) {
+		lexer = new SIPLELexer(is);
 	}
 	
 	// Insert AST access method:
 	declare @method:
-		public Object CalculatorParser.getAst() : @Parser.AST;
-	public Object CalculatorParser.getAst() throws Exception, IOException {
+		public Object SIPLEParser.getAst() : @Parser.AST;
+	public Object SIPLEParser.getAst() throws Exception, IOException {
 		return parse(lexer);
 	}
 }

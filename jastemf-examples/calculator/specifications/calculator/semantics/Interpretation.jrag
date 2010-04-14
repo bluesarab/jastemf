@@ -124,6 +124,33 @@ aspect Interpretation {
 		return ((Number)getOperand1().Value(vm)).floatValue() >
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
+	public Object LesserThan.Value(State vm) {
+		if (Type() != Type.Boolean)
+			throw new InterpretationException();
+		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
+			return (Integer)getOperand1().Value(vm) <
+				(Integer)getOperand2().Value(vm);
+		return ((Number)getOperand1().Value(vm)).floatValue() <
+			((Number)getOperand2().Value(vm)).floatValue();
+	}
+	public Object GreaterThanEqual.Value(State vm) {
+		if (Type() != Type.Boolean)
+			throw new InterpretationException();
+		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
+			return (Integer)getOperand1().Value(vm) >=
+				(Integer)getOperand2().Value(vm);
+		return ((Number)getOperand1().Value(vm)).floatValue() >=
+			((Number)getOperand2().Value(vm)).floatValue();
+	}
+	public Object LesserThanEqual.Value(State vm) {
+		if (Type() != Type.Boolean)
+			throw new InterpretationException();
+		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
+			return (Integer)getOperand1().Value(vm) <=
+				(Integer)getOperand2().Value(vm);
+		return ((Number)getOperand1().Value(vm)).floatValue() <=
+			((Number)getOperand2().Value(vm)).floatValue();
+	}
 	public Object Addition.Value(State vm) {
 		if (Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) +

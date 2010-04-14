@@ -15,11 +15,11 @@ package calculator.symbols;
 import beaver.Symbol;
 import beaver.Scanner;
 
-import calculator.syntax.CalculatorParser.Terminals;
+import calculator.syntax.SIPLEParser.Terminals;
 
 %%
 
-%class CalculatorLexer
+%class SIPLELexer
 %extends Scanner
 %public
 %function nextToken

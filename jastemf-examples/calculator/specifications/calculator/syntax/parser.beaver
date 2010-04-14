@@ -13,7 +13,7 @@
 %package "calculator.syntax";
 %import "calculator.semantics.ast.*", "calculator.semantics.Type";
 
-%class "CalculatorParser";
+%class "SIPLEParser";
 
 // Procedure, Var, Begin, End
 %terminals kPROCEDURE, kVAR, kBEGIN, kEND;
@@ -219,26 +219,15 @@ RelExpr = RelExpr.expr1 pANGLEBRACKETRIGHT AddExpr.expr2
 	:}
 	| RelExpr.expr1 pANGLEBRACKETLEFT AddExpr.expr2
 	{:
-		// A < B iff Not (A > B) And Not (A = B)
-		return new Symbol(new And(
-			new Not(new GreaterThan(expr1, expr2)),
-			new Not(new Equal(
-				(Expression)expr1.fullCopy(),
-				(Expression)expr2.fullCopy()))));
+		return new Symbol(new LesserThan(expr1, expr2));
 	:}
 	| RelExpr.expr1 pANGLEBRACKETRIGHT_EQUALS AddExpr.expr2
 	{:
-		// A >= B iff A > B Or A = B
-		return new Symbol(new Or(
-			new GreaterThan(expr1, expr2),
-			new Equal(
-				(Expression)expr1.fullCopy(),
-				(Expression)expr2.fullCopy())));
+		return new Symbol(new GreaterThanEqual(expr1, expr2));
 	:}
 	| RelExpr.expr1 pANGLEBRACKETLEFT_EQUALS AddExpr.expr2
 	{:
-		// A <= B iff Not (A > B)
-		return new Symbol(new Not(new GreaterThan(expr1, expr2)));
+		return new Symbol(new LesserThanEqual(expr1, expr2));
 	:}
 	| AddExpr
 	;

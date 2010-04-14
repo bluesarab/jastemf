@@ -51,7 +51,11 @@ abstract Statement;
 			Or:BinaryExpression;
 			Equal:BinaryExpression;
 			GreaterThan:BinaryExpression;
+			LesserThan:BinaryExpression;
+			GreaterThanEqual:BinaryExpression;
+			LesserThanEqual:BinaryExpression;
 			Addition:BinaryExpression;
 			Subtraction:BinaryExpression;
 			Multiplication:BinaryExpression;
 			Division:BinaryExpression;
+			

@@ -4,11 +4,11 @@
 -->
 
 <!--
-	Ant script to generate and run regression tests using the
-	Regression Test Tool (RTT).
+	Ant script to generate and run regression tests using the Regression Test
+	Tool (RTT).
 	@author C. Bürger
 -->
-<project name="Regression Test Archive" default="Test">
+<project name="Testing" default="Test">
 	<path id="_basedir">
 		<pathelement location="./.."/>
 	</path>
@@ -21,7 +21,7 @@
 	
 	<!-- Delete all generated testsuites and their logs -->
 	<target name="Clean">
-		<delete file="${_basedir}/tests/testsuites/Calculator_Reggression_Tests.zip"/>
+		<delete file="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"/>
 		<delete file="${_basedir}/tests/testsuites/log.xml"/>
 		<delete file="${_basedir}/tests/testsuites/log.xslt"/>
 	</target>
@@ -30,13 +30,13 @@
 	<target name="Testsuite">
 		<createArchive
 			path="${_basedir}/tests/testsuites"
-			name="Calculator_Reggression_Tests.zip"
+			name="SIPLE_Reggression_Tests.zip"
 			overwrite="false"
 			defaultConfiguration="JastAdd">
 			<configuration
 				name="JastAdd"
-				lexer="calculator.symbols.CalculatorLexer"
-				parser="calculator.syntax.CalculatorParser">
+				lexer="calculator.symbols.SIPLELexer"
+				parser="calculator.syntax.SIPLEParser">
 				<classpathElement path="./../../bin"/>
 				<classpathElement path="./../../sources/libraries/beaver-rt.jar"/>
 				<classpathElement path="./../../sources/libraries/aspectjrt.jar"/>
@@ -58,7 +58,7 @@
 	<!-- Update testresults -->
 	<target name="Testresults">
 		<regenerateTests
-			path="${_basedir}/tests/testsuites/Calculator_Reggression_Tests.zip"
+			path="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
 			configuration="JastAdd"
 			overwrite="false"
 		/>
@@ -69,7 +69,7 @@
 	<target name="Test">
 		<runTests>
 			<test
-				path="${_basedir}/tests/testsuites/Calculator_Reggression_Tests.zip"
+				path="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
 				configuration="JastAdd"
 				matching="false"
 			/>
@@ -80,7 +80,7 @@
 	<!-- Export the testsuite's log -->
 	<target name="Log">
 		<exportLog
-			archive="${_basedir}/tests/testsuites/Calculator_Reggression_Tests.zip"
+			archive="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
 			destination="${_basedir}/tests/testsuites"
 		/>
 	</target>

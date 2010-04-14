@@ -6,15 +6,8 @@ There exist no known bugs.
                                  NEW FEATURES
 ===============================================================================
 
-Testing the new interpretation features and constructs (if, while, procedure
-calls).
-
-Updating the RTT integration.
-
 Finishing the extension to a small, Turing complete, imperative programming
 language:
-	- Fix variable name space w.r.t. parameters, i.e. extend declared
-	  parameters' scope to their procedure's body.
 	- Rename to SIPLE (Simple Imperative Programming Language Example).
 	- Add constant folding, i.e. each expression has a new attribute
 	  ConstantValue() that has a value iff the expression's value does not
@@ -25,17 +18,7 @@ language:
 Add control-flow analysis as described in "Declarative Intraprocedural Flow
 Analysis of Java Source Code".
 
-Re-sync with ecore models and emftext
+Extend the converter to extract semantic interfaces from JastAdd ast and jrag
+specifications for ECore.
 
-@C.Buerger: Please add a distinction between attributes that should be declared 
-in the MM and which should not.
-
-Extend the converter to transform semantic interfaces in ast+jrag
-to ecore.
-
-Use ticket system on google code instead of this document
-
- 
-
-
-
+Use ticket system on Google code instead of this document :-)!

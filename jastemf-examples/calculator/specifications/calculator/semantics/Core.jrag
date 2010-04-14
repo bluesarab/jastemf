@@ -11,24 +11,38 @@ import java.util.*;
 import calculator.semantics.*;
 
 /**
+ * For complicated computations about SIPLE programs, often simple support
+ * methods are required that refine nodes' local information - like conversions
+ * of terminal nodes' value - or distribute local context information to
+ * remotely located nodes further down the AST or vice versa. To this end, the
+ * access support API is provided.
  * @author C. Bürger
  */
 aspect AccessSupport {
+	// AST nodes can be compared w.r.t. their unique Dewey addresses.
 	ASTNode implements Comparable<ASTNode>;
 	public int ASTNode.compareTo(ASTNode o) {
 		return o.NodeAddress().compareTo(NodeAddress());
 	}
 	
+	// Find the AST's root node.
 	syn CompilationUnit ASTNode.ASTRoot();
+	// Each AST node has an unique Dewey address.
 	inh DeweyAddress ASTNode.NodeAddress();
 	
+	// Each declaration knows if it is a parameter declaration.
 	inh boolean Declaration.IsParameterDeclaration();
+	// Find the procedure declaration the block is the body - i.e.
+	// implementation - of (null, if the block is not a procedure's body).
 	inh ProcedureDeclaration Block.IsProcedureBody();
+	// Find the closest procedure containing the statement.
 	inh ProcedureDeclaration Statement.ProcedureInContext();
 	
+	// Collection containing all the procedure's return statements.
 	coll java.util.List<ProcedureReturn> ProcedureDeclaration.Returns()
 		[new ArrayList<ProcedureReturn>()] with add;
 	
+	// Interpret a constant as a value of a certain type (null, iff it is not).
 	syn Boolean Constant.AsBoolean();
 	syn Integer Constant.AsInteger();
 	syn Float Constant.AsReal();
@@ -63,7 +77,7 @@ aspect NameAnalysis {
  * SIPLE is a statically, strongly typed language. The supported type analysis
  * is program execution independent and specifies a type for all expressions,
  * variable assignments and procedure returns. Iff such constructs' type
- * constraints are not satisfied, their type is a special error type. 
+ * constraints are not satisfied, their type is a special error type.
  * @author C. Bürger
  */
 aspect TypeAnalysis {
@@ -74,6 +88,7 @@ aspect TypeAnalysis {
 }
 
 /**
+ * TODO: Add documentation.
  * @author C. Bürger
  */
 aspect DataflowAnalysis {
@@ -87,37 +102,32 @@ aspect DataflowAnalysis {
  * SIPLE programs can be interpreted. To interpret a SIPLE program means to
  * execute its statements, starting with a call to the main procedure. Each
  * statement can change the program's internal state. The interpretation's
- * result is either, an interpretation exception if the program is erroneous
- * or the final state otherwise.
+ * result is either, an interpretation exception iff the program is erroneous
+ * or the final state otherwise. Since SIPLE is Turing complete, the
+ * interpretation of a program might also not terminate at all.
+ * 
+ * Instead of interpreting the complete program at once, it is also possible
+ * to interpret single statements or to compute the value of single
+ * expressions starting from a given interpretation state. Again, errors
+ * encountered while interpretation result in appropriate exceptions.
+ * 
+ * For each expression it can be statically decided, whether it has a constant
+ * value or not. If it has, the value can be statically computed and it is
+ * guaranteed that the computation terminates and always succeeds, i.e. throws
+ * no interpretation exception. To guarantee termination, an expression's
+ * value is only constant, iff it does not depend on loops and procedure
+ * executions (both can be undecidable = non-terminating). Iff a constant
+ * expression depends on an erroneous program part, its value is a special
+ * error value.
  * @author C. Bürger
  */
 aspect Interpretation {
-	/**
-	 * Compute the expression's value, iff it is constant. Otherwise, return
-	 * null. Iff the expression is constant but its value depends on erroneous
-	 * program parts, an error value is returned.
-	 */
+	// Returns null, iff the expression is not constant.
 	syn Object Expression.ConstantValue();
-	/**
-	 * Compute the expression's value w.r.t. the given state. The result is a
-	 * null pointer, iff the expression is the call and successful execution of
-	 * a procedure that does not return anything. The state may change. The
-	 * computation can fail, in which case an interpretation exception is
-	 * thrown.
-	 */
 	public abstract Object Expression.Value(State vm)
 		throws InterpretationException;
 	
-	/**
-	 * Interpret the complete program and return the result state. Any
-	 * encountered error triggers an interpretation exception.
-	 */
 	syn State CompilationUnit.Interpret();
-	/**
-	 * Interpret the statement with the given state. The state may change.
-	 * The interpretation can fail, in which case an interpretation exception
-	 * is thrown.
-	 */
 	public abstract void Statement.Interpret(State vm)
 		throws InterpretationException;
 }

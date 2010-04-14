@@ -8,15 +8,13 @@
  */
 package rtt.adaptation;
 
-import java.util.*;
-
 import rtt.annotations.*;
 
 import calculator.semantics.ast.*;
 import calculator.semantics.impl.*;
 
 /**
- * AspectJ specification to adapt the Caclulator's AST for RTT.
+ * AspectJ specification to adapt the syntax and semantics for RTT.
  * @author C. Bürger
  */
 public aspect RTTAST {
@@ -35,12 +33,14 @@ public aspect RTTAST {
 	
 	declare @type: ASTNode+ : @Parser.Node;
 	
+	/** AST Structure */
+	
 	// Compare nodes' children:
 	declare @method:
 		public * ASTNode.getChildren() : @Parser.Node.Child;
 	@SuppressWarnings("unchecked")
 	public java.util.List<ASTNode> ASTNode.getChildren() {
-		List<ASTNode> result = new LinkedList<ASTNode>();
+		java.util.List<ASTNode> result = new java.util.LinkedList<ASTNode>();
 		for (int i=0; i < getNumChild(); i++)
 			result.add(getChild(i));
 		return result;
@@ -50,35 +50,51 @@ public aspect RTTAST {
 	declare @method:
 		public * VariableAssignmentImpl+.getLValue() : @Parser.Node.Compare;
 	declare @method:
-		public * VariableDeclarationImpl+.getName() : @Parser.Node.Compare;
+		public * DeclarationImpl+.getName() : @Parser.Node.Compare;
 	declare @method:
-		public * VariableDeclarationImpl+.getDeclaredType() : @Parser.Node.Compare;
+		public * ProcedureDeclarationImpl+.getReturnType() : @Parser.Node.Compare;
 	declare @method:
 		public * ReferenceImpl+.getName() : @Parser.Node.Compare;
+	declare @method:
+		public * ProcedureCallImpl+.getName() : @Parser.Node.Compare;
 	
 	// Compare nodes' type and address:
 	declare @method:
 		public * ASTNode+.toString() : @Parser.Node.Compare;
 	
-	// Compare variable declarations' type:
+	/** Name Analysis */
+	
+	// Compare procedure calls' associated procedure:
 	declare @method:
-		public * VariableDeclarationImpl+.getType() : @Parser.Node.Compare;
-	// Compare the declaration associated with assignments' left hand:
+		public * ProcedureCallImpl+.getDeclaration() : @Parser.Node.Compare;
+	// Compare the program's main procedure:
 	declare @method:
-		public * VariableAssignmentImpl+.getDeclaration() : @Parser.Node.Compare;
-	// Compare assignments' type:
-	declare @method:
-		public * VariableAssignmentImpl+.getType() : @Parser.Node.Compare;
-	// Compare assignments' value:
-	declare @method:
-		public * VariableAssignmentImpl+.getValue() : @Parser.Node.Compare;
-	// Compare expressions' type:
-	declare @method:
-		public * ExpressionImpl+.getType() : @Parser.Node.Compare;
-	// Compare expressions' value:
-	declare @method:
-		public * ExpressionImpl+.getValue() : @Parser.Node.Compare;
+		public * CompilationUnitImpl+.getMainProcedure() : @Parser.Node.Compare;
 	// Compare references' associated declaration:
 	declare @method:
 		public * ReferenceImpl+.getDeclaration() : @Parser.Node.Compare;
+	// Compare the declaration associated with assignments' left hand:
+	declare @method:
+		public * VariableAssignmentImpl+.getDeclaration() : @Parser.Node.Compare;
+	
+	/** Type Analysis */
+	
+	// Compare variable declarations' type:
+	declare @method:
+		public * VariableDeclarationImpl+.getType() : @Parser.Node.Compare;
+	// Compare assignments' type:
+	declare @method:
+		public * VariableAssignmentImpl+.getType() : @Parser.Node.Compare;
+	// Compare procedure returns' type:
+	declare @method:
+		public * ProcedureReturnImpl+.getType() : @Parser.Node.Compare;
+	// Compare expressions' type:
+	declare @method:
+		public * ExpressionImpl+.getType() : @Parser.Node.Compare;
+	
+	/** Interpretation */
+	
+	// Compare expressions' constant folding:
+	declare @method:
+		public * ExpressionImpl+.getConstantValue() : @Parser.Node.Compare;
 }
