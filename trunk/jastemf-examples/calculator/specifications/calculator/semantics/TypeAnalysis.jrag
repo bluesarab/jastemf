@@ -81,6 +81,21 @@ aspect TypeAnalysis {
 			getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
 					Type.ERROR_TYPE :
 					Type.Boolean;
+	eq LesserThan.Type() =
+		Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+		getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+				Type.ERROR_TYPE :
+				Type.Boolean;
+	eq GreaterThanEqual.Type() =
+		Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+		getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+				Type.ERROR_TYPE :
+				Type.Boolean;
+	eq LesserThanEqual.Type() =
+		Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+		getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+				Type.ERROR_TYPE :
+				Type.Boolean;
 	eq BinaryExpression.Type() = Type.computeCompatibleType(
 			getOperand1().Type(),
 			getOperand2().Type());

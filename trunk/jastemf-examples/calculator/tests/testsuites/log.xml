@@ -1,112 +1,68 @@
 <?xml version='1.0'?><?xml-stylesheet type='text/xsl' href='log.xslt' ?>
 <archiveLog>
-    <info msg="Configuration [JastAdd] changed" date="2010-03-22+01:00">
-        <testInformation priority="0" test="JastAdd" msg="Configuration JastAdd added. (Lexer: calculator.symbols.CalculatorLexer, Parser: calculator.syntax.CalculatorParser)"/>
+    <info msg="Configuration [JastAdd] changed" date="2010-04-15+02:00">
+        <testInformation priority="0" test="JastAdd" msg="Configuration JastAdd added. (Lexer: calculator.symbols.SIPLELexer, Parser: calculator.syntax.SIPLEParser)"/>
     </info>
-    <info msg="New Files added for testsuite [correct]" date="2010-03-22+01:00">
-        <testInformation priority="0" test="arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\arithmetics.expr as Testcase arithmetics [Testsuite: correct]"/>
+    <info msg="New Files added for testsuite [correct]" date="2010-04-15+02:00">
         <testInformation priority="0" test="boolean_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: correct]"/>
+        <testInformation priority="0" test="control_flow" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\control_flow.expr as Testcase control_flow [Testsuite: correct]"/>
+        <testInformation priority="0" test="integer_and_real_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\integer_and_real_arithmetics.expr as Testcase integer_and_real_arithmetics [Testsuite: correct]"/>
+        <testInformation priority="0" test="nested_procedures" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\nested_procedures.expr as Testcase nested_procedures [Testsuite: correct]"/>
+        <testInformation priority="0" test="procedure_basics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\procedure_basics.expr as Testcase procedure_basics [Testsuite: correct]"/>
+        <testInformation priority="0" test="relational_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\relational_arithmetics.expr as Testcase relational_arithmetics [Testsuite: correct]"/>
         <testInformation priority="0" test="scopes" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\scopes.expr as Testcase scopes [Testsuite: correct]"/>
     </info>
-    <info msg="New Files added for testsuite [incorrect]" date="2010-03-22+01:00">
-        <testInformation priority="0" test="arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\arithmetics.expr as Testcase arithmetics [Testsuite: incorrect]"/>
+    <info msg="New Files added for testsuite [incorrect]" date="2010-04-15+02:00">
         <testInformation priority="0" test="boolean_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="0" test="control_flow" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\control_flow.expr as Testcase control_flow [Testsuite: incorrect]"/>
+        <testInformation priority="0" test="integer_and_real_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\integer_and_real_arithmetics.expr as Testcase integer_and_real_arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="0" test="procedure_basics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\procedure_basics.expr as Testcase procedure_basics [Testsuite: incorrect]"/>
+        <testInformation priority="0" test="relational_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\relational_arithmetics.expr as Testcase relational_arithmetics [Testsuite: incorrect]"/>
         <testInformation priority="0" test="scopes" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\scopes.expr as Testcase scopes [Testsuite: incorrect]"/>
     </info>
-    <info msg="Testresults generated for configuration: JastAdd" date="2010-03-22+01:00">
-        <testInformation priority="1" test="arithmetics" msg="Generated Results for testCase: arithmetics [Testsuite: correct]"/>
+    <info msg="Testresults generated for configuration: JastAdd" date="2010-04-15+02:00">
         <testInformation priority="1" test="boolean_arithmetics" msg="Generated Results for testCase: boolean_arithmetics [Testsuite: correct]"/>
+        <testInformation priority="1" test="control_flow" msg="Generated Results for testCase: control_flow [Testsuite: correct]"/>
+        <testInformation priority="1" test="integer_and_real_arithmetics" msg="Generated Results for testCase: integer_and_real_arithmetics [Testsuite: correct]"/>
+        <testInformation priority="1" test="nested_procedures" msg="Generated Results for testCase: nested_procedures [Testsuite: correct]"/>
+        <testInformation priority="1" test="procedure_basics" msg="Generated Results for testCase: procedure_basics [Testsuite: correct]"/>
+        <testInformation priority="1" test="relational_arithmetics" msg="Generated Results for testCase: relational_arithmetics [Testsuite: correct]"/>
         <testInformation priority="1" test="scopes" msg="Generated Results for testCase: scopes [Testsuite: correct]"/>
-        <testInformation priority="1" test="arithmetics" msg="Generated Results for testCase: arithmetics [Testsuite: incorrect]"/>
         <testInformation priority="1" test="boolean_arithmetics" msg="Generated Results for testCase: boolean_arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="1" test="control_flow" msg="Generated Results for testCase: control_flow [Testsuite: incorrect]"/>
+        <testInformation priority="1" test="integer_and_real_arithmetics" msg="Generated Results for testCase: integer_and_real_arithmetics [Testsuite: incorrect]"/>
+        <testInformation priority="1" test="procedure_basics" msg="Generated Results for testCase: procedure_basics [Testsuite: incorrect]"/>
+        <testInformation priority="1" test="relational_arithmetics" msg="Generated Results for testCase: relational_arithmetics [Testsuite: incorrect]"/>
         <testInformation priority="1" test="scopes" msg="Generated Results for testCase: scopes [Testsuite: incorrect]"/>
     </info>
-    <testrun configuration="JastAdd" date="2010-03-22+01:00">
-        <passed testSuite="correct" test="arithmetics"/>
+    <testrun configuration="JastAdd" date="2010-04-15+02:00">
         <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
         <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
         <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
         <passed testSuite="incorrect" test="scopes"/>
     </testrun>
-    <testrun configuration="JastAdd" date="2010-03-22+01:00">
-        <passed testSuite="correct" test="arithmetics"/>
+    <testrun configuration="JastAdd" date="2010-04-15+02:00">
         <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
         <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
         <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-03-31+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-03-31+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-03-31+02:00">
-        <failed testsuit="correct" msg="Node Node: [toString:(Node-Type: CompilationUnit)()](Children:1) differs from expected node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)" path="/archiveLog/node/nodeAttribute" test="arithmetics"/>
-        <failed testsuit="correct" msg="Node Node: [toString:(Node-Type: CompilationUnit)()](Children:1) differs from expected node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)" path="/archiveLog/node/nodeAttribute" test="boolean_arithmetics"/>
-        <failed testsuit="correct" msg="Node Node: [toString:(Node-Type: CompilationUnit)()](Children:1) differs from expected node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)" path="/archiveLog/node/nodeAttribute" test="scopes"/>
-        <failed testsuit="incorrect" msg="Node Node: [toString:(Node-Type: CompilationUnit)()](Children:1) differs from expected node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)" path="/archiveLog/node/nodeAttribute" test="arithmetics"/>
-        <failed testsuit="incorrect" msg="Node Node: [toString:(Node-Type: CompilationUnit)()](Children:1) differs from expected node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)" path="/archiveLog/node/nodeAttribute" test="boolean_arithmetics"/>
-        <failed testsuit="incorrect" msg="Node Node: [toString:(Node-Type: CompilationUnit)()](Children:1) differs from expected node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)" path="/archiveLog/node/nodeAttribute" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-03-31+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-04-01+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-04-01+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-04-01+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-04-01+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-04-01+02:00">
-        <passed testSuite="correct" test="arithmetics"/>
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="arithmetics"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
         <passed testSuite="incorrect" test="scopes"/>
     </testrun>
 </archiveLog>

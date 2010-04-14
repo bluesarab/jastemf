@@ -13,7 +13,7 @@ import rtt.annotations.*;
 import calculator.semantics.ast.*;
 
 /**
- * AspectJ specification to adapt the Caclulator's AST for RTT.
+ * AspectJ specification to adapt the syntax and semantics for RTT.
  * @author C. Bürger
  */
 public aspect RTTAST {
@@ -32,6 +32,8 @@ public aspect RTTAST {
 	
 	declare @type: ASTNode+ : @Parser.Node;
 	
+	/** AST Structure */
+	
 	// Compare nodes' children:
 	declare @method:
 		public * ASTNode.getChildren() : @Parser.Node.Child;
@@ -47,35 +49,51 @@ public aspect RTTAST {
 	declare @method:
 		public * VariableAssignment+.getLValue() : @Parser.Node.Compare;
 	declare @method:
-		public * VariableDeclaration+.getName() : @Parser.Node.Compare;
+		public * Declaration+.getName() : @Parser.Node.Compare;
 	declare @method:
-		public * VariableDeclaration+.getDeclaredType() : @Parser.Node.Compare;
+		public * ProcedureDeclaration+.getReturnType() : @Parser.Node.Compare;
 	declare @method:
 		public * Reference+.getName() : @Parser.Node.Compare;
+	declare @method:
+		public * ProcedureCall+.getName() : @Parser.Node.Compare;
 	
 	// Compare nodes' type and address:
 	declare @method:
 		public * ASTNode+.toString() : @Parser.Node.Compare;
 	
-	// Compare variable declarations' type:
+	/** Name Analysis */
+	
+	// Compare procedure calls' associated procedure:
 	declare @method:
-		public * VariableDeclaration+.Type() : @Parser.Node.Compare;
-	// Compare the declaration associated with assignments' left hand:
+		public * ProcedureCall+.Declaration() : @Parser.Node.Compare;
+	// Compare the program's main procedure:
 	declare @method:
-		public * VariableAssignment+.Declaration() : @Parser.Node.Compare;
-	// Compare assignments' type:
-	declare @method:
-		public * VariableAssignment+.Type() : @Parser.Node.Compare;
-	// Compare assignments' value:
-	declare @method:
-		public * VariableAssignment+.Value() : @Parser.Node.Compare;
-	// Compare expressions' type:
-	declare @method:
-		public * Expression+.Type() : @Parser.Node.Compare;
-	// Compare expressions' value:
-	declare @method:
-		public * Expression+.Value() : @Parser.Node.Compare;
+		public * CompilationUnit+.MainProcedure() : @Parser.Node.Compare;
 	// Compare references' associated declaration:
 	declare @method:
 		public * Reference+.Declaration() : @Parser.Node.Compare;
+	// Compare the declaration associated with assignments' left hand:
+	declare @method:
+		public * VariableAssignment+.Declaration() : @Parser.Node.Compare;
+	
+	/** Type Analysis */
+	
+	// Compare variable declarations' type:
+	declare @method:
+		public * VariableDeclaration+.Type() : @Parser.Node.Compare;
+	// Compare assignments' type:
+	declare @method:
+		public * VariableAssignment+.Type() : @Parser.Node.Compare;
+	// Compare procedure returns' type:
+	declare @method:
+		public * ProcedureReturn+.Type() : @Parser.Node.Compare;
+	// Compare expressions' type:
+	declare @method:
+		public * Expression+.Type() : @Parser.Node.Compare;
+	
+	/** Interpretation */
+	
+	// Compare expressions' constant folding:
+	declare @method:
+		public * Expression+.ConstantValue() : @Parser.Node.Compare;
 }

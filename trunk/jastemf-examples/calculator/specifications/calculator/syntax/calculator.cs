@@ -1,7 +1,7 @@
 // This program and the accompanying materials are made available under the
 // terms of the BSD 3-clause license which accompanies this distribution.
 
-SYNTAXDEF expr
+SYNTAXDEF siple
 FOR <http://calculator/1.0><../model/calculator.genmodel>
 START CompilationUnit
 
@@ -53,6 +53,14 @@ RULES {
 	@operator(type="binary_left_associative",weight="104",identifier="Expression")
 	GreaterThan ::= Operand1 ">" Operand2;
 	
+	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	LesserThan ::= Operand1 "<" Operand2;
+	
+	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	GreaterThanEqual ::= Operand1 ">=" Operand2;
+	
+	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	LesserThanEqual ::= Operand1 "<=" Operand2;
 	
 	@operator(type="binary_left_associative",weight="201",identifier="Expression")
 	Addition ::= Operand1 "+" Operand2;

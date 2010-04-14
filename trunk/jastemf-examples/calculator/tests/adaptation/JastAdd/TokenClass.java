@@ -14,7 +14,7 @@ import calculator.syntax.*;
 
 /**
  * Support class woven by an aspect into Beaver's <tt>beaver.Symbol</tt> class
- * to adapt the Calculator for RTT.
+ * to adapt it for RTT.
  * @author C. Bürger
  */
 @Lexer.Token
@@ -30,7 +30,7 @@ public abstract class TokenClass {
 	
 	@Lexer.Token.Compare
 	public String getType() {
-		return CalculatorParser.Terminals.NAMES[getId()];
+		return SIPLEParser.Terminals.NAMES[getId()];
 	}
 	
 	@Lexer.Token.Informational

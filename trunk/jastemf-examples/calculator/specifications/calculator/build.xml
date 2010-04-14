@@ -4,17 +4,18 @@
 -->
 
 <!--
-	Ant script to generate a Calculator implementation, i.e. a compiler for
-	Calculator specifications. There exist three different implementations:
-	 1) A standard compiler implemented based on JFlex, Beaver and JastAdd.
-	 2) A compiler with an EMF repository implemented based on JFlex, Beaver,
+	Ant script to generate a SIPLE implementation, i.e. a compiler and
+	interpreter for SIPLE programs. There exist three different
+	implementations:
+	 1) A version implemented based on JFlex, Beaver and JastAdd.
+	 2) A version with an EMF repository implemented based on JFlex, Beaver,
 	 	JastAdd and JastEMF.
-	 3) A compiler with EMF repository and an Eclipse editor with syntax
+	 3) A version with EMF repository and an Eclipse editor with syntax
 	 	highlighting, code completion and semantic property view implemented
 	 	based on EMFText (including AntLR), JastAdd and JastEMF.
 	@author C. Bürger
 -->
-<project name="Regression Test Archive" default="EMF Calculator">
+<project name="Generation" default="EMF Version">
 	<path id="_basedir">
 		<pathelement location="./../.."/>
 	</path>
@@ -71,10 +72,10 @@
 	</target>
 	
 	<!-- Generate the standard compiler. -->
-	<target name="JastAdd Calculator">
+	<target name="JastAdd Version">
 		<echo message="========================================================================"/>
 		<echo message="||                                                                    ||"/>
-		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                      Generate Implementation                       ||"/>
 		<echo message="||                         (JastAdd Version)                          ||"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="========================================================================"/>
@@ -85,10 +86,10 @@
 	</target>
 	
 	<!-- Generate the EMF adapted compiler. -->
-	<target name="EMF Calculator">
+	<target name="EMF Version">
 		<echo message="========================================================================"/>
 		<echo message="||                                                                    ||"/>
-		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                      Generate Implementation                       ||"/>
 		<echo message="||                           (EMF Version)                            ||"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="========================================================================"/>
@@ -99,10 +100,10 @@
 	</target>
 	
 	<!-- Generate the EMF adapted compiler with editor support. -->
-	<target name="EMFText Calculator">
+	<target name="EMFText Version">
 		<echo message="========================================================================"/>
 		<echo message="||                                                                    ||"/>
-		<echo message="||                        Generate Calculator                         ||"/>
+		<echo message="||                      Generate Implementation                       ||"/>
 		<echo message="||                         (EMFText Version)                          ||"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="========================================================================"/>
@@ -114,11 +115,11 @@
 		Generate the AntLR lexer and parser and the Eclipse editor used by the
 		compiler version 3.
 		
-		Two plugin projects required by the Calculator's EMFText implementation
-		will be generated. The first plugin "calculator.semantics.resource.expr"
-		is the EMFText editor for Calculator files (*.expr) and the second
-		plugin "org.emftext.commons.antlr3_2_0" is the AntLR runtime the
-		editor plugin requires.
+		Two plugin projects required by the EMFText implementation will be
+		generated. The first plugin "calculator.semantics.resource.expr" is the
+		EMFText editor for SIPLE programs (*.siple) and the second plugin
+		"org.emftext.commons.antlr3_2_0" is the AntLR runtime the editor plugin
+		requires.
 		
 		BEWARE: The two plugin projects should automatically appear within the
 			workspace. If not, they must be manually imported.
@@ -239,8 +240,7 @@
 	</target>
 	
 	<!--
-		Generate a JastAdd AST specification based on the Calculator's
-		generator model.
+		Generate a JastAdd AST specification based on the generator model.
 		
 		BEWARE: The JastEMF converter is a research prototyp in alpha state
 			and does not yet satisfy JastEMF's quality criteria.
@@ -254,8 +254,8 @@
 	</target>
 	
 	<!--
-		Generate a JastAdd *.jrag attribution skeleton based on the
-		Calculator's generator model.
+		Generate a JastAdd *.jrag attribution skeleton based on the generator
+		model.
 		
 		BEWARE: The JastEMF converter is a research prototyp in alpha state
 			and does not yet satisfy JastEMF's quality criteria.

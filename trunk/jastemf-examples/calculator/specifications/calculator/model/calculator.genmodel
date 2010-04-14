@@ -15,6 +15,7 @@
       <genOperations ecoreOperation="calculator.ecore#//CompilationUnit/Interpret"/>
     </genClasses>
     <genClasses image="false" ecoreClass="calculator.ecore#//Statement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference calculator.ecore#//Statement/ProcedureInContext"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Statement/MaybeUndecidable"/>
       <genOperations ecoreOperation="calculator.ecore#//Statement/Interpret">
         <genParameters ecoreParameter="calculator.ecore#//Statement/Interpret/vm"/>
@@ -60,6 +61,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference calculator.ecore#//ProcedureDeclaration/Body"/>
     </genClasses>
     <genClasses image="false" ecoreClass="calculator.ecore#//Expression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Expression/ConstantValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Expression/Type"/>
       <genOperations ecoreOperation="calculator.ecore#//Expression/Value">
         <genParameters ecoreParameter="calculator.ecore#//Expression/Value/vm"/>
@@ -67,6 +69,9 @@
     </genClasses>
     <genClasses ecoreClass="calculator.ecore#//Constant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Constant/Lexem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Constant/AsBoolean"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Constant/AsInteger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Constant/AsReal"/>
     </genClasses>
     <genClasses ecoreClass="calculator.ecore#//Reference">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Reference/Name"/>
@@ -93,6 +98,9 @@
     <genClasses ecoreClass="calculator.ecore#//Or"/>
     <genClasses ecoreClass="calculator.ecore#//Equal"/>
     <genClasses ecoreClass="calculator.ecore#//GreaterThan"/>
+    <genClasses ecoreClass="calculator.ecore#//LesserThan"/>
+    <genClasses ecoreClass="calculator.ecore#//GreaterThanEqual"/>
+    <genClasses ecoreClass="calculator.ecore#//LesserThanEqual"/>
     <genClasses ecoreClass="calculator.ecore#//Addition"/>
     <genClasses ecoreClass="calculator.ecore#//Subtraction"/>
     <genClasses ecoreClass="calculator.ecore#//Multiplication"/>
