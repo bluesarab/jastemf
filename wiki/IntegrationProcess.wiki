@@ -1,0 +1,3 @@
+= JastEMF Integration Process =
+
+http://code.google.com/p/jastemf/source/browse/trunk/jastemf/org.jastemf/implementation/JastEMF_Integration_Process.png
