@@ -25,7 +25,18 @@ import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
 
 import org.jastemf.*;
 
+/**
+ * Collection of support methods to ease resource and <i>EMF model</i>
+ * handling.
+ * @author C. Bürger
+ */
 final public class IOSupport {
+	/**
+	 * Load an <i>Ecore</i> model using a URI.
+	 * @param uri The model's URI.
+	 * @return The loaded model.
+	 * @throws IOException Thrown, iff the model cannot be loaded.
+	 */
 	public static EObject loadModel(URI uri) throws IOException {
 		ResourceSet rs = new ResourceSetImpl();
 		Resource r = rs.getResource(uri, true);
@@ -36,6 +47,12 @@ final public class IOSupport {
 		return null;
 	}
 	
+	/**
+	 * Load an <i>EMF</i> generator model using a URI.
+	 * @param uri The generator model's URI.
+	 * @return The loaded generator model.
+	 * @throws IOException Thrown, iff the model cannot be loaded.
+	 */
 	public static GenModel loadGenModel(URI uri) throws IOException {
 		EObject eo = loadModel(uri);
 		if (eo != null && eo instanceof GenModel) {
@@ -45,7 +62,7 @@ final public class IOSupport {
 	}
 	
 	/**
-	 * Use an <i>EMF</i> generator model to generate an <i>ECore</i>
+	 * Use an <i>EMF</i> generator model to generate an <i>Ecore</i>
 	 * metamodel's implementation. Iff implementations for model constructs
 	 * already exist, <i>JMerge</i> is used to combine the existing classes
 	 * with the newly generated ones.
@@ -61,30 +78,6 @@ final public class IOSupport {
 				genModel,
 				GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
 				BasicMonitor.toMonitor(new NullProgressMonitor()));
-	}
-	
-	/**
-	 * Create a file URI if you want to access Ecore models
-	 * relatively to your current working directory.  
-	 */
-	public static URI createFileURI(String path) {
-		return URI.createFileURI(path);	
-	}
-	
-	/**
-	 * Create a platform URI if you want to access Ecore models in 
-	 * deployed plugins / OSGI bundles.  
-	 */
-	public static URI createPlatformURI(String path) {
-		return URI.createPlatformPluginURI(path, false);
-	}
-	
-	/**
-	 * Create a resource URI if you want to access Ecore models in 
-	 * a project in your workspace.  
-	 */
-	public static URI createProjectURI(String path) {
-		return URI.createPlatformResourceURI(path, false);
 	}
 	
 	/**
@@ -122,6 +115,8 @@ final public class IOSupport {
 		return new SimpleDateFormat().format(calendar.getTime());
 	}
 
+	// TODO: Christoff: Was macht denn die Methode genau? Hängt die den
+	// String ans Ende der Datei oder legt die eine volkommen neue Datei an?
 	/**
 	 * Saves a String to the given workspace file.
 	 * 
@@ -137,6 +132,8 @@ final public class IOSupport {
 		} finally {writer.close();}
 	}
 	
+	// TODO: Christoff: Die Dokumentation versteh ich nicht!
+	// Was bedeutet denn der zweite Satz?
 	/**
 	 * Creates a workspace file handle from a given absolute java.net.URI relative to the workspace.
 	 * The file may be a handle only if the file does not exist yet.

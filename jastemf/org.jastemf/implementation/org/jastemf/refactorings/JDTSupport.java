@@ -13,16 +13,24 @@ import org.eclipse.text.edits.*;
 import org.jastemf.*;
 import org.jastemf.util.*;
 
+/**
+ * Collection of support methods that ease the parsing of source code fragments
+ * to <i>JDT</i> ASTs, to search such ASTs for certain components and to load
+ * and save them.
+ * 
+ * @author S. Karol
+ * 
+ */
 public final class JDTSupport {
 	/**
-	 * Load a Java CompilationUnit from a given workspace file in a java project
-	 * and set the project for resolving dependencies.
-	 * @param javaFile The file to parse.
-	 * @return The CompilationUnit representation of the parsed file.
-	 * @throws JastEMFException
+	 * Load a compilation unit from a given workspace file in a Java project and
+	 * set the project for resolving dependencies.
+	 * 
+	 * @param javaFile
+	 *            The file to parse.
+	 * @return The parsed file's <tt>CompilationUnit</tt> representation.
 	 */
-	public static CompilationUnit loadCompilationUnit(IFile javaFile)
-			throws JastEMFException {
+	public static CompilationUnit loadCompilationUnit(IFile javaFile) {
 		ICompilationUnit compilationUnitDescriptor = JavaCore
 				.createCompilationUnitFrom(javaFile);
 		ASTParser parser = ASTParser.newParser(AST.JLS3);
@@ -33,51 +41,61 @@ public final class JDTSupport {
 				.createAST(new NullProgressMonitor());
 		return compilationUnit;
 	}
-	
+
 	/**
-	 * Parses a list of statements to a block. In the case the statement list is 
-	 * empty or contains an error, null will be returned. If the block or parts of the 
-	 * block are intended to be added to another AST, they have to be copied first.
+	 * Parse a source code fragment, that represents a list of statements to a
+	 * block. In the case the source code contains no statement or is erroneous,
+	 * <tt>null</tt> is returned. If the block or parts of the block are
+	 * intended to be added to another AST, they have to be copied first.
 	 * 
 	 * @param statements
-	 * @return a block containing AST representations of the given statement list in the string 
+	 *            The source code to parse into a block.
+	 * @return A block containing the AST representations of the given
+	 *         statements.
 	 */
-	public static Block parseBlock(String statements){
+	public static Block parseBlock(String statements) {
 		ASTParser parser = ASTParser.newParser(AST.JLS3);
 		parser.setSource(statements.toCharArray());
 		parser.setResolveBindings(false);
 		parser.setKind(ASTParser.K_STATEMENTS);
-		Block block = (Block)parser.createAST(new NullProgressMonitor());	
-		if(block.statements().isEmpty())
+		Block block = (Block) parser.createAST(new NullProgressMonitor());
+		if (block.statements().isEmpty())
 			return null;
 		return block;
 	}
-	
+
 	/**
-	 * Parses a method declaration string to a MethodDeclaration. If the string contains
-	 * a syntax error or is not a method null is returned.
+	 * Parses a source code fragment representing a method declaration. If the
+	 * source code contains a syntax error or is not a method <tt>null</tt> is
+	 * returned.
 	 * 
 	 * @param method
-	 * @return a method declaration AST representation of the given method declaration string 
+	 *            The method declaration to parse.
+	 * @return The method declaration's AST representation.
 	 */
-	public static MethodDeclaration parseMethodDeclaration(String method){
+	public static MethodDeclaration parseMethodDeclaration(String method) {
 		ASTParser parser = ASTParser.newParser(AST.JLS3);
 		parser.setSource(method.toCharArray());
 		parser.setResolveBindings(false);
 		parser.setKind(ASTParser.K_CLASS_BODY_DECLARATIONS);
-		TypeDeclaration td = (TypeDeclaration)parser.createAST(new NullProgressMonitor());
+		TypeDeclaration td = (TypeDeclaration) parser
+				.createAST(new NullProgressMonitor());
 		MethodDeclaration[] mDecls = td.getMethods();
-		if(mDecls.length==0)
-			return null; 
+		if (mDecls.length == 0)
+			return null;
 		return mDecls[0];
 	}
 
 	/**
-	 * Apply a CompilationUnit's pending rewrites and save the result to the
+	 * Apply a compilation unit's pending rewrites and save the result to the
 	 * given workspace file.
-	 * @param compilationUnit The CompilationUnit with pending rewrites.
-	 * @param file The target workspace file.
+	 * 
+	 * @param compilationUnit
+	 *            The compilation unit with pending rewrites.
+	 * @param file
+	 *            The target workspace file.
 	 * @throws JastEMFException
+	 *             Thrown, iff any io-exception occurs.
 	 */
 	public static void applyRewritesAndSave(CompilationUnit compilationUnit,
 			IFile file) throws JastEMFException {
@@ -94,14 +112,17 @@ public final class JDTSupport {
 	}
 
 	/**
-	 * Format the given Java 1.5 CompilationUnit.
-	 * @param code The CompilationUnit code.
-	 * @return The formatted String
-	 * @throws MalformedTreeException
-	 * @throws BadLocationException
+	 * Format a Java 1.5 source code fragment that represents a compilation
+	 * unit.
+	 * 
+	 * @param code
+	 *            The source code to format.
+	 * @return The formatted code.
+	 * @throws JastEMFException
+	 *             Thrown, iff any io-exception occurs.
 	 */
 	public static String formatJavaCompilationUnit(String code)
-			throws MalformedTreeException, BadLocationException {
+			throws JastEMFException {
 		Document document = new Document(code);
 		Properties options = new Properties();
 		options.put("org.eclipse.jdt.core.compiler.compliance", "1.5");
@@ -109,23 +130,45 @@ public final class JDTSupport {
 				"1.5");
 		options.put("org.eclipse.jdt.core.compiler.source", "1.5");
 		CodeFormatter formatter = ToolFactory.createCodeFormatter(options);
-	
-		TextEdit edit = formatter.format(CodeFormatter.K_COMPILATION_UNIT,
-				code, 0, code.length(), 0, null);
-		edit.apply(document);
-		return document.get();
+
+		try {
+			TextEdit edit = formatter.format(CodeFormatter.K_COMPILATION_UNIT,
+					code, 0, code.length(), 0, null);
+			edit.apply(document);
+			return document.get();
+		} catch (Exception exc) {
+			throw new JastEMFException(exc);
+		}
 	}
-	
+
+	/**
+	 * Search for a certain modifier in a method declaration.
+	 * 
+	 * @param methodDecl
+	 *            The method declaration to search through.
+	 * @param modifierKeyword
+	 *            The modifier for which to search.
+	 * @return The modifier if it is found or <tt>null</tt> otherwise.
+	 */
 	public static Modifier findModifier(BodyDeclaration methodDecl,
-			Modifier.ModifierKeyword modifierKeyword){
-		for(Object o:methodDecl.modifiers()){
-			Modifier modifier = (Modifier)o;
-			if(modifier.getKeyword() == modifierKeyword)
+			Modifier.ModifierKeyword modifierKeyword) {
+		for (Object o : methodDecl.modifiers()) {
+			Modifier modifier = (Modifier) o;
+			if (modifier.getKeyword() == modifierKeyword)
 				return modifier;
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Search a declaration for a certain annotation.
+	 * 
+	 * @param decl
+	 *            The declaration to search through.
+	 * @param annotation
+	 *            The annotation for which to search.
+	 * @return The annotation if it exists or <tt>null</tt> otherwise.
+	 */
 	@SuppressWarnings("unchecked")
 	public static Annotation findAnnotation(BodyDeclaration decl,
 			String annotation) {
@@ -139,7 +182,15 @@ public final class JDTSupport {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Given a method declaration, search through its class for methods with the
+	 * same signature.
+	 * 
+	 * @param methodDecl
+	 *            The method for which to find twins.
+	 * @return A list containing all twins.
+	 */
 	@SuppressWarnings("unchecked")
 	public static List<MethodDeclaration> findTwinMethods(
 			MethodDeclaration methodDecl) {
@@ -181,7 +232,15 @@ public final class JDTSupport {
 		}
 		return result;
 	}
-	
+
+	/**
+	 * Given a field declaration, search through its class for fields with equal
+	 * name.
+	 * 
+	 * @param fieldDecl
+	 *            The field for which to find twins.
+	 * @return A list containing all twins.
+	 */
 	@SuppressWarnings("unchecked")
 	public static List<VariableDeclarationFragment> findTwinFields(
 			FieldDeclaration fieldDecl) {

@@ -49,7 +49,7 @@ final public class WorkflowManager {
 
 	}
 
-	public static void executeWorkflow(String workflow,
+	private static void executeWorkflow(String workflow,
 			IIntegrationContext context, ResourceLoader resourceLoader)
 			throws JastEMFException {
 		if (context.genmodel().getGenPackages().size() == 0) {
@@ -81,7 +81,7 @@ final public class WorkflowManager {
 
 	}
 
-	public static void executeWorkflow(String workflow,
+	private static void executeWorkflow(String workflow,
 			Map<String, String> properties, ResourceLoader resourceLoader)
 			throws JastEMFException {
 		try {
