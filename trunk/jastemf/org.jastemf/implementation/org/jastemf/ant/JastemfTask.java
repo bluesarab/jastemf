@@ -71,7 +71,7 @@ public class JastemfTask extends Task {
 	public void execute() throws BuildException {
 		try {
 			/* Initialize integration resources */
-			URI modelURI = IOSupport.createFileURI(
+			URI modelURI = URI.createFileURI(
 					genmodelFile.getAbsolutePath());
 			genmodel = IOSupport.loadGenModel(modelURI);
 			
