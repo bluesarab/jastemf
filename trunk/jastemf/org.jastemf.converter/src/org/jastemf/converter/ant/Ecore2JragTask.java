@@ -10,7 +10,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.core.resources.OsgiResourceLoader;
 
 import org.jastemf.JastEMFException;
-import org.jastemf.util.IOSupport;
 import org.jastemf.util.WorkflowManager;
 
 public class Ecore2JragTask extends Task {
@@ -26,9 +25,9 @@ public class Ecore2JragTask extends Task {
 			throw new BuildException("The parameter 'outputDirectory' needs to be specified.");
 		
 		/* Initialize integration resources */
-		URI modelURI = IOSupport.createFileURI(
+		URI modelURI = URI.createFileURI(
 				modelFile.getAbsolutePath());
-		URI outputDirectoryURI = IOSupport.createFileURI(outputDirectory.getAbsolutePath());
+		URI outputDirectoryURI = URI.createFileURI(outputDirectory.getAbsolutePath());
 		
 		
 		HashMap<String,String> properties = new HashMap<String,String>();
