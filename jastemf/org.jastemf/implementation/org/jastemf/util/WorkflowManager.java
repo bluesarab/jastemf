@@ -81,7 +81,7 @@ final public class WorkflowManager {
 
 	}
 
-	private static void executeWorkflow(String workflow,
+	public static void executeWorkflow(String workflow,
 			Map<String, String> properties, ResourceLoader resourceLoader)
 			throws JastEMFException {
 		try {
