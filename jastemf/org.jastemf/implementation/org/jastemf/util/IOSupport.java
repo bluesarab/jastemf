@@ -117,6 +117,7 @@ final public class IOSupport {
 
 	// TODO: Christoff: Was macht denn die Methode genau? Hängt die den
 	// String ans Ende der Datei oder legt die eine volkommen neue Datei an?
+	// Was passiert wenn die Datei schon existiert bzw. noch nicht existiert?
 	/**
 	 * Saves a String to the given workspace file.
 	 * 
@@ -133,7 +134,10 @@ final public class IOSupport {
 	}
 	
 	// TODO: Christoff: Die Dokumentation versteh ich nicht!
-	// Was bedeutet denn der zweite Satz?
+	// Was bedeutet denn der zweite Satz? Und was ist das ganze nun, absolut
+	// oder relativ ("...a given absolute java.net.URI relative to...") bzw. ist das
+	// bei ner URI bzw. einem IFile nicht egal? Wie kann die denn mehrere
+	// "correspondences in Workspace" haben?
 	/**
 	 * Creates a workspace file handle from a given absolute java.net.URI relative to the workspace.
 	 * The file may be a handle only if the file does not exist yet.
