@@ -81,6 +81,32 @@ final public class WorkflowManager {
 
 	}
 
+	/**
+	 * Execute an <i>OAW</i> workflow, whereas a (Key, Value) property set
+	 * represents the integration context and an <i>EMF</i> resource loader is
+	 * used by <i>OAW</i> to find and load resources required by the template to
+	 * execute.
+	 * <p>
+	 * The property set is useful to provide information needed for template
+	 * execution:
+	 * <ul>
+	 * <li>srcGenPath: See {@link IIntegrationContext#srcfolder()}.</li>
+	 * <li>modelFile: See {@link IIntegrationContext#genmodel()}.</li>
+	 * <li>outPackage: See {@link IIntegrationContext#outpackage()}.</li>
+	 * <li>astPackage: See {@link IIntegrationContext#astpackage()}.</li>
+	 * </ul>
+	 * 
+	 * @param workflow
+	 *            The workflow to execute.
+	 * @param properties
+	 *            Integration information required by the workflow and its
+	 *            templates.
+	 * @param resourceLoader
+	 *            Used by the <i>OAW</i> template execution engine to load
+	 *            required resources for template execution.
+	 * @throws JastEMFException
+	 *             Thrown, if the workflow's execution failed.
+	 */
 	public static void executeWorkflow(String workflow,
 			Map<String, String> properties, ResourceLoader resourceLoader)
 			throws JastEMFException {
