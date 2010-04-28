@@ -37,7 +37,7 @@ public final class State {
 	 * @throws InterpretationException Thrown, iff the given variable is not
 	 * allocated.
 	 */
-	public Object lookUpValue(VariableDeclaration decl)
+	public Object lookUpValue(VariableDeclarationImpl decl)
 	throws InterpretationException {
 		for (int i = stack.size() - 1; i >= 0; i--)
 			if (stack.get(i).env.containsKey(decl))
@@ -53,7 +53,7 @@ public final class State {
 	 * @throws InterpretationException Thrown, iff the given variable is not
 	 * allocated.
 	 */
-	public void setValue(VariableDeclaration decl, Object newValue)
+	public void setValue(VariableDeclarationImpl decl, Object newValue)
 	throws InterpretationException {
 		for (int i = stack.size() - 1; i >= 0; i--) {
 			if (stack.get(i).env.containsKey(decl)) {
@@ -72,7 +72,7 @@ public final class State {
 	 * @param decl The variable to allocate and initialize.
 	 * @param value The variable's initialization value.
 	 */
-	public void allocateVariable(VariableDeclaration decl, Object value) {
+	public void allocateVariable(VariableDeclarationImpl decl, Object value) {
 		if (!stack.peek().env.containsKey(decl))
 			stack.peek().env.put(decl, value);
 	}
@@ -112,8 +112,8 @@ public final class State {
 	}
 	
 	private static final class Frame {
-		private Map<VariableDeclaration, Object> env =
-			new TreeMap<VariableDeclaration, Object>();
+		private Map<VariableDeclarationImpl, Object> env =
+			new TreeMap<VariableDeclarationImpl, Object>();
 		private Object returnValue;
 	}
 }

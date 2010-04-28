@@ -19,6 +19,6 @@ Add control-flow analysis as described in "Declarative Intraprocedural Flow
 Analysis of Java Source Code".
 
 Extend the converter to extract semantic interfaces from JastAdd ast and jrag
-specifications for ECore.
+specifications for Ecore.
 
 Use ticket system on Google code instead of this document :-)!
