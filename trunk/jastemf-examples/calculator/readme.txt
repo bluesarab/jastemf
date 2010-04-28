@@ -10,8 +10,8 @@ About SIPLE: SIPLE is a simple imperative programming language, that contains
 	common imperative programming languages' essential constructs, such that it
 	can be used for compiler construction demonstration purposes. To be
 	precise, we use different specification-driven compiler construction
-	approaches to generate complete language toolings -- from the lexer over
-	syntactic and static semantic analysis to interpreters and editors -- for
+	approaches to generate complete language toolings --- from the lexer over
+	syntactic and static semantic analysis to interpreters and editors --- for
 	SIPLE. SIPLE's language concepts are:
 		- Integer, real and Boolean arithmetics
 		- "While" and "If" control-flow statements
@@ -76,7 +76,7 @@ Version 2) You can use the EMF model editor to construct a program model (
 	interface of version 1 is supported.
 
 Version 3) Open the Eclipse editor project generated for SIPLE (The project is
-	named "calculator.semantics.resource.expr". If you can't find it in your
+	named "calculator.semantics.resource.siple". If you can't find it in your
 	workspace after generating version 3, Eclipse missed to open it. Just
 	import it and the generated AntLR runtime project manually. Both are
 	located in your workspace folder.). Open its "plugin.xml" and launch it

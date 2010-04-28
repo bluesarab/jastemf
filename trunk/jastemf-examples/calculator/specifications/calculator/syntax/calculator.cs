@@ -22,7 +22,7 @@ TOKENS {
 RULES { 
 	CompilationUnit ::= ( Declaration ";" )*;
 	
-	Block ::= "Begin" (Statement:Block,VariableDeclaration,ProcedureDeclaration,VariableAssignment,Expression,If,While,ProcedureReturn,Write ";")* "End";
+	Block ::= (Statement:VariableDeclaration,ProcedureDeclaration,VariableAssignment,Expression,If,While,ProcedureReturn,Write ";" | "Begin" Statement:Block "End" ";")*;
 		
 	If ::= 	"If" Condition "Then" Body ("Else" Alternative)? "Fi";
 	
@@ -34,7 +34,7 @@ RULES {
 	
 	VariableDeclaration ::= "Var" Name[IDENTIFIER] ":" DeclaredType[TYPE];
 	
-	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] )? Body:Block ;
+	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] )? "Begin" Body:Block "End";
 	
 	// We do not use the standard reference resolving mechanism,
 	// since we are using JastEMF

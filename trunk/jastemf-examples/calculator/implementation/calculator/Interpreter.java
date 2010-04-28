@@ -59,7 +59,7 @@ public class Interpreter {
 	throws InterpretationException, IOException, beaver.Parser.Exception {
 		SIPLELexer scanner = new SIPLELexer(new FileReader(program));
 		SIPLEParser parser = new SIPLEParser();
-		CompilationUnit ast = (CompilationUnit)parser.parse(scanner);
+		CompilationUnitImpl ast = (CompilationUnitImpl)parser.parse(scanner);
 		return ast.Interpret();
 	}
 }
