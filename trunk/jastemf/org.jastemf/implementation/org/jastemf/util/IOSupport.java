@@ -115,11 +115,11 @@ final public class IOSupport {
 		return new SimpleDateFormat().format(calendar.getTime());
 	}
 
-	// TODO: Christoff: Was macht denn die Methode genau? Hängt die den
-	// String ans Ende der Datei oder legt die eine volkommen neue Datei an?
-	// Was passiert wenn die Datei schon existiert bzw. noch nicht existiert?
 	/**
-	 * Saves a String to the given workspace file.
+	 * Helper method that saves a String to the given workspace file by replacing its contents. 
+	 * Note that the file is assumed to already exist in the workspace.
+	 * 
+	 * @throws CoreException If the file does not exist.
 	 * 
 	 */
 	public static void save(String contents, IFile file) throws CoreException {
@@ -129,22 +129,21 @@ final public class IOSupport {
 			writer.print(contents);
 			writer.flush();
 			file.setContents(new ByteArrayInputStream(outStream.toByteArray()),
-					IFile.NONE, null);
+					IFile.NONE, null);				
 		} finally {writer.close();}
 	}
 	
-	// TODO: Christoff: Die Dokumentation versteh ich nicht!
-	// Was bedeutet denn der zweite Satz? Und was ist das ganze nun, absolut
-	// oder relativ ("...a given absolute java.net.URI relative to...") bzw. ist das
-	// bei ner URI bzw. einem IFile nicht egal? Wie kann die denn mehrere
-	// "correspondences in Workspace" haben?
+
 	/**
-	 * Creates a workspace file handle from a given absolute java.net.URI relative to the workspace.
-	 * The file may be a handle only if the file does not exist yet.
+	 * Helper method that creates a workspace file handle from a given absolute java.net.URI 
+	 * pointing to a folder in the workspace and a file name.
+	 * 
+	 * The file object may be only a handle if the file does not yet exist in the workspace.
+	 * 
 	 * @param folder The absolute URI pointing to a folder in the current workspace. 
 	 * @param file The file name.
 	 * @return A file handle.
-	 * @throws JastEMFException If no or more than one files were mapped to the URI,
+	 * @throws JastEMFException If the Eclipse ResourcesPlugin can only map none or more than one files to the URI,
 	 * 		an exception is thrown.
 	 */
 	public static IFile getFile(java.net.URI folder, String file)
