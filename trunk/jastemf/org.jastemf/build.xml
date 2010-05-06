@@ -38,6 +38,71 @@
 		</jar>
 	</target>
 	
+	<target name="Ant-Tasks">
+		<mkdir dir="${_basedir}/ant"/>
+		<jar
+			destfile="${_basedir}/ant/ant-tasks.jar"
+			index="false"
+			update="false"
+			compress="false">
+			<fileset dir="${_basedir}/bin">
+				<include name="**/org/jastemf/ant/*.class"/>
+			</fileset>
+			<fileset dir="${_basedir}/temp">
+				<include name="**/JastAddTask.class"/>
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="Eclipse-Plugin" depends="Ant-Tasks">
+		<mkdir dir="${_basedir}/ant"/>
+		<mkdir dir="${_basedir}/temp"/>
+		<unjar src="sources/libraries/jastadd2.jar" dest="${_basedir}/temp"/>
+		<jar
+			destfile="${_basedir}/ant/ant-tasks.jar"
+			index="false"
+			update="false"
+			compress="false">
+			<fileset dir="${_basedir}/bin">
+				<include name="**/org/jastemf/ant/*.class"/>
+			</fileset>
+		</jar>
+
+		<jar
+			destfile="${_basedir}/distribution/org.jastemf_0.1.0.jar"
+			manifest="${_basedir}/META-INF/MANIFEST.MF"
+			index="false"
+			update="false"
+			compress="false">
+			<fileset dir="${_basedir}">
+				<include name="License.txt"/>
+				<include name="plugin.xml"/>
+				<include name="ant/ant-tasks.jar"/>
+				<exclude name="sources/libraries/jastadd2.jar"/>
+			</fileset>
+			<fileset dir="${_basedir}/temp">
+				<include name="**/*.*"/>
+				<exclude name="**/JastAddTask.class"/>
+			</fileset>
+			<fileset dir="${_basedir}/implementation">
+				<include name="**/*.aj"/>
+				<include name="**/*.xpt"/>
+				<include name="**/*.oaw"/>
+				<include name="**/*.mwe"/>
+				<include name="**/*.ext"/>
+				<exclude name="org/jastemf/ant/taskdef.properties"/>
+			</fileset>
+			<fileset dir="${_basedir}/bin">
+				<include name="**/*.class"/>
+				<exclude name="**/org/jastemf/ant/*.class"/>
+			</fileset>
+		</jar>
+	    <delete dir="${_basedir}/ant"></delete>
+		<delete dir="${_basedir}/temp"></delete>
+	</target>
+	
+	
+	
 	<!-- Create source code distribution -->
 	<target name="SrcDistribution">
 		<zip
@@ -62,6 +127,7 @@
 		<delete includeemptydirs="true">
 			<fileset dir="${_basedir}/distribution">
 				<include name="jastemf.jar"/>
+				
 				<include name="jastemf_src.zip"/>
 				<include name="JavaDoc/**/*"/>
 			</fileset>

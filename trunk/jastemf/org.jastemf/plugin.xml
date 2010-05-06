@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ant.core.antTasks">
+      <antTask
+            class="org.jastemf.ant.JastemfTask"
+            library="ant/ant-tasks.jar"
+            name="jastemf">
+      </antTask>
+      <antTask
+            class="jastadd.JastAddTask"
+            library="ant/ant-tasks.jar"
+            name="jastadd">
+      </antTask>
+   </extension>
+</plugin>
