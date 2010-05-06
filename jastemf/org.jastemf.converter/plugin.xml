@@ -5,12 +5,12 @@
          point="org.eclipse.ant.core.antTasks">
       <antTask
             class="org.jastemf.converter.ant.Ecore2ASTTask"
-            library="distribution/jastemf-converters.jar"
+            library="ant/ant-tasks.jar"
             name="jastemf.ecore2ast">
       </antTask>
       <antTask
             class="org.jastemf.converter.ant.Ecore2JragTask"
-            library="distribution/jastemf-converters.jar"
+            library="ant/ant-tasks.jar"
             name="jastemf.ecore2jrag">
       </antTask>
    </extension>

@@ -5,31 +5,59 @@
 
 <project name="JastEMF Converters" default="Jar">
 	<path id="_basedir">
-		<pathelement location="."/>
+		<pathelement location="." />
 	</path>
-	<property name="_basedir" refid="_basedir"/>
-	
+	<property name="_basedir" refid="_basedir" />
+
 	<!-- Create the *.jar distribution (not the plugin distribution) -->
 	<target name="Jar">
-		<jar
-			destfile="${_basedir}/distribution/jastemf-converters.jar"
-			manifest="${_basedir}/META-INF/MANIFEST.MF"
-			index="false"
-			update="false"
-			compress="false">
+		<jar destfile="${_basedir}/distribution/jastemf-converters.jar" manifest="${_basedir}/META-INF/MANIFEST.MF" index="false" update="false" compress="false">
 			<fileset dir="${_basedir}">
-				<include name="License.txt"/>
+				<include name="License.txt" />
 			</fileset>
 			<fileset dir="${_basedir}/src">
-				<include name="**/*.xpt"/>
-				<include name="**/*.oaw"/>
-				<include name="**/*.mwe"/>
-				<include name="**/*.ext"/>
-				<include name="**/taskdef.properties"/>
+				<include name="**/*.xpt" />
+				<include name="**/*.oaw" />
+				<include name="**/*.mwe" />
+				<include name="**/*.ext" />
+				<include name="**/taskdef.properties" />
 			</fileset>
 			<fileset dir="${_basedir}/bin">
-				<include name="**/*.class"/>
+				<include name="**/*.class" />
 			</fileset>
 		</jar>
 	</target>
+
+	<target name="Eclipse-Plugin">
+		<mkdir dir="${_basedir}/ant" />
+		<jar destfile="${_basedir}/ant/ant-tasks.jar" index="false" update="false" compress="false">
+			<fileset dir="${_basedir}/bin">
+				<include name="**/org/jastemf/converter/ant/**/*.class" />
+			</fileset>
+		</jar>
+
+
+		<jar destfile="${_basedir}/distribution/org.jastemf.converter_0.1.0.jar" manifest="${_basedir}/META-INF/MANIFEST.MF" index="false" update="false" compress="false">
+			<fileset dir="${_basedir}">
+				<include name="License.txt" />
+				<include name="plugin.xml" />
+				<include name="ant/ant-tasks.jar" />
+			</fileset>
+
+			<fileset dir="${_basedir}/src">
+				<include name="**/*.xpt" />
+				<include name="**/*.oaw" />
+				<include name="**/*.mwe" />
+				<include name="**/*.ext" />
+				<exclude name="**/taskdef.properties" />
+			</fileset>
+			<fileset dir="${_basedir}/bin">
+				<include name="**/*.class" />
+				<exclude name="**/org/jastemf/converter/ant/**/*.class" />
+			</fileset>
+		</jar>
+		<delete dir="${_basedir}/ant" />
+	</target>
+
+
 </project>
