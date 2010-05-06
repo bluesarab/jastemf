@@ -9,6 +9,7 @@
 package org.jastemf;
 
 import java.net.*;
+import java.util.*;
 
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 
@@ -87,4 +88,24 @@ public interface IIntegrationContext {
 	 * @return The AST classes' package.
 	 */
 	String astpackage();
+	
+	/**
+	 * Additional command line arguments with which <i>JastEMF</i> executes
+	 * <i>JastAdd</i>. Remember, that <i>JastEMF</i> already specifies the
+	 * {@link #astpackage() package for generated files (<tt>--package</tt>)}
+	 * and {@link #srcfolder() base output directory (<tt>--o</tt>)} and
+	 * enables the <i>ReRAG</i> support (<tt>--rewrite</tt>).
+	 * Details about further possible commands can be found in <i>JastAdd's</i>
+	 * documentation.
+	 * @return Additional command line arguments for <i>JastAdd</i> executions
+	 * throughout the integration process.
+	 */
+	String jaddcmd();
+	
+	/**
+	 * Collection of all <i>JastAdd</i> specifications that specify the
+	 * {@link #genmodel() metamodel's} semantics.
+	 * @return The semantic specifications.
+	 */
+	Set<String> jragspecs();
 }

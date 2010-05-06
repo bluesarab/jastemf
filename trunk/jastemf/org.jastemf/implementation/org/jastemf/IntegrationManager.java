@@ -14,17 +14,14 @@ import java.net.*;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
 
-import org.apache.tools.ant.types.FileSet;
-import org.apache.tools.ant.types.selectors.*;
-
-import jastadd.JastAddTask;
+import jastadd.JastAdd;
 
 import org.jastemf.util.*;
 import org.jastemf.refactorings.*;
 
 /**
  * <i>JastEMF's</i> main class to {@link
- * #performIntegration(IIntegrationContext, JastAddTask) integrate} a
+ * #performIntegration(IIntegrationContext) integrate} a
  * <i>JastAdd</i> evaluator and an <i>EMF</i> metamodel implementation.
  * @author C. Bürger
  */
@@ -36,7 +33,7 @@ final public class IntegrationManager {
 	 * required by the integration process.
 	 */
 	public synchronized static void performIntegration(
-			IIntegrationContext context, JastAddTask jastAddTask)
+			IIntegrationContext context)
 	throws JastEMFException {
 		refreshIntegrationArtifacts(context);
 		
@@ -49,16 +46,22 @@ final public class IntegrationManager {
 				"org/jastemf/refactorings/workflow.oaw");
 		
 		// Generate JastAdd evaluator
-		jastAddTask.setPackage(context.astpackage());
-		jastAddTask.setOutdir(context.srcfolder().getPath());
-		FileSet jastemfAspects = new FileSet();
-		jastemfAspects.setDir(new File(
-				context.packagefolder(context.outpackage()).getPath()));
-		FilenameSelector selector = new FilenameSelector();
-		selector.setName("*.jrag");
-		jastemfAspects.add(selector);
-		jastAddTask.addConfiguredFileSet(jastemfAspects);
-		jastAddTask.execute();
+		String[] args = new String[5 + context.jragspecs().size()];
+		args[0] = "--rewrite";
+		args[1] = "--package=" + context.astpackage();
+		args[2] = "--o=" + new File(context.srcfolder()).getAbsolutePath();
+		int i = 3;
+		for (String spec:context.jragspecs())
+			args[i++] = spec;
+		args[i++] = new File(
+				context.packagefolder(
+						context.outpackage())).getAbsolutePath() +
+			File.separator + "RepositoryAdaptations.jrag";
+		args[i++] = new File(
+				context.packagefolder(
+						context.outpackage())).getAbsolutePath() +
+			File.separator + "Refactorings.jrag";
+		JastAdd.main(args);
 		refreshIntegrationArtifacts(context);
 		
 		// Execute refactorings

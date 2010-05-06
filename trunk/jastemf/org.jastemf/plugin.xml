@@ -5,13 +5,8 @@
          point="org.eclipse.ant.core.antTasks">
       <antTask
             class="org.jastemf.ant.JastemfTask"
-            library="ant/ant-tasks.jar"
+            library="jastemf-ant-tasks.jar"
             name="jastemf">
-      </antTask>
-      <antTask
-            class="jastadd.JastAddTask"
-            library="ant/ant-tasks.jar"
-            name="jastadd">
       </antTask>
    </extension>
 </plugin>
