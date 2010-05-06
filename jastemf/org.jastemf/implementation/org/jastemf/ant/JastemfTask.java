@@ -9,13 +9,13 @@
 package org.jastemf.ant;
 
 import java.io.*;
+import java.util.*;
 
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.common.util.*;
 
 import org.apache.tools.ant.*;
-
-import jastadd.JastAddTask;
+import org.apache.tools.ant.types.*;
 
 import org.jastemf.*;
 import org.jastemf.util.*;
@@ -30,14 +30,11 @@ import org.jastemf.util.*;
  * &lt;jastemf
  *     genmodel="path/to/the/generator/model/to/use/modelname.genmodel"
  *     outpackage="package.for.the.integration.artifacts.generated.by.jastemf"
- *     astpackage="package.for.the.ast.classes.generated.by.jastadd"&gt;
- *     &lt;jastadd
- *         <i>Call to JastAdd's Ant task as specified by the</i> <tt>'jastadd.JastAddTask'</tt>
- *         <i>class in the class-path. The only difference is, that the</i> <tt>'outdir'</tt>
- *         <i>and</i> <tt>'package'</tt> <i>attributes</i> <b>do not matter</b> <i>, i.e. they
- *         should be left unspecified. Their values are already known
- *         (the</i> <tt>'outdir'</tt> <i>can be derived from the generator model).</i>
- *     /&gt;
+ *     astpackage="package.for.the.ast.classes.generated.by.jastadd"
+ *     jastadd="optional JastAdd command line options"&gt;
+ *     &lt;fileset dir="path/to/the/semantic/specifications/base/dir"&gt;
+ *         &lt;include name="specification/to/include/spec.jrag"/&gt;
+ *     &lt;/fileset&gt;
  * /&gt;
  * </pre>
  * @author C. Bürger
@@ -47,7 +44,8 @@ public class JastemfTask extends Task {
 	private GenModel genmodel;
 	private String outpackage;
 	private String astpackage;
-	private JastAddTask jastadd;
+	private String jaddcmd;
+	private LinkedHashSet<String> jragspecs = new LinkedHashSet<String>();
 	
 	/** See {@link IIntegrationContext#genmodel()}. */
 	public void setGenmodel(File mfile) {this.genmodelFile = mfile;}
@@ -55,11 +53,16 @@ public class JastemfTask extends Task {
 	public void setOutpackage(String outp) {this.outpackage = outp;}
 	/** See {@link IIntegrationContext#astpackage()}. */
 	public void setAstpackage(String astp) {this.astpackage = astp;}
-	/**
-	 * Support a nested <i>JastAdd</i> <i>Ant</i> task used by <i>JastEMF</i>
-	 * to generate the evaluator to adapt.
-	 */
-	public void addJastadd(JastAddTask jastadd) {this.jastadd = jastadd;}
+	/** See {@link IIntegrationContext#jaddcmd()}. */
+	public void setJastadd(String jaddcmd) {this.jaddcmd = jaddcmd;}
+	/** See {@link IIntegrationContext#jragspecs()}. */
+	public void addConfiguredFileSet(FileSet fileset) {
+		DirectoryScanner s = fileset.getDirectoryScanner(getProject());
+		String[] files = s.getIncludedFiles();
+		String baseDir = s.getBasedir().getPath();
+		for (int i = 0; i < files.length; i++)
+			this.jragspecs.add(baseDir + File.separator + files[i]);
+	}
 	
 	/**
 	 * Start the integration process for the given {@link
@@ -79,10 +82,12 @@ public class JastemfTask extends Task {
 				public GenModel genmodel() {return genmodel;}
 				public String outpackage() {return outpackage;}
 				public String astpackage() {return astpackage;}
+				public String jaddcmd() {return jaddcmd;}
+				public Set<String> jragspecs() {return jragspecs;}
 			};
 			
 			/* Perform integration */
-			IntegrationManager.performIntegration(context, jastadd);
+			IntegrationManager.performIntegration(context);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BuildException(e);

@@ -114,7 +114,7 @@ final public class IOSupport {
 		Calendar calendar = Calendar.getInstance();
 		return new SimpleDateFormat().format(calendar.getTime());
 	}
-
+	
 	/**
 	 * Helper method that saves a String to the given workspace file by replacing its contents. 
 	 * Note that the file is assumed to already exist in the workspace.
