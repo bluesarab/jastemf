@@ -44,14 +44,21 @@ Three different SIPLE compiler versions can be generated:
 Each one has increasing demands on your Eclipse configuration:
 	1) The first version can be generated out-of-the-box. It even doesn't
 	   required Eclipse. Only the Ant build tool is required beside the JDK.
-	2) The second version requires the EMF modeling tools. It can be generated
-	   out-of-the-box with the Eclipse Modeling Tools distribution.
+	2) The second version requires the EMF modeling tools and JastEMF. It can
+	   be generated out-of-the-box with the Eclipse Modeling Tools
+	   distribution.
 	3) The third version additionally requires the EMFText plugin. You can find
 	   it in the "sources/applications/emftext-plugins" folder. Just copy and
 	   paste the content into Eclipse's "dropins" folder.
 
 If you like to run the regression tests supported for versions 1 and 2, the
 AspectJ weaving tools for Eclipse are required.
+
+Versions 2 and 3) After installing the Eclipse modeling distribution and
+	checking out this project, it is necessary to deploy the
+	"org.jastemf_*.jar" from the "sources/libraries" folder as Eclipse plugin.
+	To do so just copy it into your Eclipse's "dropins" folder and restart
+	Eclipse.
 
 					     II Building the SIPLE Compiler
 -------------------------------------------------------------------------------
@@ -61,6 +68,8 @@ the "specifications/calculator/build.xml" Ant script.
 
 Important: Remember that the versions 2 and 3 have to be generated within the
 	same JRE in which Eclipse is executed.
+Important: Remember that the versions 2 and 3 require JastEMF to be deployed as
+	plugin.
 
 						  III Using the SIPLE Compiler
 -------------------------------------------------------------------------------

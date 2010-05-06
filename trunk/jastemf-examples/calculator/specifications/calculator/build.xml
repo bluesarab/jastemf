@@ -21,37 +21,6 @@
 	</path>
 	<property name="_basedir" refid="_basedir"/>
 	
-	<!-- Declare JastEMF's Ant tasks -->
-	<taskdef resource="org/jastemf/ant/taskdef.properties">
-		<classpath path="${_basedir}/sources/libraries/jastadd2.jar"/>
-		<classpath path="${_basedir}/sources/libraries/jastemf.jar"/>
-		<classpath path="${_basedir}/sources/libraries/jastemf-converters.jar"/>
-		<!--
-			HACK; The following classpath entry is not required anymore
-			as soon as JastEMF is deployed as plugin.
-		-->
-		<classpath>
-			<fileset dir="${eclipse.home}">
-				<include name="/plugins/**/*.jar"/>
-			</fileset>
-		</classpath>
-	</taskdef>
-	
-	<!-- Declare the JastEMF converter's Ant tasks -->
-	<taskdef resource="org/jastemf/converter/ant/taskdef.properties">
-		<classpath path="${_basedir}/sources/libraries/jastemf.jar"/>
-		<classpath path="${_basedir}/sources/libraries/jastemf-converters.jar"/>
-		<!--
-			HACK; The following classpath entry is not required anymore
-			as soon as JastEMF is deployed as plugin.
-		-->
-		<classpath> 
-			<fileset dir="${eclipse.home}">
-				<include name="/plugins/**/*.jar"/>
-			</fileset>
-		</classpath>
-	</taskdef>
-	
 	<!-- Delete all generated artefacts. -->
 	<target name="Clean">
 		<delete>
@@ -206,14 +175,11 @@
 			genmodel="${_basedir}/specifications/calculator/model/calculator.genmodel"
 			outpackage="jastemf.adaptation"
 			astpackage="calculator.semantics.ast">
-			<jastadd
-				rewrite		= "true">
-				<fileset dir="${_basedir}/specifications">
-					<include name="calculator/semantics/**/*.ast"/>
-					<include name="calculator/semantics/**/*.jrag"/>
-					<include name="calculator/semantics/**/*.jadd"/>
-				</fileset>
-			</jastadd>
+			<fileset dir="${_basedir}/specifications">
+				<include name="calculator/semantics/**/*.ast"/>
+				<include name="calculator/semantics/**/*.jrag"/>
+				<include name="calculator/semantics/**/*.jadd"/>
+			</fileset>
 		</jastemf>
 	</target>
 	
