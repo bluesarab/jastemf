@@ -21,7 +21,7 @@ About SIPLE: SIPLE is a simple imperative programming language, that contains
 	SIPLE is strongly typed, such that a static type analysis can be performed.
 
 About this SIPLE implementation: This SIPLE implementation is a demonstrator
-	for the specification of an ECore metamodel's semantics using JastEMF.
+	for the specification of an Ecore metamodel's semantics using JastEMF.
 	Based on the metamodel's containment references and the spanning tree they
 	define for each model instance the attribute grammar tool JastAdd is used
 	to specify an evaluator that computes model instances' semantic. Using
@@ -54,11 +54,9 @@ Each one has increasing demands on your Eclipse configuration:
 If you like to run the regression tests supported for versions 1 and 2, the
 AspectJ weaving tools for Eclipse are required.
 
-Versions 2 and 3) After installing the Eclipse modeling distribution and
-	checking out this project, it is necessary to deploy the
-	"org.jastemf_*.jar" from the "sources/libraries" folder as Eclipse plugin.
-	To do so just copy it into your Eclipse's "dropins" folder and restart
-	Eclipse.
+Versions 2 and 3) It is necessary to deploy the "org.jastemf_*.jar" from the
+	"sources/libraries" folder as Eclipse plugin. To do so just copy it into
+	your Eclipse's "dropins" folder and restart Eclipse.
 
 					     II Building the SIPLE Compiler
 -------------------------------------------------------------------------------
@@ -66,10 +64,16 @@ Versions 2 and 3) After installing the Eclipse modeling distribution and
 To generate one of the SIPLE versions just execute the appropriate Ant task in
 the "specifications/calculator/build.xml" Ant script.
 
-Important: Remember that the versions 2 and 3 have to be generated within the
+IMPORTANT: Be sure, that you deployed JastEMF as Eclipse plugin as described
+	in I.
+
+IMPORTANT: Remember that the Ant build scripts have to be executed within the
 	same JRE in which Eclipse is executed.
-Important: Remember that the versions 2 and 3 require JastEMF to be deployed as
-	plugin.
+
+Version 2 additionally requires the generation of an EMF model editor. To
+generate a standard EMF editor for SIPLE's metamodel open the metamodel's
+generator model ("specifications/calculator/model/calculator.genmodel". Select
+the "Calculator" root node. Right click it and select "generate all".
 
 						  III Using the SIPLE Compiler
 -------------------------------------------------------------------------------
@@ -79,10 +83,24 @@ Version 1) The "calculator.Interpreter.java" class supports a main function you
 	to execute (You can find example programs in the
 	"test/source_code_examples/correct" folder).
 
-Version 2) You can use the EMF model editor to construct a program model (
-	SIPLE's metamodel is specified in the
-	"specifications/calculator/calculator.ecore" file). Also, the command line
-	interface of version 1 is supported.
+Version 2) You can use the generated EMF model editor to construct SIPLE
+	program models (SIPLE's metamodel is the
+	"specifications/calculator/calculator.ecore" file). To do so select the
+	generated EMF SIPLE editor ("calculator.editor"), open its "plugin.xml"
+	and launch it ("Launch an Eclipse application"). A new Eclipse instance
+	with the editor deployed as plugin opens. In projects you can now create
+	new SIPLE program models by right click -> "New" -> "Other" ->
+	"Example EMF Model Creation Wizards" -> "semantics Model". The root node
+	of SIPLE programs is "CompilationUnit".
+	
+	IMPORTANT: Remember, that Eclipse properties view is required to edit a
+		model element's attributes and to investigate its semantics
+		(derived attributes' and non-containment references' values). To open
+		the properties view select "Window" -> "Show Perspective" ->
+		"Other" -> "General" -> "Properties".
+	
+	Beside the new model editor, also the command line interface of version 1
+	is supported.
 
 Version 3) Open the Eclipse editor project generated for SIPLE (The project is
 	named "calculator.semantics.resource.siple". If you can't find it in your
@@ -93,13 +111,12 @@ Version 3) Open the Eclipse editor project generated for SIPLE (The project is
 	Its only because the command line interface's implementation is not
 	correct for version 3. Create a project in the new Eclipse instance. Within
 	projects you can now create SIPLE programs. To do so select
-	"new->other->EMFText File->EMFText .siple file". Enjoy the editor.
+	"New" -> "Other" -> "EMFText File" -> "EMFText .siple file".
 	
 	PS: Dont't forget to open the properties view to investigate the program's
-		semantic while editing. E.g. when you select an expression with
-		constant value (like the "Or" of the expression "false And (true Or
-		false)") you can see its type and value. You can also use control +
-		space for code completion.
+		semantics while editing. E.g. when you select an expression (like the
+		"Or" of the expression "false And (true Or false)") you can see its
+		type. You can also use "control + space" for code completion.
 
 				      IV Using SIPLE's Regression Tests
 -------------------------------------------------------------------------------
@@ -119,3 +136,9 @@ the test suite's generation. Open the configuration folder and select the
 appropriate test suite folder. Within it you find XML files containing the test
 case's expected results, i.e. its lexic and syntactic/semantic analyse's
 results.
+
+SIPLE's standard test suite is the "SIPLE_Regression_Tests" Zip file located in
+the "tests/testsuites" folder. It consists of all the test cases in the
+"source_code_examples" folder. The "log.xml" file is its exported archive log
+and the "log.xslt" is an XSLT script that transforms it into a human readable
+HTML file. Thus, to read the log just open it with Eclipse's web browser.
