@@ -16,7 +16,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="calculator.ecore#//Statement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference calculator.ecore#//Statement/ProcedureInContext"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute calculator.ecore#//Statement/MaybeUndecidable"/>
       <genOperations ecoreOperation="calculator.ecore#//Statement/Interpret">
         <genParameters ecoreParameter="calculator.ecore#//Statement/Interpret/vm"/>
       </genOperations>

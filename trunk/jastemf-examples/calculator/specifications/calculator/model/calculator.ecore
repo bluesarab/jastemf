@@ -16,8 +16,6 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ProcedureInContext" eType="#//ProcedureDeclaration"
         derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MaybeUndecidable" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Statement" upperBound="-1"
