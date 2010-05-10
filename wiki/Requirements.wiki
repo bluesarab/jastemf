@@ -1,5 +1,5 @@
 = Basic Requirements for using JastEMF =
-The easiest way to resolve all requirements of JastEMF is just downloading and installing a fresh Eclipse 3.5 modelling distribution from www.eclipse.org.
+The easiest way to resolve all requirements of JastEMF is just downloading and installing a fresh Eclipse 3.5 modelling distribution from http://www.eclipse.org.
 
 If you want to use JastEMF in an exisiting Eclipse installation your distribution's version should be at least 3.5 . The following plugins need to be installed:
   * Eclipse Modelling Framework >= 2.5
@@ -8,6 +8,6 @@ If you want to use JastEMF in an exisiting Eclipse installation your distributio
 
 = Quickstart with SIPLE (Simple Imperative Programming Language Example) =
 
-# Download and install Eclipse 3.5 Modelling distribibution to an arbitrary directory d with write access.  
-# Download the most recent org.jastemf plugin JAR from this webpage's download section and move it to the eclipse dropins directory (d/dropins).
-# Optionally download the most recent org.jastemf.converter plugin JAR from this webpage's download section and move it to d/dropins.
+  # Download and install Eclipse 3.5 Modelling distribibution to an arbitrary directory d with write access.  
+  # Download the most recent org.jastemf plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to the eclipse dropins directory (d/dropins).
+  # Optionally download the most recent org.jastemf.converter plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to d/dropins.
