@@ -15,5 +15,8 @@ If you want to use JastEMF in an exisiting Eclipse installation your distributio
 
 = Quickstart with SIPLE (Simple Imperative Programming Language Example) =
 
+The SIPLE example demontrates how JastEMF can be used in different configurations and is a good starting point for learning how to use JastEMF. To run the example you need to first install JastEMF. Afterwards, the SIPLE example can be downloaded from this webpage's download section. To install the project in your workspace, select *File* -> *Import...* -> *Import Projects* and choose the downloaded ZIP file as import source. Further instructions and more detail on SIPLE can be found in the project's _readme.txt_.
+
 = Troubleshooting =
+
 If you cannot find the Ant tasks, make sure that you installed the correct Eclipse version and distribution and that you do not have an out-dated or multiple Ant version(s) installed. If everything seems right, try starting Eclipse with the -clean commandline option. If this still does not work, please report your issue with detailled information to us.    
