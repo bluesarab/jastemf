@@ -287,7 +287,7 @@ aspect RepositoryAdaptations {
 			+ "					{"
 			+ "						parent = «genClass.ecoreClass.name»Impl.this;"
 			+ "						childIndex = «localChildren.indexOf(child)»;"
-			+ "						delegatee = get«child.name»();"
+			+ "						delegatee = get«child.name.toFirstUpper()»();"
 			+ "					}"
 			+ "				};"
 			+ "			public ASTNode getChild() {"
@@ -296,7 +296,7 @@ aspect RepositoryAdaptations {
 			+ "			public void setChild(ASTNode node) {"
 			+ "				ASTList newList = (ASTList)node;"
 			+ "				list = newList;"
-			+ "				EList elist = get«child.name»();"
+			+ "				EList elist = get«child.name.toFirstUpper()»();"
 			+ "				elist.clear();"
 			+ "				elist.addAll(newList.delegatee);"
 			+ "				newList.parent = «genClass.ecoreClass.name»Impl.this;"
@@ -317,10 +317,10 @@ aspect RepositoryAdaptations {
 			+ "						childIndex = «localChildren.indexOf(child)»;"
 			+ "						delegatee = new IAccessMethods() {"
 			+ "							public ASTNode getChild() {"
-			+ "								return (ASTNode)get«child.name»();"
+			+ "								return (ASTNode)get«child.name.toFirstUpper()»();"
 			+ "							}"
 			+ "							public void setChild(ASTNode node) {"
-			+ "								set«child.name»((«child.eReferenceType.name»)node);"
+			+ "								set«child.name.toFirstUpper()»((«child.eReferenceType.name»)node);"
 			+ "								if (node != null)"
 			+ "									node.childIndex = 0;"
 			+ "							}"
@@ -334,16 +334,16 @@ aspect RepositoryAdaptations {
 			+ "				final Opt newOpt = (Opt)node;"
 			+ "				opt = newOpt;"
 			+ "				if (newOpt.getNumChildNoTransform() > 0)"
-			+ "					set«child.name»((«child.eReferenceType.name»)newOpt.getChildNoTransform(0));"
-			+ "				else set«child.name»(null);"
+			+ "					set«child.name.toFirstUpper()»((«child.eReferenceType.name»)newOpt.getChildNoTransform(0));"
+			+ "				else set«child.name.toFirstUpper()»(null);"
 			+ "				newOpt.parent = «genClass.ecoreClass.name»Impl.this;"
 			+ "				newOpt.childIndex = index;"
 			+ "				newOpt.delegatee = new IAccessMethods() {"
 			+ "					public ASTNode getChild() {"
-			+ "						return (ASTNode)get«child.name»();"
+			+ "						return (ASTNode)get«child.name.toFirstUpper()»();"
 			+ "					}"
 			+ "					public void setChild(ASTNode node) {"
-			+ "						set«child.name»((«child.eReferenceType.name»)node);"
+			+ "						set«child.name.toFirstUpper()»((«child.eReferenceType.name»)node);"
 			+ "						if (node != null)"
 			+ "							node.childIndex = 0;"
 			+ "					}"
@@ -355,10 +355,10 @@ aspect RepositoryAdaptations {
 	neccessary.
 «ENDREM-»
 			+ "			public ASTNode getChild() {"
-			+ "				return (ASTNode)get«child.name»();"
+			+ "				return (ASTNode)get«child.name.toFirstUpper()»();"
 			+ "			}"
 			+ "			public void setChild(ASTNode node) {"
-			+ "				set«child.name»((«child.eReferenceType.name»)node);"
+			+ "				set«child.name.toFirstUpper()»((«child.eReferenceType.name»)node);"
 			+ "				if (node != null)"
 			+ "					node.childIndex = index;"
 			+ "			}"
@@ -395,14 +395,14 @@ aspect RepositoryAdaptations {
 	 * @generated 
 	 */
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	public «terminal.eAttributeType.instanceTypeName» «genClass.ecoreClass.name».get«terminal.name»() {return null;}
+	public «terminal.eAttributeType.instanceTypeName» «genClass.ecoreClass.name».get«terminal.name.toFirstUpper()»() {return null;}
 	
 	/**
 	 * <!--  -->
 	 * @generated 
 	 */
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	public void «genClass.ecoreClass.name».set«terminal.name»(«terminal.eAttributeType.instanceTypeName» value) {}
+	public void «genClass.ecoreClass.name».set«terminal.name.toFirstUpper()»(«terminal.eAttributeType.instanceTypeName» value) {}
 	
 «ENDFOREACH-»
 «ENDLET-»
@@ -549,8 +549,8 @@ aspect RepositoryAdaptations {
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public void «genClass.ecoreClass.name».add«child.name»(«child.eReferenceType.name» node) {
 		ASTList list = (getParent() == null || state() == null)
-				? get«child.name»ListNoTransform()
-				: get«child.name»List();
+				? get«child.name.toFirstUpper()»ListNoTransform()
+				: get«child.name.toFirstUpper()»List();
 		list.addChild(node);
 	}
 	
