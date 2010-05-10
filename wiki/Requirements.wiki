@@ -8,9 +8,9 @@ If you want to use JastEMF in an exisiting Eclipse installation your distributio
 
 = Installing JastEMF =
 
-  # Download and install Eclipse 3.5 Modelling distribibution to an arbitrary directory d with write access.  
-  # Download the most recent org.jastemf plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to the eclipse dropins directory (d/dropins).
-  # Optionally download the most recent org.jastemf.converter plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to d/dropins.
+  # Download and install Eclipse 3.5 Modelling distribibution to an arbitrary directory _DIR_ with write access.  
+  # Download the most recent _org.jastemf_ plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to the eclipse dropins directory (_DIR_/dropins).
+  # Optionally download the most recent _org.jastemf.converter_ plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to _DIR_/dropins.
   # Run Eclipse and select an arbitrary workspace. Check if all JastEMF ANT tasks have been properly registered to Eclipse by investigating *Preferences* -> *Ant* -> *Runtime* -> Tab *Tasks*. You should find the _jastemf_ task and, if you installed the converter, the _jastemf.ecore2ast_ and _jastemf.ecore2jrag_ tasks.
 
 = Quickstart with SIPLE (Simple Imperative Programming Language Example) =
