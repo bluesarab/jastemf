@@ -5,3 +5,9 @@ If you want to use JastEMF in an exisiting Eclipse installation your distributio
   * Eclipse Modelling Framework >= 2.5
   * Modelling Weaving Engine (including languages xTend and xPand) >= 0.7.2 
   * Apache ANT 
+
+= Quickstart with SIPLE (Simple Imperative Programming Language Example) =
+
+# Download and install Eclipse 3.5 Modelling distribibution to an arbitrary directory d with write access.  
+# Download the most recent org.jastemf plugin JAR from this webpage's download section and move it to the eclipse dropins directory (d/dropins).
+# Optionally download the most recent org.jastemf.converter plugin JAR from this webpage's download section and move it to d/dropins.
