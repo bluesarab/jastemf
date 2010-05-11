@@ -1,5 +1,5 @@
 * [Requirements]
 * [Installation]
-* [Documentation]
+* Documentation
   * [Example Integrations]
   * [Publications]
