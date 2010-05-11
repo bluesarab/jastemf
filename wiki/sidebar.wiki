@@ -1,5 +1,5 @@
- * [ Installation ]
+ * [Installation]
  * Documentation
    * [ Ant User Interface ]
    * [ Example Projects ]
-   * [ Publications]
+   * [Publications]
