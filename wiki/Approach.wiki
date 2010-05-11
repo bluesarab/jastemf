@@ -1,4 +1,4 @@
-#summary JastEMF's JastAdd Attribute Grammars for Ecore Metamodel Semantics Approach.
+#summary JastEMF's Approach for Metamodel Semantics in a Nutshell.
 #labels Featured
 
 <wiki:toc max_depth="1" />
