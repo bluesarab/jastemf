@@ -1,4 +1,6 @@
+#summary JastEMF's Requirements and its Installation.
 #labels Featured
+
 = JastEMF Requirements =
 
 JastEMF requires the _[http://www.eclipse.org/modeling/emf/ Eclipse Modeling Framework (EMF)]_ for _Ecore_ metamodel handling and _[http://www.openarchitectureware.org/ openArchitectureware]_ to execute integration artefacts generating templates. The easiest way to satisfy all requirements of JastEMF is to deploy it as plugin in a ([http://www.eclipse.org/downloads/ fresh installed]) Eclipse 3.5 modelling distribution.
