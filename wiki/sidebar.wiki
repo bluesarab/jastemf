@@ -1,4 +1,4 @@
- * [Requirements]
+ * [Installation#JastEMF_Requirements]
  * [Installation]
  * Documentation
    * [Examples]
