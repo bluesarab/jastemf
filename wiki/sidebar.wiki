@@ -1,5 +1,5 @@
- * [Installation]
+ * [Installation Installation and Requirements]
  * Documentation
-   * [ Ant User Interface ]
-   * [ Example Projects ]
+   * [AntUserInterface Ant User Interface]
+   * [ExampleProjects Example Projects]
    * [Publications]
