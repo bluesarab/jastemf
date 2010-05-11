@@ -1,4 +1,6 @@
+#summary Scientific Publications, Tool Presentations and Demonstrations related to JastEMF and Attribute Grammars for Metamodel Semantics.
 #labels Featured
+
 = Publications related to JastEMF =
 
 == 2010 ==
