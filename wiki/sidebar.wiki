@@ -1,4 +1,4 @@
- * [Installation Installation and Requirements]
+ * [Installation]
  * Documentation
    * [AntUserInterface Ant User Interface]
    * [ExampleProjects Example Projects]
