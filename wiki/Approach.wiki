@@ -1,6 +1,8 @@
 #summary JastEMF's JastAdd Attribute Grammars for Ecore Metamodel Semantics Approach.
 #labels Featured
 
+<wiki:toc max_depth="1" />
+
 = Overview and Application Domain =
 
 _JastEMF_ is a tool to support the integrated use of the _JastAdd_ system --- a _rewriteable, circular, reference attribute grammar (ReCRAG)_ generator --- and the _Eclipse Modeling Framework (EMF)_ -- a _Java_ based metamodeling framework build around the _Ecore_ metamodeling language. The objective of _JastEMF_ is to permit the specification of an _Ecore_ metamodel's semantics using a _JastAdd ReCRAG_. Given an _Ecore_ metamodel and an [#Integration_Projects appropriate] _JastAdd abstract syntax tree (AST)_ the metamodel's semantics --- i.e. the value and behavior of its _derived attributes, non-containment references_ and _operations_ --- can be specified using _JastAdd_. In essence, _JastAdd_ can be used to *define* the metamodel elements that are only *declared* in the metamodel.
