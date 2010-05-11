@@ -16,9 +16,9 @@ In detail JastEMF requires at least:
   # Optionally download the most recent _org.jastemf.converter_ plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to _DIR_/dropins.
   # Run Eclipse and select an arbitrary workspace. Check if all JastEMF ANT tasks have been properly registered to Eclipse by investigating *Preferences* -> *Ant* -> *Runtime* -> Tab *Tasks*. You should find the _jastemf_ task and, if you installed the converter, the _jastemf.ecore2ast_ and _jastemf.ecore2jrag_ tasks.
 
-= Quickstart with SIPLE (Simple Imperative Programming Language Example) =
+= Quickstart with the SIPLE Example =
 
-The SIPLE example demontrates how JastEMF can be used in different configurations and is a good starting point for learning how to use JastEMF. To run the example you need to first install JastEMF. Afterwards, the SIPLE example can be downloaded from this webpage's download section. To install the project in your workspace, select *File* -> *Import...* -> *Import Projects* and choose the downloaded ZIP file as import source. Further instructions and more detail on SIPLE can be found in the project's _readme.txt_.
+A good starting point for learning how to use JastEMF is to investigate the SIPLE example (Simple Imperative Programming Language Example). To build and run it you first need to install JastEMF as described above. Afterwards, the example can be downloaded from this webpage's download section. To install it in your workspace, select *File* -> *Import...* -> *Import Projects* and choose the downloaded ZIP file as import source. Alternatively, SIPLE can be checked out from JastEMF's SVN repository under _"jastemf-examples/calculator"_. Further instructions and more detail on SIPLE can be found in its _readme.txt_ and on the [ExampleProjects examples web page].
 
 = Troubleshooting =
 
