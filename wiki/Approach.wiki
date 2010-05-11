@@ -10,10 +10,9 @@ _JastEMF_ has three main use-cases, summarized in Figure I:
  * Given a metamodel one likes to build a tool that somehow reasons about model instances, e.g. to produce some model dependent output or to manipulate the model.
  * Given a _JastAdd_ compiler one likes to integrate it into the _EMF_ world, i.e. provide the compiler internal API for other _EMF_ based tools by supporting a metamodel for the compiler.
 
-<div align="center">
 http://jastemf.googlecode.com/svn/trunk/jastemf/org.jastemf/implementation/JastEMF_Use_Cases.png
+
 *Fig. I:* _JastEMF's_ Use-Cases
-</div>
 
 For convenient reasons we will call the first two use-cases the specification of metamodel semantics and the last use-case a _JastAdd_ evaluator adaptation against the _EMF_. Since _JastEMF's_ integration process is equal for all its use-cases, we will in the following just speak about the specification of metamodel semantics.
 
