@@ -60,4 +60,4 @@ It consists of three phases. Starting from the project to integrate, *phase I* g
 
 = User Interface =
 
-The user has not to be aware of the integration process. For him _JastEMF_ is a black-box he can call using an [Ant-Tasks _Ant_ task]. The task is configurated with the generator model to use, the package for the generated integration artefacts, the package for the _JastAdd_ generated AST classes and an embedded call to _JastAdd's_ command line interface, such that it is no problem to configurate _JastAdd_ as used to. Of course, the embedded _JastAdd_ call has not to specify the AST classes' package and output directory again.
+The user has not to be aware of the integration process. For him _JastEMF_ is a black-box he can call using an [Ant-Tasks Ant task]. The task is configurated with the generator model to use, the package for the generated integration artefacts, the package for the _JastAdd_ generated AST classes and an embedded call to _JastAdd's_ command line interface, such that it is no problem to configurate _JastAdd_ as used to. Of course, the embedded _JastAdd_ call has not to specify the AST classes' package and output directory again.
