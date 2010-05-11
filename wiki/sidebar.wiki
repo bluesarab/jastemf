@@ -1,5 +1,5 @@
  * [Approach JastEMF's Approach in a Nutshell]
  * [Installation]
- * [Ant-Tasks Ant User Interface]
+ * [Ant_Tasks Ant User Interface]
  * [Examples Example Projects]
  * [Publications]
