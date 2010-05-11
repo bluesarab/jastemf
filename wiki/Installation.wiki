@@ -1,11 +1,13 @@
 #labels Featured
 = JastEMF Requirements =
-The easiest way to resolve all requirements of JastEMF is just downloading and installing a fresh Eclipse 3.5 modelling distribution from http://www.eclipse.org.
 
-If you want to use JastEMF in an exisiting Eclipse installation your distribution's version should be at least 3.5 . The following plugins need to be installed:
-  * Eclipse Modelling Framework >= 2.5
-  * Modelling Weaving Engine (including languages xTend and xPand) >= 0.7.2 
-  * Apache Ant 
+JastEMF requires the _[http://www.eclipse.org/modeling/emf/ Eclipse Modeling Framework (EMF)]_ for _Ecore_ metamodel handling and _[http://www.openarchitectureware.org/ openArchitectureware]_ to execute integration artefacts generating templates. The easiest way to satisfy all requirements of JastEMF is to deploy it as plugin in a ([http://www.eclipse.org/downloads/ fresh installed]) Eclipse 3.5 modelling distribution.
+
+In detail JastEMF requires at least:
+  * Apache Ant version 1.7 or higher
+  * Eclipse version 3.5 or higher with installed
+  * EMF SDK version 2.5 or higher (Update page http://download.eclipse.org/modeling/emf/updates/releases/) and
+  * Modelling Weaving Engine (including languages _xTend_ and _xPand_) version 0.7.2 or higher
 
 = Installing JastEMF =
 
