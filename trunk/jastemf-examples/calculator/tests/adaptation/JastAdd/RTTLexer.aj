@@ -10,7 +10,7 @@ package rtt.adaptation;
 
 import rtt.annotations.*;
 
-import calculator.symbols.*;
+import siple.symbols.*;
 
 /**
  * AspectJ specification to adapt the lexer and its tokens for RTT.
