@@ -1,0 +1,102 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+
+/**
+ * @author C. Bürger
+ */
+aspect TypeAnalysis {
+	eq VariableDeclaration.Type() = getDeclaredType();
+	eq VariableAssignment.Type() {
+		VariableDeclaration decl = Declaration();
+		if (decl == null)
+			return Type.ERROR_TYPE;
+		Type cT = Type.computeCompatibleType(decl.Type(), getRValue().Type());
+		return cT != decl.Type() ? Type.ERROR_TYPE : decl.Type();
+	}
+	eq ProcedureReturn.Type() {
+		ProcedureDeclaration decl = ProcedureInContext();
+		if (decl == null)
+			return Type.ERROR_TYPE;
+		if (!hasExpression())
+			if (decl.getReturnType() != Type.Undefined)
+				return Type.ERROR_TYPE;
+			else return Type.Undefined;
+		Type cT = Type.computeCompatibleType(decl.getReturnType(),
+				getExpression().Type());
+		if (cT != decl.getReturnType())
+			return Type.ERROR_TYPE;
+		return cT;
+	}
+	
+	eq Constant.Type() {
+		if (AsBoolean() != null)
+			return Type.Boolean;
+		if (AsReal() != null)
+			return Type.Real;
+		if (AsInteger() != null)
+			return Type.Integer;
+		return Type.ERROR_TYPE;
+	}
+	eq Reference.Type() = Declaration() != null ?
+			Declaration().Type() : Type.ERROR_TYPE;
+	eq ProcedureCall.Type() {
+		ProcedureDeclaration decl = Declaration();
+		if (decl == null)
+			return Type.ERROR_TYPE;
+		if (getNumArgument() != decl.getNumParameter())
+			return Type.ERROR_TYPE;
+		for (int i = 0; i < getNumArgument(); i++) {
+			Type cT = Type.computeCompatibleType(
+					decl.getParameter(i).Type(),
+					getArgument(i).Type());
+			if (cT != decl.getParameter(i).Type())
+				return Type.ERROR_TYPE;
+		}
+		return decl.getReturnType();
+	}
+	eq NestedExpression.Type() = getExpression().Type();
+	eq UMinus.Type() = getOperand().Type() == Type.Boolean || getOperand().Type() == Type.Undefined ?
+			Type.ERROR_TYPE :
+			getOperand().Type();
+	eq Not.Type() = getOperand().Type() == Type.Boolean || getOperand().Type() == Type.Undefined ?
+			Type.Boolean :
+			Type.ERROR_TYPE;
+	eq Or.Type() = getOperand1().Type() == Type.Boolean && getOperand2().Type() == Type.Boolean ?
+			Type.Boolean :
+			Type.ERROR_TYPE;
+	eq And.Type() = getOperand1().Type() == Type.Boolean && getOperand2().Type() == Type.Boolean ?
+			Type.Boolean :
+			Type.ERROR_TYPE;
+	eq Equal.Type() = Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ?
+			Type.ERROR_TYPE :
+			Type.Boolean;
+	eq GreaterThan.Type() =
+			Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+			getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+					Type.ERROR_TYPE :
+					Type.Boolean;
+	eq LesserThan.Type() =
+		Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+		getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+				Type.ERROR_TYPE :
+				Type.Boolean;
+	eq GreaterThanEqual.Type() =
+		Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+		getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+				Type.ERROR_TYPE :
+				Type.Boolean;
+	eq LesserThanEqual.Type() =
+		Type.computeCompatibleType(getOperand1().Type(), getOperand2().Type()) == Type.ERROR_TYPE ||
+		getOperand1().Type() == Type.Boolean || getOperand2().Type() == Type.Boolean ?
+				Type.ERROR_TYPE :
+				Type.Boolean;
+	eq BinaryExpression.Type() = Type.computeCompatibleType(
+			getOperand1().Type(),
+			getOperand2().Type());
+}
