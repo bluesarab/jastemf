@@ -62,7 +62,7 @@ Versions 2 and 3) It is necessary to deploy the "org.jastemf_*.jar" from the
 -------------------------------------------------------------------------------
 
 To generate one of the SIPLE versions just execute the appropriate Ant task in
-the "specifications/calculator/build.xml" Ant script.
+the "specifications/siple/build.xml" Ant script.
 
 IMPORTANT: Be sure, that you deployed JastEMF as Eclipse plugin as described
 	in I.
@@ -72,21 +72,21 @@ IMPORTANT: Remember that the Ant build scripts have to be executed within the
 
 Version 2 additionally requires the generation of an EMF model editor. To
 generate a standard EMF editor for SIPLE's metamodel open the metamodel's
-generator model ("specifications/calculator/model/calculator.genmodel". Select
-the "Calculator" root node. Right click it and select "generate all".
+generator model ("specifications/siple/model/siple.genmodel". Select
+the "SIPLE" root node. Right click it and select "generate all".
 
 						  III Using the SIPLE Compiler
 -------------------------------------------------------------------------------
 
-Version 1) The "calculator.Interpreter.java" class supports a main function you
+Version 1) The "siple.Interpreter.java" class supports a main function you
 	can use to run SIPLE programs from command line. Just specify the program
 	to execute (You can find example programs in the
 	"test/source_code_examples/correct" folder).
 
 Version 2) You can use the generated EMF model editor to construct SIPLE
 	program models (SIPLE's metamodel is the
-	"specifications/calculator/calculator.ecore" file). To do so select the
-	generated EMF SIPLE editor ("calculator.editor"), open its "plugin.xml"
+	"specifications/siple/siple.ecore" file). To do so select the
+	generated EMF SIPLE editor ("siple.editor"), open its "plugin.xml"
 	and launch it ("Launch an Eclipse application"). A new Eclipse instance
 	with the editor deployed as plugin opens. In projects you can now create
 	new SIPLE program models by right click -> "New" -> "Other" ->
@@ -103,7 +103,7 @@ Version 2) You can use the generated EMF model editor to construct SIPLE
 	is supported.
 
 Version 3) Open the Eclipse editor project generated for SIPLE (The project is
-	named "calculator.semantics.resource.siple". If you can't find it in your
+	named "siple.semantics.resource.siple". If you can't find it in your
 	workspace after generating version 3, Eclipse missed to open it. Just
 	import it and the generated AntLR runtime project manually. Both are
 	located in your workspace folder.). Open its "plugin.xml" and launch it
