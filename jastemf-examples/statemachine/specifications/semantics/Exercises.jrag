@@ -1,0 +1,28 @@
+import java.util.*;
+aspect Exercises {
+  //removed some alternative implementations  
+  //NOTE: To support ECore notifications, we should use EObjectEList in the future!
+  //BasicEList works, but does not reflect the standard EMF behaviour for non-derived
+  //references.
+  	
+  // predecessors
+  coll EList State.predecessors() [new BasicEList()] with add;
+  
+  State contributes this
+    to State.predecessors()
+    for each (EList<State>)successors();
+    
+  // helper functions asSet and union
+  Set<State> ASTNode.asSet(State o) {
+    HashSet<State> result = new HashSet<State>();
+    result.add(o);
+    return result;
+  }
+  
+  Set<State> ASTNode.union(Set<State> s1, Set<State> s2) {
+    HashSet<State> result = new HashSet<State>();
+    for (State s: s1) result.add(s);
+    for (State s: s2) result.add(s);
+    return result;
+  }
+}

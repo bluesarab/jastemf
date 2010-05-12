@@ -1,0 +1,18 @@
+import java.util.*;
+aspect Graph {
+  coll Set<Transition> State.transitions() [new HashSet<Transition>()] with add;
+  
+  Transition contributes this
+    when source() != null
+    to State.transitions()
+    for source();
+  
+  syn EList State.successors() {
+    EList result = new BasicEList();
+    for (Transition t : transitions()) {
+      if (t.target() != null) result.add(t.target());
+    }
+    return result;
+  }
+
+}
