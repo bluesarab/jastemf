@@ -8,7 +8,12 @@ Bundle-ClassPath: .,
 Bundle-Vendor: Software Technology Group
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: siple.semantics
+Export-Package: siple.semantics,
+ siple.semantics.ast,
+ siple.semantics.impl,
+ siple.semantics.interfaces,
+ siple.semantics.meta,
+ siple.semantics.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.aspectj.runtime
