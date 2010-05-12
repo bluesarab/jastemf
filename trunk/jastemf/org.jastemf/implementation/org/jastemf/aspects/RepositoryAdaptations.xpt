@@ -549,8 +549,8 @@ aspect RepositoryAdaptations {
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public void «genClass.ecoreClass.name».add«child.name»(«child.eReferenceType.name» node) {
 		ASTList list = (getParent() == null || state() == null)
-				? get«child.name.toFirstUpper()»ListNoTransform()
-				: get«child.name.toFirstUpper()»List();
+				? get«child.name»ListNoTransform()
+				: get«child.name»List();
 		list.addChild(node);
 	}
 	
