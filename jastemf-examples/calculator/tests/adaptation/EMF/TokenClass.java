@@ -10,7 +10,7 @@ package rtt.adaptation;
 
 import rtt.annotations.*;
 
-import calculator.syntax.*;
+import siple.syntax.*;
 
 /**
  * Support class woven by an aspect into Beaver's <tt>beaver.Symbol</tt> class

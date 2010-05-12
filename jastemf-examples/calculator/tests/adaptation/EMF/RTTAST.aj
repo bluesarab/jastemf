@@ -10,8 +10,8 @@ package rtt.adaptation;
 
 import rtt.annotations.*;
 
-import calculator.semantics.ast.*;
-import calculator.semantics.impl.*;
+import siple.semantics.ast.*;
+import siple.semantics.impl.*;
 
 /**
  * AspectJ specification to adapt the syntax and semantics for RTT.

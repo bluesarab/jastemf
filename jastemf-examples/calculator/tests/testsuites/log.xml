@@ -1,9 +1,9 @@
 <?xml version='1.0'?><?xml-stylesheet type='text/xsl' href='log.xslt' ?>
 <archiveLog>
-    <info msg="Configuration [JastAdd] changed" date="2010-04-15+02:00">
-        <testInformation priority="0" test="JastAdd" msg="Configuration JastAdd added. (Lexer: calculator.symbols.SIPLELexer, Parser: calculator.syntax.SIPLEParser)"/>
+    <info msg="Configuration [JastAdd] changed" date="2010-05-12+02:00">
+        <testInformation priority="0" test="JastAdd" msg="Configuration JastAdd added. (Lexer: siple.symbols.SIPLELexer, Parser: siple.syntax.SIPLEParser)"/>
     </info>
-    <info msg="New Files added for testsuite [correct]" date="2010-04-15+02:00">
+    <info msg="New Files added for testsuite [correct]" date="2010-05-12+02:00">
         <testInformation priority="0" test="boolean_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: correct]"/>
         <testInformation priority="0" test="control_flow" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\control_flow.expr as Testcase control_flow [Testsuite: correct]"/>
         <testInformation priority="0" test="integer_and_real_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\integer_and_real_arithmetics.expr as Testcase integer_and_real_arithmetics [Testsuite: correct]"/>
@@ -12,7 +12,7 @@
         <testInformation priority="0" test="relational_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\relational_arithmetics.expr as Testcase relational_arithmetics [Testsuite: correct]"/>
         <testInformation priority="0" test="scopes" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\scopes.expr as Testcase scopes [Testsuite: correct]"/>
     </info>
-    <info msg="New Files added for testsuite [incorrect]" date="2010-04-15+02:00">
+    <info msg="New Files added for testsuite [incorrect]" date="2010-05-12+02:00">
         <testInformation priority="0" test="boolean_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: incorrect]"/>
         <testInformation priority="0" test="control_flow" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\control_flow.expr as Testcase control_flow [Testsuite: incorrect]"/>
         <testInformation priority="0" test="integer_and_real_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\integer_and_real_arithmetics.expr as Testcase integer_and_real_arithmetics [Testsuite: incorrect]"/>
@@ -20,7 +20,7 @@
         <testInformation priority="0" test="relational_arithmetics" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\relational_arithmetics.expr as Testcase relational_arithmetics [Testsuite: incorrect]"/>
         <testInformation priority="0" test="scopes" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\scopes.expr as Testcase scopes [Testsuite: incorrect]"/>
     </info>
-    <info msg="Testresults generated for configuration: JastAdd" date="2010-04-15+02:00">
+    <info msg="Testresults generated for configuration: JastAdd" date="2010-05-12+02:00">
         <testInformation priority="1" test="boolean_arithmetics" msg="Generated Results for testCase: boolean_arithmetics [Testsuite: correct]"/>
         <testInformation priority="1" test="control_flow" msg="Generated Results for testCase: control_flow [Testsuite: correct]"/>
         <testInformation priority="1" test="integer_and_real_arithmetics" msg="Generated Results for testCase: integer_and_real_arithmetics [Testsuite: correct]"/>
@@ -35,22 +35,7 @@
         <testInformation priority="1" test="relational_arithmetics" msg="Generated Results for testCase: relational_arithmetics [Testsuite: incorrect]"/>
         <testInformation priority="1" test="scopes" msg="Generated Results for testCase: scopes [Testsuite: incorrect]"/>
     </info>
-    <testrun configuration="JastAdd" date="2010-04-15+02:00">
-        <passed testSuite="correct" test="boolean_arithmetics"/>
-        <passed testSuite="correct" test="control_flow"/>
-        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
-        <passed testSuite="correct" test="nested_procedures"/>
-        <passed testSuite="correct" test="procedure_basics"/>
-        <passed testSuite="correct" test="relational_arithmetics"/>
-        <passed testSuite="correct" test="scopes"/>
-        <passed testSuite="incorrect" test="boolean_arithmetics"/>
-        <passed testSuite="incorrect" test="control_flow"/>
-        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
-        <passed testSuite="incorrect" test="procedure_basics"/>
-        <passed testSuite="incorrect" test="relational_arithmetics"/>
-        <passed testSuite="incorrect" test="scopes"/>
-    </testrun>
-    <testrun configuration="JastAdd" date="2010-04-15+02:00">
+    <testrun configuration="JastAdd" date="2010-05-12+02:00">
         <passed testSuite="correct" test="boolean_arithmetics"/>
         <passed testSuite="correct" test="control_flow"/>
         <passed testSuite="correct" test="integer_and_real_arithmetics"/>

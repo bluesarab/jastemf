@@ -12,8 +12,8 @@ import java.io.*;
 
 import rtt.annotations.*;
 
-import calculator.symbols.*;
-import calculator.syntax.*;
+import siple.symbols.*;
+import siple.syntax.*;
 
 /**
  * AspectJ specification to adapt the Parser for RTT.
