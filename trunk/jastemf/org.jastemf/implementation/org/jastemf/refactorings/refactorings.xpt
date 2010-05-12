@@ -232,6 +232,20 @@ rename the accessors for terminals (= non derived EAttributes).
 	references="true"
 	version="1.0"/>
 «ENDIF-»
+«IF !this.many && !this.derived-»
+<refactoring 
+	comment="Rename method &apos;set«this.name»&apos;"
+	delegate="false"
+	deprecate="true"
+	description="Rename setter for terminal &apos;«this.name»&apos;"
+	flags="589830"
+	id="org.eclipse.jdt.ui.rename.method"
+	input="«genClass.computeCompilationUnitPath(astPackage)»~set«this.name»~Q«this.eAttributeType.instanceTypeName»;"
+	name="set«this.name.toFirstUpper()»"
+	project="«genClass.computeProjectName()»"
+	references="true"
+	version="1.0"/>
+«ENDIF-»
 «ENDDEFINE»
 
 «REM»
