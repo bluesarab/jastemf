@@ -1,0 +1,4 @@
+This example is derived from the JastAdd tutorial presented at GTTSE 2009 
+by Görel Hedin. 
+
+Original source: http://www.cs.lth.se/~gorel/2009-gttse-statemachine.html
