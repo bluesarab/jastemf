@@ -3,7 +3,7 @@
 
 Users interact with JastEMF in a black-box manner via a single Ant task. The complete integration process is started by calling the task and then handled full automatically by JastEMF.
 
-The task is configurated with the generator model to use (`genmodel`), the package for the generated integration artefacts (`outpackage`), the package for the _JastAdd_ generated AST classes (`astpackage`) and optional arguments for _JastAdd_ (`jastadd`). These optional arguments can be any option known by [http://jastadd.org/jastadd-reference-manual/running-jastadd-from-the-command-line _JastAdd's_ command line interface] and are used to configure _JastAdd_ when internally called by JastEMF throughout the integration process.
+The task is configurated with the generator model to use (`genmodel`), the package for the generated integration artefacts (`outpackage`), the package for the _JastAdd_ generated AST classes (`astpackage`), optional arguments for _JastAdd_ (`jastadd`) and arbitrary many filesets containing the semantic specifications. The optional arguments can be any option known by [http://jastadd.org/jastadd-reference-manual/running-jastadd-from-the-command-line JastAdd's command line interface] and are used to configure _JastAdd_ when internally called by JastEMF throughout the integration process.
 
 {{{
 <jastemf
@@ -19,4 +19,4 @@ The task is configurated with the generator model to use (`genmodel`), the packa
 </jastemf>
 }}}
 
-The embedded _JastAdd_ call has not to specify the AST classes' package and output directory again. Also 
+The embedded _JastAdd_ call has not to specify the AST classes' package and output directory again. Also the `--rewrite` flag is always set by JastEMF.
