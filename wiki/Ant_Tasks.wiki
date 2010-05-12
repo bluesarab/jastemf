@@ -1,3 +1,14 @@
-#summary One-sentence summary of this page.
+#summary JastEMF's Ant user interface.
 
-TODO
+{{{
+<jastemf
+    genmodel="path/to/ecore/generator/model/modelname.genmodel"
+    outpackage="package.of.integration.artefacts"
+    astpackage="package.of.jastadd.ast.classes">
+    <fileset dir="base/directory/containing/jastadd/semantic/specifications">
+        <include name="calculator/semantics/**/*.ast"/>
+        <include name="calculator/semantics/**/*.jrag"/>
+        <include name="calculator/semantics/**/*.jadd"/>
+    </fileset>
+</jastemf>
+}}}
