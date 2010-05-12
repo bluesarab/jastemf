@@ -12,9 +12,9 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://calculator/1.0"
-            class="calculator.semantics.meta.semanticsPackage"
-            genModel="model/calculator.genmodel"/>
+            uri="http://siple/1.0"
+            class="siple.semantics.meta.semanticsPackage"
+            genModel="model/siple.genmodel"/>
    </extension>
 
 </plugin>
