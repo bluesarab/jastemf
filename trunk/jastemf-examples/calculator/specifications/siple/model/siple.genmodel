@@ -8,7 +8,9 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     editPluginID="siple.edit" editorPluginID="siple.editor">
   <foreignModel>siple.ecore</foreignModel>
-  <genPackages prefix="Semantics" disposableProviderFactory="true" ecorePackage="siple.ecore#/">
+  <genPackages prefix="semantics" basePackage="siple" disposableProviderFactory="true"
+      interfacePackageSuffix="interfaces" metaDataPackageSuffix="meta" fileExtensions="siple"
+      ecorePackage="siple.ecore#/">
     <genDataTypes ecoreDataType="siple.ecore#//Type"/>
     <genDataTypes ecoreDataType="siple.ecore#//State"/>
     <genClasses ecoreClass="siple.ecore#//CompilationUnit">
