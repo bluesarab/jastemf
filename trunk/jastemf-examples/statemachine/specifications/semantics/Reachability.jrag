@@ -6,8 +6,12 @@ import java.util.*;
     eq State.reachable() { // R2
       EList result = new BasicEList();
       for (State s : (EList<State>)successors()) {
-        result.add(s);
-        result.addAll(s.reachable());
+        if(!result.contains(s))
+        	result.add(s);
+        for(Object reachableState:s.reachable()){
+  			if(!result.contains(reachableState))
+  				result.add(reachableState);      
+        }
       }
       return result;
     }
