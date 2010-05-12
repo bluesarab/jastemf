@@ -1,10 +1,16 @@
 #summary JastEMF's Ant user interface.
+#labels Featured
+
+Users interact with JastEMF in a black-box manner via a single Ant task. The complete integration process is started by calling the task and then handled full automatically by JastEMF.
+
+The task is configurated with the generator model to use (`genmodel`), the package for the generated integration artefacts (`outpackage`), the package for the _JastAdd_ generated AST classes (`astpackage`) and optional arguments for _JastAdd_ (`jastadd`). These optional arguments can be any option known by [http://jastadd.org/jastadd-reference-manual/running-jastadd-from-the-command-line _JastAdd's_ command line interface] and are used to configure _JastAdd_ when internally called by JastEMF throughout the integration process.
 
 {{{
 <jastemf
-    genmodel="path/to/ecore/generator/model/modelname.genmodel"
-    outpackage="package.of.integration.artefacts"
-    astpackage="package.of.jastadd.ast.classes">
+    genmodel="path/to/the/ecore/generator/model/to/use/modelname.genmodel"
+    outpackage="package.for.the.integration.artifacts.generated.by.jastemf"
+    astpackage="package.for.the.ast.classes.generated.by.jastadd"
+    jastadd="optional JastAdd command line options">
     <fileset dir="base/directory/containing/jastadd/semantic/specifications">
         <include name="calculator/semantics/**/*.ast"/>
         <include name="calculator/semantics/**/*.jrag"/>
@@ -12,3 +18,5 @@
     </fileset>
 </jastemf>
 }}}
+
+The embedded _JastAdd_ call has not to specify the AST classes' package and output directory again. Also 
