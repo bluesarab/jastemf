@@ -14,9 +14,9 @@ The task is configurated with the generator model to use (`genmodel`), the packa
     astpackage="package.for.the.ast.classes.generated.by.jastadd"
     jastadd="optional JastAdd command line options">
     <fileset dir="base/directory/containing/jastadd/semantic/specifications">
-        <include name="calculator/semantics/**/*.ast"/>
-        <include name="calculator/semantics/**/*.jrag"/>
-        <include name="calculator/semantics/**/*.jadd"/>
+        <include name="**/*.ast"/>
+        <include name="**/*.jrag"/>
+        <include name="**/*.jadd"/>
     </fileset>
 </jastemf>
 }}}
