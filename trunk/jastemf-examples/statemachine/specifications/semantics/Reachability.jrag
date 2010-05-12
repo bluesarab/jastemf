@@ -1,0 +1,14 @@
+import java.util.*;
+  aspect Reachability{
+  	// EList<State> would be refactored to EList<StateImpl>
+    syn EList State.reachable() circular [new BasicEList()]; // R1
+    
+    eq State.reachable() { // R2
+      EList result = new BasicEList();
+      for (State s : (EList<State>)successors()) {
+        result.add(s);
+        result.addAll(s.reachable());
+      }
+      return result;
+    }
+  }

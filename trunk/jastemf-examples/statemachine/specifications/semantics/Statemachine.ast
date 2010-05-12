@@ -1,0 +1,5 @@
+  StateMachine ::= declarations:Declaration*;
+  abstract Declaration;
+  State : Declaration ::= <label:String>;
+  Transition : Declaration ::=
+    <label:String> <sourceLabel:String> <targetLabel:String>;
