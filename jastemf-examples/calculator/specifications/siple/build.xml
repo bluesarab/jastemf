@@ -151,11 +151,6 @@
 	<!-- Generate the semantic evaluator used by the compiler version 1. -->
 	<target name="JastAdd Semantic">
 		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
-		<taskdef
-			classname="jastadd.JastAddTask"
-			name="jastadd"
-			classpath="${_basedir}/sources/libraries/jastadd2.jar"
-		/>
 		<jastadd
 			outdir="${_basedir}/implementation"
 			package="siple.semantics.ast"
