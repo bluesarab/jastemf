@@ -18,17 +18,31 @@
 		<mkdir dir="${_basedir}/temp"/>
 		
 		<unjar src="sources/libraries/jastadd2.jar" dest="${_basedir}/temp"/>
+		<move
+			file="${_basedir}/temp/LICENSE"
+			tofile="${_basedir}/temp/JastAdd-License.txt"
+			overwrite="true"
+		/>
+		<jar
+			destfile="${_basedir}/temp/jastadd-ant-tasks.jar"
+			index="false"
+			update="false"
+			compress="false">
+			<fileset dir="${_basedir}/temp">
+				<include name="jastadd/JastAddTask.class"/>
+			</fileset>
+		</jar>
 		<jar
 			destfile="${_basedir}/temp/jastemf-ant-tasks.jar"
 			index="false"
 			update="false"
 			compress="false">
 			<fileset dir="${_basedir}/bin">
-				<include name="**/org/jastemf/ant/*.class"/>
+				<include name="org/jastemf/ant/*.class"/>
 			</fileset>
 		</jar>
 		<jar
-			destfile="${_basedir}/distribution/org.jastemf_0.1.0.jar"
+			destfile="${_basedir}/distribution/org.jastemf_0.1.2.jar"
 			manifest="${_basedir}/META-INF/MANIFEST.MF"
 			index="false"
 			update="false"
@@ -38,9 +52,10 @@
 				<exclude name="META-INF"/>
 				<exclude name="META_INF/**/*"/>
 				<exclude name="LICENSE"/>
+				<exclude name="jastadd/JastAddTask.class"/>
 			</fileset>
 			<fileset dir="${_basedir}">
-				<include name="License.txt"/>
+				<include name="JastEMF-License.txt"/>
 				<include name="plugin.xml"/>
 			</fileset>
 			<fileset dir="${_basedir}/implementation">

@@ -9,4 +9,12 @@
             name="jastemf">
       </antTask>
    </extension>
+   <extension
+         point="org.eclipse.ant.core.antTasks">
+      <antTask
+            class="jastadd.JastAddTask"
+            library="jastadd-ant-tasks.jar"
+            name="jastadd">
+      </antTask>
+   </extension>
 </plugin>
