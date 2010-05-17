@@ -1,6 +1,6 @@
   aspect NameAnalysis {
-    syn State Transition.source() = lookup(getSourceLabel()); // R1
-    syn State Transition.target() = lookup(getTargetLabel()); // R2
+    syn lazy State Transition.source() = lookup(getSourceLabel()); // R1
+    syn lazy State Transition.target() = lookup(getTargetLabel()); // R2
     inh State Declaration.lookup(String label); // R3
     
     eq StateMachine.getdeclarations(int i).lookup(String label) { // R4

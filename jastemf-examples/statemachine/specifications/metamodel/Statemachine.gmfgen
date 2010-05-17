@@ -2,14 +2,19 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel">
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" diagramFileExtension="smd"
+    domainFileExtension="sm"
+    copyrightText="">
   <diagram
       visualID="1000"
       editPartClassName="StateMachineEditPart"
       itemSemanticEditPolicyClassName="StateMachineItemSemanticEditPolicy"
       canonicalEditPolicyClassName="StateMachineCanonicalEditPolicy"
       iconProviderPriority="Low"
-      validationProviderPriority="Low">
+      validationProviderPriority="Low"
+      validationEnabled="true"
+      validationDecorators="true"
+      liveValidationUIFeedback="true">
     <diagramRunTimeClass
         href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
@@ -18,6 +23,8 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <containsShortcutsTo>sm</containsShortcutsTo>
+    <shortcutsProvidedFor>sm</shortcutsProvidedFor>
     <domainDiagramElement
         href="Statemachine.genmodel#//statemachine/StateMachine"/>
     <topLevelNodes
@@ -166,7 +173,8 @@
           kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin>
+  <plugin
+      printingEnabled="true">
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
   </plugin>
