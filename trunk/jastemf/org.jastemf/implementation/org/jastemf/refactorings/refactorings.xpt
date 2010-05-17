@@ -98,6 +98,7 @@ aspect Refactorings {
 <!-- Rename methods of «genClass.ecoreClass.name» -->
 
 «EXPAND ExpandAccessMethodsRenamings(genClass, astPackage) FOREACH genClass.genFeatures.ecoreFeature-»
+«EXPAND ExpandFieldRenamings(genClass, astPackage) FOREACH genClass.genFeatures.ecoreFeature-»
 «EXPAND ExpandAccessMethodsRenamings(genClass, astPackage) FOREACH genClass.genOperations.ecoreOperation-»
 «ENDFOREACH-»
 «ENDFOREACH-»
@@ -305,6 +306,30 @@ getters do not occur, because for a terminal 'acc' JastAdd generates 'getaccList
 «ENDIF-»
 «ENDDEFINE»
 
+«REM»
+Generates refactorings for supporting imperative mode, i.e., setting values of lazy attributes.
+Lazy attributes are by default stored in a field attr_value which needs to be value only. 
+«ENDREM»
+«DEFINE ExpandFieldRenamings(GenClass genClass, String astPackage) FOR EReference-»
+«IF this.derived && this.changeable-»
+<refactoring 
+	comment="Rename field &apos;«this.name»_value&apos;" 
+	delegate="false" 
+	deprecate="true" 
+	description="Rename JastAdd generated field for lazy &apos;«this.name»&apos; attribute marked as derived and changeable in the Ecore model." 
+	flags="589830" 
+	getter="false" 
+	id="org.eclipse.jdt.ui.rename.field" 
+	input="«genClass.computeCompilationUnitPath(astPackage)»^«this.name»_value" 
+	name="«this.name»" 
+	project="«genClass.computeProjectName()»" 
+	references="true" 
+	setter="false" 
+	textual="false" 
+	version="1.0"/>
+«ENDIF-»
+«ENDDEFINE»
+
 «DEFINE ExpandAccessMethodsRenamings(GenClass genClass, String astPackage) FOR EOperation-»
 «IF this.eType.eTypeParameters.size > 0 || this.many-»
 <refactoring
@@ -325,5 +350,11 @@ getters do not occur, because for a terminal 'acc' JastAdd generates 'getaccList
 «DEFINE ExpandAccessMethodsRenamings(GenClass genClass, String astPackage) FOR EStructuralFeature-»
 «REM»
 Default: do nothing
-«ENDREM-»
+«ENDREM»
+«ENDDEFINE»
+
+«DEFINE ExpandFieldRenamings(GenClass genClass, String astPackage) FOR EStructuralFeature-»
+«REM»
+Default: do nothing
+«ENDREM»
 «ENDDEFINE»
