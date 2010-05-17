@@ -353,7 +353,7 @@ aspect RepositoryAdaptations {
 «REM»
 	The child is an ordinary non-terminal. There is no special treatment
 	neccessary.
-«ENDREM-»
+«ENDREM»
 			+ "			public ASTNode getChild() {"
 			+ "				return (ASTNode)get«child.name.toFirstUpper()»();"
 			+ "			}"
@@ -409,6 +409,36 @@ aspect RepositoryAdaptations {
 «ENDIF-»
 «ENDFOREACH-»
 «ENDFOREACH-»
+
+	/*
+     *	Insert setters for imperative EMF attributes. This adds a required cast to the implementation type when setting the 
+     *  new target and sets the attr_computed value to true. The rest should work as expected from the original EMF
+     *  generated method. 	
+	 */
+	 
+«FOREACH genPackages AS genPackage-»
+«FOREACH genPackage.genClasses AS genClass-»
+«IF !genClass.ecoreClass.interface-»
+«LET genClass.ecoreClass.eReferences.select(e|!e.containment&&e.derived&&e.changeable) AS imperativeReferences-»
+«FOREACH imperativeReferences AS imperativeReference-»
+	@«outPackage».JastEMFAnnotations.MutatingMethod(
+			  "public void set«imperativeReference.name.toFirstUpper()»(«imperativeReference.eType.name» new«imperativeReference.name.toFirstUpper()»){"
+			+ "		«imperativeReference.eType.name» old«imperativeReference.name.toFirstUpper()» =  «imperativeReference.name»;"
+			+ "		«imperativeReference.name» = («imperativeReference.eType.name»Impl)new«imperativeReference.name.toFirstUpper()»;"
+			+ "		«imperativeReference.name»_computed = true;"
+			+ "		if (eNotificationRequired())"
+			+ "			eNotify(new ENotificationImpl(this, Notification.SET,"
+			+ "				«genPackage.ecorePackage.name.toFirstUpper()»Package.«genClass.ecoreClass.name.toUpperCase()»__«imperativeReference.name.toUpperCase()», old«imperativeReference.name.toFirstUpper()», «imperativeReference.name»));"
+			+ "}")
+	public void «genClass.ecoreClass.name».set«imperativeReference.name.toFirstUpper()»_hook(«imperativeReference.eType.name» new«imperativeReference.name.toFirstUpper()»){
+		return;
+	}
+«ENDFOREACH-»	
+«ENDLET-»
+«ENDIF-»
+«ENDFOREACH-»
+«ENDFOREACH-»
+
 	/* 
 	 * Insert hooks containing the implementation of metamodel operations which
 	 * have a parameter or return type consisting of an AST node type. These
