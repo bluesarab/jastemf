@@ -5,7 +5,7 @@
 
 Users interact with JastEMF in a black-box manner via a single Ant task --- the `jastemf` task. The complete integration process is started by calling the task and afterwards handled automatically by JastEMF. The task is registered in Eclipse by the JastEMF plugin, if it is [Installation correctly deployed].
 
-Besides the `jastemf` task, which starts the integration of a metamodel with _JastAdd_ semantics, also [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT _JastAdd's_ original `jastadd` Ant task] is provided by JastEMF.
+Besides the `jastemf` task, which starts the integration of a metamodel with _JastAdd_ semantics, also [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT JastAdd's original jastadd Ant task] is provided by JastEMF.
 
 == `jastemf` Task ==
 
@@ -27,7 +27,7 @@ The task is configurated with the generator model to use (`genmodel`), the packa
 
 The embedded _JastAdd_ call has not to specify the AST classes' package and output directory again. Also the `--rewrite` flag is always set by JastEMF.
 
-== `jastadd` task ==
+== `jastadd` Task ==
 
 JastEMF also provides the [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT Ant user interface known from JastAdd]. The only difference is, that the `jastadd` task is registered by the JastEMF plugin in Eclipse, such that it can be used in Ant build scripts without being explicitely defined. Of course, the build script must be executed within the same JRE as Eclipse (Select _Run -> External Tools -> External Tools Configurations ->_ select the Ant build script containing the `jastadd` task _-> JRE -> Run in the same JRE as the workspace_).
 
