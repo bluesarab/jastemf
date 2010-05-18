@@ -5,7 +5,7 @@
 
 Users interact with JastEMF in a black-box manner via a single Ant task --- the `jastemf` task. The complete integration process is started by calling the task and afterwards handled automatically by JastEMF. The task is registered in Eclipse by the JastEMF plugin, if it is [Installation correctly deployed].
 
-Besides the `jastemf` task, which starts the integration of a metamodel with _JastAdd_ semantics, also [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT JastAdd's original jastadd Ant task] is provided by JastEMF.
+Besides the `jastemf` task, which starts the integration of a metamodel with _JastAdd_ semantics, also [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT JastAdd's original Ant task] is provided by JastEMF.
 
 == `jastemf` Task ==
 
