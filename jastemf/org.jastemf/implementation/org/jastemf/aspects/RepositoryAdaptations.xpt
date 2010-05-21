@@ -413,13 +413,13 @@ aspect RepositoryAdaptations {
 	/*
      *	Insert setters for imperative EMF attributes. This adds a required cast to the implementation type when setting the 
      *  new target and sets the attr_computed value to true. The rest should work as expected from the original EMF
-     *  generated method. 	
+     *  generated method. However, attributes with cardinality > 1 must be excluded since setting is done via list add.	
 	 */
 	 
 «FOREACH genPackages AS genPackage-»
 «FOREACH genPackage.genClasses AS genClass-»
 «IF !genClass.ecoreClass.interface-»
-«LET genClass.ecoreClass.eReferences.select(e|!e.containment&&e.derived&&e.changeable) AS imperativeReferences-»
+«LET genClass.ecoreClass.eReferences.select(e|!e.containment&&!e.many&&e.derived&&e.changeable) AS imperativeReferences-»
 «FOREACH imperativeReferences AS imperativeReference-»
 	@«outPackage».JastEMFAnnotations.MutatingMethod(
 			  "public void set«imperativeReference.name.toFirstUpper()»(«imperativeReference.eType.name» new«imperativeReference.name.toFirstUpper()»){"
