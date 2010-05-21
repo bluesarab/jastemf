@@ -1,1 +1,5 @@
 #summary JastEMF examples.
+
+= List of the SVN's JastEMF Examples =
+
+In the following we shortly summarise the example [Approach#Integration_Projects integration projects] included in JastEMF's source code repository. Each example is a separate Java project within the SVN's _jastemf-examples_ folder. There is no special configuration overhead required to build and execute the examples, except the usual ones to execute Ant build scripts in the same JRE as Eclipse is (We assume that JastEMF is correctly [Installation installed]).
