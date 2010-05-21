@@ -26,7 +26,6 @@ Procedure fibunacci(Var n:Integer):Integer Begin
     Return result;
 End;
 
-% Mutual recursive function
 Procedure mr(Var n:Integer) Begin
     Procedure mr1(Var lb:Integer, Var ub:Integer) Begin
         If lb >= 0 Then
