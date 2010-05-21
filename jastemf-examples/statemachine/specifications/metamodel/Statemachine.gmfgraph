@@ -8,6 +8,9 @@
     <figures
         xsi:type="gmfgraph:PolylineDecoration"
         name="TransitionFigureTargetDecoration"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="StateReachableFigureTargetDecoration"/>
     <descriptors
         name="StateFigure">
       <actualFigure
@@ -49,6 +52,20 @@
           name="TransitionLabelLabel"
           text="Transition"/>
     </descriptors>
+    <descriptors
+        name="StateReachableFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="StateReachableFigure"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="StateReachableExternalLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="StateReachableExternalLabel"/>
+    </descriptors>
   </figures>
   <nodes
       name="State"
@@ -56,6 +73,9 @@
   <connections
       name="Transition"
       figure="TransitionFigure"/>
+  <connections
+      name="StateReachable"
+      figure="StateReachableFigure"/>
   <labels
       name="StateLabel"
       figure="StateFigure"
@@ -64,5 +84,9 @@
   <labels
       name="TransitionLabel"
       figure="TransitionLabelFigure"
+      elementIcon="false"/>
+  <labels
+      name="StateReachableExternalLabel"
+      figure="StateReachableExternalLabelFigure"
       elementIcon="false"/>
 </gmfgraph:Canvas>

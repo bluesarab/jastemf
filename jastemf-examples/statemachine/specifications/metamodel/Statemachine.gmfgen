@@ -2,19 +2,14 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" diagramFileExtension="smd"
-    domainFileExtension="sm"
-    copyrightText="">
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel">
   <diagram
       visualID="1000"
       editPartClassName="StateMachineEditPart"
       itemSemanticEditPolicyClassName="StateMachineItemSemanticEditPolicy"
       canonicalEditPolicyClassName="StateMachineCanonicalEditPolicy"
       iconProviderPriority="Low"
-      validationProviderPriority="Low"
-      validationEnabled="true"
-      validationDecorators="true"
-      liveValidationUIFeedback="true">
+      validationProviderPriority="Low">
     <diagramRunTimeClass
         href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
@@ -23,8 +18,6 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
-    <containsShortcutsTo>sm</containsShortcutsTo>
-    <shortcutsProvidedFor>sm</shortcutsProvidedFor>
     <domainDiagramElement
         href="Statemachine.genmodel#//statemachine/StateMachine"/>
     <topLevelNodes
@@ -127,6 +120,44 @@
         </modelFacet>
       </labels>
     </links>
+    <links
+        visualID="4002"
+        editPartClassName="StateReachableEditPart"
+        itemSemanticEditPolicyClassName="StateReachableItemSemanticEditPolicy"
+        createCommandClassName="StateReachableCreateCommand"
+        reorientCommandClassName="StateReachableReorientCommand">
+      <diagramRunTimeClass
+          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="StateReachableFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateReachableFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateReachableFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="Statemachine.genmodel#//statemachine/State/reachable"/>
+      </modelFacet>
+      <labels
+          visualID="6002"
+          editPartClassName="WrappingLabelEditPart"
+          itemSemanticEditPolicyClassName="WrappingLabelItemSemanticEditPolicy"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="40"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:DesignLabelModelFacet"
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </links>
     <palette>
       <groups
           title="Objects"
@@ -140,6 +171,11 @@
       <groups
           title="Connections"
           collapse="true">
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Reachable"
+            description="Create new Reachable"
+            genLinks="//@diagram/@links.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Transition"
@@ -173,8 +209,7 @@
           kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin
-      printingEnabled="true">
+  <plugin>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
   </plugin>
@@ -214,6 +249,35 @@
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.1"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.1"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
   <diagramUpdater/>
   <propertySheet>
@@ -242,6 +306,9 @@
     <implementations
         xsi:type="gmfgen:PredefinedParser"
         uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@links.0/@labels.0/@modelFacet"/>
+    <implementations
+        xsi:type="gmfgen:ExternalParser"
+        uses="//@diagram/@links.1/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">
