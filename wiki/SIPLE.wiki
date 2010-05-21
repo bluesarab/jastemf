@@ -1,1 +1,24 @@
 #summary JastEMF examples: SIPLE tutorial.
+
+= Tutorial Introduction =
+
+In this tutorial we will present SIPLE --- a simple imperative programming language --- and generate different SIPLE implementations, each with additional language tooling:
+ * *Version 1:* A standard compiler implemented based on [http://jflex.de/ JFlex], [http://beaver.sourceforge.net/ Beaver] and JastAdd.
+ * *Version 2:* A compiler with an EMF repository implemented based on JFlex, Beaver, JastAdd and JastEMF.
+ * *Version 3:* A compiler with EMF repository and an Eclipse editor with syntax highlighting, code completion and semantic property view implemented based on [http://www.emftext.org EMFText] (including AntLR), JastAdd and JastEMF.
+
+= Deployment and Configuration =
+
+= Project Repository Overview =
+
+Before we investigate how to generate and use the different SIPLE versions, let us take a short look on the project's structure. The project consists of four relevant resources. First, there is the actual *SIPLE implementation* in the _"implementation"_ source code folder. As expected most of it will be generated later on. Its general package structure is as follows:
+ * _siple_: Contains a simple _Interpreter_ class to execute SIPLE programs from command line. It expects only one argument --- the program file to interpret. Given a program to interpret the class just instantiates a SIPLE parser and lexer, which are used to produce the programs model. Afterwards, the model itself is executed by calling its execution semantics.
+ * _siple.semantics.*_: This packages contain generated 
+
+= EMF Version =
+
+= EMFText Version =
+
+= Regression Tests =
+
+= Summary =
