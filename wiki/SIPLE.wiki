@@ -6,7 +6,7 @@
 
 In this tutorial we will present SIPLE --- a simple imperative programming language --- and generate different SIPLE implementations, each with additional language tooling:
 
- * *JastAdd Version:* A standard compiler implemented based on [http://jflex.de/ JFlex], [http://beaver.sourceforge.net/ Beaver] and JastAdd.
+ * *[#JastAdd_Version JastAdd Version]:* A standard compiler implemented based on [http://jflex.de/ JFlex], [http://beaver.sourceforge.net/ Beaver] and JastAdd.
  * *[#EMF_Version EMF Version]:* A compiler with an EMF repository implemented based on JFlex, Beaver, JastAdd and JastEMF.
  * *[#EMFText_Version EMFText Version]:* A compiler with EMF repository and an Eclipse editor with syntax highlighting, code completion and semantic property view implemented based on [http://www.emftext.org EMFText] (including [http://www.antlr.org/ ANTLR]), JastAdd and JastEMF.
 
