@@ -7,10 +7,11 @@ aspect Graph {
     to State.transitions()
     for source();
   
-  syn EList State.successors() {
-    EList result = new BasicEList();
+ 	syn EList State.successors() circular [new EObjectEList(State.class,this,StatemachinePackage.STATE__SUCCESSORS)] ;
+ 	eq State.successors() {
+    EList result = new EObjectEList(State.class,this,StatemachinePackage.STATE__SUCCESSORS);
     for (Transition t : transitions()) {
-      if (t.target() != null) result.add(t.target());
+      if (t.target() != null) transactionalAdd(result,t.target());
     }
     return result;
   }
