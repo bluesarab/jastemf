@@ -38,7 +38,7 @@ W.r.t. that definition we split the _Ecore_ modeling language as follow in synta
  * <i>MME_syntax</i> = {metaclasses, containment references, non derived attributes}
  * <i>MME_semantic</i> = {non-containment references, derived attributes, operations}
 
-It is obvious, that the elements <i>MME_syntax</i> of an _Ecore_ metamodel specify a tree structure for each model instance whereas the ones of <i>MME_semantic</i> arbitrarily depend on and manipulate the instance's spanning tree --- i.e. impose a graph on top of it. Thus, we consider an _Ecore_ metamodel's non-containment references, derived attributes and operations its semantics. And _JastEMF's_ approach is to use a _JastAdd ReCRAG_ to specify their value and implementation w.r.t. the metamodel --- i.e. to specify an attribute with similar signature and its equations for each non-containment reference, derived attribute and operation.
+It is obvious, that the elements <i>MME_syntax</i> of an _Ecore_ metamodel specify a tree structure for each model instance whereas the ones of <i>MME_semantic</i> arbitrarily depend on and manipulate the instance's spanning tree --- i.e. impose a graph on top of it. Thus, we consider an _Ecore_ metamodel's non-containment references, derived attributes and operations its semantics. And _JastEMF's_ approach is to use a _JastAdd ReCRAG_ to specify their value and implementation w.r.t. the metamodel.
 
 = Integration Projects =
 
