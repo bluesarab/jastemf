@@ -1,5 +1,7 @@
 #summary JastEMF examples: SIPLE tutorial.
 
+<wiki:toc max_depth="2" />
+
 = Tutorial Introduction =
 
 In this tutorial we will present SIPLE --- a simple imperative programming language --- and generate different SIPLE implementations, each with additional language tooling:
