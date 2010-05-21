@@ -39,7 +39,7 @@
         href="Statemachine.ecore#//StateMachine/declarations"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="Statemachine.gmftool#//@palette/@tools.1/@tools.0"/>
+        href="Statemachine.gmftool#//@palette/@tools.1/@tools.1"/>
     <diagramLink
         href="Statemachine.gmfgraph#Transition"/>
     <sourceMetaFeature
@@ -48,6 +48,22 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="Statemachine.ecore#//Transition/target"/>
+  </links>
+  <links>
+    <labelMappings
+        xsi:type="gmfmap:DesignLabelMapping"
+        readOnly="true">
+      <diagramLabel
+          href="Statemachine.gmfgraph#StateReachableExternalLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="Statemachine.gmftool#//@palette/@tools.1/@tools.0"/>
+    <diagramLink
+        href="Statemachine.gmfgraph#StateReachable"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="Statemachine.ecore#//State/reachable"/>
   </links>
   <diagram>
     <diagramCanvas
