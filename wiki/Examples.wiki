@@ -13,7 +13,7 @@ SIPLE is a simple imperative programming language. Its language concepts are:
  * Nested procedures
  * A block-structured name space
  * A save interpreter, that calmly terminates in the presence of errors
-SIPLE is strongly typed, such that a static type analysis can be performed. Throught the example we use different specification-driven compiler construction approaches to generate complete language toolings --- from the lexer over syntactic and static semantic analysis to interpreters and editors --- for SIPLE.
+SIPLE is strongly typed, such that a static type analysis can be performed. Throughout the example we use different specification-driven compiler construction approaches to generate complete language toolings --- from the lexer over syntactic and static semantic analysis to interpreters and editors --- for SIPLE.
 
 Example Objectives:
  * To show, how JastEMF can be used to generate a SIPLE EMF metamodel implementation with appropriate static and execution (i.e. supports an interpreter) semantics.
