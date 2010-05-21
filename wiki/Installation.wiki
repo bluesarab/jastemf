@@ -20,7 +20,7 @@ In detail JastEMF requires at least:
 
 = Quickstart with the SIPLE Example =
 
-A good starting point for learning how to use JastEMF is to investigate the [ExampleProjects SIPLE example] (Simple Imperative Programming Language Example). To build and run it you first need to install JastEMF as described above. Afterwards, SIPLE can be checked out from JastEMF's SVN repository under _"jastemf-examples/calculator"_. Further instructions and more detail on SIPLE can be found in its _readme.txt_ and on the [ExampleProjects examples web page].
+A good starting point for learning how to use JastEMF is to investigate the [Examples SIPLE example] (Simple Imperative Programming Language Example). To build and run it you first need to install JastEMF as described above. Afterwards, SIPLE can be checked out from JastEMF's SVN repository under _"jastemf-examples/calculator"_. Further instructions and more detail on SIPLE can be found in its _readme.txt_ and on the [Examples examples web page].
 
 = Troubleshooting =
 
