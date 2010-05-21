@@ -66,9 +66,17 @@ Before we investigate how to generate and use the different SIPLE versions, let 
 
 To generate the desired SIPLE implementation, of course, appropriate specifications are required. Thus, the second important project resource are *SIPLE's specifications*, contained in the _"specifications/siple"_ folder. Each kind of specification has its own subfolder. The respective concerns are SIPLE's _model_, its _semantics_, its _syntax_ and its _symbols_. Except the semantics, each folder's content is self-explanatory. The semantics are separated w.r.t. SIPLE's different semantic concerns, which are name analysis, type analysis, data flow analysis, interpretation and helper methods subsumed in the access support concern. To declare all these concerns a so called compiler _core_ is defined, which specifies the functionallity each concern must support, i.e. the compiler core declares all supported semantics whereas each concern's `*.jrag` specification specifies it.
 
+= JastAdd Version =
+
+== Interpretation of SIPLE Programs via Command Line ==
+
 = EMF Version =
 
+== Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
+
 = EMFText Version =
+
+== Editing SIPLE Programs as Models in a generated Eclipse Text Editor ==
 
 = Regression Tests =
 
