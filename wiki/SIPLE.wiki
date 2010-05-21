@@ -53,7 +53,7 @@ It consists of two procedures. The first computes the well-known [http://en.wiki
 
 Before we investigate how to generate and use the different SIPLE versions, let us take a short look on the project's structure. The project consists of four relevant resources. First, there is the actual *SIPLE implementation* in the _"implementation"_ source code folder. As expected, most of it will be generated later on. Its general package structure is as follows:
  * _siple_: Contains a simple _Interpreter_ class to execute SIPLE programs from command line. It expects only one argument --- the program file to interpret. Given a program to interpret the class just instantiates a SIPLE parser and lexer, which are used to produce the program's model. Afterwards, the model itself is executed by calling its execution semantics.
- * _siple.semantics.&#42;_: This packages contain generated 
+ * _siple.semantics.`*`_: This packages contain generated 
 
 = EMF Version =
 
