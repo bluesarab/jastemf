@@ -3,9 +3,12 @@
 = Tutorial Introduction =
 
 In this tutorial we will present SIPLE --- a simple imperative programming language --- and generate different SIPLE implementations, each with additional language tooling:
+
  * *JastAdd Version:* A standard compiler implemented based on [http://jflex.de/ JFlex], [http://beaver.sourceforge.net/ Beaver] and JastAdd.
  * *[#EMF_Version EMF Version]:* A compiler with an EMF repository implemented based on JFlex, Beaver, JastAdd and JastEMF.
  * *[#EMFText_Version EMFText Version]:* A compiler with EMF repository and an Eclipse editor with syntax highlighting, code completion and semantic property view implemented based on [http://www.emftext.org EMFText] (including [http://www.antlr.org/ ANTLR]), JastAdd and JastEMF.
+
+Of course, our main focus is on the EMF integrated versions. The tutorial will not only describe how to generate these using JastEMF, but how to use the semantic metamodel implementation and what it benefits are. The JastAdd version, which represents an ordinary compiler project without any reference to metamodelling and the EMF, is used for validation issues. Its SIPLE compiler and the EMF integrated one share the same JastAdd specifications for SIPLE's semantics and are compared by a [#Regression_Tests regression test suite], to show, that the integration performed by JastEMF is correct.
 
 == A First Look on SIPLE ==
 
