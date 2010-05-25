@@ -55,6 +55,16 @@ It consists of two procedures. The first computes the well-known [http://en.wiki
 
 = Deployment and Configuration =
 
+== Installation ==
+
+The SIPLE tutorial can be checked out from the Project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse].
+
+To install subclipse use its Eclipse update site (something like _"http://subclipse.tigris.org/update_1.6.x"_) via _Help => Install new Software => Work with:_ The update site's URL _=>_ select the required components _=> Next =>_ ... _=> Finish_. After installation make sure that the correct SVN interface is configured (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
+
+== Configuration ==
+
+After checking out SIPLE no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed. To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SIPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
+
 = Project Repository Overview =
 
 Before we investigate how to generate and use the different SIPLE versions, let us take a short look on the project's structure. The project consists of four relevant resources. 
@@ -75,7 +85,7 @@ To generate the desired SIPLE implementation, of course, appropriate specificati
  * _syntax_: Specification of the SIPLE compiler's parser. In the JastAdd and EMF version a LALR(1) Beaver parser is used (_parser.beaver_). The EMFText version is based on an LL(`*`) ANTLR parser, which is generated based on an EMFText concrete syntax definition (_siple.cs_) and uses a handwritten token resolver class (`ExprTYPETokenResolver.java`) to transform the strings `Boolean`, `Integer` and `Real` into their respective SIPLE types (`siple.semantics.Type`).
  * _symbols_: Specification of the SIPLE compiler's lexer (_lexer.jflex_). *Note:* Only the JastAdd and EMF version require an explicit lexer specification.
 
-The generation process of a SIPLE version from its respective specifications is steered by a single [http://ant.apache.org/ Ant] build script (_build.xml_). Each SIPLE version can be generated using a equal named task. To clean up generated artefacts the `Clean` task can be used. *Important:* The build script must be executed within the JRE in which Eclipse is executed (For details see [#Deployment_and_Configuration above]).
+The generation process of a SIPLE version from its respective specifications is steered by a single [http://ant.apache.org/ Ant] build script (_build.xml_). Each SIPLE version can be generated using a equal named task. To clean up generated artefacts the `Clean` task can be used. *Important:* The build script must be executed within the JRE in which Eclipse is executed (For details see [#Configuration above]).
 
 = JastAdd Version =
 
