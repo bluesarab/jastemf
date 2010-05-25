@@ -63,7 +63,9 @@ To install subclipse use its Eclipse update site (something like _"http://subcli
 
 == Configuration ==
 
-After checking out SIPLE no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed. To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SIPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
+After checking out SIPLE no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
+
+To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SIPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
 
 = Project Repository Overview =
 
