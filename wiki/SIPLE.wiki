@@ -59,7 +59,7 @@ It consists of two procedures. The first computes the well-known [http://en.wiki
 
 The SIPLE tutorial can be checked out from the Project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse].
 
-To install subclipse use its Eclipse update site (something like _"http://subclipse.tigris.org/update_1.6.x"_) via _Help => Install new Software => Work with:_ The update site's URL _=>_ select the required components _=> Next =>_ ... _=> Finish_. After installation make sure that the correct SVN interface is configured (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
+To install subclipse use its Eclipse update site (something like _"http://subclipse.tigris.org/update_1.6.x"_) via _Help => Install new Software => Work with:_ The update site's URL _=>_ select the required components _=> Next =>_ ... _=> Finish_. After installation, make sure that the correct SVN interface is configurated (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
 
 == Configuration ==
 
