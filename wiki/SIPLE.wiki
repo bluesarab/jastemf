@@ -34,6 +34,8 @@ Procedure fibunacci(Var n:Integer):Integer Begin
 End;
 
 Procedure mr(Var n:Integer) Begin
+    Procedure mr2(Var lb:Integer, Var ub:Integer);
+    
     Procedure mr1(Var lb:Integer, Var ub:Integer) Begin
         If lb >= 0 Then
             Write lb;
