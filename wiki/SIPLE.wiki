@@ -92,11 +92,13 @@ Before we investigate how to generate and use the different SIPLE versions, let 
  * SIPLE regression tests (folder _"tests"_)
  * Required libraries and other resources (folder _"sources"_)
 
-The following screenshot gives an impression of the example's repository.
+The following screenshot gives an impression of the example's repository:
 
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_structure.png
 
 == Implementation ==
+
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_implementation.png
 
 First, there is the actual *SIPLE implementation* in the _"implementation"_ source code folder. Most of it will be generated as shown later. Its general package structure is as follows:
 
@@ -109,6 +111,8 @@ First, there is the actual *SIPLE implementation* in the _"implementation"_ sour
 
 == Specifications ==
 
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_specifications.png
+
 To generate the desired SIPLE implementation, of course, appropriate specifications are required. Thus, the second important project resource are *SIPLE's specifications*, which are in the _"specifications/siple"_ folder. The specifcations are grouped w.r.t. different implementation concerns. For each concern an equal named folder containing all its specifications exists:
 
  * _model_: Specification of the SIPLE compiler's API --- i.e. its metamodel (_siple.ecore_) --- and how to generate an appropriate EMF implementation (_siple.genmodel_). Also a diagram of the metamodel is given (_siple.ecorediag_). *Note:* Only the EMF and EMFText version have an Ecore metamodel.
@@ -120,7 +124,11 @@ The generation process of a SIPLE version from its respective specifications is 
 
 == Tests ==
 
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_tests.png
+
 == Libraries and other Resources ==
+
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_sources.png
 
 = JastAdd Version =
 
