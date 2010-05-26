@@ -68,12 +68,12 @@ Last but not least, [http://st.inf.tu-dresden.de/rtt RTT] is used to regression 
 The following table summarises the tools used by the SIPLE project, their purpose, whether they must be manually installed or configurated and if they are already contained in the project's repository:
 
 || *Tool* || *Purpose* || *Must be Installed* || *Shiped with SIPLE* ||
-|| Subclipse || To check out the project from its SVN || Yes || No ||
-|| EMFText || Required to generate the EMFText SIPLE version || Yes || Yes ||
-|| AspectJ || To weave regression test support into the JastAdd and EMF SIPLE versions || Yes || No ||
-|| RTT || Regression test tool || No || Yes ||
-|| Beaver || LALR(1) parsergenerator || No || Yes ||
-|| JFlex || Lexer generator || No || Yes ||
+|| [http://subclipse.tigris.org/ Subclipse] || To check out the project from its SVN || Yes || No ||
+|| [http://www.emftext.org EMFText] || Required to generate the EMFText SIPLE version || Yes || Yes ||
+|| [http://www.eclipse.org/ajdt/ AspectJ] || To weave regression test support into the JastAdd and EMF SIPLE versions || Yes || No ||
+|| [http://st.inf.tu-dresden.de/rtt RTT] || Regression test tool || No || Yes ||
+|| [http://beaver.sourceforge.net/ Beaver] || LALR(1) parsergenerator || No || Yes ||
+|| [http://jflex.de/ JFlex] || Lexer generator || No || Yes ||
 
 == Configuration ==
 
