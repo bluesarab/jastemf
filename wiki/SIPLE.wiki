@@ -99,7 +99,7 @@ https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_structure.png
 
 == Implementation ==
 
-First, there is the actual *SIPLE implementation* in the _"implementation"_ source code folder. Most of it will be generated as shown later. Its general package structure is as follows:
+The actual *SIPLE implementation* is in the _"implementation"_ source code folder. Most of it will be generated as shown later. Its general package structure is as follows:
 
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_implementation.png
 
@@ -121,11 +121,19 @@ https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_specifications
  * _syntax_: Specification of the SIPLE compiler's parser. In the JastAdd and EMF version a LALR(1) Beaver parser is used (_parser.beaver_). The EMFText version is based on an LL(`*`) ANTLR parser, which is generated based on an EMFText concrete syntax definition (_siple.cs_) and uses a handwritten token resolver class (`ExprTYPETokenResolver.java`) to transform the strings `Boolean`, `Integer` and `Real` into their respective SIPLE types (`siple.semantics.Type`).
  * _symbols_: Specification of the SIPLE compiler's lexer (_lexer.jflex_). *Note:* Only the JastAdd and EMF version require an explicit lexer specification.
 
-The generation process of a SIPLE version from its respective specifications is steered by a single [http://ant.apache.org/ Ant] build script (_build.xml_). Each SIPLE version can be generated using a equal named task. To clean up generated artefacts the `Clean` task can be used. *Important:* The build script must be executed within the JRE in which Eclipse is executed (For details see [#Configuration above]).
+The generation process of a SIPLE version from its respective specifications is steered by a single [http://ant.apache.org/ Ant] build script (_"build.xml"_). Each SIPLE version can be generated using a equal named task. To clean up generated artefacts the `Clean` task can be used. *Important:* The build script must be executed within the JRE in which Eclipse is executed (For details see [#Configuration above]).
 
 == Tests ==
 
+Another important project resource are test programs that check SIPLE's implementation, especially the correctness of its static semantics. All artefacts related to testing are contained in the _"tests"_ folder, which consists of three subfolders:
+
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_tests.png
+
+ * _adaptation_: Contains AspectJ aspects, that prepare the JastAdd and EMF version's implementation for regression tests with RTT. The respective adaptation aspects are copied verbatim into the `rtt.adaptation` package while generating a concrete SIPLE version.
+ * _source`_`code`_`examples_: Contains example SIPLE programs used for testing. The programs are classified, whether they are correct or contain static semantic errors. Each program (i.e. testcase) tests a certain aspect of the SIPLE language. All example programs are packed together into a single RTT testsuite.
+ * _testsuites_: Contains the RTT testsuite against which the JastAdd and EMF versions are regression tested.
+
+Similar to the generation of a SIPLE implementation from its specifications, also the generation, updating and execution of SIPLE's RTT testsuite is steered by a single Ant build script (_"build.xml"_ in the _"tests"_ directory). Again, the build script must be executed within the JRE in which Eclipse is executed (For details see [#Configuration above]).
 
 == Libraries and other Resources ==
 
@@ -144,5 +152,7 @@ https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_sources.png
 == Editing SIPLE Programs as Models in a generated Eclipse Text Editor ==
 
 = Regression Tests =
+
+SIPLE's different language constructs are systematically tested.
 
 = Summary =
