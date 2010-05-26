@@ -55,8 +55,8 @@ If you like to run the regression tests supported for versions 1 and 2, the
 AspectJ weaving tools for Eclipse are required.
 
 Versions 2 and 3) It is necessary to deploy the "org.jastemf_*.jar" from the
-	"sources/libraries" folder as Eclipse plugin. To do so just copy it into
-	your Eclipse's "dropins" folder and restart Eclipse.
+	"sources/applications/JastEMF" folder as Eclipse plugin. To do so just
+	copy it into your Eclipse's "dropins" folder and restart Eclipse.
 
 					     II Building the SIPLE Compiler
 -------------------------------------------------------------------------------
