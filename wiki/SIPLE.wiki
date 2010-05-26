@@ -69,6 +69,7 @@ The following table summarises the tools used by the SIPLE project, their purpos
 
 || *Tool* || *Purpose* || *Must be Installed* || *Shiped with SIPLE* ||
 || [http://subclipse.tigris.org/ Subclipse] || To check out the project from its SVN || Yes || No ||
+|| JastEMF || To integrate JastAdd semantics into EMF metamodel implementations || [Installation Yes] || Yes ||
 || [http://www.emftext.org EMFText] || Required to generate the EMFText SIPLE version || Yes || Yes ||
 || [http://www.eclipse.org/ajdt/ AspectJ] || To weave regression test support into the JastAdd and EMF SIPLE versions || Yes || No ||
 || [http://st.inf.tu-dresden.de/rtt RTT] || Regression test tool || No || Yes ||
