@@ -8,7 +8,7 @@ JastEMF requires the _[http://www.eclipse.org/modeling/emf/ Eclipse Modeling Fra
 In detail JastEMF requires at least:
   * Apache Ant version 1.7 or higher
   * Eclipse version 3.5 or higher with installed
-  * EMF SDK version 2.5 or higher (Update page http://download.eclipse.org/modeling/emf/updates/releases/) and
+  * EMF SDK version 2.5 or higher (Update site http://download.eclipse.org/modeling/emf/updates/releases/) and
   * Modelling Weaving Engine (including _xTend_ and _xPand_) version 0.7.2 or higher
 
 = Installing JastEMF =
