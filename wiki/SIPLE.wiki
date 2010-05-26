@@ -61,11 +61,11 @@ The SIPLE tutorial can be checked out from the Project's SVN repository. It is n
 
 To install subclipse use its Eclipse update site (something like _"http://subclipse.tigris.org/update_1.6.x"_) via _Help => Install new Software => Work with:_ The update site's URL _=>_ select the required components _=> Next =>_ ... _=> Finish_. After installation, make sure that the correct SVN interface is configurated (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
 
-The EMFText SIPLE version additionally requires the [EMFText http://www.emftext.org] plugin to be deployed. The required libraries are in the _"sources/applications/emftext-plugins"_ folder. Just copy them into your Eclipse's _"dropins"_ folder and restart Eclipse.
+The EMFText SIPLE version additionally requires the [http://www.emftext.org EMFText] plugin to be deployed. The required libraries are in the _"sources/applications/emftext-plugins"_ folder. Just copy them into your Eclipse's _"dropins"_ folder and restart Eclipse.
 
 == Configuration ==
 
-After checking out SIPLE no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
+After checking out SIPLE and deploying EMFText no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
 
 To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SIPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
 
