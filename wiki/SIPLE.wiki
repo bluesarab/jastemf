@@ -93,6 +93,7 @@ Before we investigate how to generate and use the different SIPLE versions, let 
  * Required libraries and other resources (folder _"sources"_)
 
 The following screenshot gives an impression of the example's repository.
+
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_structure.png
 
 == Implementation ==
