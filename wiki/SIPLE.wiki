@@ -137,7 +137,13 @@ Similar to the generation of a SIPLE implementation from its specifications, als
 
 == Libraries and other Resources ==
 
+The last important project resource are third party libraries SIPLE depends and which are shipped with it (For a summary of each library's purpose see the table [#Installation above]). They are contained in sub folders of the _"sources"_ directory:
+
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_sources.png
+
+ * _libraries_: Contains `jar` libraries explicitely called by SIPLE's Ant build scripts or on which SIPLE's implementation depends on.
+ * _applications_: Contains third party applications that have to be installed manually as described [#Installation above] and the end user distributions of the previous point's libraries.
+ * _support_: Contains support artefacts, that ease the development of SIPLE or SIPLE programs in third party tools (e.g. [http://www.textpad.com/ TextPad] syntax highlighting specifications).
 
 = JastAdd Version =
 
