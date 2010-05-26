@@ -142,8 +142,8 @@ The last important project resource are third party libraries SIPLE depends and 
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_sources.png
 
  * _libraries_: Contains `jar` libraries explicitely called by SIPLE's Ant build scripts or on which SIPLE's implementation depends on.
- * _applications_: Contains third party applications that have to be installed manually as described [#Installation above] and the end user distributions of the previous point's libraries.
- * _support_: Contains support artefacts, that ease the development of SIPLE or SIPLE programs in third party tools (e.g. [http://www.textpad.com/ TextPad] syntax highlighting specifications).
+ * _applications_: Contains third party applications that have to be installed manually as described [#Installation above]. If for any of the _libraries_ folder's `jar` a more comprehensive end user distribution exists, also it is contained.
+ * _support_: Contains support artefacts, that ease the development of SIPLE and SIPLE programs in third party tools (e.g. [http://www.textpad.com/ TextPad] syntax highlighting specifications).
 
 = JastAdd Version =
 
