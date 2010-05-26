@@ -61,6 +61,8 @@ The SIPLE tutorial can be checked out from the Project's SVN repository. It is n
 
 To install subclipse use its Eclipse update site (something like _"http://subclipse.tigris.org/update_1.6.x"_) via _Help => Install new Software => Work with:_ The update site's URL _=>_ select the required components _=> Next =>_ ... _=> Finish_. After installation, make sure that the correct SVN interface is configurated (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
 
+The EMFText SIPLE version additionally requires the [EMFText http://www.emftext.org] plugin to be deployed. The required libraries are in the _"sources/applications/emftext-plugins"_ folder. Just copy them into your Eclipse's _"dropins"_ folder and restart Eclipse.
+
 == Configuration ==
 
 After checking out SIPLE no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
