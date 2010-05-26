@@ -65,6 +65,16 @@ The EMFText SIPLE version additionally requires the [http://www.emftext.org EMFT
 
 Last but not least, [http://st.inf.tu-dresden.de/rtt RTT] is used to regression test the EMF SIPLE version against the JastAdd version. RTT's `jar` distribution is already contained in and referenced by the project. However, the integration of RTT is done using [http://www.eclipse.org/aspectj/ AspectJ]. Thus, the [http://www.eclipse.org/ajdt/ AspectJ Development Tools] for Eclipse are required. Just install them via their update site _"http://download.eclipse.org/tools/ajdt/35/update"_ as described for Subclipse above.
 
+The following table summarises the tools used by the SIPLE project, their purpose, whether they must be manually installed or configurated and if they are already contained in the project's repository:
+
+|| *Tool* || *Purpose* || *Must be Configurated/Installed* || Shiped with SIPLE ||
+|| Subclipse || To check out the SIPLE project || Yes || No ||
+|| EMFText || Required to generate the EMFText SIPLE version || Yes || Yes ||
+|| AspectJ || To weave regression test support into the JastAdd and EMF SIPLE versions || Yes || No ||
+|| RTT || Regression Test Tool || No || Yes ||
+|| Beaver || LALR(1) parsergenerator || No || Yes ||
+|| JFlex || Lexer generator || No || Yes ||
+
 == Configuration ==
 
 After checking out SIPLE, deploying EMFText and installing the Eclipse AspectJ tools no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
