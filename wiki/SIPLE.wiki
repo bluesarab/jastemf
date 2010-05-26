@@ -85,7 +85,15 @@ Further steps, how to deploy and use generated implementations, are given in the
 
 = Project Repository Overview =
 
-Before we investigate how to generate and use the different SIPLE versions, let us take a short look on the project's structure. The project consists of four relevant resources. 
+Before we investigate how to generate and use the different SIPLE versions, let us take a short look on the project's structure. The project consists of four relevant resources:
+
+ * SIPLE implementation (source code folder _"implementation"_)
+ * SIPLE specifications (folder _"specifications"_)
+ * SIPLE regression tests (folder _"tests"_)
+ * Required libraries and other resources (folder _"sources"_)
+
+The following screenshot gives an impression of the example's repository.
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_structure.png
 
 == Implementation ==
 
