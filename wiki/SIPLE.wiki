@@ -69,7 +69,7 @@ After checking out SIPLE and deploying EMFText no further configurations are req
 
 To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SIPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
 
-Further steps, how to deploy and use generated implementations, will given in the respective version's description ([#JastAdd_Version JastAdd version], [#EMF_Version EMF version], [#EMFText_Version EMFText version]).
+Further steps, how to deploy and use generated implementations, are given in the respective version's description ([#JastAdd_Version JastAdd version], [#EMF_Version EMF version], [#EMFText_Version EMFText version]).
 
 = Project Repository Overview =
 
