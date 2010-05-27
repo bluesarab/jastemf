@@ -16,7 +16,7 @@ For all SIPLE versions the same concrete syntax is supported. Also, all SIPLE ve
 
 The following table summarises and forecloses the features of the different SIPLE implementations investigated in this tutorial:
 
-|| *SIPLE* || *Semantics (Static & Execution)* || *Standalone Interpreter* || *Tests* || *Metamodel* || *Eclipse Model Editor* || *Eclipse Text Editor* ||
+|| *Version* || *Semantics (Static & Execution)* || *Standalone Interpreter* || *Tests* || *Metamodel* || *Eclipse Model Editor* || *Eclipse Text Editor* ||
 || JastAdd || Yes || Yes || Yes || No || No || No ||
 || EMF || Yes || Yes || Yes || Yes || Yes || No ||
 || EMFText || Yes || No || No || Yes || Yes || Yes ||
