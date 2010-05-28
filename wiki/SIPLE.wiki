@@ -185,7 +185,26 @@ Procedure fac(Var n:Integer):Integer Begin
 End;
 }}}
 
-If executed it prints the faculty of 12, i.e. 479001600. To execute it open the `siple.Interpreter` class. Select _Run => Run Configurations =>_ double click _Java Application =>_ select a name, e.g. `Interpreter` _=> Arguments => Program arguments:_ `"path/to/calculator/tests/source_code_examples/test.expr"` _=> Apply => Run_.
+If executed it prints the faculty of 12, i.e. `479001600`. To execute it open the `siple.Interpreter` class. Select _Run => Run Configurations =>_ double click _Java Application =>_ select a name, e.g. `Interpreter` _=> Arguments => Program arguments:_ `"path/to/calculator/tests/source_code_examples/test.expr"` _=> Apply => Run_.
+
+Let us introduce some error in the program, e.g. refer in the recursive `fac` method invocation to an unknown variable a:
+
+{{{
+Procedure main() Begin
+    Write fac(12);
+End;
+
+Procedure fac(Var n:Integer):Integer Begin
+    If n = 0 Then
+        Return 1;
+    Fi;
+    Return n * fac(a - 1);
+End;
+}}}
+
+Of course, the interpretation fails. After all the program is erroneous. But it does not fail with randomly, it fails with a `siple.semantics.InterpretationException`:
+
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_interpretation_exception.png
 
 == Conclusion ==
 
