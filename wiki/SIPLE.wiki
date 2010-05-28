@@ -206,7 +206,7 @@ Of course, the interpretation fails. After all the program is erroneous. But it 
 
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_interpretation_exception.png
 
-Now let keep the error, but additionally change the `fac(12)` procedure invocation change to `fac(0)` --- i.e. compute the faculty of 0 instead of 12:
+Let us keep the error, but additionally change the `fac(12)` procedure invocation to `fac(0)` --- i.e. compute the faculty of 0 instead of 12:
 
 {{{
 Procedure main() Begin
