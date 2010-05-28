@@ -221,9 +221,11 @@ Procedure fac(Var n:Integer):Integer Begin
 End;
 }}}
 
-If executed, the program now succeeds and prints 1. That might look strange. After all the program still is erroneous. But it makes sense if you remember, that we are doing a source code interpretation. And of course, the recursive `fac` invocation is never encountered throughout interpretation for n = 0. Thus, the static semantics of a program construct are only computed while interpretation, if the construct is encountered. One might conclude, that this is a very inefficient solution, since program constructs that are executed several times always must be semantically evaluated. But that is not a necessity. Attribute values can be cached in JastAdd using the `lazy` attribute modifier.
+If executed, the program now succeeds and prints `1`. That might look strange. After all the program still is erroneous. But it makes sense if you remember, that we are doing a source code interpretation. And of course, the recursive `fac` invocation is never encountered throughout interpretation for n = 0. Thus, the static semantics of a program construct are only computed while interpretation, if the construct is encountered. One might conclude, that this is a very inefficient solution, since program constructs that are executed several times always must be semantically evaluated. But that is not a necessity. Attribute values can be cached in JastAdd using the `lazy` attribute modifier.
 
 == Conclusion ==
+
+
 
 = EMF Version =
 
