@@ -170,7 +170,7 @@ https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_buildprocess_jast
 
 To test the just generated implementation you can on the one hand execute the regression tests as described [#Regression_Tests later], investigate the regression test's expected results to see each attribute's value --- i.e. browse the compiler internal semantics --- or execute the SIPLE interpreter. We will focus for now on the interpreter. The EMF integrated versions are much better suited to browse compiler internal semantics.
 
-Assume you have the following SIPLE program saved in a file (e.g. the _"tests/source_`_`_code_`_`_examples/test.expr"_):
+Assume you have the following SIPLE program saved in a file (e.g. in _"tests/source_`_`_code_`_`_examples/test.expr"_):
 
 {{{
 Procedure main() Begin
