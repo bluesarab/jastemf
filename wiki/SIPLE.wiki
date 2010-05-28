@@ -187,7 +187,7 @@ End;
 
 To execute it open the `siple.Interpreter` class. Select _Run => Run Configurations =>_ double click _Java Application =>_ select a name, e.g. `Interpreter` _=> Arguments => Program arguments:_ `"path/to/calculator/tests/source_code_examples/test.expr"` _=> Apply => Run_. As expected, the `Write` statement on line 2 prints the faculty of 12, i.e. `479001600`.
 
-Let us introduce some error in the program, e.g. refer in the recursive `fac` method invocation to an unknown variable a:
+Let us introduce some error into the program, e.g. a reference to an undeclared variable `a` in the recursive `fac` method invocation:
 
 {{{
 Procedure main() Begin
@@ -206,7 +206,7 @@ Of course, the interpretation fails. After all the program is erroneous. But it 
 
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_interpretation_exception.png
 
-Let us keep the error, but additionally change the `fac(12)` procedure invocation to `fac(0)` --- i.e. compute the faculty of 0 instead of 12:
+Let us keep the error, but additionally change the `fac(12)` procedure invocation to `fac(0)`:
 
 {{{
 Procedure main() Begin
@@ -221,7 +221,7 @@ Procedure fac(Var n:Integer):Integer Begin
 End;
 }}}
 
-If executed, the program now succeeds and prints 1.
+If executed, the program now succeeds and prints 1. That might look strange. After all the program still is erroneous. But it makes sense if you remember, that we are doing a source code interpretation. And of course, the recursive `fac` invocation is never encountered throughout interpretation for n = 0. Thus, the static semantics of a program construct are only computed if the construct is encountered while interpretation. One might conclude, that this is a very inefficient solution, since program constructs that are executed several times always must be semantically evaluated. But that is not a necessity. Attribute values can be cached in JastAdd using the `lazy` attribute modifier.
 
 == Conclusion ==
 
