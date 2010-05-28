@@ -185,7 +185,7 @@ Procedure fac(Var n:Integer):Integer Begin
 End;
 }}}
 
-If executed it prints the faculty of 12, i.e. `479001600`. To execute it open the `siple.Interpreter` class. Select _Run => Run Configurations =>_ double click _Java Application =>_ select a name, e.g. `Interpreter` _=> Arguments => Program arguments:_ `"path/to/calculator/tests/source_code_examples/test.expr"` _=> Apply => Run_.
+To execute it open the `siple.Interpreter` class. Select _Run => Run Configurations =>_ double click _Java Application =>_ select a name, e.g. `Interpreter` _=> Arguments => Program arguments:_ `"path/to/calculator/tests/source_code_examples/test.expr"` _=> Apply => Run_. As expected, the `Write` statement on line 2 prints the faculty of 12, i.e. `479001600`.
 
 Let us introduce some error in the program, e.g. refer in the recursive `fac` method invocation to an unknown variable a:
 
