@@ -221,11 +221,15 @@ Procedure fac(Var n:Integer):Integer Begin
 End;
 }}}
 
-If executed, the program now succeeds and prints `1`. That might look strange. After all the program still is erroneous. But it makes sense if you remember, that we are doing a source code interpretation. And of course, the recursive `fac` invocation is never encountered throughout interpretation for n = 0. Thus, the static semantics of a program construct are only computed while interpretation, if the construct is encountered. One might conclude, that this is a very inefficient solution, since program constructs that are executed several times always must be semantically evaluated. But that is not a necessity. Attribute values can be cached in JastAdd using the `lazy` attribute modifier.
+If executed, the program now succeeds and prints `1`. That might look strange. After all the program still is erroneous. But it makes sense if you remember, that we are doing a source code interpretation. And of course, the recursive `fac` invocation is never encountered throughout interpretation for n = 0. Thus, the static semantics of a program construct are only computed while interpretation, if the construct is encountered. One might conclude, that this is a very inefficient solution, since program constructs that are executed several times always must be semantically evaluated. But that is not a necessity, since attribute values can be cached in JastAdd using the `lazy` attribute modifier.
 
 == Conclusion ==
 
+Even if we did not investigate the RAG specifications of SIPLE's semantics, the so far described implementation should have made clear, that RAGs are a very well-known approach to specify semantics. The interested reader might have already browsed the semantic specifications and recognized, that:
 
+ * Semantics can be nicely decomposed into different concerns (Called aspects in JastAdd)
+ * It is no problem to monotonic extend languages, i.e. to add further language constructs' semantics as modules. Thus, RAGs permit the specification-driven development of extensible compilers (E.g. see Tobjörn Ekmans PhD. thesis _"Extensible Compiler Construction"_ that describes the implementation of a Java compiler using JastAdd).
+ * The complicated part of semantics --- the distribution of local information w.r.t. certain constraints accross a structure, to combine such information and further redistribute the result --- can be very convenient specified using RAGs. In essence attribute equations are specified w.r.t. a local --- i.e. easy to understand --- context and resulting complicated tree traversals and dependencies are automatically handled by the evaluator, such that there is no need to worry about traversal and dependency strategies (It is the manual implementation of such traversal and dependency strategies that makes the implementation of semantics complicated and is the issue of many approaches that do not scale and only fit for toy examples.).
 
 = EMF Version =
 
