@@ -208,7 +208,7 @@ inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
 syn VariableDeclaration Reference.Declaration();
 }}}
 
-All attributes and their equations are specified in JastAdd `jrag` files. To support the modularization across semantic concerns, JastAdd permits the distribution of attribute declarations and equations across arbitrary many files. Each specification file can contain arbitrary many aspects. The idea is to use intuitive aspect names and specification file decompositions, such that the different compiler concerns can be easily investigated.
+All attributes and their equations are specified in JastAdd `jrag` files. To support the modularization across semantic concerns, JastAdd permits the distribution of attribute declarations and equations across arbitrary many files. Each specification file can contain arbitrary many aspects. The idea is to use intuitive aspect names and specification file decompositions, such that different compiler concerns can be specified separately and the resulting specification is much more convenient. Also, extensible compiler construction becomes possible, since new language constructs' semantics can just be specified in an additional `jrag` file. JastAdd weaves all specified semantics together, checks their consistency and completeness and generates a single evaluator implementation.
 
 == Generation ==
 
