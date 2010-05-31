@@ -195,11 +195,20 @@ It specifies, that:
  * `Declaration` is an abstract node type that is a `Statement`. Every `Declaration` has a terminal child named _Name_ of type `String`.
  * `ProcedureDeclaration` and `VariableDeclaration` are special `Declaration` types. Thus, both have a _Name_.
 
-The following diagram summarises the class hierarchy JastAdd generates for the AST specification excerpt:
+The following diagram summarises the class hierarchy JastAdd generates for the specification excerpt:
 
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/jastadd_ast_spec.png
 
-As can be seen, besides the raw classes, also AST construction, manipulation and traversal methods are generated. They are an important part of the compiler's API besides the attribute methods woven into the AST classes (For convenient reasons the methods of the attributes discussed in the following are not shown in the class-diagram).
+As can be seen, besides the raw classes, also AST construction, manipulation and traversal methods are generated. They are an important part of the compiler's API.
+
+Another important part are the semantic methods woven into the AST classes. For each  attribute specified a method with equal name and signature is woven into the AST class representing the node type the attribute is associated with. E.g. consider SIPLE's name analysis. Variable references (represented by the `Reference` node type) have a synthesized `Declaration()` attribute that returns the associated `VariableDeclaration` node or `null`, if the variable is not declared or several times declared. Also, all node types (`ASTNode`) have an inherited `LookUpVDecl(String name)` attribute, which returns a collection containing all the variable declarations for the given name which are in scope. The declaration of these two attributes in JastAdd is:
+
+{{{
+inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
+syn VariableDeclaration Reference.Declaration();
+}}}
+
+All attributes and their equations are specified in JastAdd `jrag` files. To support the modularization across semantic concerns, JastAdd permits the distribution of attribute declarations and equations across arbitrary many files. Each specification file can contain arbitrary many aspects. The idea is to use intuitive aspect names and specification file decompositions, such that the different compiler concerns can be easily investigated.
 
 == Generation ==
 
