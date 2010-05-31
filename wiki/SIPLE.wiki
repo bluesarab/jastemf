@@ -195,7 +195,11 @@ It specifies, that:
  * `Declaration` is an abstract node type that is a `Statement`. Every `Declaration` has a terminal child named _Name_ of type `String`.
  * `ProcedureDeclaration` and `VariableDeclaration` are special `Declaration` types. Thus, both have a _Name_.
 
-The 
+The following diagram summarises the class hierarchy JastAdd generates for the AST specification excerpt:
+
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/jastadd_ast_spec.png
+
+As can be seen, besides the raw classes, also AST construction, manipulation and traversal methods are generated. They are an important part of the compiler's API besides the attribute methods woven into the AST classes (For convenient reasons the methods of the attributes discussed in the following are not shown in the class-diagram).
 
 == Generation ==
 
