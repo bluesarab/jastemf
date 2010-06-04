@@ -1,0 +1,12 @@
+#summary Developer Documentation for Statechart Example Language
+
+= Introduction to Statechart Language =
+
+The Statechart language is a graphical language to describe the behaviour of systems using a state-based abstraction.
+
+
+= Setup =
+
+= Installation =
+
+= Application =
