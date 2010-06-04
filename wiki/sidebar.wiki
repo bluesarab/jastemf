@@ -3,5 +3,4 @@
  * [Ant_Tasks Ant User Interface]
  * [Examples Example Projects]
    * [SIPLE]
-   * [Statechart]
  * [Publications]
