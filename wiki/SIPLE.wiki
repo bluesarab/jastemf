@@ -213,10 +213,6 @@ All attributes and their equations are specified in JastAdd `jrag` files. To sup
 In SIPLE we use these techniques to specify a clear compiler API --- the _compiler core_. The compiler core is a single `jrag` specification file, that *declares* all semantic concerns (i.e. aspects) and their semantics (i.e. attributes) that must be supported by a valid SIPLE implementation. The actual definitions (i.e. equations) of the attributes declared in the compiler core are *not* part of it. Each concern still must be implemented (See the different `jrag` specification files in the _"specifications/siple/semantics"_ folder, each named after the concern it implements). This way, on the one hand each concern can be specified as a separate module and on the other hand its specifiaction can depend on any other semantics declared in the compiler core. The following is an excerpt of SIPLE's compiler core:
 
 {{{
-aspect AccessSupport {
-    ...
-}
-
 aspect NameAnalysis {
     // Procedure name space:
     ...
@@ -234,10 +230,6 @@ aspect TypeAnalysis {
     ...
 }
 
-aspect DataflowAnalysis {
-    ...
-}
-
 aspect Interpretation {
     // Returns null, iff the expression is not constant.
     syn Object Expression.ConstantValue();
@@ -248,8 +240,21 @@ aspect Interpretation {
     public abstract void Statement.Interpret(State vm)
         throws InterpretationException;
 }
-
+...
 }}}
+
+Besides the above mentioned name analysis API (Each reference has a method that returns its associated declaration or `null` in the case of an error) it specifies, that:
+
+ * SIPLE implementations support a type analysis:
+   * Each expression has a type
+   * It can be statically checked which type an assignment has, i.e. if an assignment's right hand side can be assigned to the variable referenced on its left hand side
+   * It can be statically checked if a return statement's type is valid w.r.t. the signature of the procedure containing it
+ * SIPLE implementations support an interpreter:
+   * Partial evaluation for constant folding is supported
+   * Complete programs can be interpreterd by just calling the root node's `Interpret` method
+   * Single program statements can be executed based on a predefined (that includes user defined) execution state. Interpretation results are captured by changes of the input state.
+
+It is obvious, that JastAdd AST and `jrag` specifications define the API of the generated evaluator, such that compiler end users can browse semantics by just calling appropriate methods.
 
 == Generation ==
 
