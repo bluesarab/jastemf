@@ -345,6 +345,8 @@ https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_tree_editor.png
 
 == Generation ==
 
+https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_all_dialog.png
+
 == Application: Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
 
 == Conclusion ==
