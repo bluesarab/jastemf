@@ -210,7 +210,7 @@ syn VariableDeclaration Reference.Declaration();
 
 All attributes and their equations are specified in JastAdd `jrag` files. To support the modularization across semantic concerns, JastAdd permits the distribution of attribute declarations and equations across arbitrary many files. Each specification file can contain arbitrary many aspects. The idea is to use intuitive aspect names and specification file decompositions, such that different compiler concerns can be specified separately and the resulting specifications are much more convenient. Also, extensible compiler construction becomes possible, since new language constructs' semantics can be specified in additional `jrag` files. JastAdd weaves all specified semantics together, checks their consistency and completeness and generates a single evaluator implementation.
 
-In SIPLE we use these techniques to specify a clear compiler API --- the _compiler core_. The compiler core is a single `jrag` specification file, that *declares* all semantic concerns (i.e. aspects) and their semantics (i.e. attributes) that must be supported by a valid SIPLE implementation. The actual definitions (i.e. equations) of the attributes declared in the compiler core are *not* part of it. Each concern still must be defined (See the different `jrag` specification files in the _"specifications/siple/semantics"_ folder, each named after the concern it implements). This way, on the one hand each concern can be specified as a separate module and on the other hand its specifiaction can depend on any other semantics declared in the compiler core. The following is an excerpt of SIPLE's compiler core:
+In SIPLE we use these techniques to specify a clear compiler API --- the _compiler core_. The compiler core consists of a single `jrag` specification file, that *declares* all semantic concerns (i.e. aspects) and their semantics (i.e. attributes) that must be supported by a valid SIPLE implementation (Of course, the compiler core also consists of the AST specifications (see above), that define the structure into which the concerns' attributes are woven). The actual definitions (i.e. equations) of the attributes declared in the compiler core are *not* part of it. Each concern still must be defined (See the different `jrag` specification files in the _"specifications/siple/semantics"_ folder, each named after the concern it implements). This way, on the one hand each concern can be specified as a separate module and on the other hand its specifiaction can depend on any other semantics declared in the compiler core. The following is an excerpt of SIPLE's compiler core:
 
 {{{
 aspect NameAnalysis {
@@ -339,9 +339,11 @@ The second SIPLE version we investigate is an extension of the just presented [#
 
 *Note:* The viewpoint, that we first developed a compiler with JastAdd and now extend it with an appropriate API is just by chance. We can also do it the other way around --- i.e. the metamodeler's way --- and first specify the desired tool API and functionality via a metamodel and than extend it with semantics using JastAdd.
 
-*Note:* It should be clear by now, that the JastEMF version's semantics are exactly the ones of the JastAdd version. There are no further seamntic specifications. All JastAdd specifications of the JastAdd version are reused. The same holds for the JFlex lexer and the Beaver parser.
+*Note:* It should be clear by now, that the JastEMF version's semantics are exactly the ones of the JastAdd version. There are no further semantic specifications. All JastAdd specifications of the JastAdd version are reused. The same holds for the JFlex lexer and the Beaver parser.
 
 == Compiler API: A Quick Look on SIPLE's Ecore Metamodel ==
+
+
 
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_diagram.png
 
