@@ -335,7 +335,9 @@ In the next section we present the EMF version, which improves in that direction
 
 == Introduction ==
 
+The second SIPLE version we investigate is an extension of the just presented [#JastAdd_Version JastAdd version] and has its focus on tool integration and language API. It complements the JastAdd version's lexic, syntactic and semantic specifications and the components generated based on them with an appropriate Ecore metamodel, such that the SIPLE compiler as well as SIPLE programs are integrated in the EMF world. To realise this integration --- i.e. an Ecore metamodel implementation with semantics --- JastEMF is used.
 
+*Note:* The viewpoint, that we first developed a compiler with JastAdd and now extend it with an appropriate API is just by chance. We can also do it the other way around --- i.e. the metamodeler's way --- and first specify the desired tool API and functionality via a metamodel and than extend it with seamntics using JastAdd.
 
 == Compiler API: A Quick Look on SIPLE's Ecore Metamodel ==
 
