@@ -23,13 +23,20 @@
 	</target>
 	
 	<target name="EMF Semantic">
+		<delete includeemptydirs="true">
+			<fileset dir="${_basedir}/src-gen">
+					<include name="**/*"/>
+			</fileset>
+		</delete>
+		
 		<echo message="========================> Generate EMF Semantic &lt;======================="/>
 		<mkdir dir="${_basedir}/src-gen/jastemf/adaptation"/>
 		<mkdir dir="${_basedir}/src-gen/statemachine/ast"/>
 		<jastemf
 			genmodel="${genmodel}"
 			outpackage="jastemf.adaptation"
-			astpackage="statemachine.ast">
+			astpackage="statemachine.ast"
+			generateeditcode="yes">
 			<fileset dir="${_semanticsdir}">
 				<include name="**/*.ast"/>
 				<include name="**/*.jrag"/>
