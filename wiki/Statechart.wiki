@@ -2,7 +2,7 @@
 
 = Introduction to Statemachine Language =
 
-The statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It provides a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. 
+The statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It provides a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. The semantics specification is derived from the JastAdd tutorial presented at GTTSE 2009 by Görel Hedin (original source: http://www.cs.lth.se/~gorel/2009-gttse-statemachine.html)
 
 Fig.1 shows an statemachine describing an exemplary phone system. The phone phone can be in different states (rounded rectangles), e.g. _On-hook, Ringing, Ready, Dialing, and Connected_.  Furthermore the statemachine describes transitions possibile between states of the phone, e.g. from _Connected_ to _On-hook_ when the phone is hung up (_hang up_).
 
@@ -40,5 +40,40 @@ https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/editor.png
 The creation and manipulation of the diagram results in a direct adaptation of the underlying statemachine model. In the following sections we will elaborate the details and potential of integrating attribute grammars, EMF models and the corresponding graphical syntax.
 
 = Project Overview =
+In this section we will discuss the project structure of our JastEMF-based statemachine implementation.
+
 ||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/pluginsStructure.png||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/projectStructure.png||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/specificationsStructure.png||
 || *Fig. 3a) Statemachine Language Projects *|| *Fig. 3b) Statemachine Core Project *|| *Fig. 3c) Statemachine Specification* ||
+
+==== Statemachine Language Projects ====
+Our statemachine implementation consists of three Eclipse plug-ins (cf. Fig. 3a) ):
+ * _statemachine_: contains the specification and implementation of EMF abstract syntax and JastAdd semantics for the statemachine language
+ * _statemachine.edit_: contains the implementation of the EMF edit infrastructure for the statemachine language
+ *_statemachine.diagram_: contains the implementation of the GMF graphical editor for the statemachine language
+ 
+==== Statemachine Core Project ====
+The _statemachine_ project contains the core implementation and specification for the statemachine language. As depicted in Fig. 3b) it consists of the following folders:
+ * _src-gen_: implementation of abstract syntax (EMF metamodel) and semantics (JastAdd) of the statemachine language
+ * _src_: manually added implementation artefacts for testing the statemachine language (JUnit)
+ *_examples_: exemplary statemachine and statemachine diagrams
+ * _specificications: the specification artifacts to generate abstract syntax, semantics and diagram editor for the statemachine language
+ * _tools_: additional libraries required (junit.jar)
+ 
+==== Statemachine Specification ====
+The _statemachine_ project contains several specification artifacts to generate abstract syntax, semantics and diagram editor for the statemachine language. As depicted in Fig. 3c) it consists of the following elements:
+ * _metamodel_: EMF and GMF specifications for the generation of abstract syntax (EMF) and diagram editor (GMF) of the statemachine language
+   * _Statemachine.ecore_: specification of EMF-based metamodel
+   * _Statemachine.genmodel_: code generation options for EMF metamodel (destination directory, etc.)
+   * _Statemachine.gmfgen_: code generation options for GMF editor (destination directory, etc.)
+   * _Statemachine.gmfgraph_: specification of graphical elements for the statemachine editor
+   * _Statemachine.gmfmap_: specification of connection betwen graphical elements and metamodel elements
+   * _Statemachine.gmftool_: specification of palettes and menus for our statemachine editor 
+ * _semantics_: semantics specifications for the statemachine language
+   * _EMFBoilerplates.jrag_:
+   * _Exercises.jrag_:
+   * _Graph.jrag_:
+   * _NameAnalysis.jrag_: specification of of name analysis for state machine
+   * _PrintReachabel.jrag_:
+   * _Reachability.jrag_: specification of reachability analysis to compute reachable states
+   * _Statemachine.ast_: 
+  
