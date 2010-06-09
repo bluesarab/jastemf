@@ -13,7 +13,7 @@ https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/phone.png
 = Deployment and Configuration =
 
 == Requirements ==
-To work with the statemachine language you need to install JastEMF. Please follow the [Installation] guide.
+To work with the statemachine language you need to install !JastEMF. Please follow the [Installation] guide.
 
 == Installation ==
 
@@ -40,21 +40,21 @@ https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/editor.png
 The creation and manipulation of the diagram results in a direct adaptation of the underlying statemachine model. In the following sections we will elaborate the details and potential of integrating attribute grammars, EMF models and the corresponding graphical syntax.
 
 = Project Overview =
-In this section we will discuss the project structure of our JastEMF-based statemachine implementation.
+In this section we will discuss the project structure of our !JastEMF-based statemachine implementation.
 
 ||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/pluginsStructure.png||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/projectStructure.png||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/specificationsStructure.png||
 || *Fig. 3a) Statemachine Language Projects *|| *Fig. 3b) Statemachine Core Project *|| *Fig. 3c) Statemachine Specification* ||
 
 ==== Statemachine Language Projects ====
 Our statemachine implementation consists of three Eclipse plug-ins (cf. Fig. 3a) ):
- * _statemachine_: contains the specification and implementation of EMF abstract syntax and JastAdd semantics for the statemachine language
+ * _statemachine_: contains the specification and implementation of EMF abstract syntax and !JastAdd semantics for the statemachine language
  * _statemachine.edit_: contains the implementation of the EMF edit infrastructure for the statemachine language
  *_statemachine.diagram_: contains the implementation of the GMF graphical editor for the statemachine language
  
 ==== Statemachine Core Project ====
 The _statemachine_ project contains the core implementation and specification for the statemachine language. As depicted in Fig. 3b) it consists of the following folders:
- * _src-gen_: implementation of abstract syntax (EMF metamodel) and semantics (JastAdd) of the statemachine language
- * _src_: manually added implementation artefacts for testing the statemachine language (JUnit)
+ * _src-gen_: implementation of abstract syntax (EMF metamodel) and semantics (!JastAdd) of the statemachine language
+ * _src_: manually added implementation artefacts for testing the statemachine language (!JUnit)
  *_examples_: exemplary statemachine and statemachine diagrams
  * _specificications: the specification artifacts to generate abstract syntax, semantics and diagram editor for the statemachine language
  * _tools_: additional libraries required (junit.jar)
