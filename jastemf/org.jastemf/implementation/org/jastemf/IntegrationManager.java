@@ -75,7 +75,7 @@ final public class IntegrationManager {
 		RefactoringManager.performASTClassesAdaptations(context);
 		
 		// Generate EMF model implementation
-		IOSupport.generateGenModelCode(context.genmodel());
+		IOSupport.generateGenModelCode(context.genmodel(), context.generateEditCode());
 		RefactoringManager.beautifyGenPackages(context);
 		
 		refreshIntegrationArtifacts(context);
