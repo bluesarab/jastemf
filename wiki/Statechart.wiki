@@ -2,9 +2,9 @@
 
 = Introduction to Statemachine Language =
 
-The Statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It uses a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. 
+The statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It provides a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. 
 
-Fig.1 shows an statemachine describing an exemplary phone system. The phone phone can be in different States (rounded rectangles), e.g. _On-hook, Ringing, Ready, Dialing, and Connected_.  Furthermore the statemachine describes transitions possibile between states of the phone, e.g. from _Connected_ to _On-hook_ when the phone is hung up (_hang up_).
+Fig.1 shows an statemachine describing an exemplary phone system. The phone phone can be in different states (rounded rectangles), e.g. _On-hook, Ringing, Ready, Dialing, and Connected_.  Furthermore the statemachine describes transitions possibile between states of the phone, e.g. from _Connected_ to _On-hook_ when the phone is hung up (_hang up_).
 
 https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/phone.png
 
@@ -13,19 +13,28 @@ https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/phone.png
 = Deployment and Configuration =
 
 == Requirements ==
-To work with the Statemachine language you need to install JastEMF. Please follow the [Installation] guide.
+To work with the statemachine language you need to install JastEMF. Please follow the [Installation] guide.
+
 == Installation ==
 
-The Statemachine language can be checked out from the project's SVN repository. It is eclipse project named _"statemachine"_ and a subfolder of _"jastemf-examples"_. You should check it out with your favourite SVN client. 
+The statemachine language can be obtained from our SVN repository. You find an Eclipse project named _"statemachine"_ and the subfolder  _"jastemf-examples"_. 
 
-If not already imported with eclipse you need to import the project into you Eclipse Workspace (File > Import... > Existing Projects into Workspace)
+You should check it out with your favourite SVN client.  If not already imported with Eclipse you need to import the project into you Eclipse Workspace (File > Import... > Existing Projects into Workspace)
 
 == Configuration ==
 
-After deploying the Statemachine language to your Eclipse workspace you can start the build process. We provide a buildscript that runs the JastEMF generator. The build script must be executed within the same JRE as Eclipse. Therefore, select _Run > External Tools > External Tool Configurations..._ and create a new Ant Build. As _Buildfile_ select _/statemachine/specifications/build.xml_. Now switch to the configuration tab _JRE_ and activate the option _Run in the same JRE as the workspace_. In the _Targets_ tab  check that the target `EMF Semantic [default]` is activated. Finally, you should select _Run_ and the JastEMF code generation should be executed.
+After deploying the statemachine language to your Eclipse workspace you can start the build process. We provide a buildscript that runs the JastEMF generator. The build script must be executed within the same JRE as Eclipse. Therefore, select _Run > External Tools > External Tool Configurations..._ and create a new Ant Build. As _Buildfile_ select _/statemachine/specifications/build.xml_. Now switch to the configuration tab _JRE_ and activate the option _Run in the same JRE as the workspace_. In the _Targets_ tab  check that the target `EMF Semantic [default]` is activated. Finally, you should select _Run_ and the JastEMF code generation should be executed.
 
-Second, it is required to run the GMF Codegeneration that derives a graphical editor for the Statemachine language. Therefore, select _Generate diagram code_ in the context menu of the file _statemachine/specifications/metamodel/Statemachine.gmfgen_.
+Second, it is required to run the GMF Codegeneration that derives a graphical editor for the statemachine language. Therefore, select _Generate diagram code_ in the context menu of the file _statemachine/specifications/metamodel/Statemachine.gmfgen_.
 
 = Application =
 
-To use the Statemachine language you need to deploy the generated plug-ins or start a new Eclipse Application runtime. Therefore select _Run > Run Configurations ..._, create a new _Eclipse Application_and _Run_ it.
+To use the statemachine language you need to deploy the generated plug-ins or start a new Eclipse Application runtime. Therefore select _Run > Run Configurations ..._, create a new _Eclipse Application_and _Run_ it. This starts a new Eclipse instance where the plug-ins are deployed and the statemachine language ready to use.
+
+To create a new statemachine select _File > New > Other... > Statemachine Diagram. This opens a new empty diagram view. Fig. 2 shows the generated diagram editor. The toolbar contains buttons to create new diagram objects (e.g. _State_) and connections (e.g. Transitions) in the diagram. 
+
+https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/editor.png
+
+*Figure 2: The generated GMF Editor for the statemachine language*
+
+The creation and manipulation of the diagram results in a direct adaptation of the underlying statemachine model. In the following sections we will elaborate the details and potential of integrating attribute grammars, EMF models and the corresponding graphical syntax.
