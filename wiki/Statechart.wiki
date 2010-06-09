@@ -31,7 +31,7 @@ Second, it is required to run the GMF Codegeneration that derives a graphical ed
 
 To use the statemachine language you need to deploy the generated plug-ins or start a new Eclipse Application runtime. Therefore select _Run > Run Configurations ..._, create a new _Eclipse Application_and _Run_ it. This starts a new Eclipse instance where the plug-ins are deployed and the statemachine language ready to use.
 
-To create a new statemachine select _File > New > Other... > Statemachine Diagram. This opens a new empty diagram view. Fig. 2 shows the generated diagram editor. The toolbar contains buttons to create new diagram objects (e.g. _State_) and connections (e.g. Transitions) in the diagram. 
+To create a new statemachine select _File > New > Other... > Statemachine Diagram_. This opens a new empty diagram view. Fig. 2 shows the generated diagram editor. The toolbar contains buttons to create new diagram objects (e.g. _State_) and connections (e.g. Transitions) in the diagram. 
 
 https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/editor.png
 
