@@ -1,12 +1,23 @@
-#summary Developer Documentation for Statechart Example Language
+#summary Developer Documentation for Statemachine Example Language
 
-= Introduction to Statechart Language =
+= Introduction to Statemachine Language =
 
-The Statechart language is a graphical language to describe the behaviour of systems using a state-based abstraction.
+The Statemachinelanguage is a language to describe the behaviour of systems using a state-based abstraction. It uses a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF].
 
 
-= Setup =
+= Deployment and Configuration =
 
-= Installation =
+== Requirements ==
+To work with the Statemachine language you need to install JastEMF. Please follow the [Installation] guide.
+== Installation ==
+
+The Statemachine language can be checked out from the project's SVN repository. It is eclipse project named _"statemachine"_ and a subfolder of _"jastemf-examples"_. You should check it out with your favourite SVN client. 
+
+If not already imported with eclipse you need to import the project into you Eclipse Workspace (File > Import... > Existing Projects into Workspace)
+
+== Configuration ==
+
+After deploying the Statemachine language to your Eclipse workspace you can start the build process. We provide a buildscript that runs the JastEMF generator. It is important, that the build script must be executed within the same JRE as Eclipse. Therefore, select _Run > External Tools > External Tool Configurations... and create a new Ant Build. As Buildfile select /statemachine/specifications/build.xml. Now switch to the configuration tab JRE and activate the option Run in the same JRE as the workspace. In the Targets tab  check that the target EMF Semantic [default] is activated. Finally you select Run and the JastEMF code generation should be executed.
+
 
 = Application =
