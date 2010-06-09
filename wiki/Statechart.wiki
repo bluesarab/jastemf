@@ -17,7 +17,7 @@ If not already imported with eclipse you need to import the project into you Ecl
 
 == Configuration ==
 
-After deploying the Statemachine language to your Eclipse workspace you can start the build process. We provide a buildscript that runs the JastEMF generator. It is important, that the build script must be executed within the same JRE as Eclipse. Therefore, select _Run > External Tools > External Tool Configurations... and create a new Ant Build. As Buildfile select /statemachine/specifications/build.xml. Now switch to the configuration tab JRE and activate the option Run in the same JRE as the workspace. In the Targets tab  check that the target EMF Semantic [default] is activated. Finally you select Run and the JastEMF code generation should be executed.
+After deploying the Statemachine language to your Eclipse workspace you can start the build process. We provide a buildscript that runs the JastEMF generator. The build script must be executed within the same JRE as Eclipse. Therefore, select _Run > External Tools > External Tool Configurations..._ and create a new Ant Build. As _Buildfile_ select _/statemachine/specifications/build.xml_. Now switch to the configuration tab _JRE_ and activate the option _Run in the same JRE as the workspace_. In the _Targets_ tab  check that the target _EMF Semantic [default]_ is activated. Finally you select _Run_ and the JastEMF code generation should be executed.
 
 
 = Application =
