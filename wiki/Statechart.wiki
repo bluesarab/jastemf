@@ -2,9 +2,10 @@
 
 = Introduction to Statemachine Language =
 
-The Statemachinelanguage is a language to describe the behaviour of systems using a state-based abstraction. It uses a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF].
-https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/phone.png
+The Statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It uses a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. 
 
+*Figure 1: Statemachine Example describing a Phone System*
+https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/phone.png
 = Deployment and Configuration =
 
 == Requirements ==
