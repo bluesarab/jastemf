@@ -26,16 +26,19 @@ import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
 import org.jastemf.*;
 
 /**
- * Collection of support methods to ease resource and <i>EMF model</i>
- * handling.
+ * Collection of support methods to ease resource and <i>EMF model</i> handling.
+ * 
  * @author C. Bürger
  */
 final public class IOSupport {
 	/**
 	 * Load an <i>Ecore</i> model using a URI.
-	 * @param uri The model's URI.
+	 * 
+	 * @param uri
+	 *            The model's URI.
 	 * @return The loaded model.
-	 * @throws IOException Thrown, iff the model cannot be loaded.
+	 * @throws IOException
+	 *             Thrown, iff the model cannot be loaded.
 	 */
 	public static EObject loadModel(URI uri) throws IOException {
 		ResourceSet rs = new ResourceSetImpl();
@@ -46,54 +49,73 @@ final public class IOSupport {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Load an <i>EMF</i> generator model using a URI.
-	 * @param uri The generator model's URI.
+	 * 
+	 * @param uri
+	 *            The generator model's URI.
 	 * @return The loaded generator model.
-	 * @throws IOException Thrown, iff the model cannot be loaded.
+	 * @throws IOException
+	 *             Thrown, iff the model cannot be loaded.
 	 */
 	public static GenModel loadGenModel(URI uri) throws IOException {
 		EObject eo = loadModel(uri);
 		if (eo != null && eo instanceof GenModel) {
-			return (GenModel)eo;
+			return (GenModel) eo;
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Use an <i>EMF</i> generator model to generate an <i>Ecore</i>
-	 * metamodel's implementation. Iff implementations for model constructs
-	 * already exist, <i>JMerge</i> is used to combine the existing classes
-	 * with the newly generated ones.
-	 * @param genModel The generator model to use for generation.
+	 * Use an <i>EMF</i> generator model to generate an <i>Ecore</i> metamodel's
+	 * implementation. Iff implementations for model constructs already exist,
+	 * <i>JMerge</i> is used to combine the existing classes with the newly
+	 * generated ones.
+	 * 
+	 * @param genModel
+	 *            The generator model to use for generation.
+	 * @param generateEditCode
+	 *            flag to activate edit code generation
 	 */
-	public static Diagnostic generateGenModelCode(GenModel genModel) {		
+	public static Diagnostic generateGenModelCode(GenModel genModel, boolean generateEditCode) {		
 		genModel.setCanGenerate(true);	
 		Generator generator = new Generator();
 		Generator.Options options = generator.getOptions();
 		options.mergeRulesURI = "platform:/plugin/org.eclipse.emf.codegen.ecore/templates/emf-merge.xml";
 		generator.setInput(genModel);
-		return generator.generate(
+		Diagnostic diagnostic = generator.generate(
 				genModel,
 				GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
 				BasicMonitor.toMonitor(new NullProgressMonitor()));
+		System.out.println("Generated EMF Model Code");
+		if (generateEditCode && diagnostic.getCode() == Diagnostic.OK) {
+			diagnostic = generator.generate(
+					genModel,
+					GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE,
+					BasicMonitor.toMonitor(new NullProgressMonitor()));	
+		System.out.println("Generated EMF Edit Code");
+		}
+		return 	diagnostic;
 	}
-	
+
 	/**
-	 * Completely read an {@link java.io.Reader text input stream}, store
-	 * its content into a {@link StringBuilder buffer}, {@link
-	 * java.io.InputStream#close() close} the stream and return the buffer.
-	 * @param input The text input stream to read.
+	 * Completely read an {@link java.io.Reader text input stream}, store its
+	 * content into a {@link StringBuilder buffer},
+	 * {@link java.io.InputStream#close() close} the stream and return the
+	 * buffer.
+	 * 
+	 * @param input
+	 *            The text input stream to read.
 	 * @return A buffer filled with the stream's content.
-	 * @throws IOException Thrown, iff the stream cannot be read.
+	 * @throws IOException
+	 *             Thrown, iff the stream cannot be read.
 	 */
-	public static StringBuilder textStream2String (InputStream input)
-	throws IOException {
+	public static StringBuilder textStream2String(InputStream input)
+			throws IOException {
 		try {
 			StringBuilder sb = new StringBuilder();
-			BufferedReader in = new BufferedReader(
-					new InputStreamReader(input));
+			BufferedReader in = new BufferedReader(new InputStreamReader(input));
 			char[] buf = new char[65536];
 			int read = 0;
 			while ((read = in.read(buf, 0, 65536)) > 0) {
@@ -104,22 +126,25 @@ final public class IOSupport {
 			input.close();
 		}
 	}
-	
+
 	/**
-	 * Compute a string representation of the current date w.r.t. the
-	 * default time zone and locale.
+	 * Compute a string representation of the current date w.r.t. the default
+	 * time zone and locale.
+	 * 
 	 * @return The current date.
 	 */
 	public static String timeStamp() {
 		Calendar calendar = Calendar.getInstance();
 		return new SimpleDateFormat().format(calendar.getTime());
 	}
-	
+
 	/**
-	 * Helper method that saves a String to the given workspace file by replacing its contents. 
-	 * Note that the file is assumed to already exist in the workspace.
+	 * Helper method that saves a String to the given workspace file by
+	 * replacing its contents. Note that the file is assumed to already exist in
+	 * the workspace.
 	 * 
-	 * @throws CoreException If the file does not exist.
+	 * @throws CoreException
+	 *             If the file does not exist.
 	 * 
 	 */
 	public static void save(String contents, IFile file) throws CoreException {
@@ -129,22 +154,28 @@ final public class IOSupport {
 			writer.print(contents);
 			writer.flush();
 			file.setContents(new ByteArrayInputStream(outStream.toByteArray()),
-					IFile.NONE, null);				
-		} finally {writer.close();}
+					IFile.NONE, null);
+		} finally {
+			writer.close();
+		}
 	}
-	
 
 	/**
-	 * Helper method that creates a workspace file handle from a given absolute java.net.URI 
-	 * pointing to a folder in the workspace and a file name.
+	 * Helper method that creates a workspace file handle from a given absolute
+	 * java.net.URI pointing to a folder in the workspace and a file name.
 	 * 
-	 * The file object may be only a handle if the file does not yet exist in the workspace.
+	 * The file object may be only a handle if the file does not yet exist in
+	 * the workspace.
 	 * 
-	 * @param folder The absolute URI pointing to a folder in the current workspace. 
-	 * @param file The file name.
+	 * @param folder
+	 *            The absolute URI pointing to a folder in the current
+	 *            workspace.
+	 * @param file
+	 *            The file name.
 	 * @return A file handle.
-	 * @throws JastEMFException If the Eclipse ResourcesPlugin can only map none or more than one files to the URI,
-	 * 		an exception is thrown.
+	 * @throws JastEMFException
+	 *             If the Eclipse ResourcesPlugin can only map none or more than
+	 *             one files to the URI, an exception is thrown.
 	 */
 	public static IFile getFile(java.net.URI folder, String file)
 			throws JastEMFException {
@@ -159,5 +190,5 @@ final public class IOSupport {
 		}
 		return files[0];
 	}
-	
+
 }

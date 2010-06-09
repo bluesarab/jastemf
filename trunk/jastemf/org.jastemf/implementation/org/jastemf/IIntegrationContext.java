@@ -108,4 +108,11 @@ public interface IIntegrationContext {
 	 * @return The semantic specifications.
 	 */
 	Set<String> jragspecs();
+	
+	/**
+	 * Boolean flag whether to generate the EMF edit infrastructure code or not. 
+	 * 
+	 * @return true if edit code should be generated
+	 */
+	boolean generateEditCode();
 }
