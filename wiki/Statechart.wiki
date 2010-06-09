@@ -2,7 +2,7 @@
 
 = Introduction to Statemachine Language =
 
-The statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It provides a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. The semantics specification is derived from the JastAdd tutorial presented at GTTSE 2009 by Görel Hedin (original source: http://www.cs.lth.se/~gorel/2009-gttse-statemachine.html)
+The statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It provides a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. The semantics specification is derived from the !JastAdd tutorial presented at GTTSE 2009 by Görel Hedin (original source: http://www.cs.lth.se/~gorel/2009-gttse-statemachine.html)
 
 Fig.1 shows an statemachine describing an exemplary phone system. The phone phone can be in different states (rounded rectangles), e.g. _On-hook, Ringing, Ready, Dialing, and Connected_.  Furthermore the statemachine describes transitions possibile between states of the phone, e.g. from _Connected_ to _On-hook_ when the phone is hung up (_hang up_).
 
@@ -69,11 +69,11 @@ The _statemachine_ project contains several specification artifacts to generate 
    * _Statemachine.gmfmap_: specification of connection betwen graphical elements and metamodel elements
    * _Statemachine.gmftool_: specification of palettes and menus for our statemachine editor 
  * _semantics_: semantics specifications for the statemachine language
-   * _EMFBoilerplates.jrag_:
+   * _!EMFBoilerplates.jrag_:
    * _Exercises.jrag_:
    * _Graph.jrag_:
-   * _NameAnalysis.jrag_: specification of of name analysis for state machine
-   * _PrintReachabel.jrag_:
+   * _!NameAnalysis.jrag_: specification of of name analysis for state machine
+   * _!PrintReachable.jrag_:
    * _Reachability.jrag_: specification of reachability analysis to compute reachable states
    * _Statemachine.ast_: 
   
