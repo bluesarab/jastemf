@@ -38,3 +38,7 @@ https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/editor.png
 *Figure 2: The generated GMF Editor for the statemachine language*
 
 The creation and manipulation of the diagram results in a direct adaptation of the underlying statemachine model. In the following sections we will elaborate the details and potential of integrating attribute grammars, EMF models and the corresponding graphical syntax.
+
+= Project Overview =
+||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/pluginsStructure.png||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/projectStructure.png||https://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/specificationsStructure.png||
+|| *Fig. 3a) Statemachine Language Projects *|| *Fig. 3b) Statemachine Core Project *|| *Fig. 3c) Statemachine Specification* ||
