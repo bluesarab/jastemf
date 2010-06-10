@@ -76,4 +76,6 @@ The _statemachine_ project contains several specification artifacts to generate 
    * _!PrintReachable.jrag_:
    * _Reachability.jrag_: specification of reachability analysis to compute reachable states
    * _Statemachine.ast_: 
-  
+
+= Specification Detail =
+ ... details to come
