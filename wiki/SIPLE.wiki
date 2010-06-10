@@ -21,7 +21,7 @@ The following table summarises and forecloses the features of the different SIPL
 || EMF || Yes || Yes || Yes || Yes || Yes || No ||
 || EMFText || Yes || No || No || Yes || Yes || Yes ||
 
-== A First Look on SIPLE ==
+== A First Look at SIPLE ==
 
 To get an impression of SIPLE, consider the following programm given in concrete syntax:
 {{{
