@@ -28,6 +28,8 @@ public enum Type {
 	 * incompatible.
 	 */
 	public static Type computeCompatibleType(Type t1, Type t2) {
+		if (t1 == null || t2 == null)
+			return ERROR_TYPE;
 		if (t1 == ERROR_TYPE || t2 == ERROR_TYPE)
 			return ERROR_TYPE;
 		if (t1 == Undefined || t2 == Undefined)
