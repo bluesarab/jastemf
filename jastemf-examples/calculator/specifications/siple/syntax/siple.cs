@@ -30,6 +30,8 @@ RULES {
 	
 	Write ::= "Write" Expression;
 	
+	Read ::= "Read" LValue[IDENTIFIER];
+	
 	ProcedureReturn ::= "Return" (Expression)?;
 	
 	VariableDeclaration ::= "Var" Name[IDENTIFIER] ":" DeclaredType[TYPE];

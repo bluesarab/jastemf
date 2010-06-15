@@ -23,8 +23,8 @@
 %terminals kWHILE, kDO, kOD;
 // Return
 %terminals kRETURN;
-// Write
-%terminals kWRITE;
+// Write, Read
+%terminals kWRITE, kREAD;
 // Boolean, Integer, Real
 %terminals kBOOLEAN, kINTEGER, kREAL;
 // Not, And, Or
@@ -178,6 +178,10 @@ Statement = Declaration
 	| kWRITE Expression.expr pSEMICOLON
 	{:
 		return new Symbol(new Write(expr));
+	:}
+	| kREAD IDENTIFIER.id pSEMICOLON
+	{:
+		return new Symbol(new Read(id));
 	:}
 	| ProcedureCall.call pSEMICOLON
 	{:

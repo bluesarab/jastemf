@@ -60,6 +60,7 @@ IntegerNumber  = [0-9]+
 	"Od"			{ return createPrimitiveToken(Terminals.kOD); }
 	"Return"		{ return createPrimitiveToken(Terminals.kRETURN); }
 	"Write"			{ return createPrimitiveToken(Terminals.kWRITE); }
+	"Read"			{ return createPrimitiveToken(Terminals.kREAD); }
 	"Boolean"		{ return createPrimitiveToken(Terminals.kBOOLEAN); }
 	"Integer"		{ return createPrimitiveToken(Terminals.kINTEGER); }
 	"Real"			{ return createPrimitiveToken(Terminals.kREAL); }

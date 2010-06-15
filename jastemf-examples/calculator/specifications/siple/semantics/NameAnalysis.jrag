@@ -84,8 +84,12 @@ aspect NameAnalysis {
 	eq Reference.Declaration() = LookUpVDecl(getName()).size() == 1 ?
 			LookUpVDecl(getName()).iterator().next() :
 			null;
-
+	
 	eq VariableAssignment.Declaration() = LookUpVDecl(getLValue()).size() == 1 ?
+			LookUpVDecl(getLValue()).iterator().next() :
+			null;
+	
+	eq Read.Declaration() = LookUpVDecl(getLValue()).size() == 1 ?
 			LookUpVDecl(getLValue()).iterator().next() :
 			null;
 }

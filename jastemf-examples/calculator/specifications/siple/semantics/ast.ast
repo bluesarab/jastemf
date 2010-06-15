@@ -21,6 +21,7 @@ abstract Statement;
 	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
 	ProcedureReturn:Statement ::= [Expression];
 	Write:Statement ::= Expression;
+	Read:Statement ::= <LValue:String>;
 	
 	abstract Declaration:Statement ::= <Name:String>;
 		
