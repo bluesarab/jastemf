@@ -8,20 +8,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" upperBound="-1"
         eType="#//Declaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="MainProcedure" eType="#//ProcedureDeclaration"
-        derived="true"/>
+        changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true">
     <eOperations name="Interpret">
       <eParameters name="vm" lowerBound="1" eType="#//State"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ProcedureInContext" eType="#//ProcedureDeclaration"
-        derived="true"/>
+        changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Statement" upperBound="-1"
         eType="#//Statement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="IsProcedureBody" eType="#//ProcedureDeclaration"
-        derived="true"/>
+        changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
@@ -43,7 +43,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="RValue" lowerBound="1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//VariableDeclaration"
-        derived="true"/>
+        changeable="false" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
         derived="true"/>
   </eClassifiers>
@@ -98,14 +98,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//VariableDeclaration"
-        derived="true"/>
+        changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureCall" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Argument" upperBound="-1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//ProcedureDeclaration"
-        derived="true"/>
+        changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NestedExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"

@@ -23,19 +23,10 @@
 	
 	<!-- Delete all generated artefacts. -->
 	<target name="Clean">
-		<delete>
+		<delete includeemptydirs="true">
 			<fileset dir="${_basedir}">
-				<!-- these artefacts are not generated -->
-				<exclude name="implementation/siple/*.java"/>
-				<exclude name="implementation/siple/semantics/*.java"/>
-				<exclude name="implementation/beaver/**/*"/>
-				<exclude name="specifications/**/*"/>
-				<!-- all other classes are generated -->
-				<include name="implementation/**/*.java"/>
-				<include name="implementation/**/*.aj"/>
-				<include name="implementation/**/*.xml"/>
-				<include name="implementation/**/*.jadd"/>
-				<include name="implementation/**/*.jrag"/>
+				<!-- all these artefacts are generated -->
+				<include name="src-gen/**/*"/>
 			</fileset>
 		</delete>
 	</target>
@@ -119,7 +110,7 @@
 		/>
 		<jflex
 			file		= "symbols/lexer.jflex"
-			destdir		= "${_basedir}/implementation"
+			destdir		= "${_basedir}/src-gen"
 			nobak		= "on"
 			verbose		= "off"
 		/>
@@ -136,7 +127,7 @@
 		<property name="beaver.available" value="yes"/>
 		<beaver
 			file				= "syntax/parser.beaver"
-			destdir				= "${_basedir}/implementation"
+			destdir				= "${_basedir}/src-gen"
 			compress			= "yes"
 			exportTables		= "no"
 			sortTerminals		= "no"
@@ -152,7 +143,7 @@
 	<target name="JastAdd Semantic">
 		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
 		<jastadd
-			outdir="${_basedir}/implementation"
+			outdir="${_basedir}/src-gen"
 			package="siple.semantics.ast"
 			rewrite		= "true">
 			<fileset dir="${_basedir}/specifications">
@@ -181,7 +172,7 @@
 	<!-- Generate regression test tool support for compiler version 1. -->
 	<target name="RTT JastAdd Integration">
 		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
-		<copy todir="${_basedir}/implementation/rtt/adaptation">
+		<copy todir="${_basedir}/src-gen/rtt/adaptation">
 			<fileset dir="${_basedir}/tests/adaptation/JastAdd">
 				<include name="**/*.aj"/>
 				<include name="**/*.java"/>
@@ -192,7 +183,7 @@
 	<!-- Generate regression test tool support for compiler version 2. -->
 	<target name="RTT EMF Integration">
 		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
-		<copy todir="${_basedir}/implementation/rtt/adaptation">
+		<copy todir="${_basedir}/src-gen/rtt/adaptation">
 			<fileset dir="${_basedir}/tests/adaptation/EMF">
 				<include name="**/*.aj"/>
 				<include name="**/*.java"/>
@@ -210,7 +201,7 @@
 		<echo message="========================> Generate AST Spec &lt;======================="/>
 		<jastemf.ecore2ast
 			modelFile="${_basedir}/specifications/siple/model/siple.ecore"
-			outputDirectory="${_basedir}/implementation/jastemf/adaptation">
+			outputDirectory="${_basedir}/src-gen/jastemf/adaptation">
 		</jastemf.ecore2ast>
 	</target>
 	
@@ -225,7 +216,7 @@
 		<echo message="========================> Generate AST Spec &lt;======================="/>
 		<jastemf.ecore2jrag
 			modelFile="${_basedir}/specifications/siple/model/siple.ecore"
-			outputDirectory="${_basedir}/implementation/jastemf/adaptation">
+			outputDirectory="${_basedir}/src-gen/jastemf/adaptation">
 		</jastemf.ecore2jrag>
 	</target>
 </project>
