@@ -16,5 +16,7 @@ Export-Package: siple.semantics,
  siple.semantics.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.aspectj.runtime
+ org.aspectj.runtime,
+ org.eclipse.emf.edit
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: siple.provider.SIPLEEditPlugin
