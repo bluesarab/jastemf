@@ -50,6 +50,9 @@
     <genClasses ecoreClass="siple.ecore#//Write">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//Write/Expression"/>
     </genClasses>
+    <genClasses ecoreClass="siple.ecore#//Read">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Read/LValue"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="siple.ecore#//Declaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Declaration/Name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Declaration/IsParameterDeclaration"/>
