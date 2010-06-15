@@ -103,13 +103,13 @@ Before we investigate how to generate and use the different SIPLE versions, let 
 
 The following screenshot gives an impression of the example's repository:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_structure.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_structure.png
 
 == Implementation ==
 
 The actual *SIPLE implementation* is in the _"src"_  and _"src-gen"_ source code folders. The contents of _"src-gen"_ will be generated as shown later. Its general package structure is as follows:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_implementation.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_implementation.png
 
  * _src/siple_: Contains a simple `Interpreter` class to execute SIPLE programs from command line. It expects only one argument --- the program file to interpret. Given a program to interpret the class just instantiates a SIPLE parser and lexer, which are used to produce the program's model. Afterwards, the model itself is executed by calling its execution semantics. *Note:* Command line interpretation is not supported for the EMFText version.
  * _src/beaver_: contains source code of the beaver runtime.
@@ -125,7 +125,7 @@ https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_implementation
 
 To generate the desired SIPLE implementation, of course, appropriate specifications are required. Thus, the second important project resource are *SIPLE's specifications*, which are in the _"specifications/siple"_ folder. The specifcations are grouped w.r.t. different implementation concerns. For each concern an equal named folder containing all its specifications exists:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_specifications.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_specifications.png
 
  * _model_: Specification of the SIPLE compiler's API --- i.e. its metamodel (_siple.ecore_) --- and how to generate an appropriate EMF implementation (_siple.genmodel_). Also a diagram of the metamodel is given (_siple.ecorediag_). *Note:* Only the EMF and EMFText version have an Ecore metamodel.
  * _semantics_: Specification of the SIPLE compiler's static semantics and its interpreter functionallities (dynamic/execution semantics). The semantics are separated w.r.t. SIPLE's different semantic concerns, which are name analysis, type analysis, data flow analysis, interpretation and helper methods subsumed in the access support concern. To declare all these concerns a so called compiler core is defined, which specifies the functionallity each concern must support, i.e. the compiler core declares all supported semantics whereas each concern's !JastAdd specification (the _`*`.jrag_ files) specifies it.
@@ -138,7 +138,7 @@ The generation process of a SIPLE version from its respective specifications is 
 
 Another important project resource are test programs that check SIPLE's implementation, especially the correctness of its static semantics. All artefacts related to testing are contained in the _"tests"_ folder, which consists of three subfolders:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_tests.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_tests.png
 
  * _adaptation_: Contains AspectJ aspects, that prepare the !JastAdd and EMF version's implementation for regression tests with RTT. The respective adaptation aspects are copied verbatim into the `rtt.adaptation` package while generating a concrete SIPLE version.
  * _source`_`code`_`examples_: Contains example SIPLE programs used for testing. The programs are classified, whether they are correct or contain static semantic errors. Each program (i.e. testcase) tests a certain aspect of the SIPLE language. All example programs are packed together into a single RTT testsuite.
@@ -150,7 +150,7 @@ Similar to the generation of a SIPLE implementation from its specifications, als
 
 The last important project resource are third party libraries SIPLE depends and which are shipped with it (For a summary of each library's purpose see the table [#Installation above]). They are contained in sub folders of the _"sources"_ directory:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_sources.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_sources.png
 
  * _libraries_: Contains `jar` libraries explicitely called by SIPLE's Ant build scripts or on which SIPLE's implementation depends on.
  * _applications_: Contains third party applications that have to be installed manually as described [#Installation above]. If for any of the _libraries_ folder's `jar` a more comprehensive end user distribution exists, also it is contained.
@@ -201,7 +201,7 @@ It specifies, that:
 
 The following diagram summarises the class hierarchy !JastAdd generates for the specification excerpt:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/jastadd_ast_spec.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/jastadd_ast_spec.png
 
 As can be seen, besides the raw classes, also AST construction, manipulation and traversal methods are generated. They are an important part of the compiler's API.
 
@@ -264,7 +264,7 @@ It is obvious, that !JastAdd AST and `jrag` specifications define the API of the
 
 To generate the !JastAdd version's implementation just open the _"specifications/siple/build.xml"_ Ant script, configure it to be executed within Eclipse's JRE as described [#Configuration above] and execute the _"!JastAdd Version"_ task. After generation the project should be error free (If there are errors remaining, ensure you [#Deployment_and_Configuration installed and configurated] everything correctly). If everything performed well the console output should look like below:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_buildprocess_jastadd_version.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_buildprocess_jastadd_version.png
 
 == Application: Interpretation of SIPLE Programs via Command Line ==
 
@@ -304,7 +304,7 @@ End;
 
 Of course, the interpretation fails. After all the program is erroneous. But it does not fail randomly. It fails with a `siple.semantics.InterpretationException`:
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_interpretation_exception.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_interpretation_exception.png
 
 Let us keep the error, but additionally change the `fac(12)` procedure invocation to `fac(0)`:
 
@@ -347,17 +347,17 @@ The second SIPLE version we investigate is an extension of the just presented [#
 
 == Compiler API: A Quick Look at SIPLE's Ecore Metamodel ==
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_diagram.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_diagram.png
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_tree_editor.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_tree_editor.png
 
 == Generation ==
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_all_dialog.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_all_dialog.png
 
 == Application: Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
 
-https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
 == Conclusion ==
 
