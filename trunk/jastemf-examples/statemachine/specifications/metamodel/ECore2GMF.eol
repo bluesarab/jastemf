@@ -1,0 +1,17 @@
+-- add compound transition labels for transitions
+var transitionLabelMapping = GmfMap!FeatureLabelMapping.all.
+      selectOne(fml|fml.diagramLabel.name="TransitionLabel"); 
+      
+transitionLabelMapping.viewPattern = "{0}[{1}]{2}";
+transitionLabelMapping.editPattern = "{0}[{1}]{2}";
+transitionLabelMapping.editorPattern = "{0}[{1}]{2}";
+
+var reachableToolReferencingMapping = GmfMap!LinkMapping.all.
+	selectOne(lm|lm.tool.title ="Reachable");
+	
+reachableToolReferencingMapping.tool = null;	
+
+var reachableTool = GmfTool!CreationTool.all.
+		selectOne(tool|tool.title = "Reachable");
+
+delete reachableTool;

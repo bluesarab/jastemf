@@ -1,5 +1,19 @@
   StateMachine ::= declarations:Declaration*;
+  
   abstract Declaration;
-  State : Declaration ::= <label:String>;
+
+  State : Declaration ::= <label:String>  [entry:Action];
+  
   Transition : Declaration ::=
-    <label:String> <sourceLabel:String> <targetLabel:String>;
+    <label:String> 
+    <sourceLabel:String> 
+    <targetLabel:String>
+    <guardLabel:String>
+    <actionLabel:String> ;
+  
+  Action ::= 
+  	<actionLabel:String> ;  
+  
+  abstract GuardExpression;
+  
+  abstract ActionExpression;

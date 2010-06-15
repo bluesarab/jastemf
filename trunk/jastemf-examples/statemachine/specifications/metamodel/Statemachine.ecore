@@ -17,7 +17,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//Declaration">
     <eAnnotations source="gmf.link">
-      <details key="label" value="label"/>
+      <details key="label" value="label, guardLabel, actionLabel"/>
+      <details key="label.pattern" value="{0} [ {1} ] {2}"/>
       <details key="source" value="source"/>
       <details key="target" value="target"/>
       <details key="target.decoration" value="arrow"/>
@@ -30,11 +31,18 @@
         derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//State"
         derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guardLabel" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guardExpression" eType="#//GuardExpression">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionExpression" eType="#//ActionExpression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//Declaration">
     <eAnnotations source="gmf.node">
       <details key="label" value="label"/>
-      <details key="label.icon" value="false"/>
+      <details key="label.icon" value="true"/>
       <details key="figure" value="rounded"/>
       <details key="border.color" value="0.0.0"/>
     </eAnnotations>
@@ -49,5 +57,21 @@
         <details key="style" value="dash"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entry" eType="#//Action"
+        containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="actionLabel"/>
+      <details key="label.icon" value="true"/>
+      <details key="figure" value="rounded"/>
+      <details key="border.color" value="255,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionExp" eType="#//ActionExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GuardExpression" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionExpression" abstract="true"/>
 </ecore:EPackage>

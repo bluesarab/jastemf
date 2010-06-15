@@ -29,11 +29,49 @@
         <children
             xsi:type="gmfgraph:Label"
             name="StateLabelFigure"
-            text="State"/>
+            text="State">
+          <maximumSize
+              dx="10000"
+              dy="50"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="StateEntryCompartmentFigure"
+            outline="false"/>
       </actualFigure>
       <accessors
           accessor="getFigureStateLabelFigure"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getStateEntryCompartmentFigure"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="ActionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ActionFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:RGBColor"
+            red="255"
+            green="255"
+            blue="255"/>
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
+        </border>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ActionLabelFigure"
+            text="Action"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureActionLabelFigure"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="TransitionFigure">
@@ -70,17 +108,28 @@
   <nodes
       name="State"
       figure="StateFigure"/>
+  <nodes
+      name="Action"
+      figure="ActionFigure"/>
   <connections
       name="Transition"
       figure="TransitionFigure"/>
   <connections
       name="StateReachable"
       figure="StateReachableFigure"/>
+  <compartments
+      name="StateEntryCompartment"
+      figure="StateFigure"
+      collapsible="true"
+      accessor="//@figures.0/@descriptors.0/@accessors.1"/>
   <labels
       name="StateLabel"
       figure="StateFigure"
-      elementIcon="false"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels
+      name="ActionLabel"
+      figure="ActionFigure"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="TransitionLabel"
       figure="TransitionLabelFigure"

@@ -11,6 +11,15 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
+          title="Action"
+          description="Create new Action">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
           title="State"
           description="Create new State">
         <smallIcon
@@ -23,15 +32,6 @@
         xsi:type="gmftool:ToolGroup"
         title="Connections"
         collapsible="true">
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Reachable"
-          description="Create new Reachable">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Transition"
