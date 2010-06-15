@@ -263,6 +263,12 @@ aspect Interpretation {
 		vm.getStdOut().append(getExpression().Value(vm));
 		vm.getStdOut().append("\n");
 	}
+	public void Read.Interpret(State vm) {
+		if (Declaration() == null)
+			throw new InterpretationException();
+		vm.setValue(Declaration(),
+				ReadDialog.execute(Declaration(), vm.getStdOut().toString()));
+	}
 	public void Expression.Interpret(State vm) {
 		Value(vm); /* May contain procedure calls with side effects. */
 	}

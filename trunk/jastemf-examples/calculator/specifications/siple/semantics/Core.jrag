@@ -71,6 +71,7 @@ aspect NameAnalysis {
 	inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
 	syn VariableDeclaration Reference.Declaration();
 	syn VariableDeclaration VariableAssignment.Declaration();
+	syn VariableDeclaration Read.Declaration();
 }
 
 /**
