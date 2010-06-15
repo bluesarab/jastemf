@@ -8,7 +8,8 @@
   <nodes>
     <containmentFeature
         href="Statemachine.ecore#//StateMachine/declarations"/>
-    <ownedChild>
+    <ownedChild
+        relatedDiagrams="//@diagram">
       <domainMetaElement
           href="Statemachine.ecore#//State"/>
       <labelMappings
@@ -20,26 +21,59 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="Statemachine.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="Statemachine.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
           href="Statemachine.gmfgraph#State"/>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
+            href="Statemachine.ecore#//State/entry"/>
+        <ownedChild>
+          <domainMetaElement
+              href="Statemachine.ecore#//Action"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="Statemachine.gmfgraph#ActionLabel"/>
+            <features
+                href="Statemachine.ecore#//Action/actionLabel"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="Statemachine.gmftool#//@palette/@tools.0/@tools.0"/>
+          <diagramNode
+              href="Statemachine.gmfgraph#Action"/>
+        </ownedChild>
+      </children>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.0">
+        <compartment
+            href="Statemachine.gmfgraph#StateEntryCompartment"/>
+      </compartments>
     </ownedChild>
   </nodes>
   <links>
     <domainMetaElement
         href="Statemachine.ecore#//Transition"/>
     <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="{0}[{1}]{2}"
+        editorPattern="{0}[{1}]{2}"
+        editPattern="{0}[{1}]{2}">
       <diagramLabel
           href="Statemachine.gmfgraph#TransitionLabel"/>
       <features
           href="Statemachine.ecore#//Transition/label"/>
+      <features
+          href="Statemachine.ecore#//Transition/guardLabel"/>
+      <features
+          href="Statemachine.ecore#//Transition/actionLabel"/>
     </labelMappings>
     <containmentFeature
         href="Statemachine.ecore#//StateMachine/declarations"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="Statemachine.gmftool#//@palette/@tools.1/@tools.1"/>
+        href="Statemachine.gmftool#//@palette/@tools.1/@tools.0"/>
     <diagramLink
         href="Statemachine.gmfgraph#Transition"/>
     <sourceMetaFeature
@@ -56,9 +90,6 @@
       <diagramLabel
           href="Statemachine.gmfgraph#StateReachableExternalLabel"/>
     </labelMappings>
-    <tool
-        xsi:type="gmftool:CreationTool"
-        href="Statemachine.gmftool#//@palette/@tools.1/@tools.0"/>
     <diagramLink
         href="Statemachine.gmfgraph#StateReachable"/>
     <linkMetaFeature

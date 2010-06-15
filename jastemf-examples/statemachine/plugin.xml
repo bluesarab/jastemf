@@ -16,5 +16,17 @@
             class="statemachine.StatemachinePackage"
             genModel="specifications/metamodel/Statemachine.genmodel"/>
    </extension>
+   
+     <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.jastemf.org/statemachine"
+            class="statemachine.provider.StatemachineItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
 
 </plugin>

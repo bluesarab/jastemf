@@ -5,7 +5,9 @@
   <declarations xsi:type="stm:State" label="Connected"/>
   <declarations xsi:type="stm:Transition" label="incomming call" source="//@declarations.0" target="//@declarations.1"/>
   <declarations xsi:type="stm:Transition" label="pick handset" source="//@declarations.1" target="//@declarations.2"/>
-  <declarations xsi:type="stm:State" label="Dialing"/>
+  <declarations xsi:type="stm:State" label="Dialing">
+    <entry/>
+  </declarations>
   <declarations xsi:type="stm:Transition" label="pick handset" source="//@declarations.0" target="//@declarations.8"/>
   <declarations xsi:type="stm:Transition" label="callee answers" source="//@declarations.5" target="//@declarations.2"/>
   <declarations xsi:type="stm:State" label="Ready"/>
@@ -13,5 +15,6 @@
   <declarations xsi:type="stm:Transition" label="stop dialing" source="//@declarations.5" target="//@declarations.8"/>
   <declarations xsi:type="stm:Transition" label="hang up" source="//@declarations.2" target="//@declarations.0"/>
   <declarations xsi:type="stm:Transition" label="hang up" source="//@declarations.8" target="//@declarations.0"/>
-  <declarations xsi:type="stm:Transition" label="hang up" source="//@declarations.5" target="//@declarations.0"/>
+  <declarations xsi:type="stm:Transition" label="hang" source="//@declarations.5" target="//@declarations.0" guardLabel="" actionLabel=""/>
+  <declarations xsi:type="stm:Transition" label="self " source="//@declarations.5" target="//@declarations.5" guardLabel="" actionLabel=" goodbye"/>
 </stm:StateMachine>
