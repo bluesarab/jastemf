@@ -6,7 +6,7 @@
 Procedure main() Begin
 	Write id(3);
 	Write fac(12);
-	Write fibunacci(10);
+	Write fibonacci(10);
 	mr(10);
 End;
 
@@ -24,10 +24,10 @@ Procedure fac(Var n:Integer):Integer Begin
 End;
 
 % Fibonacci numbers
-Procedure fibunacci(Var n:Integer):Integer Begin
+Procedure fibonacci(Var n:Integer):Integer Begin
 	Var result:Integer;
 	If (n > 1) 
-		Then result := fibunacci(n-1) + fibunacci(n-2);
+		Then result := fibonacci(n-1) + fibonacci(n-2);
 	Else
 		result := 1;
 	Fi;

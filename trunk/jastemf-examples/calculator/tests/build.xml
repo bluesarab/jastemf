@@ -38,8 +38,6 @@
 				lexer="siple.symbols.SIPLELexer"
 				parser="siple.syntax.SIPLEParser">
 				<classpathElement path="./../../bin"/>
-				<classpathElement path="./../../sources/libraries/beaver-rt.jar"/>
-				<classpathElement path="./../../sources/libraries/aspectjrt.jar"/>
 			</configuration>
 			<testsuite name="correct" overwrite="true">
 				<fileset dir="${_basedir}/tests/source_code_examples/correct" casesensitive="yes">

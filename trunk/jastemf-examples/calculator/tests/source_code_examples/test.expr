@@ -4,16 +4,23 @@
 % Program for ad hoc testing from command line.
 % Can be changed arbitrary; is not part of the test-suite.
 
-Procedure main() Begin
-	Write fibunacci(10);
+Procedure fac(Var n:Integer):Integer Begin
+	If n = 0 Then
+		Return 1;
+	Fi;
+	Return n * fac(n - 1);
 End;
 
-Procedure fibunacci(Var n:Integer):Integer Begin
-	Var result:Integer;
-	If (n > 1) 
-		Then result := fibunacci(n-1) + fibunacci(n-2);
-	Else
-		result := 1;
-	Fi;
-	Return result;
+Procedure main() Begin
+	Var abort:Boolean;
+	abort := false;
+	
+	While Not abort Do
+		Var a:Integer;
+		Read a;
+		If a >= 0 Then
+			Write fac(a);
+		Fi;
+		Read abort;
+	Od;
 End;
