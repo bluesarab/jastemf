@@ -112,8 +112,8 @@ The actual *SIPLE implementation* is in the _"src"_  and _"src-gen"_ source code
 https://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_implementation.png
 
  * _src/siple_: Contains a simple `Interpreter` class to execute SIPLE programs from command line. It expects only one argument --- the program file to interpret. Given a program to interpret the class just instantiates a SIPLE parser and lexer, which are used to produce the program's model. Afterwards, the model itself is executed by calling its execution semantics. *Note:* Command line interpretation is not supported for the EMFText version.
-* _src/beaver_: contains beaver runtime the source code 
-* _src/siple.semantics: contains handwritten helper classes used during siple interpretation, like `State` and `Type` which represent interpreter states and SIPLE types respectively
+ * _src/beaver_: contains source code of the beaver runtime.
+ * _src/siple.semantics_: contains handwritten helper classes required during siple interpretation, like `State` and `Type` which represent interpreter states and SIPLE types respectively.
 
  * _src-gen/siple.semantics.`*`_: These packages contain the generated semantic metamodel implementation .
  * _src-gen/siple.symbols_: Package containing generated artefacts for lexic analysis. *Note:* The EMFText version has no explicit lexic analysis. Its lexic and sytactic analysis are realised as separate Eclipse plugins.
