@@ -15,7 +15,6 @@ import siple.syntax.*;
 import siple.semantics.*;
 import siple.semantics.ast.*;
 import siple.semantics.impl.*;
-import siple.semantics.impl.CompilationUnitImpl;
 
 /**
  * Class for command line {@link #main(String[]) execution} of
@@ -60,7 +59,7 @@ public class Interpreter {
 	throws InterpretationException, IOException, beaver.Parser.Exception {
 		SIPLELexer scanner = new SIPLELexer(new FileReader(program));
 		SIPLEParser parser = new SIPLEParser();
-		CompilationUnitImpl ast = (CompilationUnitImpl)parser.parse(scanner);
+		CompilationUnit ast = (CompilationUnit)parser.parse(scanner);
 		return ast.Interpret();
 	}
 }
