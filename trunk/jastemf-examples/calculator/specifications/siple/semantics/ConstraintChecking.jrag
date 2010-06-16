@@ -20,6 +20,10 @@ aspect ConstraintChecking {
 		return true;
 	}
 	eq ASTNode.IsCorrectLocal() = true;
+	// WORKAROUND: Superfluous equations, required for EMF adaptation:
+	eq CompilationUnit.IsCorrect() = super.IsCorrect();
+	eq Statement.IsCorrect() = super.IsCorrect();
+	eq Statement.IsCorrectLocal() = super.IsCorrectLocal();
 	
 	eq Expression.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
 	eq CompilationUnit.IsCorrectLocal() = MainProcedure() != null;
