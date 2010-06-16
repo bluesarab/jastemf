@@ -89,6 +89,17 @@ aspect TypeAnalysis {
 }
 
 /**
+ * SIPLE programs and program fragments can be statically checked whether
+ * they are valid or not.
+ */
+aspect ConstraintChecking {
+	// Check a program fragment (The construct and its subtree)
+	syn boolean ASTNode.IsCorrect();
+	// Check a program construct (Exculding its subtree)
+	syn boolean ASTNode.IsCorrectLocal();
+}
+
+/**
  * TODO: Add documentation.
  * @author C. Bürger
  */

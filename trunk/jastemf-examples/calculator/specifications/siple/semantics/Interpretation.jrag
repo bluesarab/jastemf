@@ -56,12 +56,12 @@ aspect Interpretation {
 		}
 	}
 	public Object Reference.Value(State vm) {
-		if (Type() != Type.ERROR_TYPE)
-			return vm.lookUpValue(Declaration());
-		throw new InterpretationException();
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
+		return vm.lookUpValue(Declaration());
 	}
 	public Object ProcedureCall.Value(State vm) {
-		if (Type() == Type.ERROR_TYPE)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		Object[] args = new Object[getNumArgument()];
 		for (int i = 0; i < args.length; i++)
@@ -82,29 +82,29 @@ aspect Interpretation {
 		return getExpression().Value(vm);
 	}
 	public Object Not.Value(State vm) {
-		if (Type() == Type.Boolean)
-			return !(Boolean)getOperand().Value(vm);
-		throw new InterpretationException();
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
+		return !(Boolean)getOperand().Value(vm);
 	}
 	public Object UMinus.Value(State vm) {
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
 		if (Type() == Type.Real)
 			return -(Float)getOperand().Value(vm);
-		if (Type() == Type.Integer)
-			return -(Integer)getOperand().Value(vm);
-		throw new InterpretationException();
+		return -(Integer)getOperand().Value(vm);
 	}
 	public Object And.Value(State vm) {
-		if (Type() == Type.Boolean)
-			return (Boolean)getOperand1().Value(vm) && (Boolean)getOperand2().Value(vm);
-		throw new InterpretationException();
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
+		return (Boolean)getOperand1().Value(vm) && (Boolean)getOperand2().Value(vm);
 	}
 	public Object Or.Value(State vm) {
-		if (Type() == Type.Boolean)
-			return (Boolean)getOperand1().Value(vm) || (Boolean)getOperand2().Value(vm);
-		throw new InterpretationException();
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
+		return (Boolean)getOperand1().Value(vm) || (Boolean)getOperand2().Value(vm);
 	}
 	public Object Equal.Value(State vm) {
-		if (Type() != Type.Boolean)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if (getOperand1().Type() == Type.Boolean)
 			return (Boolean)getOperand1().Value(vm) ==
@@ -116,7 +116,7 @@ aspect Interpretation {
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object GreaterThan.Value(State vm) {
-		if (Type() != Type.Boolean)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) >
@@ -125,7 +125,7 @@ aspect Interpretation {
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object LesserThan.Value(State vm) {
-		if (Type() != Type.Boolean)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) <
@@ -134,7 +134,7 @@ aspect Interpretation {
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object GreaterThanEqual.Value(State vm) {
-		if (Type() != Type.Boolean)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) >=
@@ -143,7 +143,7 @@ aspect Interpretation {
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object LesserThanEqual.Value(State vm) {
-		if (Type() != Type.Boolean)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if (getOperand1().Type() == Type.Integer && getOperand2().Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) <=
@@ -152,50 +152,50 @@ aspect Interpretation {
 			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object Addition.Value(State vm) {
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
 		if (Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) +
 				(Integer)getOperand2().Value(vm);
-		if (Type() == Type.Real)
-			return ((Number)getOperand1().Value(vm)).floatValue() +
-				((Number)getOperand2().Value(vm)).floatValue();
-		throw new InterpretationException();
+		return ((Number)getOperand1().Value(vm)).floatValue() +
+			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object Subtraction.Value(State vm) {
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
 		if (Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) -
 				(Integer)getOperand2().Value(vm);
-		if (Type() == Type.Real)
-			return ((Number)getOperand1().Value(vm)).floatValue() -
-				((Number)getOperand2().Value(vm)).floatValue();
-		throw new InterpretationException();
+		return ((Number)getOperand1().Value(vm)).floatValue() -
+			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object Multiplication.Value(State vm) {
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
 		if (Type() == Type.Integer)
 			return (Integer)getOperand1().Value(vm) *
 				(Integer)getOperand2().Value(vm);
-		if (Type() == Type.Real)
-			return ((Number)getOperand1().Value(vm)).floatValue() *
-				((Number)getOperand2().Value(vm)).floatValue();
-		throw new InterpretationException();
+		return ((Number)getOperand1().Value(vm)).floatValue() *
+			((Number)getOperand2().Value(vm)).floatValue();
 	}
 	public Object Division.Value(State vm) {
+		if (!IsCorrectLocal())
+			throw new InterpretationException();
 		if (Type() == Type.Integer)
 			if ((Integer)getOperand2().Value(vm) != 0)
 				return (Integer)getOperand1().Value(vm) /
 					(Integer)getOperand2().Value(vm);
 			else throw new InterpretationException("Devision by zero.");
-		if (Type() == Type.Real)
-			if (((Number)getOperand2().Value(vm)).floatValue() != 0)
-				return ((Number)getOperand1().Value(vm)).floatValue() /
-					((Number)getOperand2().Value(vm)).floatValue();
-			else throw new InterpretationException("Devision by zero.");
-		throw new InterpretationException();
+		if (((Number)getOperand2().Value(vm)).floatValue() != 0)
+			return ((Number)getOperand1().Value(vm)).floatValue() /
+				((Number)getOperand2().Value(vm)).floatValue();
+		else throw new InterpretationException("Devision by zero.");
 	}
 	
 	/** Program Interpretation */
 	
 	eq CompilationUnit.Interpret() {
-		if (MainProcedure() == null)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		State vm = new State();
 		// Allocate all global variables:
@@ -209,11 +209,11 @@ aspect Interpretation {
 	}
 	
 	public void ProcedureDeclaration.Interpret(State vm) {
-		if (LookUpPDecl(getName()).size() >= 2)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 	}
 	public void VariableDeclaration.Interpret(State vm) {
-		if (LookUpVDecl(getName()).size() >= 2)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		switch (Type()) {
 		case Boolean: vm.allocateVariable(this, false); break;
@@ -229,7 +229,7 @@ aspect Interpretation {
 		}
 	}
 	public void If.Interpret(State vm) {
-		if (getCondition().Type() != Type.Boolean)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if ((Boolean)getCondition().Value(vm))
 			getBody().Interpret(vm);
@@ -237,7 +237,7 @@ aspect Interpretation {
 			getAlternative().Interpret(vm);
 	}
 	public void While.Interpret(State vm) {
-		if (getCondition().Type() != Type.Boolean)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		while ((Boolean)getCondition().Value(vm)) {
 			getBody().Interpret(vm);
@@ -246,25 +246,25 @@ aspect Interpretation {
 		}
 	}
 	public void VariableAssignment.Interpret(State vm) {
-		if (Type() == Type.ERROR_TYPE)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		vm.setValue(Declaration(), getRValue().Value(vm));
 	}
 	public void ProcedureReturn.Interpret(State vm) {
-		if (Type() == Type.ERROR_TYPE)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if (hasExpression())
 			vm.setReturnValue(getExpression().Value(vm));
 		else vm.setReturnValue(Type.Undefined);
 	}
 	public void Write.Interpret(State vm) {
-		if (getExpression().Type() == Type.ERROR_TYPE)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		vm.getStdOut().append(getExpression().Value(vm));
 		vm.getStdOut().append("\n");
 	}
 	public void Read.Interpret(State vm) {
-		if (Declaration() == null)
+		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		vm.setValue(Declaration(),
 				ReadDialog.execute(Declaration(), vm.getStdOut().toString()));
