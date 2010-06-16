@@ -71,7 +71,16 @@
 				<exclude name="**/org/jastemf/ant/*.class"/>
 			</fileset>
 		</jar>
-		
+		<move
+			file="${_basedir}/temp/jastemf-ant-tasks.jar"
+			todir="${_basedir}/"
+			overwrite="true"
+		/>
+		<move
+				file="${_basedir}/temp/jastadd-ant-tasks.jar"
+				todir="${_basedir}/"
+				overwrite="true"
+		/>
 		<delete dir="${_basedir}/temp"/>
 	</target>
 	
@@ -106,6 +115,10 @@
 				<include name="jastemf_src.zip"/>
 				<include name="JavaDoc/**/*"/>
 			</fileset>
+			<fileset dir="${_basedir}">
+				<include name="*ant-tasks.jar"/>
+			</fileset>
+						
 		</delete>
 	</target>
 	
