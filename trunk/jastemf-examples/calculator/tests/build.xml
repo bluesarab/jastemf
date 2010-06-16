@@ -29,16 +29,28 @@
 	<!-- Create testsuites -->
 	<target name="Testsuite">
 		<createArchive
-			path="${_basedir}/tests/testsuites"
-			name="SIPLE_Reggression_Tests.zip"
+			archive="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
 			overwrite="false"
-			defaultConfiguration="JastAdd">
+			defaultConfiguration="JastAdd"
+			log="${_basedir}/tests/testsuites/log.xml">
+		</createArchive>
+		<updateConfigurations
+			archive="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
+			log="${_basedir}/tests/testsuites/log.xml">
 			<configuration
 				name="JastAdd"
 				lexer="siple.symbols.SIPLELexer"
 				parser="siple.syntax.SIPLEParser">
 				<classpathElement path="./../../bin"/>
 			</configuration>
+		</updateConfigurations>
+	</target>
+	
+	<!-- Update testcases -->
+	<target name="Testcases">
+		<updateArchive
+			archive="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
+			log="${_basedir}/tests/testsuites/log.xml">
 			<testsuite name="correct" overwrite="true">
 				<fileset dir="${_basedir}/tests/source_code_examples/correct" casesensitive="yes">
 					<include name="*.expr"/>
@@ -49,30 +61,27 @@
 					<include name="*.expr"/>
 				</fileset>
 			</testsuite>
-		</createArchive>
-		<antcall target="Log"/>
+		</updateArchive>
 	</target>
 	
 	<!-- Update testresults -->
 	<target name="Testresults">
-		<regenerateTests
-			path="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
+		<updateTests
+			archive="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
 			configuration="JastAdd"
-			overwrite="false"
+			log="${_basedir}/tests/testsuites/log.xml"
 		/>
-		<antcall target="Log"/>
 	</target>
 	
 	<!-- Execute all tests -->
 	<target name="Test">
-		<runTests>
+		<runTests log="${_basedir}/tests/testsuites/log.xml">
 			<test
-				path="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
+				archive="${_basedir}/tests/testsuites/SIPLE_Reggression_Tests.zip"
 				configuration="JastAdd"
 				matching="false"
 			/>
 		</runTests>
-		<antcall target="Log"/>
 	</target>
 	
 	<!-- Export the testsuite's log -->
