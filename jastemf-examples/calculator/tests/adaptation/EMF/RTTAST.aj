@@ -92,6 +92,14 @@ public aspect RTTAST {
 	declare @method:
 		public * ExpressionImpl+.getType() : @Parser.Node.Compare;
 	
+	/** Constraint Checking */
+	
+	// Compare programs' correctness:
+	declare @method:
+		public * ASTNode+.isIsCorrect() : @Parser.Node.Compare;
+	declare @method:
+		public * ASTNode+.isIsCorrectLocal() : @Parser.Node.Compare;
+	
 	/** Interpretation */
 	
 	// Compare expressions' constant folding:

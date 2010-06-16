@@ -64,7 +64,7 @@ aspect TypeAnalysis {
 	eq UMinus.Type() = getOperand().Type() == Type.Boolean || getOperand().Type() == Type.Undefined ?
 			Type.ERROR_TYPE :
 			getOperand().Type();
-	eq Not.Type() = getOperand().Type() == Type.Boolean || getOperand().Type() == Type.Undefined ?
+	eq Not.Type() = getOperand().Type() == Type.Boolean ?
 			Type.Boolean :
 			Type.ERROR_TYPE;
 	eq Or.Type() = getOperand1().Type() == Type.Boolean && getOperand2().Type() == Type.Boolean ?
