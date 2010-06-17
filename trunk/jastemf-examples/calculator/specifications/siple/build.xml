@@ -72,8 +72,8 @@
 	</target>
 	
 	<!--
-		Generate the AntLR lexer and parser and the Eclipse editor used by the
-		compiler version 3.
+		Generate the AntLR lexer and parser and the Eclipse editor used by SIPLE
+		version 3.
 		
 		Two plugin projects required by the EMFText implementation will be
 		generated. The first plugin "siple.semantics.resource.expr" is the
@@ -100,7 +100,7 @@
 		<eclipse.refreshLocal depth="infinite" resource="/"/>
 	</target>
 	
-	<!-- Generate the lexer used by the compiler versions 1 and 2. -->
+	<!-- Generate the lexer used by SIPLE versions 1 and 2. -->
 	<target name="JFlex Lexer">
 		<echo message="========================> Generate JFlex Lexer &lt;========================"/>
 		<taskdef
@@ -116,7 +116,7 @@
 		/>
 	</target>
 	
-	<!-- Generate the parser used by the compiler versions 1 and 2. -->
+	<!-- Generate the parser used by SIPLE version 1 and 2. -->
 	<target name="Beaver Parser">
 		<echo message="========================> Generate Beaver Parser &lt;======================"/>
 		<taskdef
@@ -139,7 +139,7 @@
 		/>
 	</target>
 	
-	<!-- Generate the semantic evaluator used by the compiler version 1. -->
+	<!-- Generate the semantic evaluator used by SIPLE version 1. -->
 	<target name="JastAdd Semantic">
 		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
 		<jastadd
@@ -154,7 +154,7 @@
 		</jastadd>
 	</target>
 	
-	<!-- Generate the semantic evaluator used by the compiler version 2 and 3. -->
+	<!-- Generate the semantic evaluator used by SIPLE version 2 and 3. -->
 	<target name="EMF Semantic">
 		<echo message="========================> Generate EMF Semantic &lt;======================="/>
 		<jastemf
