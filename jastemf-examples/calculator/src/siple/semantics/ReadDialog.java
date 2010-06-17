@@ -25,10 +25,13 @@ public class ReadDialog {
 	 * produced, output.
 	 * @return A valid value for the given variable.
 	 */
-	public static Object execute(VariableDeclaration toRead, String vmOutput) {
+	public synchronized static Object execute(VariableDeclaration toRead, String vmOutput) {
 		result = null;
 		new ReadDialog(toRead, vmOutput);
-		while(result == null) {}
+		while(result == null) {
+			try {Thread.currentThread().sleep(300);}
+			catch(InterruptedException ex) {}
+		}
 		return result;
 	}
 	
