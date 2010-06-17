@@ -94,8 +94,8 @@ Further steps, how to deploy and use generated implementations, are given in the
 = Project Repository Overview =
 
 Before we investigate how to generate and use the different SIPLE versions, let us take a short look on the project's structure. The project consists of five relevant resources:
- * SIPLE generated implementation (source code folder _"src-gen"_)
- * SIPLE hand-written implementation (source code folder _"src"_)
+ * Generated SIPLE implementation parts (source code folder _"src-gen"_)
+ * Hand-written SIPLE implementation parts (source code folder _"src"_)
  * Required libraries and other resources (folder _"sources"_)
  * SIPLE specifications (folder _"specifications"_)
  * SIPLE regression tests (folder _"tests"_)
