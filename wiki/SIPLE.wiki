@@ -348,7 +348,11 @@ The second SIPLE version we investigate is an extension of the just presented [#
 
 == Compiler API: A Quick Look at SIPLE's Ecore Metamodel ==
 
+If we like to integrate SIPLE into the EMF world and take advantage of other EMF tools, we must provide an appropriate Ecore Metamodel. Of course, we already know its components and functionalities from the compiler core specified using JastAdd and presented in the previous section. The following screenshot shows the corresponding Ecore specification's diagram (_"specifications/siple/model/siple.ecorediag"_):
+
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_diagram.png
+
+The specification the diagram is based on is the _"specifications/siple/model/siple.ecore"_. Consider the following excerpt of it shown in Eclipse's _Sample Ecore Model Editor_:
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_tree_editor.png
 
