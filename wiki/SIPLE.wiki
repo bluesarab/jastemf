@@ -384,6 +384,12 @@ Eclipse's standard EMF tooling will generate two plugin projects (_siple.editor_
 
 == Application: Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
 
+The Eclipse editor, generated in the previous section, is based on the JastEMF integrated SIPLE implementation. Thus, one can browse the semantics of SIPLE programs edited within it. All static semantics --- i.e. derived properties and non-containment references --- declared in the metamodel, can be investigated in Eclipse's properties view while editing a program model.
+
+To use the editor, it must be deployed as Eclipse plugin. We avaoid any deployment process and just start an appropriate configured Eclipse by selecting _Launch an Eclipse application_ within the _Overview_ tab of the _siple.editor_ plugin's _"plugin.xml"_. *Note:* If you have other projects in your workspace, that are erroneous, you will get an error message. Just ignore it and select _Proceed_.
+
+Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models via the SIPLE model editor and the _EMF Model Creation Wizard_ (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => _).
+
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
 == Conclusion ==
