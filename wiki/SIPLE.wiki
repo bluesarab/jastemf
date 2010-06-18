@@ -370,7 +370,7 @@ Summing up, the metamodels' abstract syntax and the !JastAdd AST specifications 
 
 *Note:* The mapping between !JastAdd and Ecore is not necessary bijective. Whereas the semantics' !JastAdd specifications must be complete, the focus of metamodels is only to specify the interface important for users. Thus, many attributes --- e.g. ones that are only used to ease the specification of complicated semantics --- may not be specified in the Ecore metamodel. Nethertheless, the specified !JastAdd AST structure and the metamodel's abstract syntax must be isomorph.
 
-Details about the mapping between !JastAdd and Ecore can be found [Mapping here] (*TODO* The mapping page is still under development). We also strongly recommend the tutorial reader to take some time and explore SIPLE's !JastAdd specifications --- especially the compiler core (_"specifications/siple/semantics/Core.jrag"_) --- and its metamodel to get some feeling for the mapping between !JastAdd and Ecore and how !JastAdd is used to specify metamodel semantics.
+Details about the mapping between !JastAdd and Ecore can be found [Mapping here] (*TODO* The mapping page is still under development). We also strongly recommend the tutorial reader to take some time and explore SIPLE's !JastAdd specifications --- especially the compiler core (_"specifications/siple/semantics/Core.jrag"_) --- and its metamodel to get a feeling for the mapping between !JastAdd and Ecore and how !JastAdd is used to specify metamodel semantics.
 
 == Generation ==
 
