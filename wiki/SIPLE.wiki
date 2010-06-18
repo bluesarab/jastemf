@@ -368,15 +368,15 @@ It becomes obvious, that:
 
 Summing up, the metamodels' abstract syntax and the !JastAdd AST specifications must be isomorph and the semantics of derived properties, non-containment references and operations of the metamodel must be specified by appropriate attributes (Or methods woven by !JastAdd).
 
-*Note:* The mapping between !JastAdd and Ecore is not necessary bijective. Whereas the semantics' !JastAdd specifications must be complete, the focus of metamodels is only to specify the interface important for users. Thus, many attributes --- e.g. ones that are only used to ease the specification of complicated semantics --- may not be specified in the Ecore metamodel. Nethertheless, the specified !JastAdd AST structure and the metamodel's abstract syntax must be isomorph.
+*Note:* The mapping between !JastAdd and Ecore is not necessary bijective. Whereas the semantics' !JastAdd specifications must be complete, the focus of metamodels is to specify only the interface important for users. Thus, many attributes --- e.g. ones that are used to ease the specification of complicated semantics --- may not be specified in the Ecore metamodel. Nethertheless, the specified !JastAdd AST structure and the metamodel's abstract syntax must be isomorph.
 
 Details about the mapping between !JastAdd and Ecore can be found [Mapping here] (*TODO* The mapping page is still under development). We also strongly recommend the reader to take some time and explore SIPLE's !JastAdd specifications --- especially the compiler core (_"specifications/siple/semantics/Core.jrag"_) --- and its metamodel to get a feeling for the mapping between !JastAdd and Ecore and how !JastAdd is used to specify metamodel semantics.
 
 == Generation ==
 
-It should be clear by now, that SIPLE is a valid [Approach#Integration_Projects JastEMF integration project]. To generate its Ecore metamodel implementation and !JastAdd semantics and perform the integration, again the _"specifications/build.xml"_ Ant build script can be used. Of course, this time the _"EMF Version"_ task must be executed. [#Configuration As used to], the script must be executed within Eclipse's JRE.
+It should be clear by now, that SIPLE is a valid [Approach#Integration_Projects JastEMF integration project]. To generate its Ecore metamodel implementation and !JastAdd semantics and perform the integration, again the _"specifications/build.xml"_ Ant build script is used. Of course, this time the _"EMF Version"_ task must be executed. [#Configuration As used to], the script must be executed within Eclipse's JRE.
 
-Even if the generated implementation already is a valid metamodel and semantics implementation, it still does not provide any means (besides the standard model factories) to construct program models or investigate them. Therefore, we like to generate an Eclipse editor, that can be used to construct, manipulate and investigate SIPLE programs. To generate such an Eclipse model editor, open the metamodel's generator model (_"specifications/siple/model/siple.genmodel"_), right click its root element and select _Generate All_ as shown below:
+Even if the generated implementation already is a valid metamodel and semantics implementation, it still does not provide any means (besides the standard model factories) to construct program models or investigate them. Therefore, we like to generate an Eclipse editor, that can be used to construct, manipulate and investigate SIPLE programs. To generate the Eclipse model editor, open the metamodel's generator model (_"specifications/siple/model/siple.genmodel"_), right click its root element and select _Generate All_ as shown below:
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_all_dialog.png
 
@@ -384,11 +384,15 @@ Eclipse's standard EMF tooling will generate two plugin projects (_siple.editor_
 
 == Application: Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
 
-The Eclipse editor, generated in the previous section, is based on the JastEMF integrated SIPLE implementation. Thus, one can browse the semantics of SIPLE programs edited within it. All static semantics --- i.e. derived properties and non-containment references --- declared in the metamodel, can be investigated in Eclipse's properties view while editing a program model.
+The Eclipse editor, generated in the previous section, is based on the JastEMF integrated SIPLE implementation. Thus, one can browse SIPLE programs' static semantics --- i.e. derived properties and non-containment references --- while editing them.
 
-To use the editor, it must be deployed as Eclipse plugin. We avaoid any deployment process and just start an appropriate configured Eclipse by selecting _Launch an Eclipse application_ within the _Overview_ tab of the _siple.editor_ plugin's _"plugin.xml"_. *Note:* If you have other projects in your workspace, that are erroneous, you will get an error message. Just ignore it and select _Proceed_.
+To use the editor, it must be deployed as Eclipse plugin. We avaoid any deployment process and just start an appropriate configured Eclipse by selecting _Launch an Eclipse application_ within the _Overview_ tab of the _siple.editor_ plugin's _"plugin.xml"_. 
 
-Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models via the SIPLE model editor and the _EMF Model Creation Wizard_ (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => _).
+*Note:* If you have other projects in your workspace, that are erroneous, you will get an error message. Just ignore it and select _Proceed_.
+
+Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named _"mymodel.siple"_ and do an example editor session.
+
+First we create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => _).
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
