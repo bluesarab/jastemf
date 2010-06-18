@@ -358,15 +358,17 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/metamodel_tree_editor.png
 
 It becomes obvious, that:
 
- * All AST node types have to be modelled as metaclasses.
- * The subtypes of an AST node type have to inherit from its metaclass in the metamodel.
- * AST terminals are *non-derived* attributes of equal type in the metamodel (To avoid confusion, we call in the following Ecore attributes properties).
- * Child nodes are *non-derived* *containment* references of equal type in the metamodel.
- * Parameterless attributes are *derived* properties of equal type in the metamodel.
- * Attributes with parameters have to be modeled as operations with equal signature in the metamodel.
- * Reference attributes are *derived* *non-containment* references in the metamodel.
+ * All AST node types have to be modelled as *metaclasses*. Abstract AST node types must also be *abstract metaclasses* in the metamodel.
+ * The subtypes of an AST node type have to *inherit* from its metaclass in the metamodel.
+ * AST terminals are *non-derived properties* of equal type in the metamodel (To avoid confusion, we call Ecore attributes properties).
+ * Child nodes are *non-derived containment references* of equal type in the metamodel.
+ * Parameterless attributes are *derived properties* of equal type in the metamodel.
+ * Attributes with parameters have to be modeled as *operations* with equal signature in the metamodel.
+ * Reference attributes are *derived non-containment references* in the metamodel.
 
-The metamodels' abstract syntax and the JastAdd AST specifications must be isomorph and the semantics of derived properties, non-containment references and operations of the metamodel must be specified by appropriate attributes (Or methods woven by JastAdd).
+Summing up, the metamodels' abstract syntax and the JastAdd AST specifications must be isomorph and the semantics of derived properties, non-containment references and operations of the metamodel must be specified by appropriate attributes (Or methods woven by JastAdd).
+
+
 
 == Generation ==
 
