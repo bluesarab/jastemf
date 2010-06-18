@@ -370,11 +370,17 @@ Summing up, the metamodels' abstract syntax and the !JastAdd AST specifications 
 
 *Note:* The mapping between !JastAdd and Ecore is not necessary bijective. Whereas the semantics' !JastAdd specifications must be complete, the focus of metamodels is only to specify the interface important for users. Thus, many attributes --- e.g. such ones that are only used to ease the specification of complicated semantics --- may not be specified in the Ecore metamodel. Nethertheless, the specified !JastAdd AST structure and the metamodel's abstract syntax must be isomorph.
 
-Details about the mapping between !JastAdd and Ecore can be found [Mapping here] (*TODO* The mapping page is still under development). We also strongly recommend the tutorial reader to take some time and explore SIPLE's !JastAdd specifications --- especially the compiler core (_"specifications/siple/semantics/Core.jrag"_) --- and its metamodel, so he gets some feeling for the mapping between !JastAdd and Ecore and how !JastAdd is used to specify metamodel semantics.
+Details about the mapping between !JastAdd and Ecore can be found [Mapping here] (*TODO* The mapping page is still under development). We also strongly recommend the tutorial reader to take some time and explore SIPLE's !JastAdd specifications --- especially the compiler core (_"specifications/siple/semantics/Core.jrag"_) --- and its metamodel to get some feeling for the mapping between !JastAdd and Ecore and how !JastAdd is used to specify metamodel semantics.
 
 == Generation ==
 
+It should be clear by now, that SIPLE is a valid [Approach#Integration_Projects JastEMF integration project]. To generate its Ecore metamodel implementation and !JastAdd semantics and perform the integration, again the _"specifications/build.xml"_ Ant build script can be used. Of course, this time _"EMF Version"_ task must be executed. [#Configuration As used to], the script must be executed within Eclipse's JRE.
+
+Even if the generated implementation already is a valid metamodel and semantics implementation, it still does not provide any means (beside the standard model factories) to construct program models or investigate them. Therefore, we like to generate an Eclipse editor, that can be used to construct, manipulate and investigate SIPLE programs. To generate such an Eclipse model editor, open the metamodel's generator model (_"specifications/siple/model/siple.genmodel"_), right click its root element and select _Generate All_ as shown below:
+
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_all_dialog.png
+
+Eclipse's standard EMF tooling will generate three plugin projects (_siple.editor_, _siple.tests_).
 
 == Application: Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
 
