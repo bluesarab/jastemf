@@ -10,18 +10,10 @@
 
 <plugin>
 
-	
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://siple/1.0"
-            class="siple.semantics.meta.semanticsPackage"
-            genModel="model/siple.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+<extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://siple/1.0"
-            class="siple.semantics.provider.semanticsItemProviderAdapterFactory"
+            class="siple.semantics.provider.SemanticsItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -33,8 +25,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://siple/1.0"
-            class="siple.semantics.meta.semanticsPackage"
-            genModel="specifications/siple/model/siple.genmodel"/>
+            class="siple.semantics.meta.SemanticsPackage"
+            genModel="model/siple.genmodel"/>
    </extension>
+   
+
+
 
 </plugin>

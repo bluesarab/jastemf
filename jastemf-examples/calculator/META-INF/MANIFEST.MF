@@ -3,20 +3,20 @@ Bundle-ManifestVersion: 2
 Bundle-Name: JastEMF SIPLE Example
 Bundle-SymbolicName: siple;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-ClassPath: .,
- sources/libraries/beaver-rt.jar
+Bundle-ClassPath: .
 Bundle-Vendor: Software Technology Group
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: siple.semantics,
+Export-Package: siple.provider,
+ siple.semantics,
  siple.semantics.ast,
  siple.semantics.impl,
  siple.semantics.interfaces,
  siple.semantics.meta,
+ siple.semantics.provider,
  siple.semantics.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.aspectj.runtime,
  org.eclipse.emf.edit
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: siple.provider.SIPLEEditPlugin
