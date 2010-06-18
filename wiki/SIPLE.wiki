@@ -390,9 +390,8 @@ To use the editor, it must be deployed as Eclipse plugin. We avaoid any deployme
 
 *Note:* If you have other projects in your workspace, that are erroneous, you will get an error message. Just ignore it and select _Proceed_.
 
-Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named _"mymodel.siple"_ and do an example editor session.
-
-First we create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => _).
+Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named _"mymodel.siple"_ and do an example editor session:
+ # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => _)
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
