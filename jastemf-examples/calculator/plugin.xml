@@ -10,7 +10,7 @@
 
 <plugin>
 
-<extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://siple/1.0"
             class="siple.semantics.provider.SemanticsItemProviderAdapterFactory"
@@ -26,10 +26,7 @@
       <package
             uri="http://siple/1.0"
             class="siple.semantics.meta.SemanticsPackage"
-            genModel="model/siple.genmodel"/>
+            genModel="specifications/siple/model/siple.genmodel"/>
    </extension>
-   
-
-
 
 </plugin>

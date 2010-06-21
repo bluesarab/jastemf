@@ -76,10 +76,10 @@ RULES {
 	@operator(type="binary_left_associative",weight="202",identifier="Expression")
 	Division ::= Operand1 "/" Operand2;
 	
-	@operator(type="unary",weight="301",identifier="Expression")
+	@operator(type="unary_prefix",weight="301",identifier="Expression")
 	Not ::= "Not" Operand;
 	
-	@operator(type="unary",weight="302",identifier="Expression")
+	@operator(type="unary_prefix",weight="302",identifier="Expression")
 	UMinus ::= "-" Operand;
 	
 	@operator(type="primitive",weight="303",identifier="Expression")
