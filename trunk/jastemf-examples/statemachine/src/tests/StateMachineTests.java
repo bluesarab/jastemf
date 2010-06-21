@@ -2,10 +2,8 @@ package tests;
 
 import junit.framework.TestCase;
 import statemachine.ast.Opt;
-import statemachine.impl.ActionExpressionImpl;
 import statemachine.impl.ActionImpl;
 import statemachine.impl.DeclarationImpl;
-import statemachine.impl.GuardExpressionImpl;
 import statemachine.impl.StateImpl;
 import statemachine.impl.StateMachineImpl;
 import statemachine.impl.TransitionImpl;
