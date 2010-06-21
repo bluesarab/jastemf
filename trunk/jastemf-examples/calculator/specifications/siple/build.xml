@@ -53,6 +53,8 @@
 		<echo message="||                           (EMF Version)                            ||"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="========================================================================"/>
+		<!-- Clean before building to avoid errors due to refactoring -->
+		<antcall target="Clean"/>
 		<antcall target="JFlex Lexer"/>
 		<antcall target="Beaver Parser"/>
 		<antcall target="EMF Semantic"/>
@@ -67,6 +69,8 @@
 		<echo message="||                         (EMFText Version)                          ||"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="========================================================================"/>
+		<!-- Clean before building to avoid errors due to refactoring -->
+		<antcall target="Clean"/>
 		<antcall target="EMF Semantic"/>
 		<antcall target="EMFText Resources"/>
 	</target>
@@ -158,6 +162,7 @@
 	<target name="EMF Semantic">
 		<echo message="========================> Generate EMF Semantic &lt;======================="/>
 		<jastemf
+			generateeditcode="true"
 			genmodel="${_basedir}/specifications/siple/model/siple.genmodel"
 			outpackage="jastemf.adaptation"
 			astpackage="siple.semantics.ast">
