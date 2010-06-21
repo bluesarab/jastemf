@@ -1,0 +1,16 @@
+
+
+aspect SipleComposition {
+
+	public Statement Action.getActionStatement() {
+		return new statemachine.siple.ParserHelper().parseStatement(eResource(), getActionLabel());
+	}
+	
+	public Expression Transition.getGuardExpression() {
+		return new statemachine.siple.ParserHelper().parseExpression(eResource(), getGuardLabel());
+	}
+	
+	public Statement Transition.getActionStatement() {
+		return new statemachine.siple.ParserHelper().parseStatement(eResource(), getActionLabel());
+	}
+}

@@ -1,0 +1,52 @@
+«IMPORT statemachine»
+«EXTENSION statemachine::siple::codegeneration::Extensions»
+
+«DEFINE main(String outpath) FOR StateMachine»
+	«FILE outpath»
+Procedure main() Begin
+	% --- Statemachine Variables ---
+	«EXPAND printGlobalVariables FOREACH this.machineVariables»
+	% --- State Procedures ---
+	«EXPAND printStateProcedure FOREACH  this.declarations.typeSelect(statemachine::State)»
+	% --- Transition Procedures ---
+	«EXPAND printTransitionProcedure FOREACH  this.declarations.typeSelect(statemachine::Transition)»
+	«EXPAND printLeaveProcedure(this) FOREACH  this.declarations.typeSelect(statemachine::State)»
+		
+End;
+
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE printStateProcedure FOR State»
+	Procedure «this.label.convertToValidOperationname()»() Begin
+		«this.entry.actionLabel»
+		leave«this.label.convertToValidOperationname()»
+	End;
+«ENDDEFINE»
+
+«DEFINE printLeaveProcedure(StateMachine sm) FOR State»
+	Procedure leave«this.label.convertToValidOperationname()»() Begin
+		«FOREACH sm.declarations.typeSelect(Transition).select(t|t.source == this) AS transition»
+		If trigger = «transition.label» Then
+			«IF transition.guardLabel != null && transition.guardLabel.trim().length > 0»
+				If «transition.guardLabel» Then
+			«ENDIF»
+			 	«transition.source.label.convertToValidOperationname()»_«transition.label.convertToValidOperationname()»_«transition.target.label.convertToValidOperationname()»();
+			«IF transition.guardLabel != null && transition.guardLabel.trim().length > 0»
+				Fi;
+			«ENDIF»
+		Fi;	
+		«ENDFOREACH»
+	End;
+«ENDDEFINE»
+
+«DEFINE printTransitionProcedure FOR Transition»
+	Procedure «this.source.label.convertToValidOperationname()»_«this.label.convertToValidOperationname()»_«this.target.label.convertToValidOperationname()»() Begin
+		«this.actionLabel»
+		«this.target.label»();		
+	End;
+«ENDDEFINE»
+
+«DEFINE printGlobalVariables FOR StateMachineVariable»
+	Var «this.name» : «this.type»;
+«ENDDEFINE»

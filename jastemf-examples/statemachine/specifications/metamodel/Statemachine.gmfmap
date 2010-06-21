@@ -52,14 +52,39 @@
       </compartments>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="Statemachine.ecore#//StateMachine/machineVariables"/>
+    <ownedChild>
+      <domainMetaElement
+          href="Statemachine.ecore#//StateMachineVariable"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="{0}:{1}"
+          editorPattern="{0}:{1}"
+          editPattern="{0}:{1}">
+        <diagramLabel
+            href="Statemachine.gmfgraph#StateMachineVariableLabel"/>
+        <features
+            href="Statemachine.ecore#//StateMachineVariable/name"/>
+        <features
+            href="Statemachine.ecore#//StateMachineVariable/type"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="Statemachine.gmftool#//@palette/@tools.0/@tools.2"/>
+      <diagramNode
+          href="Statemachine.gmfgraph#StateMachineVariable"/>
+    </ownedChild>
+  </nodes>
   <links>
     <domainMetaElement
         href="Statemachine.ecore#//Transition"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
-        viewPattern="{0}[{1}]{2}"
-        editorPattern="{0}[{1}]{2}"
-        editPattern="{0}[{1}]{2}">
+        viewPattern="{0} [{1}] {2}"
+        editorPattern="{0} [{1}] {2}"
+        editPattern="{0} [{1}] {2}">
       <diagramLabel
           href="Statemachine.gmfgraph#TransitionLabel"/>
       <features

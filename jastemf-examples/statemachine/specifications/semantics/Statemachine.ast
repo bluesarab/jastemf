@@ -1,6 +1,12 @@
-  StateMachine ::= declarations:Declaration*;
+  StateMachine ::= declarations:Declaration* machineVariables:StateMachineVariable*;
   
   abstract Declaration;
+  
+  StateMachineVariable ::=
+  	  <name:String> 
+  	  <type:String> 
+  ;
+  
 
   State : Declaration ::= <label:String>  [entry:Action];
   
@@ -14,6 +20,3 @@
   Action ::= 
   	<actionLabel:String> ;  
   
-  abstract GuardExpression;
-  
-  abstract ActionExpression;

@@ -1,9 +1,7 @@
 package exampleprogs;
 
 import statemachine.ast.Opt;
-import statemachine.impl.ActionExpressionImpl;
 import statemachine.impl.ActionImpl;
-import statemachine.impl.GuardExpressionImpl;
 import statemachine.impl.StateImpl;
 import statemachine.impl.StateMachineImpl;
 import statemachine.impl.TransitionImpl;
@@ -18,11 +16,15 @@ public class MainProgram {
 		m.adddeclarations(new StateImpl("S3", new Opt<ActionImpl>(null)));
 		m.adddeclarations(new TransitionImpl("a", "S1", "S2", "", ""));
 		m.adddeclarations(new TransitionImpl("b", "S2", "S1", "", ""));
-		m.adddeclarations(new TransitionImpl("a", "S2", "S3", "", ""));
+		TransitionImpl transition = new TransitionImpl("a", "S2", "S3", "a+b", "Write t;");
+		m.adddeclarations(transition);
 
+		
 		// Print reachable information for all states
 		m.printReachable();
-
+		
+		System.out.println("Parsed transition Action: " + transition.getActionStatement());
+		System.out.println("Parsed transiton Guard: " + transition.getGuardExpression());
 	}
 
 }

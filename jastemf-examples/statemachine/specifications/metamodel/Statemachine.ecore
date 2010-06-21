@@ -11,6 +11,10 @@
     <eOperations name="printReachable" lowerBound="1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
         eType="#//Declaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="machineVariables" upperBound="-1"
+        eType="#//StateMachineVariable" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Declaration" abstract="true">
     <eOperations name="printReachable" lowerBound="1"/>
@@ -34,10 +38,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="guardLabel" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="guardExpression" eType="#//GuardExpression">
-      <eAnnotations source="gmf.compartment"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionExpression" eType="#//ActionExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guardExpression" eType="ecore:EClass ../../../calculator/specifications/siple/model/siple.ecore#//Expression"
+        changeable="false" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionStatement" eType="ecore:EClass ../../../calculator/specifications/siple/model/siple.ecore#//Statement"
+        changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//Declaration">
     <eAnnotations source="gmf.node">
@@ -70,8 +74,17 @@
       <details key="border.color" value="255,255,255"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionExp" eType="#//ActionExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionStatement" eType="ecore:EClass ../../../calculator/specifications/siple/model/siple.ecore#//Statement"
+        changeable="false" derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GuardExpression" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionExpression" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StateMachineVariable">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name, type&#xA;"/>
+      <details key="label.icon" value="true"/>
+      <details key="figure" value="rounded"/>
+      <details key="border.color" value="255,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
