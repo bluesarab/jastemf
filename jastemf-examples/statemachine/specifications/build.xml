@@ -45,7 +45,20 @@
 		</jastemf>
 	</target>
 	
-	
+	<target name="JastAdd Semantic">
+		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
+		<mkdir dir="${_basedir}/src-gen/statemachine/ast"/>
+		<jastadd
+			outdir="${_basedir}/src-gen"
+			package="statemachine.ast">
+			<fileset dir="${_basedir}/specifications">
+				<include name="**/*.ast"/>
+				<include name="**/*.jrag"/>
+				<include name="**/*.jadd"/>
+			</fileset>
+		</jastadd>
+	</target>
+		
 	<!--
 		Generate a JastAdd AST specification based on the generator model.
 	-->
