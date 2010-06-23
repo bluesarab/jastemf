@@ -43,56 +43,56 @@ RULES {
 	
 	VariableAssignment ::= LValue[IDENTIFIER] ":=" RValue; 
 	
-	@operator(type="binary_left_associative",weight="101",identifier="Expression")
+	@operator(type="binary_left_associative",weight="101",superclass="Expression")
 	Or ::= Operand1 "Or" Operand2;
 	
-	@operator(type="binary_left_associative",weight="102",identifier="Expression")
+	@operator(type="binary_left_associative",weight="102",superclass="Expression")
 	And ::= Operand1 "And" Operand2;
 	
-	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	@operator(type="binary_left_associative",weight="104",superclass="Expression")
 	Equal ::= Operand1 "=" Operand2;
 	
-	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	@operator(type="binary_left_associative",weight="104",superclass="Expression")
 	GreaterThan ::= Operand1 ">" Operand2;
 	
-	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	@operator(type="binary_left_associative",weight="104",superclass="Expression")
 	LesserThan ::= Operand1 "<" Operand2;
 	
-	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	@operator(type="binary_left_associative",weight="104",superclass="Expression")
 	GreaterThanEqual ::= Operand1 ">=" Operand2;
 	
-	@operator(type="binary_left_associative",weight="104",identifier="Expression")
+	@operator(type="binary_left_associative",weight="104",superclass="Expression")
 	LesserThanEqual ::= Operand1 "<=" Operand2;
 	
-	@operator(type="binary_left_associative",weight="201",identifier="Expression")
+	@operator(type="binary_left_associative",weight="201",superclass="Expression")
 	Addition ::= Operand1 "+" Operand2;
 	
-	@operator(type="binary_left_associative",weight="201",identifier="Expression")
+	@operator(type="binary_left_associative",weight="201",superclass="Expression")
 	Subtraction ::= Operand1 "-" Operand2;
 	
-	@operator(type="binary_left_associative",weight="202",identifier="Expression")
+	@operator(type="binary_left_associative",weight="202",superclass="Expression")
 	Multiplication ::= Operand1 "*" Operand2;
 	
-	@operator(type="binary_left_associative",weight="202",identifier="Expression")
+	@operator(type="binary_left_associative",weight="202",superclass="Expression")
 	Division ::= Operand1 "/" Operand2;
 	
-	@operator(type="unary_prefix",weight="301",identifier="Expression")
+	@operator(type="unary_prefix",weight="301",superclass="Expression")
 	Not ::= "Not" Operand;
 	
-	@operator(type="unary_prefix",weight="302",identifier="Expression")
+	@operator(type="unary_prefix",weight="302",superclass="Expression")
 	UMinus ::= "-" Operand;
 	
-	@operator(type="primitive",weight="303",identifier="Expression")
+	@operator(type="primitive",weight="303",superclass="Expression")
 	Constant ::= Lexem[VALUE];
 	
 	// We do not use the standard reference revolving mechanism,
 	// since we are using JastEMF
-	@operator(type="primitive",weight="303",identifier="Expression")
+	@operator(type="primitive",weight="303",superclass="Expression")
 	Reference ::= Name[IDENTIFIER];
 	
-	@operator(type="primitive",weight="303",identifier="Expression")
+	@operator(type="primitive",weight="303",superclass="Expression")
 	NestedExpression ::= "(" Expression ")";
 	
-	@operator(type="primitive",weight="303",identifier="Expression")
+	@operator(type="primitive",weight="303",superclass="Expression")
 	ProcedureCall ::= Name[IDENTIFIER] "(" ( Argument ("," Argument)*)? ")";
 }
