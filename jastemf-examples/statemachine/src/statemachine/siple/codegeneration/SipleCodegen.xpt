@@ -1,52 +1,52 @@
-ÇIMPORT statemachineÈ
-ÇEXTENSION statemachine::siple::codegeneration::ExtensionsÈ
+«IMPORT statemachine»
+«EXTENSION statemachine::siple::codegeneration::Extensions»
 
-ÇDEFINE main(String outpath) FOR StateMachineÈ
-	ÇFILE outpathÈ
+«DEFINE main(String outpath) FOR StateMachine»
+	«FILE outpath»
 Procedure main() Begin
 	% --- Statemachine Variables ---
-	ÇEXPAND printGlobalVariables FOREACH this.machineVariablesÈ
+	«EXPAND printGlobalVariables FOREACH this.machineVariables»
 	% --- State Procedures ---
-	ÇEXPAND printStateProcedure FOREACH  this.declarations.typeSelect(statemachine::State)È
+	«EXPAND printStateProcedure FOREACH  this.declarations.typeSelect(statemachine::State)»
 	% --- Transition Procedures ---
-	ÇEXPAND printTransitionProcedure FOREACH  this.declarations.typeSelect(statemachine::Transition)È
-	ÇEXPAND printLeaveProcedure(this) FOREACH  this.declarations.typeSelect(statemachine::State)È
+	«EXPAND printTransitionProcedure FOREACH  this.declarations.typeSelect(statemachine::Transition)»
+	«EXPAND printLeaveProcedure(this) FOREACH  this.declarations.typeSelect(statemachine::State)»
 		
 End;
 
-	ÇENDFILEÈ
-ÇENDDEFINEÈ
+	«ENDFILE»
+«ENDDEFINE»
 
-ÇDEFINE printStateProcedure FOR StateÈ
-	Procedure Çthis.label.convertToValidOperationname()È() Begin
-		Çthis.entry.actionLabelÈ
-		leaveÇthis.label.convertToValidOperationname()È
+«DEFINE printStateProcedure FOR State»
+	Procedure «this.label.convertToValidOperationname()»() Begin
+		«this.entry.actionLabel»
+		leave«this.label.convertToValidOperationname()»
 	End;
-ÇENDDEFINEÈ
+«ENDDEFINE»
 
-ÇDEFINE printLeaveProcedure(StateMachine sm) FOR StateÈ
-	Procedure leaveÇthis.label.convertToValidOperationname()È() Begin
-		ÇFOREACH sm.declarations.typeSelect(Transition).select(t|t.source == this) AS transitionÈ
-		If trigger = Çtransition.labelÈ Then
-			ÇIF transition.guardLabel != null && transition.guardLabel.trim().length > 0È
-				If Çtransition.guardLabelÈ Then
-			ÇENDIFÈ
-			 	Çtransition.source.label.convertToValidOperationname()È_Çtransition.label.convertToValidOperationname()È_Çtransition.target.label.convertToValidOperationname()È();
-			ÇIF transition.guardLabel != null && transition.guardLabel.trim().length > 0È
+«DEFINE printLeaveProcedure(StateMachine sm) FOR State»
+	Procedure leave«this.label.convertToValidOperationname()»() Begin
+		«FOREACH sm.declarations.typeSelect(Transition).select(t|t.source == this) AS transition»
+		If trigger = «transition.label» Then
+			«IF transition.guardLabel != null && transition.guardLabel.trim().length > 0»
+				If «transition.guardLabel» Then
+			«ENDIF»
+			 	«transition.source.label.convertToValidOperationname()»_«transition.label.convertToValidOperationname()»_«transition.target.label.convertToValidOperationname()»();
+			«IF transition.guardLabel != null && transition.guardLabel.trim().length > 0»
 				Fi;
-			ÇENDIFÈ
+			«ENDIF»
 		Fi;	
-		ÇENDFOREACHÈ
+		«ENDFOREACH»
 	End;
-ÇENDDEFINEÈ
+«ENDDEFINE»
 
-ÇDEFINE printTransitionProcedure FOR TransitionÈ
-	Procedure Çthis.source.label.convertToValidOperationname()È_Çthis.label.convertToValidOperationname()È_Çthis.target.label.convertToValidOperationname()È() Begin
-		Çthis.actionLabelÈ
-		Çthis.target.labelÈ();		
+«DEFINE printTransitionProcedure FOR Transition»
+	Procedure «this.source.label.convertToValidOperationname()»_«this.label.convertToValidOperationname()»_«this.target.label.convertToValidOperationname()»() Begin
+		«this.actionLabel»
+		«this.target.label»();		
 	End;
-ÇENDDEFINEÈ
+«ENDDEFINE»
 
-ÇDEFINE printGlobalVariables FOR StateMachineVariableÈ
-	Var Çthis.nameÈ : Çthis.typeÈ;
-ÇENDDEFINEÈ
+«DEFINE printGlobalVariables FOR StateMachineVariable»
+	Var «this.name» : «this.type»;
+«ENDDEFINE»
