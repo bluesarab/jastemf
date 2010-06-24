@@ -7,7 +7,7 @@ Procedure main() Begin
 	% --- Statemachine Variables ---
 	«EXPAND printGlobalVariables FOREACH this.machineVariables»
 	% --- State Procedures ---
-	«EXPAND printStateProcedure FOREACH  this.declarations.typeSelect(statemachine::State)»
+	«EXPAND printStateProcedure FOREACH  this.declarations.typeSelect(statemachine::NormalState)»
 	% --- Transition Procedures ---
 	«EXPAND printTransitionProcedure FOREACH  this.declarations.typeSelect(statemachine::Transition)»
 	«EXPAND printLeaveProcedure(this) FOREACH  this.declarations.typeSelect(statemachine::State)»
@@ -17,7 +17,7 @@ End;
 	«ENDFILE»
 «ENDDEFINE»
 
-«DEFINE printStateProcedure FOR State»
+«DEFINE printStateProcedure FOR NormalState»
 	Procedure «this.label.convertToValidOperationname()»() Begin
 		«this.entry.actionLabel»
 		leave«this.label.convertToValidOperationname()»

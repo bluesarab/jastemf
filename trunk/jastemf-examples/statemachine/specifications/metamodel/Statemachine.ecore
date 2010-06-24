@@ -43,13 +43,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionStatement" eType="ecore:EClass ../../../calculator/specifications/siple/model/siple.ecore#//Statement"
         changeable="false" derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//Declaration">
-    <eAnnotations source="gmf.node">
-      <details key="label" value="label"/>
-      <details key="label.icon" value="true"/>
-      <details key="figure" value="rounded"/>
-      <details key="border.color" value="0.0.0"/>
-    </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="State" abstract="true" eSuperTypes="#//Declaration">
     <eOperations name="printReachable" lowerBound="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="successors" upperBound="-1"
@@ -60,10 +54,6 @@
         <details key="target.decoration" value="arrow"/>
         <details key="style" value="dash"/>
       </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entry" eType="#//Action"
-        containment="true">
-      <eAnnotations source="gmf.compartment"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action">
@@ -86,5 +76,37 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NormalState" eSuperTypes="#//State">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="label"/>
+      <details key="label.icon" value="true"/>
+      <details key="figure" value="rounded"/>
+      <details key="border.color" value="0.0.0"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entry" eType="#//Action"
+        containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialState" eSuperTypes="#//State">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="label"/>
+      <details key="label.icon" value="false"/>
+      <details key="border.color" value="0.0.0"/>
+      <details key="figure" value="ellipse"/>
+      <details key="size" value="30,30"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="#//State">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="label"/>
+      <details key="label.icon" value="false"/>
+      <details key="figure" value="ellipse"/>
+      <details key="border.color" value="0.0.0"/>
+      <details key="size" value="30,30"/>
+      <details key="resize" value="false"/>
+      <details key="border.width" value="5"/>
+    </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

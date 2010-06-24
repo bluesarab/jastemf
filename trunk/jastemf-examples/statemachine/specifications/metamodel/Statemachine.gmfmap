@@ -11,23 +11,23 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="Statemachine.ecore#//State"/>
+          href="Statemachine.ecore#//NormalState"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
-            href="Statemachine.gmfgraph#StateLabel"/>
+            href="Statemachine.gmfgraph#NormalStateLabel"/>
         <features
             href="Statemachine.ecore#//State/label"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="Statemachine.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="Statemachine.gmftool#//@palette/@tools.0/@tools.3"/>
       <diagramNode
-          href="Statemachine.gmfgraph#State"/>
+          href="Statemachine.gmfgraph#NormalState"/>
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
-            href="Statemachine.ecore#//State/entry"/>
+            href="Statemachine.ecore#//NormalState/entry"/>
         <ownedChild>
           <domainMetaElement
               href="Statemachine.ecore#//Action"/>
@@ -48,8 +48,48 @@
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
-            href="Statemachine.gmfgraph#StateEntryCompartment"/>
+            href="Statemachine.gmfgraph#NormalStateEntryCompartment"/>
       </compartments>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="Statemachine.ecore#//StateMachine/declarations"/>
+    <ownedChild>
+      <domainMetaElement
+          href="Statemachine.ecore#//InitialState"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="Statemachine.gmfgraph#InitialStateLabel"/>
+        <features
+            href="Statemachine.ecore#//State/label"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="Statemachine.gmftool#//@palette/@tools.0/@tools.2"/>
+      <diagramNode
+          href="Statemachine.gmfgraph#InitialState"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="Statemachine.ecore#//StateMachine/declarations"/>
+    <ownedChild>
+      <domainMetaElement
+          href="Statemachine.ecore#//FinalState"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="Statemachine.gmfgraph#FinalStateLabel"/>
+        <features
+            href="Statemachine.ecore#//State/label"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="Statemachine.gmftool#//@palette/@tools.0/@tools.1"/>
+      <diagramNode
+          href="Statemachine.gmfgraph#FinalState"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -60,9 +100,9 @@
           href="Statemachine.ecore#//StateMachineVariable"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="{0}:{1}"
-          editorPattern="{0}:{1}"
-          editPattern="{0}:{1}">
+          viewPattern="{1}:{0}"
+          editorPattern="{1}:{0}"
+          editPattern="{1}:{0}">
         <diagramLabel
             href="Statemachine.gmfgraph#StateMachineVariableLabel"/>
         <features
@@ -72,7 +112,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="Statemachine.gmftool#//@palette/@tools.0/@tools.2"/>
+          href="Statemachine.gmftool#//@palette/@tools.0/@tools.4"/>
       <diagramNode
           href="Statemachine.gmfgraph#StateMachineVariable"/>
     </ownedChild>
