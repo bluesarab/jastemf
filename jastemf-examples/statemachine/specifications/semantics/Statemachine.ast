@@ -7,8 +7,13 @@
   	  <type:String> 
   ;
   
-
-  State : Declaration ::= <label:String>  [entry:Action];
+  abstract State : Declaration ::= <label:String> ;
+  
+  NormalState : State ::= [entry:Action];
+  
+  InitialState : State ;
+  
+  FinalState :State ;
   
   Transition : Declaration ::=
     <label:String> 

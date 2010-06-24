@@ -20,8 +20,26 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="State"
-          description="Create new State">
+          title="FinalState"
+          description="Create new FinalState">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="InitialState"
+          description="Create new InitialState">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="NormalState"
+          description="Create new NormalState">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
