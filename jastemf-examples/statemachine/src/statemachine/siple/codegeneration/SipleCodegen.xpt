@@ -2,51 +2,44 @@
 «EXTENSION statemachine::siple::codegeneration::Extensions»
 
 «DEFINE main(String outpath) FOR StateMachine»
-	«FILE outpath»
+«FILE outpath-»
+% Generated SIPLE state machine implementation
 Procedure main() Begin
-	% --- Statemachine Variables ---
-	«EXPAND printGlobalVariables FOREACH this.machineVariables»
-	% --- State Procedures ---
-	«EXPAND printStateProcedure FOREACH  this.declarations.typeSelect(statemachine::NormalState)»
-	% --- Transition Procedures ---
-	«EXPAND printTransitionProcedure FOREACH  this.declarations.typeSelect(statemachine::Transition)»
-	«EXPAND printLeaveProcedure(this) FOREACH  this.declarations.typeSelect(statemachine::State)»
+«IF this.machineVariables.size > 0-»
+	% Global variables:
+«ENDIF-»
+«FOREACH this.machineVariables AS var-»
+	Var «var.name»:«var.type»;
+«ENDFOREACH-»
+«LET this.declarations.typeSelect(Transition).select(t|t.source == this.declarations.typeSelect(statemachine::InitialState).get(0)).get(0) AS initTransition-»
+«IF initTransition.actionLabel != null && initTransition.actionLabel.trim().length > 0-»
+	% Initial transition action:
+	«initTransition.actionLabel»
+«ENDIF-»
+«ENDLET-»
+	
+	Var current_state:Integer;
+	current_state := «this.declarations.typeSelect(statemachine::InitialState).get(0).successors.get(0).id»;
+	While Not (current_state = «this.declarations.typeSelect(statemachine::FinalState).get(0).id») Do
+		Var done:Boolean;
+		done := false;
 		
+«FOREACH this.declarations.typeSelect(statemachine::NormalState) AS state-»
+		If Not done And current_state = «state.id» Then
+			«IF state.entry != null»«state.entry.actionLabel»«ENDIF»
+			
+«FOREACH this.declarations.typeSelect(Transition).select(t|t.source == state) AS transition-»
+			If Not done And «IF transition.guardLabel != null && transition.guardLabel.trim().length > 0-»«transition.guardLabel»«ELSE-»true«ENDIF-» Then
+«IF transition.actionLabel != null && transition.actionLabel.trim().length > 0-»
+				«transition.actionLabel»
+«ENDIF-»
+				current_state := «transition.target.id»;
+				done := true;
+			Fi;
+«ENDFOREACH-»
+		Fi;
+«ENDFOREACH-»
+	Od;
 End;
-
-	«ENDFILE»
-«ENDDEFINE»
-
-«DEFINE printStateProcedure FOR NormalState»
-	Procedure «this.label.convertToValidOperationname()»() Begin
-		«this.entry.actionLabel»
-		leave«this.label.convertToValidOperationname()»
-	End;
-«ENDDEFINE»
-
-«DEFINE printLeaveProcedure(StateMachine sm) FOR State»
-	Procedure leave«this.label.convertToValidOperationname()»() Begin
-		«FOREACH sm.declarations.typeSelect(Transition).select(t|t.source == this) AS transition»
-		If trigger = «transition.label» Then
-			«IF transition.guardLabel != null && transition.guardLabel.trim().length > 0»
-				If «transition.guardLabel» Then
-			«ENDIF»
-			 	«transition.source.label.convertToValidOperationname()»_«transition.label.convertToValidOperationname()»_«transition.target.label.convertToValidOperationname()»();
-			«IF transition.guardLabel != null && transition.guardLabel.trim().length > 0»
-				Fi;
-			«ENDIF»
-		Fi;	
-		«ENDFOREACH»
-	End;
-«ENDDEFINE»
-
-«DEFINE printTransitionProcedure FOR Transition»
-	Procedure «this.source.label.convertToValidOperationname()»_«this.label.convertToValidOperationname()»_«this.target.label.convertToValidOperationname()»() Begin
-		«this.actionLabel»
-		«this.target.label»();		
-	End;
-«ENDDEFINE»
-
-«DEFINE printGlobalVariables FOR StateMachineVariable»
-	Var «this.name» : «this.type»;
+«ENDFILE-»
 «ENDDEFINE»
