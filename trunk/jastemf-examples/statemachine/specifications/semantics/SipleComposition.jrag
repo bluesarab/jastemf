@@ -1,7 +1,7 @@
-
-
 aspect SipleComposition {
-
+	inh int State.id(); // Support unique state ids for code generation.
+	eq StateMachine.getdeclarations(int index).id() = index;
+	
 	public Statement Action.getActionStatement() {
 		return new statemachine.siple.ParserHelper().parseStatement(eResource(), getActionLabel());
 	}

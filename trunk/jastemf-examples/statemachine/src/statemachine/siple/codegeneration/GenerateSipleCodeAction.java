@@ -66,8 +66,8 @@ public class GenerateSipleCodeAction implements IObjectActionDelegate {
 		org.eclipse.emf.ecore.resource.Resource stmResource = 
 			rs.getResource(URI.createURI(file.getLocationURI().toString()), true);
 		EObject root = stmResource.getContents().get(0);
-		if (root != null == root instanceof StateMachine) {
-			StateMachine machine = (StateMachine) root;
+		if (root != null == root instanceof StateMachineImpl) {
+			StateMachineImpl machine = (StateMachineImpl) root;
 			OutputImpl output = new OutputImpl();
 			String outputContainer = file.getParent().getLocation()
 					.toPortableString();
