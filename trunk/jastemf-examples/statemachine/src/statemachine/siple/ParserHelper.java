@@ -21,7 +21,22 @@ import siple.semantics.resource.siple.mopp.SipleLexer;
 import siple.semantics.resource.siple.mopp.SipleParser;
 
 public class ParserHelper {
-
+	
+	public CompilationUnit parseProgram(final Resource resource,
+			String program) {
+		if (program == null || program.isEmpty())
+			return null;
+		ISipleParseResult result = null;
+		result = parse(program);
+		if (result == null)
+			return null;
+		extractErrors(resource, result);
+		if (result.getRoot() != null
+				&& result.getRoot() instanceof CompilationUnit)
+			return result;
+		return null;
+	}
+	
 	public Statement parseStatement(final Resource resource,
 			String stringStatement) {
 		if (stringStatement == null || stringStatement.isEmpty())
@@ -56,15 +71,17 @@ public class ParserHelper {
 	}
 
 	private Statement extractStatement(CompilationUnit root) {
-		Statement stm = root.getMainProcedure().getBody().getStatement().get(0);
+		Statement stm = root.getMainProcedure().getBody();
 		return stm;
 	}
 
 	private ISipleParseResult parse(String stringStatement) {
 		InputStream inputStream = new ByteArrayInputStream(stringStatement
 				.getBytes());
-		
-		
+		return parse(inputStream);
+	}
+	
+	private ISipleParseResult parse(InputStream inputStream) {
 		ANTLRInputStream antlrInputStream;
 		try {
 			antlrInputStream = new ANTLRInputStream(inputStream);
