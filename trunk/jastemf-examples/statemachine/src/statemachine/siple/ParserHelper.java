@@ -26,6 +26,15 @@ public class ParserHelper {
 			String program) {
 		if (program == null || program.isEmpty())
 			return null;
+		InputStream inputStream = new ByteArrayInputStream(program
+				.getBytes());
+		return parseProgram(resource, inputStream);
+	}
+	
+	public CompilationUnit parseProgram(final Resource resource,
+			InputStream program) {
+		if (program == null)
+			return null;
 		ISipleParseResult result = null;
 		result = parse(program);
 		if (result == null)
@@ -33,7 +42,7 @@ public class ParserHelper {
 		extractErrors(resource, result);
 		if (result.getRoot() != null
 				&& result.getRoot() instanceof CompilationUnit)
-			return result;
+			return (CompilationUnit) result.getRoot();
 		return null;
 	}
 	

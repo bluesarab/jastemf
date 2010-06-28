@@ -4,12 +4,13 @@ import java.util.*;
 
 import org.eclipse.core.resources.*;
 import org.eclipse.emf.common.util.*;
-import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.ui.*;
 
-import siple.semantics.*;
+import siple.semantics.interfaces.*;
 
 public class InterpretSipleProgramAction implements IObjectActionDelegate {
 
@@ -41,15 +42,19 @@ public class InterpretSipleProgramAction implements IObjectActionDelegate {
 		ResourceSet rs = new ResourceSetImpl();
 		org.eclipse.emf.ecore.resource.Resource stmResource = 
 			rs.getResource(URI.createURI(file.getLocationURI().toString()), true);
-		EObject root = stmResource.getContents().get(0);
 		
 		ParserHelper parser = new ParserHelper();
-		CompilationUnit prog = parser.parseProgram(stmResource, file.getContents());
 		try {
-			if (prog != null)
-				prog.Interpret();
-			else System.out.println("Parse Error!");
-		} catch (InterpretationException e) {
+			java.io.InputStream input = file.getContents();
+			try {
+				CompilationUnit prog = parser.parseProgram(stmResource, input);
+				if (prog != null)
+					prog.Interpret();
+				else System.out.println("Parse Error!");
+			} finally {
+				input.close();
+			}
+		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 		}
 	}
