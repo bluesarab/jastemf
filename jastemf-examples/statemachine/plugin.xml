@@ -45,5 +45,19 @@
       </objectContribution>
    </extension>
 
-
+	<extension  
+            point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="statemachine.siple.interpretation"
+            nameFilter="*.siple"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="statemachine.siple.InterpretSipleProgramAction"
+               enablesFor="1"
+               id="statemachine.siple.interpretation"
+               label="Interpret"
+               menubarPath="additions"/>
+      </objectContribution>
+   </extension>
 </plugin>
