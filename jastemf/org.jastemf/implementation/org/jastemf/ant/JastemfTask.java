@@ -46,7 +46,7 @@ public class JastemfTask extends Task {
 	private String astpackage;
 	private String jaddcmd;
 	private LinkedHashSet<String> jragspecs = new LinkedHashSet<String>();
-	protected boolean genEditCode;
+	protected boolean genEditCode = false;
 	
 	
 	/** See {@link IIntegrationContext#genmodel()}. */
@@ -66,9 +66,7 @@ public class JastemfTask extends Task {
 			this.jragspecs.add(baseDir + File.separator + files[i]);
 	}
 	/** See {@link IIntegrationContext#generateEditCode()}. */
-	public void setGenerateEditCode(boolean flag) {this.genEditCode = flag;}
-	
-	
+	public void setGenerateeditcode(boolean flag) {this.genEditCode = flag;}
 	
 	/**
 	 * Start the integration process for the given {@link
