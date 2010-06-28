@@ -22,11 +22,11 @@ TOKENS {
 RULES { 
 	CompilationUnit ::= ( Declaration ";" )*;
 	
-	Block ::= (Statement:VariableDeclaration,ProcedureDeclaration,VariableAssignment,Expression,If,While,ProcedureReturn,Write ";" | "Begin" Statement:Block "End" ";")*;
+	Block ::= (Statement:VariableDeclaration,ProcedureDeclaration,VariableAssignment,Expression,If,While,ProcedureReturn,Write,Read ";" | "Begin" Statement:Block "End" ";")*;
 		
 	If ::= 	"If" Condition "Then" Body ("Else" Alternative)? "Fi";
 	
-	While ::= "While" Condition "Do" Body "oD";
+	While ::= "While" Condition "Do" Body "Od";
 	
 	Write ::= "Write" Expression;
 	

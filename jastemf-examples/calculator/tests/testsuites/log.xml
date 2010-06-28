@@ -560,4 +560,19 @@
         <passed testSuite="incorrect" test="relational_arithmetics"/>
         <passed testSuite="incorrect" test="scopes"/>
     </testrun>
+    <testrun configuration="JastAdd" date="2010-06-28T11:27:49.620+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
 </archiveLog>
