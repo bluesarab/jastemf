@@ -79,7 +79,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_-eWnMoLQEd-9UbR35rKmxA" fontName="Lucida Grande"/>
     <styles xmi:type="notation:FillStyle" xmi:id="_-eWnM4LQEd-9UbR35rKmxA"/>
     <element xmi:type="stm:StateMachineVariable" href="phone.statemachine#//@machineVariables.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-eWnNILQEd-9UbR35rKmxA" x="-60" y="5"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-eWnNILQEd-9UbR35rKmxA" x="440" y="-5"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_VCFS0ILREd-9UbR35rKmxA" type="2005">
     <children xmi:type="notation:DecorationNode" xmi:id="_VCFS1YLREd-9UbR35rKmxA" type="5007"/>
@@ -87,7 +87,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_VCFS0oLREd-9UbR35rKmxA" fontName="Lucida Grande"/>
     <styles xmi:type="notation:FillStyle" xmi:id="_VCFS04LREd-9UbR35rKmxA"/>
     <element xmi:type="stm:InitialState" href="phone.statemachine#//@declarations.14"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VCFS1ILREd-9UbR35rKmxA" x="-45" y="60" width="26" height="21"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VCFS1ILREd-9UbR35rKmxA" x="30" y="-5" width="26" height="21"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_aF6ZEILREd-9UbR35rKmxA" type="2006">
     <children xmi:type="notation:DecorationNode" xmi:id="_aF7AIILREd-9UbR35rKmxA" type="5008"/>
@@ -122,7 +122,7 @@
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_-rCYUILQEd-9UbR35rKmxA" type="4001" source="_-eSVwILQEd-9UbR35rKmxA" target="_-eVZEILQEd-9UbR35rKmxA">
     <children xmi:type="notation:DecorationNode" xmi:id="_-rCYVILQEd-9UbR35rKmxA" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_-rCYVYLQEd-9UbR35rKmxA" x="41" y="54"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-rCYVYLQEd-9UbR35rKmxA" x="23" y="54"/>
     </children>
     <styles xmi:type="notation:RoutingStyle" xmi:id="_-rCYUYLQEd-9UbR35rKmxA" routing="Rectilinear"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_-rCYUoLQEd-9UbR35rKmxA" fontName="Lucida Grande"/>
@@ -177,7 +177,7 @@
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_-rN-gILQEd-9UbR35rKmxA" type="4001" source="_-eVZEILQEd-9UbR35rKmxA" target="_-eSVwILQEd-9UbR35rKmxA">
     <children xmi:type="notation:DecorationNode" xmi:id="_-rN-hILQEd-9UbR35rKmxA" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_-rOlkILQEd-9UbR35rKmxA" x="11" y="57"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-rOlkILQEd-9UbR35rKmxA" x="11" y="48"/>
     </children>
     <styles xmi:type="notation:RoutingStyle" xmi:id="_-rN-gYLQEd-9UbR35rKmxA" routing="Rectilinear"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_-rN-goLQEd-9UbR35rKmxA" fontName="Lucida Grande"/>
@@ -188,7 +188,7 @@
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_-rQawILQEd-9UbR35rKmxA" type="4001" source="_-eUyAYLQEd-9UbR35rKmxA" target="_-eSVwILQEd-9UbR35rKmxA">
     <children xmi:type="notation:DecorationNode" xmi:id="_-rQaxILQEd-9UbR35rKmxA" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_-rQaxYLQEd-9UbR35rKmxA" x="-118" y="13"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-rQaxYLQEd-9UbR35rKmxA" x="-32" y="8"/>
     </children>
     <styles xmi:type="notation:RoutingStyle" xmi:id="_-rQawYLQEd-9UbR35rKmxA" routing="Rectilinear"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_-rQawoLQEd-9UbR35rKmxA" fontName="Lucida Grande"/>
@@ -464,21 +464,21 @@
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_YajDcILREd-9UbR35rKmxA" type="4001" source="_VCFS0ILREd-9UbR35rKmxA" target="_-eSVwILQEd-9UbR35rKmxA">
     <children xmi:type="notation:DecorationNode" xmi:id="_YajDdILREd-9UbR35rKmxA" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_YajqgILREd-9UbR35rKmxA" x="-10" y="-7"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_YajqgILREd-9UbR35rKmxA" x="-8" y="6"/>
     </children>
     <styles xmi:type="notation:RoutingStyle" xmi:id="_YajDcYLREd-9UbR35rKmxA" routing="Rectilinear"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_YajDcoLREd-9UbR35rKmxA" fontName="Lucida Grande"/>
     <element xmi:type="stm:Transition" href="phone.statemachine#//@declarations.15"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YajDc4LREd-9UbR35rKmxA" points="[27, 21, 27, 21]$[27, 21, 27, 21]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YajDc4LREd-9UbR35rKmxA" points="[2, -12, -45, 74]$[2, -64, -45, 22]"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_bNiIcILREd-9UbR35rKmxA" type="4001" source="_-eSVwILQEd-9UbR35rKmxA" target="_aF6ZEILREd-9UbR35rKmxA">
     <children xmi:type="notation:DecorationNode" xmi:id="_bNivgILREd-9UbR35rKmxA" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_bNivgYLREd-9UbR35rKmxA" x="3" y="20"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_bNivgYLREd-9UbR35rKmxA" x="6" y="-6"/>
     </children>
     <styles xmi:type="notation:RoutingStyle" xmi:id="_bNiIcYLREd-9UbR35rKmxA" routing="Rectilinear"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_bNiIcoLREd-9UbR35rKmxA" fontName="Lucida Grande"/>
     <element xmi:type="stm:Transition" href="phone.statemachine#//@declarations.17"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_bNiIc4LREd-9UbR35rKmxA" points="[-10, 11, 2, -54]$[-10, 50, 2, -15]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_bNiIc4LREd-9UbR35rKmxA" points="[-12, 9, 0, -62]$[-12, 56, 0, -15]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bNly0ILREd-9UbR35rKmxA" id="(0.36764705882352944,0.7906976744186046)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_4STVkIOJEd-4BZLpDi7fHg" visible="false" type="4002" source="_-eSVwILQEd-9UbR35rKmxA" target="_aF6ZEILREd-9UbR35rKmxA">
