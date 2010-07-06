@@ -21,10 +21,9 @@
     <domainDiagramElement
         href="Statemachine.genmodel#//statemachine/StateMachine"/>
     <childNodes
-        visualID="3002"
+        visualID="3001"
         editPartClassName="ActionEditPart"
         itemSemanticEditPolicyClassName="ActionItemSemanticEditPolicy"
-        notationViewFactoryClassName="ActionViewFactory"
         canonicalEditPolicyClassName="ActionCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ActionGraphicalNodeEditPolicy"
         createCommandClassName="ActionCreateCommand"
@@ -51,10 +50,9 @@
             href="Statemachine.genmodel#//statemachine/NormalState/entry"/>
       </modelFacet>
       <labels
-          visualID="5005"
+          visualID="5001"
           editPartClassName="ActionActionLabelEditPart"
           itemSemanticEditPolicyClassName="ActionActionLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="ActionActionLabelViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -71,19 +69,18 @@
       </labels>
     </childNodes>
     <topLevelNodes
-        visualID="2004"
-        editPartClassName="NormalStateEditPart"
-        itemSemanticEditPolicyClassName="NormalStateItemSemanticEditPolicy"
-        notationViewFactoryClassName="NormalStateViewFactory"
-        canonicalEditPolicyClassName="NormalStateCanonicalEditPolicy"
+        visualID="2001"
+        editPartClassName="NormalState2EditPart"
+        itemSemanticEditPolicyClassName="NormalState2ItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="NormalState2CanonicalEditPolicy"
         compartments="//@diagram/@compartments.0"
-        graphicalNodeEditPolicyClassName="NormalStateGraphicalNodeEditPolicy"
-        createCommandClassName="NormalStateCreateCommand">
+        graphicalNodeEditPolicyClassName="NormalState2GraphicalNodeEditPolicy"
+        createCommandClassName="NormalState2CreateCommand">
       <diagramRunTimeClass
           href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="NormalStateEditHelper"/>
+          editHelperClassName="NormalState2EditHelper"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="NormalStateFigure"
@@ -103,10 +100,9 @@
             href="Statemachine.genmodel#//statemachine/StateMachine/declarations"/>
       </modelFacet>
       <labels
-          visualID="5006"
+          visualID="5002"
           editPartClassName="NormalStateLabelEditPart"
           itemSemanticEditPolicyClassName="NormalStateLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="NormalStateLabelViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -123,10 +119,9 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2005"
+        visualID="2002"
         editPartClassName="InitialStateEditPart"
         itemSemanticEditPolicyClassName="InitialStateItemSemanticEditPolicy"
-        notationViewFactoryClassName="InitialStateViewFactory"
         canonicalEditPolicyClassName="InitialStateCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="InitialStateGraphicalNodeEditPolicy"
         createCommandClassName="InitialStateCreateCommand">
@@ -155,66 +150,14 @@
             href="Statemachine.genmodel#//statemachine/StateMachine/declarations"/>
       </modelFacet>
       <labels
-          visualID="5007"
+          visualID="5003"
           editPartClassName="InitialStateLabelEditPart"
-          itemSemanticEditPolicyClassName="InitialStateLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="InitialStateLabelViewFactory">
+          itemSemanticEditPolicyClassName="InitialStateLabelItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureInitialStateLabelFigure"
-            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet
-            xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.0">
-          <metaFeatures
-              href="Statemachine.genmodel#//statemachine/State/label"/>
-        </modelFacet>
-      </labels>
-    </topLevelNodes>
-    <topLevelNodes
-        visualID="2006"
-        editPartClassName="FinalStateEditPart"
-        itemSemanticEditPolicyClassName="FinalStateItemSemanticEditPolicy"
-        notationViewFactoryClassName="FinalStateViewFactory"
-        canonicalEditPolicyClassName="FinalStateCanonicalEditPolicy"
-        graphicalNodeEditPolicyClassName="FinalStateGraphicalNodeEditPolicy"
-        createCommandClassName="FinalStateCreateCommand">
-      <diagramRunTimeClass
-          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType
-          xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="FinalStateEditHelper"/>
-      <viewmap
-          xsi:type="gmfgen:InnerClassViewmap"
-          className="FinalStateFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FinalStateFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureFinalStateLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FinalStateFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(5);&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(30)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureFinalStateLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureFinalStateLabelFigure.setText(&quot;FinalState&quot;);&#xA;&#xA;this.add(fFigureFinalStateLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureFinalStateLabelFigure() {&#xA;&#x9;&#x9;return fFigureFinalStateLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 0, 0, 0);&#xA;&#xA;">
-        <attributes
-            xsi:type="gmfgen:StyleAttributes"
-            fixedForeground="true"/>
-        <attributes
-            xsi:type="gmfgen:DefaultSizeAttributes"
-            width="30"/>
-      </viewmap>
-      <modelFacet>
-        <metaClass
-            href="Statemachine.genmodel#//statemachine/FinalState"/>
-        <containmentMetaFeature
-            href="Statemachine.genmodel#//statemachine/StateMachine/declarations"/>
-        <childMetaFeature
-            href="Statemachine.genmodel#//statemachine/StateMachine/declarations"/>
-      </modelFacet>
-      <labels
-          visualID="5008"
-          editPartClassName="FinalStateLabelEditPart"
-          itemSemanticEditPolicyClassName="FinalStateLabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="FinalStateLabelViewFactory">
-        <diagramRunTimeClass
-            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureFinalStateLabelFigure"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -239,6 +182,57 @@
           editHelperClassName="StateMachineVariableEditHelper"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
+          className="FinalStateFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FinalStateFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureFinalStateLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FinalStateFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setLineWidth(5);&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(30)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureFinalStateLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureFinalStateLabelFigure.setText(&quot;FinalState&quot;);&#xA;&#xA;this.add(fFigureFinalStateLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureFinalStateLabelFigure() {&#xA;&#x9;&#x9;return fFigureFinalStateLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 0, 0, 0);&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
+        <attributes
+            xsi:type="gmfgen:DefaultSizeAttributes"
+            width="30"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass
+            href="Statemachine.genmodel#//statemachine/FinalState"/>
+        <containmentMetaFeature
+            href="Statemachine.genmodel#//statemachine/StateMachine/declarations"/>
+        <childMetaFeature
+            href="Statemachine.genmodel#//statemachine/StateMachine/declarations"/>
+      </modelFacet>
+      <labels
+          visualID="5004"
+          editPartClassName="StateMachineVariableNameTypeEditPart"
+          itemSemanticEditPolicyClassName="StateMachineVariableNameTypeItemSemanticEditPolicy"
+          notationViewFactoryClassName="StateMachineVariableNameTypeViewFactory">
+        <diagramRunTimeClass
+            href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureFinalStateLabelFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="Statemachine.genmodel#//statemachine/State/label"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2004"
+        editPartClassName="NormalStateEditPart"
+        itemSemanticEditPolicyClassName="NormalStateItemSemanticEditPolicy"
+        notationViewFactoryClassName="NormalStateViewFactory"
+        canonicalEditPolicyClassName="NormalStateCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="NormalStateGraphicalNodeEditPolicy"
+        createCommandClassName="NormalStateCreateCommand">
+      <diagramRunTimeClass
+          href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="NormalStateEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
           className="StateMachineVariableFigure"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateMachineVariableFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateMachineVariableLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateMachineVariableFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setLineWidth(1);&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureStateMachineVariableLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateMachineVariableLabelFigure.setText(&quot;StateMachineVariable&quot;);&#xA;&#xA;this.add(fFigureStateMachineVariableLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateMachineVariableLabelFigure() {&#xA;&#x9;&#x9;return fFigureStateMachineVariableLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 255, 255, 255);&#xA;&#xA;">
         <attributes
@@ -254,10 +248,9 @@
             href="Statemachine.genmodel#//statemachine/StateMachine/machineVariables"/>
       </modelFacet>
       <labels
-          visualID="5004"
-          editPartClassName="StateMachineVariableNameTypeEditPart"
-          itemSemanticEditPolicyClassName="StateMachineVariableNameTypeItemSemanticEditPolicy"
-          notationViewFactoryClassName="StateMachineVariableNameTypeViewFactory"
+          visualID="5005"
+          editPartClassName="StateMachineVariableNameType2EditPart"
+          itemSemanticEditPolicyClassName="StateMachineVariableNameType2ItemSemanticEditPolicy"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -382,10 +375,9 @@
       </labels>
     </links>
     <compartments
-        visualID="7002"
+        visualID="7001"
         editPartClassName="NormalStateNormalStateEntryCompartmentEditPart"
         itemSemanticEditPolicyClassName="NormalStateNormalStateEntryCompartmentItemSemanticEditPolicy"
-        notationViewFactoryClassName="NormalStateNormalStateEntryCompartmentViewFactory"
         canonicalEditPolicyClassName="NormalStateNormalStateEntryCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="NormalStateEntryCompartment"
