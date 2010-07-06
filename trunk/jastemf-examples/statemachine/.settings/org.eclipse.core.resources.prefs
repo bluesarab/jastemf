@@ -1,3 +1,5 @@
-#Mon Jun 14 14:17:25 CEST 2010
+#Mon Jul 05 14:52:25 CEST 2010
 eclipse.preferences.version=1
+encoding//examples/phone.statemachine=UTF-8
 encoding//examples/phone.statemachine_diagram=UTF-8
+encoding//src/statemachine/siple/codegeneration/SipleCodegen.xpt=ISO-8859-1
