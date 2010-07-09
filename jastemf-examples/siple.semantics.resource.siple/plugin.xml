@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax">
+		<metaInformationProvider class="siple.semantics.resource.siple.mopp.SipleMetaInformation" id="siple.semantics.resource.siple.mopp.SipleMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension id="siple.semantics.resource.siple.nature" name="siple nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="siple.semantics.resource.siple.mopp.SipleNature" />
+		</runtime>
+		<builder id="siple.semantics.resource.siple.builder" />
+	</extension>
+	
+	<extension point="org.eclipse.core.resources.builders" id="siple.semantics.resource.siple.builder" name="siple Builder">
+		<builder hasNature="true">
+			<run class="siple.semantics.resource.siple.mopp.SipleBuilderAdapter" />
+		</builder>
+	</extension>
+	
+	<extension-point id="siple.semantics.resource.siple.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd"/>
+	
+	<extension point="org.eclipse.emf.ecore.extension_parser">
+		<parser class="siple.semantics.resource.siple.mopp.SipleResourceFactoryDelegator" type="siple">
+		</parser>
+	</extension>
+	
+	<extension-point id="siple.semantics.resource.siple.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd"/>
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <objectContribution
+          adaptable="true"
+          id="siple.emftext.gui.interpretation"
+          nameFilter="*.siple"
+          objectClass="org.eclipse.core.resources.IFile">
+           <action
+               class="siple.emftext.gui.InterpretSipleProgramAction"
+               enablesFor="1"
+               id="siple.emftext.gui.interpretation"
+               label="Interpret"
+               menubarPath="additions"/>
+    </objectContribution>
+ </extension>
+	
+</plugin>
