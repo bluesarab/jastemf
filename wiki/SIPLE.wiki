@@ -12,14 +12,14 @@ In this tutorial we will present SIPLE --- a simple imperative programming langu
 
 Of course, our main focus is on the EMF integrated versions. The tutorial will not only describe how to generate these using JastEMF, but also how to use the semantic metamodel implementation and what its benefits are. The !JastAdd version, which represents an ordinary compiler project without any reference to metamodelling and the EMF, is used for validation issues. Its SIPLE compiler and the EMF integrated one share the same !JastAdd specifications for SIPLE's semantics and are compared by a [#Regression_Tests regression test suite], to show, that the integration performed by JastEMF is correct.
 
-For all SIPLE versions the same concrete syntax is supported. Also, all SIPLE versions have the same static semantics, including a nested block structured name analysis supporting nested procedure declarations and lexic scopes (closures) and a strong type analysis. Additionally, all SIPLE versions support the interpretation of programs. The !JastAdd and EMF versions support a command line interpreter and the EMFText version integrates this interpreter into Eclipse so it can be started from `*.siple` files right-click menu. Last but not least, the !JastAdd and EMF versions are [#Regression_Tests regression tested] to each other to validate JastEMF's correctness.
+For all SIPLE versions the same concrete syntax is supported. Also, all SIPLE versions have the same static semantics, including a nested block structured name analysis supporting nested procedure declarations and lexic scopes (closures) and a strong type analysis. Additionally, all SIPLE versions support the interpretation of programs. The !JastAdd and EMF versions support a command line interpreter and the EMFText version integrates this interpreter into Eclipse so it can be started from `*.siple` files' right-click menu. Last but not least, the !JastAdd and EMF versions are [#Regression_Tests regression tested] to each other to validate JastEMF's correctness.
 
 The following table summarises and forecloses the features of the different SIPLE implementations investigated in this tutorial:
 
 || *Version* || *Semantics (Static & Execution)* || *Interpreter* || *Tests* || *Metamodel* || *Eclipse Model Editor* || *Eclipse Text Editor* ||
-|| !JastAdd || Yes || Yes || Yes (Command line) || No || No || No ||
-|| EMF || Yes || Yes || Yes (Command line) || Yes || Yes || No ||
-|| EMFText || Yes || No || Yes (Eclipse Menu Extension) || Yes || Yes || Yes ||
+|| !JastAdd || Yes || Yes (Command line) || Yes || No || No || No ||
+|| EMF || Yes || Yes (Command line) || Yes || Yes || Yes || No ||
+|| EMFText || Yes || No (Eclipse Menu Extension) || Yes || Yes || Yes || Yes ||
 
 == A First Look at SIPLE ==
 
