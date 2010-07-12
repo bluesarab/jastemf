@@ -20,17 +20,28 @@ aspect ConstraintChecking {
 		return true;
 	}
 	eq ASTNode.IsCorrectLocal() = true;
-	// WORKAROUND: Superfluous equations, required for EMF adaptation:
+	// WORKAROUND: Superfluous equations required for EMF adaptation:
 	eq CompilationUnit.IsCorrect() = super.IsCorrect();
 	eq Statement.IsCorrect() = super.IsCorrect();
 	eq Statement.IsCorrectLocal() = super.IsCorrectLocal();
 	
 	eq Expression.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
 	eq CompilationUnit.IsCorrectLocal() = MainProcedure() != null;
-	eq ProcedureDeclaration.IsCorrectLocal() =
-		LookUpPDecl(getName()).size() < 2;
+	eq ProcedureDeclaration.IsCorrectLocal() {
+		// Procedures with a return type must finish with a return statement:
+		if (getReturnType() != Type.Undefined) {
+			if (getBody().getNumStatement() == 0)
+				return false;
+			Statement lastStatement = getBody().getStatement(
+					getBody().getNumStatement() - 1);
+			if (!(lastStatement instanceof ProcedureReturn))
+				return false;
+		}
+		// The procedure declaration must not be a redeclaration:
+		return LookUpPDecl(getName()).size() < 2;
+	}
 	eq VariableDeclaration.IsCorrectLocal() =
-		LookUpVDecl(getName()).size() < 2;
+		LookUpVDecl(getName()).size() < 2; // Forbid redeclarations
 	eq If.IsCorrectLocal() = getCondition().Type() == Type.Boolean;
 	eq While.IsCorrectLocal() = getCondition().Type() == Type.Boolean;
 	eq VariableAssignment.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
