@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: JastEMF Ecore to JastAdd converter
+Bundle-Name: JastEMF - Ecore to JastAdd Converter
 Bundle-SymbolicName: org.jastemf.converter;singleton:=true
 Bundle-Version: 0.1.0
 Require-Bundle: org.eclipse.emf.mwe.core;bundle-version="0.7.2",
@@ -16,4 +16,4 @@ Require-Bundle: org.eclipse.emf.mwe.core;bundle-version="0.7.2",
  org.apache.commons.logging;bundle-version="1.1.1",
  org.eclipse.emf.codegen.ecore;bundle-version="2.5.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Software Technology Group
+Bundle-Vendor: Software Technology Group - Technische Universität Dresden - Germany
