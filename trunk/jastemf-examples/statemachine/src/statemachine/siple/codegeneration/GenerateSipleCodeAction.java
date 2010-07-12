@@ -1,49 +1,38 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
 package statemachine.siple.codegeneration;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
+import javax.annotation.*;
 
-import javax.annotation.Resource;
+import org.eclipse.core.resources.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.resource.*;
+import org.eclipse.emf.ecore.resource.impl.*;
+import org.eclipse.jface.action.*;
+import org.eclipse.jface.viewers.*;
+import org.eclipse.ui.*;
+import org.eclipse.xpand2.*;
+import org.eclipse.xtend.expression.*;
+import org.eclipse.xtend.typesystem.*;
+import org.eclipse.xtend.typesystem.emf.*;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IObjectActionDelegate;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.xpand2.XpandExecutionContextImpl;
-import org.eclipse.xpand2.XpandFacade;
-import org.eclipse.xpand2.output.Outlet;
-import org.eclipse.xpand2.output.OutputImpl;
-import org.eclipse.xtend.expression.TypeSystem;
-import org.eclipse.xtend.typesystem.MetaModel;
-import org.eclipse.xtend.typesystem.Type;
-import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
-
-import statemachine.StateMachine;
-import statemachine.impl.StateMachineImpl;
+import statemachine.*;
+import statemachine.impl.*;
 
 public class GenerateSipleCodeAction implements IObjectActionDelegate {
-
 	private ISelection selection;
-
-	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
+	
+	public void setActivePart(IAction action, IWorkbenchPart targetPart) {}
+	
 	public void run(IAction action) {
 		if (selection instanceof IStructuredSelection) {
 			for (Iterator<?> i = ((IStructuredSelection) selection).iterator(); i
@@ -57,14 +46,13 @@ public class GenerateSipleCodeAction implements IObjectActionDelegate {
 				}
 			}
 		}
-
 	}
 
 	private void process(IFile file) {
 		System.out.println(file);
 		ResourceSet rs = new ResourceSetImpl();
-		org.eclipse.emf.ecore.resource.Resource stmResource = 
-			rs.getResource(URI.createURI(file.getLocationURI().toString()), true);
+		org.eclipse.emf.ecore.resource.Resource stmResource = rs.getResource(
+				URI.createURI(file.getLocationURI().toString()), true);
 		EObject root = stmResource.getContents().get(0);
 		if (root != null == root instanceof StateMachineImpl) {
 			StateMachineImpl machine = (StateMachineImpl) root;
@@ -75,12 +63,12 @@ public class GenerateSipleCodeAction implements IObjectActionDelegate {
 			String targetFile = file.getName() + ".siple";
 			outlet.setOverwrite(true);
 			output.addOutlet(outlet);
-
+			
 			// create execution context
 			XpandExecutionContextImpl execCtx = new XpandExecutionContextImpl(
 					output, null);
 			MetaModel mm = new EmfRegistryMetaModel();
-		
+			
 			// generate
 			execCtx.registerMetaModel(mm);
 			
@@ -90,13 +78,9 @@ public class GenerateSipleCodeAction implements IObjectActionDelegate {
 			facade.evaluate(templatePath, machine, targetFile);
 			System.out.println(targetFile);
 		}
-	
-	
 	}
-
-	@Override
+	
 	public void selectionChanged(IAction action, ISelection selection) {
 		this.selection = selection;
 	}
-
 }
