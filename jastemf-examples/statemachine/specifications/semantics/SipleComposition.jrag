@@ -3,14 +3,14 @@ aspect SipleComposition {
 	eq StateMachine.getdeclarations(int index).id() = index;
 	
 	public Statement Action.getActionStatement() {
-		return new statemachine.siple.ParserHelper().parseStatement(eResource(), getActionLabel());
+		return new siple.emftext.support.ParserHelper().parseStatements(eResource(), getActionLabel());
 	}
 	
 	public Expression Transition.getGuardExpression() {
-		return new statemachine.siple.ParserHelper().parseExpression(eResource(), getGuardLabel());
+		return new siple.emftext.support.ParserHelper().parseExpression(eResource(), getGuardLabel());
 	}
 	
 	public Statement Transition.getActionStatement() {
-		return new statemachine.siple.ParserHelper().parseStatement(eResource(), getActionLabel());
+		return new siple.emftext.support.ParserHelper().parseStatements(eResource(), getActionLabel());
 	}
 }
