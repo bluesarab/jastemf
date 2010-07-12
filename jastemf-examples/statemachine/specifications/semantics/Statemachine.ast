@@ -1,27 +1,31 @@
-  StateMachine ::= declarations:Declaration* machineVariables:StateMachineVariable*;
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+
+StateMachine ::=
+		declarations:Declaration*
+		machineVariables:StateMachineVariable*;
   
-  abstract Declaration;
-  
-  StateMachineVariable ::=
-  	  <name:String> 
-  	  <type:String> 
-  ;
-  
-  abstract State : Declaration ::= <label:String> ;
-  
-  NormalState : State ::= [entry:Action];
-  
-  InitialState : State ;
-  
-  FinalState :State ;
-  
-  Transition : Declaration ::=
-    <label:String> 
-    <sourceLabel:String> 
-    <targetLabel:String>
-    <guardLabel:String>
-    <actionLabel:String> ;
-  
-  Action ::= 
-  	<actionLabel:String> ;  
-  
+abstract Declaration;
+
+StateMachineVariable ::= <name:String> <type:String>;
+
+abstract State:Declaration ::= <label:String>;
+
+NormalState:State ::= [entry:Action];
+InitialState:State;
+FinalState:State;
+
+Transition:Declaration ::=
+		<label:String>
+		<sourceLabel:String>
+		<targetLabel:String>
+		<guardLabel:String>
+		<actionLabel:String>;
+
+Action ::= <actionLabel:String>;
