@@ -68,18 +68,18 @@ The SIPLE tutorial can be checked out from the project's SVN repository. It is n
 
 To install Subclipse use its Eclipse update site via _Help => Install new Software => Work with: "http://subclipse.tigris.org/update_1.6.x" =>_ select the required components _=> Next =>_ ... _=> Finish_. After installation, make sure that the correct SVN interface is configurated (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
 
-The EMFText SIPLE version additionally requires the [http://www.emftext.org EMFText] plugin to be deployed. EMFText's update site is `http://emftext.org/update`.
+The EMFText SIPLE version additionally requires the [http://www.emftext.org EMFText] plugin to be deployed. EMFText's update site is _"http://emftext.org/update"_.
 
 Further, [http://st.inf.tu-dresden.de/rtt RTT] is used to regression test the EMF SIPLE version against the !JastAdd version. RTT's `jar` distribution is already contained in and referenced by the project. However, the integration of RTT is done using [http://www.eclipse.org/aspectj/ AspectJ]. Thus, the [http://www.eclipse.org/ajdt/ AspectJ Development Tools] for Eclipse are required. Just install them via their update site _"http://download.eclipse.org/tools/ajdt/35/update"_.
 
-Last but not least, JastEMF is required to integrate SIPLE's Ecore metamodel and its !JastAdd semantics ([Installation installation details]).
+Last but not least, JastEMF is required to integrate SIPLE's Ecore metamodel and its !JastAdd semantics (for an installation tutorial see [Installation here]).
 
 The following table summarises the tools used by the SIPLE project, their purpose, whether they must be manually installed or configurated and if they are already contained in the project's repository:
 
 || *Tool* || *Purpose* || *Must be Installed* || *Shiped with SIPLE* ||
 || [http://subclipse.tigris.org/ Subclipse] || To check out the project from its SVN || Yes || No ||
-|| JastEMF || To integrate !JastAdd semantics into EMF metamodel implementations || [Installation Yes] || Yes ||
-|| [http://www.emftext.org EMFText] || Required to generate the EMFText SIPLE version || Yes || Yes ||
+|| JastEMF || To integrate !JastAdd semantics into EMF metamodel implementations || [Installation Yes] || No ||
+|| [http://www.emftext.org EMFText] || Required to generate the EMFText SIPLE version || Yes || No ||
 || [http://www.eclipse.org/ajdt/ AspectJ] || To weave regression test support into the !JastAdd and EMF SIPLE versions || Yes || No ||
 || [http://st.inf.tu-dresden.de/rtt RTT] || Regression test tool || No || Yes ||
 || [http://beaver.sourceforge.net/ Beaver] || LALR(1) parsergenerator || No || Yes ||
