@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: JastEMF Integration Support
+Bundle-Name: JastEMF
 Bundle-SymbolicName: org.jastemf;singleton:=true
 Bundle-Version: 0.1.3
 Require-Bundle: org.eclipse.emf.common;bundle-version="2.4.0",
@@ -24,7 +24,7 @@ Require-Bundle: org.eclipse.emf.common;bundle-version="2.4.0",
  org.apache.ant;bundle-version="1.7.1",
  org.eclipse.ant.core;bundle-version="3.2.0",
  org.eclipse.emf.workspace;bundle-version="1.3.0"
-Bundle-Vendor: Software Technology Group
+Bundle-Vendor: Software Technology Group - Technische Universität Dresden - Germany
 Export-Package: org.jastemf,
  org.jastemf.aspects,
  org.jastemf.refactorings,
