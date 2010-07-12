@@ -38,9 +38,6 @@ RULES {
 	
 	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] )? "Begin" Body:Block "End";
 	
-	// We do not use the standard reference resolving mechanism,
-	// since we are using JastEMF
-	
 	VariableAssignment ::= LValue[IDENTIFIER] ":=" RValue; 
 	
 	@operator(type="binary_left_associative",weight="101",superclass="Expression")
@@ -85,8 +82,6 @@ RULES {
 	@operator(type="primitive",weight="303",superclass="Expression")
 	Constant ::= Lexem[VALUE];
 	
-	// We do not use the standard reference revolving mechanism,
-	// since we are using JastEMF
 	@operator(type="primitive",weight="303",superclass="Expression")
 	Reference ::= Name[IDENTIFIER];
 	
