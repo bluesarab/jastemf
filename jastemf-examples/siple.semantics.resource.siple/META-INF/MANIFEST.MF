@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMFText Parser Plugin: siple
+Bundle-Name: JastEMF - SIPLE Example - EMFText Editor
 Bundle-SymbolicName: siple.semantics.resource.siple;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Bundle-Vendor: Software Technology Group - Technische Universität Dresden - Germany
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.emf,
  org.eclipse.emf.codegen.ecore,
@@ -17,9 +17,10 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.ui;bundle-version="3.5.2"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: siple.semantics.resource.siple,
-  siple.semantics.resource.siple.analysis,
-  siple.semantics.resource.siple.mopp,
-  siple.semantics.resource.siple.grammar,
-  siple.semantics.resource.siple.util
+Export-Package: siple.emftext.support,
+ siple.semantics.resource.siple,
+ siple.semantics.resource.siple.analysis,
+ siple.semantics.resource.siple.grammar,
+ siple.semantics.resource.siple.mopp,
+ siple.semantics.resource.siple.util
 Bundle-Activator: siple.semantics.resource.siple.mopp.SiplePlugin
