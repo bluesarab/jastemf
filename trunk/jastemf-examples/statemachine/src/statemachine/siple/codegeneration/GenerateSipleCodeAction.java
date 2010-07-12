@@ -8,9 +8,7 @@
  */
 package statemachine.siple.codegeneration;
 
-import java.io.*;
 import java.util.*;
-import javax.annotation.*;
 
 import org.eclipse.core.resources.*;
 import org.eclipse.emf.common.util.*;
@@ -21,11 +19,10 @@ import org.eclipse.jface.action.*;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.ui.*;
 import org.eclipse.xpand2.*;
-import org.eclipse.xtend.expression.*;
+import org.eclipse.xpand2.output.*;
 import org.eclipse.xtend.typesystem.*;
 import org.eclipse.xtend.typesystem.emf.*;
 
-import statemachine.*;
 import statemachine.impl.*;
 
 public class GenerateSipleCodeAction implements IObjectActionDelegate {
@@ -40,7 +37,7 @@ public class GenerateSipleCodeAction implements IObjectActionDelegate {
 				Object o = i.next();
 				if (o instanceof IFile) {
 					IFile file = (IFile) o;
-					if (file.getFileExtension().startsWith("statemachine")) {
+					if (file.getFileExtension().equals("statemachine")) {
 						process(file);
 					}
 				}
@@ -60,7 +57,7 @@ public class GenerateSipleCodeAction implements IObjectActionDelegate {
 			String outputContainer = file.getParent().getLocation()
 					.toPortableString();
 			Outlet outlet = new Outlet(outputContainer);
-			String targetFile = file.getName() + ".siple";
+			String targetFile = file.getName().substring(0, file.getName().length() - ".statemachine".length()) + ".siple";
 			outlet.setOverwrite(true);
 			output.addOutlet(outlet);
 			
