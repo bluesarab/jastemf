@@ -94,11 +94,11 @@
 		<emftext.GenerateTextResource
 			syntax="syntax/siple.cs"
 			rootFolder="${_basedir}/.."
-			syntaxProjectName="siple.semantics.resource.expr"
+			syntaxProjectName="siple.semantics.resource.siple"
 		/>
 		<copy
 			overwrite="true"
-			todir="${_basedir}/../siple.semantics.resource.expr/src/siple/semantics/resource/expr/analysis">
+			todir="${_basedir}/../siple.semantics.resource.siple/src/siple/semantics/resource/siple/analysis">
 			<fileset dir="${_basedir}/specifications/siple/syntax">
 				<include name="ExprTYPETokenResolver.java"/>
 			</fileset>
