@@ -15,9 +15,9 @@
 	
 	<!-- Delete all generated artefacts. -->
 	<target name="Clean">
-		<delete>
+		<delete includeemptydirs="true">
 			<fileset dir="${_basedir}">
-				<include name="src-gen/**/*.*"/>
+				<include name="src-gen/**/*"/>
 			</fileset>
 		</delete>
 	</target>

@@ -20,16 +20,16 @@ Procedure main() Begin
 	Var event:Integer;
 	Var current_state:Integer;
 	current_state := «this.declarations.typeSelect(statemachine::InitialState).get(0).successors.get(0).id»;
+	
 	While Not (current_state = «this.declarations.typeSelect(statemachine::FinalState).get(0).id») Do
 		Write current_state;
+		Read event;
+		
 		Var done:Boolean;
 		done := false;
-		Read event;
 «FOREACH this.declarations.typeSelect(statemachine::NormalState) AS state-»
 		If Not done And current_state = «state.id» Then
 			«IF state.entry != null»«state.entry.actionLabel»«ENDIF»
-
-			
 «FOREACH this.declarations.typeSelect(Transition).select(t|t.source == state) AS transition ITERATOR iter-»
 			If Not done And «iter.counter0»=event And «IF transition.guardLabel != null && transition.guardLabel.trim().length > 0-»«transition.guardLabel»«ELSE-»true«ENDIF-» Then
 
