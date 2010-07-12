@@ -96,13 +96,15 @@
 			rootFolder="${_basedir}/.."
 			syntaxProjectName="siple.semantics.resource.siple"
 		/>
+		<!--
 		<copy
 			overwrite="true"
 			todir="${_basedir}/../siple.semantics.resource.siple/src/siple/semantics/resource/siple/analysis">
 			<fileset dir="${_basedir}/specifications/siple/syntax">
-				<include name="ExprTYPETokenResolver.java"/>
+				<include name="SipleTYPETokenResolver.java"/>
 			</fileset>
 		</copy>
+		-->
 		<eclipse.refreshLocal depth="infinite" resource="/"/>
 	</target>
 	

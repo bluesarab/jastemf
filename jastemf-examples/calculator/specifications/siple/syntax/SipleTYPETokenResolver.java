@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.*;
 import siple.semantics.*;
 import siple.semantics.resource.siple.*;
 
-public class ExprTYPETokenResolver implements ISipleTokenResolver {
+public class SipleTYPETokenResolver implements ISipleTokenResolver {
 
 	private SipleDefaultTokenResolver defaultTokenResolver =
 		new SipleDefaultTokenResolver();
