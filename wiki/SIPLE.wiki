@@ -368,7 +368,7 @@ It becomes obvious, that:
  * Attributes with parameters have to be modeled as *operations* with equal signature in the metamodel.
  * Reference attributes are *derived non-containment references* in the metamodel.
 
-Summing up, the metamodels' abstract syntax and the !JastAdd AST specifications must be isomorph and the semantics of derived properties, non-containment references and operations of the metamodel must be specified by appropriate attributes (Or methods woven by !JastAdd).
+Summing up, the metamodels' abstract syntax and the !JastAdd AST specifications' must be isomorph and the semantics of derived properties, non-containment references and operations of the metamodel must be specified by appropriate attributes (Or methods woven by !JastAdd).
 
 *Note:* The mapping between !JastAdd and Ecore is not necessary bijective. Whereas the semantics' !JastAdd specifications must be complete, the focus of metamodels is to specify only the interface important for users. Thus, many attributes --- e.g. ones that are used to ease the specification of complicated semantics --- may not be specified in the Ecore metamodel. Nethertheless, the specified !JastAdd AST structure and the metamodel's abstract syntax must be isomorph.
 
