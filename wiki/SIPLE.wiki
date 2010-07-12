@@ -72,7 +72,7 @@ The EMFText SIPLE version additionally requires the [http://www.emftext.org EMFT
 
 Further, [http://st.inf.tu-dresden.de/rtt RTT] is used to regression test the EMF SIPLE version against the !JastAdd version. RTT's `jar` distribution is already contained in and referenced by the project. However, the integration of RTT is done using [http://www.eclipse.org/aspectj/ AspectJ]. Thus, the [http://www.eclipse.org/ajdt/ AspectJ Development Tools] for Eclipse are required. Just install them via their update site _"http://download.eclipse.org/tools/ajdt/35/update"_.
 
-Last but not least, JastEMF is required to integrate SIPLE's Ecore metamodel and its !JastAdd semantics (See [Downloads download section]).
+Last but not least, JastEMF is required to integrate SIPLE's Ecore metamodel and its !JastAdd semantics ([Installation installation details]).
 
 The following table summarises the tools used by the SIPLE project, their purpose, whether they must be manually installed or configurated and if they are already contained in the project's repository:
 
