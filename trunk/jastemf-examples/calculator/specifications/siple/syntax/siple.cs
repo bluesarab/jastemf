@@ -8,8 +8,9 @@ START CompilationUnit
 OPTIONS {
 	//generateCodeFromGeneratorModel = "true";
 	usePredefinedTokens = "false";
+	overridePluginXML = "false";
 }
-  
+
 TOKENS {
 	DEFINE TYPE $('Integer' | 'Real' | 'Boolean')$;
 	DEFINE VALUE $(('0'..'9')+) | (('0'..'9')+ ( '.' ('0'..'9')+ )) | 'true' | 'false'$;

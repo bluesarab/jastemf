@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: JastEMF SIPLE Example
+Bundle-Name: JastEMF - SIPLE Example
 Bundle-SymbolicName: siple;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Bundle-Vendor: Software Technology Group
+Bundle-Vendor: Software Technology Group - Technische Universität Dresden - Germany
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: siple.provider,
