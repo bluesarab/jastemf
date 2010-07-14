@@ -64,7 +64,7 @@ It consists of two procedures. The first computes the well-known [http://en.wiki
 
 == Installation ==
 
-The SIPLE tutorial can be checked out from the project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The EMFText SIPLE version additionally requires the _"siple.semantics.resource.siple"_ project (Same SVN), into which the EMFText parser is generated.
+The SIPLE tutorial can be checked out from the project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The EMFText SIPLE version additionally requires the _"siple.semantics.resource.siple"_ project (same SVN), into which the EMFText parser is generated.
 
 To install Subclipse use its Eclipse update site via _Help => Install new Software => Work with: "http://subclipse.tigris.org/update_1.6.x" =>_ select the required components _=> Next =>_ ... _=> Finish_. After installation, make sure that the correct SVN interface is configurated (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
 
@@ -396,7 +396,7 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/editor_pluginxml_launch.pn
 
 Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named _"mymodel.siple"_ and do an example editor session:
  
- # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => _)
+ # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => File name:_ `mymodel.siple` _=> Next => Model Object:_ `CompilationUnit` _=> Finish_); *Note:* Eclipse's Mac distribution has a nasty Creation Wizard bug all Ecore Wizard suffer from. After selecting a _Model Object_ via the pull down menu the _Finish_ button still remains disabled. Just delete a character of the selected _Model Object_ and manually write it again and the button should work (The problem is caused by an erroneous öistener implementation within Eclipse).
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
