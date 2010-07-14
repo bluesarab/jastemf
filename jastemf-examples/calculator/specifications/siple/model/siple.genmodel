@@ -15,14 +15,10 @@
     <genDataTypes ecoreDataType="siple.ecore#//State"/>
     <genClasses ecoreClass="siple.ecore#//CompilationUnit">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//CompilationUnit/Declaration"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//CompilationUnit/IsCorrect"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//CompilationUnit/IsCorrectLocal"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//CompilationUnit/MainProcedure"/>
       <genOperations ecoreOperation="siple.ecore#//CompilationUnit/Interpret"/>
     </genClasses>
     <genClasses image="false" ecoreClass="siple.ecore#//Statement">
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Statement/IsCorrect"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Statement/IsCorrectLocal"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//Statement/ProcedureInContext"/>
       <genOperations ecoreOperation="siple.ecore#//Statement/Interpret">
         <genParameters ecoreParameter="siple.ecore#//Statement/Interpret/vm"/>
