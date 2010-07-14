@@ -64,7 +64,7 @@ It consists of two procedures. The first computes the well-known [http://en.wiki
 
 == Installation ==
 
-The SIPLE tutorial can be checked out from the project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The EMFText SIPLE version additionally requires the `siple.semantics.resource.siple` project (Same SVN), into which the EMFText parser is generated.
+The SIPLE tutorial can be checked out from the project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The EMFText SIPLE version additionally requires the _"siple.semantics.resource.siple"_ project (Same SVN), into which the EMFText parser is generated.
 
 To install Subclipse use its Eclipse update site via _Help => Install new Software => Work with: "http://subclipse.tigris.org/update_1.6.x" =>_ select the required components _=> Next =>_ ... _=> Finish_. After installation, make sure that the correct SVN interface is configurated (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
 
