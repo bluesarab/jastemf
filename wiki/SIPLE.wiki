@@ -415,7 +415,7 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
  # If you now browse the write statement's, equality test's or second operand's semantics, they are appropriate updated.
  # If you change the type of `x` to be a `Boolean`, the equality test's and consequently write statement's type will be an error, since boolean and real values cannot be compared.
 
-We think the short editor session demonstrated, that !JastEMF successfully integrated the semantics specified in !JastAdd into the EMF generated metamodel implementation. Just feel free to play around with the SIPLE editor and test its integrated semantics (E.g., try nested procedures and lexical scopes).
+We think the short editor session demonstrated, that JastEMF successfully integrated the semantics specified in !JastAdd into the EMF generated metamodel implementation. Just feel free to play around with the SIPLE editor and test its integrated semantics (E.g., try nested procedures and lexical scopes).
 
 == Conclusion ==
 
