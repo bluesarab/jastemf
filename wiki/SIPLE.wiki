@@ -394,9 +394,9 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/editor_pluginxml_launch.pn
 
 *Note:* If you have other projects in your workspace, that are erroneous, you will get an error message. Just ignore it and select _Proceed_.
 
-Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named _"mymodel.siple"_ and do an example editor session:
+Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named `mymodel.siple` and do an example editor session:
  
- # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => File name:_ `mymodel.siple` _=> Next => Model Object:_ `CompilationUnit` _=> Finish_); *Note:* Eclipse's Mac distribution has a nasty Creation Wizard bug all Ecore Wizard suffer from. After selecting a _Model Object_ via the pull down menu the _Finish_ button still remains disabled. Just delete a character of the selected _Model Object_ and manually write it again and the button should work (The problem is caused by an erroneous öistener implementation within Eclipse).
+ # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => File name:_ `mymodel.siple` _=> Next => Model Object:_ `CompilationUnit` _=> Finish_). *Note:* Eclipse's Mac distribution has a nasty Creation Wizard bug. After selecting a _Model Object_ via the pull down menu the _Finish_ button still remains disabled. Just delete a character of the selected _Model Object_ and manually write it again and the button should work (The problem is caused by an erroneous listener implementation within Eclipse).
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
