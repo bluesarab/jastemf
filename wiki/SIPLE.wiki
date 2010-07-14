@@ -382,7 +382,7 @@ Even if the generated implementation already is a valid metamodel and semantics 
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_dialog.png
 
-Eclipse's standard EMF tooling will generate two plugin projects (_siple.editor_ and _siple.tests_).
+Eclipse's standard EMF tooling will generate a plugin project named _siple.editor_.
 
 == Application: Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
 
