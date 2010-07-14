@@ -405,7 +405,7 @@ Create a new empty project in the started Eclipse (_New => Other => General => P
   # Add an equality test
   # Add a reference to `x` as first operand of the test
   # Add a reference to `para` as second operand of the test
- # Now is a good time to browse the model's semantics (model elements' semantics are shown in their properties view: _Window => Show view => Other => General => Properties_). We know, the program should be erroneous, because `x` is not declared at all. You can see that by...
+ # Now is a good time to browse the model's semantics (model elements' semantics are shown in their properties view: Window => Show view => Other => General => Properties). We know, the program should be erroneous, because `x` is not declared at all. You can see that by...
   * Selecting the reference to `x`. In its properties view its !JastAdd computed semantics are shown. It becomes obvious, that is not declared () and therefore has no valid type ().
   * If you select the reference to `para`, its associated declaration (`proc`'s parameter) and type (`Real`) are correctly computed. 
   * Of course, if you select the equality test or the write statement, their types will be an error type, since both depend on the erroneous reference to `x`.
