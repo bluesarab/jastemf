@@ -394,7 +394,9 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/editor_pluginxml_launch.pn
 
 *Note:* If you have other projects in your workspace, that are erroneous, you will get an error message. Just ignore it and select _Proceed_.
 
-Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named `mymodel.siple` and do an example editor session:
+Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named `mymodel.siple` and do an example editor session to construct the following model:
+
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
  
  # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => File name:_ `mymodel.siple` _=> Next => Model Object:_ `CompilationUnit` _=> Finish_). *Note:* Eclipse's Mac distribution has a nasty Creation Wizard bug. After selecting a _Model Object_ via the pull down menu the _Finish_ button still remains disabled. Just delete a character of the selected _Model Object_ and manually write it again and the button should work (The problem is caused by an erroneous listener implementation within Eclipse).
  # Add a procedure `proc` to the model (Right click the `CompilationUnit` node and select _)
@@ -412,8 +414,6 @@ Create a new empty project in the started Eclipse (_New => Other => General => P
  # Let us fix the errors by adding a declaration for `x`
  # If you now browse the write statement's, equality test's or second reference operand's semantics, they are appropriate updated.
  # If you change the type of `x` to be a `Boolean`, the equality test's and consequently write statement's type will be an error, since boolean and real values cannot be compared.
-
-http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
 == Conclusion ==
 
