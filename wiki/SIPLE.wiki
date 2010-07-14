@@ -399,7 +399,7 @@ Create a new empty project in the started Eclipse (_New => Other => General => P
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
  
  # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => File name:_ `mymodel.siple` _=> Next => Model Object:_ `CompilationUnit` _=> Finish_). *Note:* Eclipse's Mac distribution has a nasty Creation Wizard bug. After selecting a _Model Object_ via the pull down menu the _Finish_ button still remains disabled. Just delete a character of the selected _Model Object_ and manually write it again and the button should work (The problem is caused by an erroneous listener implementation within Eclipse).
- # Add a procedure `proc` to the model (Right click the `CompilationUnit` node and select _New Child => Procedure Declaration_. Afterwards open the properties view (_Window => Show view => Other => General => Properties_) and change the procedure declarations name to (_Name:_ `proc`).
+ # Add a procedure `proc` to the model (Right click the `CompilationUnit` node and select _New Child => Procedure Declaration_. Afterwards open the properties view (_Window => Show view => Other => General => Properties_) and change the procedure declaration's name to (_Name:_ `proc`).
  # Add a parameter of type real and named `para` to `proc` (Right click the procedure declaration and select _New Child => Variable Declaration_ + _Name:_ `para` + _Declared Type:_ `Real`)
  # Add a body (i.e., implementation) to `proc` (_New Child => Block_)
  # We like `proc` to print on the console while its execution whether the value of `x` and its parameter `para` is equal. Therefore we have to...
@@ -408,12 +408,14 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
   # Add a reference to `x` as first operand of the test (_New Child => Operand1 Reference_ + _Name:_ `x`)
   # Add a reference to `para` as second operand of the test (_New Child => Operand2 Reference_ + _Name:_ `para`)
  # Now is a good time to browse the model's semantics (model elements' semantics are shown in their properties view). We know, the program should be erroneous, because `x` is not declared at all. You can see that by...
-  * Selecting the reference to `x`. In its properties view its !JastAdd computed semantics are shown. It becomes obvious, that is not declared (the properties view _Declaration_ shows nothing) and therefore has no valid type (_Type:_ `ERROR_TYPE`).
+  * Selecting the reference to `x`. In its properties view its !JastAdd computed semantics are shown. It becomes obvious, that is not declared (the _Declaration_ shows nothing) and therefore has no valid type (_Type:_ `ERROR_TYPE`).
   * If you select the reference to `para`, its associated declaration (`proc`'s parameter) and type (`Real`) are correctly computed. 
   * Of course, if you select the equality test or the write statement, their types will be an error type, since both depend on the erroneous reference to `x`.
  # Let us fix the errors by adding a declaration for `x` (Right click the `CompilationUnit` and select _New Child => Variable Declaration_ + _Name:_ `x` + _Declared Type:_ `Integer`).
  # If you now browse the write statement's, equality test's or second operand's semantics, they are appropriate updated.
  # If you change the type of `x` to be a `Boolean`, the equality test's and consequently write statement's type will be an error, since boolean and real values cannot be compared.
+
+We think the short editor session demonstrated, that !JastEMF successfully integrated the semantics specified in !JastAdd into the EMF generated metamodel implementation. Just feel free to play around with the SIPLE editor and test its integrated semantics (E.g., try nested procedures and lexical scopes).
 
 == Conclusion ==
 
