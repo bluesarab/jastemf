@@ -397,6 +397,15 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/editor_pluginxml_launch.pn
 Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SIPLE program models and edit them with the SIPLE model editor. Let us create a SIPLE model named `mymodel.siple` and do an example editor session:
  
  # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => File name:_ `mymodel.siple` _=> Next => Model Object:_ `CompilationUnit` _=> Finish_). *Note:* Eclipse's Mac distribution has a nasty Creation Wizard bug. After selecting a _Model Object_ via the pull down menu the _Finish_ button still remains disabled. Just delete a character of the selected _Model Object_ and manually write it again and the button should work (The problem is caused by an erroneous listener implementation within Eclipse).
+ # Add a procedure `proc` to the model (Right click the `CompilationUnit` node and select _)
+ # Add a parameter to `proc` (Right click)
+ # Add a body (i.e., implementation) to `proc`
+ # We like `proc` to print on the console while its execution whether the value of `x` and the procedure parameter `para` is equal. Therefore we have to...
+  # Add a write statement
+  # Add an equality test
+  # Add a reference to `x` as first operand of the test
+  # Add a reference to `para` as second operand of the test
+ # 
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
