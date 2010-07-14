@@ -431,8 +431,12 @@ By providing an Ecore metamodel for the !JastAdd semantics presented in the prev
 
 == Conclusion ==
 
+<wiki:comment>
 = Regression Tests =
 
 SIPLE's different language constructs are systematically tested.
+
+TODO...
+</wiki:comment>
 
 = Summary =
