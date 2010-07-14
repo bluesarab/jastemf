@@ -398,14 +398,20 @@ Create a new empty project in the started Eclipse (_New => Other => General => P
  
  # Create the model (_New => Other => Example EMF Model Creation Wizard => Semantics Model => Next => File name:_ `mymodel.siple` _=> Next => Model Object:_ `CompilationUnit` _=> Finish_). *Note:* Eclipse's Mac distribution has a nasty Creation Wizard bug. After selecting a _Model Object_ via the pull down menu the _Finish_ button still remains disabled. Just delete a character of the selected _Model Object_ and manually write it again and the button should work (The problem is caused by an erroneous listener implementation within Eclipse).
  # Add a procedure `proc` to the model (Right click the `CompilationUnit` node and select _)
- # Add a parameter to `proc` (Right click)
+ # Add a parameter named `para` to `proc` (Right click)
  # Add a body (i.e., implementation) to `proc`
- # We like `proc` to print on the console while its execution whether the value of `x` and the procedure parameter `para` is equal. Therefore we have to...
+ # We like `proc` to print on the console while its execution whether the value of `x` and its parameter `para` is equal. Therefore we have to...
   # Add a write statement
   # Add an equality test
   # Add a reference to `x` as first operand of the test
   # Add a reference to `para` as second operand of the test
- # 
+ # Now is a good time to browse the model's semantics (model elements' semantics are shown in their properties view (_Window => Show view => Other => General => Properties_)). We know, the program should be erroneous, because `x` is not declared at all. You can see that by...
+  * Selecting the reference to `x`. In its properties view its JastAdd computed semantics are shown. It becomes obvious, that is not declared () and therefore has no valid type ().
+  * If you select the reference to `para`, its associated declaration (`proc`'s parameter) and type (`Real`) are correctly computed. 
+  * Of course, if you select the equality test or the write statement, their types will be an error type, since both depend on the erroneous reference to `x`.
+ # Let us fix the errors by adding a declaration for `x`
+ # If you now browse the write statement's, equality test's or second reference operand's semantics, they are appropriate updated.
+ # If you change the type of `x` to be a `Boolean`, the equality test's and consequently write statement's type will be an error, since boolean and real values cannot be compared.
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
 
