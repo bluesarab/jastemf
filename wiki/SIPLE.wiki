@@ -378,9 +378,9 @@ Details about the mapping between !JastAdd and Ecore can be found [Mapping here]
 
 It should be clear by now, that SIPLE is a valid [Approach#Integration_Projects JastEMF integration project]. To generate its Ecore metamodel implementation and !JastAdd semantics and perform the integration, again the _"specifications/build.xml"_ Ant build script is used. Of course, this time the _"EMF Version"_ task must be executed. [#Configuration As used to], the script must be executed within Eclipse's JRE.
 
-Even if the generated implementation already is a valid metamodel and semantics implementation, it still does not provide any means (besides the standard model factories) to construct program models or investigate them. Therefore, we like to generate an Eclipse editor, that can be used to construct, manipulate and investigate SIPLE programs. To generate the Eclipse model editor, open the metamodel's generator model (_"specifications/siple/model/siple.genmodel"_), right click its root element and select _Generate All_ as shown below:
+Even if the generated implementation already is a valid metamodel and semantics implementation, it still does not provide any means (besides the standard model factories) to construct program models or investigate them. Therefore, we like to generate an Eclipse editor, that can be used to construct, manipulate and investigate SIPLE programs. To generate the Eclipse model editor, open the metamodel's generator model (_"specifications/siple/model/siple.genmodel"_), right click its root element and select _Generate Editor Code_ as shown below:
 
-http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_all_dialog.png
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_dialog.png
 
 Eclipse's standard EMF tooling will generate two plugin projects (_siple.editor_ and _siple.tests_).
 
