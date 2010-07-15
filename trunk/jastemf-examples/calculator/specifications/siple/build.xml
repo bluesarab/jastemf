@@ -10,9 +10,9 @@
 	 1) A version implemented based on JFlex, Beaver and JastAdd.
 	 2) A version with an EMF repository implemented based on JFlex, Beaver,
 	 	JastAdd and JastEMF.
-	 3) A version with EMF repository and an Eclipse editor with syntax
-	 	highlighting, code completion and semantic property view implemented
-	 	based on EMFText (including AntLR), JastAdd and JastEMF.
+	 3) A version based on version 2 and EMFText (including AntLR) with an
+	 	Eclipse editor with syntax highlighting, code completion and semantic
+	 	properties view.
 	@author C. Bürger
 -->
 <project name="Generation" default="EMF Version">
@@ -21,8 +21,7 @@
 	</path>
 	<property name="_basedir" refid="_basedir"/>
 	
-	<!-- Delete all generated artefacts. -->
-	<target name="Clean">
+	<target name="Clean" description="Delete all generated artefacts.">
 		<delete includeemptydirs="true">
 			<fileset dir="${_basedir}">
 				<!-- all these artefacts are generated -->
@@ -33,8 +32,9 @@
 		</delete>
 	</target>
 	
-	<!-- Generate the standard compiler. -->
-	<target name="JastAdd Version">
+	<target
+		name="JastAdd Version"
+		description="Generate the standard compiler (version 1).">
 		<echo message="========================================================================"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="||                      Generate Implementation                       ||"/>
@@ -47,8 +47,9 @@
 		<antcall target="RTT JastAdd Integration"/>
 	</target>
 	
-	<!-- Generate the EMF adapted compiler. -->
-	<target name="EMF Version">
+	<target
+		name="EMF Version"
+		description="Generate the EMF adapted compiler (version 2).">
 		<echo message="========================================================================"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="||                      Generate Implementation                       ||"/>
@@ -63,34 +64,15 @@
 		<antcall target="RTT EMF Integration"/>
 	</target>
 	
-	<!-- Generate the EMF adapted compiler with editor support. -->
-	<target name="EMFText Version">
+	<target
+		name="EMFText Resources"
+		description="Generate an editor for the EMF adapted compiler using EMFText (version 3).">
 		<echo message="========================================================================"/>
 		<echo message="||                                                                    ||"/>
-		<echo message="||                      Generate Implementation                       ||"/>
-		<echo message="||                         (EMFText Version)                          ||"/>
+		<echo message="||                         Generate Extension                         ||"/>
+		<echo message="||                  (EMFText Editor for EMF Version)                  ||"/>
 		<echo message="||                                                                    ||"/>
 		<echo message="========================================================================"/>
-		<!-- Clean before building to avoid errors due to refactoring -->
-		<antcall target="Clean"/>
-		<antcall target="EMF Semantic"/>
-		<antcall target="EMFText Resources"/>
-	</target>
-	
-	<!--
-		Generate the AntLR lexer and parser and the Eclipse editor used by SIPLE
-		version 3.
-		
-		Two plugin projects required by the EMFText implementation will be
-		generated. The first plugin "siple.semantics.resource.expr" is the
-		EMFText editor for SIPLE programs (*.siple) and the second plugin
-		"org.emftext.commons.antlr3_2_0" is the AntLR runtime the editor plugin
-		requires.
-		
-		BEWARE: The two plugin projects should automatically appear within the
-			workspace. If not, they must be manually imported.
-	-->
-	<target name="EMFText Resources" description="Generate the EMF text resource plug-in">
 		<emftext.GenerateTextResource
 			syntax="syntax/siple.cs"
 			rootFolder="${_basedir}/.."
@@ -99,8 +81,9 @@
 		<eclipse.refreshLocal depth="infinite" resource="/"/>
 	</target>
 	
-	<!-- Generate the lexer used by SIPLE versions 1 and 2. -->
-	<target name="JFlex Lexer">
+	<target
+		name="JFlex Lexer"
+		description="Generate the lexer used by SIPLE versions 1 and 2.">
 		<echo message="========================> Generate JFlex Lexer &lt;========================"/>
 		<taskdef
 			classname	= "JFlex.anttask.JFlexTask"
@@ -115,8 +98,9 @@
 		/>
 	</target>
 	
-	<!-- Generate the parser used by SIPLE version 1 and 2. -->
-	<target name="Beaver Parser">
+	<target
+		name="Beaver Parser"
+		description="Generate the parser used by SIPLE version 1 and 2.">
 		<echo message="========================> Generate Beaver Parser &lt;======================"/>
 		<taskdef
 			name		= "beaver"
@@ -138,8 +122,9 @@
 		/>
 	</target>
 	
-	<!-- Generate the semantic evaluator used by SIPLE version 1. -->
-	<target name="JastAdd Semantic">
+	<target
+		name="JastAdd Semantic"
+		description="Generate the semantic evaluator used by SIPLE version 1.">
 		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
 		<jastadd
 			outdir="${_basedir}/src-gen"
@@ -153,8 +138,9 @@
 		</jastadd>
 	</target>
 	
-	<!-- Generate the semantic evaluator used by SIPLE version 2 and 3. -->
-	<target name="EMF Semantic">
+	<target
+		name="EMF Semantic"
+		description="Generate the semantic evaluator used by SIPLE version 2 and 3.">
 		<echo message="========================> Generate EMF Semantic &lt;======================="/>
 		<jastemf
 			generateeditcode="true"
@@ -169,8 +155,9 @@
 		</jastemf>
 	</target>
 	
-	<!-- Generate regression test tool support for compiler version 1. -->
-	<target name="RTT JastAdd Integration">
+	<target
+		name="RTT JastAdd Integration"
+		description="Generate regression test tool support for compiler version 1.">
 		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
 		<copy todir="${_basedir}/src-gen/rtt/adaptation">
 			<fileset dir="${_basedir}/tests/adaptation/JastAdd">
@@ -180,8 +167,9 @@
 		</copy>
 	</target>
 	
-	<!-- Generate regression test tool support for compiler version 2. -->
-	<target name="RTT EMF Integration">
+	<target
+		name="RTT EMF Integration"
+		description="Generate regression test tool support for compiler version 2.">
 		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
 		<copy todir="${_basedir}/src-gen/rtt/adaptation">
 			<fileset dir="${_basedir}/tests/adaptation/EMF">
