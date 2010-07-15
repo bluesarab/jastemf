@@ -479,4 +479,4 @@ Last but not least, you can still open SIPLE programs in the EMF editor generate
 
 == Conclusion ==
 
-The EMFText SIPLE version demonstrates on the one hand, that EMF tools benefit from _semantics integrated metamodelling_ and on the other hand compiler projects can benefit from metamodelling frameworks. The great advantage of JastEMF's approach is: It does not matter which editor or EMF tool you use, since JastEMF integrates a metamodel's semantics into its implementation, all tools working with models benefit from their semantics and can reuse them for their own tasks.
+The EMFText SIPLE version demonstrates on the one hand, that EMF tools benefit from _semantics integrated metamodelling_ and on the other hand compiler projects can benefit from metamodelling frameworks. The great advantage of JastEMF's approach is: It does not matter which editor or EMF tool you use. Since JastEMF integrates a metamodel's semantics into its implementation, all tools working with models benefit from their semantics and can reuse them for their own tasks.
