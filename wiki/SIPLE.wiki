@@ -442,7 +442,7 @@ The task generates two plugin-projects:
  * The _"siple.semantics.resource.siple"_ project, containing the actual parser and its runtime environment.
  * The _"siple.semantics.resource.siple.ui"_ project, containing the Eclipse editor's implementation.
 
-Since the _"siple.semantics.resource.siple"_ project already exists (checked out from the SVN) it is not newly created, but rather only extended with the generated parser. The components checked out from the SVN only reuse the generated parser to realize an Eclipse extension that provides a right-click menu entry for `*.siple` files to start their interpretation.
+Since the _"siple.semantics.resource.siple"_ project already exists (checked out from the SVN) it is not newly created, but rather only extended with the generated parser. The components checked out from the SVN only reuse the generated parser to realize an Eclipse extension that provides an `Interpret` right-click menu entry for `*.siple` files, such that it is possible to execute SIPLE programs within Eclipse.
 
 The _"siple.semantics.resource.siple.ui"_ project is completely generated and still must be imported (_File => Import => General => Existing Projects into Workspace => Next => Browse =>_ Select the project from your workspace folder _=> OK => Finish_).
 
