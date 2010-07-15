@@ -269,6 +269,8 @@ To generate the !JastAdd version's implementation just open the _"specifications
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/console_buildprocess_jastadd_version.png
 
+*Note:* If you generated the EMF or EMFText version before and like to switch back to the !JastAdd version, you have to clean the project before its generation. To do so open the _"specifications/siple/build.xml"_ Ant script and execute its _Clean_ task. Afterwards right click the project and select _Team => Revert => OK_.
+
 == Application: Interpretation of SIPLE Programs via Command Line ==
 
 To test the just generated implementation you can on the one hand execute the regression tests as described [#Regression_Tests later], investigate the regression test's expected results to see each attribute's value --- i.e. browse the compiler internal semantics --- or execute the SIPLE interpreter. For now we will focus on the interpreter. The EMF integrated versions are much better suited to browse compiler internal semantics.
@@ -378,6 +380,8 @@ Details about the mapping between !JastAdd and Ecore can be found [Mapping here]
 
 It should be clear by now, that SIPLE is a valid [Approach#Integration_Projects JastEMF integration project]. To generate its Ecore metamodel implementation and !JastAdd semantics and perform the integration, again the _"specifications/build.xml"_ Ant build script is used. Of course, this time the _"EMF Version"_ task must be executed. [#Configuration As used to], the script must be executed within Eclipse's JRE.
 
+*Note:* If you generated the !JastAdd version presented in the previous section, you have to clean the project before generating the EMF version. To do so, open the _"specifications/build.xml"_ Ant build script and execute its _Clean_ task.
+
 Even if the generated implementation already is a valid metamodel and semantics implementation, it still does not provide any means (besides the standard model factories) to construct program models or investigate them. Therefore, we like to generate an Eclipse editor, that can be used to construct, manipulate and investigate SIPLE programs. To generate the Eclipse model editor, open the metamodel's generator model (_"specifications/siple/model/siple.genmodel"_), right click its root element and select _Generate Editor Code_ as shown below:
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_dialog.png
@@ -434,6 +438,14 @@ EMFText specifications basically specify a set of regular expressions representi
 To integrate SIPLE's semantics, the semantic !JastAdd specifications of the previous SIPLE versions are reused. The generated Eclipse editor immediately benefits from these semantics. Its properties view shows SIPLE programs' semantics while editing them.
 
 == Generation ==
+
+The EMFText version can be generated using the _"specifications/siple/build.xml"_ Ant script already known from the previous versions. Just execute the _EMFText Resources_ task.
+
+*Note:* The generated EMFText editor requires the EMF version artefacts. If they have been cleaned (_Clean_ task) or not generated yet (by skipping the previous section) you must execute the _EMF Version_ task before executing the _EMFText Resources_ task.
+
+*Note:* Remember, that the EMFText version requires the _"siple.semantics.resource.siple"_ project (avaible in JastEMF's SVN). If you did not check out the project and generate the EMFText editor, it will still work. Only the interpretation of `*.siple` files via Eclipse's context menu will not be avaible.
+
+EMFText generated two projects, _"siple.semantics.resource.siple"_ and _""_
 
 == Application: Editing SIPLE Programs as Models in a generated Eclipse Text Editor ==
 
