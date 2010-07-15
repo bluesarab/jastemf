@@ -450,7 +450,7 @@ In contrast, the _"siple.semantics.resource.siple.ui"_ project is completely gen
 
 To use the generated editor open the _"siple.semantics.resource.siple.ui"_ project's _plugin.xml_ and select _Launch an Eclipse application_. Similar to the EMF version, you can now edit SIPLE program models using the generated editor.
 
-Let us demonstrate the editor using the second Fibonacci numbers example from above. Just create a new SIPLE program (_File => New => Other => EMFText File => EMFText .siple file => Next => Container:_ Select any project within the workspace _=> File name:_ `fibonacci.siple` _=> Finish_), open the EMFText siple editor perspective for the program (Right click the `fibonacci.siple` file and select _Open With => Other => Internal editors => EMFText siple Editor => OK_) and copy and paste the program, which was:
+Let us demonstrate the editor using the second faculty numbers example from above. Just create a new SIPLE program (_File => New => Other => EMFText File => EMFText .siple file => Next => Container:_ Select any project within the workspace _=> File name:_ `fibonacci.siple` _=> Finish_), open the EMFText siple editor perspective for the program (Right click the `fibonacci.siple` file and select _Open With => Other => Internal editors => EMFText siple Editor => OK_) and copy and paste the program, which was:
 {{{
 Procedure main() Begin
     Write fac(12);
@@ -463,6 +463,13 @@ Procedure fac(Var n:Integer):Integer Begin
     Return n * fac(a - 1);
 End;
 }}}
+If you now select the recursive `fac` invocation, the semantics in the properties view show a type error:
+
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emftext_editor_1.png
+
+Let us fix the error by changing the `a` to an `n`. Further, let us improve the program by not computing a fixed faculty, but rather ask the user for a faculty to compute. To do so add before the write the variable declaration `Var n:Integer;` followed by a `Read n;`. Remember, that you can use the editor's code completion functionalities by pressing _Control + Space_:
+
+http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emftext_editor_2.png
 
 == Conclusion ==
 
