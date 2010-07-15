@@ -427,13 +427,11 @@ By providing an Ecore metamodel for the !JastAdd semantics presented in the prev
 
 == Introduction ==
 
-W.r.t. _semantics integrated metamodelling_, the EMF SIPLE version demonstrated reference attribute grammars practicability to specify metamodel semantics. Anyone familiar with the EMF and its Ecore metamodelling language can immediately imagine which of his projects and EMF tools depending on them can benefit from our approach.
-
-To further elaborate the benefits of _semantics integrated *metamodelling*_ for compiler developers we used [http://www.emftext.org EMFText] to develop a text to model parser for SIPLE, that supports an Eclipse editor with syntax highlighting, code completion and integrated SIPLE semantics. The only difference between the EMFText and EMF SIPLE version is, that the EMFText version complements SIPLE's existing textual user interface --- i.e., the Beaver parser and JFlex lexer --- by an EMFText generated Eclipse text editor.
+W.r.t. _semantics integrated metamodelling_, the EMF SIPLE version demonstrated reference attribute grammars practicability to specify metamodel semantics. To elaborate and exemplify the benefits of _semantics integrated metamodelling_ we used [http://www.emftext.org EMFText] to develop a text to model parser for SIPLE, that supports an Eclipse editor with syntax highlighting, code completion and integrated SIPLE semantics. The only difference between the EMFText and EMF SIPLE version is, that the EMFText version complements SIPLE's existing textual user interface --- i.e., the Beaver parser and JFlex lexer --- by an EMFText generated Eclipse text editor.
 
 EMFText specifications basically specify a set of regular expressions representing tokens and a context-free grammar to describe a concrete syntax, whereas non-terminals refer to metaclasses of a metamodel, such that generated parsers construct model instances while parsing. Therefore, we reused the context-free grammar specification of the previous SIPLE versions' Beaver parser to develop an EMFText specification for SIPLE (_"specifications/siple/syntax/siple.cs"_). EMFText automatically derives an Eclipse editor from this specification.
 
-The semantic specifications of the previous SIPLE versions are reused. The generated editor immediately benefits from these semantics. Its properties view shows the edited SIPLE program's semantics.
+The semantic specifications of the previous SIPLE versions are reused. The generated editor immediately benefits from these semantics. Its properties view shows edited SIPLE programs' semantics.
 
 == Generation ==
 
