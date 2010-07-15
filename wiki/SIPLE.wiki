@@ -431,7 +431,7 @@ W.r.t. _semantics integrated metamodelling_, the EMF SIPLE version demonstrated 
 
 EMFText specifications basically specify a set of regular expressions representing tokens and a context-free grammar to describe a concrete syntax, whereas non-terminals refer to metaclasses of a metamodel, such that generated parsers construct model instances while parsing. Therefore, we reused the context-free grammar specification of the previous SIPLE versions' Beaver parser to develop an EMFText specification for SIPLE (_"specifications/siple/syntax/siple.cs"_). EMFText automatically derives an Eclipse editor from this specification.
 
-The semantic specifications of the previous SIPLE versions are reused. The generated editor immediately benefits from these semantics. Its properties view shows edited SIPLE programs' semantics.
+The semantic specifications of the previous SIPLE versions are reused. The generated editor immediately benefits from these semantics, such that its properties view shows SIPLE programs' semantics while editing them.
 
 == Generation ==
 
