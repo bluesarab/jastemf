@@ -19,7 +19,7 @@ The following table summarises and forecloses the features of the different SIPL
 || *Version* || *Semantics (Static & Execution)* || *Interpreter* || *Tests* || *Metamodel* || *Eclipse Model Editor* || *Eclipse Text Editor* ||
 || !JastAdd || Yes || Yes (Command line) || Yes || No || No || No ||
 || EMF || Yes || Yes (Command line) || Yes || Yes || Yes || No ||
-|| EMFText || Yes || Yes (Eclipse Menu Extension) || No || Yes || Yes || Yes ||
+|| EMFText || Yes || Yes (Eclipse Menu Extension) || Supports the EMF version's tests || Yes || Yes || Yes ||
 
 == A First Look at SIPLE ==
 
