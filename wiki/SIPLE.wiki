@@ -435,13 +435,16 @@ The semantic specifications of the previous SIPLE versions are reused. The gener
 
 == Generation ==
 
-The EMFText version can be generated using the _"specifications/siple/build.xml"_ Ant script already known from the previous versions. Just execute the _EMFText Resources_ task.
+The EMFText version can be generated using the _"specifications/siple/build.xml"_ Ant script's _EMFText Resources_ task. However, before doing so the EMF version presented in the previous section must have been generated and the _"siple.semantics.resource.siple"_ project must have been checked out from the SVN.
 
-*Note:* The generated EMFText editor requires the EMF version artefacts. If they have been cleaned (_Clean_ task) or not generated yet (by skipping the previous section) you must execute the _EMF Version_ task before executing the _EMFText Resources_ task.
+The task generates two plugin-projects:
 
-*Note:* Remember, that the EMFText version requires the _"siple.semantics.resource.siple"_ project (avaible in JastEMF's SVN). If you did not check out the project and generate the EMFText editor, it will still work. Only the interpretation of `*.siple` files via Eclipse's context menu will not be avaible.
+ * The _"siple.semantics.resource.siple"_ project, containing the actual parser and its runtime environment.
+ * The _"siple.semantics.resource.siple.ui"_ project, containing the Eclipse editor's implementation.
 
-EMFText generated two projects, _"siple.semantics.resource.siple"_ and _""_
+Since the _"siple.semantics.resource.siple"_ project already exists (checked out from the SVN) it is not newly created, but rather only extended with the generated parser. The components checked out from the SVN only reuse the generated parser to realize an Eclipse extension that provides a right-click menu entry for `*.siple` files to start their interpretation.
+
+The _"siple.semantics.resource.siple.ui"_ project is completely generated and still must be imported (_File => Import => General => Existing Projects into Workspace => Next => Browse =>_ Select the project from your workspace folder _=> OK => Finish_).
 
 == Application: Editing SIPLE Programs as Models in a generated Eclipse Text Editor ==
 
