@@ -463,30 +463,20 @@ Procedure fac(Var n:Integer):Integer Begin
     Return n * fac(a - 1);
 End;
 }}}
-If you now select the recursive `fac` invocation, the semantics in the properties view show a type error:
+If you now select the recursive `fac` invocation, its semantics in the properties view show a type error:
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emftext_editor_1.png
 
-Let us fix the error by changing the `a` to an `n`. Further, let us improve the program by not computing a fixed faculty, but rather ask the user for a faculty to compute. To do so add the variable declaration `Var n:Integer;` followed by a `Read n;` before the write statement in the `main` procedure. Remember, that you can use the editor's code completion functionalities by pressing _Control + Space_:
+Let us fix the error by changing the `a` to `n`. Further, let us improve the program by not computing a fixed faculty, but rather ask the user for a faculty to compute. To do so add the variable declaration `Var n:Integer;` followed by a `Read n;` before the write statement in the `main` procedure. Remember, that you can use the editor's code completion functionalities by pressing _Control + Space_:
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emftext_editor_2.png
 
-You can also use the outline view to see which textual parts model elements belong to:
+You can also use the outline view to see to which textual parts model elements belong:
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emftext_editor_3.png
 
 Last but not least, you can still open SIPLE programs in the EMF editor generated for the EMF version (Right click the program and select _Open With => Other => Internal editors => Semantics Model Editor_) and manipulate them there, e.g., to move program parts. As soon as changes are saved, all other editors are automatically updated.
 
-It does not matter which editor or EMF tool you use, since JastEMF integrated SIPLE's semantics into its metamodel implementation, all tools working with SIPLE models benefit from their semantics and can reuse them for their own tasks.
-
 == Conclusion ==
 
-
-
-<wiki:comment>
-= Regression Tests =
-
-SIPLE's different language constructs are systematically tested.
-
-TODO...
-</wiki:comment>
+The EMFText SIPLE version demonstrates on the one hand, that EMF tools benefit from _semantics integrated metamodelling_ and on the other hand compiler projects can benefit from metamodelling frameworks. The great advantage of JastEMF's approach is: It does not matter which editor or EMF tool you use, since JastEMF integrates a metamodel's semantics into its implementation, all tools working with models benefit from their semantics and can reuse them for their own tasks.
