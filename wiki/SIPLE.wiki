@@ -448,6 +448,22 @@ In contrast, the _"siple.semantics.resource.siple.ui"_ project is completely gen
 
 == Application: Editing SIPLE Programs as Models in a generated Eclipse Text Editor ==
 
+To use the generated editor open the _"siple.semantics.resource.siple.ui"_ project's _plugin.xml_ and select _Launch an Eclipse application_. Similar to the EMF version, you can now edit SIPLE program models using the EMFText editor.
+
+Let us demonstrate the editor using the second Fibonacci numbers example from above. Just create a new SIPLE program (_File => New => Other => EMFText File => EMFText .siple file => Next => Container:_ Select any project within the workspace _=> File name:_ `fibonacci.siple` _=> Finish_), open the EMFText siple editor perspective for the program (Right click the `fibonacci.siple` file and select _Open With => Other => Internal editors => EMFText siple Editor => OK_) and copy and paste the program, which was:
+{{{
+Procedure main() Begin
+    Write fac(12);
+End;
+
+Procedure fac(Var n:Integer):Integer Begin
+    If n = 0 Then
+        Return 1;
+    Fi;
+    Return n * fac(a - 1);
+End;
+}}}
+
 == Conclusion ==
 
 <wiki:comment>
