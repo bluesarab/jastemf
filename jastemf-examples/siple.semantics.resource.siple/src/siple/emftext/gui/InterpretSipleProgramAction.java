@@ -18,6 +18,7 @@ import org.eclipse.jface.action.*;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.ui.*;
 
+import siple.semantics.impl.*;
 import siple.semantics.interfaces.*;
 
 import siple.emftext.support.*;
