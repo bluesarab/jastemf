@@ -15,6 +15,7 @@ import org.antlr.runtime3_2_0.*;
 import org.eclipse.emf.ecore.resource.*;
 import org.eclipse.emf.ecore.resource.Resource.*;
 
+import siple.semantics.impl.*;
 import siple.semantics.interfaces.*;
 import siple.semantics.resource.siple.*;
 import siple.semantics.resource.siple.mopp.*;
@@ -89,9 +90,10 @@ public class ParserHelper {
 		extractErrors(resource, result);
 		if (result.getRoot() != null
 				&& result.getRoot() instanceof CompilationUnit) {
-			Statement exp = ((CompilationUnit) result
-					.getRoot()).getMainProcedure().getBody().getStatement().get(0);
-			return exp instanceof Expression ? (Expression)exp : null;
+			Block body = ((CompilationUnit) result.getRoot())
+					.getMainProcedure().getBody();
+			return body.getStatement().get(0) instanceof Expression ?
+					(Expression)body.getStatement().get(0) : null;
 		}
 		return null;
 	}
