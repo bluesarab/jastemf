@@ -9,7 +9,7 @@ Besides the `jastemf` task, which starts the generation of a semantics integrate
 
 == `jastemf` Task ==
 
-The task is configurated with the generator model to use (`genmodel`), the package for the generated integration artefacts (`outpackage`), the package for the !JastAdd generated AST classes (`astpackage`), optional arguments for !JastAdd (`jastadd`) and arbitrary many filesets containing the semantic specifications. The optional arguments can be any option known by [http://jastadd.org/jastadd-reference-manual/running-jastadd-from-the-command-line !JastAdd's command line interface] and are used to configure !JastAdd when internally called by JastEMF throughout the integration process.
+The task is configurated with the generator model to use (`genmodel`), the package for the generated integration artefacts (`outpackage`), the package for the !JastAdd generated AST classes (`astpackage`), optional arguments for !JastAdd (`jastadd`) and arbitrary many filesets containing the semantic specifications. The optional arguments can be any option known by [http://jastadd.org/jastadd-reference-manual/running-jastadd-from-the-command-line JastAdd's command line interface] and are used to configure !JastAdd when internally called by JastEMF throughout the integration process.
 
 {{{
 <jastemf
