@@ -24,4 +24,4 @@ A good starting point for learning how to use JastEMF is to investigate the [Exa
 
 = Troubleshooting =
 
-If you cannot find the Ant tasks, make sure you installed the correct Eclipse version and distribution and that you do not have an out-dated or multiple Ant version(s) installed. If everything seems right, try starting Eclipse with the -clean commandline option. If this still does not work, please report us your issue with detailled information.
+If you cannot find the Ant tasks, make sure you installed the correct Eclipse version and distribution and that you do not have an out-dated or multiple Ant version(s) installed. If everything seems right, try starting Eclipse with the `-clean` commandline option. If this still does not work, please report us your issue with detailed information.
