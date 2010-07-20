@@ -31,6 +31,6 @@ Ant build scripts using JastEMF must be executed within the same JRE as Eclipse 
 
 == `jastadd` Task ==
 
-JastEMF also provides the [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT Ant user interface known from !JastAdd]. The only difference is, that the `jastadd` task is registered by the JastEMF plugin in Eclipse, such that it can be used in Ant build scripts without being explicitely defined.
+JastEMF also provides the [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT Ant user interface known from JastAdd]. The only difference is, that the `jastadd` task is registered by the JastEMF plugin in Eclipse, such that it can be used in Ant build scripts without being explicitely defined.
 
 = The Converter's User Interface =
