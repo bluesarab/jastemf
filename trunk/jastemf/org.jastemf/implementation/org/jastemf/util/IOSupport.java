@@ -128,17 +128,6 @@ final public class IOSupport {
 	}
 
 	/**
-	 * Compute a string representation of the current date w.r.t. the default
-	 * time zone and locale.
-	 * 
-	 * @return The current date.
-	 */
-	public static String timeStamp() {
-		Calendar calendar = Calendar.getInstance();
-		return new SimpleDateFormat().format(calendar.getTime());
-	}
-
-	/**
 	 * Helper method that saves a String to the given workspace file by
 	 * replacing its contents. Note that the file is assumed to already exist in
 	 * the workspace.
