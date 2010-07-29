@@ -13,7 +13,10 @@ asDirectory(String package):
 	"/" + package == null ? "" : (package.replaceAll("\\.", "/") + "/");
 
 cached String timeStamp():
-	JAVA org.jastemf.util.IOSupport.timeStamp();
+	JAVA org.jastemf.util.XTendUtil.timeStamp();
+	
+cached String toUpperCaseUnderline(String camelCaseName): 
+	JAVA org.jastemf.util.XTendUtil.toUpperCaseUnderline(java.lang.String);
 
 cached String ecorePackage(GenPackage genPackage):
 	(genPackage.basePackage != null ?
@@ -30,6 +33,18 @@ String qualifiedPackage(GenPackage genPackage, String packageSuffix):
 String getTypeString(EOperation operation):
 	(operation.many?"org.eclipse.emf.common.util.EList":operation.eType.getClassifierTypeString())
 	;
+
+boolean classifierInGenPackages(List[GenPackage] genPackages, EClassifier classifier):
+	JAVA org.jastemf.util.XTendUtil.classifierInGenPackages(java.util.List,org.eclipse.emf.ecore.EClassifier) 
+  ;
+
+//boolean classifierInGenPackages(List[GenPackage] genPackages, EClassifier classifier):
+//	genPackages.exists(genPackage | classifierInGenPackage(genPackage,classifier))
+//;
+
+//boolean classifierInGenPackage(GenPackage genPackage, EClassifier classifier):
+//	genPackage.ecorePackage.eClassifiers.exists( eClassifier | eClassifier == classifier)
+//;
 
 String getGenericTypeString(EOperation operation):
 	(operation.many?"org.eclipse.emf.common.util.EList<"+getGenericTypeString(operation.eGenericType)+">":getGenericTypeString(operation.eGenericType))

@@ -424,11 +424,14 @@ aspect RepositoryAdaptations {
 	@«outPackage».JastEMFAnnotations.MutatingMethod(
 			  "public void set«imperativeReference.name.toFirstUpper()»(«imperativeReference.eType.name» new«imperativeReference.name.toFirstUpper()»){"
 			+ "		«imperativeReference.eType.name» old«imperativeReference.name.toFirstUpper()» =  «imperativeReference.name»;"
-			+ "		«imperativeReference.name» = («imperativeReference.eType.name»Impl)new«imperativeReference.name.toFirstUpper()»;"
+			+ "		«imperativeReference.name» = «IF classifierInGenPackages(genPackages,imperativeReference.eType)-»
+				(«imperativeReference.eType.name»Impl)new«imperativeReference.name.toFirstUpper()»;"
+			«ELSE-» new«imperativeReference.name.toFirstUpper()»;"
+			«ENDIF-»
 			+ "		«imperativeReference.name»_computed = true;"
 			+ "		if (eNotificationRequired())"
 			+ "			eNotify(new ENotificationImpl(this, Notification.SET,"
-			+ "				«genPackage.ecorePackage.name.toFirstUpper()»Package.«genClass.ecoreClass.name.toUpperCase()»__«imperativeReference.name.toUpperCase()», old«imperativeReference.name.toFirstUpper()», «imperativeReference.name»));"
+			+ "				«genPackage.ecorePackage.name.toFirstUpper()»Package.«toUpperCaseUnderline(genClass.ecoreClass.name)»__«toUpperCaseUnderline(imperativeReference.name)», old«imperativeReference.name.toFirstUpper()», «imperativeReference.name»));"
 			+ "}")
 	public void «genClass.ecoreClass.name».set«imperativeReference.name.toFirstUpper()»_hook(«imperativeReference.eType.name» new«imperativeReference.name.toFirstUpper()»){
 		return;
