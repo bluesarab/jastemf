@@ -83,7 +83,8 @@ The _statemachine_ project contains several specification artifacts to generate 
 In this section we will first investigate the statemachine API. Afterwards, we explain how to generate code and how the a statemachine is interpreted.
 
 == Statemachine Compiler API: JastAdd specifications and Ecore metamodel ==
-
+The following Listing shows the JastAdd AST specification, which models the 
+unerlying containment structure of the attribute evaluator.
 {{{
 StateMachine ::=
 		declarations:Declaration*
@@ -109,6 +110,12 @@ Transition:Declaration ::=
 Action ::= <actionLabel:String>;
 
 }}}
+It specifies that:
+* A StateMachine node consists of an abitrary number of Declarations and StateMachine variables.
+* Transitions and States are Declarations.
+* There are NormalStates, InitialStates representing the execution's start state and FinalStates idicating that the execution stops.
+
+
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
 
