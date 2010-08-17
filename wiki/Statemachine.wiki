@@ -114,6 +114,9 @@ It specifies that:
   * A `StateMachine` node consists of an abitrary number of `Declarations` and `StateMachine` variables.
   * `Transitions` and `States` are `Declarations`.
   * There are `NormalStates`, `InitialStates` representing the execution's start state and `FinalStates` idicating that the execution stops.
+  * A `Transition` has a _label_, a _sourceLabel_ containing the origin `State's` _label_ and a _targetLabel_ containing the outgoing `State's` _label_. Furthermore, it has a _guardLabel_ which contains a String representation of boolean SiPLE expression which determines if a transition is viable or not. The _actionLabel_ contains a String represenation of a SiPLE statement which is executed as soon as the transition is executed. SiPLE statements may modify declared statemachine variables while SiPLE expressions may read them.
+  * Each `NormalState` may be associated to an `Action` which is executed when the state is entered.
+  * Similar to `Transitions`, each `Action` has an _actionLabel_.
 
 
 
