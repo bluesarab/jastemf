@@ -1,5 +1,7 @@
 #summary Developer Documentation for Statemachine Example Language
 
+<wiki:toc max_depth="2" />
+
 = Introduction to Statemachine Language =
 
 The statemachine language is a language to describe the behaviour of systems using a state-based abstraction. It provides a graphical syntax that was built using the Graphical Modeling Framework [http://www.eclipse.org/modeling/gmf/ GMF]. The semantics specification is derived from the !JastAdd tutorial presented at GTTSE 2009 by Görel Hedin (original source: http://www.cs.lth.se/~gorel/2009-gttse-statemachine.html)
