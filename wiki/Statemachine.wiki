@@ -118,16 +118,10 @@ It specifies that:
   * Each `NormalState` may be associated to an `Action` which is executed when the state is entered.
   * Similar to `Transitions`, each `Action` has an _actionLabel_.
 
+Based on the basic AST structure, we can now specify the actual static semantics of out statemachine language. Although, in this case, we do not have a concrete core jrag specification, we present parts that belong to the Compiler API in the following listing. Following the principles of extensible compiler construction, each aspect declaration can be extended with attribute equations. For the complete specifications, please have a look at the statemachine project in the JastEMF SVN. 
 
-
-http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
 
 {{{
-
-aspect Reachability {
-	syn EList State.reachable() circular
-	  [new EObjectEList(State.class, this,StatemachinePackage.STATE__REACHABLE)];
-}
 
 aspect NameAnalysis {
 	syn lazy State Transition.source() = lookup(getSourceLabel()); // R1
@@ -136,15 +130,19 @@ aspect NameAnalysis {
 	syn State Declaration.localLookup(String label) = null; // R5
 }
 
+
 aspect Graph {
 	coll Set<Transition> State.transitions() [new HashSet<Transition>()] with add;
 	syn EList State.successors() circular
 		[new EObjectEList(State.class,this,StatemachinePackage.STATE__SUCCESSORS)];
 }
 
-aspect Exercises {
-	coll EList State.predecessors() [new BasicEList()] with add;
+
+aspect Reachability {
+	syn EList State.reachable() circular
+	  [new EObjectEList(State.class, this,StatemachinePackage.STATE__REACHABLE)];
 }
+
 
 aspect SipleComposition {
 	inh int State.id();
@@ -167,29 +165,12 @@ aspect SipleComposition {
 }
 
 aspect PrintReachable {
-	public void StateMachine.printReachable() {
-		for (Declaration d : getdeclarationss())
-			d.printReachable();
-	}
-	
+	public void StateMachine.printReachable() {...}
 	public void Declaration.printReachable() {}
-	
-	public void State.printReachable() {
-		System.out.println(getLabel() + " can reach {" +
-				listOfReachableStateLabels() + "}");
-	}
-	
-	public String State.listOfReachableStateLabels() {
-		boolean insideList = false;
-		StringBuffer result = new StringBuffer();
-		for (State s : (EList<State>)reachable()) {
-			if (insideList)
-				result.append(", ");
-			else insideList = true;
-			result.append(s.getLabel());
-		}
-		return result.toString();
-	}
+	public void State.printReachable() {...}
+	public String State.listOfReachableStateLabels() {...}
 }
 
 }}}
+
+http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
