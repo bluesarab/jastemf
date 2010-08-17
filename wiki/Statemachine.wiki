@@ -132,5 +132,28 @@ aspect Graph {
 		[new EObjectEList(State.class,this,StatemachinePackage.STATE__SUCCESSORS)];
 }
 
+aspect Exercises {
+	coll EList State.predecessors() [new BasicEList()] with add;
+}
+
+aspect SipleComposition {
+	inh int State.id();
+        
+     	public Statement Action.getActionStatement() {
+		return new siple.emftext.support.ParserHelper().parseStatements(
+				eResource(), getActionLabel());
+	}
+	
+	public Expression Transition.getGuardExpression() {
+		return new siple.emftext.support.ParserHelper().parseExpression(
+				eResource(), getGuardLabel());
+	}
+	
+	public Statement Transition.getActionStatement() {
+		return new siple.emftext.support.ParserHelper().parseStatements(
+				eResource(), getActionLabel());
+	}
+
+}
 
 }}}
