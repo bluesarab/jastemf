@@ -156,4 +156,30 @@ aspect SipleComposition {
 
 }
 
+aspect PrintReachable {
+	public void StateMachine.printReachable() {
+		for (Declaration d : getdeclarationss())
+			d.printReachable();
+	}
+	
+	public void Declaration.printReachable() {}
+	
+	public void State.printReachable() {
+		System.out.println(getLabel() + " can reach {" +
+				listOfReachableStateLabels() + "}");
+	}
+	
+	public String State.listOfReachableStateLabels() {
+		boolean insideList = false;
+		StringBuffer result = new StringBuffer();
+		for (State s : (EList<State>)reachable()) {
+			if (insideList)
+				result.append(", ");
+			else insideList = true;
+			result.append(s.getLabel());
+		}
+		return result.toString();
+	}
+}
+
 }}}
