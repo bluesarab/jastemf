@@ -110,4 +110,4 @@ Action ::= <actionLabel:String>;
 
 }}}
 
-http://jastemf.googlecode.com/svn/wiki/Examples/statemachine/statemachineMetamodel.png
+http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
