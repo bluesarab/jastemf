@@ -80,4 +80,30 @@ The _statemachine_ project contains several specification artifacts to generate 
    * _Statemachine.ast_: 
 
 = Specification Details =
- ... details to come
+In this section we will first investigate the statemachine API. Afterwards, we explain how to generate code and how the a statemachine is interpreted.
+
+{{{
+StateMachine ::=
+		declarations:Declaration*
+		machineVariables:StateMachineVariable*;
+  
+abstract Declaration;
+
+StateMachineVariable ::= <name:String> <type:String>;
+
+abstract State:Declaration ::= <label:String>;
+
+NormalState:State ::= [entry:Action];
+InitialState:State;
+FinalState:State;
+
+Transition:Declaration ::=
+		<label:String>
+		<sourceLabel:String>
+		<targetLabel:String>
+		<guardLabel:String>
+		<actionLabel:String>;
+
+Action ::= <actionLabel:String>;
+
+}}}
