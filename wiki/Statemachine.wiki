@@ -124,10 +124,10 @@ Based on the basic AST structure, we can now specify the actual static semantics
 {{{
 
 aspect NameAnalysis {
-	syn lazy State Transition.source() = lookup(getSourceLabel()); // R1
-	syn lazy State Transition.target() = lookup(getTargetLabel()); // R2
-	inh State Declaration.lookup(String label); // R3
-	syn State Declaration.localLookup(String label) = null; // R5
+	syn lazy State Transition.source() = lookup(getSourceLabel()); 
+	syn lazy State Transition.target() = lookup(getTargetLabel());
+	inh State Declaration.lookup(String label); 
+	syn State Declaration.localLookup(String label) = null;
 }
 
 
@@ -141,6 +141,14 @@ aspect Graph {
 aspect Reachability {
 	syn EList State.reachable() circular
 	  [new EObjectEList(State.class, this,StatemachinePackage.STATE__REACHABLE)];
+}
+
+
+aspect PrintReachable {
+	public void StateMachine.printReachable() {...}
+	public void Declaration.printReachable() {}
+	public void State.printReachable() {...}
+	public String State.listOfReachableStateLabels() {...}
 }
 
 
@@ -164,13 +172,11 @@ aspect SipleComposition {
 
 }
 
-aspect PrintReachable {
-	public void StateMachine.printReachable() {...}
-	public void Declaration.printReachable() {}
-	public void State.printReachable() {...}
-	public String State.listOfReachableStateLabels() {...}
-}
-
 }}}
+It states that:
+
+  * A `NameAnalyis` aspect maps transition _sourceLabels_ and _targetLabels_ to the actual states. Note that _source_ and _target_ are declared as lazy attribute which means that the computed values are cached in the model until the cache is flushed.
+  * The `Graph` aspect specifies 
+
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
