@@ -109,3 +109,5 @@ Transition:Declaration ::=
 Action ::= <actionLabel:String>;
 
 }}}
+
+http://jastemf.googlecode.com/svn/wiki/Examples/statemachine/statemachineMetamodel.png
