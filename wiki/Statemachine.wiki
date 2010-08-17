@@ -111,3 +111,26 @@ Action ::= <actionLabel:String>;
 }}}
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
+
+{{{
+
+aspect Reachability {
+	syn EList State.reachable() circular
+	  [new EObjectEList(State.class, this,StatemachinePackage.STATE__REACHABLE)];
+}
+
+aspect NameAnalysis {
+	syn lazy State Transition.source() = lookup(getSourceLabel()); // R1
+	syn lazy State Transition.target() = lookup(getTargetLabel()); // R2
+	inh State Declaration.lookup(String label); // R3
+	syn State Declaration.localLookup(String label) = null; // R5
+}
+
+aspect Graph {
+	coll Set<Transition> State.transitions() [new HashSet<Transition>()] with add;
+	syn EList State.successors() circular
+		[new EObjectEList(State.class,this,StatemachinePackage.STATE__SUCCESSORS)];
+}
+
+
+}}}
