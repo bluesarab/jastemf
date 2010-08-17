@@ -111,9 +111,9 @@ Action ::= <actionLabel:String>;
 
 }}}
 It specifies that:
-* A StateMachine node consists of an abitrary number of Declarations and StateMachine variables.
-* Transitions and States are Declarations.
-* There are NormalStates, InitialStates representing the execution's start state and FinalStates idicating that the execution stops.
+  * A `StateMachine` node consists of an abitrary number of `Declarations` and `StateMachine` variables.
+  * `Transitions` and `States` are `Declarations`.
+  * There are `NormalStates`, `InitialStates` representing the execution's start state and `FinalStates` idicating that the execution stops.
 
 
 
