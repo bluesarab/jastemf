@@ -82,6 +82,8 @@ The _statemachine_ project contains several specification artifacts to generate 
 = Specification Details =
 In this section we will first investigate the statemachine API. Afterwards, we explain how to generate code and how the a statemachine is interpreted.
 
+== Statemachine Compiler API: JastAdd specifications and Ecore metamodel ==
+
 {{{
 StateMachine ::=
 		declarations:Declaration*
