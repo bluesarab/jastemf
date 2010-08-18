@@ -11,6 +11,13 @@ Each structural feature of an Ecore model's metaclasses can be configured by a b
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Mapping/ecoreParameters.png
 
+||Option||Semantics in Ecore||Effect in JastEMF||
+||derived||*true* the feature's value is meant to be _derived_ from other features||The feature is computed by an attribute||
+||transient||*true* setters and getters have to be implemented manually in generated code|| ||
+||volatile||*true*|| ||
+||containment||*true* the feature belongs to the underlying containment hierarchy|| ||
+||changeable||*true* the feature can be set manually|| ||
+
 
 == Mapping ==
 ||Mode||JastAdd||Ecore||
