@@ -28,4 +28,4 @@ The following table summarizes the effects of these options in JastEMF.
 ||EReference||containment=*true*||parent-child relation in AST||
 ||EAttribute||derived=*false*||terminal||
 ||EAttribute||derived=*true*||synthesized attribute||
-||EOperation||||attribute,java function||
+||EOperation|| ||attribute,java method||
