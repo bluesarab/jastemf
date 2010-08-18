@@ -26,6 +26,7 @@ The following table summarizes the effects of these options in JastEMF.
 ||EClass||interface=*false*,abstract=*false*||non-terminal||
 || ||interface=*false*,abstract=*true*||abstract non-terminal||
 ||EReference||containment=*false*, derived=*true*||reference attribute||
+|| ||containment=*false*, derived=*true*, changeable=*true*||lazy reference attribute|| 
 || ||containment=*true*||parent-child relation in AST||
 ||EAttribute||derived=*false*||terminal||
 || ||derived=*true*||synthesized attribute||
