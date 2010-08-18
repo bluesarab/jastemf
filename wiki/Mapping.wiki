@@ -12,11 +12,11 @@ Each structural feature of an Ecore model's metaclasses can be configured by a b
 http://jastemf.googlecode.com/svn/wiki/Examples/Mapping/ecoreParameters.png
 
 ||Option||Semantics in Ecore||Effect in JastEMF||
-||derived||*true* the feature's value is meant to be _derived_ from other features||The feature is computed by an attribute.||
-||transient||*true* the feature is excluded from serialization|| All features that should be computed by an attribute have to be transient. ||
-||volatile||*true* setters and getters have to be implemented manually in generated code|| ||
-||containment||*true* the feature belongs to the underlying containment hierarchy|| ||
-||changeable||*true* the feature can be set manually|| ||
+||derived||*true:* the feature's value is meant to be _derived_ from other features ||The feature is computed by an attribute (except containments).||
+||transient||*true:* the feature is excluded from serialization || All derived features that should be computed by an attribute only have to be transient. ||
+||volatile||*true:* setters and getters have to be implemented manually in generated code || ||
+||containment||*true:* the feature belongs to the underlying containment hierarchy || Only non-containments and EAttributes can be specified by an attribute. ||
+||changeable||*true:* the feature can be set manually || In combination with derived=*true*, this results in the imperative mode. ||
 
 
 == Mapping ==
