@@ -23,9 +23,11 @@ The following table summarizes the effects of these options in JastEMF.
 
 == Mapping ==
 ||Ecore Concept||Ecore option||Corresponding JastAdd Concept||
-||EClass||interface=*false*||non-terminal||
+||EClass||interface=*false*,abstract=*false*||non-terminal||
+|| ||interface=*false*,abstract=*true*||abstract non-terminal||
 ||EReference||containment=*false*||reference attribute||
-||EReference||containment=*true*||parent-child relation in AST||
+|| ||containment=*true*||parent-child relation in AST||
 ||EAttribute||derived=*false*||terminal||
-||EAttribute||derived=*true*||synthesized attribute||
+|| ||derived=*true*||synthesized attribute||
+|| ||derived=*true*,changeable=*true*|| 
 ||EOperation|| ||attribute,java method||
