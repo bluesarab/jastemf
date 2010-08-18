@@ -25,9 +25,9 @@ The following table summarizes the effects of these options in JastEMF.
 ||Ecore Concept||Ecore option||Corresponding JastAdd Concept||
 ||EClass||interface=*false*,abstract=*false*||non-terminal||
 || ||interface=*false*,abstract=*true*||abstract non-terminal||
-||EReference||containment=*false*||reference attribute||
+||EReference||containment=*false*, derived=*true*||reference attribute||
 || ||containment=*true*||parent-child relation in AST||
 ||EAttribute||derived=*false*||terminal||
 || ||derived=*true*||synthesized attribute||
-|| ||derived=*true*,changeable=*true*|| 
+|| ||derived=*true*,changeable=*true*||lazy attribute (imperative mode)|| 
 ||EOperation|| ||attribute,java method||
