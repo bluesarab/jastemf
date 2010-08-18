@@ -169,7 +169,6 @@ It states that:
   * `PrintReachable` provides some helper functions to print the reachability information to the console.
   * `SipleComposition` realizes parsing and instanciation of actions and guard conditions as SiPLE statements and expression. SiPLE statements and expressions are not part of the statemachine AST specification since they belong to different EPackages in the EMF and a package structure is not supported by JastAdd.
   
-The following figure shows the correspoinding Ecore model diagram. Note that the JastAdd AST structure is modeled by containment relations in Ecore that must be isomorphic to the AST spec. The JastEMF converter project provides support for automatically generating an appropriate AST spec for a given Ecore model.  
-
+The following figure shows the corresponding Ecore model diagram. Note that the JastAdd AST structure is modeled by containment relations in Ecore that must be isomorphic to the tree structure in the AST spec. The JastEMF converter project provides support for automatically generating an appropriate AST spec for a given Ecore model.  
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
