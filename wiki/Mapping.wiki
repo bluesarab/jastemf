@@ -6,3 +6,6 @@ On this page, we discuss the general mapping between attribute grammars and meta
 = General Mapping between attribute grammars and metamodels =
 
 = Mapping between JastAdd and Ecore = 
+
+||Mode||JastAdd||Ecore||
+||imperative||lazy||derived=true,changeable=true||
