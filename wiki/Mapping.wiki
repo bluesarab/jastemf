@@ -7,6 +7,10 @@ On this page, we discuss the general mapping between attribute grammars and meta
 
 = Mapping between JastAdd and Ecore = 
 == Options of Ecore features==
+Each structural feature of an Ecore model's metaclasses can be configured by a bunch of options. Some of them even directly influence code generation.
+
+http://jastemf.googlecode.com/svn/wiki/Examples/Mapping/ecoreParameters.png
+
 
 == Mapping ==
 ||Mode||JastAdd||Ecore||
