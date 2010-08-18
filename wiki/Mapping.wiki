@@ -1,9 +1,7 @@
 #summary Attribute Grammar Metamodel Mapping
 
 = Introduction =
-On this page, we discuss the general mapping between attribute grammars and metamodels. Afterwards, we present the technical details of the JastAdd-Ecore mapping.
-
-= General Mapping between attribute grammars and metamodels =
+This page discusses the mapping between Ecore and JastAdd features.
 
 = Mapping between JastAdd and Ecore = 
 == Properties of Ecore `EStructuralFeatures` ==
