@@ -176,7 +176,9 @@ aspect SipleComposition {
 It states that:
 
   * A `NameAnalyis` aspect maps transition _sourceLabels_ and _targetLabels_ to the actual states. Note that _source_ and _target_ are declared as lazy attribute which means that the computed values are cached in the model until the cache is flushed.
-  * The `Graph` aspect specifies 
+  * The `Graph` aspect augments the tree structure to a graph. The _transition_ collection attribute collects references to all outgoing transitions of a graph (for more detail on collection attributes see the [http://jastadd.org/jastadd-reference-manual/attributes JastAdd reference manual]). A `State's` successor relation is computed by the successor reference attribute. Note that the attribute has to be declared as circular because of side effects in the EMF caused by notifications.
+  
+
 
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
