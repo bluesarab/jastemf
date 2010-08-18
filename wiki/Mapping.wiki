@@ -22,5 +22,9 @@ The following table summarizes the effects of these options in JastEMF.
 
 
 == Mapping ==
-||Mode||JastAdd||Ecore||
-||imperative||lazy||derived=true,changeable=true||
+||Ecore Concept||Ecore option||Corresponding JastAdd Concept||
+||EClass||interface=*false*||nonterminal||
+||EReference||containment=*false*||reference attribute||
+||EReference||containment=*true*||parent-child relation in AST||
+||EAttribute||derived=*false*||terminal||
+||EAttribute||derived=*true*||synthesized attribute||
