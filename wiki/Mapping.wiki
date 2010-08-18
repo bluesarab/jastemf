@@ -6,8 +6,8 @@ On this page, we discuss the general mapping between attribute grammars and meta
 = General Mapping between attribute grammars and metamodels =
 
 = Mapping between JastAdd and Ecore = 
-== Properties of Ecore feature ==
-Each structural feature of an Ecore model's metaclasses can be configured by a bunch of options. Some of them even directly influence Ecore code generation. The following figure shows which of them are important for the integration of the generated Ecore and JastAdd code generation. 
+== Properties of Ecore `EStructuralFeatures` ==
+Each structural feature of an Ecore model's metaclasses can be configured by a bunch of options. Some of them even directly influence Ecore code generation. The following figure highlights which of them are important for the integration of the generated Ecore and JastAdd code generation. 
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Mapping/ecoreParameters.png
 
@@ -18,7 +18,7 @@ The following table summarizes the effects of these options in JastEMF.
 ||transient||*true:* the feature is excluded from serialization || All derived features that should be computed by an attribute only have to be transient. ||
 ||volatile||*true:* setters and getters have to be implemented manually in generated code || ||
 ||containment||*true:* the feature belongs to the underlying containment hierarchy || Only non-containments and EAttributes can be specified by an attribute. ||
-||changeable||*true:* the feature can be set manually || In combination with derived=*true*, this results in the imperative mode. ||
+||changeable||*true:* the feature can be set manually || In combination with derived=*true*, this results in the _imperative mode_. ||
 
 
 == Mapping ==
