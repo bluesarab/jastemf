@@ -154,21 +154,9 @@ aspect PrintReachable {
 
 aspect SipleComposition {
 	inh int State.id();
-        
-     	public Statement Action.getActionStatement() {
-		return new siple.emftext.support.ParserHelper().parseStatements(
-				eResource(), getActionLabel());
-	}
-	
-	public Expression Transition.getGuardExpression() {
-		return new siple.emftext.support.ParserHelper().parseExpression(
-				eResource(), getGuardLabel());
-	}
-	
-	public Statement Transition.getActionStatement() {
-		return new siple.emftext.support.ParserHelper().parseStatements(
-				eResource(), getActionLabel());
-	}
+     	public Statement Action.getActionStatement() {...}
+	public Expression Transition.getGuardExpression() {...}
+	public Statement Transition.getActionStatement() {...}
 
 }
 
@@ -177,6 +165,9 @@ It states that:
 
   * A `NameAnalyis` aspect maps transition _sourceLabels_ and _targetLabels_ to the actual states. Note that _source_ and _target_ are declared as lazy attribute which means that the computed values are cached in the model until the cache is flushed.
   * The `Graph` aspect augments the tree structure to a graph. The _transition_ collection attribute collects references to all outgoing transitions of a graph (for more detail on collection attributes see the [http://jastadd.org/jastadd-reference-manual/attributes JastAdd reference manual]). A `State's` successor relation is computed by the successor reference attribute. Note that the attribute has to be declared as circular because of side effects in the EMF caused by notifications.
+  * The `Reachability` aspect provides an implementation of the _successor_ relations closure, i.e., the attribute _reachable_ computes all directly or indirectly reachable successors of a `State`. Since it has to be computed by a fix point computation, _reachable_ has to be declared as a circular attribute.
+  * `PrintReachable` provides some helper functions to print the reachability information to the console.
+  * `SipleComposition` realizes parsing and instanciation of actions and guard conditions as SiPLE statements and expression. SiPLE statements and expressions are not part of the statemachine AST specification since they belong to different EPackages in the EMF and a package structure is not supported by JastAdd.
   
 
 
