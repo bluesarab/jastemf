@@ -270,4 +270,5 @@ End;
 
 }}}
 
-= Conclusion =
+= Summary and Conclusion =
+The statemachine example shows that grammarware technology (here JastAdd RAGs) and modelware technology (here EMF, GMF and XPand) can be combined beneficially. A modular RAG is used to specify static statemachine semantics while the EMF provides a smooth integration into the Eclipse platform and allows to also reuse the generated SiPLE implementation. The GMF enabled us to generate a powerful graphical editor on top of the semantics integrated metamodel. While the editor allows create and modify statemachines, it also provides means to inspect attributes using the _Properties_ view or even to visulise attributes by symbolising them in the editor (e.g., the `Reachable` attribute). The template language XPand is used to generate code from statemachines that can be executed by the SiPLE interpreter. 
