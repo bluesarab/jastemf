@@ -175,6 +175,7 @@ The following figure shows the corresponding Ecore model diagram. Note that the 
 http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
 
 == XPand specification ==
+The following listing shows the XPand transformation we use to generate executable SiPLE. semantically equivalent code from statemachines.
 {{{
 «IMPORT statemachine»
 «DEFINE main(String outpath) FOR StateMachine»
@@ -221,5 +222,13 @@ End;
 «ENDFILE-»
 «ENDDEFINE»
 }}}
+It states that:
+
+  * A `main()` procedure containing the statmachine program is generated.
+  * For each statemachine variable a SiPLE variable is generated.
+  * A variable `current_state` holds the current state's identifier. Inititally, this the `InitialState`'s id.
+  * The statemachine is executed by a `while` loop as long as no `FinalState` is reached.
+  * During each iteration, the current state's `actionLabel` is executed, afterwards, each of the current outgoing transitions' guard conditions (`guardLabel`) is evaluated until the first one that yields `true`.
+  * Transitions are conducted by executing the `actionLabel`'s SiPLE statements and by stetting `current_state` to the next state's identifier.  
 
 = An Example Application =
