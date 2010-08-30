@@ -83,7 +83,7 @@ The _statemachine_ project contains several specification artifacts to generate 
 The SiPLE-Statemachine implementation consists of a static semantics part, which is realised by JastEMF, and a execution semantics part. Execution semantics is realised by first translating a statmachine into equivalent SiPLE code using an XPand-based model-to-text transformation and then executing the generated program using the SiPLE interpreter.
 In the following, we will first investigate the statemachine API. Afterwards, we discuss the XPand-based code generator.
 
-== Statemachine Compiler API: JastAdd specifications and Ecore metamodel ==
+== JastAdd specifications and Ecore metamodel ==
 The following Listing shows the JastAdd AST specification, which models the 
 containment structure/AST of the attribute evaluator.
 {{{
@@ -173,3 +173,7 @@ It states that:
 The following figure shows the corresponding Ecore model diagram. Note that the JastAdd AST structure is modeled by containment relations in Ecore that must be isomorphic to the tree structure in the AST spec. The JastEMF converter project provides support for automatically generating an appropriate AST spec for a given Ecore model.  
 
 http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamodel.png
+
+== XPand specification ==
+
+= An Example Application =
