@@ -29,17 +29,7 @@ After deploying the statemachine language to your Eclipse workspace you can star
 
 Second, it is required to run the GMF Codegeneration that derives a graphical editor for the statemachine language. Therefore, select _Generate diagram code_ in the context menu of the file _statemachine/specifications/metamodel/Statemachine.gmfgen_.
 
-= Application =
 
-To use the statemachine language you need to deploy the generated plug-ins or start a new Eclipse Application runtime. Therefore select _Run > Run Configurations ..._, create a new _Eclipse Application_and _Run_ it. This starts a new Eclipse instance where the plug-ins are deployed and the statemachine language ready to use.
-
-To create a new statemachine select _File > New > Other... > Statemachine Diagram_. This opens a new empty diagram view. Fig. 2 shows the generated diagram editor. The toolbar contains buttons to create new diagram objects (e.g. _State_) and connections (e.g. Transitions) in the diagram. 
-
-http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/editor.png
-
-*Figure 2: The generated GMF Editor for the statemachine language*
-
-The creation and manipulation of the diagram results in a direct adaptation of the underlying statemachine model. In the following sections we will elaborate the details and potential of integrating attribute grammars, EMF models and the corresponding graphical syntax.
 
 = Project Overview =
 In this section we will discuss the project structure of our !JastEMF-based statemachine implementation.
@@ -232,3 +222,14 @@ It states that:
   * Transitions are conducted by executing the `actionLabel`'s SiPLE statements and by stetting `current_state` to the next state's identifier.  
 
 = An Example Application =
+To use the statemachine language you need to deploy the generated plug-ins or start a new Eclipse Application runtime. Therefore select _Run > Run Configurations ..._, create a new _Eclipse Application_and _Run_ it. This starts a new Eclipse instance where the plug-ins are deployed and the statemachine language ready to use.
+
+To create a new statemachine select _File > New > Other... > Statemachine Diagram_. This opens a new empty diagram view. Fig. 2 shows the generated diagram editor in Action. The toolbar contains buttons to create new diagram objects (e.g. _State_) and connections (e.g. Transitions) in the diagram. Furthermore, the `Properties` view allows to inspect current attribute and terminal values.
+
+http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/editor.png
+
+*Figure 2: The generated GMF Editor for the statemachine language*
+
+The creation and manipulation of the diagram results in a direct adaptation of the underlying statemachine model. 
+The statemachine in Figure 2 contains four states --- two `NormalStates`, an `InitialState` and a `FinalState`. It uses a _counter_ variable for counting up to a value of 10 and prints the intermediate results.
+= Conclusion =
