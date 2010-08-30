@@ -177,13 +177,15 @@ http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/statemachineMetamod
 == XPand specification ==
 {{{
 «IMPORT statemachine»
-
 «DEFINE main(String outpath) FOR StateMachine»
 «FILE outpath-»
 % Generated SIPLE state machine implementation
 Procedure main() Begin
 	Var current_state:Integer;
 	current_state := «this.declarations.typeSelect(statemachine::InitialState).get(0).successors.get(0).id»;
+
+----
+
 «IF this.machineVariables.size > 0-»
 	% Global variables:
 «ENDIF-»
