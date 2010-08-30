@@ -80,7 +80,8 @@ The _statemachine_ project contains several specification artifacts to generate 
    * _Statemachine.ast_: 
 
 = Specification Details =
-In this section we will first investigate the statemachine API. Afterwards, we explain how to generate code and how the a statemachine is interpreted.
+The SiPLE-Statemachine implementation consists of a static semantics part, which is realised by JastEMF, and a execution semantics part. Execution semantics is realised by first translating a statmachine into equivalent SiPLE code using an XPand-based model-to-text transformation and then executing the generated program using the SiPLE interpreter.
+In the following, we will first investigate the statemachine API. Afterwards, we discuss the XPand-based code generator.
 
 == Statemachine Compiler API: JastAdd specifications and Ecore metamodel ==
 The following Listing shows the JastAdd AST specification, which models the 
