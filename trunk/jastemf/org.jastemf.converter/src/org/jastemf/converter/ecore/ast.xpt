@@ -52,17 +52,22 @@ the editor
 «ENDDEFINE»
 
 «DEFINE nodeLeafs FOR EAttribute-»
- <«name-»:«eType.instanceTypeName»«">"-»
+ <«name-»:«EEnum.isInstance(eType)?eType.name:eType.instanceTypeName.replaceAll("\\$",".")»«">"-»
 «ENDDEFINE»
 
 «DEFINE nodeContainments FOR EReference-»
-«LET name + ":" + eReferenceType.name AS decl-»
-«IF lowerBound==0&&upperBound==1-»
+«REM»For now, we consider EStringToStringMapEntry as a terminal type.«ENDREM»«""-»
+«LET name + ":" +computeReferenceTypeName(this) AS decl-»
+«IF eReferenceType.name=="EStringToStringMapEntry"-»
+ <«decl»>«""-»
+«ELSE-»
+«IF lowerBound==0&&(upperBound==1||upperBound==-2)-»
  [«decl-»«"]"-»
 «ELSEIF lowerBound==1&&upperBound==1-»
  «decl-»
 «ELSEIF upperBound>1||upperBound==-1-»
  «decl-»«"*"-»	
+«ENDIF-»
 «ENDIF-»
 «ENDLET-»
 «ENDDEFINE»
