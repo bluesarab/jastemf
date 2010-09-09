@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ast"
+    nsURI="http://www.jastemf.org/spec/ast" nsPrefix="org.jastemf.spec.ast">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDecl" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="FileName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="StartLine" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EndLine" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Comment" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TokenComponent" eSuperTypes="#//Components">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tokenId" lowerBound="1"
+        eType="#//TokenId" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Id">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nameNode" eType="#//NameNode"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="idUse" lowerBound="1" eType="#//IdUse"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TokenId">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TYPE" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListComponentsNTA" eSuperTypes="#//ListComponents"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TokenComponentNTA" eSuperTypes="#//TokenComponent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IdDecl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Grammar">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeDecl" upperBound="-1"
+        eType="#//TypeDecl" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Components" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ListComponents" eSuperTypes="#//Components">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//Id"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Abstract"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionalComponentNTA" eSuperTypes="#//OptionalComponent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionalComponent" eSuperTypes="#//Components">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//Id"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IdUse">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ASTDecl" eSuperTypes="#//TypeDecl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abstract" eType="#//Abstract"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="idDecl" lowerBound="1"
+        eType="#//IdDecl" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SuperClass" eType="#//IdUse"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//Components" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AggregateComponentsNTA" eSuperTypes="#//AggregateComponents"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AggregateComponents" eSuperTypes="#//Components">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//Id"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
