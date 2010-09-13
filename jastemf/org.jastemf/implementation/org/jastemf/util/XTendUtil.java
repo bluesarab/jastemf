@@ -28,7 +28,8 @@ public class XTendUtil {
 		char[] camelCaseNameArray = camelCaseName.toCharArray();
 		String result = "";
 		for(int i=0;i<camelCaseNameArray.length;i++){
-			if(i>0&&camelCaseNameArray[i]>='A'&&camelCaseNameArray[i]<='Z'){
+			if(i>0&&isUpperCase(camelCaseNameArray[i])){
+				if(i+1<camelCaseNameArray.length&&!isUpperCase(camelCaseNameArray[i+1]))
 				result += "_";
 			}
 			result += camelCaseNameArray[i];
@@ -36,6 +37,9 @@ public class XTendUtil {
 		return result.toUpperCase();
 	}
 	
+	private static boolean isUpperCase(char c){
+		return c>='A'&&c<='Z';
+	}
 	
 	/**
 	 * Checks if an EClassifier occurs in a list of GenPackages.
