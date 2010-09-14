@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: ast
+Bundle-SymbolicName: org.jastemf.spec.ast.resource.ast;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.resources,
+ org.eclipse.emf,
+ org.eclipse.emf.codegen.ecore,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.edit,
+ org.eclipse.emf.validation,
+ org.eclipse.emf.workspace,
+ org.emftext.access;resolution:=optional,
+ org.emftext.commons.antlr3_2_0,
+ org.jastemf.spec.ast
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.jastemf.spec.ast.resource.ast,
+  org.jastemf.spec.ast.resource.ast.analysis,
+  org.jastemf.spec.ast.resource.ast.mopp,
+  org.jastemf.spec.ast.resource.ast.grammar,
+  org.jastemf.spec.ast.resource.ast.util
+Bundle-Activator: org.jastemf.spec.ast.resource.ast.mopp.AstPlugin
