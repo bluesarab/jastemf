@@ -9,7 +9,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.jastemf.spec.ast,
  org.jastemf.spec.ast.impl,
- org.jastemf.spec.ast.util
+ org.jastemf.spec.ast.util,
+ org.jastemf.spec.ast.validation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
