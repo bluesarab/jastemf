@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.jastemf.spec.ast.Grammar;
+import org.jastemf.spec.ast.validation.IProblemDescriptor;
 import org.jastemf.spec.ast.impl.GrammarImpl;
 import org.jastemf.spec.ast.resource.ast.IAstOptionProvider;
 import org.jastemf.spec.ast.resource.ast.IAstOptions;
@@ -21,6 +22,9 @@ IAstResourcePostProcessor, IAstResourcePostProcessorProvider, IAstOptionProvider
 		if(eo!=null&&eo instanceof Grammar){
 			GrammarImpl grammar = (GrammarImpl)eo;
 			System.out.println(grammar.astErrors());
+			for(IProblemDescriptor desc : grammar.astErrors2()){
+				resource.addError(desc.getMessage(),desc.getCause());
+			}
 		}
 	}
 
