@@ -31,7 +31,7 @@
        point="org.jastemf.spec.ast.resource.ast.default_load_options">
     <provider
           class="org.jastemf.spec.ast.resource.ast.post.ErrorCollectionPostProcessor"
-          id="org.jastemf.spec.ast.resource.ast.errorcollection.provider">
+          id="org.jastemf.spec.ast.resource.ast.post.errorcollector">
     </provider>
  </extension>
 	
