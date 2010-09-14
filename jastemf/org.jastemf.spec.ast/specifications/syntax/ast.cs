@@ -5,6 +5,7 @@ START Grammar
 OPTIONS {	
 	tokenspace = "1";
 	usePredefinedTokens = "false";
+	overridePluginXML = "false";
 }
 
 TOKENS {

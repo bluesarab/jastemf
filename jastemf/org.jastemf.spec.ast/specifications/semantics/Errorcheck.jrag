@@ -1,7 +1,6 @@
 package ast;
 
-import org.jastemf.specs.ast.ast.*;
-
+import org.jastemf.spec.ast.ast.*;
 import java.util.*;
 
 aspect ErrorCollector {
@@ -86,7 +85,7 @@ aspect Errorcheck {
     else if(hasSuperClassId() && superClass() == null) {
       result.append(getFileName() + ":" + getStartLine() + " ");
       result.append(name() + " inherits from undeclared class " +
-          getSuperClass().name() + "\n");
+          getSuperClassId().name() + "\n");
     }
 
       

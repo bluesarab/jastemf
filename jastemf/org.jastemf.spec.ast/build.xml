@@ -42,7 +42,7 @@
 			generateeditcode="true"
 			genmodel="${_basedir}/specifications/metamodel/ast.genmodel"
 			outpackage="jastemf.adaptation"
-			astpackage="org.jastemf.specs.ast.ast">
+			astpackage="org.jastemf.spec.ast.ast">
 			<fileset dir="${_basedir}/specifications">
 				<include name="semantics/**/*.ast"/>
 				<include name="semantics/**/*.jrag"/>

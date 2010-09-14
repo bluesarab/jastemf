@@ -3,8 +3,6 @@ import java.io.*;
 
 aspect JragCodeGen {
 
-
-  public static boolean ASTNode.java5 = true;
-
+ public static boolean ASTNode.java5 = true;
   
 }
