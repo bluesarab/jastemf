@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.jastemf.specs.ast/src-gen"
-    editDirectory="/org.jastemf.specs.ast.edit/src-gen" editorDirectory="/org.jastemf.specs.ast.editor/src-gen"
-    modelPluginID="org.jastemf.specs.ast" modelName="Ast" testsDirectory="/org.jastemf.specs.ast.tests/src-gen"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.jastemf.spec.ast/src-gen"
+    editDirectory="/org.jastemf.spec.ast.edit/src-gen" editorDirectory="/org.jastemf.spec.ast.editor/src-gen"
+    modelPluginID="org.jastemf.spec.ast" modelName="Ast" testsDirectory="/org.jastemf.specs.ast.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
   <foreignModel>ast.ecore</foreignModel>
   <genPackages prefix="Ast" basePackage="org.jastemf.spec" disposableProviderFactory="true"

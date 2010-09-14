@@ -1,4 +1,4 @@
-import org.jastemf.specs.ast.ast.*;
+import org.jastemf.spec.ast.ast.*;
 import java.util.*;
 
 aspect ASTDecl {
