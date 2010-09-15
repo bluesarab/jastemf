@@ -7,9 +7,13 @@ import org.antlr.runtime3_2_0.*;
 import java.util.HashMap;
 public class AstParser extends AstANTLRParserBase {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENT", "COMMENT", "ML_COMMENT", "WHITESPACE", "LINEBREAK", "':'", "'::='", "';'", "'*'", "'/'", "'<'", "'>'", "'['", "']'", "'abstract'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDENT", "QIDENT", "COMMENT", "ML_COMMENT", "WHITESPACE", "LINEBREAK", "':'", "'::='", "';'", "'*'", "'/'", "'<'", "'>'", "'['", "']'", "'abstract'"
     };
-    public static final int ML_COMMENT=6;
+    public static final int QIDENT=5;
+    public static final int WHITESPACE=8;
+    public static final int EOF=-1;
+    public static final int T__19=19;
+    public static final int ML_COMMENT=7;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
@@ -19,12 +23,9 @@ public class AstParser extends AstANTLRParserBase {
     public static final int T__14=14;
     public static final int T__13=13;
     public static final int T__10=10;
-    public static final int WHITESPACE=7;
     public static final int IDENT=4;
-    public static final int COMMENT=5;
-    public static final int EOF=-1;
-    public static final int T__9=9;
-    public static final int LINEBREAK=8;
+    public static final int COMMENT=6;
+    public static final int LINEBREAK=9;
 
     // delegates
     // delegators
@@ -35,7 +36,7 @@ public class AstParser extends AstANTLRParserBase {
         }
         public AstParser(TokenStream input, RecognizerSharedState state) {
             super(input, state);
-            this.state.ruleMemo = new HashMap[37+1];
+            this.state.ruleMemo = new HashMap[38+1];
              
              
         }
@@ -423,7 +424,7 @@ public class AstParser extends AstANTLRParserBase {
     				break;
     			}
     		}
-    		int followSetID = 49;
+    		int followSetID = 51;
     		int i;
     		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
     			org.antlr.runtime3_2_0.CommonToken nextToken = (org.antlr.runtime3_2_0.CommonToken) tokenStream.get(i);
@@ -766,7 +767,7 @@ public class AstParser extends AstANTLRParserBase {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==IDENT||LA1_0==18) ) {
+                if ( (LA1_0==IDENT||LA1_0==19) ) {
                     alt1=1;
                 }
 
@@ -864,7 +865,7 @@ public class AstParser extends AstANTLRParserBase {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==18) ) {
+            if ( (LA2_0==19) ) {
                 alt2=1;
             }
             switch (alt2) {
@@ -953,7 +954,7 @@ public class AstParser extends AstANTLRParserBase {
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==9) ) {
+            if ( (LA3_0==10) ) {
                 alt3=1;
             }
             switch (alt3) {
@@ -963,7 +964,7 @@ public class AstParser extends AstANTLRParserBase {
                     // Ast.g:775:3: (a2= ':' (a3_0= parse_org_jastemf_spec_ast_IdUse ) )
                     // Ast.g:776:4: a2= ':' (a3_0= parse_org_jastemf_spec_ast_IdUse )
                     {
-                    a2=(Token)match(input,9,FOLLOW_9_in_parse_org_jastemf_spec_ast_ASTDecl228); if (state.failed) return element;
+                    a2=(Token)match(input,10,FOLLOW_10_in_parse_org_jastemf_spec_ast_ASTDecl228); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       				if (element == null) {
@@ -1037,7 +1038,7 @@ public class AstParser extends AstANTLRParserBase {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==10) ) {
+            if ( (LA5_0==11) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -1047,7 +1048,7 @@ public class AstParser extends AstANTLRParserBase {
                     // Ast.g:823:3: (a4= '::=' ( (a5_0= parse_org_jastemf_spec_ast_Components ) )+ )
                     // Ast.g:824:4: a4= '::=' ( (a5_0= parse_org_jastemf_spec_ast_Components ) )+
                     {
-                    a4=(Token)match(input,10,FOLLOW_10_in_parse_org_jastemf_spec_ast_ASTDecl304); if (state.failed) return element;
+                    a4=(Token)match(input,11,FOLLOW_11_in_parse_org_jastemf_spec_ast_ASTDecl304); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       				if (element == null) {
@@ -1079,7 +1080,7 @@ public class AstParser extends AstANTLRParserBase {
                         int alt4=2;
                         int LA4_0 = input.LA(1);
 
-                        if ( (LA4_0==IDENT||(LA4_0>=13 && LA4_0<=14)||LA4_0==16) ) {
+                        if ( (LA4_0==IDENT||(LA4_0>=14 && LA4_0<=15)||LA4_0==17) ) {
                             alt4=1;
                         }
 
@@ -1160,7 +1161,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 9));
               	
             }
-            a6=(Token)match(input,11,FOLLOW_11_in_parse_org_jastemf_spec_ast_ASTDecl390); if (state.failed) return element;
+            a6=(Token)match(input,12,FOLLOW_12_in_parse_org_jastemf_spec_ast_ASTDecl390); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1217,7 +1218,7 @@ public class AstParser extends AstANTLRParserBase {
             if ( (LA6_0==IDENT) ) {
                 alt6=1;
             }
-            else if ( (LA6_0==13) ) {
+            else if ( (LA6_0==14) ) {
                 alt6=2;
             }
             else {
@@ -1266,7 +1267,7 @@ public class AstParser extends AstANTLRParserBase {
                       		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_13, 11));
                       	
                     }
-                    a1=(Token)match(input,12,FOLLOW_12_in_parse_org_jastemf_spec_ast_ListComponents441); if (state.failed) return element;
+                    a1=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponents441); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       		if (element == null) {
@@ -1342,7 +1343,7 @@ public class AstParser extends AstANTLRParserBase {
             // Ast.g:960:1: (a0= '/' (a1_0= parse_org_jastemf_spec_ast_Id ) a2= '*' a3= '/' )
             // Ast.g:961:2: a0= '/' (a1_0= parse_org_jastemf_spec_ast_Id ) a2= '*' a3= '/'
             {
-            a0=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponentsNTA485); if (state.failed) return element;
+            a0=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_ListComponentsNTA485); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1396,7 +1397,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_14, 14));
               	
             }
-            a2=(Token)match(input,12,FOLLOW_12_in_parse_org_jastemf_spec_ast_ListComponentsNTA521); if (state.failed) return element;
+            a2=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponentsNTA521); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1414,7 +1415,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_15, 15));
               	
             }
-            a3=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponentsNTA535); if (state.failed) return element;
+            a3=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_ListComponentsNTA535); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1476,10 +1477,10 @@ public class AstParser extends AstANTLRParserBase {
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==14) ) {
+            if ( (LA7_0==15) ) {
                 alt7=1;
             }
-            else if ( (LA7_0==13) ) {
+            else if ( (LA7_0==14) ) {
                 alt7=2;
             }
             else {
@@ -1493,7 +1494,7 @@ public class AstParser extends AstANTLRParserBase {
                 case 1 :
                     // Ast.g:1041:2: a0= '<' (a1_0= parse_org_jastemf_spec_ast_TokenId ) a2= '>'
                     {
-                    a0=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponent564); if (state.failed) return element;
+                    a0=(Token)match(input,15,FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponent564); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       		if (element == null) {
@@ -1546,7 +1547,7 @@ public class AstParser extends AstANTLRParserBase {
                       		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 18));
                       	
                     }
-                    a2=(Token)match(input,15,FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponent600); if (state.failed) return element;
+                    a2=(Token)match(input,16,FOLLOW_16_in_parse_org_jastemf_spec_ast_TokenComponent600); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       		if (element == null) {
@@ -1623,7 +1624,7 @@ public class AstParser extends AstANTLRParserBase {
             // Ast.g:1109:1: (a0= '/' a1= '<' (a2_0= parse_org_jastemf_spec_ast_TokenId ) a3= '>' a4= '/' )
             // Ast.g:1110:2: a0= '/' a1= '<' (a2_0= parse_org_jastemf_spec_ast_TokenId ) a3= '>' a4= '/'
             {
-            a0=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_TokenComponentNTA644); if (state.failed) return element;
+            a0=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponentNTA644); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1641,7 +1642,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_18, 20));
               	
             }
-            a1=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponentNTA658); if (state.failed) return element;
+            a1=(Token)match(input,15,FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponentNTA658); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1694,7 +1695,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 22));
               	
             }
-            a3=(Token)match(input,15,FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponentNTA694); if (state.failed) return element;
+            a3=(Token)match(input,16,FOLLOW_16_in_parse_org_jastemf_spec_ast_TokenComponentNTA694); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1712,7 +1713,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_20, 23));
               	
             }
-            a4=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_TokenComponentNTA708); if (state.failed) return element;
+            a4=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponentNTA708); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1774,10 +1775,10 @@ public class AstParser extends AstANTLRParserBase {
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==16) ) {
+            if ( (LA8_0==17) ) {
                 alt8=1;
             }
-            else if ( (LA8_0==13) ) {
+            else if ( (LA8_0==14) ) {
                 alt8=2;
             }
             else {
@@ -1791,7 +1792,7 @@ public class AstParser extends AstANTLRParserBase {
                 case 1 :
                     // Ast.g:1203:2: a0= '[' (a1_0= parse_org_jastemf_spec_ast_Id ) a2= ']'
                     {
-                    a0=(Token)match(input,16,FOLLOW_16_in_parse_org_jastemf_spec_ast_OptionalComponent737); if (state.failed) return element;
+                    a0=(Token)match(input,17,FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponent737); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       		if (element == null) {
@@ -1845,7 +1846,7 @@ public class AstParser extends AstANTLRParserBase {
                       		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_21, 26));
                       	
                     }
-                    a2=(Token)match(input,17,FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponent773); if (state.failed) return element;
+                    a2=(Token)match(input,18,FOLLOW_18_in_parse_org_jastemf_spec_ast_OptionalComponent773); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       		if (element == null) {
@@ -1922,7 +1923,7 @@ public class AstParser extends AstANTLRParserBase {
             // Ast.g:1272:1: (a0= '/' a1= '[' (a2_0= parse_org_jastemf_spec_ast_Id ) a3= ']' a4= '/' )
             // Ast.g:1273:2: a0= '/' a1= '[' (a2_0= parse_org_jastemf_spec_ast_Id ) a3= ']' a4= '/'
             {
-            a0=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_OptionalComponentNTA817); if (state.failed) return element;
+            a0=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_OptionalComponentNTA817); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1940,7 +1941,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_22, 28));
               	
             }
-            a1=(Token)match(input,16,FOLLOW_16_in_parse_org_jastemf_spec_ast_OptionalComponentNTA831); if (state.failed) return element;
+            a1=(Token)match(input,17,FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponentNTA831); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -1994,7 +1995,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_23, 30));
               	
             }
-            a3=(Token)match(input,17,FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponentNTA867); if (state.failed) return element;
+            a3=(Token)match(input,18,FOLLOW_18_in_parse_org_jastemf_spec_ast_OptionalComponentNTA867); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -2012,7 +2013,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_24, 31));
               	
             }
-            a4=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_OptionalComponentNTA881); if (state.failed) return element;
+            a4=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_OptionalComponentNTA881); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -2075,7 +2076,7 @@ public class AstParser extends AstANTLRParserBase {
             if ( (LA9_0==IDENT) ) {
                 alt9=1;
             }
-            else if ( (LA9_0==13) ) {
+            else if ( (LA9_0==14) ) {
                 alt9=2;
             }
             else {
@@ -2181,7 +2182,7 @@ public class AstParser extends AstANTLRParserBase {
             // Ast.g:1407:1: (a0= '/' (a1_0= parse_org_jastemf_spec_ast_Id ) a2= '/' )
             // Ast.g:1408:2: a0= '/' (a1_0= parse_org_jastemf_spec_ast_Id ) a2= '/'
             {
-            a0=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA962); if (state.failed) return element;
+            a0=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA962); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -2235,7 +2236,7 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_25, 35));
               	
             }
-            a2=(Token)match(input,13,FOLLOW_13_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA998); if (state.failed) return element;
+            a2=(Token)match(input,14,FOLLOW_14_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA998); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -2291,7 +2292,7 @@ public class AstParser extends AstANTLRParserBase {
             // Ast.g:1473:1: (a0= 'abstract' )
             // Ast.g:1474:2: a0= 'abstract'
             {
-            a0=(Token)match(input,18,FOLLOW_18_in_parse_org_jastemf_spec_ast_Abstract1027); if (state.failed) return element;
+            a0=(Token)match(input,19,FOLLOW_19_in_parse_org_jastemf_spec_ast_Abstract1027); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               		if (element == null) {
@@ -2350,7 +2351,7 @@ public class AstParser extends AstANTLRParserBase {
             if ( (LA10_0==IDENT) ) {
                 int LA10_1 = input.LA(2);
 
-                if ( (LA10_1==9) ) {
+                if ( (LA10_1==10) ) {
                     alt10=1;
                 }
             }
@@ -2396,7 +2397,7 @@ public class AstParser extends AstANTLRParserBase {
                       				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_26, 38));
                       			
                     }
-                    a1=(Token)match(input,9,FOLLOW_9_in_parse_org_jastemf_spec_ast_Id1099); if (state.failed) return element;
+                    a1=(Token)match(input,10,FOLLOW_10_in_parse_org_jastemf_spec_ast_Id1099); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       				if (element == null) {
@@ -2565,20 +2566,21 @@ public class AstParser extends AstANTLRParserBase {
 
 
     // $ANTLR start "parse_org_jastemf_spec_ast_TokenId"
-    // Ast.g:1618:1: parse_org_jastemf_spec_ast_TokenId returns [org.jastemf.spec.ast.TokenId element = null] : (a0= IDENT ) ( (a1= ':' (a2= IDENT ) ) )? ;
+    // Ast.g:1618:1: parse_org_jastemf_spec_ast_TokenId returns [org.jastemf.spec.ast.TokenId element = null] : (a0= IDENT ) ( (a1= ':' ( (a2= IDENT ) | (a3= QIDENT ) ) ) )? ;
     public final org.jastemf.spec.ast.TokenId parse_org_jastemf_spec_ast_TokenId() throws RecognitionException {
         org.jastemf.spec.ast.TokenId element =  null;
         int parse_org_jastemf_spec_ast_TokenId_StartIndex = input.index();
         Token a0=null;
         Token a1=null;
         Token a2=null;
+        Token a3=null;
 
 
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return element; }
-            // Ast.g:1621:1: ( (a0= IDENT ) ( (a1= ':' (a2= IDENT ) ) )? )
-            // Ast.g:1622:2: (a0= IDENT ) ( (a1= ':' (a2= IDENT ) ) )?
+            // Ast.g:1621:1: ( (a0= IDENT ) ( (a1= ':' ( (a2= IDENT ) | (a3= QIDENT ) ) ) )? )
+            // Ast.g:1622:2: (a0= IDENT ) ( (a1= ':' ( (a2= IDENT ) | (a3= QIDENT ) ) ) )?
             {
             // Ast.g:1622:2: (a0= IDENT )
             // Ast.g:1623:3: a0= IDENT
@@ -2623,21 +2625,21 @@ public class AstParser extends AstANTLRParserBase {
               		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 43));
               	
             }
-            // Ast.g:1658:2: ( (a1= ':' (a2= IDENT ) ) )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // Ast.g:1658:2: ( (a1= ':' ( (a2= IDENT ) | (a3= QIDENT ) ) ) )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA11_0==9) ) {
-                alt11=1;
+            if ( (LA12_0==10) ) {
+                alt12=1;
             }
-            switch (alt11) {
+            switch (alt12) {
                 case 1 :
-                    // Ast.g:1659:3: (a1= ':' (a2= IDENT ) )
+                    // Ast.g:1659:3: (a1= ':' ( (a2= IDENT ) | (a3= QIDENT ) ) )
                     {
-                    // Ast.g:1659:3: (a1= ':' (a2= IDENT ) )
-                    // Ast.g:1660:4: a1= ':' (a2= IDENT )
+                    // Ast.g:1659:3: (a1= ':' ( (a2= IDENT ) | (a3= QIDENT ) ) )
+                    // Ast.g:1660:4: a1= ':' ( (a2= IDENT ) | (a3= QIDENT ) )
                     {
-                    a1=(Token)match(input,9,FOLLOW_9_in_parse_org_jastemf_spec_ast_TokenId1243); if (state.failed) return element;
+                    a1=(Token)match(input,10,FOLLOW_10_in_parse_org_jastemf_spec_ast_TokenId1243); if (state.failed) return element;
                     if ( state.backtracking==0 ) {
 
                       				if (element == null) {
@@ -2653,48 +2655,131 @@ public class AstParser extends AstANTLRParserBase {
 
                       				// expected elements (follow set)
                       				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_28, 44));
+                      				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_29, 44));
                       			
                     }
-                    // Ast.g:1674:4: (a2= IDENT )
-                    // Ast.g:1675:5: a2= IDENT
-                    {
-                    a2=(Token)match(input,IDENT,FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_TokenId1269); if (state.failed) return element;
-                    if ( state.backtracking==0 ) {
+                    // Ast.g:1675:4: ( (a2= IDENT ) | (a3= QIDENT ) )
+                    int alt11=2;
+                    int LA11_0 = input.LA(1);
 
-                      					if (terminateParsing) {
-                      						throw new org.jastemf.spec.ast.resource.ast.mopp.AstTerminateParsingException();
-                      					}
-                      					if (element == null) {
-                      						element = org.jastemf.spec.ast.AstFactory.eINSTANCE.createTokenId();
-                      					}
-                      					if (a2 != null) {
-                      						org.jastemf.spec.ast.resource.ast.IAstTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENT");
-                      						tokenResolver.setOptions(getOptions());
-                      						org.jastemf.spec.ast.resource.ast.IAstTokenResolveResult result = getFreshTokenResolveResult();
-                      						tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), result);
-                      						java.lang.Object resolvedObject = result.getResolvedToken();
-                      						if (resolvedObject == null) {
-                      							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_2_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStopIndex());
-                      						}
-                      						java.lang.String resolved = (java.lang.String)resolvedObject;
-                      						if (resolved != null) {
-                      							element.eSet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), resolved);
-                      							completedElement(resolved, false);
-                      						}
-                      						collectHiddenTokens(element);
-                      						retrieveLayoutInformation(element, org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1, resolved);
-                      						copyLocalizationInfos((org.antlr.runtime3_2_0.CommonToken) a2, element);
-                      					}
-                      				
+                    if ( (LA11_0==IDENT) ) {
+                        alt11=1;
                     }
+                    else if ( (LA11_0==QIDENT) ) {
+                        alt11=2;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return element;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 11, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt11) {
+                        case 1 :
+                            // Ast.g:1676:5: (a2= IDENT )
+                            {
+                            // Ast.g:1676:5: (a2= IDENT )
+                            // Ast.g:1677:6: a2= IDENT
+                            {
+                            a2=(Token)match(input,IDENT,FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_TokenId1276); if (state.failed) return element;
+                            if ( state.backtracking==0 ) {
+
+                              						if (terminateParsing) {
+                              							throw new org.jastemf.spec.ast.resource.ast.mopp.AstTerminateParsingException();
+                              						}
+                              						if (element == null) {
+                              							element = org.jastemf.spec.ast.AstFactory.eINSTANCE.createTokenId();
+                              						}
+                              						if (a2 != null) {
+                              							org.jastemf.spec.ast.resource.ast.IAstTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENT");
+                              							tokenResolver.setOptions(getOptions());
+                              							org.jastemf.spec.ast.resource.ast.IAstTokenResolveResult result = getFreshTokenResolveResult();
+                              							tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), result);
+                              							java.lang.Object resolvedObject = result.getResolvedToken();
+                              							if (resolvedObject == null) {
+                              								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_2_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStopIndex());
+                              							}
+                              							java.lang.String resolved = (java.lang.String)resolvedObject;
+                              							if (resolved != null) {
+                              								element.eSet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), resolved);
+                              								completedElement(resolved, false);
+                              							}
+                              							collectHiddenTokens(element);
+                              							retrieveLayoutInformation(element, org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1_0_0_0, resolved);
+                              							copyLocalizationInfos((org.antlr.runtime3_2_0.CommonToken) a2, element);
+                              						}
+                              					
+                            }
+
+                            }
+
+                            if ( state.backtracking==0 ) {
+
+                              					// expected elements (follow set)
+                              					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 45));
+                              					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 45));
+                              				
+                            }
+
+                            }
+                            break;
+                        case 2 :
+                            // Ast.g:1712:10: (a3= QIDENT )
+                            {
+                            // Ast.g:1712:10: (a3= QIDENT )
+                            // Ast.g:1713:6: a3= QIDENT
+                            {
+                            a3=(Token)match(input,QIDENT,FOLLOW_QIDENT_in_parse_org_jastemf_spec_ast_TokenId1332); if (state.failed) return element;
+                            if ( state.backtracking==0 ) {
+
+                              						if (terminateParsing) {
+                              							throw new org.jastemf.spec.ast.resource.ast.mopp.AstTerminateParsingException();
+                              						}
+                              						if (element == null) {
+                              							element = org.jastemf.spec.ast.AstFactory.eINSTANCE.createTokenId();
+                              						}
+                              						if (a3 != null) {
+                              							org.jastemf.spec.ast.resource.ast.IAstTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QIDENT");
+                              							tokenResolver.setOptions(getOptions());
+                              							org.jastemf.spec.ast.resource.ast.IAstTokenResolveResult result = getFreshTokenResolveResult();
+                              							tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), result);
+                              							java.lang.Object resolvedObject = result.getResolvedToken();
+                              							if (resolvedObject == null) {
+                              								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_2_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_2_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_2_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_2_0.CommonToken) a3).getStopIndex());
+                              							}
+                              							java.lang.String resolved = (java.lang.String)resolvedObject;
+                              							if (resolved != null) {
+                              								element.eSet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), resolved);
+                              								completedElement(resolved, false);
+                              							}
+                              							collectHiddenTokens(element);
+                              							retrieveLayoutInformation(element, org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1_0_1_0, resolved);
+                              							copyLocalizationInfos((org.antlr.runtime3_2_0.CommonToken) a3, element);
+                              						}
+                              					
+                            }
+
+                            }
+
+                            if ( state.backtracking==0 ) {
+
+                              					// expected elements (follow set)
+                              					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 46));
+                              					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 46));
+                              				
+                            }
+
+                            }
+                            break;
 
                     }
 
                     if ( state.backtracking==0 ) {
 
                       				// expected elements (follow set)
-                      				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 45));
-                      				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 45));
+                      				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 47));
+                      				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 47));
                       			
                     }
 
@@ -2709,8 +2794,8 @@ public class AstParser extends AstANTLRParserBase {
             if ( state.backtracking==0 ) {
 
               		// expected elements (follow set)
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 46));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 46));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 48));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 48));
               	
             }
 
@@ -2730,7 +2815,7 @@ public class AstParser extends AstANTLRParserBase {
 
 
     // $ANTLR start "parse_org_jastemf_spec_ast_IdUse"
-    // Ast.g:1719:1: parse_org_jastemf_spec_ast_IdUse returns [org.jastemf.spec.ast.IdUse element = null] : (a0= IDENT ) ;
+    // Ast.g:1764:1: parse_org_jastemf_spec_ast_IdUse returns [org.jastemf.spec.ast.IdUse element = null] : (a0= IDENT ) ;
     public final org.jastemf.spec.ast.IdUse parse_org_jastemf_spec_ast_IdUse() throws RecognitionException {
         org.jastemf.spec.ast.IdUse element =  null;
         int parse_org_jastemf_spec_ast_IdUse_StartIndex = input.index();
@@ -2740,13 +2825,13 @@ public class AstParser extends AstANTLRParserBase {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return element; }
-            // Ast.g:1722:1: ( (a0= IDENT ) )
-            // Ast.g:1723:2: (a0= IDENT )
+            // Ast.g:1767:1: ( (a0= IDENT ) )
+            // Ast.g:1768:2: (a0= IDENT )
             {
-            // Ast.g:1723:2: (a0= IDENT )
-            // Ast.g:1724:3: a0= IDENT
+            // Ast.g:1768:2: (a0= IDENT )
+            // Ast.g:1769:3: a0= IDENT
             {
-            a0=(Token)match(input,IDENT,FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdUse1334); if (state.failed) return element;
+            a0=(Token)match(input,IDENT,FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdUse1416); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               			if (terminateParsing) {
@@ -2781,13 +2866,13 @@ public class AstParser extends AstANTLRParserBase {
             if ( state.backtracking==0 ) {
 
               		// expected elements (follow set)
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 47));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 47));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_13, 47));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_14, 47));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_21, 47));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_23, 47));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_25, 47));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 49));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 49));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_13, 49));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_14, 49));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_21, 49));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_23, 49));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_25, 49));
               	
             }
 
@@ -2807,7 +2892,7 @@ public class AstParser extends AstANTLRParserBase {
 
 
     // $ANTLR start "parse_org_jastemf_spec_ast_IdDecl"
-    // Ast.g:1765:1: parse_org_jastemf_spec_ast_IdDecl returns [org.jastemf.spec.ast.IdDecl element = null] : (a0= IDENT ) ;
+    // Ast.g:1810:1: parse_org_jastemf_spec_ast_IdDecl returns [org.jastemf.spec.ast.IdDecl element = null] : (a0= IDENT ) ;
     public final org.jastemf.spec.ast.IdDecl parse_org_jastemf_spec_ast_IdDecl() throws RecognitionException {
         org.jastemf.spec.ast.IdDecl element =  null;
         int parse_org_jastemf_spec_ast_IdDecl_StartIndex = input.index();
@@ -2817,13 +2902,13 @@ public class AstParser extends AstANTLRParserBase {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return element; }
-            // Ast.g:1768:1: ( (a0= IDENT ) )
-            // Ast.g:1769:2: (a0= IDENT )
+            // Ast.g:1813:1: ( (a0= IDENT ) )
+            // Ast.g:1814:2: (a0= IDENT )
             {
-            // Ast.g:1769:2: (a0= IDENT )
-            // Ast.g:1770:3: a0= IDENT
+            // Ast.g:1814:2: (a0= IDENT )
+            // Ast.g:1815:3: a0= IDENT
             {
-            a0=(Token)match(input,IDENT,FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdDecl1374); if (state.failed) return element;
+            a0=(Token)match(input,IDENT,FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdDecl1456); if (state.failed) return element;
             if ( state.backtracking==0 ) {
 
               			if (terminateParsing) {
@@ -2858,9 +2943,9 @@ public class AstParser extends AstANTLRParserBase {
             if ( state.backtracking==0 ) {
 
               		// expected elements (follow set)
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_2, 48));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 48));
-              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 48));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_2, 50));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 50));
+              		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 50));
               	
             }
 
@@ -2880,7 +2965,7 @@ public class AstParser extends AstANTLRParserBase {
 
 
     // $ANTLR start "parse_org_jastemf_spec_ast_TypeDecl"
-    // Ast.g:1807:1: parse_org_jastemf_spec_ast_TypeDecl returns [org.jastemf.spec.ast.TypeDecl element = null] : c0= parse_org_jastemf_spec_ast_ASTDecl ;
+    // Ast.g:1852:1: parse_org_jastemf_spec_ast_TypeDecl returns [org.jastemf.spec.ast.TypeDecl element = null] : c0= parse_org_jastemf_spec_ast_ASTDecl ;
     public final org.jastemf.spec.ast.TypeDecl parse_org_jastemf_spec_ast_TypeDecl() throws RecognitionException {
         org.jastemf.spec.ast.TypeDecl element =  null;
         int parse_org_jastemf_spec_ast_TypeDecl_StartIndex = input.index();
@@ -2889,10 +2974,10 @@ public class AstParser extends AstANTLRParserBase {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return element; }
-            // Ast.g:1808:1: (c0= parse_org_jastemf_spec_ast_ASTDecl )
-            // Ast.g:1809:2: c0= parse_org_jastemf_spec_ast_ASTDecl
+            // Ast.g:1853:1: (c0= parse_org_jastemf_spec_ast_ASTDecl )
+            // Ast.g:1854:2: c0= parse_org_jastemf_spec_ast_ASTDecl
             {
-            pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ASTDecl_in_parse_org_jastemf_spec_ast_TypeDecl1406);
+            pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ASTDecl_in_parse_org_jastemf_spec_ast_TypeDecl1488);
             c0=parse_org_jastemf_spec_ast_ASTDecl();
 
             state._fsp--;
@@ -2917,7 +3002,7 @@ public class AstParser extends AstANTLRParserBase {
 
 
     // $ANTLR start "parse_org_jastemf_spec_ast_Components"
-    // Ast.g:1813:1: parse_org_jastemf_spec_ast_Components returns [org.jastemf.spec.ast.Components element = null] : (c0= parse_org_jastemf_spec_ast_ListComponents | c1= parse_org_jastemf_spec_ast_ListComponentsNTA | c2= parse_org_jastemf_spec_ast_TokenComponent | c3= parse_org_jastemf_spec_ast_TokenComponentNTA | c4= parse_org_jastemf_spec_ast_OptionalComponent | c5= parse_org_jastemf_spec_ast_OptionalComponentNTA | c6= parse_org_jastemf_spec_ast_AggregateComponents | c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA );
+    // Ast.g:1858:1: parse_org_jastemf_spec_ast_Components returns [org.jastemf.spec.ast.Components element = null] : (c0= parse_org_jastemf_spec_ast_ListComponents | c1= parse_org_jastemf_spec_ast_ListComponentsNTA | c2= parse_org_jastemf_spec_ast_TokenComponent | c3= parse_org_jastemf_spec_ast_TokenComponentNTA | c4= parse_org_jastemf_spec_ast_OptionalComponent | c5= parse_org_jastemf_spec_ast_OptionalComponentNTA | c6= parse_org_jastemf_spec_ast_AggregateComponents | c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA );
     public final org.jastemf.spec.ast.Components parse_org_jastemf_spec_ast_Components() throws RecognitionException {
         org.jastemf.spec.ast.Components element =  null;
         int parse_org_jastemf_spec_ast_Components_StartIndex = input.index();
@@ -2940,14 +3025,14 @@ public class AstParser extends AstANTLRParserBase {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return element; }
-            // Ast.g:1814:1: (c0= parse_org_jastemf_spec_ast_ListComponents | c1= parse_org_jastemf_spec_ast_ListComponentsNTA | c2= parse_org_jastemf_spec_ast_TokenComponent | c3= parse_org_jastemf_spec_ast_TokenComponentNTA | c4= parse_org_jastemf_spec_ast_OptionalComponent | c5= parse_org_jastemf_spec_ast_OptionalComponentNTA | c6= parse_org_jastemf_spec_ast_AggregateComponents | c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA )
-            int alt12=8;
-            alt12 = dfa12.predict(input);
-            switch (alt12) {
+            // Ast.g:1859:1: (c0= parse_org_jastemf_spec_ast_ListComponents | c1= parse_org_jastemf_spec_ast_ListComponentsNTA | c2= parse_org_jastemf_spec_ast_TokenComponent | c3= parse_org_jastemf_spec_ast_TokenComponentNTA | c4= parse_org_jastemf_spec_ast_OptionalComponent | c5= parse_org_jastemf_spec_ast_OptionalComponentNTA | c6= parse_org_jastemf_spec_ast_AggregateComponents | c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA )
+            int alt13=8;
+            alt13 = dfa13.predict(input);
+            switch (alt13) {
                 case 1 :
-                    // Ast.g:1815:2: c0= parse_org_jastemf_spec_ast_ListComponents
+                    // Ast.g:1860:2: c0= parse_org_jastemf_spec_ast_ListComponents
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_parse_org_jastemf_spec_ast_Components1427);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_parse_org_jastemf_spec_ast_Components1509);
                     c0=parse_org_jastemf_spec_ast_ListComponents();
 
                     state._fsp--;
@@ -2959,9 +3044,9 @@ public class AstParser extends AstANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Ast.g:1816:4: c1= parse_org_jastemf_spec_ast_ListComponentsNTA
+                    // Ast.g:1861:4: c1= parse_org_jastemf_spec_ast_ListComponentsNTA
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_parse_org_jastemf_spec_ast_Components1437);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_parse_org_jastemf_spec_ast_Components1519);
                     c1=parse_org_jastemf_spec_ast_ListComponentsNTA();
 
                     state._fsp--;
@@ -2973,9 +3058,9 @@ public class AstParser extends AstANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Ast.g:1817:4: c2= parse_org_jastemf_spec_ast_TokenComponent
+                    // Ast.g:1862:4: c2= parse_org_jastemf_spec_ast_TokenComponent
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_parse_org_jastemf_spec_ast_Components1447);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_parse_org_jastemf_spec_ast_Components1529);
                     c2=parse_org_jastemf_spec_ast_TokenComponent();
 
                     state._fsp--;
@@ -2987,9 +3072,9 @@ public class AstParser extends AstANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Ast.g:1818:4: c3= parse_org_jastemf_spec_ast_TokenComponentNTA
+                    // Ast.g:1863:4: c3= parse_org_jastemf_spec_ast_TokenComponentNTA
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_parse_org_jastemf_spec_ast_Components1457);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_parse_org_jastemf_spec_ast_Components1539);
                     c3=parse_org_jastemf_spec_ast_TokenComponentNTA();
 
                     state._fsp--;
@@ -3001,9 +3086,9 @@ public class AstParser extends AstANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Ast.g:1819:4: c4= parse_org_jastemf_spec_ast_OptionalComponent
+                    // Ast.g:1864:4: c4= parse_org_jastemf_spec_ast_OptionalComponent
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_parse_org_jastemf_spec_ast_Components1467);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_parse_org_jastemf_spec_ast_Components1549);
                     c4=parse_org_jastemf_spec_ast_OptionalComponent();
 
                     state._fsp--;
@@ -3015,9 +3100,9 @@ public class AstParser extends AstANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Ast.g:1820:4: c5= parse_org_jastemf_spec_ast_OptionalComponentNTA
+                    // Ast.g:1865:4: c5= parse_org_jastemf_spec_ast_OptionalComponentNTA
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_parse_org_jastemf_spec_ast_Components1477);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_parse_org_jastemf_spec_ast_Components1559);
                     c5=parse_org_jastemf_spec_ast_OptionalComponentNTA();
 
                     state._fsp--;
@@ -3029,9 +3114,9 @@ public class AstParser extends AstANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Ast.g:1821:4: c6= parse_org_jastemf_spec_ast_AggregateComponents
+                    // Ast.g:1866:4: c6= parse_org_jastemf_spec_ast_AggregateComponents
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_parse_org_jastemf_spec_ast_Components1487);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_parse_org_jastemf_spec_ast_Components1569);
                     c6=parse_org_jastemf_spec_ast_AggregateComponents();
 
                     state._fsp--;
@@ -3043,9 +3128,9 @@ public class AstParser extends AstANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Ast.g:1822:4: c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA
+                    // Ast.g:1867:4: c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA
                     {
-                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_AggregateComponentsNTA_in_parse_org_jastemf_spec_ast_Components1497);
+                    pushFollow(FOLLOW_parse_org_jastemf_spec_ast_AggregateComponentsNTA_in_parse_org_jastemf_spec_ast_Components1579);
                     c7=parse_org_jastemf_spec_ast_AggregateComponentsNTA();
 
                     state._fsp--;
@@ -3070,34 +3155,16 @@ public class AstParser extends AstANTLRParserBase {
     }
     // $ANTLR end "parse_org_jastemf_spec_ast_Components"
 
-    // $ANTLR start synpred12_Ast
-    public final void synpred12_Ast_fragment() throws RecognitionException {   
+    // $ANTLR start synpred13_Ast
+    public final void synpred13_Ast_fragment() throws RecognitionException {   
         org.jastemf.spec.ast.ListComponents c0 = null;
 
 
-        // Ast.g:1815:2: (c0= parse_org_jastemf_spec_ast_ListComponents )
-        // Ast.g:1815:2: c0= parse_org_jastemf_spec_ast_ListComponents
+        // Ast.g:1860:2: (c0= parse_org_jastemf_spec_ast_ListComponents )
+        // Ast.g:1860:2: c0= parse_org_jastemf_spec_ast_ListComponents
         {
-        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_synpred12_Ast1427);
+        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_synpred13_Ast1509);
         c0=parse_org_jastemf_spec_ast_ListComponents();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred12_Ast
-
-    // $ANTLR start synpred13_Ast
-    public final void synpred13_Ast_fragment() throws RecognitionException {   
-        org.jastemf.spec.ast.ListComponentsNTA c1 = null;
-
-
-        // Ast.g:1816:4: (c1= parse_org_jastemf_spec_ast_ListComponentsNTA )
-        // Ast.g:1816:4: c1= parse_org_jastemf_spec_ast_ListComponentsNTA
-        {
-        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_synpred13_Ast1437);
-        c1=parse_org_jastemf_spec_ast_ListComponentsNTA();
 
         state._fsp--;
         if (state.failed) return ;
@@ -3108,14 +3175,14 @@ public class AstParser extends AstANTLRParserBase {
 
     // $ANTLR start synpred14_Ast
     public final void synpred14_Ast_fragment() throws RecognitionException {   
-        org.jastemf.spec.ast.TokenComponent c2 = null;
+        org.jastemf.spec.ast.ListComponentsNTA c1 = null;
 
 
-        // Ast.g:1817:4: (c2= parse_org_jastemf_spec_ast_TokenComponent )
-        // Ast.g:1817:4: c2= parse_org_jastemf_spec_ast_TokenComponent
+        // Ast.g:1861:4: (c1= parse_org_jastemf_spec_ast_ListComponentsNTA )
+        // Ast.g:1861:4: c1= parse_org_jastemf_spec_ast_ListComponentsNTA
         {
-        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_synpred14_Ast1447);
-        c2=parse_org_jastemf_spec_ast_TokenComponent();
+        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_synpred14_Ast1519);
+        c1=parse_org_jastemf_spec_ast_ListComponentsNTA();
 
         state._fsp--;
         if (state.failed) return ;
@@ -3126,14 +3193,14 @@ public class AstParser extends AstANTLRParserBase {
 
     // $ANTLR start synpred15_Ast
     public final void synpred15_Ast_fragment() throws RecognitionException {   
-        org.jastemf.spec.ast.TokenComponentNTA c3 = null;
+        org.jastemf.spec.ast.TokenComponent c2 = null;
 
 
-        // Ast.g:1818:4: (c3= parse_org_jastemf_spec_ast_TokenComponentNTA )
-        // Ast.g:1818:4: c3= parse_org_jastemf_spec_ast_TokenComponentNTA
+        // Ast.g:1862:4: (c2= parse_org_jastemf_spec_ast_TokenComponent )
+        // Ast.g:1862:4: c2= parse_org_jastemf_spec_ast_TokenComponent
         {
-        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_synpred15_Ast1457);
-        c3=parse_org_jastemf_spec_ast_TokenComponentNTA();
+        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_synpred15_Ast1529);
+        c2=parse_org_jastemf_spec_ast_TokenComponent();
 
         state._fsp--;
         if (state.failed) return ;
@@ -3144,14 +3211,14 @@ public class AstParser extends AstANTLRParserBase {
 
     // $ANTLR start synpred16_Ast
     public final void synpred16_Ast_fragment() throws RecognitionException {   
-        org.jastemf.spec.ast.OptionalComponent c4 = null;
+        org.jastemf.spec.ast.TokenComponentNTA c3 = null;
 
 
-        // Ast.g:1819:4: (c4= parse_org_jastemf_spec_ast_OptionalComponent )
-        // Ast.g:1819:4: c4= parse_org_jastemf_spec_ast_OptionalComponent
+        // Ast.g:1863:4: (c3= parse_org_jastemf_spec_ast_TokenComponentNTA )
+        // Ast.g:1863:4: c3= parse_org_jastemf_spec_ast_TokenComponentNTA
         {
-        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_synpred16_Ast1467);
-        c4=parse_org_jastemf_spec_ast_OptionalComponent();
+        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_synpred16_Ast1539);
+        c3=parse_org_jastemf_spec_ast_TokenComponentNTA();
 
         state._fsp--;
         if (state.failed) return ;
@@ -3162,14 +3229,14 @@ public class AstParser extends AstANTLRParserBase {
 
     // $ANTLR start synpred17_Ast
     public final void synpred17_Ast_fragment() throws RecognitionException {   
-        org.jastemf.spec.ast.OptionalComponentNTA c5 = null;
+        org.jastemf.spec.ast.OptionalComponent c4 = null;
 
 
-        // Ast.g:1820:4: (c5= parse_org_jastemf_spec_ast_OptionalComponentNTA )
-        // Ast.g:1820:4: c5= parse_org_jastemf_spec_ast_OptionalComponentNTA
+        // Ast.g:1864:4: (c4= parse_org_jastemf_spec_ast_OptionalComponent )
+        // Ast.g:1864:4: c4= parse_org_jastemf_spec_ast_OptionalComponent
         {
-        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_synpred17_Ast1477);
-        c5=parse_org_jastemf_spec_ast_OptionalComponentNTA();
+        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_synpred17_Ast1549);
+        c4=parse_org_jastemf_spec_ast_OptionalComponent();
 
         state._fsp--;
         if (state.failed) return ;
@@ -3180,14 +3247,14 @@ public class AstParser extends AstANTLRParserBase {
 
     // $ANTLR start synpred18_Ast
     public final void synpred18_Ast_fragment() throws RecognitionException {   
-        org.jastemf.spec.ast.AggregateComponents c6 = null;
+        org.jastemf.spec.ast.OptionalComponentNTA c5 = null;
 
 
-        // Ast.g:1821:4: (c6= parse_org_jastemf_spec_ast_AggregateComponents )
-        // Ast.g:1821:4: c6= parse_org_jastemf_spec_ast_AggregateComponents
+        // Ast.g:1865:4: (c5= parse_org_jastemf_spec_ast_OptionalComponentNTA )
+        // Ast.g:1865:4: c5= parse_org_jastemf_spec_ast_OptionalComponentNTA
         {
-        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_synpred18_Ast1487);
-        c6=parse_org_jastemf_spec_ast_AggregateComponents();
+        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_synpred18_Ast1559);
+        c5=parse_org_jastemf_spec_ast_OptionalComponentNTA();
 
         state._fsp--;
         if (state.failed) return ;
@@ -3195,6 +3262,24 @@ public class AstParser extends AstANTLRParserBase {
         }
     }
     // $ANTLR end synpred18_Ast
+
+    // $ANTLR start synpred19_Ast
+    public final void synpred19_Ast_fragment() throws RecognitionException {   
+        org.jastemf.spec.ast.AggregateComponents c6 = null;
+
+
+        // Ast.g:1866:4: (c6= parse_org_jastemf_spec_ast_AggregateComponents )
+        // Ast.g:1866:4: c6= parse_org_jastemf_spec_ast_AggregateComponents
+        {
+        pushFollow(FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_synpred19_Ast1569);
+        c6=parse_org_jastemf_spec_ast_AggregateComponents();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred19_Ast
 
     // Delegated rules
 
@@ -3254,11 +3339,11 @@ public class AstParser extends AstANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred12_Ast() {
+    public final boolean synpred18_Ast() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred12_Ast_fragment(); // can never throw exception
+            synpred18_Ast_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3268,11 +3353,11 @@ public class AstParser extends AstANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred18_Ast() {
+    public final boolean synpred19_Ast() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred18_Ast_fragment(); // can never throw exception
+            synpred19_Ast_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3298,156 +3383,157 @@ public class AstParser extends AstANTLRParserBase {
     }
 
 
-    protected DFA12 dfa12 = new DFA12(this);
-    static final String DFA12_eotS =
-        "\37\uffff";
-    static final String DFA12_eofS =
-        "\1\uffff\1\5\11\uffff\1\5\23\uffff";
-    static final String DFA12_minS =
-        "\3\4\3\uffff\1\4\1\uffff\1\11\3\4\1\15\1\0\1\4\2\11\1\0\1\uffff"+
-        "\1\14\1\4\2\15\1\4\1\uffff\1\17\2\0\1\21\2\uffff";
-    static final String DFA12_maxS =
-        "\3\20\3\uffff\1\4\1\uffff\1\15\2\4\1\20\1\15\1\0\1\4\1\17\1\21"+
-        "\1\0\1\uffff\1\15\1\4\2\15\1\4\1\uffff\1\17\2\0\1\21\2\uffff";
-    static final String DFA12_acceptS =
-        "\3\uffff\1\3\1\5\1\7\1\uffff\1\1\12\uffff\1\10\5\uffff\1\2\4\uffff"+
+    protected DFA13 dfa13 = new DFA13(this);
+    static final String DFA13_eotS =
+        "\40\uffff";
+    static final String DFA13_eofS =
+        "\1\uffff\1\6\11\uffff\1\6\24\uffff";
+    static final String DFA13_minS =
+        "\3\4\2\uffff\1\4\2\uffff\1\4\1\12\2\4\1\12\1\4\1\16\1\0\1\12\1"+
+        "\4\1\16\1\15\1\0\1\uffff\1\16\1\4\2\20\1\0\1\uffff\1\0\1\22\2\uffff";
+    static final String DFA13_maxS =
+        "\3\21\2\uffff\1\4\2\uffff\1\4\1\16\1\4\1\21\1\20\1\4\1\16\1\0\1"+
+        "\22\1\5\2\16\1\0\1\uffff\1\16\1\4\2\20\1\0\1\uffff\1\0\1\22\2\uffff";
+    static final String DFA13_acceptS =
+        "\3\uffff\1\3\1\5\1\uffff\1\7\1\1\15\uffff\1\10\5\uffff\1\2\2\uffff"+
         "\1\4\1\6";
-    static final String DFA12_specialS =
-        "\15\uffff\1\0\3\uffff\1\2\10\uffff\1\3\1\1\3\uffff}>";
-    static final String[] DFA12_transitionS = {
-            "\1\1\10\uffff\1\2\1\3\1\uffff\1\4",
-            "\1\5\4\uffff\1\6\1\uffff\1\5\1\7\2\5\1\uffff\1\5",
-            "\1\10\11\uffff\1\11\1\uffff\1\12",
-            "",
+    static final String DFA13_specialS =
+        "\17\uffff\1\1\4\uffff\1\3\5\uffff\1\0\1\uffff\1\2\3\uffff}>";
+    static final String[] DFA13_transitionS = {
+            "\1\1\11\uffff\1\2\1\3\1\uffff\1\4",
+            "\1\6\5\uffff\1\5\1\uffff\1\6\1\7\2\6\1\uffff\1\6",
+            "\1\11\12\uffff\1\10\1\uffff\1\12",
             "",
             "",
             "\1\13",
             "",
-            "\1\16\2\uffff\1\14\1\15",
-            "\1\17",
+            "",
+            "\1\14",
+            "\1\15\2\uffff\1\16\1\17",
             "\1\20",
-            "\1\5\6\uffff\1\5\1\7\2\5\1\uffff\1\5",
-            "\1\21",
-            "\1\uffff",
+            "\1\6\7\uffff\1\6\1\7\2\6\1\uffff\1\6",
+            "\1\21\5\uffff\1\22",
             "\1\23",
-            "\1\24\5\uffff\1\25",
+            "\1\24",
+            "\1\uffff",
             "\1\27\7\uffff\1\26",
-            "\1\uffff",
-            "",
-            "\1\14\1\15",
-            "\1\31",
+            "\1\30\1\31",
             "\1\32",
-            "\1\33",
-            "\1\34",
-            "",
-            "\1\25",
+            "\1\16\1\17",
             "\1\uffff",
+            "",
+            "\1\34",
+            "\1\35",
+            "\1\22",
+            "\1\22",
+            "\1\uffff",
+            "",
             "\1\uffff",
             "\1\26",
             "",
             ""
     };
 
-    static final short[] DFA12_eot = DFA.unpackEncodedString(DFA12_eotS);
-    static final short[] DFA12_eof = DFA.unpackEncodedString(DFA12_eofS);
-    static final char[] DFA12_min = DFA.unpackEncodedStringToUnsignedChars(DFA12_minS);
-    static final char[] DFA12_max = DFA.unpackEncodedStringToUnsignedChars(DFA12_maxS);
-    static final short[] DFA12_accept = DFA.unpackEncodedString(DFA12_acceptS);
-    static final short[] DFA12_special = DFA.unpackEncodedString(DFA12_specialS);
-    static final short[][] DFA12_transition;
+    static final short[] DFA13_eot = DFA.unpackEncodedString(DFA13_eotS);
+    static final short[] DFA13_eof = DFA.unpackEncodedString(DFA13_eofS);
+    static final char[] DFA13_min = DFA.unpackEncodedStringToUnsignedChars(DFA13_minS);
+    static final char[] DFA13_max = DFA.unpackEncodedStringToUnsignedChars(DFA13_maxS);
+    static final short[] DFA13_accept = DFA.unpackEncodedString(DFA13_acceptS);
+    static final short[] DFA13_special = DFA.unpackEncodedString(DFA13_specialS);
+    static final short[][] DFA13_transition;
 
     static {
-        int numStates = DFA12_transitionS.length;
-        DFA12_transition = new short[numStates][];
+        int numStates = DFA13_transitionS.length;
+        DFA13_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA12_transition[i] = DFA.unpackEncodedString(DFA12_transitionS[i]);
+            DFA13_transition[i] = DFA.unpackEncodedString(DFA13_transitionS[i]);
         }
     }
 
-    class DFA12 extends DFA {
+    class DFA13 extends DFA {
 
-        public DFA12(BaseRecognizer recognizer) {
+        public DFA13(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 12;
-            this.eot = DFA12_eot;
-            this.eof = DFA12_eof;
-            this.min = DFA12_min;
-            this.max = DFA12_max;
-            this.accept = DFA12_accept;
-            this.special = DFA12_special;
-            this.transition = DFA12_transition;
+            this.decisionNumber = 13;
+            this.eot = DFA13_eot;
+            this.eof = DFA13_eof;
+            this.min = DFA13_min;
+            this.max = DFA13_max;
+            this.accept = DFA13_accept;
+            this.special = DFA13_special;
+            this.transition = DFA13_transition;
         }
         public String getDescription() {
-            return "1813:1: parse_org_jastemf_spec_ast_Components returns [org.jastemf.spec.ast.Components element = null] : (c0= parse_org_jastemf_spec_ast_ListComponents | c1= parse_org_jastemf_spec_ast_ListComponentsNTA | c2= parse_org_jastemf_spec_ast_TokenComponent | c3= parse_org_jastemf_spec_ast_TokenComponentNTA | c4= parse_org_jastemf_spec_ast_OptionalComponent | c5= parse_org_jastemf_spec_ast_OptionalComponentNTA | c6= parse_org_jastemf_spec_ast_AggregateComponents | c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA );";
+            return "1858:1: parse_org_jastemf_spec_ast_Components returns [org.jastemf.spec.ast.Components element = null] : (c0= parse_org_jastemf_spec_ast_ListComponents | c1= parse_org_jastemf_spec_ast_ListComponentsNTA | c2= parse_org_jastemf_spec_ast_TokenComponent | c3= parse_org_jastemf_spec_ast_TokenComponentNTA | c4= parse_org_jastemf_spec_ast_OptionalComponent | c5= parse_org_jastemf_spec_ast_OptionalComponentNTA | c6= parse_org_jastemf_spec_ast_AggregateComponents | c7= parse_org_jastemf_spec_ast_AggregateComponentsNTA );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_13 = input.LA(1);
+                        int LA13_26 = input.LA(1);
 
                          
-                        int index12_13 = input.index();
+                        int index13_26 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred18_Ast()) ) {s = 5;}
+                        if ( (synpred15_Ast()) ) {s = 3;}
 
-                        else if ( (true) ) {s = 18;}
+                        else if ( (synpred16_Ast()) ) {s = 30;}
 
                          
-                        input.seek(index12_13);
+                        input.seek(index13_26);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA12_27 = input.LA(1);
+                        int LA13_15 = input.LA(1);
 
                          
-                        int index12_27 = input.index();
+                        int index13_15 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred16_Ast()) ) {s = 4;}
+                        if ( (synpred19_Ast()) ) {s = 6;}
 
-                        else if ( (synpred17_Ast()) ) {s = 30;}
+                        else if ( (true) ) {s = 21;}
 
                          
-                        input.seek(index12_27);
+                        input.seek(index13_15);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_17 = input.LA(1);
+                        int LA13_28 = input.LA(1);
 
                          
-                        int index12_17 = input.index();
+                        int index13_28 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred12_Ast()) ) {s = 7;}
+                        if ( (synpred17_Ast()) ) {s = 4;}
 
-                        else if ( (synpred13_Ast()) ) {s = 24;}
+                        else if ( (synpred18_Ast()) ) {s = 31;}
 
                          
-                        input.seek(index12_17);
+                        input.seek(index13_28);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA12_26 = input.LA(1);
+                        int LA13_20 = input.LA(1);
 
                          
-                        int index12_26 = input.index();
+                        int index13_20 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred14_Ast()) ) {s = 3;}
+                        if ( (synpred13_Ast()) ) {s = 7;}
 
-                        else if ( (synpred15_Ast()) ) {s = 29;}
+                        else if ( (synpred14_Ast()) ) {s = 27;}
 
                          
-                        input.seek(index12_26);
+                        input.seek(index13_20);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 12, _s, input);
+                new NoViableAltException(getDescription(), 13, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -3456,69 +3542,70 @@ public class AstParser extends AstANTLRParserBase {
 
     public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Grammar_in_start82 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_start89 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TypeDecl_in_parse_org_jastemf_spec_ast_Grammar121 = new BitSet(new long[]{0x0000000000040012L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Abstract_in_parse_org_jastemf_spec_ast_ASTDecl171 = new BitSet(new long[]{0x0000000000040E10L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_IdDecl_in_parse_org_jastemf_spec_ast_ASTDecl201 = new BitSet(new long[]{0x0000000000000E00L});
-    public static final BitSet FOLLOW_9_in_parse_org_jastemf_spec_ast_ASTDecl228 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_IdUse_in_parse_org_jastemf_spec_ast_ASTDecl254 = new BitSet(new long[]{0x0000000000000C00L});
-    public static final BitSet FOLLOW_10_in_parse_org_jastemf_spec_ast_ASTDecl304 = new BitSet(new long[]{0x0000000000016010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Components_in_parse_org_jastemf_spec_ast_ASTDecl337 = new BitSet(new long[]{0x0000000000016810L});
-    public static final BitSet FOLLOW_11_in_parse_org_jastemf_spec_ast_ASTDecl390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_ListComponents423 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_parse_org_jastemf_spec_ast_ListComponents441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TypeDecl_in_parse_org_jastemf_spec_ast_Grammar121 = new BitSet(new long[]{0x0000000000080012L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Abstract_in_parse_org_jastemf_spec_ast_ASTDecl171 = new BitSet(new long[]{0x0000000000081C10L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_IdDecl_in_parse_org_jastemf_spec_ast_ASTDecl201 = new BitSet(new long[]{0x0000000000001C00L});
+    public static final BitSet FOLLOW_10_in_parse_org_jastemf_spec_ast_ASTDecl228 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_IdUse_in_parse_org_jastemf_spec_ast_ASTDecl254 = new BitSet(new long[]{0x0000000000001800L});
+    public static final BitSet FOLLOW_11_in_parse_org_jastemf_spec_ast_ASTDecl304 = new BitSet(new long[]{0x000000000002C010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Components_in_parse_org_jastemf_spec_ast_ASTDecl337 = new BitSet(new long[]{0x000000000002D010L});
+    public static final BitSet FOLLOW_12_in_parse_org_jastemf_spec_ast_ASTDecl390 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_ListComponents423 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponents441 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_parse_org_jastemf_spec_ast_ListComponents460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponentsNTA485 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_ListComponentsNTA503 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_parse_org_jastemf_spec_ast_ListComponentsNTA521 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponentsNTA535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponent564 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenId_in_parse_org_jastemf_spec_ast_TokenComponent582 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponent600 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_ListComponentsNTA485 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_ListComponentsNTA503 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_ListComponentsNTA521 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_ListComponentsNTA535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponent564 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenId_in_parse_org_jastemf_spec_ast_TokenComponent582 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_parse_org_jastemf_spec_ast_TokenComponent600 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_parse_org_jastemf_spec_ast_TokenComponent619 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_TokenComponentNTA644 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponentNTA658 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenId_in_parse_org_jastemf_spec_ast_TokenComponentNTA676 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponentNTA694 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_TokenComponentNTA708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_parse_org_jastemf_spec_ast_OptionalComponent737 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_OptionalComponent755 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponent773 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponentNTA644 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_parse_org_jastemf_spec_ast_TokenComponentNTA658 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenId_in_parse_org_jastemf_spec_ast_TokenComponentNTA676 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_parse_org_jastemf_spec_ast_TokenComponentNTA694 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_TokenComponentNTA708 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponent737 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_OptionalComponent755 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_parse_org_jastemf_spec_ast_OptionalComponent773 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_parse_org_jastemf_spec_ast_OptionalComponent792 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_OptionalComponentNTA817 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_parse_org_jastemf_spec_ast_OptionalComponentNTA831 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_OptionalComponentNTA849 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponentNTA867 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_OptionalComponentNTA881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_OptionalComponentNTA817 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_parse_org_jastemf_spec_ast_OptionalComponentNTA831 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_OptionalComponentNTA849 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_parse_org_jastemf_spec_ast_OptionalComponentNTA867 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_OptionalComponentNTA881 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_AggregateComponents914 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_AggregateComponentsNTA_in_parse_org_jastemf_spec_ast_AggregateComponents937 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA962 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA980 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA998 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_parse_org_jastemf_spec_ast_Abstract1027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_NameNode_in_parse_org_jastemf_spec_ast_Id1071 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_9_in_parse_org_jastemf_spec_ast_Id1099 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA962 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_Id_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA980 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_parse_org_jastemf_spec_ast_AggregateComponentsNTA998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_parse_org_jastemf_spec_ast_Abstract1027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_NameNode_in_parse_org_jastemf_spec_ast_Id1071 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_10_in_parse_org_jastemf_spec_ast_Id1099 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_IdUse_in_parse_org_jastemf_spec_ast_Id1136 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_NameNode1173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_TokenId1213 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_9_in_parse_org_jastemf_spec_ast_TokenId1243 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_TokenId1269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdUse1334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdDecl1374 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ASTDecl_in_parse_org_jastemf_spec_ast_TypeDecl1406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_parse_org_jastemf_spec_ast_Components1427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_parse_org_jastemf_spec_ast_Components1437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_parse_org_jastemf_spec_ast_Components1447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_parse_org_jastemf_spec_ast_Components1457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_parse_org_jastemf_spec_ast_Components1467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_parse_org_jastemf_spec_ast_Components1477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_parse_org_jastemf_spec_ast_Components1487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_AggregateComponentsNTA_in_parse_org_jastemf_spec_ast_Components1497 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_synpred12_Ast1427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_synpred13_Ast1437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_synpred14_Ast1447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_synpred15_Ast1457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_synpred16_Ast1467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_synpred17_Ast1477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_synpred18_Ast1487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_TokenId1213 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_10_in_parse_org_jastemf_spec_ast_TokenId1243 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_TokenId1276 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_QIDENT_in_parse_org_jastemf_spec_ast_TokenId1332 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdUse1416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENT_in_parse_org_jastemf_spec_ast_IdDecl1456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ASTDecl_in_parse_org_jastemf_spec_ast_TypeDecl1488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_parse_org_jastemf_spec_ast_Components1509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_parse_org_jastemf_spec_ast_Components1519 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_parse_org_jastemf_spec_ast_Components1529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_parse_org_jastemf_spec_ast_Components1539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_parse_org_jastemf_spec_ast_Components1549 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_parse_org_jastemf_spec_ast_Components1559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_parse_org_jastemf_spec_ast_Components1569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_AggregateComponentsNTA_in_parse_org_jastemf_spec_ast_Components1579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponents_in_synpred13_Ast1509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_ListComponentsNTA_in_synpred14_Ast1519 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponent_in_synpred15_Ast1529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_TokenComponentNTA_in_synpred16_Ast1539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponent_in_synpred17_Ast1549 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_OptionalComponentNTA_in_synpred18_Ast1559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_org_jastemf_spec_ast_AggregateComponents_in_synpred19_Ast1569 = new BitSet(new long[]{0x0000000000000002L});
 
 }

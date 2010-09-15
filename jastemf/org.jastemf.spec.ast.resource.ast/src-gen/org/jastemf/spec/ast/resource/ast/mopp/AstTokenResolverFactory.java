@@ -16,6 +16,7 @@ public class AstTokenResolverFactory implements org.jastemf.spec.ast.resource.as
 		tokenName2TokenResolver = new java.util.LinkedHashMap<java.lang.String, org.jastemf.spec.ast.resource.ast.IAstTokenResolver>();
 		featureName2CollectInTokenResolver = new java.util.LinkedHashMap<java.lang.String, org.jastemf.spec.ast.resource.ast.IAstTokenResolver>();
 		registerTokenResolver("IDENT", new org.jastemf.spec.ast.resource.ast.analysis.AstIDENTTokenResolver());
+		registerTokenResolver("QIDENT", new org.jastemf.spec.ast.resource.ast.analysis.AstQIDENTTokenResolver());
 	}
 	
 	public org.jastemf.spec.ast.resource.ast.IAstTokenResolver createTokenResolver(java.lang.String tokenName) {

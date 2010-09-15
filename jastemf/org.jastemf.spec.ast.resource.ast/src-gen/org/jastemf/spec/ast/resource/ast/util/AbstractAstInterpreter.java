@@ -44,7 +44,7 @@ public class AbstractAstInterpreter<ResultType, ContextType> {
 	
 	public ResultType interprete(org.eclipse.emf.ecore.EObject object, ContextType context) {
 		ResultType result = null;
-		if (object instanceof org.jastemf.spec.ast.AggregateComponentsNTA) { 
+		if (object instanceof org.jastemf.spec.ast.AggregateComponentsNTA) {
 			result = interprete_org_jastemf_spec_ast_AggregateComponentsNTA((org.jastemf.spec.ast.AggregateComponentsNTA) object, context);
 		}
 		if (result != null) {

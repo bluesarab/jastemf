@@ -40,7 +40,8 @@ public class AstFollowSetProvider {
 	public final static org.jastemf.spec.ast.resource.ast.IAstExpectedElement TERMINAL_25 = new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedCsString(org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_9_0_0_2);
 	public final static org.jastemf.spec.ast.resource.ast.IAstExpectedElement TERMINAL_26 = new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedCsString(org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_11_0_0_0_0_0_1);
 	public final static org.jastemf.spec.ast.resource.ast.IAstExpectedElement TERMINAL_27 = new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedCsString(org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_0);
-	public final static org.jastemf.spec.ast.resource.ast.IAstExpectedElement TERMINAL_28 = new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedStructuralFeature(org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1);
+	public final static org.jastemf.spec.ast.resource.ast.IAstExpectedElement TERMINAL_28 = new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedStructuralFeature(org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1_0_0_0);
+	public final static org.jastemf.spec.ast.resource.ast.IAstExpectedElement TERMINAL_29 = new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedStructuralFeature(org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1_0_1_0);
 	
 	public final static org.eclipse.emf.ecore.EStructuralFeature FEATURE_0 = org.jastemf.spec.ast.AstPackage.eINSTANCE.getASTDecl().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.AST_DECL__ABSTRACT);
 	public final static org.eclipse.emf.ecore.EStructuralFeature FEATURE_1 = org.jastemf.spec.ast.AstPackage.eINSTANCE.getGrammar().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.GRAMMAR__TYPE_DECL);
@@ -153,8 +154,11 @@ public class AstFollowSetProvider {
 		TERMINAL_16.addFollower(TERMINAL_17, EMPTY_FEATURE_ARRAY);
 		TERMINAL_16.addFollower(TERMINAL_19, EMPTY_FEATURE_ARRAY);
 		TERMINAL_27.addFollower(TERMINAL_28, EMPTY_FEATURE_ARRAY);
+		TERMINAL_27.addFollower(TERMINAL_29, EMPTY_FEATURE_ARRAY);
 		TERMINAL_28.addFollower(TERMINAL_17, EMPTY_FEATURE_ARRAY);
 		TERMINAL_28.addFollower(TERMINAL_19, EMPTY_FEATURE_ARRAY);
+		TERMINAL_29.addFollower(TERMINAL_17, EMPTY_FEATURE_ARRAY);
+		TERMINAL_29.addFollower(TERMINAL_19, EMPTY_FEATURE_ARRAY);
 		TERMINAL_5.addFollower(TERMINAL_3, EMPTY_FEATURE_ARRAY);
 		TERMINAL_5.addFollower(TERMINAL_4, EMPTY_FEATURE_ARRAY);
 		TERMINAL_5.addFollower(TERMINAL_13, EMPTY_FEATURE_ARRAY);
