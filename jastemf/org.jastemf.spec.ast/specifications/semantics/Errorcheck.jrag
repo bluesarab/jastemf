@@ -163,7 +163,7 @@ aspect Errorcheck {
       	public ASTNode<?> getCause(){return _this;}
       });
     }
-    else if(hasSuperClassId() && superClass() == null) {
+    else if(hasSuperClassId() && superClass() == null && !getSuperClassId().getID().equals("ASTNode")) {
       result.add(new IProblemDescriptor(){
       	public String getMessage(){return "Non-terminal inherits from undeclared class "+getSuperClassId().name()+".";}
       	public ASTNode<?> getCause(){return _this;}
@@ -201,7 +201,7 @@ aspect Errorcheck {
       });
     }
 
-    if(!declared()) {
+    if(!declared()&&!"ASTNode".equals(type())) {
   	  result.add( new IProblemDescriptor(){
   	  	public String getMessage(){ return "Type " + type() + " of component " + name() +
           " in production " + hostClass().name() + " is not declared";};
