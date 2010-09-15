@@ -688,21 +688,52 @@ public class AstPrinter implements org.jastemf.spec.ast.resource.ast.IAstTextPri
 		}
 	}
 	public void print_org_jastemf_spec_ast_TokenId_0(org.jastemf.spec.ast.TokenId element, java.lang.String outertab, java.io.PrintWriter out, java.util.Map<java.lang.String, java.lang.Integer> printCountingMap){
-		int count;
+		java.lang.String localtab = outertab;
 		// DEFINITION PART BEGINS (CsString)
 		out.print(":");
 		out.print(" ");
-		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
-		count = printCountingMap.get("TYPE");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE));
-			if (o != null) {
-				org.jastemf.spec.ast.resource.ast.IAstTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENT");
-				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((java.lang.Object) o, element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), element));
-				out.print(" ");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		print_org_jastemf_spec_ast_TokenId_0_0(element, localtab, out, printCountingMap);
+	}
+	public void print_org_jastemf_spec_ast_TokenId_0_0(org.jastemf.spec.ast.TokenId element, java.lang.String outertab, java.io.PrintWriter out, java.util.Map<java.lang.String, java.lang.Integer> printCountingMap){
+		int count;
+		int alt = -1;
+		alt=0;
+		int matches=		matchCount(printCountingMap, java.util.Arrays.asList(		"TYPE"		));
+		int tempMatchCount;
+		tempMatchCount=		matchCount(printCountingMap, java.util.Arrays.asList(		"TYPE"		));
+		if (tempMatchCount > matches) {
+			alt = 1;
+			matches = tempMatchCount;
+		}
+		switch(alt) {
+			case 1:			{
+				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+				count = printCountingMap.get("TYPE");
+				if (count > 0) {
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE));
+					if (o != null) {
+						org.jastemf.spec.ast.resource.ast.IAstTokenResolver resolver = tokenResolverFactory.createTokenResolver("QIDENT");
+						resolver.setOptions(getOptions());
+						out.print(resolver.deResolve((java.lang.Object) o, element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), element));
+						out.print(" ");
+					}
+					printCountingMap.put("TYPE", count - 1);
+				}
 			}
-			printCountingMap.put("TYPE", count - 1);
+			break;
+			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+			count = printCountingMap.get("TYPE");
+			if (count > 0) {
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE));
+				if (o != null) {
+					org.jastemf.spec.ast.resource.ast.IAstTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENT");
+					resolver.setOptions(getOptions());
+					out.print(resolver.deResolve((java.lang.Object) o, element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), element));
+					out.print(" ");
+				}
+				printCountingMap.put("TYPE", count - 1);
+			}
 		}
 	}
 	

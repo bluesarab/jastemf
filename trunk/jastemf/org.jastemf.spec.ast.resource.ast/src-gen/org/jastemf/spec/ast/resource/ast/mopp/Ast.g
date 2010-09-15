@@ -402,7 +402,7 @@ options {
 				break;
 			}
 		}
-		int followSetID = 49;
+		int followSetID = 51;
 		int i;
 		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
 			org.antlr.runtime3_2_0.CommonToken nextToken = (org.antlr.runtime3_2_0.CommonToken) tokenStream.get(i);
@@ -1669,49 +1669,94 @@ parse_org_jastemf_spec_ast_TokenId returns [org.jastemf.spec.ast.TokenId element
 			{
 				// expected elements (follow set)
 				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_28, 44));
+				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_29, 44));
 			}
 			
 			(
-				a2 = IDENT				
+				(
+					a2 = IDENT					
+					{
+						if (terminateParsing) {
+							throw new org.jastemf.spec.ast.resource.ast.mopp.AstTerminateParsingException();
+						}
+						if (element == null) {
+							element = org.jastemf.spec.ast.AstFactory.eINSTANCE.createTokenId();
+						}
+						if (a2 != null) {
+							org.jastemf.spec.ast.resource.ast.IAstTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENT");
+							tokenResolver.setOptions(getOptions());
+							org.jastemf.spec.ast.resource.ast.IAstTokenResolveResult result = getFreshTokenResolveResult();
+							tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), result);
+							java.lang.Object resolvedObject = result.getResolvedToken();
+							if (resolvedObject == null) {
+								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_2_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStopIndex());
+							}
+							java.lang.String resolved = (java.lang.String)resolvedObject;
+							if (resolved != null) {
+								element.eSet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), resolved);
+								completedElement(resolved, false);
+							}
+							collectHiddenTokens(element);
+							retrieveLayoutInformation(element, org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1_0_0_0, resolved);
+							copyLocalizationInfos((org.antlr.runtime3_2_0.CommonToken) a2, element);
+						}
+					}
+				)
 				{
-					if (terminateParsing) {
-						throw new org.jastemf.spec.ast.resource.ast.mopp.AstTerminateParsingException();
-					}
-					if (element == null) {
-						element = org.jastemf.spec.ast.AstFactory.eINSTANCE.createTokenId();
-					}
-					if (a2 != null) {
-						org.jastemf.spec.ast.resource.ast.IAstTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENT");
-						tokenResolver.setOptions(getOptions());
-						org.jastemf.spec.ast.resource.ast.IAstTokenResolveResult result = getFreshTokenResolveResult();
-						tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), result);
-						java.lang.Object resolvedObject = result.getResolvedToken();
-						if (resolvedObject == null) {
-							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_2_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_2_0.CommonToken) a2).getStopIndex());
-						}
-						java.lang.String resolved = (java.lang.String)resolvedObject;
-						if (resolved != null) {
-							element.eSet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), resolved);
-							completedElement(resolved, false);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1, resolved);
-						copyLocalizationInfos((org.antlr.runtime3_2_0.CommonToken) a2, element);
-					}
+					// expected elements (follow set)
+					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 45));
+					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 45));
 				}
+				
+				
+				|				(
+					a3 = QIDENT					
+					{
+						if (terminateParsing) {
+							throw new org.jastemf.spec.ast.resource.ast.mopp.AstTerminateParsingException();
+						}
+						if (element == null) {
+							element = org.jastemf.spec.ast.AstFactory.eINSTANCE.createTokenId();
+						}
+						if (a3 != null) {
+							org.jastemf.spec.ast.resource.ast.IAstTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QIDENT");
+							tokenResolver.setOptions(getOptions());
+							org.jastemf.spec.ast.resource.ast.IAstTokenResolveResult result = getFreshTokenResolveResult();
+							tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), result);
+							java.lang.Object resolvedObject = result.getResolvedToken();
+							if (resolvedObject == null) {
+								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_2_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_2_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_2_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_2_0.CommonToken) a3).getStopIndex());
+							}
+							java.lang.String resolved = (java.lang.String)resolvedObject;
+							if (resolved != null) {
+								element.eSet(element.eClass().getEStructuralFeature(org.jastemf.spec.ast.AstPackage.TOKEN_ID__TYPE), resolved);
+								completedElement(resolved, false);
+							}
+							collectHiddenTokens(element);
+							retrieveLayoutInformation(element, org.jastemf.spec.ast.resource.ast.grammar.AstGrammarInformationProvider.AST_13_0_0_1_0_0_1_0_1_0, resolved);
+							copyLocalizationInfos((org.antlr.runtime3_2_0.CommonToken) a3, element);
+						}
+					}
+				)
+				{
+					// expected elements (follow set)
+					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 46));
+					addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 46));
+				}
+				
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 45));
-				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 45));
+				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 47));
+				addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 47));
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 46));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 46));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_17, 48));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_19, 48));
 	}
 	
 ;
@@ -1751,13 +1796,13 @@ parse_org_jastemf_spec_ast_IdUse returns [org.jastemf.spec.ast.IdUse element = n
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 47));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 47));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_13, 47));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_14, 47));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_21, 47));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_23, 47));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_25, 47));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 49));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 49));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_13, 49));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_14, 49));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_21, 49));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_23, 49));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_25, 49));
 	}
 	
 ;
@@ -1797,9 +1842,9 @@ parse_org_jastemf_spec_ast_IdDecl returns [org.jastemf.spec.ast.IdDecl element =
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_2, 48));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 48));
-		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 48));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_2, 50));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_3, 50));
+		addExpectedElement(new org.jastemf.spec.ast.resource.ast.mopp.AstExpectedTerminal(org.jastemf.spec.ast.resource.ast.grammar.AstFollowSetProvider.TERMINAL_4, 50));
 	}
 	
 ;
@@ -1832,6 +1877,8 @@ ML_COMMENT:
 ;
 IDENT:
 	('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*;
+QIDENT:
+	('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*('.'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*)+;
 WHITESPACE:
 	(' '|'\t'|'\f')
 	{ _channel = 99; }
