@@ -12,6 +12,7 @@ TOKENS {
 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))*$;
 	DEFINE ML_COMMENT $'/*'.*'*/'$;
 	DEFINE IDENT $('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*$;
+	DEFINE QIDENT $('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*('.'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*)+$;
 	DEFINE WHITESPACE $(' '|'\t'|'\f')$;
 	DEFINE LINEBREAK $('\r\n'|'\r'|'\n')$;
 }
@@ -44,7 +45,7 @@ RULES {
 
 	NameNode ::= ID[IDENT] ;
 				
-	TokenId ::= ID[IDENT] ( ":" TYPE[IDENT] )? ;
+	TokenId ::= ID[IDENT] ( ":" (TYPE[IDENT]|TYPE[QIDENT]) )? ;
 				
 	IdUse ::=   ID[IDENT];
 	IdDecl ::=  ID[IDENT];
