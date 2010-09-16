@@ -395,14 +395,14 @@ aspect RepositoryAdaptations {
 	 * @generated 
 	 */
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	public «terminal.eAttributeType.instanceTypeName» «genClass.ecoreClass.name».get«terminal.name.toFirstUpper()»() {return null;}
+	public «terminal.eAttributeType.instanceTypeName!=null?terminal.eAttributeType.instanceTypeName:terminal.eAttributeType.name» «genClass.ecoreClass.name».get«terminal.name.toFirstUpper()»() {return null;}
 	
 	/**
 	 * <!--  -->
 	 * @generated 
 	 */
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	public void «genClass.ecoreClass.name».set«terminal.name.toFirstUpper()»(«terminal.eAttributeType.instanceTypeName» value) {}
+	public void «genClass.ecoreClass.name».set«terminal.name.toFirstUpper()»(«terminal.eAttributeType.instanceTypeName!=null?terminal.eAttributeType.instanceTypeName:terminal.eAttributeType.name» value) {}
 	
 «ENDFOREACH-»
 «ENDLET-»
