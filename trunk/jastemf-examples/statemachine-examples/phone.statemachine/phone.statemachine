@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stm:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stm="http://www.jastemf.org/statemachine">
+  <declarations xsi:type="stm:NormalState" label="Waiting">
+    <entry/>
+  </declarations>
+  <declarations xsi:type="stm:NormalState" label="Ringing"/>
+  <declarations xsi:type="stm:NormalState" label="Talking"/>
+  <declarations xsi:type="stm:Transition" label="incomming call" source="//@declarations.0" target="//@declarations.1" guardLabel="true"/>
+  <declarations xsi:type="stm:Transition" label="pick handset" source="//@declarations.1" target="//@declarations.2" guardLabel="true"/>
+  <declarations xsi:type="stm:NormalState" label="Calling"/>
+  <declarations xsi:type="stm:Transition" label="pick handset" source="//@declarations.0" target="//@declarations.8" guardLabel="true"/>
+  <declarations xsi:type="stm:Transition" label="callee answers" source="//@declarations.5" target="//@declarations.2" guardLabel="true" actionLabel=""/>
+  <declarations xsi:type="stm:NormalState" label="Dialing"/>
+  <declarations xsi:type="stm:Transition" label="enter number" source="//@declarations.8" target="//@declarations.5" guardLabel="true" actionLabel="Read x;"/>
+  <declarations xsi:type="stm:Transition" label="stop dialing" source="//@declarations.5" target="//@declarations.8" guardLabel="true" actionLabel=""/>
+  <declarations xsi:type="stm:Transition" label="hang up" source="//@declarations.2" target="//@declarations.0" guardLabel="true"/>
+  <declarations xsi:type="stm:Transition" label="hang up" source="//@declarations.8" target="//@declarations.0" guardLabel="true" actionLabel=""/>
+  <declarations xsi:type="stm:Transition" label="hang up" source="//@declarations.5" target="//@declarations.0" guardLabel="true" actionLabel="Write x;"/>
+  <declarations xsi:type="stm:InitialState" label="I"/>
+  <declarations xsi:type="stm:Transition" source="//@declarations.14" target="//@declarations.0"/>
+  <declarations xsi:type="stm:FinalState" label="F"/>
+  <declarations xsi:type="stm:Transition" source="//@declarations.0" target="//@declarations.16"/>
+  <declarations xsi:type="stm:Transition" label="abort" source="//@declarations.1" target="//@declarations.0" guardLabel="true" actionLabel=""/>
+  <machineVariables name="x" type="Integer"/>
+</stm:StateMachine>
