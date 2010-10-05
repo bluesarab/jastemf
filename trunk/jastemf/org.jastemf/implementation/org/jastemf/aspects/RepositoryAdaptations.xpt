@@ -269,7 +269,7 @@ aspect RepositoryAdaptations {
 «FOREACH localChildren AS child-»
 			+ "	case «inheritedChildren.size + localChildren.indexOf(child)»:"
 			+ "		«IF localChildren.indexOf(child) == 0-»IAccessMethods «ENDIF-»access = new IAccessMethods() {"
-«IF child.upperBound == -1-»
+«IF child.upperBound == -1 || child.upperBound > 1-»
 «REM»
 	The child is a list. We have to do a double dispatch:
 	Getter: ECore classes with a list element E must return a JastAdd
@@ -578,7 +578,7 @@ aspect RepositoryAdaptations {
 «LET genClass.ecoreClass.eAllContainments.select(e|!localChildren.contains(e)) AS inheritedChildren-»
 «IF localChildren.size > 0-»
 «FOREACH localChildren AS child-»
-«IF child.upperBound == -1-»
+«IF child.upperBound == -1 && child.eReferenceType.name != "EStringToStringMapEntry"-»
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public void «genClass.ecoreClass.name».add«child.name»(«child.eReferenceType.name» node) {
 		ASTList list = (getParent() == null || state() == null)
