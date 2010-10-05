@@ -18,6 +18,7 @@
  */
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.util.*;
 
 «FOREACH genPackages AS genPackage-»
 import «genPackage.ecorePackage()».*;
@@ -310,6 +311,11 @@ aspect RepositoryAdaptations {
 	one done for lists. The only difference is, that the delegatee of JastAdd
 	optionals is not an EList, but rather an access object, which encapsulates
 	the access methods of the backing model element.
+	
+	Note that there is a special case to be considered: an optional child in the
+	Ecore model might be declared as changeable=false which causes the setters
+	not to be generated. In such a case, using resolve Access leads to an 
+	UnsupportedOperationException. 
 «ENDREM-»
 			+ "			private Opt opt = new Opt() {"		
 			+ "					{"
@@ -320,9 +326,14 @@ aspect RepositoryAdaptations {
 			+ "								return (ASTNode)get«child.name.toFirstUpper()»();"
 			+ "							}"
 			+ "							public void setChild(ASTNode node) {"
+«IF child.changeable == true -»
 			+ "								set«child.name.toFirstUpper()»((«child.eReferenceType.name»)node);"
 			+ "								if (node != null)"
 			+ "									node.childIndex = 0;"
+«ELSE-»
+			+ "								throw new UnsupportedOperationException(\"Child is unchangeable.\");"
+«ENDIF-»
+
 			+ "							}"
 			+ "					 	};"
 			+ "					}"
@@ -331,6 +342,7 @@ aspect RepositoryAdaptations {
 			+ "				return opt;"
 			+ "			}"
 			+ "			public void setChild(ASTNode node) {"
+«IF child.changeable == true -»
 			+ "				final Opt newOpt = (Opt)node;"
 			+ "				opt = newOpt;"
 			+ "				if (newOpt.getNumChildNoTransform() > 0)"
@@ -348,6 +360,9 @@ aspect RepositoryAdaptations {
 			+ "							node.childIndex = 0;"
 			+ "					}"
 			+ "				};"
+«ELSE-»
+			+ "				throw new UnsupportedOperationException(\"Child is unchangeable.\");"
+«ENDIF-»			
 			+ "			}"
 «ELSE-»
 «REM»
