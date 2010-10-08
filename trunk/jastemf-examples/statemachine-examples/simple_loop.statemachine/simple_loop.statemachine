@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <stm:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stm="http://www.jastemf.org/statemachine">
   <declarations xsi:type="stm:InitialState"/>
-  <declarations xsi:type="stm:NormalState">
-    <entry actionLabel="Read abort;"/>
-  </declarations>
-  <declarations xsi:type="stm:Transition" source="//@declarations.0" target="//@declarations.1" actionLabel="Read i;"/>
-  <declarations xsi:type="stm:NormalState">
-    <entry actionLabel="i := i + 1; Write i;"/>
-  </declarations>
   <declarations xsi:type="stm:FinalState"/>
-  <declarations xsi:type="stm:Transition" source="//@declarations.1" target="//@declarations.4" guardLabel="abort = true" actionLabel=""/>
-  <declarations xsi:type="stm:Transition" source="//@declarations.3" target="//@declarations.4" guardLabel="i >= 10"/>
-  <declarations xsi:type="stm:Transition" source="//@declarations.3" target="//@declarations.1" actionLabel=""/>
-  <declarations xsi:type="stm:Transition" source="//@declarations.1" target="//@declarations.3" guardLabel="Not (abort = true)"/>
-  <machineVariables name="i" type="Integer"/>
+  <declarations xsi:type="stm:NormalState"/>
+  <declarations xsi:type="stm:Transition" source="//@declarations.2" target="//@declarations.1" guardLabel="abort = true"/>
+  <declarations xsi:type="stm:NormalState">
+    <entry actionLabel="Write x;"/>
+  </declarations>
+  <declarations xsi:type="stm:Transition" source="//@declarations.2" target="//@declarations.4" actionLabel="Read x;"/>
+  <declarations xsi:type="stm:Transition" source="//@declarations.4" target="//@declarations.2" guardLabel="x >= 10" actionLabel="Read abort;"/>
+  <declarations xsi:type="stm:Transition" source="//@declarations.0" target="//@declarations.2" actionLabel="abort := false;"/>
+  <declarations xsi:type="stm:Transition" source="//@declarations.4" target="//@declarations.4" guardLabel="x &lt; 10" actionLabel="x := x + 1;"/>
+  <machineVariables name="x" type="Integer"/>
   <machineVariables name="abort" type="Boolean"/>
 </stm:StateMachine>
