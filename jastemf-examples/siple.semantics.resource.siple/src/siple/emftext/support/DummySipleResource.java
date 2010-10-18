@@ -238,4 +238,10 @@ public class DummySipleResource implements ISipleTextResource {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ISipleQuickFix getQuickFix(String quickFixContext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
