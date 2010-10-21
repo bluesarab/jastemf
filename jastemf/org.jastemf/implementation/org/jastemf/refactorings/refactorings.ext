@@ -17,13 +17,13 @@ String computePackagePath(GenModel genModel, String package):
 	withoutFirst().withoutFirst().toString("/") + "&lt;" + package;
 
 String computeClassPath(GenClass genClass, String package):
-	computeClassPath(genClass.genPackage.genModel, genClass.ecoreClass.name,package);
+	computeClassPath(genClass.genPackage.genModel, genClass.ecoreClass.name.toString(),package);
 
 String computeClassPath(GenModel genModel, String class, String package):
 	computePackagePath(genModel, package) + "{" + class;
 
 String computeCompilationUnitPath(GenClass genClass, String package):
-	computeCompilationUnitPath(genClass.genPackage.genModel, genClass.ecoreClass.name,package);
+	computeCompilationUnitPath(genClass.genPackage.genModel, genClass.ecoreClass.name.toString(),package);
 
 String computeCompilationUnitPath(GenModel genModel, String class, String package):
 	computeClassPath(genModel, class, package) + ".java[" + class;
