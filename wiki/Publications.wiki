@@ -3,7 +3,7 @@
 
 = Presentations =
 
-Christoff Bürger, Sven Karol, _Attribute Grammars for Metamodel Semantics_, 3rd International Conference on Software Language Engineering (SLE 2010), 12.10.2010, Eindhoven, Netherlands [http://jastemf.googlecode.com/svn/wiki/publications/Presentation_SLE_12_10_2010.pdf pdf]
+Christoff Bürger and Sven Karol, _Attribute Grammars for Metamodel Semantics_, 3rd International Conference on Software Language Engineering (SLE 2010), 12.10.2010, Eindhoven, Netherlands [http://jastemf.googlecode.com/svn/wiki/publications/Presentation_SLE_12_10_2010.pdf pdf]
 
 Christoff Bürger, _Applying Attribute Grammars for Metamodel Semantics_, International Workshop on  Formalization of Modeling Languages (FML 2010), 21.06.2010, Maribor, Slovenia [http://jastemf.googlecode.com/svn/wiki/publications/Applying_Attribute_Grammars_for_Metamodel_Semantics_FML_21_06_2010.pdf pdf]
 
