@@ -1,8 +1,11 @@
-#summary Scientific Publications, Tool Presentations and Demonstrations related to JastEMF and Attribute Grammars for Metamodel Semantics.
+#summary Scientific Publications, Presentations and Demonstrations related to JastEMF and Attribute Grammars for Metamodel Semantics.
 #labels Featured
 
-= Publications related to JastEMF =
+= Presentations =
 
-== 2010 ==
+Christoff Bürger, _Applying Attribute Grammars for Metamodel Semantics_, International Workshop on  Formalization of Modeling Languages, 21.06.2010, Maribor, Slovenia [http://jastemf.googlecode.com/svn/wiki/Applying_Attribute_Grammars_for_Metamodel_Semantics_FML_21_06_2010.pdf pdf]
+
+= Publications =
+
 Christoff Bürger and Sven Karol, _Towards_ _Attribute_ _Grammars_ _for_ _Metamodel_ _Semantics_, Technical Report TUD-FI10-03, March 2010, Technische Universität Dresden, ISSN 1430-211X 
 [ftp://ftp.inf.tu-dresden.de/pub/berichte/tud10-03.pdf Web]
