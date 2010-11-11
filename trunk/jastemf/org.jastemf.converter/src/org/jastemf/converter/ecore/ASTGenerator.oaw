@@ -8,7 +8,7 @@
 	<component id="xmiParser" class="org.eclipse.emf.mwe.utils.Reader">
    		<uri value="${modelFile}" />
     	<modelSlot value="model"/>
-    	<firstElementOnly value="true"/>
+    	<firstElementOnly value="false"/> 
   	</component>
 
   	<component id="astgenerator" class="org.eclipse.xpand2.Generator">
