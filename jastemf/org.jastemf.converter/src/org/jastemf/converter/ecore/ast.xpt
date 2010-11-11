@@ -16,8 +16,12 @@ the editor
 @author Sven Karol
 «ENDREM»
 
+«DEFINE Main FOR List[EPackage]-»
+	«EXPAND HandlePackages FOREACH this-»
+«ENDDEFINE»
 
-«DEFINE Main FOR EPackage-»
+
+«DEFINE HandlePackages FOR EPackage-»
 	«FILE name+".ast"-»
 /**
  * Spanning tree for ecore package «name». 
@@ -26,6 +30,7 @@ the editor
  */
 		«EXPAND astConcept FOREACH eClassifiers-»
 	«ENDFILE-»
+	«EXPAND HandlePackages FOREACH eSubpackages-»
 «ENDDEFINE»
 
 «DEFINE astConcept FOR EClassifier-»«ENDDEFINE»
