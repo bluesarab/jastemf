@@ -88,44 +88,53 @@ public class RefactoringManager {
 			final IIntegrationContext context) throws JastEMFException {
 
 		for (final GenPackage genPackage : context.genmodel().getGenPackages()) {
-			for (final GenClass genClass : genPackage.getGenClasses()) {
-				if (genClass.isInterface())
-					continue;
-				final IFile compilationUnitFile = IOSupport.getFile(context
-						.classfolder(genPackage), genClass.getClassName()
-						+ ".java");
-
-				final CompilationUnit compilationUnit = JDTSupport
-						.loadCompilationUnit(compilationUnitFile);
-				compilationUnit.recordModifications();
-
-				ASTVisitor visitor = new BasicJDTASTVisitor(context) {
-					@SuppressWarnings("unchecked")
-					public boolean visit(TypeDeclaration decl) {
-						System.out.println("Visiting type:" + decl.getName());
-						if (decl.isInterface())
-							return false;
-						// Setting generated interface as super interface
-						if (decl.getName().getIdentifier().equals(
-								genClass.getClassName())) {
-							AST ast = decl.getAST();
-							List interfaces = (List) decl
-									.getStructuralProperty(TypeDeclaration.SUPER_INTERFACE_TYPES_PROPERTY);
-							interfaces.add(ast.newSimpleType(ast
-									.newName(genClass
-											.getQualifiedInterfaceName())));
-							return true;
-						}
-						return false;
-					}
-				};
-
-				compilationUnit.accept(visitor);
-
-				JDTSupport.applyRewritesAndSave(compilationUnit,
-						compilationUnitFile);
-			}
+			performASTClassesAdaptations(context,genPackage);
 		}
+	}
+	
+	private static void performASTClassesAdaptations(
+			final IIntegrationContext context, GenPackage genPackage) throws JastEMFException {
+		for (final GenClass genClass : genPackage.getGenClasses()) {
+			if (genClass.isInterface())
+				continue;
+			final IFile compilationUnitFile = IOSupport.getFile(context
+					.classfolder(genPackage), genClass.getClassName()
+					+ ".java");
+
+			final CompilationUnit compilationUnit = JDTSupport
+					.loadCompilationUnit(compilationUnitFile);
+			compilationUnit.recordModifications();
+
+			ASTVisitor visitor = new BasicJDTASTVisitor(context) {
+				@SuppressWarnings("unchecked")
+				public boolean visit(TypeDeclaration decl) {
+					System.out.println("Visiting type:" + decl.getName());
+					if (decl.isInterface())
+						return false;
+					// Setting generated interface as super interface
+					if (decl.getName().getIdentifier().equals(
+							genClass.getClassName())) {
+						AST ast = decl.getAST();
+						List interfaces = (List) decl
+								.getStructuralProperty(TypeDeclaration.SUPER_INTERFACE_TYPES_PROPERTY);
+						interfaces.add(ast.newSimpleType(ast
+								.newName(genClass
+										.getQualifiedInterfaceName())));
+						return true;
+					}
+					return false;
+				}
+			};
+
+			compilationUnit.accept(visitor);
+
+			JDTSupport.applyRewritesAndSave(compilationUnit,
+					compilationUnitFile);
+		}
+		for(GenPackage childPackage:genPackage.getNestedGenPackages()){
+			performASTClassesAdaptations(context,childPackage);
+		}
+		
 	}
 
 	/**
@@ -344,23 +353,31 @@ public class RefactoringManager {
 			throws JastEMFException {
 		GenModel genModel = context.genmodel();
 		for (GenPackage genPackage : genModel.getGenPackages()) {
-			URI genPackageURI = context.classfolder(genPackage);
-			for (GenClass genClass : genPackage.getGenClasses()) {
-				IFile javaFile = IOSupport.getFile(genPackageURI, genClass
-						.getClassName()
-						+ ".java");
-				ICompilationUnit compilationUnitDescriptor = JavaCore
-						.createCompilationUnitFrom(javaFile);
-				try {
-					String formattedContent = JDTSupport
-							.formatJavaCompilationUnit(compilationUnitDescriptor
-									.getSource());
-					IOSupport.save(formattedContent, javaFile);
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw new JastEMFException(e);
-				}
-			}
+			beautifyGenPackage(context, genPackage);
 		}
 	}
+	
+	private static void beautifyGenPackage(IIntegrationContext context, GenPackage genPackage)
+	throws JastEMFException {
+		URI genPackageURI = context.classfolder(genPackage);
+		for (GenClass genClass : genPackage.getGenClasses()) {
+			IFile javaFile = IOSupport.getFile(genPackageURI, genClass
+					.getClassName()
+					+ ".java");
+			ICompilationUnit compilationUnitDescriptor = JavaCore
+					.createCompilationUnitFrom(javaFile);
+			try {
+				String formattedContent = JDTSupport
+						.formatJavaCompilationUnit(compilationUnitDescriptor
+								.getSource());
+				IOSupport.save(formattedContent, javaFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new JastEMFException(e);
+			}
+		}
+		for(GenPackage childPackage:genPackage.getNestedGenPackages())
+			beautifyGenPackage(context,childPackage);
+	}
+
 }

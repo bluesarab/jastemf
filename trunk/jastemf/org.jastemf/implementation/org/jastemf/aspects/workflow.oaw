@@ -30,7 +30,6 @@
 		</metaModel>
 		<expand value="org::jastemf::aspects::IntegrationSupport::Main('${astPackage}','${outPackage}') FOR model"/>
 		<outlet path="${srcGenPath}/">
-			<!--<postprocessor class="org.openarchitectureware.xpand2.output.JavaBeautifier"/>-->
 		</outlet>
 	</component>
 	
@@ -44,7 +43,6 @@
 		</metaModel>
 		<expand value="org::jastemf::aspects::RepositoryAdaptations::Main('${astPackage}','${outPackage}') FOR model"/>
 		<outlet path="${srcGenPath}/">
-			<!--<postprocessor class="org.openarchitectureware.xpand2.output.JavaBeautifier"/>-->
 		</outlet>
 	</component>
 </workflow>
