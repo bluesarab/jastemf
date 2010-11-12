@@ -45,3 +45,11 @@ String getRefactoringTypeString(EGenericType genericType):
 		(genericType.eTypeArguments.isEmpty?"":"\\&lt;"+genericType.eTypeArguments.collect(e|getRefactoringTypeString(e)).toString("")+"&gt;")+
 	";"
 ;
+
+String computeClassNamePattern(GenModel genModel):
+	genModel.classNamePattern != null ? genModel.classNamePattern : "Impl"
+;
+
+String computeInterfaceNamePattern(GenModel genModel):
+	genModel.interfaceNamePattern != null ? genModel.interfaceNamePattern : ""
+;

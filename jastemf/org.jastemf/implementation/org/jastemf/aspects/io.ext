@@ -34,6 +34,10 @@ String getTypeString(EOperation operation):
 	(operation.many?"org.eclipse.emf.common.util.EList":operation.eType.getClassifierTypeString())
 	;
 
+boolean classifierInGenPackages(GenModel genModel, EClassifier classifier):
+	classifierInGenPackages(genModel.eAllContents.typeSelect(GenPackage),classifier)
+;
+
 boolean classifierInGenPackages(List[GenPackage] genPackages, EClassifier classifier):
 	JAVA org.jastemf.util.XTendUtil.classifierInGenPackages(java.util.List,org.eclipse.emf.ecore.EClassifier) 
   ;
