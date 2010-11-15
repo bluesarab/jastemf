@@ -42,7 +42,7 @@
 			</fileset>
 		</jar>
 		<jar
-			destfile="${_basedir}/distribution/org.jastemf_0.1.3.jar"
+			destfile="${_basedir}/distribution/org.jastemf_0.1.4.jar"
 			manifest="${_basedir}/META-INF/MANIFEST.MF"
 			index="false"
 			update="false"
