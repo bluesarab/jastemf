@@ -37,7 +37,7 @@
 		</jar>
 
 
-		<jar destfile="${_basedir}/distribution/org.jastemf.converter_0.1.0.jar" manifest="${_basedir}/META-INF/MANIFEST.MF" index="false" update="false" compress="false">
+		<jar destfile="${_basedir}/distribution/org.jastemf.converter_0.1.1.jar" manifest="${_basedir}/META-INF/MANIFEST.MF" index="false" update="false" compress="false">
 			<fileset dir="${_basedir}">
 				<include name="License.txt" />
 				<include name="plugin.xml" />
