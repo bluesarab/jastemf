@@ -50,7 +50,9 @@ public class BasicJDTASTVisitor extends ASTVisitor {
 		if (!handleCanibalicCopycatMethod(methodDecl, context)) {
 			if (!handleSuicideCopycatMethod(methodDecl, context)) {
 				if (!handleMutatingMethod(methodDecl, context)) {
-					handleContributeToMethodVisibility(methodDecl, context);
+					if(!handleContributeToMethodVisibility(methodDecl, context)){
+						handleCollectContributorsMethodVisibility(methodDecl, context);
+					}
 				}
 			}
 		}
@@ -187,6 +189,19 @@ public class BasicJDTASTVisitor extends ASTVisitor {
 	private static boolean handleContributeToMethodVisibility(
 			MethodDeclaration methodDecl, IIntegrationContext context) {
 		if (methodDecl.getName().getIdentifier().startsWith("contributeTo_")) {
+			Modifier modifier = JDTSupport.findModifier(methodDecl,
+					Modifier.ModifierKeyword.PROTECTED_KEYWORD);
+			if (modifier != null) {
+				modifier.setKeyword(Modifier.ModifierKeyword.PUBLIC_KEYWORD);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private static boolean handleCollectContributorsMethodVisibility(
+			MethodDeclaration methodDecl, IIntegrationContext context) {
+		if (methodDecl.getName().getIdentifier().startsWith("collect_contributors_")) {
 			Modifier modifier = JDTSupport.findModifier(methodDecl,
 					Modifier.ModifierKeyword.PROTECTED_KEYWORD);
 			if (modifier != null) {
