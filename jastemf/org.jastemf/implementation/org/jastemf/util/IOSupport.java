@@ -32,7 +32,7 @@ import org.jastemf.*;
  */
 final public class IOSupport {
 	/**
-	 * Load an <i>Ecore</i> model using a URI.
+	 * Load an <i>Ecore</i> model using an EMF URI.
 	 * 
 	 * @param uri
 	 *            The model's URI.
@@ -49,9 +49,22 @@ final public class IOSupport {
 		}
 		return null;
 	}
+	
+	/**
+	 * Convenience method. Load an <i>Ecore</i> model using a <b>java.net.URI</b>.
+	 * 
+	 * @param uri
+	 *            The model's URI.
+	 * @return The loaded model.
+	 * @throws IOException
+	 *             Thrown, iff the model cannot be loaded.
+	 */
+	public static EObject loadModel(java.net.URI uri) throws IOException {
+		return loadModel(URI.createURI(uri.toString()));
+	}
 
 	/**
-	 * Load an <i>EMF</i> generator model using a URI.
+	 * Load an <i>EMF</i> generator model using an URI.
 	 * 
 	 * @param uri
 	 *            The generator model's URI.
@@ -65,6 +78,19 @@ final public class IOSupport {
 			return (GenModel) eo;
 		}
 		return null;
+	}
+	
+	/**
+	 * Convenience method. Load an <i>EMF</i> generator model using an <b>java.net.URI</b>.
+	 * 
+	 * @param uri
+	 *            The generator model's URI.
+	 * @return The loaded generator model.
+	 * @throws IOException
+	 *             Thrown, iff the model cannot be loaded.
+	 */
+	public static GenModel loadGenModel(java.net.URI uri) throws IOException {
+		return loadGenModel(URI.createURI(uri.toString()));
 	}
 
 	/**
