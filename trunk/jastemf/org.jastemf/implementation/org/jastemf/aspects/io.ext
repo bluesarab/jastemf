@@ -66,6 +66,10 @@ String getParameterTypeString(EParameter parameter):
 	(parameter.many?"org.eclipse.emf.common.util.EList<"+getGenericTypeString(parameter.eGenericType)+">":getGenericTypeString(parameter.eGenericType))
 ;
 
+String getReferenceTypeString(EReference reference):
+	(reference.many?"org.eclipse.emf.common.util.EList<"+getGenericTypeString(reference.eGenericType)+">":getGenericTypeString(reference.eGenericType))
+;
+
 String getGenericTypeString(EGenericType genericType):
 	genericType.eClassifier.getClassifierTypeString()
 	+ (genericType.eTypeArguments.isEmpty?"":"<"+genericType.eTypeArguments.collect(e|getGenericTypeString(e)).toString(",")+">")

@@ -134,7 +134,8 @@ public final class JDTSupport {
 		try {
 			TextEdit edit = formatter.format(CodeFormatter.K_COMPILATION_UNIT,
 					code, 0, code.length(), 0, null);
-			edit.apply(document);
+			if(edit!=null)
+				edit.apply(document);
 			return document.get();
 		} catch (Exception exc) {
 			throw new JastEMFException(exc);
@@ -256,7 +257,7 @@ public final class JDTSupport {
 					for (VariableDeclarationFragment ccVarCopy : (List<VariableDeclarationFragment>) fieldDeclCopy
 							.fragments()) {
 						if (ccVar.getName().getFullyQualifiedName().equals(
-								ccVarCopy.getName())) {
+								ccVarCopy.getName().getFullyQualifiedName())) {
 							result.add(ccVarCopy);
 						}
 					}

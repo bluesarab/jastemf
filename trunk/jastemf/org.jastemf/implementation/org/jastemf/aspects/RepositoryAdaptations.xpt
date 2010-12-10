@@ -265,6 +265,8 @@ aspect RepositoryAdaptations {
 
 «EXPAND NewSetters(astPackage, outPackage) FOREACH genPackages-»
 
+«EXPAND NewNTAGetters(astPackage, outPackage) FOREACH genPackages-»
+
 	/* 
 	 * Insert hooks containing the implementation of metamodel operations which
 	 * have a parameter or return type consisting of an AST node type. These
@@ -594,6 +596,52 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «EXPAND NewSetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
 «ENDDEFINE»
 
+«DEFINE NewNTAGetters(String astPackage, String outPackage) FOR GenPackage»
+«FOREACH this.genClasses AS genClass-»
+«IF !genClass.ecoreClass.interface-»
+«LET genClass.ecoreClass.eReferences.select(e|e.containment&&e.derived) AS ntaReferences-»
+«FOREACH ntaReferences AS ntaReference-»
+	@«outPackage».JastEMFAnnotations.CannibalicCopycat
+	protected «ntaReference.getReferenceTypeString()» «genClass.ecoreClass.name».«ntaReference.name.toString()»;
+
+	@«outPackage».JastEMFAnnotations.CannibalicCopycat
+	public EList «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
+		if («ntaReference.name.toString()»_computed) {
+			return «ntaReference.name.toString()»;
+		}
+		ASTNode$State state = state();
+		boolean interruptedCircle = false;
+		  if («ntaReference.name.toString()»_visited == state().boundariesCrossed)
+			throw new RuntimeException(
+				"Circular definition of attr: «ntaReference.name.toString()» in class: ");
+		«ntaReference.name.toString()»_visited = state().boundariesCrossed;
+		if (state.IN_CIRCLE) {
+			interruptedCircle = true;
+			state.IN_CIRCLE = false;
+			state.pushEvalStack();
+		}
+		int num = state.boundariesCrossed;
+		boolean isFinal = this.is$Final();
+		«ntaReference.name.toString()» = «ntaReference.name.toString()»_compute();
+		//THIS IS USUAL JASTADD CODE WHICH WE ESCAPE «ntaReference.name.toString()».setParent(this);
+		«ntaReference.name.toString()».is$Final = true;
+		if (true)
+			«ntaReference.name.toString()»_computed = true;
+		«ntaReference.name.toString()»_visited = -1;
+		if (interruptedCircle) {
+			state.IN_CIRCLE = true;
+			state.popEvalStack();
+		}
+		return astDeclarations;
+	}
+«ENDFOREACH-»	
+«ENDLET-»
+«ENDIF-»
+«ENDFOREACH-»
+«EXPAND NewSetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
+«ENDDEFINE»
+
+
 «DEFINE InsertHooks(String astPackage, String outPackage) FOR GenPackage»
 «FOREACH this.genClasses AS genClass-»
 «IF !genClass.ecoreClass.interface-»
@@ -641,7 +689,8 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «LET genClass.ecoreClass.eAllContainments.select(e|!localChildren.contains(e)) AS inheritedChildren-»
 «IF localChildren.size > 0-»
 «FOREACH localChildren AS child-»
-«IF child.upperBound == -1 && child.eReferenceType.name != "EStringToStringMapEntry"-»
+«REM»Change add method for ASTLists only for Lists and exclude NTAs (derived containments).«ENDREM»
+«IF child.upperBound == -1 && child.eReferenceType.name != "EStringToStringMapEntry" && !child.derived-»
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public void «genClass.ecoreClass.name».add«child.name»(«child.eReferenceType.name» node) {
 		ASTList list = (getParent() == null || state() == null)
