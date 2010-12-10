@@ -135,13 +135,14 @@ public class BasicJDTASTVisitor extends ASTVisitor {
 		if (ano != null) {
 			for (VariableDeclarationFragment copyVar : JDTSupport
 					.findTwinFields(fieldDecl)) {
-				copyVar.delete();
-				FieldDeclaration copy = (FieldDeclaration) copyVar.getParent();
-				if (copy.fragments().isEmpty())
-					copy.delete();
+				FieldDeclaration copyFieldDecl = (FieldDeclaration) copyVar.getParent();	
+				copyFieldDecl.delete();
+				//copyVar.delete();
+				//if (copy.fragments().isEmpty())
+				//	copy.delete();
 			}
 			ano.delete();
-			return true;
+			return false;
 		}
 		return false;
 	}
