@@ -78,3 +78,17 @@ String getGenericTypeString(EGenericType genericType):
 String getClassifierTypeString(EClassifier classifier):
 	classifier.instanceTypeName!=null?classifier.instanceTypeName:classifier.name
 ;
+
+Integer computeLocalChildIndex(EReference containment):
+	(containment.containment==false?-1:
+		(getInheritedChildren(containment.eContainingClass).size +
+				getLocalChildren(containment.eContainingClass).indexOf(containment)))
+;
+
+cached List[EReference] getLocalChildren(EClass eClass):
+	eClass.eReferences.select(e|e.containment)
+;
+
+cached List[EReference] getInheritedChildren(EClass eClass):
+	eClass.eAllContainments.select(e|getLocalChildren(eClass).contains(e))
+;

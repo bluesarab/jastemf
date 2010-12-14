@@ -404,8 +404,8 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «DEFINE ChildIndexMapping(String astPackage, String outPackage) FOR GenPackage»
 «FOREACH this.genClasses AS genClass-»
 «IF !genClass.ecoreClass.interface-»
-«LET genClass.ecoreClass.eReferences.select(e|e.containment) AS localChildren-»
-«LET genClass.ecoreClass.eAllContainments.select(e|!localChildren.contains(e)) AS inheritedChildren-»
+«LET genClass.ecoreClass.getLocalChildren() AS localChildren-»
+«LET genClass.ecoreClass.getInheritedChildren() AS inheritedChildren-»
 «IF localChildren.size > 0-»
 	private final IAccessMethods[] «genClass.ecoreClass.name».resolve_access_cache =
 		new IAccessMethods[«localChildren.size»];
@@ -622,9 +622,15 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 		}
 		int num = state.boundariesCrossed;
 		boolean isFinal = this.is$Final();
+		«IF ntaReference.many || !ntaReference.required-»
+			IAccessMethods childAccess = resolveAccess(«ntaReference.computeLocalChildIndex()»);
+			childAccess.setChild(«ntaReference.name.toString()»_compute());
+			childAccess.getChild().is$Final = true;
+		«ELSE-»
 		«ntaReference.name.toString()» = «ntaReference.name.toString()»_compute();
 		//THIS IS USUAL JASTADD CODE WHICH WE ESCAPE «ntaReference.name.toString()».setParent(this);
 		«ntaReference.name.toString()».is$Final = true;
+		«ENDIF-»
 		if (true)
 			«ntaReference.name.toString()»_computed = true;
 		«ntaReference.name.toString()»_visited = -1;
