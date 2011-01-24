@@ -1,4 +1,4 @@
-#summary JastEMF Examples: SiPLE Tutorial.
+#summary JastEMF Examples: SiPLE Tutorial
 
 <wiki:toc max_depth="2" />
 
