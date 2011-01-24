@@ -19,7 +19,7 @@ The following table summarizes the effects of these options in JastEMF.
 ||containment||*true:* the feature belongs to the underlying containment hierarchy || Only non-containments and EAttributes can be specified by an attribute. ||
 ||changeable||*true:* the feature can be set manually || In combination with derived=*true*, this results in the _imperative mode_. ||
 
-_Imperative mode_: Using a model editor (e.g., the default editor shipped with the EMF) one can interactively create and modify model instances. Of course, also the value of derived model features --- i.e., the value of attributes --- can be manually changed. To change a derived value is called imperative mode. User given values shadow derived ones. If a feature's value is imperatively set by the user, dependent semantics are computed w.r.t. the user given value instead of the feature's semantics.
+_Imperative mode_: Using a model editor (e.g., the default editor shipped with the EMF) one can interactively create and modify model instances. Of course, also the value of derived model features --- i.e., the value of attributes --- can be manually changed. To change a derived value is called imperative mode. User given values shadow derived ones. If a derived feature's value is imperatively set by the user, dependent semantics are computed w.r.t. the user given value instead of the feature's semantics.
 
 == Mapping ==
 ||Ecore Concept||Ecore option||Corresponding JastAdd Concept||
