@@ -1,4 +1,5 @@
 #summary Attribute Grammar Metamodel Mapping
+#labels Featured
 
 = Introduction =
 This page discusses the mapping between Ecore and JastAdd features.
