@@ -17,7 +17,7 @@ http://jastemf.googlecode.com/svn/wiki/Examples/Statemachine/phone.png
 == Requirements ==
 To work with the statemachine language you need to install !JastEMF. Please follow the [Installation] guide.
 
-Additionally, the statemachine language is based on the [SIPLE SiPLE example]. Statemachines' semantics are defined in an operational style, by a transformation from statemachines to plain, executable SiPLE code. Therefore, the statemachine metamodel reuses the the [SIPLE SiPLE metamodel].
+Additionally, the statemachine language is based on the [SIPLE SiPLE example]. Statemachines' semantics are defined in an operational style, by a transformation from statemachines to plain, executable SiPLE code. Therefore, the statemachine metamodel reuses the the [SIPLE#EMF_Version SiPLE metamodel].
 
 == Installation ==
 
