@@ -8,57 +8,57 @@
 	@author C. Bürger
 -->
 <project name="JastEMF" default="Eclipse-Plugin">
-	<path id="_basedir">
-		<pathelement location="."/>
-	</path>
-	<property name="_basedir" refid="_basedir"/>
 	
+	<!-- loads this project file's base dir into a project specific property such that 
+		this script can be used standalone or by import. -->
+	<dirname property="JastEMF.basedir" file="${ant.file.JastEMF}"/>
+
 	<!-- Create Eclipse plugin *.jar distribution -->
 	<target name="Eclipse-Plugin">
-		<mkdir dir="${_basedir}/temp"/>
+		<mkdir dir="${JastEMF.basedir}/temp"/>
 		
-		<unjar src="sources/libraries/jastadd2.jar" dest="${_basedir}/temp"/>
+		<unjar src="sources/libraries/jastadd2.jar" dest="${JastEMF.basedir}/temp"/>
 		<move
-			file="${_basedir}/temp/LICENSE"
-			tofile="${_basedir}/temp/JastAdd-License.txt"
+			file="${JastEMF.basedir}/temp/LICENSE"
+			tofile="${JastEMF.basedir}/temp/JastAdd-License.txt"
 			overwrite="true"
 		/>
 		<jar
-			destfile="${_basedir}/temp/jastadd-ant-tasks.jar"
+			destfile="${JastEMF.basedir}/temp/jastadd-ant-tasks.jar"
 			index="false"
 			update="false"
 			compress="false">
-			<fileset dir="${_basedir}/temp">
+			<fileset dir="${JastEMF.basedir}/temp">
 				<include name="jastadd/JastAddTask.class"/>
 			</fileset>
 		</jar>
 		<jar
-			destfile="${_basedir}/temp/jastemf-ant-tasks.jar"
+			destfile="${JastEMF.basedir}/temp/jastemf-ant-tasks.jar"
 			index="false"
 			update="false"
 			compress="false">
-			<fileset dir="${_basedir}/bin">
+			<fileset dir="${JastEMF.basedir}/bin">
 				<include name="org/jastemf/ant/*.class"/>
 			</fileset>
 		</jar>
 		<jar
-			destfile="${_basedir}/distribution/org.jastemf_0.1.4.jar"
-			manifest="${_basedir}/META-INF/MANIFEST.MF"
+			destfile="${JastEMF.basedir}/distribution/org.jastemf_0.1.4.jar"
+			manifest="${JastEMF.basedir}/META-INF/MANIFEST.MF"
 			index="false"
 			update="false"
 			compress="false">
-			<fileset dir="${_basedir}/temp">
+			<fileset dir="${JastEMF.basedir}/temp">
 				<include name="**/*"/>
 				<exclude name="META-INF"/>
 				<exclude name="META_INF/**/*"/>
 				<exclude name="LICENSE"/>
 				<exclude name="jastadd/JastAddTask.class"/>
 			</fileset>
-			<fileset dir="${_basedir}">
+			<fileset dir="${JastEMF.basedir}">
 				<include name="JastEMF-License.txt"/>
 				<include name="plugin.xml"/>
 			</fileset>
-			<fileset dir="${_basedir}/implementation">
+			<fileset dir="${JastEMF.basedir}/implementation">
 				<include name="**/*.aj"/>
 				<include name="**/*.xpt"/>
 				<include name="**/*.oaw"/>
@@ -66,32 +66,32 @@
 				<include name="**/*.ext"/>
 				<exclude name="org/jastemf/ant/taskdef.properties"/>
 			</fileset>
-			<fileset dir="${_basedir}/bin">
+			<fileset dir="${JastEMF.basedir}/bin">
 				<include name="**/*.class"/>
 				<exclude name="**/org/jastemf/ant/*.class"/>
 			</fileset>
 		</jar>
 		<move
-			file="${_basedir}/temp/jastemf-ant-tasks.jar"
-			todir="${_basedir}/"
+			file="${JastEMF.basedir}/temp/jastemf-ant-tasks.jar"
+			todir="${JastEMF.basedir}/"
 			overwrite="true"
 		/>
 		<move
-				file="${_basedir}/temp/jastadd-ant-tasks.jar"
-				todir="${_basedir}/"
+				file="${JastEMF.basedir}/temp/jastadd-ant-tasks.jar"
+				todir="${JastEMF.basedir}/"
 				overwrite="true"
 		/>
-		<delete dir="${_basedir}/temp"/>
+		<delete dir="${JastEMF.basedir}/temp"/>
 	</target>
 	
 	<!-- Create source code distribution -->
 	<target name="SrcDistribution">
 		<zip
-			destfile="${_basedir}/distribution/jastemf_src.zip"
+			destfile="${JastEMF.basedir}/distribution/jastemf_src.zip"
 			encoding="UTF-8"
 			compress="true"
 			update="false">
-			<fileset dir="${_basedir}">
+			<fileset dir="${JastEMF.basedir}">
 				<include name="**/*"/>
 				<include name="sources/libraries/**"/>
 				<exclude name="bin"/>
@@ -110,12 +110,12 @@
 	<!-- Delete generated distributions -->
 	<target name="Clean">
 		<delete includeemptydirs="true">
-			<fileset dir="${_basedir}/distribution">
+			<fileset dir="${JastEMF.basedir}/distribution">
 				<include name="org.jastemf*.jar"/>
 				<include name="jastemf_src.zip"/>
 				<include name="JavaDoc/**/*"/>
 			</fileset>
-			<fileset dir="${_basedir}">
+			<fileset dir="${JastEMF.basedir}">
 				<include name="*ant-tasks.jar"/>
 			</fileset>
 						
@@ -127,7 +127,7 @@
 		<javadoc
 			access="public"
 			author="true"
-			destdir="${_basedir}/distribution/JavaDoc"
+			destdir="${JastEMF.basedir}/distribution/JavaDoc"
 			doctitle="JastEMF"
 			nodeprecated="false"
 			nodeprecatedlist="false"
@@ -135,18 +135,18 @@
 			nonavbar="false"
 			notree="false"
 			source="1.6"
-			sourcepath="${_basedir}/implementation"
+			sourcepath="${JastEMF.basedir}/implementation"
 			splitindex="true"
 			use="true"
 			version="true"
-			overview="${_basedir}/implementation/overview.html">
+			overview="${JastEMF.basedir}/implementation/overview.html">
 			<package name="org.jastemf"/>
 			<package name="org.jastemf.ant"/>
 			<package name="org.jastemf.aspects"/>
 			<package name="org.jastemf.refactorings"/>
 			<package name="org.jastemf.util"/>
 			<classpath>
-				<fileset dir="${_basedir}/sources/libraries">
+				<fileset dir="${JastEMF.basedir}/sources/libraries">
 					<include name="*.jar"/>
 				</fileset>
 				<!-- HACK; Build script must run within same JVM as eclipse -->
@@ -161,12 +161,12 @@
 			</classpath>
 		</javadoc>
 		<copy
-			todir="${_basedir}/distribution/JavaDoc"
-			file="${_basedir}/implementation/JastEMF_Integration_Process.png"
+			todir="${JastEMF.basedir}/distribution/JavaDoc"
+			file="${JastEMF.basedir}/implementation/JastEMF_Integration_Process.png"
 		/>
 		<copy
-			todir="${_basedir}/distribution/JavaDoc"
-			file="${_basedir}/implementation/JastEMF_Use_Cases.png"
+			todir="${JastEMF.basedir}/distribution/JavaDoc"
+			file="${JastEMF.basedir}/implementation/JastEMF_Use_Cases.png"
 		/>
 	</target>
 </project>
