@@ -1,1 +1,0 @@
-This software was downloaded from the following GoogleCode project: http://code.google.com/p/ant-googlecode/.
