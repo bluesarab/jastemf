@@ -69,20 +69,5 @@
 		</delete>
 	</target> 
 	
-	<taskdef classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpath="${UpdateSite.basedir}/sources/applications/GoogleCode/ant-googlecode-0.0.2.jar" name="gcupload"/>
-	
-	<target name="Upload Update Site" depends="Clean,UpdateSite" >
-		<gcupload 
-		        username="skarol@gmx.de" 
-		        password="uB7UX4Cp9Qm9" 
-		        projectname="jastemf" 
-		        summary="JastEMF Update Site"
-		        labels="Featured">
-			<fileset dir="${UpdateSite.basedir}/distribution">
-    			<include name="**/*.*"/>
-			</fileset>
-		</gcupload>	
-	</target>	
-	
 
 </project>
