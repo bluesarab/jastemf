@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<associateSites>
+	<associateSite label="Helios Release"
+		url="http://download.eclipse.org/releases/helios"/>
+	<associateSite label="The Eclipse Project Updates"
+		url="http://download.eclipse.org/eclipse/updates/3.6"/>	
+</associateSites>
