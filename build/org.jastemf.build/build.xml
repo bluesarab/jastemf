@@ -51,8 +51,9 @@
 	    <sequential>
 	    	<!-- update version numbers in feature.xml -->
 	    	<replaceregexp file="${UpdateSite.basedir}/distribution/features/@{package}/feature.xml" 
-	    					match='version="[0-9]*.[0-9]*.[0-9]*(.v[0-9]*)?"'
-	    					replace='version="@{version}.v${DSTAMP}${TSTAMP}"'/>   	
+	    					match='version="([^"]*)\.([^"]*)\.([^"]*)"'
+	    					replace='version="@{version}.v${DSTAMP}${TSTAMP}"'
+	    					flags="g"/>   	
 	    	
 	    	<!-- update version numbers in site.xml -->
 	    	<replaceregexp file="${UpdateSite.basedir}/distribution/site.xml"
@@ -62,12 +63,15 @@
 	</macrodef>
 
 	<!-- Delete generated distributions -->  
-	<target name="Clean" depends="JastEMF.Clean,Converter.Clean">
+	<target name="CleanProjects" depends="JastEMF.Clean,Converter.Clean">
+	</target> 
+	<!-- Delete generated distributions -->  
+	<target name="CleanAll" depends="CleanProjects">
 		<delete includeemptydirs="true">
 			<fileset dir="${UpdateSite.basedir}/distribution">
+				<include name="**/**"/>
 			</fileset>
 		</delete>
 	</target> 
-	
 
 </project>

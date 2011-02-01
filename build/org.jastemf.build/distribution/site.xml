@@ -2,10 +2,10 @@
 <site associateSitesURL="http://jastemf.googlecode.com/svn/trunk/build/org.jastemf.build/distribution/externalSites.xml">
    <description name="JastEMF Update Site">
    </description>
-   <feature url="features/org.jastemf_0.1.4.v201101311642.jar" id="org.jastemf" version="0.1.4.v201101311642">
+   <feature url="features/org.jastemf_0.1.4.v201102011259.jar" id="org.jastemf" version="0.1.4.v201102011259">
       <category name="JastEMF"/>
    </feature>
-   <feature url="features/org.jastemf.converter_0.1.0.v201101311642.jar" id="org.jastemf.converter" version="0.1.0.v201101311642">
+   <feature url="features/org.jastemf.converter_0.1.0.v201102011259.jar" id="org.jastemf.converter" version="0.1.0.v201102011259">
       <category name="JastEMF"/>
    </feature>
    <category-def name="JastEMF" label="JastEMF: EMF-based attribute grammars"/>
