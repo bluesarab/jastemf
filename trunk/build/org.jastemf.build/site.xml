@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<site associateSitesURL="http://jastemf.org/update/externalSites.xml">
+<site associateSitesURL="http://jastemf.googlecode.com/svn/trunk/build/org.jastemf.build/distribution/externalSites.xml">
    <description name="JastEMF Update Site">
    </description>
    <feature url="features/org.jastemf_0.0.0.jar" id="org.jastemf" version="0.0.0">
