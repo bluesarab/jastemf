@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<workflow>
+	<!-- Set the base URI all platform URIs are resolved against. -->
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
+		<platformUri value=".."/>
+	</bean>
+
+	<component id="xmiParser" class="org.eclipse.emf.mwe.utils.Reader">
+   		<uri value="${modelFile}" />
+    	<modelSlot value="model"/>
+    	<firstElementOnly value="false"/> 
+  	</component>
+
+  	<component id="astgenerator" class="org.eclipse.xpand2.Generator">
+       	<fileEncoding value="ISO-8859-1"/>
+       	<metaModel id="ecore" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel" />
+    	<expand value="org::jastemf::converter::ecore::ast::Main FOR model"/>
+        <outlet path="${outputDirectory}/">
+    	</outlet>
+    </component> 
+</workflow>

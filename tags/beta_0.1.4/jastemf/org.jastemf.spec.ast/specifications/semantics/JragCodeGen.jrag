@@ -1,0 +1,8 @@
+import java.util.*;
+import java.io.*;
+
+aspect JragCodeGen {
+
+ public static boolean ASTNode.java5 = true;
+  
+}

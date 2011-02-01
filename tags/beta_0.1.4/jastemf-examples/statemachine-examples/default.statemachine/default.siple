@@ -1,0 +1,31 @@
+% Generated SIPLE state machine implementation
+Procedure main() Begin
+	Var current_state:Integer;
+	current_state := 0;
+	% Global variables:
+	Var counter:Integer;
+	% Initial transition action:
+	counter := 0;
+	
+	While Not (current_state = 5) Do
+		Var done:Boolean;
+		done := false;
+		If Not done And current_state = 0 Then
+			If Not done And true Then
+				counter := counter +1;
+				current_state := 1;
+				done := true;
+			Fi;
+		Fi;
+		If Not done And current_state = 1 Then
+			If Not done And counter>10 Then
+				current_state := 5;
+				done := true;
+			Fi;
+			If Not done And counter<11 Then
+				current_state := 0;
+				done := true;
+			Fi;
+		Fi;
+	Od;
+End;
