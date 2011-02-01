@@ -297,12 +297,12 @@ getters do not occur, because for a terminal 'acc' JastAdd generates 'getaccList
 	references="true"
 	version="1.0"/>
 «ELSE-»
-«IF this.containment&&this.derived-»
+	«IF this.derived-»
 <refactoring 
 	comment="Rename method &apos;«this.name»&apos;"
 	delegate="false"
 	deprecate="true"
-	description="Rename accessor for nonterminal attribute &apos;«this.name»&apos; which is a non-containment in the metamodel"
+	description="Rename accessor for nonterminal attribute &apos;«this.name»&apos; which is a derived containment (=NTA) in the metamodel"
 	flags="589830"
 	id="org.eclipse.jdt.ui.rename.method"
 	input="«genClass.computeCompilationUnitPath(astPackage)»~«this.name»"
@@ -310,8 +310,8 @@ getters do not occur, because for a terminal 'acc' JastAdd generates 'getaccList
 	project="«genClass.computeProjectName()»"
 	references="true"
 	version="1.0"/>
-«ELSE-»
-«IF this.containment&&!this.many-»
+	«ELSE-»
+		«IF !this.many-»
 <refactoring
 	comment="Rename method &apos;get«this.name»()&apos;"
 	delegate="false"
@@ -336,8 +336,8 @@ getters do not occur, because for a terminal 'acc' JastAdd generates 'getaccList
 	project="«genClass.computeProjectName()»"
 	references="true"
 	version="1.0"/>
-«ENDIF-»	
-«ENDIF-»
+		«ENDIF-»	
+	«ENDIF-»
 «ENDIF-»
 «ENDDEFINE»
 
