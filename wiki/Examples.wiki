@@ -5,15 +5,17 @@
 
 In the following we shortly summarise the example [Approach#Integration_Projects integration projects] included in JastEMF's source code repository. Each example is a separate Java project within the SVN's _"jastemf-examples"_ folder.
 
-== SIPLE (Simple Imperative Programming Language Example) ==
+== SiPLE (Simple Imperative Programming Language Example) ==
 
-SIPLE is a simple imperative programming language. Its language concepts are:
+SiPLE is a simple imperative programming language. Its language concepts are:
  * Integer, real and Boolean arithmetics
  * `While` and `If` control-flow statements
  * Nested procedures
  * A block-structured name space
  * A save interpreter, that calmly terminates in the presence of errors
-SIPLE is strongly typed, such that a static type analysis can be performed. Throughout the example we use different specification-driven compiler construction approaches to generate complete language toolings --- from the lexer over syntactic and static semantic analysis to interpreters and editors --- for SIPLE.
+SiPLE is strongly typed, such that a static type analysis can be performed.
+
+Throughout the example we use different specification-driven compiler construction approaches to generate complete language toolings --- from the lexer over syntactic and static semantic analysis to interpreters and editors --- for SiPLE.
 
 Example Objectives:
  * To show, how JastEMF can be used to generate a SIPLE EMF metamodel implementation with appropriate static and execution semantics.
@@ -21,3 +23,13 @@ Example Objectives:
  * To show, how other EMF tools can benefit from such semantic metamodel implementations by the example of [http://www.emftext.org EMFText] --- a text to model parser generator.
 
 Details and a tutorial for the example can be found [SIPLE here].
+
+== SiPLE-Statemachine ==
+
+SiPLE-Statemachine is a graphical language to specify finite state machines. Besides labeled states and transitions, it supports global variables, entry actions, transition conditions and actions in the form of annotated SiPLE code. State machines are modeled in a graphical Eclipse editor, that can also visualize state's reachability (i.e., their transitive closure). The correctness of annotated actions is checked reusing SiPLE's metamodel semantics. SiPLE implementations of specified state machines can be generated.
+
+Throughout the example we use JastAdd to specify the SiPLE-Statemachine language's static semantics, generate a GMF editor and integrate SiPLE's semantic metamodel implementation.
+
+Example Objectives:
+ * To show, how JastEMF can be used realize a graphical modeling language's static semantics.
+ * To show the benefits of semantics integrated metamodelling w.r.t. reuse and tool integration.
