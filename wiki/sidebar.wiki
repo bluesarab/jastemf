@@ -1,6 +1,7 @@
  * [Approach JastEMF's Approach in a Nutshell]
  * [Installation]
  * [Ant_Tasks Ant User Interface]
+ * [Mapping Ecore <-> JastAdd Mappings]
  * [Examples Example Projects]
    * [SIPLE]
    * [Statemachine]
