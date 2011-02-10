@@ -5,7 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import siple.semantics.ast.*;
-import siple.semantics.impl.*;
 
 /**
  * Simple dialog used throughout interpretation to ask the user for

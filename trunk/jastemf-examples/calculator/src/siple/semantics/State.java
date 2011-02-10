@@ -3,7 +3,6 @@ package siple.semantics;
 import java.util.*;
 
 import siple.semantics.ast.*;
-import siple.semantics.impl.*;
 
 /**
  * Instances of this class represent <i>SIPLE</i> interpreter states. The
