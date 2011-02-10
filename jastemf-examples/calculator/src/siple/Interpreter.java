@@ -14,7 +14,6 @@ import siple.symbols.*;
 import siple.syntax.*;
 import siple.semantics.*;
 import siple.semantics.ast.*;
-import siple.semantics.impl.*;
 
 /**
  * Class for command line {@link #main(String[]) execution} of

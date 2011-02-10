@@ -1,4 +1,4 @@
-			SIPLE (Simple Imperative Programming Language Example)
+			SiPLE (Simple Imperative Programming Language Example)
 							      Version 1.0
 					    Christoff.Buerger@tu-dresden.de
 					    Technische Universität Dresden
