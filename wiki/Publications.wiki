@@ -12,4 +12,4 @@ Christoff Bürger, _Applying Attribute Grammars for Metamodel Semantics_, Intern
 Christoff Bürger and Sven Karol and Christian Wende, _Applying Attribute Grammars for Metamodel Semantics_, Proceedings of the International Workshop on Formalization of Modeling Languages, ACM 2010, ISBN 978-1-4503-0532-7, [http://portal.acm.org/citation.cfm?doid=1943397.1943398 Web]
 
 Christoff Bürger and Sven Karol, _Towards_ _Attribute_ _Grammars_ _for_ _Metamodel_ _Semantics_, Technical Report TUD-FI10-03, March 2010, Technische Universität Dresden, ISSN 1430-211X 
-[ftp://ftp.inf.tu-dresden.de/pub/berichte/tud10-03.pdf Web]
+[ftp://ftp.inf.tu-dresden.de/pub/berichte/tud10-03.pdf pdf]
