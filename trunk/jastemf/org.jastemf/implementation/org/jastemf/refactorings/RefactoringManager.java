@@ -88,18 +88,19 @@ public class RefactoringManager {
 			final IIntegrationContext context) throws JastEMFException {
 
 		for (final GenPackage genPackage : context.genmodel().getGenPackages()) {
-			performASTClassesAdaptations(context,genPackage);
+			performASTClassesAdaptations(context, genPackage);
 		}
 	}
-	
+
 	private static void performASTClassesAdaptations(
-			final IIntegrationContext context, GenPackage genPackage) throws JastEMFException {
+			final IIntegrationContext context, GenPackage genPackage)
+			throws JastEMFException {
 		for (final GenClass genClass : genPackage.getGenClasses()) {
 			if (genClass.isInterface())
 				continue;
-			final IFile compilationUnitFile = IOSupport.getFile(context
-					.classfolder(genPackage), genClass.getClassName()
-					+ ".java");
+			final IFile compilationUnitFile = IOSupport.getFile(
+					context.classfolder(genPackage), genClass.getClassName()
+							+ ".java");
 
 			final CompilationUnit compilationUnit = JDTSupport
 					.loadCompilationUnit(compilationUnitFile);
@@ -108,18 +109,17 @@ public class RefactoringManager {
 			ASTVisitor visitor = new BasicJDTASTVisitor(context) {
 				@SuppressWarnings("unchecked")
 				public boolean visit(TypeDeclaration decl) {
-					System.out.println("Visiting type:" + decl.getName());
+					System.out.println("Visiting " + decl.getName() + " ...");
 					if (decl.isInterface())
 						return false;
 					// Setting generated interface as super interface
-					if (decl.getName().getIdentifier().equals(
-							genClass.getClassName())) {
+					if (decl.getName().getIdentifier()
+							.equals(genClass.getClassName())) {
 						AST ast = decl.getAST();
 						List interfaces = (List) decl
 								.getStructuralProperty(TypeDeclaration.SUPER_INTERFACE_TYPES_PROPERTY);
-						interfaces.add(ast.newSimpleType(ast
-								.newName(genClass
-										.getQualifiedInterfaceName())));
+						interfaces.add(ast.newSimpleType(ast.newName(genClass
+								.getQualifiedInterfaceName())));
 						return true;
 					}
 					return false;
@@ -131,10 +131,10 @@ public class RefactoringManager {
 			JDTSupport.applyRewritesAndSave(compilationUnit,
 					compilationUnitFile);
 		}
-		for(GenPackage childPackage:genPackage.getNestedGenPackages()){
-			performASTClassesAdaptations(context,childPackage);
+		for (GenPackage childPackage : genPackage.getNestedGenPackages()) {
+			performASTClassesAdaptations(context, childPackage);
 		}
-		
+
 	}
 
 	/**
@@ -187,8 +187,7 @@ public class RefactoringManager {
 							break;
 						}
 						if (modifier.isProtected()) {
-							modifier
-									.setKeyword(Modifier.ModifierKeyword.PUBLIC_KEYWORD);
+							modifier.setKeyword(Modifier.ModifierKeyword.PUBLIC_KEYWORD);
 							isPublicOrPrivate = true;
 							break;
 						}
@@ -257,10 +256,8 @@ public class RefactoringManager {
 				AST ast = decl.getAST();
 				if (!decl.isInterface()) {
 					if ("ASTNode".equals(decl.getName().getIdentifier())) {
-						decl
-								.setSuperclassType(ast
-										.newSimpleType(ast
-												.newName("org.eclipse.emf.ecore.impl.EObjectImpl")));
+						decl.setSuperclassType(ast.newSimpleType(ast
+								.newName("org.eclipse.emf.ecore.impl.EObjectImpl")));
 						return true;
 					}
 				}
@@ -268,14 +265,26 @@ public class RefactoringManager {
 			}
 
 			public boolean visit(VariableDeclarationFragment declFragment) {
+
 				if ("childIndex".equals(declFragment.getName().getIdentifier())) {
-					FieldDeclaration decl = (FieldDeclaration) declFragment
-							.getParent();
+					FieldDeclaration decl = null;
+					if (declFragment.getParent() instanceof FieldDeclaration) {
+						decl = (FieldDeclaration) declFragment.getParent();
+					} else {
+						//This is just a debug information for users.
+						System.out
+								.println("Declaration of childIndex is not a FieldDeclaration but a "
+										+ declFragment.getParent().getClass()
+												.getName()
+										+ ". This may be caused by a declaration of a local variable with the same name. " +
+												"Ignoring this declaration.");
+						return false;
+					}
+
 					for (Object o : decl.modifiers()) {
 						Modifier modifier = (Modifier) o;
 						if (modifier.isPrivate()) {
-							modifier
-									.setKeyword(Modifier.ModifierKeyword.PUBLIC_KEYWORD);
+							modifier.setKeyword(Modifier.ModifierKeyword.PUBLIC_KEYWORD);
 							break;
 						}
 					}
@@ -289,6 +298,7 @@ public class RefactoringManager {
 			}
 		};
 
+		System.out.println("Visiting ASTNode ...");
 		compilationUnit.accept(visitor);
 
 		JDTSupport.applyRewritesAndSave(compilationUnit, compilationUnitFile);
@@ -313,6 +323,7 @@ public class RefactoringManager {
 		compilationUnit.recordModifications();
 		ASTVisitor visitor = new BasicJDTASTVisitor(context) {
 		};
+		System.out.println("Visiting ASTList ...");
 		compilationUnit.accept(visitor);
 		JDTSupport.applyRewritesAndSave(compilationUnit, compilationUnitFile);
 	}
@@ -356,14 +367,13 @@ public class RefactoringManager {
 			beautifyGenPackage(context, genPackage);
 		}
 	}
-	
-	private static void beautifyGenPackage(IIntegrationContext context, GenPackage genPackage)
-	throws JastEMFException {
+
+	private static void beautifyGenPackage(IIntegrationContext context,
+			GenPackage genPackage) throws JastEMFException {
 		URI genPackageURI = context.classfolder(genPackage);
 		for (GenClass genClass : genPackage.getGenClasses()) {
-			IFile javaFile = IOSupport.getFile(genPackageURI, genClass
-					.getClassName()
-					+ ".java");
+			IFile javaFile = IOSupport.getFile(genPackageURI,
+					genClass.getClassName() + ".java");
 			ICompilationUnit compilationUnitDescriptor = JavaCore
 					.createCompilationUnitFrom(javaFile);
 			try {
@@ -376,8 +386,8 @@ public class RefactoringManager {
 				throw new JastEMFException(e);
 			}
 		}
-		for(GenPackage childPackage:genPackage.getNestedGenPackages())
-			beautifyGenPackage(context,childPackage);
+		for (GenPackage childPackage : genPackage.getNestedGenPackages())
+			beautifyGenPackage(context, childPackage);
 	}
 
 }
