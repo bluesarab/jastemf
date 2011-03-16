@@ -605,7 +605,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 	protected «ntaReference.getReferenceTypeString()» «genClass.ecoreClass.name».«ntaReference.name.toString()»;
 
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	public EList «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
+	public «ntaReference.many?"EList":ntaReference.getReferenceTypeString()» «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
 		if («ntaReference.name.toString()»_computed) {
 			return «ntaReference.name.toString()»;
 		}
@@ -638,7 +638,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 			state.IN_CIRCLE = true;
 			state.popEvalStack();
 		}
-		return astDeclarations;
+		return «ntaReference.name.toString()»;
 	}
 «ENDFOREACH-»	
 «ENDLET-»
