@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ntatest"
+    nsURI="http://www.jastemf.org/test/nta" nsPrefix="ntatest">
+  <eClassifiers xsi:type="ecore:EClass" name="Root">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedA" lowerBound="1"
+        eType="#//A" derived="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedB" upperBound="-1"
+        eType="#//B" derived="true" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A"/>
+  <eClassifiers xsi:type="ecore:EClass" name="B"/>
+</ecore:EPackage>

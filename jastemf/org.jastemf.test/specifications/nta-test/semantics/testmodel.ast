@@ -1,0 +1,5 @@
+Root ::= /derivedA:A/ /derivedB:B*/;
+
+A;
+
+B;
