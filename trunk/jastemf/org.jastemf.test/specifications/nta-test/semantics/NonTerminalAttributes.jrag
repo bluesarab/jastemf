@@ -1,0 +1,15 @@
+aspect NonTerminalAttributes{
+
+	/**
+	 * Definition of simple NTA derivedA(). Note that for compatibility reasons
+	 * we only support the older JastAdd notation for NTAs.
+	 */
+	syn A Root.getderivedA() = new A();
+	
+	/**
+	 * Definition of List-based NTA derivedB(). Note that for compatibility reasons
+	 * we only support the older JastAdd notation for NTAs.
+	 */
+	syn List<B> Root.getderivedBList() = new List<B>().add(new B());
+
+}

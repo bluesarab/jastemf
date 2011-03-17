@@ -1,0 +1,123 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+
+<project name="TestCases" default="EMF Semantic">
+
+	<path id="test_basedir">
+		<pathelement location="./../.." />
+	</path>
+	
+	<property name="test_basedir" refid="test_basedir" />
+	
+	<path id="eclipse.classpath">
+		<fileset dir="${eclipse.home}">
+			<include name="plugins/org.eclipse.core.runtime_*.jar" />
+			<include name="plugins/org.eclipse.osgi_*.jar" />
+			<include name="plugins/org.eclipse.equinox.weaving.hook_*.jar" />
+			<include name="plugins/org.eclipse.equinox.common_*.jar" />
+			<include name="plugins/org.eclipse.core.jobs_*.jar" />
+			<include name="plugins/org.eclipse.core.runtime.compatibility.registry_*/runtime_registry_compatibility.jar" />
+			<include name="plugins/org.eclipse.core.runtime.compatibility.registry_*" />
+			<include name="plugins/org.eclipse.equinox.registry_*.jar" />
+			<include name="plugins/org.eclipse.equinox.preferences_*.jar" />
+			<include name="plugins/org.eclipse.core.contenttype_*.jar" />
+			<include name="plugins/org.eclipse.core.runtime.compatibility.auth_*.jar" />
+			<include name="plugins/org.eclipse.equinox.app_*.jar" />
+			<include name="plugins/org.eclipse.osgi.services_*.jar" />
+			<include name="plugins/javax.servlet_*.jar" />
+			<include name="plugins/org.eclipse.emf.ecore_*.jar" />
+			<include name="plugins/org.eclipse.emf.common_*.jar" />
+			<include name="plugins/org.eclipse.core.resources_*.jar" />
+			<include name="plugins/org.eclipse.core.resources.win32.x86_*.jar" />
+			<include name="plugins/org.eclipse.ant.core_*.jar" />
+			<include name="plugins/org.eclipse.core.variables_*.jar" />
+			<include name="plugins/org.eclipse.core.expressions_*.jar" />
+			<include name="plugins/org.eclipse.core.filesystem_*.jar" />
+			<include name="plugins/org.eclipse.core.filesystem.win32.x86_*.jar" />
+			<include name="plugins/org.junit_*/junit.jar" />
+			<include name="plugins/org.hamcrest.core_*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="jastemf.classpath">
+		<pathelement path="${test_basedir}/../org.jastemf/bin"/>
+		<pathelement path="${test_basedir}/../org.jastemf/implementation"/>
+	</path>
+	
+	<!-- NOTE: jastemf task from eclipse workspace is redefined here.
+			The reverseloader="true" forces loading the classes in the 
+			workspace first, still linking to the EMF plugin-ins loaded 
+			by Eclipse.
+	-->
+	<taskdef 
+		name="jastemf" 
+		reverseloader="true" 
+		classname="org.jastemf.ant.JastemfTask">
+		<classpath refid="jastemf.classpath"/>
+	</taskdef>
+
+	
+	<target name="Clean" description="Delete all generated artefacts.">
+		<delete includeemptydirs="true">
+			<fileset dir="${test_basedir}">
+				<!-- all these artefacts are generated -->
+				<include name="src-gen/**/*" />
+				<include name="icons/**/*" />
+				<include name="icons" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="JastAdd Semantic" description="Generate basic JastAdd code only.">
+		<echo message="======================> Generate JastAdd Semantic &lt;=====================" />
+		<jastadd outdir="${test_basedir}/src-gen" package="org.jastemf.test.ntatest.ast" rewrite="true">
+			<fileset dir="${test_basedir}/specifications">
+				<include name="nta-test/semantics/**/*.ast" />
+				<include name="nta-test/semantics/**/*.jrag" />
+				<include name="nta-test/semantics/**/*.jadd" />
+			</fileset>
+		</jastadd>
+	</target>
+
+	<target name="EMF Semantic" description="Merge JastAdd code with EMF code.">
+		<echo message="========================> Generate EMF Semantic &lt;=======================" />
+		<jastemf generateeditcode="true" genmodel="${test_basedir}/specifications/nta-test/model/testmodel.genmodel" outpackage="jastemf.adaptation" astpackage="org.jastemf.test.ntatest.ast">
+			<fileset dir="${test_basedir}/specifications">
+				<include name="nta-test/semantics/**/*.ast" />
+				<include name="nta-test/semantics/**/*.jrag" />
+				<include name="nta-test/semantics/**/*.jadd" />
+			</fileset>
+		</jastemf>
+	</target>
+		
+	<target name="Compile Generated Stuff">
+		<echo message="========================> Compiling &lt;=======================" />
+		<delete dir="${test_basedir}/test-bin">
+		</delete>
+		<mkdir dir="${test_basedir}/test-bin" />
+		<javac target="1.5" source="1.5" destdir="${test_basedir}/test-bin" debug="off">
+			<src path="${test_basedir}/src-gen" />
+			<src path="${test_basedir}/src" />
+			<classpath refid="eclipse.classpath"/>
+			
+			<compilerarg compiler="org.eclipse.jdt.core.JDTCompilerAdapter" line="-1.5 -warn:+boxing" />
+		</javac>
+	</target>
+	
+	<target name="Run Test Cases" depends="Clean,EMF Semantic,Compile Generated Stuff">
+		<echo message="========================> Running Test Cases &lt;=======================" />
+		<junit>
+			 <test name="org.jastemf.test.ntatest.NTATest" />
+			 <formatter type="plain" usefile="false" />
+			 <classpath refid="eclipse.classpath" />
+			 <classpath>
+			 	<path>
+			 		<pathelement path="${test_basedir}/test-bin"/>
+			 	</path>
+			 </classpath>
+		</junit>
+	</target>
+</project>
