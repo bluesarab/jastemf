@@ -67,13 +67,15 @@ the editor
 «IF eReferenceType.name=="EStringToStringMapEntry"-»
  <«decl»>«""-»
 «ELSE-»
+«this.derived?" /":" "-»
 «IF lowerBound==0&&(upperBound==1||upperBound==-2)-»
- [«decl-»«"]"-»
+[«decl-»«"]"-»
 «ELSEIF lowerBound==1&&upperBound==1-»
- «decl-»
+«decl-»
 «ELSEIF upperBound>1||upperBound==-1-»
- «decl-»«"*"-»	
+«decl-»«"*"-»	
 «ENDIF-»
+«this.derived?"/":""-»
 «ENDIF-»
 «ENDLET-»
 «ENDDEFINE»
