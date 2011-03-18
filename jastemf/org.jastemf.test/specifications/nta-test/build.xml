@@ -4,7 +4,7 @@
 -->
 
 
-<project name="TestCases" default="EMF Semantic">
+<project name="TestCases" default="Generate, Compile and Test">
 
 	<path id="test_basedir">
 		<pathelement location="./../.." />
@@ -45,9 +45,11 @@
 	<path id="jastemf.classpath">
 		<pathelement path="${test_basedir}/../org.jastemf/bin"/>
 		<pathelement path="${test_basedir}/../org.jastemf/implementation"/>
+		<pathelement path="${test_basedir}/../org.jastemf.converter/src"/>
+		<pathelement path="${test_basedir}/../org.jastemf.converter/bin"/>
 	</path>
 	
-	<!-- NOTE: jastemf task from eclipse workspace is redefined here.
+	<!-- NOTE: jastemf tasks from eclipse workspace is redefined here.
 			The reverseloader="true" forces loading the classes in the 
 			workspace first, still linking to the EMF plugin-ins loaded 
 			by Eclipse.
@@ -56,6 +58,13 @@
 		name="jastemf" 
 		reverseloader="true" 
 		classname="org.jastemf.ant.JastemfTask">
+		<classpath refid="jastemf.classpath"/>
+	</taskdef>
+	
+	<taskdef 
+		name="jastemf.ecore2ast" 
+		reverseloader="true" 
+		classname="org.jastemf.converter.ant.Ecore2ASTTask">
 		<classpath refid="jastemf.classpath"/>
 	</taskdef>
 
@@ -107,7 +116,7 @@
 		</javac>
 	</target>
 	
-	<target name="Run Test Cases" depends="Clean,EMF Semantic,Compile Generated Stuff">
+	<target name="Generate, Compile and Test" depends="Clean,EMF Semantic,Compile Generated Stuff">
 		<echo message="========================> Running Test Cases &lt;=======================" />
 		<junit>
 			 <test name="org.jastemf.test.ntatest.NTATest" />
@@ -119,5 +128,27 @@
 			 	</path>
 			 </classpath>
 		</junit>
+	</target>
+	
+	<target name="Test">
+		<echo message="========================> Running Test Cases &lt;=======================" />
+		<junit>
+			 <test name="org.jastemf.test.ntatest.NTATest" />
+			 <formatter type="plain" usefile="false" />
+			 <classpath refid="eclipse.classpath" />
+			 <classpath>
+			 	<path>
+			 		<pathelement path="${test_basedir}/bin"/>
+			 	</path>
+			 </classpath>
+		</junit>
+	</target>
+	
+	<target name="Generate AST Spec">
+		<echo message="========================> Generate AST Spec &lt;======================="/>
+		<jastemf.ecore2ast
+			modelFile="${test_basedir}/specifications/nta-test/model/testmodel.ecore"
+			outputDirectory="${test_basedir}/specifications/nta-test/semantics">
+		</jastemf.ecore2ast>
 	</target>
 </project>

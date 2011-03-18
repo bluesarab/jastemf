@@ -8,7 +8,15 @@
         eType="#//A" derived="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="derivedB" upperBound="-1"
         eType="#//B" derived="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containmentC" lowerBound="1"
+        eType="#//C" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="A"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="B"/>
+  <eClassifiers xsi:type="ecore:EClass" name="C">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="someTerminal" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
