@@ -9,7 +9,7 @@
 «REM»
 	Template to generate integration artifacts, that perform AST structure
 	repository adaptations.
-	@author C. Bürger
+	@author C. Bürger, S.Karol
 «ENDREM»
 
 
@@ -513,10 +513,22 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ELSE-»
 «REM»
 	The child is an ordinary non-terminal. There is no special treatment
-	neccessary.
+	neccessary, except for non-terminal attributes (i.e. derived containments).
+	In the case of such attributes, we cannot refer back to the getter. 
+	Getter computes its own value and writes and reads via the setChild 
+	and getChild methods. This would lead to an endless loop at runtime. 
+	As a workaround, for derived containments we access the stored values 
+	directly instead of using the corresponding getters.   
 «ENDREM»
 			+ "			public ASTNode getChild() {"
+«IF child.derived-»
+			+ "				if(«child.name.toString()»!=null)"
+			+ "					return (ASTNode)«child.name.toString()»;"
+			+ "				else"
+			+ "					return (ASTNode)get«child.name.toString().toFirstUpper()»();"			
+«ELSE-»			
 			+ "				return (ASTNode)get«child.name.toString().toFirstUpper()»();"
+«ENDIF-»
 			+ "			}"
 			+ "			public void setChild(ASTNode node) {"
 			+ "				set«child.name.toString().toFirstUpper()»((«child.eReferenceType.name»)node);"
@@ -597,6 +609,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDDEFINE»
 
 «DEFINE NewNTAGetters(String astPackage, String outPackage) FOR GenPackage»
+«REM»
 «FOREACH this.genClasses AS genClass-»
 «IF !genClass.ecoreClass.interface-»
 «LET genClass.ecoreClass.eReferences.select(e|e.containment&&e.derived) AS ntaReferences-»
@@ -645,6 +658,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDIF-»
 «ENDFOREACH-»
 «EXPAND NewSetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
+«ENDREM»
 «ENDDEFINE»
 
 
