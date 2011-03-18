@@ -84,9 +84,9 @@ Integer computeLocalChildIndex(EReference containment):
 		(getInheritedChildren(containment.eContainingClass).size +
 				getLocalChildren(containment.eContainingClass).indexOf(containment)))
 ;
-
+ 
 cached List[EReference] getLocalChildren(EClass eClass):
-	eClass.eReferences.select(e|e.containment)
+	eClass.eReferences.select(e|e.containment&&!e.derived).addAll(eClass.eReferences.select(e|e.containment&&e.derived))
 ;
 
 cached List[EReference] getInheritedChildren(EClass eClass):
