@@ -90,5 +90,5 @@ cached List[EReference] getLocalChildren(EClass eClass):
 ;
 
 cached List[EReference] getInheritedChildren(EClass eClass):
-	eClass.eAllContainments.select(e|getLocalChildren(eClass).contains(e))
+	eClass.eAllContainments.select(e|!getLocalChildren(eClass).contains(e))
 ;
