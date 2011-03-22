@@ -12,6 +12,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//Root/derivedA"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//Root/derivedB"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//Root/containmentC"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//Root/containmentD"/>
     </genClasses>
     <genClasses ecoreClass="testmodel.ecore#//A">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//A/name"/>
@@ -19,6 +20,9 @@
     <genClasses ecoreClass="testmodel.ecore#//B"/>
     <genClasses ecoreClass="testmodel.ecore#//C">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//C/someTerminal"/>
+    </genClasses>
+    <genClasses ecoreClass="testmodel.ecore#//D">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//D/index"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

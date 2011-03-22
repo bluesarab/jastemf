@@ -1,7 +1,9 @@
-Root ::= /derivedA:A/ /derivedB:B*/ containmentC:C;
+Root ::= /derivedA:A/ /derivedB:B*/ containmentC:C containmentD:D*;
 
 A ::= <name:String>;
 
 B;
 
 C ::= <someTerminal:String>;
+
+D ::= <index:int>;

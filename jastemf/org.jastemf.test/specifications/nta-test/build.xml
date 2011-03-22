@@ -39,6 +39,25 @@
 			<include name="plugins/org.eclipse.core.filesystem.win32.x86_*.jar" />
 			<include name="plugins/org.junit_*/junit.jar" />
 			<include name="plugins/org.hamcrest.core_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe.core_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe.ui_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe.utils_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe2.runtime_.jar" />
+			<include name="plugins/org.eclipse.xtend*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="mwe.classpath">
+		<fileset dir="${eclipse.home}">
+			<include name="plugins/org.eclipse.emf.mwe.core_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe.ui_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe.utils_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe2.runtime_*.jar" />
+			<include name="plugins/org.eclipse.xtend*.jar" />
+			<include name="plugins/org.eclipse.xpand*.jar" />
+			<include name="plugins/org.apache.commons.cli_*.jar" />
+			<include name="plugins/org.apache.commons.logging_*.jar" />
+			<include name="plugins/org.antlr.runtime_3.0.0*.jar" />
 		</fileset>
 	</path>
 	
@@ -47,18 +66,26 @@
 		<pathelement path="${test_basedir}/../org.jastemf/implementation"/>
 		<pathelement path="${test_basedir}/../org.jastemf.converter/src"/>
 		<pathelement path="${test_basedir}/../org.jastemf.converter/bin"/>
+		<fileset dir="${test_basedir}/../org.jastemf">
+			<include name="sources/libraries/jastadd2.jar"/>
+		</fileset>
 	</path>
 	
-	<!-- NOTE: jastemf tasks from eclipse workspace is redefined here.
-			The reverseloader="true" forces loading the classes in the 
-			workspace first, still linking to the EMF plugin-ins loaded 
-			by Eclipse.
+	<!-- NOTE: jastemf tasks from eclipse workspace are redefined here.
+			The reverseloader="true" forces loading the Tasks and xpand 
+			resources in the workspace first, still linking to the EMF 
+			plugin-ins loaded by the workspace runtime.
+		
+		 NOTE2: We need to additionally re-add the mwe, xpand and xtend 
+			plugins to the class path, if we do not have a version of the 
+			JastEMF plugins installed. Unsure why, did not find an explanation.
 	-->
 	<taskdef 
 		name="jastemf" 
 		reverseloader="true" 
 		classname="org.jastemf.ant.JastemfTask">
 		<classpath refid="jastemf.classpath"/>
+		<classpath refid="mwe.classpath"/>
 	</taskdef>
 	
 	<taskdef 
@@ -66,6 +93,7 @@
 		reverseloader="true" 
 		classname="org.jastemf.converter.ant.Ecore2ASTTask">
 		<classpath refid="jastemf.classpath"/>
+		<classpath refid="mwe.classpath"/>
 	</taskdef>
 
 	

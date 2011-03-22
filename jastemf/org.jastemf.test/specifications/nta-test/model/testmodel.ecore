@@ -10,6 +10,8 @@
         eType="#//B" derived="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containmentC" lowerBound="1"
         eType="#//C" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containmentD" upperBound="-1"
+        eType="#//D" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="A">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -18,5 +20,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="C">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="someTerminal" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="D">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>
