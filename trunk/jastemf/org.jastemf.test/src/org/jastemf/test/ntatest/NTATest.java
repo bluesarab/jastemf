@@ -6,7 +6,10 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.jastemf.test.ntatest.ast.ASTList;
 import org.jastemf.test.ntatest.impl.AImpl;
+import org.jastemf.test.ntatest.impl.BImpl;
 import org.jastemf.test.ntatest.impl.CImpl;
 import org.jastemf.test.ntatest.impl.RootImpl;
 import org.junit.Assert;
@@ -51,6 +54,46 @@ public class NTATest {
 				return "jastadd_getContainmentC";
 			}
 		});
+		
+		rootImplAccessors.add(new Signature() {
+			public String getReturnTypeName() {
+				return "EList";
+			}
+
+			public String getMethodName() {
+				return "getDerivedB";
+			}
+		});
+		
+		rootImplAccessors.add(new Signature() {
+			public String getReturnTypeName() {
+				return "ASTList";
+			}
+
+			public String getMethodName() {
+				return "getderivedBs";
+			}
+		});
+		
+		rootImplAccessors.add(new Signature() {
+			public String getReturnTypeName() {
+				return "EList";
+			}
+
+			public String getMethodName() {
+				return "getContainmentD";
+			}
+		});
+		
+		rootImplAccessors.add(new Signature() {
+			public String getReturnTypeName() {
+				return "ASTList";
+			}
+
+			public String getMethodName() {
+				return "getcontainmentDs";
+			}
+		});
 
 	}
 
@@ -88,9 +131,19 @@ public class NTATest {
 	public void testNTAFunction() throws Exception {
 		CImpl someC = new CImpl("");
 		root.setContainmentC(someC);
+		
 		AImpl derivedA = root.getDerivedA();
 		Assert.assertTrue("Value of derivedA should not be null.",derivedA!=null);
 		Assert.assertTrue("AImpl should have name 'test'.","test".equals(derivedA.getName()));
+		
+		EList<BImpl> derivedB1 = root.getDerivedB();
+		Assert.assertTrue("Value of derivedB should contain exactly one 'B' entry, currently it has " + derivedB1.size() +  " entries.",derivedB1.size()==1);
 
+		ASTList<BImpl> derivedB2 = root.getderivedBs();
+		Assert.assertTrue("Value of getDerivedB and getderivedBs should use the same EList.",derivedB1==derivedB2.delegatee);
+
+	
 	}
+	
+	
 }
