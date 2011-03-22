@@ -29,8 +29,8 @@ public class XTendUtil {
 		String result = "";
 		for(int i=0;i<camelCaseNameArray.length;i++){
 			if(i>0&&isUpperCase(camelCaseNameArray[i])){
-				if(i+1<camelCaseNameArray.length&&!isUpperCase(camelCaseNameArray[i+1]))
-				result += "_";
+				if(!isUpperCase(camelCaseNameArray[i-1]))
+					result += "_";
 			}
 			result += camelCaseNameArray[i];
 		}

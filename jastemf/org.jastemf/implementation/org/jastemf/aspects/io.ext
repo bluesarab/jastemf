@@ -92,3 +92,7 @@ cached List[EReference] getLocalChildren(EClass eClass):
 cached List[EReference] getInheritedChildren(EClass eClass):
 	eClass.eAllContainments.select(e|!getLocalChildren(eClass).contains(e))
 ;
+
+String computeEPackageReferenceAccessor(EReference reference):
+	reference.eContainingClass.ePackage.name.toString().toFirstUpper()+"Package."+toUpperCaseUnderline(reference.eContainingClass.name.toString())+"__"+toUpperCaseUnderline(reference.name.toString())
+;
