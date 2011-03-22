@@ -429,12 +429,26 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 		specify "setParent" and "childIndex" of the list. On the other hand,
 		JastAdd lists must set their backing lists content if their children
 		are setted.
+		
+	For Non-terminal attributes (i.e., derived containments) we cannot use 
+	the EMF generated getters anymore, since every call to the EMF getter 
+	causes a call to the attribute evaluation which makes the whole thing 
+	cyclic. Therefore we generate our own code for EList initialization into
+	the the generated access methods and replace the EMF getter (this is done
+	in the "NewNTAGetters" template). 	
 «ENDREM-»
 			+ "			private ASTList list = new ASTList() {"
 			+ "					{"
 			+ "						parent = «genClass.ecoreClass.name»Impl.this;"
 			+ "						childIndex = «localChildren.indexOf(child)»;"
+«IF !child.derived-»
 			+ "						delegatee = get«child.name.toString().toFirstUpper()»();"
+«ELSE-»
+			+ "						if(«child.name.toString()»==null)"
+			+ "							«child.name.toString()» = new EObjectContainmentEList<«child.eType.name»>(«child.eType.name».class, parent,"
+			+ "								«child.computeEPackageReferenceAccessor()»);"
+			+ "						delegatee = «child.name.toString()»;"
+«ENDIF-»	
 			+ "					}"
 			+ "				};"
 			+ "			public ASTNode getChild() {"
@@ -443,7 +457,11 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 			+ "			public void setChild(ASTNode node) {"
 			+ "				ASTList newList = (ASTList)node;"
 			+ "				list = newList;"
+«IF !child.derived-»
 			+ "				EList elist = get«child.name.toString().toFirstUpper()»();"
+«ELSE-»
+			+ "				EList elist = «child.name.toString()»;"	
+«ENDIF-»
 			+ "				elist.clear();"
 			+ "				elist.addAll(newList.delegatee);"
 			+ "				newList.parent = «genClass.ecoreClass.name»Impl.this;"
@@ -609,56 +627,20 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDDEFINE»
 
 «DEFINE NewNTAGetters(String astPackage, String outPackage) FOR GenPackage»
-«REM»
 «FOREACH this.genClasses AS genClass-»
 «IF !genClass.ecoreClass.interface-»
-«LET genClass.ecoreClass.eReferences.select(e|e.containment&&e.derived) AS ntaReferences-»
-«FOREACH ntaReferences AS ntaReference-»
+«LET genClass.ecoreClass.eReferences.select(e|e.containment&&e.derived&&e.many) AS listNtaReferences-»
+«FOREACH listNtaReferences AS ntaReference-»
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	protected «ntaReference.getReferenceTypeString()» «genClass.ecoreClass.name».«ntaReference.name.toString()»;
-
-	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	public «ntaReference.many?"EList":ntaReference.getReferenceTypeString()» «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
-		if («ntaReference.name.toString()»_computed) {
-			return «ntaReference.name.toString()»;
-		}
-		ASTNode$State state = state();
-		boolean interruptedCircle = false;
-		  if («ntaReference.name.toString()»_visited == state().boundariesCrossed)
-			throw new RuntimeException(
-				"Circular definition of attr: «ntaReference.name.toString()» in class: ");
-		«ntaReference.name.toString()»_visited = state().boundariesCrossed;
-		if (state.IN_CIRCLE) {
-			interruptedCircle = true;
-			state.IN_CIRCLE = false;
-			state.pushEvalStack();
-		}
-		int num = state.boundariesCrossed;
-		boolean isFinal = this.is$Final();
-		«IF ntaReference.many || !ntaReference.required-»
-			IAccessMethods childAccess = resolveAccess(«ntaReference.computeLocalChildIndex()»);
-			childAccess.setChild(«ntaReference.name.toString()»_compute());
-			childAccess.getChild().is$Final = true;
-		«ELSE-»
-		«ntaReference.name.toString()» = «ntaReference.name.toString()»_compute();
-		//THIS IS USUAL JASTADD CODE WHICH WE ESCAPE «ntaReference.name.toString()».setParent(this);
-		«ntaReference.name.toString()».is$Final = true;
-		«ENDIF-»
-		if (true)
-			«ntaReference.name.toString()»_computed = true;
-		«ntaReference.name.toString()»_visited = -1;
-		if (interruptedCircle) {
-			state.IN_CIRCLE = true;
-			state.popEvalStack();
-		}
+	public EList «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
+		get«ntaReference.name.toString()»List();
 		return «ntaReference.name.toString()»;
-	}
+	}	
 «ENDFOREACH-»	
 «ENDLET-»
 «ENDIF-»
 «ENDFOREACH-»
 «EXPAND NewSetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
-«ENDREM»
 «ENDDEFINE»
 
 
