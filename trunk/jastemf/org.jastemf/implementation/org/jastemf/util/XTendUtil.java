@@ -70,4 +70,8 @@ public class XTendUtil {
 		return new SimpleDateFormat().format(calendar.getTime());
 	}
 	
+	public static String getSimpleInstanceTypeName(EClassifier type){
+		return type.getInstanceClass().getSimpleName();
+	}
+	
 }
