@@ -449,7 +449,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 			+ "						if(«child.name.toString().toFirstLower()»==null)"
 			+ "							«child.name.toString().toFirstLower()» = new EObjectContainmentEList<«child.eType.name»>(«child.eType.name».class, parent,"
 			+ "								«child.computeEPackageReferenceAccessor()»);"
-			+ "						delegatee = «child.name.toString()»;"
+			+ "						delegatee = «child.name.toString().toFirstLower()»;"
 «ENDIF-»	
 			+ "					}"
 			+ "				};"
@@ -462,7 +462,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «IF !child.derived-»
 			+ "				EList elist = get«child.name.toString().toFirstUpper()»();"
 «ELSE-»
-			+ "				EList elist = «child.name.toString()»;"	
+			+ "				EList elist = «child.name.toString().toFirstLower()»;"	
 «ENDIF-»
 			+ "				elist.clear();"
 			+ "				elist.addAll(newList.delegatee);"
@@ -636,7 +636,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public EList «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
 		get«ntaReference.name.toString()»List();
-		return «ntaReference.name.toString()»;
+		return «ntaReference.name.toString().toFirstLower()»;
 	}	
 «ENDFOREACH-»	
 «ENDLET-»
