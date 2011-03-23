@@ -111,6 +111,7 @@ aspect Refactorings {
 «ENDDEFINE»
 
 «DEFINE GenPackageImports FOR GenPackage»
+«REM»
 import «this.ecorePackage()».*;
 «IF this.interfacePackageSuffix != null-»
 import «qualifiedPackage(this, this.interfacePackageSuffix)».*;
@@ -119,6 +120,7 @@ import «qualifiedPackage(this, this.interfacePackageSuffix)».*;
 import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDIF-»
 «EXPAND GenPackageImports FOREACH this.nestedGenPackages»
+«ENDREM»
 «ENDDEFINE»
 
 «DEFINE MethodAndFieldRenamings(String astPackage, String outPackage) FOR GenPackage»

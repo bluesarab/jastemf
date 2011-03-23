@@ -96,3 +96,7 @@ cached List[EReference] getInheritedChildren(EClass eClass):
 String computeEPackageReferenceAccessor(EReference reference):
 	reference.eContainingClass.ePackage.name.toString().toFirstUpper()+"Package."+toUpperCaseUnderline(reference.eContainingClass.name.toString())+"__"+toUpperCaseUnderline(reference.name.toString())
 ;
+
+String getImplClassName(GenClass genClass):
+	genClass.ecoreClass.name.toString()+genClass.genPackage.classPackageSuffix.toString().toFirstUpper()
+;
