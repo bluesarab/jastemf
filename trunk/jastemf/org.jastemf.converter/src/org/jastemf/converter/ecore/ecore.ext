@@ -9,3 +9,11 @@ cached String timeStamp():
 String computeReferenceTypeName(EReference reference):
 	reference.eReferenceType.name == "EObject"?"ASTNode":reference.eReferenceType.name
 ;
+
+cached String getQualifiedInstanceTypeName(EClassifier type):
+	type.instanceTypeName.replaceAll("\\$",".")
+;
+
+String getSimpleInstanceTypeName(EClassifier type):
+	JAVA org.jastemf.util.XTendUtil.getSimpleInstanceTypeName(org.eclipse.emf.ecore.EClassifier)
+;
