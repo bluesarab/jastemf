@@ -39,6 +39,8 @@
           eType="#//ntas/C"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="DerivedUpperD" lowerBound="1"
           eType="#//ast/D" derived="true" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="DerivedMultipleUpperC"
+          upperBound="-1" eType="#//ntas/C" derived="true" containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="attributes" nsURI="http://www.jastemf.org/test/attributes" nsPrefix="attributes"/>
