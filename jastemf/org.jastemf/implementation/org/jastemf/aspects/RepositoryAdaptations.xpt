@@ -261,10 +261,11 @@ aspect RepositoryAdaptations {
      *  new target and sets the attr_computed value to true. The rest should work as expected from the original EMF
      *  generated method. However, attributes with cardinality > 1 must be excluded since setting is done via list add.	
 	 */
-	 
-
 «EXPAND NewSetters(astPackage, outPackage) FOREACH genPackages-»
 
+	/*
+	 * Replacing getters of list NTAs.
+	 */
 «EXPAND NewNTAGetters(astPackage, outPackage) FOREACH genPackages-»
 
 	/* 
@@ -276,7 +277,6 @@ aspect RepositoryAdaptations {
 	 * to their -- since the refactorings type incompatible -- associated
 	 * JastAdd attribute methods and performs appropriate type casts.
 	 */
-
 «EXPAND InsertHooks(astPackage, outPackage) FOREACH genPackages-»
 
 	/* 
@@ -391,12 +391,14 @@ aspect RepositoryAdaptations {
 «ENDDEFINE»
 
 «DEFINE PackageImports FOR GenPackage»
+«IF this.genClassifiers.size>0-»
 import «this.ecorePackage()».*;
-«IF this.interfacePackageSuffix != null-»
+«IF this.interfacePackageSuffix != null -»
 import «qualifiedPackage(this, this.interfacePackageSuffix)».*;
 «ENDIF-»
 «IF this.classPackageSuffix != null-»
 import «qualifiedPackage(this, this.classPackageSuffix)».*;
+«ENDIF-»
 «ENDIF-»
 «EXPAND PackageImports FOREACH nestedGenPackages-»
 «ENDDEFINE»
@@ -439,13 +441,13 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDREM-»
 			+ "			private ASTList list = new ASTList() {"
 			+ "					{"
-			+ "						parent = «genClass.ecoreClass.name»Impl.this;"
+			+ "						parent = «genClass.getImplClassName()».this;"
 			+ "						childIndex = «localChildren.indexOf(child)»;"
 «IF !child.derived-»
 			+ "						delegatee = get«child.name.toString().toFirstUpper()»();"
 «ELSE-»
-			+ "						if(«child.name.toString()»==null)"
-			+ "							«child.name.toString()» = new EObjectContainmentEList<«child.eType.name»>(«child.eType.name».class, parent,"
+			+ "						if(«child.name.toString().toFirstLower()»==null)"
+			+ "							«child.name.toString().toFirstLower()» = new EObjectContainmentEList<«child.eType.name»>(«child.eType.name».class, parent,"
 			+ "								«child.computeEPackageReferenceAccessor()»);"
 			+ "						delegatee = «child.name.toString()»;"
 «ENDIF-»	
@@ -464,7 +466,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDIF-»
 			+ "				elist.clear();"
 			+ "				elist.addAll(newList.delegatee);"
-			+ "				newList.parent = «genClass.ecoreClass.name»Impl.this;"
+			+ "				newList.parent = «genClass.getImplClassName()».this;"
 			+ "				newList.childIndex = index;"
 			+ "				newList.delegatee = elist;"
 			+ "			}"
@@ -540,8 +542,8 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDREM»
 			+ "			public ASTNode getChild() {"
 «IF child.derived-»
-			+ "				if(«child.name.toString()»!=null)"
-			+ "					return (ASTNode)«child.name.toString()»;"
+			+ "				if(«child.name.toString().toFirstLower()»!=null)"
+			+ "					return (ASTNode)«child.name.toString().toFirstLower()»;"
 			+ "				else"
 			+ "					return (ASTNode)get«child.name.toString().toFirstUpper()»();"			
 «ELSE-»			
@@ -640,7 +642,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «ENDLET-»
 «ENDIF-»
 «ENDFOREACH-»
-«EXPAND NewSetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
+«EXPAND NewNTAGetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
 «ENDDEFINE»
 
 
