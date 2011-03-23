@@ -108,24 +108,37 @@
 		</delete>
 	</target>
 
-	<target name="JastAdd Semantic" description="Generate basic JastAdd code only.">
+	<target name="JastAdd Semantic" depends="Generate AST Spec" description="Generate basic JastAdd code only.">
 		<echo message="======================> Generate JastAdd Semantic &lt;=====================" />
-		<jastadd outdir="${test_basedir}/src-gen" package="org.jastemf.test.ntatest.ast" rewrite="true">
+		<jastadd 
+			outdir="${test_basedir}/src-gen" 
+			package="org.jastemf.test.ast" 
+			rewrite="true">
 			<fileset dir="${test_basedir}/specifications">
 				<include name="nta-test/semantics/**/*.ast" />
 				<include name="nta-test/semantics/**/*.jrag" />
 				<include name="nta-test/semantics/**/*.jadd" />
+			</fileset>
+			<fileset dir="${test_basedir}/src-gen">
+				<include name="jastemf/adaptation/**/*.ast" />
 			</fileset>
 		</jastadd>
 	</target>
 
 	<target name="EMF Semantic" description="Merge JastAdd code with EMF code.">
 		<echo message="========================> Generate EMF Semantic &lt;=======================" />
-		<jastemf generateeditcode="true" genmodel="${test_basedir}/specifications/nta-test/model/testmodel.genmodel" outpackage="jastemf.adaptation" astpackage="org.jastemf.test.ntatest.ast">
+		<jastemf 
+			generateeditcode="true" 
+			genmodel="${test_basedir}/specifications/nta-test/model/testmodel.genmodel" 
+			outpackage="jastemf.adaptation" 
+			astpackage="org.jastemf.test.ast">
 			<fileset dir="${test_basedir}/specifications">
 				<include name="nta-test/semantics/**/*.ast" />
 				<include name="nta-test/semantics/**/*.jrag" />
 				<include name="nta-test/semantics/**/*.jadd" />
+			</fileset>
+			<fileset dir="${test_basedir}/src-gen">
+				<include name="jastemf/adaptation/**/*.ast" />
 			</fileset>
 		</jastemf>
 	</target>
@@ -144,10 +157,10 @@
 		</javac>
 	</target>
 	
-	<target name="Generate, Compile and Test" depends="Clean,EMF Semantic,Compile Generated Stuff">
+	<target name="Generate, Compile and Test" depends="Clean,Generate AST Spec,EMF Semantic,Compile Generated Stuff">
 		<echo message="========================> Running Test Cases &lt;=======================" />
 		<junit>
-			 <test name="org.jastemf.test.ntatest.NTATest" />
+			 <test name="org.jastemf.test.NTATest" />
 			 <formatter type="plain" usefile="false" />
 			 <classpath refid="eclipse.classpath" />
 			 <classpath>
@@ -161,7 +174,7 @@
 	<target name="Test">
 		<echo message="========================> Running Test Cases &lt;=======================" />
 		<junit>
-			 <test name="org.jastemf.test.ntatest.NTATest" />
+			 <test name="org.jastemf.test.NTATest" />
 			 <formatter type="plain" usefile="false" />
 			 <classpath refid="eclipse.classpath" />
 			 <classpath>
@@ -176,7 +189,7 @@
 		<echo message="========================> Generate AST Spec &lt;======================="/>
 		<jastemf.ecore2ast
 			modelFile="${test_basedir}/specifications/nta-test/model/testmodel.ecore"
-			outputDirectory="${test_basedir}/specifications/nta-test/semantics">
+			outputDirectory="${test_basedir}/src-gen/jastemf/adaptation">
 		</jastemf.ecore2ast>
 	</target>
 </project>
