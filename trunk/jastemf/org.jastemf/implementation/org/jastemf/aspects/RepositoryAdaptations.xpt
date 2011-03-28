@@ -30,7 +30,7 @@ import «astPackage».*;
  * of its AST structure repository the one of the generated <i>EMF</i> model
  * implementation. Thus, the generated JastAdd repository becomes dispensable
  * and is not used anymore.
- * @author C. Bürger
+ * @author C. Buerger, S. Karol
  */
 aspect RepositoryAdaptations {
 	/* 
@@ -596,6 +596,14 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 	
 «ENDFOREACH-»
 «ENDLET-»
+	
+	/**
+	 * The numChildren() method in each GenClass is removed. At run-time the number 
+	 * of children will instead be computed by the ASTNode.numChildren() method which 
+	 * uses the default EMF-based methods.
+	 */
+	@«outPackage».JastEMFAnnotations.SuicideCopycat
+	public void «genClass.ecoreClass.name».numChildren() {}
 «ENDIF-»
 «ENDFOREACH-»
 «EXPAND CorrectRepositoryAccess(astPackage,outPackage) FOREACH this.nestedGenPackages»
