@@ -3,11 +3,14 @@ package org.jastemf.test;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Method;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.jastemf.test.ast.ASTList;
+import org.jastemf.test.ast.ASTNode;
 import org.jastemf.test.test.ntas.impl.AImpl;
 import org.jastemf.test.test.ntas.impl.BImpl;
 import org.jastemf.test.test.ntas.impl.CImpl;
@@ -142,9 +145,18 @@ public class NTATest {
 
 		ASTList<BImpl> derivedB2 = root.getderivedBs();
 		Assert.assertTrue("Value of getDerivedB and getderivedBs should use the same EList.",derivedB1==derivedB2.delegatee);
-
-	
 	}
 	
-	
+	@Test
+	public void testNumChildren() throws Exception {
+		Iterator<EObject> it = root.eAllContents();
+		EObject o = root;
+		do{
+			Assert.assertTrue("Each node in this model should be an ASTNode.",o instanceof ASTNode);
+			ASTNode node = (ASTNode)o;
+			Assert.assertTrue("Child number should be the same as defined in the EClass.",node.getNumChild()==node.eClass().getEAllContainments().size());
+			o = it.hasNext()?it.next():null;
+		}
+		while(o!=null);
+	}
 }
