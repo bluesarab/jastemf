@@ -175,6 +175,7 @@
 		<echo message="========================> Running Test Cases &lt;=======================" />
 		<junit>
 			 <test name="org.jastemf.test.NTATest" />
+			 <test name="org.jastemf.test.APITest" />
 			 <formatter type="plain" usefile="false" />
 			 <classpath refid="eclipse.classpath" />
 			 <classpath>

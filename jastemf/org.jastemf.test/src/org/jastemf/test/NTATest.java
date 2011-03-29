@@ -22,141 +22,53 @@ import org.junit.Test;
 
 public class NTATest {
 
-	private static interface Signature {
-		public String getMethodName();
-
-		public String getReturnTypeName();
-	}
-
-	private List<Signature> rootImplAccessors;
-	{
-		rootImplAccessors = new LinkedList<Signature>();
-		rootImplAccessors.add(new Signature() {
-			public String getReturnTypeName() {
-				return "C";
-			}
-
-			public String getMethodName() {
-				return "getContainmentC";
-			}
-		});
-		rootImplAccessors.add(new Signature() {
-			public String getReturnTypeName() {
-				return "AImpl";
-			}
-
-			public String getMethodName() {
-				return "getDerivedA";
-			}
-		});
-		rootImplAccessors.add(new Signature() {
-			public String getReturnTypeName() {
-				return "CImpl";
-			}
-
-			public String getMethodName() {
-				return "jastadd_getContainmentC";
-			}
-		});
-		
-		rootImplAccessors.add(new Signature() {
-			public String getReturnTypeName() {
-				return "EList";
-			}
-
-			public String getMethodName() {
-				return "getDerivedB";
-			}
-		});
-		
-		rootImplAccessors.add(new Signature() {
-			public String getReturnTypeName() {
-				return "ASTList";
-			}
-
-			public String getMethodName() {
-				return "getderivedBs";
-			}
-		});
-		
-		rootImplAccessors.add(new Signature() {
-			public String getReturnTypeName() {
-				return "EList";
-			}
-
-			public String getMethodName() {
-				return "getContainmentD";
-			}
-		});
-		
-		rootImplAccessors.add(new Signature() {
-			public String getReturnTypeName() {
-				return "ASTList";
-			}
-
-			public String getMethodName() {
-				return "getcontainmentDs";
-			}
-		});
-
-	}
-
-	private RootImpl root;
-
 	@Before
 	public void setUp() throws Exception {
-		root = new RootImpl();
 	}
 
 	@Test
-	public void testAPI() throws Exception {
-		for (Signature signature : rootImplAccessors) {
-			Method accessor = null;
-			try {
-				accessor = RootImpl.class.getMethod(signature.getMethodName());
-			} catch (NoSuchMethodException e) {
-				Assert.fail("Expected accessor " + signature.getMethodName()
-						+ " was not found.");
-			}
-			if (accessor != null) {
-				Assert.assertTrue(
-						"Expected return type name "
-								+ signature.getReturnTypeName() + ", but was "
-								+ accessor.getReturnType().getSimpleName()
-								+ ".",
-						signature.getReturnTypeName().equals(
-								accessor.getReturnType().getSimpleName()));
-			}
-		}
+	public void testBasicNTAFunction() throws Exception {
+		RootImpl root = new RootImpl();
 
-	}
-
-	@Test
-	public void testNTAFunction() throws Exception {
 		CImpl someC = new CImpl("");
 		root.setContainmentC(someC);
-		
+
 		AImpl derivedA = root.getDerivedA();
-		Assert.assertTrue("Value of derivedA should not be null.",derivedA!=null);
-		Assert.assertTrue("AImpl should have name 'test'.","test".equals(derivedA.getName()));
-		
+		Assert.assertTrue("Value of derivedA should not be null.",
+				derivedA != null);
+		Assert.assertTrue("AImpl should have name 'test'.",
+				"test".equals(derivedA.getName()));
+
 		EList<BImpl> derivedB1 = root.getDerivedB();
-		Assert.assertTrue("Value of derivedB should contain exactly one 'B' entry, currently it has " + derivedB1.size() +  " entries.",derivedB1.size()==1);
+		Assert.assertTrue(
+				"Value of derivedB should contain exactly one 'B' entry, currently it has "
+						+ derivedB1.size() + " entries.", derivedB1.size() == 1);
 
 		ASTList<BImpl> derivedB2 = root.getderivedBs();
-		Assert.assertTrue("Value of getDerivedB and getderivedBs should use the same EList.",derivedB1==derivedB2.delegatee);
+		Assert.assertTrue(
+				"Value of getDerivedB and getderivedBs should use the same EList.",
+				derivedB1 == derivedB2.delegatee);
 	}
-	
+
 	@Test
-	public void testNumChildren() throws Exception {
-		Iterator<EObject> it = root.eAllContents();
-		EObject o = root;
-		do{
-			Assert.assertTrue("Each node in this model should be an ASTNode.",o instanceof ASTNode);
-			ASTNode node = (ASTNode)o;
-			Assert.assertTrue("Child number should be the same as defined in the EClass.",node.getNumChild()==node.eClass().getEAllContainments().size());
-			o = it.hasNext()?it.next():null;
-		}
-		while(o!=null);
+	public void testNTAAcess() throws Exception {
+		RootImpl root = new RootImpl();
+
+		CImpl someC = new CImpl("");
+		root.setContainmentC(someC);
+
+		AImpl derivedA1 = (AImpl) root.getChild(2);
+		Assert.assertNotNull("A call to getChild() which refers to a 1..1 NTA should return a non null value in the current implementation.",derivedA1);
+
+		ASTList derivedB1 = (ASTList) root.getChild(3);
+		Assert.assertTrue(derivedB1.getNumChild() == 0);
+
+		ASTList derivedB2 = root.getderivedBs();
+
+		ASTList derivedB3 = (ASTList) root.getChild(3);
+		Assert.assertTrue(
+				"A call to getChild() which refers to a List NTA should return the same ASTList as the direct call before.",
+				derivedB3 == derivedB2);
 	}
+
 }
