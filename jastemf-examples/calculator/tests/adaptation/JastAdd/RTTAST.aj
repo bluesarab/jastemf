@@ -47,15 +47,11 @@ public aspect RTTAST {
 	
 	// Compare nodes' terminals:
 	declare @method:
-		public * VariableAssignment+.getLValue() : @Parser.Node.Compare;
-	declare @method:
 		public * Declaration+.getName() : @Parser.Node.Compare;
-	declare @method:
-		public * ProcedureDeclaration+.getReturnType() : @Parser.Node.Compare;
 	declare @method:
 		public * Reference+.getName() : @Parser.Node.Compare;
 	declare @method:
-		public * ProcedureCall+.getName() : @Parser.Node.Compare;
+		public * Constant+.getLexem() : @Parser.Node.Compare;
 	
 	// Compare nodes' type and address:
 	declare @method:
@@ -63,30 +59,18 @@ public aspect RTTAST {
 	
 	/** Name Analysis */
 	
-	// Compare procedure calls' associated procedure:
-	declare @method:
-		public * ProcedureCall+.Declaration() : @Parser.Node.Compare;
 	// Compare the program's main procedure:
 	declare @method:
 		public * CompilationUnit+.MainProcedure() : @Parser.Node.Compare;
 	// Compare references' associated declaration:
 	declare @method:
 		public * Reference+.Declaration() : @Parser.Node.Compare;
-	// Compare the declaration associated with assignments' left hand:
-	declare @method:
-		public * VariableAssignment+.Declaration() : @Parser.Node.Compare;
 	
 	/** Type Analysis */
 	
-	// Compare variable declarations' type:
+	// Compare declarations' type:
 	declare @method:
-		public * VariableDeclaration+.Type() : @Parser.Node.Compare;
-	// Compare assignments' type:
-	declare @method:
-		public * VariableAssignment+.Type() : @Parser.Node.Compare;
-	// Compare procedure returns' type:
-	declare @method:
-		public * ProcedureReturn+.Type() : @Parser.Node.Compare;
+		public * Declaration+.Type() : @Parser.Node.Compare;
 	// Compare expressions' type:
 	declare @method:
 		public * Expression+.Type() : @Parser.Node.Compare;
@@ -95,13 +79,14 @@ public aspect RTTAST {
 	
 	// Compare programs' correctness:
 	declare @method:
-		public * ASTNode+.IsCorrect() : @Parser.Node.Compare;
-	declare @method:
 		public * ASTNode+.IsCorrectLocal() : @Parser.Node.Compare;
 	
-	/** Interpretation */
+	/** Interpretation **/
 	
-	// Compare expressions' constant folding:
 	declare @method:
-		public * Expression+.ConstantValue() : @Parser.Node.Compare;
+		public * CompilationUnit+.rttInterpret() : @Parser.Node.Compare;
+	public String CompilationUnit.rttInterpret() {
+		return IsCorrect() ? Interpret().getStdOut().toString() :
+			"RTT: Not interpreted; Program contains errors.";
+	}
 }

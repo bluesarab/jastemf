@@ -1,3 +1,11 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
 package siple.semantics;
 
 import java.util.*;
@@ -15,7 +23,7 @@ import siple.semantics.ast.*;
  * @author C. Bürger
  */
 public final class State {
-	private final Stack<Frame> stack = new Stack<Frame>();
+	private Stack<Frame> stack = new Stack<Frame>();
 	private final StringBuilder stdOut = new StringBuilder();
 	
 	/**
@@ -30,29 +38,29 @@ public final class State {
 	public StringBuilder getStdOut() {return stdOut;}
 	
 	/**
-	 * Return the given variable's current value.
-	 * @param decl The variable for which to look up its value.
-	 * @return The variable's value.
-	 * @throws InterpretationException Thrown, iff the given variable is not
+	 * Return an entities current value.
+	 * @param decl The entity for which to look up its value.
+	 * @return The entities' value.
+	 * @throws InterpretationException Thrown, iff the given entity is not
 	 * allocated.
 	 */
-	public Object lookUpValue(VariableDeclaration decl)
+	public Object lookUpValue(Declaration decl)
 	throws InterpretationException {
 		for (int i = stack.size() - 1; i >= 0; i--)
 			if (stack.get(i).env.containsKey(decl))
 				return stack.get(i).env.get(decl);
 		throw new InterpretationException(
-				"Read access to unallocated variable.");
+				"Read access to unallocated variable ["+ decl.getName() +"].");
 	}
 	
 	/**
-	 * Set the given variable's value.
-	 * @param decl The variable for which to set its value.
-	 * @param newValue The variable's new value.
-	 * @throws InterpretationException Thrown, iff the given variable is not
+	 * Set an entities' value.
+	 * @param decl The entity for which to set its value.
+	 * @param newValue The entities' new value.
+	 * @throws InterpretationException Thrown, iff the given entity is not
 	 * allocated.
 	 */
-	public void setValue(VariableDeclaration decl, Object newValue)
+	public void setValue(Declaration decl, Object newValue)
 	throws InterpretationException {
 		for (int i = stack.size() - 1; i >= 0; i--) {
 			if (stack.get(i).env.containsKey(decl)) {
@@ -65,13 +73,19 @@ public final class State {
 	}
 	
 	/**
-	 * Allocate memory for the given variable in the current frame and
-	 * initialize its value. The state is not changed iff the variable is
-	 * already allocated <b>in the current frame</b>.
-	 * @param decl The variable to allocate and initialize.
-	 * @param value The variable's initialization value.
+	 * Allocate memory for the given entity in the current frame and
+	 * initialize its value.
+	 * 
+	 * To avoid reallocation errors in programs like<br>
+	 * <tt>While </tt>a condition<tt> Do<br>
+	 *  Var j:Integer; % Variable only allocated once throughout the loop<br>
+	 * Od;</tt><br>
+	 * the state is not changed, iff the entity is already allocated <b>in the
+	 * current frame</b>.
+	 * @param decl The entity to allocate and initialize.
+	 * @param value The entities' initialization value.
 	 */
-	public void allocateVariable(VariableDeclaration decl, Object value) {
+	public void allocateVariable(Declaration decl, Object value) {
 		if (!stack.peek().env.containsKey(decl))
 			stack.peek().env.put(decl, value);
 	}
@@ -111,8 +125,8 @@ public final class State {
 	}
 	
 	private static final class Frame {
-		private Map<VariableDeclaration, Object> env =
-			new TreeMap<VariableDeclaration, Object>();
+		private Map<Declaration, Object> env =
+			new TreeMap<Declaration, Object>();
 		private Object returnValue;
 	}
 }

@@ -32,12 +32,15 @@ public class Interpreter {
 	 */
 	public static void main(String[] args)
 	throws IOException, beaver.Parser.Exception {
+		final long start = new java.util.Date().getTime();
 		try {
 			State vm = interpret(new File(args[0]));
 			System.out.println(vm.getStdOut());
 		} catch (InterpretationException rte) {
 			System.out.println(rte);
 		}
+		final long end = new java.util.Date().getTime();
+		System.out.println("\nExecution Time: "+ (end - start) +"ms");
 	}
 	
 	/**

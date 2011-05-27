@@ -18,10 +18,10 @@ abstract Statement;
 	Block:Statement ::= Statement*;
 	If:Statement ::= Condition:Expression Body:Block [Alternative:Block];
 	While:Statement ::= Condition:Expression Body:Block;
-	VariableAssignment:Statement ::= <LValue:String> RValue:Expression;
+	VariableAssignment:Statement ::= LValue:Expression RValue:Expression;
 	ProcedureReturn:Statement ::= [Expression];
 	Write:Statement ::= Expression;
-	Read:Statement ::= <LValue:String>;
+	Read:Statement ::= Expression;
 	
 	abstract Declaration:Statement ::= <Name:String>;
 		
@@ -36,27 +36,36 @@ abstract Statement;
 		
 		Constant:Expression ::= <Lexem:String>;
 		Reference:Expression ::= <Name:String>;
-		ProcedureCall:Expression ::= <Name:String> Argument:Expression*;
+		ProcedureCall:Expression ::= Procedure:Expression Argument:Expression*;
 		NestedExpression:Expression ::= Expression;
 		
 		abstract UnaryExpression:Expression ::= Operand:Expression;
 			
 			Not:UnaryExpression;
 			UMinus:UnaryExpression;
+			RealCoercion:UnaryExpression;
+			Dereference:UnaryExpression;
 			
 		abstract BinaryExpression:Expression ::=
 				Operand1:Expression
 				Operand2:Expression;
 			
-			And:BinaryExpression;
-			Or:BinaryExpression;
-			Equal:BinaryExpression;
-			GreaterThan:BinaryExpression;
-			LesserThan:BinaryExpression;
-			GreaterThanEqual:BinaryExpression;
-			LesserThanEqual:BinaryExpression;
-			Addition:BinaryExpression;
-			Subtraction:BinaryExpression;
-			Multiplication:BinaryExpression;
-			Division:BinaryExpression;
+			abstract LogicExpression:BinaryExpression;
 			
+				And:LogicExpression;
+				Or:LogicExpression;
+				
+			abstract EqualityExpression:BinaryExpression;
+			
+				Equal:EqualityExpression;
+				GreaterThan:EqualityExpression;
+				LesserThan:EqualityExpression;
+				GreaterThanEqual:EqualityExpression;
+				LesserThanEqual:EqualityExpression;
+				
+			abstract ArithmeticExpression:BinaryExpression;
+				
+				Addition:ArithmeticExpression;
+				Subtraction:ArithmeticExpression;
+				Multiplication:ArithmeticExpression;
+				Division:ArithmeticExpression;

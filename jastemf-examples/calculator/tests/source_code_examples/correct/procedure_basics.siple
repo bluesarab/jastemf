@@ -1,11 +1,11 @@
 % This program and the accompanying materials are made available under the
 % terms of the BSD 3-clause license which accompanies this distribution.
 
-% @author C. Bürger, S. Karol
+% author: C. Bürger, S. Karol
 
 Procedure main() Begin
 	Write id(3);
-	Write fac(12);
+	Write faculty(12);
 	Write fibonacci(10);
 	mr(10);
 End;
@@ -16,11 +16,11 @@ Procedure id(Var n:Integer):Integer Begin
 End;
 
 % Faculty
-Procedure fac(Var n:Integer):Integer Begin
+Procedure faculty(Var n:Integer):Integer Begin
 	If n = 0 Then
 		Return 1;
 	Fi;
-	Return n * fac(n - 1);
+	Return n * faculty(n - 1);
 End;
 
 % Fibonacci numbers

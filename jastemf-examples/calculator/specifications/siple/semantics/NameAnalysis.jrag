@@ -11,85 +11,51 @@
  * @author C. Bürger
  */
 aspect NameAnalysis {
-	/** Procedure declaration name analysis */
+	/** Ordinary Name Analysis */
 	
-	syn Collection<ProcedureDeclaration> CompilationUnit.LookUpPDecl(String name) {
-		Collection<ProcedureDeclaration> result =
-			new LinkedList<ProcedureDeclaration>();
+	syn LinkedList<Declaration> CompilationUnit.LookUp(String name) {
+		LinkedList<Declaration> result = new LinkedList<Declaration>();
 		for (int i = 0; i < getNumDeclaration(); i++) // Declared within compilation unit
-			result.addAll(getDeclaration(i).LookUpPLocal(name));
+			result.addAll(getDeclaration(i).LookUpLocal(name));
 		return result;
 	}
-	eq CompilationUnit.getDeclaration(int index).LookUpPDecl(String name) =
-		LookUpPDecl(name);
-	eq Block.getStatement(int index).LookUpPDecl(String name) {
-		Collection<ProcedureDeclaration> result =
-			new LinkedList<ProcedureDeclaration>();
-		for (int i = 0; i <= index; i++) // Declare before use
-			result.addAll(getStatement(i).LookUpPLocal(name));
-		return !result.isEmpty() ? result : LookUpPDecl(name);
-	}
-	syn Collection<ProcedureDeclaration> Statement.LookUpPLocal(String name) =
-		new LinkedList<ProcedureDeclaration>();
-	eq ProcedureDeclaration.LookUpPLocal(String name) {
-		if (!getName().equals(name))
-			return new LinkedList<ProcedureDeclaration>();
-		Collection<ProcedureDeclaration> result =
-			new LinkedList<ProcedureDeclaration>();
-		result.add(this);
-		return result;
-	}
-	
-	eq ProcedureCall.Declaration() = LookUpPDecl(getName()).size() == 1 ?
-			LookUpPDecl(getName()).iterator().next() :
-			null;
-	
-	eq CompilationUnit.MainProcedure() = LookUpPDecl("main").size() == 1 ?
-			LookUpPDecl("main").iterator().next() :
-			null;
-	
-	/** Variable declaration name analysis */
-	
-	syn Collection<VariableDeclaration> CompilationUnit.LookUpVDecl(String name) {
-		Collection<VariableDeclaration> result =
-			new LinkedList<VariableDeclaration>();
-		for (int i = 0; i < getNumDeclaration(); i++) // Declared within compilation unit
-			result.addAll(getDeclaration(i).LookUpVLocal(name));
-		return result;
-	}
-	eq CompilationUnit.getDeclaration(int index).LookUpVDecl(String name) =
-		LookUpVDecl(name);
-	eq Block.getStatement(int index).LookUpVDecl(String name) {
-		Collection<VariableDeclaration> result =
-			new LinkedList<VariableDeclaration>();
+	eq CompilationUnit.getDeclaration(int index).LookUp(String name) =
+		LookUp(name);
+	eq Block.getStatement(int index).LookUp(String name) {
+		LinkedList<Declaration> result = new LinkedList<Declaration>();
 		if (IsProcedureBody() != null)
 			for (VariableDeclaration para:IsProcedureBody().getParameterList())
 				if (para.getName().equals(name))
 					result.add(para);
 		for (int i = 0; i <= index; i++) // Declare before use
-			result.addAll(getStatement(i).LookUpVLocal(name));
-		return !result.isEmpty() ? result : LookUpVDecl(name);
+			result.addAll(getStatement(i).LookUpLocal(name));
+		return !result.isEmpty() ? result : LookUp(name);
 	}
-	syn Collection<VariableDeclaration> Statement.LookUpVLocal(String name) =
-		new LinkedList<VariableDeclaration>();
-	eq VariableDeclaration.LookUpVLocal(String name) {
-		if (IsParameterDeclaration() || !getName().equals(name))
-			return new LinkedList<VariableDeclaration>();
-		Collection<VariableDeclaration> result =
-			new LinkedList<VariableDeclaration>();
-		result.add(this);
+	
+	syn LinkedList<Declaration> Statement.LookUpLocal(String name) =
+		new LinkedList<Declaration>();
+	eq ProcedureDeclaration.LookUpLocal(String name) {
+		LinkedList<Declaration> result = new LinkedList<Declaration>();
+		if (getName().equals(name))
+			result.add(this);
+		return result;
+	}
+	eq VariableDeclaration.LookUpLocal(String name) {
+		LinkedList<Declaration> result = new LinkedList<Declaration>();
+		if (!IsParameterDeclaration() && getName().equals(name))
+			result.add(this);
 		return result;
 	}
 	
-	eq Reference.Declaration() = LookUpVDecl(getName()).size() == 1 ?
-			LookUpVDecl(getName()).iterator().next() :
-			null;
+	eq CompilationUnit.MainProcedure() {
+		LinkedList<Declaration> scope = LookUp("main");
+		if (scope.size() == 1 && scope.get(0) instanceof ProcedureDeclaration)
+			return (ProcedureDeclaration)scope.get(0);
+		return null;
+	}
 	
-	eq VariableAssignment.Declaration() = LookUpVDecl(getLValue()).size() == 1 ?
-			LookUpVDecl(getLValue()).iterator().next() :
-			null;
-	
-	eq Read.Declaration() = LookUpVDecl(getLValue()).size() == 1 ?
-			LookUpVDecl(getLValue()).iterator().next() :
-			null;
+	eq Reference.Declaration() {
+		LinkedList<Declaration> scope = LookUp(getName());
+		return scope.size() == 1 ? scope.get(0) : null;
+	}
 }
