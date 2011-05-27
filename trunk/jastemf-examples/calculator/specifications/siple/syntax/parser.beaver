@@ -21,12 +21,14 @@
 %terminals kIF, kTHEN, kELSE, kFI;
 // While, Do, Od
 %terminals kWHILE, kDO, kOD;
-// Return
-%terminals kRETURN;
+// Call, Return
+%terminals kCALL, kRETURN;
 // Write, Read
 %terminals kWRITE, kREAD;
-// Boolean, Integer, Real
-%terminals kBOOLEAN, kINTEGER, kREAL;
+// Boolean, Integer, Real, Pointer
+%terminals kBOOLEAN, kINTEGER, kREAL, kPOINTER;
+// Address, Deref
+%terminals kADDRESS, kDEREF;
 // Not, And, Or
 %terminals kNOT, kAND, kOR;
 // *, +, -, /
@@ -51,6 +53,7 @@
 %typeof VariableDeclaration = "VariableDeclaration";
 %typeof Block = "Block";
 %typeof Statement = "Statement";
+%typeof LValueExpression = "Expression";
 %typeof Expression = "Expression";
 %typeof OrExpr = "Expression";
 %typeof AndExpr = "Expression";
@@ -62,6 +65,7 @@
 %typeof PrimExpr = "Expression";
 %typeof ProcedureCall = "ProcedureCall";
 %typeof Type = "Type";
+%typeof TypeList = "java.util.List<Type>";
 %typeof DeclarationList = "List<Declaration>";
 %typeof ParameterList = "List<VariableDeclaration>";
 %typeof StatementList = "List<Statement>";
@@ -163,9 +167,9 @@ Statement = Declaration
 	{:
 		return new Symbol(new While(cond, new Block(body)));
 	:}
-	| IDENTIFIER.id pCOLON_EQUALS Expression.expr pSEMICOLON
+	| LValueExpression.lexpr pCOLON_EQUALS Expression.rexpr pSEMICOLON
 	{:
-		return new Symbol(new VariableAssignment(id, expr));
+		return new Symbol(new VariableAssignment(lexpr, rexpr));
 	:}
 	| kRETURN Expression.expr pSEMICOLON
 	{:
@@ -179,13 +183,23 @@ Statement = Declaration
 	{:
 		return new Symbol(new Write(expr));
 	:}
-	| kREAD IDENTIFIER.id pSEMICOLON
+	| kREAD Expression.expr pSEMICOLON
 	{:
-		return new Symbol(new Read(id));
+		return new Symbol(new Read(expr));
 	:}
 	| ProcedureCall.call pSEMICOLON
 	{:
 		return _symbol_call;
+	:}
+	;
+
+LValueExpression = IDENTIFIER.id
+	{:
+		return new Symbol(new Reference(id));
+	:}
+	| kDEREF pBRACKETOPENROUND LValueExpression.expr pBRACKETCLOSEROUND
+	{:
+		return new Symbol(new Dereference(expr));
 	:}
 	;
 
@@ -275,7 +289,15 @@ PrimExpr = CONSTANT.co
 	:}
 	| IDENTIFIER.id
 	{:
+		return new Symbol(new Dereference(new Reference(id)));
+	:}
+	| kADDRESS pBRACKETOPENROUND IDENTIFIER.id pBRACKETCLOSEROUND
+	{:
 		return new Symbol(new Reference(id));
+	:}
+	| kDEREF pBRACKETOPENROUND Expression.expr pBRACKETCLOSEROUND
+	{:
+		return new Symbol(new Dereference(expr));
 	:}
 	| ProcedureCall
 	| pBRACKETOPENROUND Expression.expr pBRACKETCLOSEROUND
@@ -286,11 +308,19 @@ PrimExpr = CONSTANT.co
 
 ProcedureCall = IDENTIFIER.id pBRACKETOPENROUND ArgumentList.list pBRACKETCLOSEROUND
 	{:
-		return new Symbol(new ProcedureCall(id, list));
+		return new Symbol(new ProcedureCall(new Dereference(new Reference(id)), list));
 	:}
 	| IDENTIFIER.id pBRACKETOPENROUND pBRACKETCLOSEROUND
 	{:
-		return new Symbol(new ProcedureCall(id, new List<Expression>()));
+		return new Symbol(new ProcedureCall(new Dereference(new Reference(id)), new List<Expression>()));
+	:}
+	| kCALL pBRACKETOPENROUND Expression.expr pCOLON ArgumentList.list pBRACKETCLOSEROUND
+	{:
+		return new Symbol(new ProcedureCall(expr, list));
+	:}
+	| kCALL pBRACKETOPENROUND Expression.expr pBRACKETCLOSEROUND
+	{:
+			return new Symbol(new ProcedureCall(expr, new List<Expression>()));
 	:}
 	;
 
@@ -305,7 +335,49 @@ ArgumentList = Expression.expr
 	:}
 	;
 	
-Type = kINTEGER.type {: return new Symbol(Type.Integer); :}
-	| kREAL.type {: return new Symbol(Type.Real); :}
-	| kBOOLEAN.type {: return new Symbol(Type.Boolean); :}
+Type = kBOOLEAN
+	{:
+		return new Symbol(Type.Boolean);
+	:}
+	| kINTEGER
+	{:
+		return new Symbol(Type.Integer);
+	:}
+	| kREAL
+	{:
+		return new Symbol(Type.Real);
+	:}
+	| kPOINTER pBRACKETOPENROUND Type.type pBRACKETCLOSEROUND
+	{:
+		return new Symbol(Type.newPointer(type));
+	:}
+	| kPROCEDURE pBRACKETOPENROUND TypeList.paraTypes pBRACKETCLOSEROUND pCOLON Type.returnType
+	{:
+		return new Symbol(Type.newProcedure(paraTypes.toArray(new Type[0]), returnType));
+	:}
+	| kPROCEDURE pBRACKETOPENROUND pBRACKETCLOSEROUND pCOLON Type.returnType
+	{:
+		return new Symbol(Type.newProcedure(new Type[0], returnType));
+	:}
+	| kPROCEDURE pBRACKETOPENROUND TypeList.paraTypes pBRACKETCLOSEROUND
+	{:
+		return new Symbol(Type.newProcedure(paraTypes.toArray(new Type[0]), Type.Undefined));
+	:}
+	| kPROCEDURE pBRACKETOPENROUND pBRACKETCLOSEROUND
+	{:
+		return new Symbol(Type.newProcedure(new Type[0], Type.Undefined));
+	:}
+	;
+
+TypeList = Type.type
+	{:
+		java.util.List<Type> list = new java.util.LinkedList<Type>();
+		list.add(type);
+		return new Symbol(list);
+	:}
+	| TypeList.list pCOMMA Type.type
+	{:
+		list.add(type);
+		return _symbol_list;
+	:}
 	;

@@ -1,6 +1,6 @@
-; TextPad5 syntax definition for SIPLE.
+; TextPad5 syntax definition for JastAdd abstract syntax tree (AST) specifications.
 ;
-; @author C. Bürger
+; author: C. Bürger
 
 C=1
 
@@ -9,13 +9,13 @@ Namespace1 = 6
 IgnoreCase = No
 KeyWordLength =
 BracketChars =
-OperatorChars = ,;:()+-*/=#
+OperatorChars = ,;:=<>#+-*/()
 PreprocStart =
 SyntaxStart =
 SyntaxEnd =
 HexPrefix =
-CommentStart =
-CommentEnd =
+CommentStart = (*
+CommentEnd = *)
 CommentStartAlt =
 CommentEndAlt =
 SingleComment = %
@@ -34,9 +34,9 @@ CharEsc =
 
 [Keywords 1]
 Procedure
+Var
 Begin
 End
-Var
 If
 Then
 Else
@@ -44,15 +44,19 @@ Fi
 While
 Do
 Od
+Call
 Return
 Write
-Writeln
-Not
-And
-Or
+Read
 Boolean
 Integer
 Real
+Pointer
+Address
+Deref
+Not
+And
+Or
 true
 false
 

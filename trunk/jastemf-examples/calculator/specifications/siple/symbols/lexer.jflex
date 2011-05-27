@@ -58,12 +58,16 @@ IntegerNumber  = [0-9]+
 	"While"			{ return createPrimitiveToken(Terminals.kWHILE); }
 	"Do"			{ return createPrimitiveToken(Terminals.kDO); }
 	"Od"			{ return createPrimitiveToken(Terminals.kOD); }
+	"Call"			{ return createPrimitiveToken(Terminals.kCALL); }
 	"Return"		{ return createPrimitiveToken(Terminals.kRETURN); }
 	"Write"			{ return createPrimitiveToken(Terminals.kWRITE); }
 	"Read"			{ return createPrimitiveToken(Terminals.kREAD); }
 	"Boolean"		{ return createPrimitiveToken(Terminals.kBOOLEAN); }
 	"Integer"		{ return createPrimitiveToken(Terminals.kINTEGER); }
 	"Real"			{ return createPrimitiveToken(Terminals.kREAL); }
+	"Pointer"		{ return createPrimitiveToken(Terminals.kPOINTER); }
+	"Address"		{ return createPrimitiveToken(Terminals.kADDRESS); }
+	"Deref"			{ return createPrimitiveToken(Terminals.kDEREF); }
 	"Not"			{ return createPrimitiveToken(Terminals.kNOT); }
 	"And"			{ return createPrimitiveToken(Terminals.kAND); }
 	"Or"			{ return createPrimitiveToken(Terminals.kOR); }
@@ -90,4 +94,4 @@ IntegerNumber  = [0-9]+
 	{Identifier}	{ return createPrimitiveToken(Terminals.IDENTIFIER); }
 	{WhiteSpace}	{ /* ignore */ }
 }
-.					{ throw new Scanner.Exception("Unknown symbol!"); }
+.					{ throw new Scanner.Exception("Unknown symbol."); }

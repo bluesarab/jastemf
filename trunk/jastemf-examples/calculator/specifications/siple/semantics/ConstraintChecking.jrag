@@ -25,8 +25,13 @@ aspect ConstraintChecking {
 	eq Statement.IsCorrect() = super.IsCorrect();
 	eq Statement.IsCorrectLocal() = super.IsCorrectLocal();
 	
-	eq Expression.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
-	eq CompilationUnit.IsCorrectLocal() = MainProcedure() != null;
+	eq CompilationUnit.IsCorrectLocal() {
+		if (MainProcedure() == null)
+			return false;
+		ProcedureDeclaration main = MainProcedure();
+		return main.getNumParameter() == 0 &&
+				main.getReturnType() == Type.Undefined;
+	}
 	eq ProcedureDeclaration.IsCorrectLocal() {
 		// Procedures with a return type must finish with a return statement:
 		if (getReturnType() != Type.Undefined) {
@@ -38,14 +43,15 @@ aspect ConstraintChecking {
 				return false;
 		}
 		// The procedure declaration must not be a redeclaration:
-		return LookUpPDecl(getName()).size() < 2;
+		return LookUp(getName()).size() < 2;
 	}
 	eq VariableDeclaration.IsCorrectLocal() =
-		LookUpVDecl(getName()).size() < 2; // Forbid redeclarations
+		LookUp(getName()).size() < 2; // Forbid redeclarations
 	eq If.IsCorrectLocal() = getCondition().Type() == Type.Boolean;
 	eq While.IsCorrectLocal() = getCondition().Type() == Type.Boolean;
 	eq VariableAssignment.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
 	eq ProcedureReturn.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
-	eq Write.IsCorrectLocal() = getExpression().Type() != Type.ERROR_TYPE;
-	eq Read.IsCorrectLocal() = Declaration() != null;
+	eq Write.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
+	eq Read.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
+	eq Expression.IsCorrectLocal() = Type() != Type.ERROR_TYPE;
 }

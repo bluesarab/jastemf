@@ -24,17 +24,17 @@ public class ReadDialog {
 	 * produced, output.
 	 * @return A valid value for the given variable.
 	 */
-	public synchronized static Object execute(VariableDeclaration toRead, String vmOutput) {
+	public synchronized static Object execute(Declaration toRead, String vmOutput) {
 		result = null;
 		new ReadDialog(toRead, vmOutput);
 		while(result == null) {
-			try {Thread.currentThread().sleep(300);}
+			try {Thread.sleep(300);}
 			catch(InterruptedException ex) {}
 		}
 		return result;
 	}
 	
-	private ReadDialog(final VariableDeclaration toRead, String vmOutput) {
+	private ReadDialog(final Declaration toRead, String vmOutput) {
 		final JFrame dialog = new JFrame("Read Input");
 		
 		dialog.setUndecorated(true);
@@ -62,7 +62,7 @@ public class ReadDialog {
 				if (inputText == null || inputText.length() == 0)
 					return;
 				Constant inputValue = new Constant(inputText);
-				switch (toRead.Type()) {
+				switch (toRead.Type().domain) {
 				case Boolean:
 					result = inputValue.Type() == Type.Boolean ?
 							inputValue.AsBoolean() : null;

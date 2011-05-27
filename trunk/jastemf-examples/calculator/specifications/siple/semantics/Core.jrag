@@ -9,13 +9,14 @@
 import java.util.*;
 
 import siple.semantics.*;
+import siple.semantics.Type.*;
 
 /**
- * For complicated computations about SIPLE programs, often simple support
- * methods are required that refine nodes' local information - like conversions
- * of terminal nodes' value - or distribute local context information to
- * remotely located nodes further down the AST or vice versa. To this end, the
- * access support API is provided.
+ * For complicated computations about SiPLE programs, often simple support
+ * methods are required that refine nodes' local information --- like
+ * conversions of terminal nodes' value --- or distribute local context
+ * information to remotely located nodes further down the AST or vice versa.
+ * To this end, the access support API is provided.
  * @author C. Bürger
  */
 aspect AccessSupport {
@@ -49,48 +50,47 @@ aspect AccessSupport {
 }
 
 /**
- * SIPLE has two separate name spaces, one for procedures and one for
- * variables. Both are block-structured. Procedure declarations can be nested
- * and consequently procedures have a closure. All globally declared entities
- * can be used before their declaration. For all other entities the declare
- * before use rule applies. The supported name analysis provides facillities to
- * search in both name spaces for an entity by name. The search returns all
- * appropriate entities in scope. Additionally, each construct that must be
- * associated with exactly one entity (E.g. references or procedure calls) has
- * an attribute, that refers to the associated construct or is null, iff the
+ * SiPLE's ordinary name space is block-structured. Especially, procedure
+ * declarations can be nested and consequently procedures have a closure. All
+ * globally declared entities can be used before their declaration. For all
+ * other entities the declare before use rule applies. The supported name
+ * analysis provides facillities to search for an entity by name. The search
+ * returns all appropriate entities in scope. Additionally, each construct that
+ * must be associated with exactly one entity (E.g. references) has an
+ * attribute, that refers to the associated construct or is null, iff the
  * construct does not exist or is ambiguous.
  * @author C. Bürger
  */
 aspect NameAnalysis {
-	// Procedure name space:
-	inh Collection<ProcedureDeclaration> ASTNode.LookUpPDecl(String name);
-	syn ProcedureDeclaration ProcedureCall.Declaration();
+	// Ordinary name space:
+	inh LinkedList<Declaration> ASTNode.LookUp(String name);
 	syn ProcedureDeclaration CompilationUnit.MainProcedure();
-	
-	// Variable name space:
-	inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
-	syn VariableDeclaration Reference.Declaration();
-	syn VariableDeclaration VariableAssignment.Declaration();
-	syn VariableDeclaration Read.Declaration();
+	syn Declaration Reference.Declaration();
 }
 
 /**
- * SIPLE is a statically, strongly typed language. The supported type analysis
+ * SiPLE is a statically, strongly typed language. The supported type analysis
  * is program execution independent and specifies a type for all expressions,
- * variable assignments and procedure returns. Iff such constructs' type
- * constraints are not satisfied, their type is a special error type.
+ * declarations and statements with type constraints. Iff an expression's or
+ * statement's type constraints are not satisfied, its type is a special
+ * error type.
+ * 
+ * Further, SiPLE supports automatic type coercions from integer to real
+ * numbers.
  * @author C. Bürger
  */
 aspect TypeAnalysis {
-	syn Type VariableDeclaration.Type(); // For convenient reasons only.
+	syn Type Declaration.Type();
 	syn Type VariableAssignment.Type();
 	syn Type ProcedureReturn.Type();
+	syn Type Write.Type();
+	syn Type Read.Type();
 	syn Type Expression.Type();
 }
 
 /**
- * SIPLE programs and program fragments can be statically checked whether
- * they are valid or not.
+ * SiPLE programs and program fragments can be statically checked for
+ * well-formedness.
  */
 aspect ConstraintChecking {
 	// Check a program fragment (The construct and its subtree)
@@ -100,46 +100,23 @@ aspect ConstraintChecking {
 }
 
 /**
- * TODO: Add documentation.
- * @author C. Bürger
- */
-aspect DataflowAnalysis {
-	// inh Statement Statement.LastAssignment(VariableDeclaration decl);
-	// syn Statment Reference.LastAssignment();
-	
-	syn boolean Statement.MaybeUndecidable();
-}
-
-/**
- * SIPLE programs can be interpreted. To interpret a SIPLE program means to
+ * SiPLE programs can be interpreted. To interpret a SIPLE program means to
  * execute its statements, starting with a call to the main procedure. Each
  * statement can change the program's internal state. The interpretation's
  * result is either, an interpretation exception iff the program is erroneous
- * or the final state otherwise. Since SIPLE is Turing complete, the
+ * or the final state otherwise. Since SiPLE is Turing complete, the
  * interpretation of a program might also not terminate at all.
  * 
  * Instead of interpreting the complete program at once, it is also possible
  * to interpret single statements or to compute the value of single
  * expressions starting from a given interpretation state. Again, errors
  * encountered while interpretation result in appropriate exceptions.
- * 
- * For each expression it can be statically decided, whether it has a constant
- * value or not. If it has, the value can be statically computed and it is
- * guaranteed that the computation terminates and always succeeds, i.e. throws
- * no interpretation exception. To guarantee termination, an expression's
- * value is only constant, iff it does not depend on loops and procedure
- * executions (both can be undecidable = non-terminating). Iff a constant
- * expression depends on an erroneous program part, its value is a special
- * error value.
  * @author C. Bürger
  */
 aspect Interpretation {
-	// Returns null, iff the expression is not constant.
-	syn Object Expression.ConstantValue();
-	public abstract Object Expression.Value(State vm)
-		throws InterpretationException;
-	
 	syn State CompilationUnit.Interpret();
 	public abstract void Statement.Interpret(State vm)
+		throws InterpretationException;
+	public abstract Object Expression.Value(State vm)
 		throws InterpretationException;
 }
