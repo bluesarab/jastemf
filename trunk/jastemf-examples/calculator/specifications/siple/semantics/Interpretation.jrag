@@ -20,31 +20,37 @@ aspect Interpretation {
 		// Allocate all global variables:
 		for (int i = 0; i < getNumDeclaration(); i++)
 			getDeclaration(i).Interpret(vm);
-		// Execute the main function:
-		vm.newFrame();
-		MainProcedure().getBody().Interpret(vm);
-		vm.deleteFrame();
+		// Prepare the main procedure's execution environment:
+		Frame envPrototype = (Frame)vm.access(MainProcedure()).value;
+		Frame newEnv = new Frame();
+		newEnv.implementation = envPrototype.implementation;
+		newEnv.closure = envPrototype.closure;
+		Frame oldEnv = vm.currentFrame;
+		vm.currentFrame = newEnv;
+		// Execute the main procedure:
+		newEnv.implementation.getBody().Interpret(vm);
+		// Restore the old execution environment:
+		vm.currentFrame = oldEnv;
 		return vm;
 	}
 	
 	public void ProcedureDeclaration.Interpret(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		vm.allocateVariable(this, this);
+		Frame envPrototype = new Frame();
+		envPrototype.implementation = this;
+		envPrototype.closure = vm.currentFrame;
+		vm.allocate(this, envPrototype);
 	}
 	public void VariableDeclaration.Interpret(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		switch (Type().domain) {
-		case Boolean: vm.allocateVariable(this, false); break;
-		case Integer: vm.allocateVariable(this, 0); break;
-		case Real: vm.allocateVariable(this, 0.0); break;
-		default: vm.allocateVariable(this, null);}
+		vm.allocate(this, null);
 	}
 	public void Block.Interpret(State vm) {
 		for (int i = 0; i < getNumStatement(); i++) {
 			getStatement(i).Interpret(vm);
-			if (vm.getReturnValue() != null)
+			if (vm.currentFrame.returnValue != null)
 				return;
 		}
 	}
@@ -61,34 +67,36 @@ aspect Interpretation {
 			throw new InterpretationException();
 		while ((Boolean)getCondition().Value(vm)) {
 			getBody().Interpret(vm);
-			if (vm.getReturnValue() != null)
+			if (vm.currentFrame.returnValue != null)
 				return;
 		}
 	}
 	public void VariableAssignment.Interpret(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		vm.setValue((Declaration)getLValue().Value(vm), getRValue().Value(vm));
+		MemoryLocation loc = (MemoryLocation)getLValue().Value(vm);
+		loc.value = getRValue().Value(vm);
 	}
 	public void ProcedureReturn.Interpret(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
 		if (hasExpression())
-			vm.setReturnValue(getExpression().Value(vm));
-		else vm.setReturnValue(Type.Undefined);
+			vm.currentFrame.returnValue = getExpression().Value(vm);
+		else vm.currentFrame.returnValue = Type.Undefined;
 	}
 	public void Write.Interpret(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		vm.getStdOut().append(getExpression().Value(vm));
-		vm.getStdOut().append("\n");
+		vm.stdOut.append(getExpression().Value(vm));
+		vm.stdOut.append("\n");
 	}
 	public void Read.Interpret(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		Declaration destination = (Declaration)getExpression().Value(vm);
-		vm.setValue(destination, ReadDialog.execute(
-				destination, vm.getStdOut().toString()));
+		MemoryLocation loc = (MemoryLocation)getExpression().Value(vm);
+		loc.value = ReadDialog.execute(
+				getExpression().Type(),
+				vm.stdOut.toString());
 	}
 	public void Expression.Interpret(State vm) {
 		Value(vm); /* May contain procedure calls with side effects. */
@@ -107,27 +115,32 @@ aspect Interpretation {
 	public Object Reference.Value(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		return Declaration();
+		return vm.access(Declaration());
 	}
 	public Object ProcedureCall.Value(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		ProcedureDeclaration decl =
-			(ProcedureDeclaration)getProcedure().Value(vm);
+		// Evaluate the arguments:
 		Object[] args = new Object[getNumArgument()];
 		for (int i = 0; i < args.length; i++)
 			args[i] = getArgument(i).Value(vm);
-		vm.newFrame();
+		// Prepare the execution environment:
+		Frame envPrototype = (Frame)getProcedure().Value(vm);
+		Frame newEnv = new Frame();
+		newEnv.implementation = envPrototype.implementation;
+		newEnv.closure = envPrototype.closure;
+		Frame oldEnv = vm.currentFrame;
+		vm.currentFrame = newEnv;
+		// Execute the procedure:
 		for (int i = 0; i < args.length; i++)
-			vm.allocateVariable(
-					decl.getParameter(i),
-					args[i]);
-		decl.getBody().Interpret(vm);
-		Object value = null;
+			vm.allocate(newEnv.implementation.getParameter(i), args[i]);
+		newEnv.implementation.getBody().Interpret(vm);
+		Object result = null;
 		if (Type() != Type.Undefined)
-			value = vm.getReturnValue();
-		vm.deleteFrame();
-		return value;
+			result = newEnv.returnValue;
+		// Restore the old execution environment:
+		vm.currentFrame = oldEnv;
+		return result;
 	}
 	public Object NestedExpression.Value(State vm) {
 		return getExpression().Value(vm);
@@ -155,10 +168,11 @@ aspect Interpretation {
 	public Object Dereference.Value(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		Object value = vm.lookUpValue((Declaration)getOperand().Value(vm));
-		if (value == null)
-			throw new InterpretationException("Null pointer access.");
-		return value;
+		MemoryLocation loc = (MemoryLocation)getOperand().Value(vm);
+		if (loc.value == null)
+			throw new InterpretationException(
+					"Read access to uninitialized entity.");
+		return loc.value;
 	}
 	
 	public Object And.Value(State vm) {

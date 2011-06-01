@@ -147,8 +147,4 @@ Procedure main() Begin
 	
 	procp := procDummyOne;
 	Write Call(procp : p1, 1) = 1;
-	
-	Write procDummyOne(p1, 1);
-	procDummyOne := procDummyTwo;
-	Write procDummyOne(p1, 1);
 End;

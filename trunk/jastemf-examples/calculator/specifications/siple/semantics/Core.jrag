@@ -10,6 +10,7 @@ import java.util.*;
 
 import siple.semantics.*;
 import siple.semantics.Type.*;
+import siple.semantics.State.*;
 
 /**
  * For complicated computations about SiPLE programs, often simple support
@@ -39,9 +40,13 @@ aspect AccessSupport {
 	// Find the closest procedure containing the statement.
 	inh ProcedureDeclaration Statement.ProcedureInContext();
 	
-	// Collection containing all the procedure's return statements.
+	// Each procedure knows all its return statements.
 	coll java.util.List<ProcedureReturn> ProcedureDeclaration.Returns()
 		[new ArrayList<ProcedureReturn>()] with add;
+	
+	// Each procedure knows all its local declarations.
+	coll java.util.List<Declaration> ProcedureDeclaration.Decls()
+		[new ArrayList<Declaration>()] with add;
 	
 	// Interpret a constant as a value of a certain type (null, iff it is not).
 	syn Boolean Constant.AsBoolean();

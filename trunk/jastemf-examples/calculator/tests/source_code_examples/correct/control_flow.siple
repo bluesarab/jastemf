@@ -6,6 +6,7 @@
 Procedure main() Begin
 	Var t:Boolean;
 	Var f:Boolean;
+	
 	t := true;
 	f := false;
 	

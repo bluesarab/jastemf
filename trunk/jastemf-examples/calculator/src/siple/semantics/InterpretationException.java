@@ -1,7 +1,7 @@
 package siple.semantics;
 
 /**
- * Exception type thrown iff an error occurs throughout a <i>SIPLE</i>
+ * Exception type thrown iff an error occurs throughout a <i>SiPLE</i>
  * program's interpretation. In general, it is impossible to statically
  * guarantee successful program execution.
  * @author C. Bürger

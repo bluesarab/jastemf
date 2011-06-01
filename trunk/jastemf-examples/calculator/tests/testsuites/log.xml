@@ -875,4 +875,57 @@
         <passed testSuite="incorrect" test="relational_arithmetics"/>
         <passed testSuite="incorrect" test="scopes"/>
     </testrun>
+    <info suffix="correct" msg="New Files added for testsuite: " date="2011-06-01T16:22:04.406+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Testcase [boolean_arithmetics] in [correct] overwritten."/>
+        <testInformation test="closures" priority="0" msg="Testcase added: C:\Development\JastEMF\workspace\calculator\tests\source_code_examples\correct\closures.siple as Testcase closures [Testsuite: correct]"/>
+        <testInformation test="control_flow" priority="1" msg="Testcase [control_flow] in [correct] overwritten."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Testcase [integer_and_real_arithmetics] in [correct] overwritten."/>
+        <testInformation test="nested_procedures" priority="1" msg="Testcase [nested_procedures] in [correct] overwritten."/>
+        <testInformation test="pointers" priority="0" msg="Testcase added: C:\Development\JastEMF\workspace\calculator\tests\source_code_examples\correct\pointers.siple as Testcase pointers [Testsuite: correct]"/>
+        <testInformation test="procedure_basics" priority="1" msg="Testcase [procedure_basics] in [correct] overwritten."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Testcase [relational_arithmetics] in [correct] overwritten."/>
+        <testInformation test="scopes" priority="1" msg="Testcase [scopes] in [correct] overwritten."/>
+    </info>
+    <info suffix="incorrect" msg="New Files added for testsuite: " date="2011-06-01T16:22:05.062+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Testcase [boolean_arithmetics] in [incorrect] overwritten."/>
+        <testInformation test="control_flow" priority="1" msg="Testcase [control_flow] in [incorrect] overwritten."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Testcase [integer_and_real_arithmetics] in [incorrect] overwritten."/>
+        <testInformation test="procedure_basics" priority="1" msg="Testcase [procedure_basics] in [incorrect] overwritten."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Testcase [relational_arithmetics] in [incorrect] overwritten."/>
+        <testInformation test="scopes" priority="1" msg="Testcase [scopes] in [incorrect] overwritten."/>
+    </info>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2011-06-01T16:22:31.796+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Lexer and Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Lexer and Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Lexer and Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Lexer and Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="closures" priority="1" msg="Lexer and Parser Results for testCase [closures] in testsuite [correct] were generated."/>
+        <testInformation test="pointers" priority="1" msg="Lexer and Parser Results for testCase [pointers] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Lexer and Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Lexer and Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Lexer and Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2011-06-01T16:22:42.718+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="correct" test="closures"/>
+        <passed testSuite="correct" test="pointers"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
 </archiveLog>

@@ -13,64 +13,24 @@ import java.util.*;
 import siple.semantics.ast.*;
 
 /**
- * Instances of this class represent <i>SIPLE</i> interpreter states. The
- * interpretation of a <i>SIPLE</i> program starts with {@link #State() the
- * empty state consisting of a single frame} and finishes either, with a state
- * consisting of a single frame that contains the program's results or an
- * {@link InterpretationException interpretation exception}, iff the program is
- * erroneous. Since <i>SIPLE</i> is Turing complete, the interpretation might
+ * Instances of this class represent <i>SiPLE</i> interpreter states. The
+ * interpretation of a <i>SiPLE</i> program starts with the empty state
+ * consisting of a single frame and finishes either, with a state consisting
+ * of a single frame that contains the program's results or an {@link
+ * InterpretationException interpretation exception}, iff the program is
+ * erroneous. Since <i>SiPLE</i> is Turing complete, the interpretation might
  * also not terminate at all.
  * @author C. Bürger
  */
 public final class State {
-	private Stack<Frame> stack = new Stack<Frame>();
-	private final StringBuilder stdOut = new StringBuilder();
-	
 	/**
-	 * Construct a new state, consisting of a single empty frame.
+	 * The procedure currently in execution.
 	 */
-	public State() {stack.push(new Frame());}
-	
+	public Frame currentFrame = new Frame();
 	/**
-	 * Return the buffer containing the state's standard output.
-	 * @return The state's standard output.
+	 * The standard output buffer.
 	 */
-	public StringBuilder getStdOut() {return stdOut;}
-	
-	/**
-	 * Return an entities current value.
-	 * @param decl The entity for which to look up its value.
-	 * @return The entities' value.
-	 * @throws InterpretationException Thrown, iff the given entity is not
-	 * allocated.
-	 */
-	public Object lookUpValue(Declaration decl)
-	throws InterpretationException {
-		for (int i = stack.size() - 1; i >= 0; i--)
-			if (stack.get(i).env.containsKey(decl))
-				return stack.get(i).env.get(decl);
-		throw new InterpretationException(
-				"Read access to unallocated variable ["+ decl.getName() +"].");
-	}
-	
-	/**
-	 * Set an entities' value.
-	 * @param decl The entity for which to set its value.
-	 * @param newValue The entities' new value.
-	 * @throws InterpretationException Thrown, iff the given entity is not
-	 * allocated.
-	 */
-	public void setValue(Declaration decl, Object newValue)
-	throws InterpretationException {
-		for (int i = stack.size() - 1; i >= 0; i--) {
-			if (stack.get(i).env.containsKey(decl)) {
-				stack.get(i).env.put(decl, newValue);
-				return;
-			}
-		}
-		throw new InterpretationException(
-				"Write access to unallocated variable.");
-	}
+	public final StringBuilder stdOut = new StringBuilder();
 	
 	/**
 	 * Allocate memory for the given entity in the current frame and
@@ -83,50 +43,70 @@ public final class State {
 	 * the state is not changed, iff the entity is already allocated <b>in the
 	 * current frame</b>.
 	 * @param decl The entity to allocate and initialize.
-	 * @param value The entities' initialization value.
+	 * @param value The entities' initialization value; To specify, that the
+	 * entity is not initialized during its allocation the parameter has to be
+	 * <tt>null</tt>.
 	 */
-	public void allocateVariable(Declaration decl, Object value) {
-		if (!stack.peek().env.containsKey(decl))
-			stack.peek().env.put(decl, value);
+	public void allocate(Declaration decl, Object value) {
+		if (!currentFrame.environment.containsKey(decl)) {
+			MemoryLocation loc = new MemoryLocation();
+			loc.value = value;
+			currentFrame.environment.put(decl, loc);
+		}
 	}
 	
 	/**
-	 * Get the current frame's return value. The result can be <tt>null</tt>.
-	 * @return The current frame's return value.
+	 * Access an entity, i.e., return its {@link MemoryLocation memory
+	 * location}.
+	 * @param decl The entity to access.
+	 * @return The entities' address.
+	 * @throws InterpretationException Thrown, iff the given entity is not
+	 * allocated.
 	 */
-	public Object getReturnValue() {
-		return stack.peek().returnValue;
+	public MemoryLocation access(Declaration decl)
+	throws InterpretationException {
+		for (Frame cf = currentFrame; cf != null; cf = cf.closure) {
+			MemoryLocation loc = cf.environment.get(decl);
+			if (loc != null)
+				return loc;
+		}
+		throw new InterpretationException(
+				"Access to unallocated variable ["+ decl.getName() +"].");
 	}
 	
 	/**
-	 * Set the current frame's return value.
-	 * @param value The new return value.
+	 * Each frame represents the execution environment of a procedure, i.e.,
+	 * the current state of a procedure in execution. It consists of:<ul>
+	 * <li>(1) The procedure's {@link #implementation} (AST procedure
+	 * declaration)</li>
+	 * <li>(2) The procedure's {@link #closure} (the frame within which this
+	 * frame is instantiated; required for accesses to non local entities)</li>
+	 * <li>(3) The procedure's local {@link #environment} (local variable
+	 * bindings)</li> 
+	 * <li>(4) The procedure's {@link #returnValue return value} (given, iff
+	 * the procedure's execution finished)</li></ul>
+	 * @author C. Bürger
 	 */
-	public void setReturnValue(Object value) {
-		stack.peek().returnValue = value;
+	public static final class Frame {
+		/** See {@link Frame}. */
+		public ProcedureDeclaration implementation = null;
+		/** See {@link Frame}. */
+		public Frame closure = null;
+		/** See {@link Frame}. */
+		public Map<Declaration, MemoryLocation> environment =
+			new TreeMap<Declaration, MemoryLocation>();
+		/** See {@link Frame}. */
+		public Object returnValue = null;
 	}
 	
 	/**
-	 * Push a new frame on top of the stack.
+	 * Simple wrapper class to represent addressable memory locations.
+	 * @author C. Bürger
 	 */
-	public void newFrame() {stack.push(new Frame());}
-	
-	/**
-	 * Delete the state's topmost frame. It is not permitted to delete the
-	 * global scope frame.
-	 * @throws InterpretationException Thrown, iff the state already consists
-	 * only of a single frame - the global scope frame.
-	 */
-	public void deleteFrame() throws InterpretationException {
-		if (stack.size() <= 1)
-			throw new InterpretationException(
-					"Deletion of the global scope frame.");
-		stack.pop();
-	}
-	
-	private static final class Frame {
-		private Map<Declaration, Object> env =
-			new TreeMap<Declaration, Object>();
-		private Object returnValue;
+	public static final class MemoryLocation {
+		/**
+		 * The value stored under the address this memory location represents.
+		 */
+		public Object value;
 	}
 }

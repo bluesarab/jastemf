@@ -16,7 +16,7 @@
 	
 	<!-- Declare RTT's Ant tasks -->
 	<taskdef resource="rtt/ant/taskdef.properties">
-		<classpath path="${_basedir}/sources/libraries/rtt.jar"/>
+		<classpath path="${_basedir}/sources/libraries/rtt_1.0.jar"/>
 	</taskdef>
 	
 	<!-- Delete all generated testsuites and their logs -->
@@ -53,12 +53,12 @@
 			log="${_basedir}/tests/testsuites/log.xml">
 			<testsuite name="correct" overwrite="true">
 				<fileset dir="${_basedir}/tests/source_code_examples/correct" casesensitive="yes">
-					<include name="*.expr"/>
+					<include name="*.siple"/>
 				</fileset>
 			</testsuite>
 			<testsuite name="incorrect" overwrite="true">
 				<fileset dir="${_basedir}/tests/source_code_examples/incorrect" casesensitive="yes">
-					<include name="*.expr"/>
+					<include name="*.siple"/>
 				</fileset>
 			</testsuite>
 		</updateArchive>
