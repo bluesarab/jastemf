@@ -87,7 +87,7 @@ public aspect RTTAST {
 	declare @method:
 		public * CompilationUnitImpl+.rttInterpret() : @Parser.Node.Compare;
 	public String CompilationUnitImpl.rttInterpret() {
-		return IsCorrect() ? Interpret().getStdOut().toString() :
+		return IsCorrect() ? Interpret().stdOut.toString() :
 			"RTT: Not interpreted; Program contains errors.";
 	}
 }

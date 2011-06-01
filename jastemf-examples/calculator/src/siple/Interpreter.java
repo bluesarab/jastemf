@@ -35,7 +35,7 @@ public class Interpreter {
 		final long start = new java.util.Date().getTime();
 		try {
 			State vm = interpret(new File(args[0]));
-			System.out.println(vm.getStdOut());
+			System.out.println(vm.stdOut);
 		} catch (InterpretationException rte) {
 			System.out.println(rte);
 		}

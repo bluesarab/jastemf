@@ -31,6 +31,9 @@ aspect AccessSupport {
 	ProcedureReturn contributes this when ProcedureInContext() != null
 		to ProcedureDeclaration.Returns() for ProcedureInContext();
 	
+	Declaration contributes this when ProcedureInContext() != null
+		to ProcedureDeclaration.Decls() for ProcedureInContext();
+	
 	eq Constant.AsBoolean() {
 		if ("true".equals(getLexem()))
 			return true;

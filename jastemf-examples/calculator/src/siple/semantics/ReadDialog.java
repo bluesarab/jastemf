@@ -7,26 +7,25 @@ import javax.swing.*;
 import siple.semantics.ast.*;
 
 /**
- * Simple dialog used throughout interpretation to ask the user for
- * a new value for a certain variable, such that a SIPLE <tt>Read</tt>
- * statement can be processed.
+ * Simple dialog used throughout interpretation to ask the user for a new value
+ * of a certain type, such that a <i>SiPLE</i> <tt>Read</tt> statement can be
+ * processed.
  * @author C. Bürger
  */
 public class ReadDialog {
 	private static Object result = null;
 	
 	/**
-	 * Open a new input dialog for a SIPLE <tt>Read</tt> statement. The dialog
-	 * forces the user to enter a valid value of a certain type. The value will
-	 * be stored in a certain variable by the interpreter.
-	 * @param toRead The variable for which the user must enter a new value.
+	 * Open a new input dialog for a <i>SiPLE</i> <tt>Read</tt> statement. The
+	 * dialog forces the user to enter a valid value of a certain type.
+	 * @param type The type of the value to enter.
 	 * @param vmOutput The interpreter's, so far throughout program execution
 	 * produced, output.
-	 * @return A valid value for the given variable.
+	 * @return A value of the given type.
 	 */
-	public synchronized static Object execute(Declaration toRead, String vmOutput) {
+	public synchronized static Object execute(Type type, String vmOutput) {
 		result = null;
-		new ReadDialog(toRead, vmOutput);
+		new ReadDialog(type, vmOutput);
 		while(result == null) {
 			try {Thread.sleep(300);}
 			catch(InterruptedException ex) {}
@@ -34,7 +33,7 @@ public class ReadDialog {
 		return result;
 	}
 	
-	private ReadDialog(final Declaration toRead, String vmOutput) {
+	private ReadDialog(final Type type, String vmOutput) {
 		final JFrame dialog = new JFrame("Read Input");
 		
 		dialog.setUndecorated(true);
@@ -47,7 +46,7 @@ public class ReadDialog {
 				(dimension.height - dialog.getSize().height) / 3);
 		
 		final JLabel description = new JLabel(
-				"Read ["+ toRead.getName() +":"+ toRead.Type() +"].");
+				"Read: "+ type.toString());
 		dialog.add(description);
 		final JTextField input = new JTextField(25);
 		dialog.add(input);
@@ -62,7 +61,7 @@ public class ReadDialog {
 				if (inputText == null || inputText.length() == 0)
 					return;
 				Constant inputValue = new Constant(inputText);
-				switch (toRead.Type().domain) {
+				switch (type.domain) {
 				case Boolean:
 					result = inputValue.Type() == Type.Boolean ?
 							inputValue.AsBoolean() : null;
@@ -78,8 +77,8 @@ public class ReadDialog {
 				}
 				if (result != null)
 					dialog.dispose();
-				else description.setText("Read ["+ toRead.getName() +":"+
-						toRead.Type() +"]; "+ ++retries +"'th retry.");
+				else description.setText("Read ("+ ++retries +"'th retry): "+
+						type.toString());
 			}
 		});
 		
