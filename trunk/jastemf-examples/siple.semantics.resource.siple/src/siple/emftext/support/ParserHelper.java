@@ -11,7 +11,7 @@ package siple.emftext.support;
 import java.io.*;
 import java.util.*;
 
-import org.antlr.runtime3_2_0.*;
+import org.antlr.runtime3_3_0.*;
 import org.eclipse.emf.ecore.resource.*;
 import org.eclipse.emf.ecore.resource.Resource.*;
 
