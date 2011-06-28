@@ -59,14 +59,7 @@ public class DummySipleResource implements ISipleTextResource {
 		return null;
 	}
 
-	@Override
-	public <ContainerType extends EObject, ReferenceType extends EObject> void registerContextDependentProxy(
-			ISipleContextDependentURIFragmentFactory<ContainerType, ReferenceType> factory,
-			ContainerType container, EReference reference, String id,
-			EObject proxyElement) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void reload(InputStream stream, Map<?, ?> options)
@@ -243,5 +236,21 @@ public class DummySipleResource implements ISipleTextResource {
 	public ISipleQuickFix getQuickFix(String quickFixContext) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	///////////////////////////////////////////////
+
+	@Override
+	public EList<EObject> getContentsInternal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <ContainerType extends EObject, ReferenceType extends EObject> void registerContextDependentProxy(
+			ISipleContextDependentURIFragmentFactory<ContainerType, ReferenceType> factory,
+			ContainerType container, EReference reference, String id,
+			EObject proxyElement, int position) {
+		// TODO Auto-generated method stub
+		
 	}
 }
