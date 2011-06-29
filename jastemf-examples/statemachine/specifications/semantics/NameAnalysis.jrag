@@ -1,0 +1,28 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+
+aspect NameAnalysis {
+	syn lazy State Transition.source() = lookup(getSourceLabel()); // R1
+	syn lazy State Transition.target() = lookup(getTargetLabel()); // R2
+	inh State Declaration.lookup(String label); // R3
+	
+	eq StateMachine.getdeclarations(int i).lookup(String label) { // R4
+		for (Declaration d : getdeclarationsList()) {
+			State match = d.localLookup(label);
+			if (match != null)
+				return match;
+		}
+		return null;
+	}
+	
+	syn State Declaration.localLookup(String label) = null; // R5
+	
+	eq State.localLookup(String label) = // R6
+		(label==getLabel()) ? this : null;
+}
