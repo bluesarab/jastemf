@@ -1,0 +1,56 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+<!--
+	Ant script to generate a SiPLE *.jar distribution based on the
+	JastAdd Version. For details about the different SiPLE implementations
+	that can be generated consult the "specifications/siple/build.xml" and
+	the SiPLE tutorial at "http://code.google.com/p/jastemf/wiki/SIPLE".
+	@author C. Bürger
+-->
+<project name="SiPLE JastAdd Version" default="Jar">
+	<path id="_basedir">
+		<pathelement location="./"/>
+	</path>
+	<property name="_basedir" refid="_basedir"/>
+	
+	<target
+		name="Clean"
+		description="Delete SiPLE JastAdd Version Distribution.">
+		<delete includeemptydirs="false">
+			<fileset dir="${_basedir}">
+					<include name="siple.jar"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target
+		name="Jar"
+		description="Generate SiPLE JastAdd Version Distribution.">
+		<!-- Delete regression testing capabilities causing AspectJ dependencies --> 
+		<delete includeemptydirs="true">
+			<fileset dir="${_basedir}">
+				<include name="src-gen/rtt/**/*"/>
+				<include name="src-gen/rtt"/>
+				<include name="bin/rtt/**/*"/>
+			</fileset>
+		</delete>
+		<jar
+			destfile="${_basedir}/siple.jar"
+			index="false"
+			update="false"
+			compress="false">
+			<manifest>
+				<attribute name="Main-Class" value="siple.Interpreter"/>
+			</manifest>
+			<fileset dir="${_basedir}">
+				<include name="License.txt"/>
+			</fileset>
+			<fileset dir="${_basedir}/bin">
+				<include name="**/*.class"/>
+			</fileset>
+		</jar>
+	</target>
+</project>
