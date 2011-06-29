@@ -1,0 +1,61 @@
+; TextPad5 syntax definition for SIPLE.
+;
+; @author C. Bürger
+
+C=1
+
+[Syntax]
+Namespace1 = 6
+IgnoreCase = No
+KeyWordLength =
+BracketChars =
+OperatorChars = ,;:()+-*/=#
+PreprocStart =
+SyntaxStart =
+SyntaxEnd =
+HexPrefix =
+CommentStart =
+CommentEnd =
+CommentStartAlt =
+CommentEndAlt =
+SingleComment = %
+SingleCommentCol =
+SingleCommentAlt =
+SingleCommentColAlt =
+SingleCommentEsc =
+StringsSpanLines = Yes
+StringStart =
+StringEnd =
+StringAlt =
+StringEsc =
+CharStart =
+CharEnd =
+CharEsc =
+
+[Keywords 1]
+Procedure
+Begin
+End
+Var
+If
+Then
+Else
+Fi
+While
+Do
+Od
+Return
+Write
+Writeln
+Not
+And
+Or
+Boolean
+Integer
+Real
+true
+false
+
+[Keywords 2]
+
+[Preprocessor keywords]

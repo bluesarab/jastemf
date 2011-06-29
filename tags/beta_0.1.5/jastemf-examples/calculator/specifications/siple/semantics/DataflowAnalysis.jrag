@@ -1,0 +1,76 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+
+/**
+ * @author C. Bürger
+ */
+aspect DataflowAnalysis {
+	/** Assignment Analysis */
+	
+	/*
+	eq CompilationUnit.LastAssignment(VariableDeclaration decl) = null;
+	eq CompilationUnit.getBlock().LastAssignment(VariableDeclaration decl) = null;
+	eq Block.getStatement(int index).LastAssignment(VariableDeclaration decl) {
+		for (int i = index - 1; i >= 0; i--)
+			if (getStatement(i).LastAssignmentLocal(decl) != null)
+				return getStatement(i).LastAssignmentLocal(decl);
+		return LastAssignment(decl);
+	}
+	syn Statment Statement.LastAssignmentLocal(VariableDeclaration decl) = null;
+	eq VariableAssignment.LastAssignmentLocal(VariableDeclaration decl) =
+		decl != null && Declaration() == decl ? this : null;
+	eq If.LastAssignmentLocal(VariableDeclaration decl) {
+		if (hasAlternative() && getAlternative().LastAssignmentLocal(decl) != null)
+			return getAlternative().LastAssignmentLocal(decl);
+		return getBody().LastAssignmentLocal(decl);
+	}
+	eq Block.LastAssignmentLocal(VariableDeclaration decl) {
+		for (int i = getNumStatement() - 1; i >= 0; i--)
+			if (getStatement(i).LastAssignmentLocal(decl) != null)
+				return getStatement(i).LastAssignmentLocal(decl);
+		return null;
+	}
+	eq While.LastAssignmentLocal(VariableDeclaration decl) =
+		getBody().LastAssignmentLocal(decl) != null ? this : null;
+	eq ProcedureCall.LastAssignmentLocal(VariableDeclaration decl) =
+		Declaration() != null ?
+				(Declaration().ContainsAssignmentFor(decl) ? this : null) :
+				null;
+	
+	syn boolean ProcedureDeclaration.ContainsAssignmentFor(VariableDeclaration decl) =
+		getBody().LastAssignmentLocal(decl);
+	
+	eq Reference.LastAssignment() = LastAssignment(Declaration());
+	*/
+	
+	/** Decidability Analysis */
+	
+	eq Statement.MaybeUndecidable() = false;
+	eq While.MaybeUndecidable() = true;
+	eq ProcedureCall.MaybeUndecidable() = true;
+	eq If.MaybeUndecidable() = getBody().MaybeUndecidable() ||
+		(hasAlternative() ? getAlternative().MaybeUndecidable() : false);
+	eq VariableAssignment.MaybeUndecidable() = getRValue().MaybeUndecidable();
+	eq ProcedureReturn.MaybeUndecidable() = hasExpression() ?
+			getExpression().MaybeUndecidable() :
+			false;
+	eq NestedExpression.MaybeUndecidable() =
+		getExpression().MaybeUndecidable();
+	eq UnaryExpression.MaybeUndecidable() =
+		getOperand().MaybeUndecidable();
+	eq BinaryExpression.MaybeUndecidable() =
+		getOperand1().MaybeUndecidable() ||
+		getOperand2().MaybeUndecidable();
+	eq Block.MaybeUndecidable() {
+		for (int i = 0; i < getNumStatement(); i++)
+			if (getStatement(i).MaybeUndecidable())
+				return true;
+		return false;
+	}
+}
