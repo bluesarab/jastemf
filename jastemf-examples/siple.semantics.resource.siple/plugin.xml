@@ -79,4 +79,20 @@
 	<extension-point id="siple.semantics.resource.siple.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd">
 	</extension-point>
 	
+	 <extension
+       point="org.eclipse.ui.popupMenus">
+    <objectContribution
+          adaptable="true"
+          id="siple.emftext.gui.interpretation"
+          nameFilter="*.siple"
+          objectClass="org.eclipse.core.resources.IFile">
+           <action
+               class="siple.emftext.gui.InterpretSipleProgramAction"
+               enablesFor="1"
+               id="siple.emftext.gui.interpretation"
+               label="Interpret"
+               menubarPath="additions"/>
+    </objectContribution>
+ </extension>
+	
 </plugin>
