@@ -1,0 +1,32 @@
+/**
+ * <copyright>
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the BSD 3-clause license which accompanies this distribution.
+ *
+ * </copyright>
+ */
+import java.util.*;
+import org.eclipse.emf.ecore.util.EObjectEList;
+
+aspect Reachability{
+	// EList<State> would be refactored to EList<StateImpl>
+	syn EList State.reachable() circular
+		[new EObjectEList(State.class, this, StatemachinePackage.STATE__REACHABLE)]; // R1
+	
+	eq State.reachable() { // R2
+		EList result = new EObjectEList(
+				State.class,
+				this,
+				StatemachinePackage.STATE__REACHABLE);
+		for (State s : (EList<State>)successors()) {
+			if(!result.contains(s))
+				transactionalAdd(result,s);
+			for(State reachableState:(EList<State>)s.reachable()) {
+				if(!result.contains(reachableState))
+					transactionalAdd(result,reachableState);
+			}
+		}
+		return result;
+	}
+}
