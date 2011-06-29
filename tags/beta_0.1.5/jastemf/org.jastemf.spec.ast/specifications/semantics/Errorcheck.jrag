@@ -1,0 +1,223 @@
+package ast;
+
+import org.jastemf.spec.ast.ast.*;
+import java.util.*;
+import org.jastemf.spec.ast.validation.IProblemDescriptor;
+
+aspect ErrorCollector {
+  syn String Grammar.astErrors() {
+    return collectAstErrors();
+  }
+  
+  syn LinkedList<IProblemDescriptor> Grammar.astErrors2(){
+  	return collectAstErrors2();
+  }
+   
+  syn String Grammar.collectAstErrors() {
+    StringBuffer result = new StringBuffer();
+    for(int i = 0; i < getNumTypeDecl(); i++) {
+      result.append(getTypeDecl(i).collectAstErrors());
+    }
+    
+    ArrayList l = roots();
+    if(l.isEmpty())
+      result.append("No root node available\n");
+    /*
+    if(l.size() > 1) {
+      result.append("Multiple root nodes: ");
+      Iterator iter = l.iterator();
+      result.append(((ASTDecl)iter.next()).name());
+      while(iter.hasNext())
+        result.append(", " + ((ASTDecl)iter.next()).name());
+      result.append("\n");
+    }*/
+    return result.toString();
+  }
+  
+  syn LinkedList<IProblemDescriptor> Grammar.collectAstErrors2() {
+    LinkedList<IProblemDescriptor> result = new LinkedList<IProblemDescriptor>();
+    for(int i = 0; i < getNumTypeDecl(); i++) {
+      result.addAll(getTypeDecl(i).collectAstErrors2());
+    }
+    final ASTNode<?> _this = this;
+    ArrayList l = roots();
+    if(l.isEmpty())
+      result.add(new IProblemDescriptor(){ 
+      		public String getMessage(){return "No root node available!";}
+      		public ASTNode<?> getCause(){return _this;}
+      });
+    
+    if(l.size() > 1) {
+      Iterator iter = l.iterator();
+      while(iter.hasNext()){  
+      	final ASTNode<?> __this = (ASTNode<?>) iter.next();   
+      	result.add(
+      		new IProblemDescriptor(){
+      			public String getMessage(){return "Multiple root nodes.";}
+      			public ASTNode<?> getCause(){return __this;}
+     	 });
+      }
+    }
+    return result;
+  }
+  
+  
+  
+  syn ArrayList Grammar.roots() {
+    ArrayList l = new ArrayList();
+    for(int i = 0; i < getNumTypeDecl(); i++) {
+      if(getTypeDecl(i) instanceof ASTDecl) {
+        ASTDecl decl = (ASTDecl)getTypeDecl(i);
+        if(decl.isRootNode())
+          l.add(decl);
+      }
+    }
+    return l;
+  }
+  syn boolean TypeDecl.isRootNode() = false;
+  eq ASTDecl.isRootNode() = !hasAbstract() && !name().equals("ASTNode") && !name().equals("Opt") && !name().equals("List") && fathers().isEmpty();
+  
+  syn String TypeDecl.collectAstErrors() = astError();
+  
+  syn LinkedList<IProblemDescriptor> TypeDecl.collectAstErrors2() = astError2();
+  
+  syn String ASTDecl.collectAstErrors() {
+    StringBuffer result = new StringBuffer();
+    result.append(astError());
+    for(int i = 0; i < getNumComponents(); i++) {
+      result.append(getComponents(i).astError());
+    }
+    return result.toString();
+  }
+  
+  syn LinkedList<IProblemDescriptor> ASTDecl.collectAstErrors2() {
+    LinkedList<IProblemDescriptor> result = new LinkedList<IProblemDescriptor>();
+    result.addAll(astError2());
+    for(int i = 0; i < getNumComponents(); i++) {
+      result.addAll(getComponents(i).astError2());
+    }
+    return result;
+  }
+}
+
+
+aspect Errorcheck {
+  syn String TypeDecl.astError() {
+    StringBuffer result = new StringBuffer();
+    
+    if(env().lookup(name()) != this) {
+      //result.append(getFileName() + ":" + getStartLine() + " "); TODO: FIXME
+      result.append("Multiple production rule for non-terminal " +
+          name() + "\n");
+    }
+    return result.toString();
+  }
+  
+   syn LinkedList<IProblemDescriptor> TypeDecl.astError2() {
+    LinkedList<IProblemDescriptor> result = new LinkedList<IProblemDescriptor>();
+    final ASTNode<?> _this = this;
+    if(env().lookup(name()) != this) {
+       result.add(new IProblemDescriptor(){
+         public String getMessage(){return "Multiple production rule for non-terminal.";}
+		 public ASTNode<?> getCause(){return _this;}       
+       });
+    }
+    return result;
+  }
+  
+  syn String ASTDecl.astError() {
+    StringBuffer result = new StringBuffer();
+    
+    if(env().lookup(name()) != this) {
+      result.append(getFileName() + ":" + getStartLine() + " ");
+      result.append("Multiple production rule for non-terminal " +
+          name() + "\n");
+    }
+    
+    if(isCircular()) {
+      result.append(getFileName() + ":" + getStartLine() + " ");
+      result.append(name() + " causes circular inheritance\n");
+    }
+    else if(hasSuperClassId() && superClass() == null) {
+      result.append(getFileName() + ":" + getStartLine() + " ");
+      result.append(name() + " inherits from undeclared class " +
+          getSuperClassId().name() + "\n");
+    }
+
+      
+    return result.toString();
+  }
+  
+  syn LinkedList<IProblemDescriptor> ASTDecl.astError2() {
+    LinkedList<IProblemDescriptor> result = new LinkedList<IProblemDescriptor>();
+    final ASTNode<?> _this = this;
+    if(env().lookup(name()) != this) {
+     result.add(new IProblemDescriptor(){
+       public String getMessage(){return "Multiple production rule for non-terminal.";}
+	   public ASTNode<?> getCause(){return _this;}       
+      });
+    }
+     if(isCircular()) {
+      result.add(new IProblemDescriptor(){
+      	public String getMessage(){return "Non-terminal causes circular inheritance.";}
+      	public ASTNode<?> getCause(){return _this;}
+      });
+    }
+    else if(hasSuperClassId() && superClass() == null && !getSuperClassId().getID().equals("ASTNode")) {
+      result.add(new IProblemDescriptor(){
+      	public String getMessage(){return "Non-terminal inherits from undeclared class "+getSuperClassId().name()+".";}
+      	public ASTNode<?> getCause(){return _this;}
+      });
+    }
+    return result;
+  }
+
+
+  syn String Components.astError() {
+    StringBuffer result = new StringBuffer();
+
+    if(hostClass().lookupComponents(name()) != this) {
+      result.append(hostClass().getFileName() + ":" + hostClass().getStartLine() + " ");
+      result.append("Component name " + name() + " is not unique in " +
+          "production rule for " + hostClass().name() + "\n");
+    }
+
+    if(!declared()) {
+      result.append(hostClass().getFileName() + ":" + hostClass().getStartLine() + " ");
+      result.append("Type " + type() + " of component " + name() +
+          " in production " + hostClass().name() + " is not declared\n");
+    }
+    return result.toString();
+  }
+  
+  syn LinkedList<IProblemDescriptor> Components.astError2() {
+    LinkedList<IProblemDescriptor> result = new LinkedList<IProblemDescriptor>();
+	final ASTNode<?> _this = this;
+    if(hostClass().lookupComponents(name()) != this) {
+       result.add( new IProblemDescriptor(){
+		public String getMessage(){return "Component name " + name() + " is not unique in production rule.";}      
+      	public ASTNode<?> getCause(){return _this;} 
+      
+      });
+    }
+
+    if(!declared()&&!"ASTNode".equals(type())) {
+  	  result.add( new IProblemDescriptor(){
+  	  	public String getMessage(){ return "Type " + type() + " of component " + name() +
+          " in production " + hostClass().name() + " is not declared";};
+  	  	public ASTNode<?> getCause(){ return _this;};
+  	  });
+  	  
+    }
+    return result;
+  }
+  
+  public boolean Components.declared() {
+    return env().lookup(type()) != null;
+  }
+
+  public boolean TokenComponent.declared() {
+    return true;
+  }
+}
+

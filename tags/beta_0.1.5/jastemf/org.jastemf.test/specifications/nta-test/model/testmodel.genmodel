@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.jastemf.test/src-gen"
+    editDirectory="/org.jastemf.test.edit/src-gen" editorDirectory="/org.jastemf.test.editor/src-gen"
+    modelPluginID="org.jastemf.test" modelName="Testmodel" testsDirectory="/org.jastemf.test.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>testmodel.ecore</foreignModel>
+  <genPackages prefix="Test" basePackage="org.jastemf.test" disposableProviderFactory="true"
+      ecorePackage="testmodel.ecore#/">
+    <nestedGenPackages prefix="Ntas" basePackage="org.jastemf.test.test" disposableProviderFactory="true"
+        ecorePackage="testmodel.ecore#//ntas">
+      <genClasses ecoreClass="testmodel.ecore#//ntas/Root">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/derivedA"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/derivedB"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/containmentC"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/containmentD"/>
+      </genClasses>
+      <genClasses ecoreClass="testmodel.ecore#//ntas/A">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ntas/A/name"/>
+      </genClasses>
+      <genClasses ecoreClass="testmodel.ecore#//ntas/B"/>
+      <genClasses ecoreClass="testmodel.ecore#//ntas/C">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ntas/C/someTerminal"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Ast" basePackage="org.jastemf.test.test" disposableProviderFactory="true"
+        ecorePackage="testmodel.ecore#//ast">
+      <genClasses ecoreClass="testmodel.ecore#//ast/D">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/index"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/lowerD"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/UpperC"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/multipleLowerD"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/MultipleUpperC"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/DerivedUpperD"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/DerivedMultipleUpperC"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Attributes" basePackage="org.jastemf.test.test" disposableProviderFactory="true"
+        ecorePackage="testmodel.ecore#//attributes"/>
+  </genPackages>
+</genmodel:GenModel>

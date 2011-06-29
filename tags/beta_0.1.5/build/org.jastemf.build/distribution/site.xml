@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site associateSitesURL="http://jastemf.googlecode.com/svn/trunk/build/org.jastemf.build/distribution/externalSites.xml">
+   <description name="JastEMF Update Site">
+   </description>
+   <feature url="features/org.jastemf_0.1.5.v201106291033.jar" id="org.jastemf" version="0.1.5.v201106291033">
+      <category name="JastEMF"/>
+   </feature>
+   <feature url="features/org.jastemf.converter_0.1.1.v201106291033.jar" id="org.jastemf.converter" version="0.1.1.v201106291033">
+      <category name="JastEMF"/>
+   </feature>
+   <category-def name="JastEMF" label="JastEMF: EMF-based attribute grammars"/>
+</site>
