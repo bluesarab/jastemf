@@ -20,8 +20,8 @@ In detail JastEMF requires at least:
 
 = Installing JastEMF from Update-Site =
  * JastEMF now also provides an Eclipse Update Site. 
- * The update-site for JastEMF 0.1.4 can be found here: 
-  * http://jastemf.googlecode.com/svn/tags/beta_0.1.4/build/org.jastemf.build/distribution
+ * The update-site for JastEMF 0.1.5 can be found here: 
+  * http://jastemf.googlecode.com/svn/tags/beta_0.1.5/build/org.jastemf.build/distribution
  * An update-site providing intermediate builds of the current trunk, that we do from time to time, can be found here: 
   * http://jastemf.googlecode.com/svn/trunk/build/org.jastemf.build/distribution
 
