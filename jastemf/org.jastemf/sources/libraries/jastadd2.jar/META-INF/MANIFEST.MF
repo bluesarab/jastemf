@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Vendor: The JastAdd Team
+Implementation-Title: JastAdd II
+Implementation-Version: R20101210
+Created-By: 1.6.0_18 (Sun Microsystems Inc.)
+Implementation-URL: http://jastadd.cs.lth.se
+Main-Class: jastadd.JastAdd
+
