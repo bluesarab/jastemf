@@ -21,7 +21,10 @@
 	<target name="Eclipse-Plugin">
 		<mkdir dir="${JastEMF.basedir}/temp"/>
 		
-		<unjar src="${JastEMF.basedir}/sources/libraries/jastadd2.jar" dest="${JastEMF.basedir}/temp"/>
+		<copy todir="${JastEMF.basedir}/temp">
+		   <fileset dir="${JastEMF.basedir}/sources/libraries/jastadd2.jar"/>
+	    </copy>
+
 		<move
 			file="${JastEMF.basedir}/temp/LICENSE"
 			tofile="${JastEMF.basedir}/temp/JastAdd-License.txt"
