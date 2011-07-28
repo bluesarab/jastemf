@@ -29,6 +29,7 @@ import ast.AST.OptionalComponent;
 import ast.AST.TokenComponent;
 import ast.AST.TypeDecl;
 import ast.AST.SynDecl;
+import ast.AST.CollDecl;
 import ast.AST.Parameter;
 
 /**
@@ -95,6 +96,9 @@ public class JastAdd2Ecore {
 		//putting all syn and inh declarations in one collection
 		Collection attrDeclarations = astDecl.synDeclarations();
 		attrDeclarations.addAll(astDecl.inhDeclarations());
+		for(int i=0;i<astDecl.getCollDeclList().getNumChild();i++){
+			attrDeclarations.add(astDecl.getCollDecl(i));
+		}
 		
 		for (Object o : attrDeclarations) {
 			AttrDecl attrDecl = (AttrDecl) o;
@@ -449,7 +453,6 @@ public class JastAdd2Ecore {
 				return eDataTypeMap.get(typeName);
 			}
 		}
-
 	}
 	
 	public static final String ANNOTATION_IS_NTA = "is_nta";
@@ -459,8 +462,10 @@ public class JastAdd2Ecore {
 	public static final String ANNOTATION_KIND_COLL = "coll";
 	public static final String ANNOTATION_IS_CACHED = "is_cached";
 	public static final String ANNOTATION_IS_PRIMITIVE = "is_primitive";
+	public static final String ANNOTATION_IS_CIRCULAR= "is_circular";
+	public static final String ANNOTATION_ASPECT = "aspect";
+
 	public static final String ANNOTATION_NAMESPACE = "http://www.jastemf.org/jastemf-annotations";
-	
 	
 	private EAnnotation createJastEMFAnnotation(AttrDecl attrDecl){
 		EAnnotation annotation = factory.createEAnnotation();
@@ -469,6 +474,8 @@ public class JastAdd2Ecore {
 		annotation.getDetails().put(ANNOTATION_KIND,(attrDecl instanceof SynDecl)?ANNOTATION_KIND_SYN:(attrDecl instanceof InhDecl?ANNOTATION_KIND_INH:ANNOTATION_KIND_COLL));
 		annotation.getDetails().put(ANNOTATION_IS_CACHED,""+attrDecl.getLazy());
 		annotation.getDetails().put(ANNOTATION_IS_PRIMITIVE,""+attrDecl.isPrimitive());
+		annotation.getDetails().put(ANNOTATION_IS_CIRCULAR,""+attrDecl.isCircular());
+		annotation.getDetails().put(ANNOTATION_ASPECT, attrDecl.getAspectName());
 		return annotation;
 	}
 	
