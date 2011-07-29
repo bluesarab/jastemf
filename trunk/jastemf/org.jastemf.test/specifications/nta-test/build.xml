@@ -66,9 +66,7 @@
 		<pathelement path="${test_basedir}/../org.jastemf/implementation"/>
 		<pathelement path="${test_basedir}/../org.jastemf.converter/src"/>
 		<pathelement path="${test_basedir}/../org.jastemf.converter/bin"/>
-		<fileset dir="${test_basedir}/../org.jastemf">
-			<include name="sources/libraries/jastadd2.jar"/>
-		</fileset>
+		<pathelement path="${test_basedir}/../org.jastemf/sources/libraries/jastadd2.jar"/>
 	</path>
 	
 	<!-- NOTE: jastemf tasks from eclipse workspace are redefined here.
@@ -148,7 +146,7 @@
 		<delete dir="${test_basedir}/test-bin">
 		</delete>
 		<mkdir dir="${test_basedir}/test-bin" />
-		<javac target="1.5" source="1.5" destdir="${test_basedir}/test-bin" debug="off">
+		<javac target="1.5" source="1.5" destdir="${test_basedir}/test-bin" debug="off" includeantruntime="true">
 			<src path="${test_basedir}/src-gen" />
 			<src path="${test_basedir}/src" />
 			<classpath refid="eclipse.classpath"/>
