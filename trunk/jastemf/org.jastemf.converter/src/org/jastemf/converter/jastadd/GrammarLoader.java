@@ -1,3 +1,32 @@
+/*
+The copied parts of the source code in this class adhere to the following copyright statements:
+
+Copyright (c) 2005, The JastAdd Team
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ * Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+ * Neither the name of the Lund University nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package org.jastemf.converter.jastadd;
 
 import java.io.File;
@@ -25,9 +54,20 @@ import jrag.AST.JragParser;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIConverter;
 
+/**
+ * This is a more accessible version of the JastAdd standard
+ * {@link jastadd.JastAdd#compile() jastadd.JastAdd.compile} procedure which is
+ * normally executed from commandline. Most parts of the code have been copied
+ * from there and adhere to the JastAdd.
+ * 
+ * @author skarol
+ * @author The JastAdd Team
+ */
+
 public class GrammarLoader {
 
-	public static Grammar loadAstSpec(URI resource, final Collection<String> errors) {
+	public static Grammar loadAstSpec(URI resource,
+			final Collection<String> errors) {
 		InputStream stream = null;
 		String resourceName = resource.toString();
 		URIConverter uriConverter = URIConverter.INSTANCE;
@@ -36,7 +76,8 @@ public class GrammarLoader {
 			Ast parser = new Ast(stream);
 			parser.fileName = resourceName;
 			Grammar g = parser.Grammar();
-			for (Iterator<String> errorIter = parser.getErrors(); errorIter.hasNext();) {
+			for (Iterator<String> errorIter = parser.getErrors(); errorIter
+					.hasNext();) {
 				String[] s = errorIter.next().split(";");
 				errors.add("Syntax error in " + parser.fileName + " at line "
 						+ s[0] + ", column " + s[1]);
@@ -44,8 +85,8 @@ public class GrammarLoader {
 			return g;
 
 		} catch (ast.AST.TokenMgrError e) {
-			errors.add(("Lexical error in " + resourceName + ": "
-					+ e.getMessage()));
+			errors.add(("Lexical error in " + resourceName + ": " + e
+					.getMessage()));
 		} catch (ast.AST.ParseException e) {
 			// Exceptions actually caught by error recovery in parser
 		} catch (IOException e) {
@@ -62,8 +103,9 @@ public class GrammarLoader {
 		return null;
 
 	}
-	
-	public static ASTCompilationUnit loadJragSpec(URI resource,Grammar root,Collection<String> errors){
+
+	public static ASTCompilationUnit loadJragSpec(URI resource, Grammar root,
+			Collection<String> errors) {
 		InputStream inputStream = null;
 		String resourceName = resource.toString();
 		URIConverter uriConverter = URIConverter.INSTANCE;
@@ -77,7 +119,7 @@ public class GrammarLoader {
 			jp.setFileName(resourceName);
 			ASTCompilationUnit au = jp.CompilationUnit();
 			return au;
-			
+
 		} catch (jrag.AST.ParseException e) {
 			StringBuffer msg = new StringBuffer();
 			msg.append("Syntax error in " + resourceName + " at line "
@@ -86,16 +128,14 @@ public class GrammarLoader {
 			errors.add(msg.toString());
 			return null;
 		} catch (IOException e) {
-			errors.add("File error: Aspect file "
-					+ resourceName + " not found");
+			errors.add("File error: Aspect file " + resourceName + " not found");
 			return null;
-		}
-		finally{
-			if(inputStream!=null){
+		} finally {
+			if (inputStream != null) {
 				try {
 					inputStream.close();
 				} catch (IOException e) {
-					//do nothing
+					// do nothing
 				}
 			}
 		}
@@ -107,7 +147,6 @@ public class GrammarLoader {
 		boolean publicModifier = true;
 		java.util.List cacheFiles = new LinkedList();
 
-		
 		try {
 			long time = System.currentTimeMillis();
 
@@ -120,8 +159,8 @@ public class GrammarLoader {
 				URI fileURI = iter.next();
 
 				if (fileURI.toString().endsWith(".ast")) {
-					Grammar astGrammar = loadAstSpec(fileURI,errors);
-					if(errors.isEmpty()){
+					Grammar astGrammar = loadAstSpec(fileURI, errors);
+					if (errors.isEmpty()) {
 						for (int i = 0; i < astGrammar.getNumTypeDecl(); i++) {
 							root.addTypeDecl(astGrammar.getTypeDecl(i));
 						}
@@ -150,7 +189,7 @@ public class GrammarLoader {
 
 			ASTNode.resetGlobalErrors();
 
-			//Prints and re-parses the ASTNode type
+			// Prints and re-parses the ASTNode type
 			{
 				java.io.StringWriter writer = new java.io.StringWriter();
 				root.jjtGenASTNode$State(new PrintWriter(writer), grammarName,
@@ -174,10 +213,11 @@ public class GrammarLoader {
 			// Parse all jrag files and build tables
 			for (Iterator<URI> iter = files.iterator(); iter.hasNext();) {
 				URI fileURI = iter.next();
-				if (fileURI.toString().endsWith(".jrag") || fileURI.toString().endsWith(".jadd")) {
-					ASTCompilationUnit au = loadJragSpec(fileURI,root,errors);
-					if(errors.isEmpty()){
-						root.addCompUnit(au);	
+				if (fileURI.toString().endsWith(".jrag")
+						|| fileURI.toString().endsWith(".jadd")) {
+					ASTCompilationUnit au = loadJragSpec(fileURI, root, errors);
+					if (errors.isEmpty()) {
+						root.addCompUnit(au);
 					}
 				}
 			}
@@ -259,17 +299,14 @@ public class GrammarLoader {
 			long jragErrorTime = System.currentTimeMillis() - time
 					- jragParseTime;
 
-			/*root.jastAddGen(outputDir, grammarName, pack, publicModifier);
-			try {
-				root.createInterfaces(outputDir, pack);
-			} catch (FileNotFoundException e) {
-				System.out.println("File error: Output directory " + outputDir
-						+ " does not exist or is write protected");
-				System.exit(1);
-			}
-			long codegenTime = System.currentTimeMillis() - time
-					- jragErrorTime;
-		*/
+			/*
+			 * root.jastAddGen(outputDir, grammarName, pack, publicModifier);
+			 * try { root.createInterfaces(outputDir, pack); } catch
+			 * (FileNotFoundException e) {
+			 * System.out.println("File error: Output directory " + outputDir +
+			 * " does not exist or is write protected"); System.exit(1); } long
+			 * codegenTime = System.currentTimeMillis() - time - jragErrorTime;
+			 */
 			// System.out.println("AST parse time: " + astParseTime +
 			// ", AST error check: " + astErrorTime + ", JRAG parse time: " +
 			// jragParseTime + ", JRAG error time: " + jragErrorTime +
