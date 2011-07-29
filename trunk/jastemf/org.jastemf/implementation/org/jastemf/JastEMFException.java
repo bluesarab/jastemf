@@ -37,4 +37,13 @@ public class JastEMFException extends IOException {
 	public JastEMFException(Exception e) {
 		super(e);
 	}
+	
+	/**
+	 * Construct a new <i>JastEMF</i> exception with the given exception as
+	 * cause and a given error message.
+	 * @param e The exception's cause. 
+	 */
+	public JastEMFException(String message,Exception e) {
+		super(message,e);
+	}
 }
