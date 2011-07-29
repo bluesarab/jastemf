@@ -47,6 +47,8 @@ This task allows you to derive AST grammars from a given metamodel. The metamode
 </jastemf.ecore2ast>
 }}}
 
+The resulting AST specifications correspond to the syntactic interface, i.e. the containment hierarchy of the given metamodel.
+
 == `jastemf.ecore2jrag` Task ==
 This task derives a set of very basic attibute declrations from a given metamodel. The specification has to be completed manually to form a usable attribution.
 
@@ -56,3 +58,5 @@ This task derives a set of very basic attibute declrations from a given metamode
 	outputDirectory="target/directory/for/derived/jrag/specs">
 </jastemf.ecore2jrag>
 }}}
+
+The resulting specifications correspond to the semantic interface of the metamodel, i.e., its non-containment EReferences, derived EAttributes EOperations and derived containment EReferences.
