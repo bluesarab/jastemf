@@ -29,7 +29,7 @@ The embedded !JastAdd call has not to specify the AST classes' package and outpu
 
 Ant build scripts using JastEMF must be executed within the same JRE as Eclipse (Select _Run => External Tools => External Tools Configurations =>_ select the Ant build script containing the `jastemf` task _=> JRE => Run in the same JRE as the workspace_).
 
-*IMPORTANT NOTE*: This task takes some time. JastEMF uses complex Eclipse-based refactorings to merge the class hierarchies and this is slow. Future versions may provide a much faster implementation. 
+*IMPORTANT NOTE*: This task requires some time. JastEMF uses complex Eclipse-based refactorings to merge the class hierarchies and this is slow. Future versions may provide a much faster implementation. 
 
 == `jastadd` Task ==
 
