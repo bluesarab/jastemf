@@ -38,9 +38,21 @@ JastEMF also provides the [http://jastadd.org/jastadd-reference-manual/running-j
 The JastEMF Converter plug-in provides some automated ANT tasks that allow to derive attribute grammar stubs from a given Ecore model or the derive a corresponding Ecore model from a set of attribute grammar specifications.
 
 == `jastemf.ecore2ast` Task ==
+This task allows you to derive AST grammars from a given metamodel. The metamodel must be revealed by the task's modelFile parameter. The transformation result is stored in the directory passed via outputDirectory to the task. Note that each EPackage in the provided model will get its own AST file, which is named like the package.
 
 {{{
 <jastemf.ecore2ast
 	modelFile="your/model/directory/yourmodel.ecore"
 	outputDirectory="target/directory/for/derived/ast/specs">
-</jastemf.ecore2ast>}}}
+</jastemf.ecore2ast>
+}}}
+
+== `jastemf.ecore2jrag` Task ==
+This task derives a set of very basic attibute declrations from a given metamodel. The specification has to be completed manually to form a usable attribution.
+
+{{{
+<jastemf.ecore2jrag
+	modelFile="your/model/directory/yourmodel.ecore"
+	outputDirectory="target/directory/for/derived/jrag/specs">
+</jastemf.ecore2jrag>
+}}}
