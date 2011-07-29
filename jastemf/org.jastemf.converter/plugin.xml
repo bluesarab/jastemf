@@ -13,6 +13,11 @@
             library="ant/ant-tasks.jar"
             name="jastemf.ecore2jrag">
       </antTask>
+            <antTask
+            class="org.jastemf.converter.ant.JastAdd2EcoreTask"
+            library="ant/ant-tasks.jar"
+            name="jastemf.jastadd2ecore">
+      </antTask>
    </extension>
 
 </plugin>
