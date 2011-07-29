@@ -34,3 +34,5 @@ Ant build scripts using JastEMF must be executed within the same JRE as Eclipse 
 JastEMF also provides the [http://jastadd.org/jastadd-reference-manual/running-jastadd-under-eclipse#ANT Ant user interface known from JastAdd]. The only difference is, that the `jastadd` task is registered by the JastEMF plugin in Eclipse, such that it can be used in Ant build scripts without being explicitely defined.
 
 = The Converter's User Interface =
+
+The JastEMF Converter plug-in provides some automated ANT tasks that allow to derive attribute grammar stubs from a given Ecore model or the derive a corresponding Ecore model from a set of attribute grammar specifications.
