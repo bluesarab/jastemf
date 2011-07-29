@@ -40,7 +40,7 @@ JastEMF also provides the [http://jastadd.org/jastadd-reference-manual/running-j
 The JastEMF Converter plug-in provides some automated ANT tasks that allow to derive attribute grammar stubs from a given Ecore model or the derive a corresponding Ecore model from a set of attribute grammar specifications.
 
 == `jastemf.ecore2ast` Task ==
-This task allows you to derive AST grammars from a given metamodel. The metamodel must be revealed by the task's modelFile parameter. The transformation result is stored in the directory passed via outputDirectory to the task. Note that each EPackage in the provided model will get its own AST file, which is named like the package.
+This task allows you to derive AST grammars from a given metamodel. The metamodel must be revealed by the task's `modelFile` parameter. The transformation result is stored in the directory passed via `outputDirectory` to the task. Note that each `EPackage` in the provided model will get its own AST file, which is named like the package.
 
 {{{
 <jastemf.ecore2ast
@@ -61,10 +61,10 @@ This task derives a set of very basic attibute declrations from a given metamode
 </jastemf.ecore2jrag>
 }}}
 
-The resulting specifications correspond to the semantic interface of the metamodel, i.e., its non-containment EReferences, derived EAttributes EOperations and derived containment EReferences.
+The resulting specifications correspond to the semantic interface of the metamodel, i.e., its non-containment `EReferences`, derived `EAttributes`, `EOperations` and derived containment `EReferences`.
 
 == `jastemf.jastadd2ecore` ==
-This powerful task allows you to derive an Ecore model from a given set of JastAdd specification files. The target parameter takes a directory or file path where the generated resources should be serialized. If directory or file depends on the onFilePerPackage option which specifies if each AST file should get its own EPackage file (i.e. a directory is required) or if all packages should be put into one file. The optional rootPackageName parameter specifies the root package name for the one file case. One or more nested filesets provide the required set of specification files.
+This powerful task allows you to derive an Ecore model from a given set of JastAdd specification files. The `target` parameter takes a directory or file path where the generated resources should be serialized. If directory or file depends on the `onFilePerPackage` option which specifies if each AST file should get its own `EPackage` file (i.e. a directory is required) or if all packages should be put into one file. The optional `rootPackageName` parameter specifies the root package name for the one file case. One or more nested `filesets` provide the required set of specification files.
 
 {{{
 <jastemf.jastadd2ecore
@@ -79,4 +79,4 @@ This powerful task allows you to derive an Ecore model from a given set of JastA
 </jastemf.jastadd2ecore>
 }}}
 
-The generated Ecore model(s) using this task will contain the syntactic interface given by the AST specifications and the semantic interface given by the attribute declarations in the attribute grammar files. Especially, each EStructuralFeature in the semantic interface contains an EAnnotation with additional metainformation about its kind (e.g. inh) and origin.
+The generated Ecore model(s) using this task will contain the syntactic interface given by the AST specifications and the semantic interface given by the attribute declarations in the attribute grammar files. Especially, each `EStructuralFeature` in the semantic interface contains an `EAnnotation` with additional metainformation about its kind (e.g. inh) and origin.
