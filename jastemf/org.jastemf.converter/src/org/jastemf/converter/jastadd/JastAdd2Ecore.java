@@ -29,7 +29,6 @@ import ast.AST.OptionalComponent;
 import ast.AST.TokenComponent;
 import ast.AST.TypeDecl;
 import ast.AST.SynDecl;
-import ast.AST.CollDecl;
 import ast.AST.Parameter;
 
 /**
@@ -45,18 +44,23 @@ public class JastAdd2Ecore {
 	private HashMap<TypeDecl, EClass> eClassMap;
 	private HashMap<String, EDataType> eDataTypeMap;
 	private Grammar grammar;
+	private boolean ignoreASTTypes = false;
 
-	public Collection<EPackage> convertGrammar(Grammar g)
+	public Collection<EPackage> convertGrammar(Grammar g,boolean ignoreASTTypes)
 			throws JastEMFException {
 		ePackagesMap = new HashMap<String, EPackage>();
 		eClassMap = new HashMap<TypeDecl, EClass>();
 		eDataTypeMap = new HashMap<String, EDataType>();
 		grammar = g;
+		this.ignoreASTTypes = ignoreASTTypes;
 		List l = g.getTypeDeclList();
 		for (int i = 0; i < l.getNumChild(); i++) {
 
 			if (l.getChild(i) instanceof ASTDecl) {
 				ASTDecl astDecl = (ASTDecl) l.getChild(i);
+				if(ignoreASTTypes && isASTType(astDecl.name())){
+					continue;
+				}
 				String ePackageKey = astDecl.getFileName();
 				if (!ePackagesMap.containsKey(ePackageKey)) {
 					EPackage pck = factory.createEPackage();
@@ -199,8 +203,10 @@ public class JastAdd2Ecore {
 		eClass.setAbstract(astDecl.getAbstractOpt().getNumChild() > 0);
 
 		if (astDecl.hasSuperClass()) {
-			EClass eSuperClass = lookupEClass(astDecl.getSuperClass().getID());
-			eClass.getESuperTypes().add(eSuperClass);
+			if(!ignoreASTTypes||!isASTType(astDecl.getSuperClass().getID())){
+				EClass eSuperClass = lookupEClass(astDecl.getSuperClass().getID());
+				eClass.getESuperTypes().add(eSuperClass);				
+			}
 		}
 
 		@SuppressWarnings("rawtypes")
@@ -301,6 +307,12 @@ public class JastAdd2Ecore {
 
 	private boolean isASTNodeType(String typeString) {
 		if (typeString.startsWith("ASTNode"))
+			return true;
+		return false;
+	}
+	
+	private boolean isASTType(String typeString) {
+		if(isASTListType(typeString)||isASTOptType(typeString)||isASTNodeType(typeString))
 			return true;
 		return false;
 	}
