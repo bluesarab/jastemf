@@ -2,14 +2,22 @@ package org.jastemf.converter.ant;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
+import org.apache.tools.ant.TaskAdapter;
 import org.apache.tools.ant.types.FileSet;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.jastemf.JastEMFException;
 import org.jastemf.converter.jastadd.EcoreSerializer;
 import org.jastemf.converter.jastadd.GrammarLoader;
@@ -77,6 +85,25 @@ public class JastAdd2EcoreTask extends Task {
 		} catch (JastEMFException e) {
 			throw new BuildException("An Error occured during JastAdd grammar to Ecore conversion.",e);
 		}
+		
+		this.log("EPackage validation:");
+		
+		BasicDiagnostic diagnostics = new BasicDiagnostic();
+		
+		for(EPackage ePackage:ePackages){
+			Iterator<EObject> it = ePackage.eAllContents();
+			while(it.hasNext()){
+				EObject eo = it.next();
+			    Map<Object, Object> context = new HashMap<Object, Object>();
+			    Diagnostician.INSTANCE.validate(eo, diagnostics, context);
+			}
+		}
+		
+		for(Diagnostic diagnostic:diagnostics.getChildren()){
+			this.log(diagnostic.getMessage());
+		}
+		
+		this.log("Validation done.");
 		
 		URI resultURI = URI.createURI(target.toURI().toString());
 		
