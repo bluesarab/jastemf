@@ -1,0 +1,65 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+
+<project name="Generation" default="All">
+	<path id="basedir">
+		<pathelement location="."/>
+	</path>
+	
+		
+	<target name="Clean" description="Delete all generated artefacts.">
+		<delete includeemptydirs="true">
+			<fileset dir="${basedir}/..">
+				<!-- all these artefacts are generated -->
+				<include name="src-gen/**/*"/>
+				<include name="icons/**/*"/>
+				<include name="icons"/>
+			</fileset>
+		</delete>
+		<eclipse.refreshLocal resource="/org.jastemf.picojava" depth="infinite"/>
+	</target>
+
+	<target
+		name="EMF Semantic"
+		depends="Clean"
+		description="Generate the semantic evaluator for EMF picojava.">
+		<echo message="========================> Generate picojava &lt;======================="/>
+		<jastemf
+			generateeditcode="true"
+			genmodel="${basedir}/model/picojava.genmodel"
+			outpackage="jastemf.adaptation"
+			astpackage="org.jastemf.picojava.ast">
+			<fileset dir="${basedir}/semantics">
+				<include name="**/*.jrag"/>
+				<include name="**/*.jadd"/>
+			</fileset>
+			<fileset dir="${basedir}/model">
+				<include name="**/*.ast"/>
+			</fileset>
+		</jastemf>
+		<eclipse.refreshLocal resource="/org.jastemf.picojava" depth="infinite"/>
+	</target>
+	
+	<target name="Generate Ecore">
+		<echo message="========================> Generate Ecore Model &lt;======================="/>
+		<jastemf.jastadd2ecore
+			target="${basedir}/model"
+			ignoreASTTypes="true"
+			oneFilePerPackage="true">
+			<fileset dir="${basedir}/model">
+				<include name="**/*.ast" />
+			</fileset>
+			<fileset dir="${basedir}/semantics">
+				<include name="**/*.jrag" />
+				<include name="**/*.jadd" />
+			</fileset>
+		</jastemf.jastadd2ecore>
+		<eclipse.refreshLocal resource="/org.jastemf.picojava" depth="infinite"/>
+	</target>
+	
+	<target name="All" depends="Generate Ecore,EMF Semantic"/>
+	
+</project>
