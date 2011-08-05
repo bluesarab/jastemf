@@ -35,3 +35,11 @@ Example Objectives:
  * To show the benefits of semantics integrated metamodelling w.r.t. reuse and tool integration.
 
 Details and a tutorial for the example can be found [Statemachine here].
+
+== PicoJava ==
+
+PicoJava can be considered as a very small subset of the Java programming language. It supports nested class declarations with inhertance, variable declarations and while loops. The example and its JastAdd sources have been taken form the PicoJava tutorial from the [http://jastadd.org/old/examples/picojava-checker JastAdd website]. Hence, for the language's documentation documentation and the tutorial you can simple visit that website.
+
+Example Objectives:
+ * This example demontrates, how an Ecore representation can be automatically derived from a set of existing JastAdd specification using JastEMF.
+ * Furthermore, it demonstrates how a very powerful textual editor for PicoJava can be immediately created by briding the JastAdd semantics implementation and a corresponding [http://www.emftext.org EMFText] grammer using JastEMF.     
