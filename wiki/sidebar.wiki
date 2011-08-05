@@ -5,5 +5,4 @@
  * [Examples Example Projects]
    * [SIPLE]
    * [Statemachine]
-   * [PicoJava]
  * [Publications]
