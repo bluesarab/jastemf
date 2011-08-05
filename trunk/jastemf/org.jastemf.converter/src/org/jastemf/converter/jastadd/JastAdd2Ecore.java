@@ -97,15 +97,21 @@ public class JastAdd2Ecore {
 			throws JastEMFException {
 		EClass eClass = lookupEClass(astDecl);
 		
-		//putting all syn and inh declarations in one collection
-		Collection attrDeclarations = astDecl.synDeclarations();
-		attrDeclarations.addAll(astDecl.inhDeclarations());
-		for(int i=0;i<astDecl.getCollDeclList().getNumChild();i++){
-			attrDeclarations.add(astDecl.getCollDecl(i));
-		}
-		
+		Collection attrDeclarations = getAllAttrDecls(astDecl);
+	
 		for (Object o : attrDeclarations) {
 			AttrDecl attrDecl = (AttrDecl) o;
+			
+			//We filter attr decls duplicated in subclasses since this is not allowed in 
+			//Ecore (execept for Operations). However, Ecore still generated stubs for such features, hence
+			//it should not be a problem if we ignore such attributes
+			//Note: There might be multiple reasons for duplicate declarations:
+				//first is the internal JastAdd impl does some rewrites on the specification
+				//to distribute all decls also to subclasses
+				//second the user might have redeclared an attribute, which might cause problems
+			if(isInSuper(astDecl, attrDecl))
+				continue;
+			
 			//if we have attributes with > 0 parameters, we can only map to EOperations
 			if (attrDecl.getParameterList().getNumChild() == 0) {
 				//an attribute with primitive return value is mapped to an EAttribute
@@ -213,6 +219,11 @@ public class JastAdd2Ecore {
 		Iterator it = astDecl.getComponents();
 		while (it.hasNext()) {
 			Components components = (Components) it.next();
+			//checking if feature already declared in superclass, if yes we skip it,
+			//since this is not compatible with Ecore 
+			//this even occurs if a feature is only declared in superclass
+			if(isInSuper(astDecl,components))
+				continue;
 			if (components instanceof TokenComponent) {
 				TokenComponent token = (TokenComponent) components;
 				EAttribute attr = factory.createEAttribute();
@@ -251,6 +262,53 @@ public class JastAdd2Ecore {
 		return eClass;
 
 	}
+	
+	private boolean isInSuper(ASTDecl astDecl, Components components){
+		String superClassName = astDecl.getSuperClassName();		
+		while(superClassName!=null&&!isASTNodeType(superClassName)){
+			TypeDecl typeDecl = grammar.lookup(superClassName);
+			Iterator it = typeDecl.getComponents();
+			while (it.hasNext()) {
+				Components currentComponents = (Components) it.next();
+				if(currentComponents.name().equals(components.name()))
+					return true;
+			}
+			superClassName = ((ASTDecl)typeDecl).getSuperClassName();
+		}
+		return false;
+	}
+	
+	
+	private boolean isInSuper(ASTDecl astDecl, AttrDecl attrDecl){
+		String superClassName = astDecl.getSuperClassName();		
+		while(superClassName!=null&&!isASTNodeType(superClassName)){
+			TypeDecl typeDecl = grammar.lookup(superClassName);		
+			//System.out.println(attrDecl.signature());
+			for(AttrDecl currentAttrDecl:getAllAttrDecls((ASTDecl)(typeDecl))){
+				if(attrDecl.attributeSignature().equals(currentAttrDecl.attributeSignature())){
+					return true;
+				}
+				if(attrDecl.name().equals(currentAttrDecl.name())){
+					System.out.println("Warning: "+attrDecl.signature()+" overloads "+currentAttrDecl.attributeSignature() + ". Duplicate names are not allowed in Ecore");
+					return true;
+				}
+					
+			}
+			superClassName = ((ASTDecl)typeDecl).getSuperClassName();
+		}
+		return false;
+	}
+	
+	private Collection<AttrDecl> getAllAttrDecls(ASTDecl astDecl){
+		//putting all syn and inh declarations in one collection
+		Collection attrDeclarations = astDecl.synDeclarations();
+		attrDeclarations.addAll(astDecl.inhDeclarations());
+		for(int i=0;i<astDecl.getCollDeclList().getNumChild();i++){
+			attrDeclarations.add(astDecl.getCollDecl(i));
+		}
+		return new LinkedList<AttrDecl>(attrDeclarations);
+	}
+	
 
 	private EReference createNonContainment() {
 		EReference ref = factory.createEReference();
