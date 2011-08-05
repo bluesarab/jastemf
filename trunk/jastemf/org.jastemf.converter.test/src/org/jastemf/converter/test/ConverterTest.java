@@ -4,7 +4,10 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 
 
 import junit.framework.Assert;
@@ -21,8 +24,13 @@ import ast.AST.ASTDecl;
 import ast.AST.Grammar;
 import ast.AST.List;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EcoreValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -73,6 +81,24 @@ public class ConverterTest {
 		URI resultURI = URI.createURI("result").resolve(testURI);
 		
 		EcoreSerializer.serializeEPackages(ePackages, resultURI, false, null);
+		
+		BasicDiagnostic diagnostics = new BasicDiagnostic();
+		boolean valid = true;
+		
+		for(EPackage ePackage:ePackages){
+			Iterator<EObject> it = ePackage.eAllContents();
+			while(it.hasNext()){
+				EObject eo = it.next();
+			    Map<Object, Object> context = new HashMap<Object, Object>();
+			    valid &= Diagnostician.INSTANCE.validate(eo, diagnostics, context);
+			}
+		}
+		
+		for(Diagnostic diagnostic:diagnostics.getChildren()){
+			System.out.println(diagnostic.getMessage());
+		}
+		
+		Assert.assertTrue("Generated model is not valid.",valid);
 		
 	}
 
