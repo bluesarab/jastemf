@@ -93,11 +93,7 @@ public class ConverterTest {
 			    valid &= Diagnostician.INSTANCE.validate(eo, diagnostics, context);
 			}
 		}
-		
-		for(Diagnostic diagnostic:diagnostics.getChildren()){
-			System.out.println(diagnostic.getMessage());
-		}
-		
+	
 		Assert.assertTrue("Generated model is not valid.",diagnostics.getChildren().size()<=2);
 		
 	}
