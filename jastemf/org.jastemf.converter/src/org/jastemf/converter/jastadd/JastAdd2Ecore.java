@@ -14,7 +14,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.jastemf.JastEMFException;
 
 import ast.AST.ASTDecl;
@@ -132,6 +134,13 @@ public class JastAdd2Ecore {
 					EReference ref = null;
 					// is reference or NTA attribute
 					if (attrDecl.isNTA()) {
+						//JastAdd has duplicate entries for ntas if it is declared in the AST spec
+						// we have to exclude one from the mapping
+						// (may also be required to be checked over the whole hierarchy)
+						if(hasNTAFeatureFromAST(attrDecl, eClass)){
+							System.out.println("Skipping already added NTA '"+attrDecl.attributeSignature()+"'.");
+							continue;
+						}
 						// is NTA attribute -> we have to check if it refers to
 						// List or Opt childs
 						GenericType type = getGenericTypeRepresentation(attrDecl
@@ -261,6 +270,27 @@ public class JastAdd2Ecore {
 		}
 		return eClass;
 
+	}
+	
+	private boolean hasNTAFeatureFromAST(AttrDecl ntaAttrDecl, EClass eClass){
+		String nameInAST;
+		//realizes the NTA naming scheme required in jrag files
+		if(ntaAttrDecl.name().endsWith("List")&&ntaAttrDecl.name().startsWith("get")){
+			nameInAST = ntaAttrDecl.name().substring(3,ntaAttrDecl.name().length()-4);
+		}
+		else if(ntaAttrDecl.name().startsWith("get")){
+			nameInAST = ntaAttrDecl.name().substring(3);
+		}
+		else{
+			return false;
+		}
+		
+		for(EStructuralFeature feature: eClass.getEStructuralFeatures()){
+			if(feature.getName().equals(nameInAST))
+				return true;
+		}
+		
+		return false;
 	}
 	
 	private boolean isInSuper(ASTDecl astDecl, Components components){
