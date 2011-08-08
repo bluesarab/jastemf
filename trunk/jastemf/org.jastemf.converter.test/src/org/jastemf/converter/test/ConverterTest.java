@@ -51,15 +51,26 @@ public class ConverterTest {
 	@Test
 	public void test() throws JastEMFException {
 		File testDir = new File("./specifications/jastadd2ecore-test");
+		File modelDir = new File("./specifications/jastadd2ecore-test/model");
+		File semanticsDir = new File("./specifications/jastadd2ecore-test/semantics");
 		URI testURI = URI.createURI(testDir.toURI().toString());
 		java.util.List<URI> resources = new LinkedList<URI>();
 		
-		resources.add(URI.createURI("model/picojava.ast").resolve(testURI));
-		resources.add(URI.createURI("semantics/ErrorCheck.jadd").resolve(testURI));
-		resources.add(URI.createURI("semantics/NameResolution.jrag").resolve(testURI));
-		resources.add(URI.createURI("semantics/NullObjects.jrag").resolve(testURI));
-		resources.add(URI.createURI("semantics/PredefinedTypes.jrag").resolve(testURI));
-		resources.add(URI.createURI("semantics/TypeAnalysis.jrag").resolve(testURI));
+		File[] modelFiles = modelDir.listFiles();
+		for(int i=0;i<modelFiles.length;i++){
+			if(modelFiles[i].isFile()){
+				System.out.println("Adding "+modelFiles[i].toString()+" ...");
+				resources.add(URI.createURI(modelFiles[i].toURI().toString()));
+			}
+		}
+		
+		File[] semanticsFiles = semanticsDir.listFiles();
+		for(int i=0;i<semanticsFiles.length;i++){
+			if(semanticsFiles[i].isFile()){
+				System.out.println("Adding "+semanticsFiles[i].toString()+" ...");
+				resources.add(URI.createURI(semanticsFiles[i].toURI().toString()));
+			}
+		}
 		
 		Grammar g = GrammarLoader.loadJastAddGrammar(resources);
 		
