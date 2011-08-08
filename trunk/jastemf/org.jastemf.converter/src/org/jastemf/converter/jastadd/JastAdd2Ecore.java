@@ -97,7 +97,7 @@ public class JastAdd2Ecore {
 
 	private EClass convertAttributionFeatures(ASTDecl astDecl)
 			throws JastEMFException {
-		EClass eClass = lookupEClass(astDecl);
+		EClass eClass = lookupEClassLocal(astDecl);
 		
 		Collection attrDeclarations = getAllAttrDecls(astDecl);
 	
@@ -116,22 +116,11 @@ public class JastAdd2Ecore {
 			
 			//if we have attributes with > 0 parameters, we can only map to EOperations
 			if (attrDecl.getParameterList().getNumChild() == 0) {
-				//an attribute with primitive return value is mapped to an EAttribute
-				if (attrDecl.isPrimitive()) {
-					EAttribute attr = factory.createEAttribute();
-					attr.setName(attrDecl.name());
-					attr.setEType(lookUpEDataType(attrDecl.type()));
-					eClass.getEStructuralFeatures().add(attr);
-					attr.setDerived(true);
-					if (!attrDecl.getLazy()) {
-						attr.setChangeable(false);
-					}
-					attr.setTransient(true);
-					attr.getEAnnotations().add(createJastEMFAnnotation(attrDecl));
-					eClass.getEStructuralFeatures().add(attr);
-
-				} else {
+				//can be set to false if deriving an EClass for non containments fails (=> no reference attribute)
+				boolean typeInAST = true; 
+				if(!attrDecl.isPrimitive()) {
 					EReference ref = null;
+					
 					// is reference or NTA attribute
 					if (attrDecl.isNTA()) {
 						//JastAdd has duplicate entries for ntas if it is declared in the AST spec
@@ -147,33 +136,74 @@ public class JastAdd2Ecore {
 								.type());
 						if (isASTListType(attrDecl.type())) {
 							ref = createContainmentList();
-							ref.setEType(lookupEClass(type.getTypeArgs()
-									.iterator().next().getType()));
+							if(type.hasTypeArgs()){
+								ref.setEType(lookupEClass(type.getTypeArgs()
+										.iterator().next().getType()));							
+							}
+							else{
+								System.out.println("Warning: nta declaration "+attrDecl.signature()+" has List type but has no type argument - using EObject");
+								ref.setEType(lookupEClass("EObject"));
+							}
 						} else if (isASTOptType(attrDecl.type())) {
 							ref = createContainmentOpt();
-							ref.setEType(lookupEClass(type.getTypeArgs()
-									.iterator().next().getType()));
+							if(type.hasTypeArgs()){
+								ref.setEType(lookupEClass(type.getTypeArgs()
+										.iterator().next().getType()));
+							}
+							else{
+								System.out.println("Warning: nta declaration "+attrDecl.signature()+" has Opt type but has so type argument - using EObject");								
+								ref.setEType(lookupEClass("EObject"));
+
+							}
 						} else {
 							ref = createContainmentAggregate();
 							ref.setEType(lookupEClass(type.getType()));
 						}
 						setNTA(ref);
+
 					} else {
-						ref = createNonContainment();
-						ref.setEType(lookupEClass(attrDecl.type()));
+						EClass refType = lookupEClass(attrDecl.type());
+						if(refType!=null){
+							ref = createNonContainment();
+							ref.setEType(lookupEClass(attrDecl.type()));							
+						}
+						else{
+							typeInAST = false;
+						}
 					}
-					ref.setName(attrDecl.name());
-					if (attrDecl.lazyCondition()) {
-						ref.setChangeable(true);
+					if(typeInAST){
+						ref.setName(attrDecl.name());
+						if (attrDecl.lazyCondition()) {
+							ref.setChangeable(true);
+						}
+					
+						//System.out.println("Adding ref to EClass "+ eClass.getName() +": " +ref.getName() +":"+(ref.getEType()!=null?ref.getEType().getName():"[NULL]"));
+						ref.getEAnnotations().add(createJastEMFAnnotation(attrDecl));
+						eClass.getEStructuralFeatures().add(ref);						
 					}
-					ref.getEAnnotations().add(createJastEMFAnnotation(attrDecl));
-					eClass.getEStructuralFeatures().add(ref);
+				}
+				
+				//an attribute with primitive return value is mapped to an EAttribute
+				if (attrDecl.isPrimitive()||!typeInAST) {
+					//System.out.println("Decl "+ attrDecl.getName() +": "+attrDecl.getType()+" is primitive.");
+					EAttribute attr = factory.createEAttribute();
+					attr.setName(attrDecl.name());
+					attr.setEType(lookUpEDataType(attrDecl.type()));
+					eClass.getEStructuralFeatures().add(attr);
+					attr.setDerived(true);
+					if (!attrDecl.getLazy()) {
+						attr.setChangeable(false);
+					}
+					attr.setTransient(true);
+					attr.getEAnnotations().add(createJastEMFAnnotation(attrDecl));
+					eClass.getEStructuralFeatures().add(attr);
+
 				}
 
 			} else {
 				EOperation eop = factory.createEOperation();
 				eop.setName(attrDecl.name());
-				if(attrDecl.isPrimitive()){
+				if(attrDecl.isPrimitive()||(lookupEClass(attrDecl.type())==null)){
 					eop.setEType(lookUpEDataType(attrDecl.type()));
 				}
 				else{
@@ -198,7 +228,8 @@ public class JastAdd2Ecore {
 		}
 		return eClass;
 	}
-
+	
+	
 	/**
 	 * Maps all features of an AST declaration in JastAdd to a corresponding
 	 * EClass in Ecore.
@@ -214,7 +245,7 @@ public class JastAdd2Ecore {
 	 * @return An EClass with an Ecore representation of the ASTDecl.
 	 */
 	private EClass convertASTFeatures(ASTDecl astDecl) {
-		EClass eClass = lookupEClass(astDecl);
+		EClass eClass = lookupEClassLocal(astDecl);
 		eClass.setAbstract(astDecl.getAbstractOpt().getNumChild() > 0);
 
 		if (astDecl.hasSuperClass()) {
@@ -511,20 +542,48 @@ public class JastAdd2Ecore {
 	 * @return The corresponding EClass for the given TypeDecl.
 	 */
 
-	private EClass lookupEClass(TypeDecl typeDecl) {
+	private EClass lookupEClassLocal(TypeDecl typeDecl) {
 		EClass eClass = null;
-		if (!eClassMap.containsKey(typeDecl)) {
-			EClass clz = EcoreFactory.eINSTANCE.createEClass();
-			clz.setName(typeDecl.getIdDecl().getID());
-			eClassMap.put(typeDecl, clz);
+		if(typeDecl instanceof ASTDecl){
+			if(ignoreASTTypes&&!"ASTNode".equals(typeDecl.name())){
+				if (!eClassMap.containsKey(typeDecl)) {
+					EClass clz = EcoreFactory.eINSTANCE.createEClass();
+					clz.setName(typeDecl.getIdDecl().getID());
+					eClassMap.put(typeDecl, clz);
+				}
+				eClass = eClassMap.get(typeDecl);
+				return eClass;
+			}
 		}
-		eClass = eClassMap.get(typeDecl);
-		return eClass;
+		return null;
+	}
+	
+	private EClass lookupEClassLocal(String typeName) {
+		return grammar.lookup(typeName) != null ? lookupEClassLocal(grammar
+				.lookup(typeName)) : null;
 	}
 
 	private EClass lookupEClass(String typeName) {
-		return grammar.lookup(typeName) != null ? lookupEClass(grammar
-				.lookup(typeName)) : null;
+		EClass eClass = lookupEClassLocal(typeName);
+		if(eClass!=null){
+			//we have found a generated class from AST spec.
+			return eClass;
+		}
+		else{
+			//we did not found any local class
+			if("Object".equals(typeName)||"ASTNode".equals(typeName)){
+				return (EClass) factory.getEcorePackage().getEClassifier("EObject");
+			}
+			else{
+				for(EClassifier candidate:factory.getEcorePackage().getEClassifiers()){
+					if(candidate.getName().equals(typeName)){
+						if(candidate instanceof EClass)
+							return (EClass)candidate;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -538,21 +597,62 @@ public class JastAdd2Ecore {
 			return (EDataType) factory.getEcorePackage().getEClassifier(
 					typeName);
 		} else {
+			//workaround for String names, could be generalized if necessary
+			if("java.lang.String".equals(typeName))
+				typeName = "String";
 			String eTypeName = "E".concat(typeName.substring(0, 1)
 					.toUpperCase().concat(typeName.substring(1)));
 			if (factory.getEcorePackage().getEClassifier(eTypeName) != null) {
-				return (EDataType) factory.getEcorePackage().getEClassifier(
+				EClassifier classifier = factory.getEcorePackage().getEClassifier(
 						eTypeName);
+				if(classifier!=null && classifier instanceof EDataType){
+					return (EDataType)classifier;
+				}
+				else{
+					//we found a classifier
+					return null;
+				}
 			} else {
 				if (!eDataTypeMap.containsKey(typeName)) {
 					EDataType eDataType = factory.createEDataType();
 					eDataType.setName(typeName);
-					eDataType.setInstanceTypeName(typeName);
+					eDataType.setInstanceTypeName(getInstanceTypeName(typeName));
 					eDataTypeMap.put(typeName, eDataType);
 				}
 				return eDataTypeMap.get(typeName);
 			}
 		}
+	}
+	
+	private static String getInstanceTypeName(String plainName){
+		if("String".equals(plainName)){
+			return "java.lang.String";
+		}
+		else if("Collection".equals(plainName)){
+			return "java.util.Collection";
+		}
+		else if("Map".equals(plainName)){
+			return "java.util.Map";
+		}
+		else if("HashMap".equals(plainName)){
+			return "java.util.HashMap";
+		}
+		else if("List".equals(plainName)){
+			return "java.util.List";
+		}
+		else if("LinkedList".equals(plainName)){
+			return "java.util.LinkedList";
+		}
+		else if("ArrayList".equals(plainName)){
+			return "java.util.ArrayList";
+		}
+		else if("Set".equals(plainName)){
+			return "java.util.Set";
+		}
+		else if("HashSet".equals(plainName)){
+			return "java.util.HashSet";
+		}
+		return plainName;
 	}
 	
 	public static final String ANNOTATION_IS_NTA = "is_nta";
@@ -564,6 +664,7 @@ public class JastAdd2Ecore {
 	public static final String ANNOTATION_IS_PRIMITIVE = "is_primitive";
 	public static final String ANNOTATION_IS_CIRCULAR= "is_circular";
 	public static final String ANNOTATION_ASPECT = "aspect";
+	public static final String ANNOTATION_FILE = "file";
 
 	public static final String ANNOTATION_NAMESPACE = "http://www.jastemf.org/jastemf-annotations";
 	
@@ -576,6 +677,7 @@ public class JastAdd2Ecore {
 		annotation.getDetails().put(ANNOTATION_IS_PRIMITIVE,""+attrDecl.isPrimitive());
 		annotation.getDetails().put(ANNOTATION_IS_CIRCULAR,""+attrDecl.isCircular());
 		annotation.getDetails().put(ANNOTATION_ASPECT, attrDecl.getAspectName());
+		annotation.getDetails().put(ANNOTATION_FILE, attrDecl.getFileName());
 		return annotation;
 	}
 	
