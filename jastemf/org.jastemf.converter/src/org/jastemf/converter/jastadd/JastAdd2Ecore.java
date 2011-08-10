@@ -635,17 +635,10 @@ public class JastAdd2Ecore {
 		
 				String currentETypeName = "E".concat(currentTypeName.substring(0, 1)
 						.toUpperCase().concat(currentTypeName.substring(1)));
-				System.out.println("etypename-->"+currentETypeName+"<--"+factory.getEcorePackage().getEClassifier(currentETypeName));
-				for(EClassifier classifier:factory.getEcorePackage().getEClassifiers()){
-					if(classifier instanceof EDataType){
-						System.out.println(classifier.getName());
-					}
-				}
 				if (factory.getEcorePackage().getEClassifier(currentETypeName) != null) {
 					EClassifier classifier = 
 							factory.getEcorePackage().getEClassifier(currentETypeName);
-					System.out.println("etypename-->"+currentETypeName+"-->"+classifier);
-					
+						
 					if(classifier!=null && classifier instanceof EDataType){
 						eDataTypeMap.put(typeName,(EDataType)classifier);
 						return (EDataType)classifier;
