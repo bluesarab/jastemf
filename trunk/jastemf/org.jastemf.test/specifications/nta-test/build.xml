@@ -39,17 +39,18 @@
 			<include name="plugins/org.eclipse.core.filesystem.win32.x86_*.jar" />
 			<include name="plugins/org.junit_*/junit.jar" />
 			<include name="plugins/org.hamcrest.core_*.jar" />
-			<include name="plugins/org.eclipse.emf.mwe.core_*.jar" />
+<!--			<include name="plugins/org.eclipse.emf.mwe.core_*.jar" />
 			<include name="plugins/org.eclipse.emf.mwe.ui_*.jar" />
 			<include name="plugins/org.eclipse.emf.mwe.utils_*.jar" />
 			<include name="plugins/org.eclipse.emf.mwe2.runtime_.jar" />
-			<include name="plugins/org.eclipse.xtend*.jar" />
+			<include name="plugins/org.eclipse.xtend*.jar" />-->
 		</fileset>
 	</path>
 	
 	<path id="mwe.classpath">
 		<fileset dir="${eclipse.home}">
 			<include name="plugins/org.eclipse.emf.mwe.core_*.jar" />
+			<include name="plugins/org.eclipse.emf.mwe.core.resources_*.jar" />
 			<include name="plugins/org.eclipse.emf.mwe.ui_*.jar" />
 			<include name="plugins/org.eclipse.emf.mwe.utils_*.jar" />
 			<include name="plugins/org.eclipse.emf.mwe2.runtime_*.jar" />
