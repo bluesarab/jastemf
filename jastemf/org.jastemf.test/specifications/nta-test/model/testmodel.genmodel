@@ -26,6 +26,8 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Ast" basePackage="org.jastemf.test.test" disposableProviderFactory="true"
         ecorePackage="testmodel.ecore#//ast">
+      <genDataTypes ecoreDataType="testmodel.ecore#//ast/QCollection"/>
+      <genDataTypes ecoreDataType="testmodel.ecore#//ast/Collection"/>
       <genClasses ecoreClass="testmodel.ecore#//ast/D">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/index"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/name"/>
@@ -36,6 +38,8 @@
             ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/MultipleUpperC"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/DerivedUpperD"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/DerivedMultipleUpperC"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someQCollection"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someCollection"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Attributes" basePackage="org.jastemf.test.test" disposableProviderFactory="true"

@@ -58,7 +58,7 @@
 			<include name="plugins/org.eclipse.xpand*.jar" />
 			<include name="plugins/org.apache.commons.cli_*.jar" />
 			<include name="plugins/org.apache.commons.logging_*.jar" />
-			<include name="plugins/org.antlr.runtime_3.0.0*.jar" />
+			<include name="plugins/org.antlr.runtime_3.2.0*.jar" />
 		</fileset>
 	</path>
 	
