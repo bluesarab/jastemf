@@ -2,7 +2,7 @@
 <workflow>
 	<!-- Set the base URI all platform URIs are resolved against. -->
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
-		<platformUri value=".."/>
+		<platformUri value="."/>
 	</bean>
 
 	<component id="xmiParser" class="org.eclipse.emf.mwe.utils.Reader">
