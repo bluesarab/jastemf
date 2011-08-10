@@ -78,18 +78,21 @@ public class XTendUtil {
 	 * @return
 	 */
 	public static String getSimpleInstanceTypeName(EClassifier type){
+		String result = null;
 		if(type.getInstanceClass()!=null){
-			return type.getInstanceClass().getSimpleName();
+			result =  type.getInstanceClass().getSimpleName();
 		}
 		else if(type.getInstanceClassName()!=null){
-			String result = type.getInstanceClassName();
+			result = type.getInstanceClassName();
 			if(result.lastIndexOf('.')>-1){
 				result = result.substring(result.lastIndexOf('.')+1);
 			}
-			return result;
+			
 		}
-		else
-			return type.getName();
+		else {
+			result = type.getName();
+		}
+		return result;
 	}
 	
 }
