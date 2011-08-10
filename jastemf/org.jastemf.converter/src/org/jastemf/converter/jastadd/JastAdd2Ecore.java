@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.jastemf.JastEMFException;
 
 import ast.AST.ASTDecl;
@@ -156,10 +155,22 @@ public class JastAdd2Ecore {
 
 							}
 						} else {
-							ref = createContainmentAggregate();
-							ref.setEType(lookupEClass(type.getType()));
+							//A normal NTA is mapped to a containment.
+							//however there are some "hacks" in JastAddJ that declare a pseudo
+							//NTA terminal which actually is not a NTA, e.g.: /<ID:String>/
+							//hence, in such cases, we map to an EAttribute 
+							EClass refType = lookupEClass(type.getType());
+							if(refType!=null){
+								ref = createContainmentAggregate();
+								ref.setEType(refType);
+							}
+							else{
+								typeInAST = false;
+							}
+							
 						}
-						setNTA(ref);
+						if(ref!=null)
+							setNTA(ref);
 
 					} else {
 						EClass refType = lookupEClass(attrDecl.type());
@@ -346,12 +357,17 @@ public class JastAdd2Ecore {
 			TypeDecl typeDecl = grammar.lookup(superClassName);		
 			//System.out.println(attrDecl.signature());
 			for(AttrDecl currentAttrDecl:getAllAttrDecls((ASTDecl)(typeDecl))){
-				if(attrDecl.attributeSignature().equals(currentAttrDecl.attributeSignature())){
-					return true;
-				}
-				if(attrDecl.name().equals(currentAttrDecl.name())){
-					System.out.println("Warning: "+attrDecl.signature()+" overloads "+currentAttrDecl.attributeSignature() + ". Duplicate names are not allowed in Ecore");
-					return true;
+				if(currentAttrDecl.getParameterList().getNumChild()==
+						attrDecl.getParameterList().getNumChild()){
+					if(attrDecl.attributeSignature().equals(currentAttrDecl.attributeSignature())){
+						return true;
+					}
+			
+					if(attrDecl.name().equals(currentAttrDecl.name())){
+						System.out.println("Warning: "+attrDecl.signature()+" overloads "+currentAttrDecl.attributeSignature() + ". Duplicate names are not allowed in Ecore");
+						return true;
+					}
+
 				}
 					
 			}
@@ -592,35 +608,51 @@ public class JastAdd2Ecore {
 	 * @param typeName
 	 * @return
 	 */
-	private EDataType lookUpEDataType(String typeName) {
-		if (factory.getEcorePackage().getEClassifier(typeName) != null) {
-			return (EDataType) factory.getEcorePackage().getEClassifier(
-					typeName);
-		} else {
-			//workaround for String names, could be generalized if necessary
-			if("java.lang.String".equals(typeName))
-				typeName = "String";
-			String eTypeName = "E".concat(typeName.substring(0, 1)
-					.toUpperCase().concat(typeName.substring(1)));
-			if (factory.getEcorePackage().getEClassifier(eTypeName) != null) {
-				EClassifier classifier = factory.getEcorePackage().getEClassifier(
-						eTypeName);
+	private EDataType lookUpEDataType(final String typeName) {
+		if(eDataTypeMap.containsKey(typeName)){
+			return eDataTypeMap.get(typeName);
+		}
+		else{
+			String currentTypeName = typeName;
+			if("java.lang.String".equals(currentTypeName))
+				currentTypeName = "String";
+			
+			//first checking if there is an EDataType with the original name in Ecore
+			if (factory.getEcorePackage().getEClassifier(currentTypeName) != null) {
+				EClassifier classifier = 
+						factory.getEcorePackage().getEClassifier(currentTypeName);
 				if(classifier!=null && classifier instanceof EDataType){
+					eDataTypeMap.put(typeName,(EDataType)classifier);
 					return (EDataType)classifier;
 				}
-				else{
-					//we found a classifier
-					return null;
+			}	
+			else{
+			//second checking if there is an EDataType with a prefixed E in Ecore
+		
+				String currentETypeName = "E".concat(currentTypeName.substring(0, 1)
+						.toUpperCase().concat(currentTypeName.substring(1)));
+			
+				if (factory.getEcorePackage().getEClassifier(currentETypeName) != null) {
+					EClassifier classifier = 
+							factory.getEcorePackage().getEClassifier(currentETypeName);
+					if(classifier!=null && classifier instanceof EDataType){
+						eDataTypeMap.put(typeName,(EDataType)classifier);
+						return (EDataType)classifier;
+					}
 				}
-			} else {
-				if (!eDataTypeMap.containsKey(typeName)) {
-					EDataType eDataType = factory.createEDataType();
-					eDataType.setName(typeName);
-					eDataType.setInstanceTypeName(getInstanceTypeName(typeName));
-					eDataTypeMap.put(typeName, eDataType);
-				}
-				return eDataTypeMap.get(typeName);
 			}
+			
+			//we did not find an EDataType --> create one
+			EDataType eDataType = factory.createEDataType();
+			String newEDataTypeName = typeName;
+			//someone used an ASTNodeType in a terminal decl..
+			if(lookupEClassLocal(typeName)!=null){
+				newEDataTypeName = newEDataTypeName + "_EDataType";
+			}
+			eDataType.setName(newEDataTypeName);
+			eDataType.setInstanceTypeName(getInstanceTypeName(typeName));
+			eDataTypeMap.put(typeName, eDataType);
+			return eDataType;
 		}
 	}
 	
