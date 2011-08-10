@@ -11,10 +11,7 @@ package org.jastemf;
 import java.net.*;
 
 import org.eclipse.core.resources.*;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.xtend.util.stdlib.EmfUtils;
 
 /**
  * Abstract integration context, that supports default implementations for all

@@ -12,11 +12,10 @@ import java.util.*;
 import java.net.*;
 
 import org.eclipse.emf.ecore.resource.*;
-import org.eclipse.emf.mwe.core.*;
+import org.eclipse.emf.mwe.core.WorkflowFacade;
 import org.eclipse.emf.mwe.core.issues.*;
 import org.eclipse.emf.mwe.core.monitor.*;
 import org.eclipse.emf.mwe.core.resources.*;
-
 import org.jastemf.*;
 
 /**
@@ -117,18 +116,9 @@ final public class WorkflowManager {
 			System.setProperty(WORKFLOW_LOG_SYSTEM_PROPERTY_KEY,
 					WORKFLOW_LOG_CLASSNAME);
 
-			WorkflowRunner runner = new WorkflowRunner();
-			boolean prepareSuccess = runner.prepare(workflow,
-					new NullProgressMonitor(), properties);
-			if (!prepareSuccess) {
-				throw new JastEMFException(
-						"Template Error: Could not prepare workflow ["
-								+ workflow + "].");
-			}
-			Issues issues = new IssuesImpl();
-			boolean success = runner.executeWorkflow(
-					new HashMap<String, Object>(), issues);
-			if (!success) {
+			WorkflowFacade facade = new WorkflowFacade(workflow, properties);
+			Issues issues = facade.run(new HashMap<String, Object>(),new NullProgressMonitor());
+			if (issues.hasErrors()) {
 				throw new JastEMFException("Template Error: Workflow ["
 						+ workflow + "] failed.");
 			}
