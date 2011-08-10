@@ -46,19 +46,25 @@ public class RefactoringManager {
 			throws JastEMFException {
 		IRefactoringHistoryService historyService = RefactoringCore
 				.getHistoryService();
+		PerformRefactoringHistoryOperation operation = null;
 		try {
 			RefactoringHistory history = historyService.readRefactoringHistory(
 					scriptURI.toURL().openStream(), 0);
-			PerformRefactoringHistoryOperation operation = new PerformRefactoringHistoryOperation(
+			operation = new PerformRefactoringHistoryOperation(
 					history);
 			operation.run(new NullProgressMonitor());
-			RefactoringStatus status = operation.getExecutionStatus();
-			for (RefactoringStatusEntry entry : status.getEntries()) {
-				System.out.println(entry.toString());
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new JastEMFException(e);
+		}
+		finally{
+			if(operation!=null){
+				RefactoringStatus status = operation.getExecutionStatus();
+				for (RefactoringStatusEntry entry : status.getEntries()) {
+					System.out.println(entry.toString());
+				}
+				
+			}
 		}
 	}
 
