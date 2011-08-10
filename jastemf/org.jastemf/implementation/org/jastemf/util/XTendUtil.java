@@ -70,8 +70,26 @@ public class XTendUtil {
 		return new SimpleDateFormat().format(calendar.getTime());
 	}
 	
+	/**
+	 * Derives the simple instance type name from a given classifier.
+	 * 
+	 * 
+	 * @param type
+	 * @return
+	 */
 	public static String getSimpleInstanceTypeName(EClassifier type){
-		return type.getInstanceClass().getSimpleName();
+		if(type.getInstanceClass()!=null){
+			return type.getInstanceClass().getSimpleName();
+		}
+		else if(type.getInstanceClassName()!=null){
+			String result = type.getInstanceClassName();
+			if(result.lastIndexOf('.')>-1){
+				result = result.substring(result.lastIndexOf('.')+1);
+			}
+			return result;
+		}
+		else
+			return type.getName();
 	}
 	
 }
