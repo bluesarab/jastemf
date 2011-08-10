@@ -81,10 +81,14 @@ public class JastAdd2Ecore {
 			}
 		}
 		Collection<EPackage> packages = ePackagesMap.values();
-		// adding primitive type declarations to first epackage
+		// adding newly created primitive type declarations to first ePackage
 		if (!eDataTypeMap.isEmpty()) {
-			packages.iterator().next().getEClassifiers()
-					.addAll(eDataTypeMap.values());
+			EPackage firstPackage = packages.iterator().next();
+			for(EDataType dataType:eDataTypeMap.values()){
+				if(dataType.getEPackage()==null){
+					firstPackage.getEClassifiers().add(dataType);
+				}
+			}
 		}
 		return packages;
 	}
@@ -631,10 +635,17 @@ public class JastAdd2Ecore {
 		
 				String currentETypeName = "E".concat(currentTypeName.substring(0, 1)
 						.toUpperCase().concat(currentTypeName.substring(1)));
-			
+				System.out.println("etypename-->"+currentETypeName+"<--"+factory.getEcorePackage().getEClassifier(currentETypeName));
+				for(EClassifier classifier:factory.getEcorePackage().getEClassifiers()){
+					if(classifier instanceof EDataType){
+						System.out.println(classifier.getName());
+					}
+				}
 				if (factory.getEcorePackage().getEClassifier(currentETypeName) != null) {
 					EClassifier classifier = 
 							factory.getEcorePackage().getEClassifier(currentETypeName);
+					System.out.println("etypename-->"+currentETypeName+"-->"+classifier);
+					
 					if(classifier!=null && classifier instanceof EDataType){
 						eDataTypeMap.put(typeName,(EDataType)classifier);
 						return (EDataType)classifier;
