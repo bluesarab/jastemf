@@ -168,8 +168,13 @@ final public class IOSupport {
 		try {
 			writer.print(contents);
 			writer.flush();
-			file.setContents(new ByteArrayInputStream(outStream.toByteArray()),
-					IFile.NONE, null);
+			if(file.exists()){
+				file.setContents(new ByteArrayInputStream(outStream.toByteArray()),
+						IFile.NONE, null);				
+			}
+			else{
+				file.create(new ByteArrayInputStream(outStream.toByteArray()),IFile.NONE, null);
+			}
 		} finally {
 			writer.close();
 		}
