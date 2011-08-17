@@ -24,6 +24,7 @@ import org.jastemf.refactorings.*;
  * #performIntegration(IIntegrationContext) integrate} a
  * <i>JastAdd</i> evaluator and an <i>EMF</i> metamodel implementation.
  * @author C. Bürger
+ * @author Sven Karol
  */
 final public class IntegrationManager {
 	/**
@@ -41,12 +42,16 @@ final public class IntegrationManager {
 		WorkflowManager.executeWorkflow(context,
 				"org/jastemf/aspects/workflow.oaw");
 		
-		// Generate refactoring scripts and artifacts
-		WorkflowManager.executeWorkflow(context,
-				"org/jastemf/refactorings/workflow.oaw");
+		if(!context.useProgrammaticRefactorings()){
+			// Generate refactoring scripts and artifacts
+			WorkflowManager.executeWorkflow(context,
+					"org/jastemf/refactorings/workflow.oaw");
+		}
+
 		
 		// Generate JastAdd evaluator
-		String[] args = new String[5 + context.jragspecs().size()];
+		int argCount = context.useProgrammaticRefactorings()?4:5; 
+		String[] args = new String[argCount + context.jragspecs().size()];
 		args[0] = "--rewrite";
 		args[1] = "--package=" + context.astpackage();
 		args[2] = "--o=" + new File(context.srcfolder()).getAbsolutePath();
@@ -56,18 +61,26 @@ final public class IntegrationManager {
 		args[i++] = new File(
 				context.packagefolder(
 						context.outpackage())).getAbsolutePath() +
-			File.separator + "RepositoryAdaptations.jrag";
-		args[i++] = new File(
+			File.separator + "RepositoryAdaptations.jrag";			
+		
+		if(!context.useProgrammaticRefactorings()){
+			args[i++] = new File(
 				context.packagefolder(
 						context.outpackage())).getAbsolutePath() +
 			File.separator + "Refactorings.jrag";
+		}
 		JastAdd.main(args);
 		refreshIntegrationArtifacts(context);
 		
 		// Execute refactorings
-		RefactoringManager.applyRefactoringScript(URI.create(
-				context.packagefolder(context.outpackage()) +
-				"/Refactorings.xml"));
+		if(context.useProgrammaticRefactorings()){
+			ProgrammaticRefactorings.renameASTClasses(context);			
+		}
+		else{
+			RefactoringManager.applyRefactoringScript(URI.create(
+					context.packagefolder(context.outpackage()) +
+					"/Refactorings.xml"));			
+		}
 		RefactoringManager.performASTNodeAdaptations(context);
 		RefactoringManager.performASTNodeStateAdaptations(context);
 		RefactoringManager.performASTListAdaptations(context);

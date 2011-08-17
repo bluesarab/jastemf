@@ -29,6 +29,7 @@ import org.jastemf.*;
  * Collection of support methods to ease resource and <i>EMF model</i> handling.
  * 
  * @author C. Bürger
+ * @author Sven Karol
  */
 final public class IOSupport {
 	/**

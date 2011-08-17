@@ -11,11 +11,15 @@ package org.jastemf;
 import java.net.*;
 import java.util.*;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
 
 /**
  * Container class for project information needed throughout integration.
  * @author C. Bürger
+ * @author Sven Karol
  */
 public interface IIntegrationContext {
 	/**
@@ -115,4 +119,14 @@ public interface IIntegrationContext {
 	 * @return true if edit code should be generated
 	 */
 	boolean generateEditCode();
+	
+	IProject workspaceProject();
+	
+	IJavaProject javaProject();
+	
+	IPackageFragment astPackageFragment();
+	
+	IPackageFragment packageFragment(String packageName);
+	
+	boolean useProgrammaticRefactorings();
 }

@@ -11,7 +11,12 @@ package org.jastemf;
 import java.net.*;
 
 import org.eclipse.core.resources.*;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * Abstract integration context, that supports default implementations for all
@@ -20,8 +25,13 @@ import org.eclipse.emf.codegen.ecore.genmodel.*;
  * IIntegrationContext#astpackage() AST class package} and {@link
  * IIntegrationContext#outpackage() integration artifacts package}.
  * @author C. Bürger
+ * @author Sven Karol
  */
 public abstract class AIntegrationContext implements IIntegrationContext {
+	
+	private IProject project = null;
+	private IJavaProject jProject = null;
+	
 	/**
 	 * See {@link IIntegrationContext#srcfolder()}.
 	 */
@@ -65,4 +75,29 @@ public abstract class AIntegrationContext implements IIntegrationContext {
 	public URI astfolder(){
 		return packagefolder(astpackage());
 	}
+	
+	public IProject workspaceProject(){
+		if(project==null)
+			project = ResourcesPlugin.getWorkspace().getRoot().getProject(genmodel().getModelDirectory().split("/")[1]);
+		return project;
+	}
+	
+	public IJavaProject javaProject(){
+		if(jProject==null)
+			jProject = JavaCore.create(workspaceProject());
+		return jProject;
+	}
+	
+	public IPackageFragment astPackageFragment(){
+		return packageFragment(astpackage());
+	}
+	
+	public IPackageFragment packageFragment(String packageName){
+		try {
+			return (IPackageFragment)javaProject().findElement(new Path(packageName.replace('.','/')));
+		} catch (JavaModelException e) {
+			return null;
+		}
+	}
+	
 }

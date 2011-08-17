@@ -22,7 +22,7 @@ import org.jastemf.*;
  * Support class for <i>OAW</i> workflow
  * {@link #executeWorkflow(IIntegrationContext, String) execution}.
  * 
- * @author S. Karol
+ * @author Sven Karol
  */
 final public class WorkflowManager {
 	private final static String WORKFLOW_LOG_SYSTEM_PROPERTY_KEY = "org.apache.commons.logging.Log";
