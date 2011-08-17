@@ -34,7 +34,7 @@ import org.jastemf.*;
  * is changed to public.</li>
  * </ul>
  * 
- * @author S. Karol
+ * @author Sven Karol
  */
 public class BasicJDTASTVisitor extends ASTVisitor {
 	private IIntegrationContext context;

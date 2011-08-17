@@ -38,6 +38,7 @@ import org.jastemf.util.*;
  * /&gt;
  * </pre>
  * @author C. Bürger
+ * @author Sven Karol
  */
 public class JastemfTask extends Task {
 	private File genmodelFile;
@@ -47,6 +48,7 @@ public class JastemfTask extends Task {
 	private String jaddcmd;
 	private LinkedHashSet<String> jragspecs = new LinkedHashSet<String>();
 	protected boolean genEditCode = false;
+	protected boolean programmaticRefactorings = false;
 	
 	
 	/** See {@link IIntegrationContext#genmodel()}. */
@@ -67,6 +69,9 @@ public class JastemfTask extends Task {
 	}
 	/** See {@link IIntegrationContext#generateEditCode()}. */
 	public void setGenerateeditcode(boolean flag) {this.genEditCode = flag;}
+	
+	/** See {@link IIntegrationContext#useProgrammaticRefactorings()}. */
+	public void setProgrammaticRefactorings(boolean flag) {this.programmaticRefactorings = flag;};
 	
 	/**
 	 * Start the integration process for the given {@link
@@ -89,6 +94,7 @@ public class JastemfTask extends Task {
 				public String jaddcmd() {return jaddcmd;}
 				public Set<String> jragspecs() {return jragspecs;}
 				public boolean generateEditCode() {return genEditCode;}
+				public boolean useProgrammaticRefactorings() {return programmaticRefactorings;};
 			};
 			
 			/* Perform integration */

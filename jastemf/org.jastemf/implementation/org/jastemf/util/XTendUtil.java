@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EClassifier;
 /**
  * This class holds JAVA extensions for OAW that can be used in xTend files (*.ext).
  * 
- * @author skarol
+ * @author Sven Karol
  */
 
 public class XTendUtil {

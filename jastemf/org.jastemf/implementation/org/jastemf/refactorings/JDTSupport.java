@@ -18,7 +18,7 @@ import org.jastemf.util.*;
  * to <i>JDT</i> ASTs, to search such ASTs for certain components and to load
  * and save them.
  * 
- * @author S. Karol
+ * @author Sven Karol
  * 
  */
 public final class JDTSupport {

@@ -29,7 +29,7 @@ import org.jastemf.util.*;
  * generic -- i.e. concrete integration project independent -- adaptations of
  * classes JastAdd always generates (<tt>ASTNode, List, Opt</tt>).
  * 
- * @author S. Karol
+ * @author Sven Karol
  * 
  */
 public class RefactoringManager {
@@ -52,6 +52,7 @@ public class RefactoringManager {
 					scriptURI.toURL().openStream(), 0);
 			operation = new PerformRefactoringHistoryOperation(
 					history);
+
 			operation.run(new NullProgressMonitor());
 		} catch (Exception e) {
 			e.printStackTrace();
