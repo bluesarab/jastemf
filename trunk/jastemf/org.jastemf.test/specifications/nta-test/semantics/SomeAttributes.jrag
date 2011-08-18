@@ -1,0 +1,8 @@
+aspect SomeAttributes{
+
+	syn A AbstractD.refToSomeA();
+	
+	eq D.refToSomeA() = (A)((Root)getParent().getParent()).getMyA();
+	
+
+}

@@ -57,15 +57,15 @@ public class NTATest {
 		CImpl someC = new CImpl("");
 		root.setContainmentC(someC);
 
-		AImpl derivedA1 = (AImpl) root.getChild(2);
+		AImpl derivedA1 = (AImpl) root.getChild(3);
 		Assert.assertNotNull("A call to getChild() which refers to a 1..1 NTA should return a non null value in the current implementation.",derivedA1);
 
-		ASTList derivedB1 = (ASTList) root.getChild(3);
+		ASTList derivedB1 = (ASTList) root.getChild(4);
 		Assert.assertTrue(derivedB1.getNumChild() == 0);
 
 		ASTList derivedB2 = root.getderivedBs();
 
-		ASTList derivedB3 = (ASTList) root.getChild(3);
+		ASTList derivedB3 = (ASTList) root.getChild(4);
 		Assert.assertTrue(
 				"A call to getChild() which refers to a List NTA should return the same ASTList as the direct call before.",
 				derivedB3 == derivedB2);

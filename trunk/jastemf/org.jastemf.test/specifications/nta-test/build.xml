@@ -127,6 +127,8 @@
 	<target name="EMF Semantic" description="Merge JastAdd code with EMF code.">
 		<echo message="========================> Generate EMF Semantic &lt;=======================" />
 		<jastemf 
+			programmaticrefactorings="true"
+			loglevel="INFO"
 			generateeditcode="true" 
 			genmodel="${test_basedir}/specifications/nta-test/model/testmodel.genmodel" 
 			outpackage="jastemf.adaptation" 
@@ -160,6 +162,7 @@
 		<echo message="========================> Running Test Cases &lt;=======================" />
 		<junit>
 			 <test name="org.jastemf.test.NTATest" />
+			 <test name="org.jastemf.test.APITest" />
 			 <formatter type="plain" usefile="false" />
 			 <classpath refid="eclipse.classpath" />
 			 <classpath>
@@ -184,6 +187,8 @@
 			 </classpath>
 		</junit>
 	</target>
+	
+
 	
 	<target name="Generate AST Spec">
 		<echo message="========================> Generate AST Spec &lt;======================="/>

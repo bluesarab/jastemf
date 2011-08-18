@@ -11,6 +11,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.jastemf.test.ast.ASTList;
 import org.jastemf.test.ast.ASTNode;
+import org.jastemf.test.test.ast.D;
+import org.jastemf.test.test.ast.impl.DImpl;
 import org.jastemf.test.test.ntas.impl.AImpl;
 import org.jastemf.test.test.ntas.impl.BImpl;
 import org.jastemf.test.test.ntas.impl.CImpl;
@@ -106,6 +108,8 @@ public class APITest {
 	@Before
 	public void setUp() throws Exception {
 		root = new RootImpl();
+		root.getContainmentD().add(new DImpl());
+		root.setMyA(new AImpl("MyA"));
 	}
 
 	@Test
@@ -143,6 +147,12 @@ public class APITest {
 			o = it.hasNext()?it.next():null;
 		}
 		while(o!=null);
+	}
+	
+	@Test
+	public void testRef() throws Exception {
+		DImpl d = (DImpl) root.getContainmentD().get(0);
+		Assert.assertTrue("Name was '"+ d.getRefToSomeA().getName() +"' exptected 'MyA'.","MyA".equals(d.getRefToSomeA().getName()));
 	}
 }
 

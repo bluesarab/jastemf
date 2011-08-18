@@ -13,6 +13,8 @@
           eType="#//ntas/C" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="containmentD" upperBound="-1"
           eType="#//ast/D" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="myA" eType="#//ntas/A"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="A">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
@@ -25,7 +27,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="ast" nsURI="http://www.jastemf.org/test/ast" nsPrefix="ast">
-    <eClassifiers xsi:type="ecore:EClass" name="D">
+    <eClassifiers xsi:type="ecore:EClass" name="D" eSuperTypes="#//ast/AbstractD">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -36,7 +38,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="multipleLowerD" upperBound="-1"
           eType="#//ast/D" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="MultipleUpperC" upperBound="-1"
-          eType="#//ntas/C"/>
+          eType="#//ntas/C" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="DerivedUpperD" lowerBound="1"
           eType="#//ast/D" derived="true" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="DerivedMultipleUpperC"
@@ -47,6 +49,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="QCollection" instanceClassName="java.util.Collection"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceTypeName="Collection"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractD" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refToSomeA" lowerBound="1"
+          eType="#//ntas/A" changeable="false" derived="true"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="attributes" nsURI="http://www.jastemf.org/test/attributes" nsPrefix="attributes"/>
 </ecore:EPackage>
