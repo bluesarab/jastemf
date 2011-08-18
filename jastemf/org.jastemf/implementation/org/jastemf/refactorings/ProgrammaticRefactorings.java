@@ -352,7 +352,7 @@ public class ProgrammaticRefactorings {
 		for(GenOperation genOperation:genClass.getGenOperations()){
 			EOperation eOperation = genOperation.getEcoreOperation();
 			
-			if(eOperation.getEParameters().size()>0||eOperation.isMany()){
+			if(eOperation.getETypeParameters().size()>0||eOperation.isMany()){
 				String oldName = genOperation.getName();
 				String newName = "jastadd_"+oldName;
 				String[] parameters = new String[eOperation.getEParameters().size()];
