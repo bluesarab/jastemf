@@ -4,5 +4,8 @@ aspect SomeAttributes{
 	
 	eq D.refToSomeA() = (A)((Root)getParent().getParent()).getMyA();
 	
-
+	syn Root AbstractD.operationAttribute(String param);
+	
+	eq D.operationAttribute(String param) = null;
+	
 }

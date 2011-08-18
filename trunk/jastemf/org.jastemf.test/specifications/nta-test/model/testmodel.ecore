@@ -28,6 +28,9 @@
   </eSubpackages>
   <eSubpackages name="ast" nsURI="http://www.jastemf.org/test/ast" nsPrefix="ast">
     <eClassifiers xsi:type="ecore:EClass" name="D" eSuperTypes="#//ast/AbstractD">
+      <eOperations name="operationAttribute" lowerBound="1" eType="#//ntas/Root">
+        <eParameters name="param" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
