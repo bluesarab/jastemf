@@ -15,6 +15,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/derivedB"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/containmentC"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/containmentD"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ntas/Root/myA"/>
       </genClasses>
       <genClasses ecoreClass="testmodel.ecore#//ntas/A">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ntas/A/name"/>
@@ -40,6 +41,9 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/DerivedMultipleUpperC"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someQCollection"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someCollection"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="testmodel.ecore#//ast/AbstractD">
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference testmodel.ecore#//ast/AbstractD/refToSomeA"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Attributes" basePackage="org.jastemf.test.test" disposableProviderFactory="true"
