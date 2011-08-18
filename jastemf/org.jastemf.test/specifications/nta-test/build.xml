@@ -128,7 +128,7 @@
 		<echo message="========================> Generate EMF Semantic &lt;=======================" />
 		<jastemf 
 			programmaticrefactorings="true"
-			loglevel="INFO"
+			loglevel="ALL"
 			generateeditcode="true" 
 			genmodel="${test_basedir}/specifications/nta-test/model/testmodel.genmodel" 
 			outpackage="jastemf.adaptation" 

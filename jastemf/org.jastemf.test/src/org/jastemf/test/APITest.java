@@ -51,7 +51,7 @@ public class APITest {
 				return "getDerivedA";
 			}
 		});
-		rootImplAccessors.add(new Signature() {
+	/*	rootImplAccessors.add(new Signature() {
 			public String getReturnTypeName() {
 				return "CImpl";
 			}
@@ -59,7 +59,7 @@ public class APITest {
 			public String getMethodName() {
 				return "jastadd_getContainmentC";
 			}
-		});
+		});*/
 		
 		rootImplAccessors.add(new Signature() {
 			public String getReturnTypeName() {
