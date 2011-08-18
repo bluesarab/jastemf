@@ -9,8 +9,12 @@
 package org.jastemf.util;
 
 import java.io.*;
-import java.util.*;
-import java.text.*;
+import java.util.logging.ErrorManager;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import java.util.logging.Formatter;
 
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
@@ -115,13 +119,13 @@ final public class IOSupport {
 				genModel,
 				GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
 				BasicMonitor.toMonitor(new NullProgressMonitor()));
-		System.out.println("Generated EMF Model Code");
+		IOSupport.log("Generated EMF Model Code");
 		if (generateEditCode && diagnostic.getCode() == Diagnostic.OK) {
 			diagnostic = generator.generate(
 					genModel,
 					GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE,
 					BasicMonitor.toMonitor(new NullProgressMonitor()));	
-		System.out.println("Generated EMF Edit Code");
+			IOSupport.log("Generated EMF Edit Code");
 		}
 		return 	diagnostic;
 	}
@@ -210,6 +214,79 @@ final public class IOSupport {
 					+ " correspondences in Workspace.");
 		}
 		return files[0];
+	}
+	
+	private static Logger LOGGER = null;
+	
+	public static synchronized Logger getLogger(){	
+		if(LOGGER==null){
+			 LOGGER = Logger.getLogger("org.jastemf");
+		     LOGGER.setLevel(Level.ALL);
+			 //handler might registered previously
+			 //TODO this procedure should use the standard Java logging procedure in the future
+			 if(LOGGER.getHandlers()!=null&&LOGGER.getHandlers().length==0){
+				 Handler handler = new Handler(){
+			            @Override
+			            public void publish(LogRecord record){
+			                if (getFormatter() == null){
+			                    setFormatter(new Formatter(){
+			                    	@Override
+									public String format(LogRecord record) {
+										StringBuffer sb = new StringBuffer();
+										sb.append("["+record.getLevel().getLocalizedName()+"]");
+										sb.append(" ");
+										sb.append(record.getMessage());
+										sb.append(System.getProperty("line.separator"));
+										if (record.getThrown() != null) {
+										    try {
+										        StringWriter sw = new StringWriter();
+										        PrintWriter pw = new PrintWriter(sw);
+										        record.getThrown().printStackTrace(pw);
+										        pw.close();
+											sb.append(sw.toString());
+										    } catch (Exception ex) {
+										    }
+										}
+										return sb.toString();
+									}
+			                    	
+			                    });
+			                }
+
+			                try {
+			                	String message = getFormatter().format(record);
+			                    if (record.getLevel().intValue() >= Level.WARNING.intValue()){
+			                        System.err.write(message.getBytes());                       
+			                    }
+			                    else{
+			                        System.out.write(message.getBytes());
+			                    }
+			                } catch (Exception exception) {
+			                    reportError(null, exception, ErrorManager.FORMAT_FAILURE);
+			                    return;
+			                }
+
+			            }
+
+			            @Override
+			            public void close() throws SecurityException {}
+			            @Override
+			            public void flush(){}
+			        };
+					
+					LOGGER.addHandler(handler); 
+			 }
+		}
+        LOGGER.setUseParentHandlers(false);
+		return LOGGER;
+	}
+	
+	public static void log(String message){
+		getLogger().info(message);
+	}
+	
+	public static void warn(String message){
+		getLogger().warning(message);
 	}
 
 }
