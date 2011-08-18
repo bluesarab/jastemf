@@ -127,7 +127,7 @@ public class ProgrammaticRefactorings {
 				ICompilationUnit correspondingCU = astPackageFragment.getCompilationUnit(genClass.getName()+".java");
 				if(correspondingCU!=null){
 					try {
-						IOSupport.log("Renaming methods ...");
+						IOSupport.log("Adjusting methods ...");
 						renameAccessMethods(genClass,correspondingCU);
 						IOSupport.log("Renaming fields ...");
 						renameFields(genClass,correspondingCU);
@@ -192,51 +192,64 @@ public class ProgrammaticRefactorings {
 			if(!oldGetterName.equals(newGetterName)){
 				IMethod getter = type.getMethod(oldGetterName, new String[0]);
 				if(getter.exists()){
+					IOSupport.log("Adding new delegatee for " + oldGetterName + ".");
 					String getterReturnType = Signature.getSignatureSimpleName( getter.getReturnType());
-					//getter.delete(true,null);
-					String newMethod = "public " + getterReturnType +" "+newGetterName+"(){ /*newmethod*/return " + oldGetterName + "();}";
+					String newMethod = "public " + getterReturnType +" "+newGetterName+"(){ return " + oldGetterName + "();}";
 					type.createMethod(newMethod,null,true,null);
 				}
 				else{
 					IOSupport.warn("No acccessor for non-containment reference '"+oldGetterName+"' found, skipping.");
 				}
 			}
-			return;
 		}
 		//case 2: nonterminal attribute
 		else if(eReference.isContainment()&&genFeature.isDerived()){
 			oldGetterName = "get"+genFeature.getName();
 			newGetterName = "get"+genFeature.getAccessorName();
+			if(!oldGetterName.equals(newGetterName)){
+				IMethod getter = type.getMethod(oldGetterName, new String[0]);
+				if(getter.exists()){
+					IOSupport.log("Adding new delegatee for " + oldGetterName + ".");
+					String getterReturnType = Signature.getSignatureSimpleName( getter.getReturnType());
+					String newMethod = "public " + getterReturnType +" "+newGetterName+"(){ return " + oldGetterName + "();}";
+					type.createMethod(newMethod,null,true,null);
+				}
+				else{
+					IOSupport.warn("No acccessor for NTA non-containment reference '"+oldGetterName+"' found, skipping.");
+				}
+			}
+		
 		}
-		//case 3: non list containments
+		//case 3: usual containments
 		else if(!eReference.isMany()){
-			oldGetterName = "get"+genFeature.getName();
-			newGetterName = "jastadd_get"+toFirstUpper(genFeature.getName());
-			
-			
-			//case 3a rename setters
-			String oldSetterName = "set" + genFeature.getName();
-			String newSetterName = "jastadd_set" + toFirstUpper(genFeature.getName());
-			String[] parameterSignature = new String[1];
-			String typeName = getRefactoringTypeString(eReference.getEGenericType());
-			if(typeName==null)
-				typeName = eReference.getEReferenceType().getName();
-			parameterSignature[0] = typeName;
-			IMethod setter = type.getMethod(oldSetterName, parameterSignature);
-			if(setter.exists())
-				performRename(setter, newSetterName);
+			//if signatures are in conflict, add jastadd_ prefix 
+			if(genFeature.getName().equals(genFeature.getAccessorName())){
+				oldGetterName = "get"+genFeature.getName();
+				newGetterName = "jastadd_get"+toFirstUpper(genFeature.getName());
+				IOSupport.log("Renaming EReference getter '"+oldGetterName+" to '" + newGetterName + "'.");
+				IMethod getter = type.getMethod(oldGetterName, new String[0]);
+				if(getter.exists())
+					performRename(getter,newGetterName);
+				
+				//case 3a rename setters
+				String oldSetterName = "set" + genFeature.getName();
+				String newSetterName = "jastadd_set" + toFirstUpper(genFeature.getName());
+				String[] parameterSignature = new String[1];
+				String typeName = getRefactoringTypeString(eReference.getEGenericType());
+				if(typeName==null)
+					typeName = eReference.getEReferenceType().getName();
+				parameterSignature[0] = typeName;
+				IMethod setter = type.getMethod(oldSetterName, parameterSignature);
+				if(setter.exists())
+					performRename(setter, newSetterName);
+			}
+
 		}
 		else{
 			//case 4: list containments ... do not rename	
 		}
 
-		if(oldGetterName!=null && newGetterName!=null){
-			IOSupport.log("Renaming EReference getter '"+oldGetterName+" to '" + newGetterName + "'.");
-			IMethod getter = type.getMethod(oldGetterName, new String[0]);
-			if(getter.exists())
-				performRename(getter,newGetterName);
-			
-		}
+
 
 	}
 
