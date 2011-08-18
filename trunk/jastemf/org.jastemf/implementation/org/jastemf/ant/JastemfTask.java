@@ -10,6 +10,7 @@ package org.jastemf.ant;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
 
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.common.util.*;
@@ -49,7 +50,7 @@ public class JastemfTask extends Task {
 	private LinkedHashSet<String> jragspecs = new LinkedHashSet<String>();
 	protected boolean genEditCode = false;
 	protected boolean programmaticRefactorings = false;
-	
+	private Level logLevel = Level.ALL;
 	
 	/** See {@link IIntegrationContext#genmodel()}. */
 	public void setGenmodel(File mfile) {this.genmodelFile = mfile;}
@@ -73,6 +74,8 @@ public class JastemfTask extends Task {
 	/** See {@link IIntegrationContext#useProgrammaticRefactorings()}. */
 	public void setProgrammaticRefactorings(boolean flag) {this.programmaticRefactorings = flag;};
 	
+	public void setLogLevel(String level) {logLevel = Level.parse(level);}
+	
 	/**
 	 * Start the integration process for the given {@link
 	 * IIntegrationContext#genmodel() generation model file}, {@link
@@ -82,6 +85,9 @@ public class JastemfTask extends Task {
 	 */
 	public void execute() throws BuildException {
 		try {
+			// set the log level
+			IOSupport.getLogger().setLevel(logLevel);
+			
 			/* Initialize integration resources */
 			URI modelURI = URI.createFileURI(
 					genmodelFile.getAbsolutePath());

@@ -38,6 +38,12 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.RenameRefactoring;
 import org.jastemf.IIntegrationContext;
 import org.jastemf.JastEMFException;
+import org.jastemf.util.IOSupport;
+
+import java.util.logging.Logger;
+
+
+
 
 /**
  * Implementation of the API renamings required for merging JastAdd classes and EMF classes. 
@@ -46,8 +52,7 @@ import org.jastemf.JastEMFException;
  *
  */
 @SuppressWarnings("restriction")
-public class ProgrammaticRefactorings {
-	
+public class ProgrammaticRefactorings {	
 	
 	/**
 	 * 	Rename each JastAdd AST access method to prevent a name clash with its
@@ -87,7 +92,6 @@ public class ProgrammaticRefactorings {
 			for(GenClass genClass:genPackage.getGenClasses()){
 				String newname = genClass.getClassName();
 				ICompilationUnit correspondingCU = packageFragment.getCompilationUnit(genClass.getName()+".java");
-
 				if(correspondingCU!=null)
 				try {
 					performRename(correspondingCU, newname);
@@ -113,17 +117,21 @@ public class ProgrammaticRefactorings {
 
 
 	private static void renameClassMembers(Collection<GenPackage> genPackages, IPackageFragment astPackageFragment) throws JastEMFException{
+		
 		for(GenPackage genPackage:genPackages){
 			for(GenClass genClass:genPackage.getGenClasses()){
-				System.out.println("Accessing members of "+genClass.getName());
+				
+				IOSupport.log("Accessing members of "+genClass.getName());
+			
+				//System.out.println("Accessing members of "+genClass.getName());
 				ICompilationUnit correspondingCU = astPackageFragment.getCompilationUnit(genClass.getName()+".java");
 				if(correspondingCU!=null){
 					try {
-						System.out.println("Renaming methods ...");
+						IOSupport.log("Renaming methods ...");
 						renameAccessMethods(genClass,correspondingCU);
-						System.out.println("Renaming fields ...");
+						IOSupport.log("Renaming fields ...");
 						renameFields(genClass,correspondingCU);
-						System.out.println("Renaming operations ...");
+						IOSupport.log("Renaming operations ...");
 						renameOperationAccessors(genClass,correspondingCU);
 
 					} catch (CoreException e1) {
@@ -145,7 +153,7 @@ public class ProgrammaticRefactorings {
 			
 			//renaming accessors that correspond to EAttributes in Ecore
 			if(genFeature.getEcoreFeature() instanceof EAttribute){
-				renameEAttributeAccessor(genFeature, type);
+				replaceTerminalAccessors(genFeature, type);
 			}
 			else if(genFeature.getEcoreFeature() instanceof EReference){
 				renameEReferenceAccessor(genFeature, type);
@@ -181,6 +189,19 @@ public class ProgrammaticRefactorings {
 		if(!eReference.isContainment()){
 			oldGetterName = genFeature.getName();
 			newGetterName = "get"+genFeature.getAccessorName();
+			if(!oldGetterName.equals(newGetterName)){
+				IMethod getter = type.getMethod(oldGetterName, new String[0]);
+				if(getter.exists()){
+					String getterReturnType = Signature.getSignatureSimpleName( getter.getReturnType());
+					//getter.delete(true,null);
+					String newMethod = "public " + getterReturnType +" "+newGetterName+"(){ /*newmethod*/return " + oldGetterName + "();}";
+					type.createMethod(newMethod,null,true,null);
+				}
+				else{
+					IOSupport.warn("No acccessor for non-containment reference '"+oldGetterName+"' found, skipping.");
+				}
+			}
+			return;
 		}
 		//case 2: nonterminal attribute
 		else if(eReference.isContainment()&&genFeature.isDerived()){
@@ -202,7 +223,6 @@ public class ProgrammaticRefactorings {
 				typeName = eReference.getEReferenceType().getName();
 			parameterSignature[0] = typeName;
 			IMethod setter = type.getMethod(oldSetterName, parameterSignature);
-			System.out.println(typeName+setter.exists());
 			if(setter.exists())
 				performRename(setter, newSetterName);
 		}
@@ -211,7 +231,7 @@ public class ProgrammaticRefactorings {
 		}
 
 		if(oldGetterName!=null && newGetterName!=null){
-			System.out.println("Renaming EReference getter '"+oldGetterName+" to '" + newGetterName + "'.");
+			IOSupport.log("Renaming EReference getter '"+oldGetterName+" to '" + newGetterName + "'.");
 			IMethod getter = type.getMethod(oldGetterName, new String[0]);
 			if(getter.exists())
 				performRename(getter,newGetterName);
@@ -222,6 +242,8 @@ public class ProgrammaticRefactorings {
 
 
 	/**
+	 * TODO: Outdated documentation, getter/setter delegatees are introduced
+	 * TODO: Could also be moved to repository adaptations, see line 515 there(!)
 	 * The following renames accessor methods for attributes in JastAdd to match with the derived EAttributes accessors
 	 * in ECore.
 	 * <br/> 
@@ -237,9 +259,9 @@ public class ProgrammaticRefactorings {
 	 * @param type
 	 * @throws CoreException
 	 */
-	public static void renameEAttributeAccessor(GenFeature genFeature,IType type) throws CoreException{
+	public static void replaceTerminalAccessors(GenFeature genFeature,IType type) throws CoreException{
 		EAttribute eAttribute = (EAttribute)genFeature.getEcoreFeature();
-		//renaming getter			
+		//replacing getter			
 		{
 			String oldGetterName = (genFeature.isDerived()?"":"get")+genFeature.getName();
 		
@@ -251,27 +273,37 @@ public class ProgrammaticRefactorings {
 			else{
 				newGetterName = "get" + toFirstUpper(genFeature.getName());
 			}
-			IMethod getter = type.getMethod(oldGetterName, new String[0]);
-			if(getter.exists()){
-				System.out.println("Renaming EAttribute getter '"+oldGetterName+" to '" + newGetterName + "'.");
-
-				performRename(getter,newGetterName);
+			
+			if(!oldGetterName.equals(newGetterName)){
+				IMethod getter = type.getMethod(oldGetterName, new String[0]);
+				if(getter.exists()){
+					String getterReturnType =Signature.getSignatureSimpleName( getter.getReturnType());
+					getter.delete(true,null);
+					String newMethod = "public "+ getterReturnType +" "+oldGetterName+"(){ return " + newGetterName + "();}";
+					type.createMethod(newMethod,null,true,null);
+				}
 			}
 		}
 		
-		//renaming setter
+		//replacing setter
 		if(!genFeature.isDerived()&&!genFeature.getEcoreFeature().isMany()){
 			String oldSetterName = "set" + genFeature.getName();
 			String newSetterName = "set" + toFirstUpper(genFeature.getName());
 		
 			String[] parameterSignature = new String[1];
 			parameterSignature[0] = getSimpleSignature(eAttribute.getEAttributeType());
-			IMethod setter = type.getMethod(oldSetterName, parameterSignature);
 			
-
-			if(setter.exists()){
-				performRename(setter, newSetterName);
+			if(!oldSetterName.equals(newSetterName)){
+				IMethod setter = type.getMethod(oldSetterName, parameterSignature);
+				if(setter.exists()){
+					String paramName = setter.getParameterNames()[0];
+					String paramType = Signature.getSignatureSimpleName(setter.getParameterTypes()[0]);
+					setter.delete(true,null);
+					String newMethod = "public void "+oldSetterName+"("+paramType+" "+paramName+"){ "+ newSetterName + "(" + paramName + ");}";		
+					type.createMethod(newMethod,null,true,null);
+				}
 			}
+
 		}
 	}
 	
@@ -295,7 +327,7 @@ public class ProgrammaticRefactorings {
 						performRename(field,newFieldName);
 					}
 					else{
-						System.out.println("Field '"+ oldFieldName + "' was expected for '"+genFeature.getName()+"' (changeable and derived). Potential reason: attribute not declared lazy.");
+						IOSupport.warn("Field '"+ oldFieldName + "' was expected for '"+genFeature.getName()+"' (changeable and derived). Potential reason: attribute not declared lazy.");
 					}
 				}
 			}

@@ -62,7 +62,7 @@ public class RefactoringManager {
 			if(operation!=null){
 				RefactoringStatus status = operation.getExecutionStatus();
 				for (RefactoringStatusEntry entry : status.getEntries()) {
-					System.out.println(entry.toString());
+					IOSupport.log(entry.toString());
 				}
 				
 			}
@@ -116,7 +116,7 @@ public class RefactoringManager {
 			ASTVisitor visitor = new BasicJDTASTVisitor(context) {
 				@SuppressWarnings("unchecked")
 				public boolean visit(TypeDeclaration decl) {
-					System.out.println("Visiting " + decl.getName() + " ...");
+					IOSupport.log("Visiting " + decl.getName() + " ...");
 					if (decl.isInterface())
 						return false;
 					// Setting generated interface as super interface
@@ -279,8 +279,7 @@ public class RefactoringManager {
 						decl = (FieldDeclaration) declFragment.getParent();
 					} else {
 						//This is just a debug information for users.
-						System.out
-								.println("Declaration of childIndex is not a FieldDeclaration but a "
+						IOSupport.warn("Declaration of childIndex is not a FieldDeclaration but a "
 										+ declFragment.getParent().getClass()
 												.getName()
 										+ ". This may be caused by a declaration of a local variable with the same name. " +
@@ -305,7 +304,7 @@ public class RefactoringManager {
 			}
 		};
 
-		System.out.println("Visiting ASTNode ...");
+		IOSupport.log("Visiting ASTNode ...");
 		compilationUnit.accept(visitor);
 
 		JDTSupport.applyRewritesAndSave(compilationUnit, compilationUnitFile);
@@ -330,7 +329,7 @@ public class RefactoringManager {
 		compilationUnit.recordModifications();
 		ASTVisitor visitor = new BasicJDTASTVisitor(context) {
 		};
-		System.out.println("Visiting ASTList ...");
+		IOSupport.log("Visiting ASTList ...");
 		compilationUnit.accept(visitor);
 		JDTSupport.applyRewritesAndSave(compilationUnit, compilationUnitFile);
 	}

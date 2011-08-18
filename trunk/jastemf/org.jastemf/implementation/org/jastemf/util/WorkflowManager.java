@@ -73,7 +73,7 @@ final public class WorkflowManager {
 
 		/* Prepare and execute the workflow */
 
-		System.out.println("Runnig workflow [" + workflow + "] on model ["
+		IOSupport.log("Runnig workflow [" + workflow + "] on model ["
 				+ modelFile + "] with target [" + srcGenPath + "].");
 
 		executeWorkflow(workflow, properties, resourceLoader);
