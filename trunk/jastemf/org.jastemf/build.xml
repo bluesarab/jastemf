@@ -11,7 +11,7 @@
 	
 	<import file="../org.jastemf.build/macros.xml"/>
 	
-	<property name="JastEMF.version" value="0.1.5"/>
+	<property name="JastEMF.version" value="0.1.6"/>
 	
 	<!-- loads this project file's base dir into a project specific property such that 
 		this script can be used standalone or by import. -->
