@@ -33,12 +33,12 @@ Ant build scripts using JastEMF must be executed within the same JRE as Eclipse 
 
 === Advanced Options in Version 0.1.6 ==
 
-We're currently improving the JastEMF integration process with JastAdd. The new alternative implementation can be enabled and tweaked using the following options in the Ant task:
+We're currently improving the !JastEMF integration process with !JastAdd. The new alternative implementation can be enabled and tweaked using the following options in the Ant task:
 
 {{{
-   programmaticrefactorings="true"
-   loglevel="ALL"
-   reconcile="false"
+programmaticrefactorings="true"
+loglevel="ALL"
+reconcile="false"
 }}}
 
 The `programmticrefactorings` switch enables the new refactoring processor. It can be up to 4 times faster. However, the API changes slightly differ from the original implementation. `loglevel` can be used to adjust to log output of the new implementation using standard Java logging API levels, e.g., ALL, INFO, WARN, OFF. `reconcile` is also new. Setting it to true, forces !JastEMF to reconcile your !EMF !GenModel, which may be required in the build process, e.g., if some ecore files are regenerated.
