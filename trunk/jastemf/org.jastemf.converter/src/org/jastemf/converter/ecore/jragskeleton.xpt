@@ -32,7 +32,7 @@ aspect Core {
 
 «DEFINE HandleDerivedAttribute FOR EAttribute-»
 	//definition for derived eAttribute
-	syn «eReferenceType.name» «eContainingClass.name».«name»();
+	syn «eType.name» «eContainingClass.name».«name»();
 «ENDDEFINE»
 
 
