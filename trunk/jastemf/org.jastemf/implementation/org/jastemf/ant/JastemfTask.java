@@ -50,6 +50,7 @@ public class JastemfTask extends Task {
 	private LinkedHashSet<String> jragspecs = new LinkedHashSet<String>();
 	protected boolean genEditCode = false;
 	protected boolean programmaticRefactorings = false;
+	private boolean reconcile = false;
 	private Level logLevel = Level.ALL;
 	
 	/** See {@link IIntegrationContext#genmodel()}. */
@@ -74,6 +75,8 @@ public class JastemfTask extends Task {
 	/** See {@link IIntegrationContext#useProgrammaticRefactorings()}. */
 	public void setProgrammaticRefactorings(boolean flag) {this.programmaticRefactorings = flag;};
 	
+	public void setReconcile(boolean reconcile) {this.reconcile = reconcile;}
+	
 	public void setLogLevel(String level) {logLevel = Level.parse(level);}
 	
 	/**
@@ -92,6 +95,9 @@ public class JastemfTask extends Task {
 			URI modelURI = URI.createFileURI(
 					genmodelFile.getAbsolutePath());
 			genmodel = IOSupport.loadGenModel(modelURI);
+			
+			if(reconcile)
+				genmodel.reconcile();
 			
 			IIntegrationContext context = new AIntegrationContext() {
 				public GenModel genmodel() {return genmodel;}
