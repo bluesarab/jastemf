@@ -94,6 +94,7 @@ public class ProgrammaticRefactorings {
 				ICompilationUnit correspondingCU = packageFragment.getCompilationUnit(genClass.getName()+".java");
 				if(correspondingCU!=null)
 				try {
+					IOSupport.log("Renaming AST class " + genClass.getClassName() + ".");
 					performRename(correspondingCU, newname);
 				} catch (CoreException e) {
 					throw new JastEMFException("Could not rename GenClass '" + genClass.getClassName() + "'.",e);
@@ -226,7 +227,7 @@ public class ProgrammaticRefactorings {
 			if(genFeature.getName().equals(genFeature.getAccessorName())){
 				oldGetterName = "get"+genFeature.getName();
 				newGetterName = "jastadd_get"+toFirstUpper(genFeature.getName());
-				IOSupport.log("Renaming EReference getter '"+oldGetterName+" to '" + newGetterName + "'.");
+				IOSupport.log("Renaming containment EReference getter '"+oldGetterName+" to '" + newGetterName + "'.");
 				IMethod getter = type.getMethod(oldGetterName, new String[0]);
 				if(getter.exists())
 					performRename(getter,newGetterName);
@@ -415,14 +416,7 @@ public class ProgrammaticRefactorings {
 	public static boolean performRename(IMethod method, String newname) throws CoreException {		 
 		if(method.getElementName().equals(newname))
 			return true;
-		
-		JavaRenameProcessor renameProcessor = null;
-		if(Flags.isAbstract(method.getFlags())){
-			renameProcessor = new RenameVirtualMethodProcessor(method);
-		}
-		else{
-			renameProcessor = new RenameNonVirtualMethodProcessor(method);			
-		}
+		JavaRenameProcessor renameProcessor =new RenameVirtualMethodProcessor(method);
 		return performRename(renameProcessor, newname);
 	}
 	
