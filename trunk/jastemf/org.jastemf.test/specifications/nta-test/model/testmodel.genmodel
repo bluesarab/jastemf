@@ -41,6 +41,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/DerivedMultipleUpperC"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someQCollection"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someCollection"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/UpperA"/>
         <genOperations ecoreOperation="testmodel.ecore#//ast/D/operationAttribute">
           <genParameters ecoreParameter="testmodel.ecore#//ast/D/operationAttribute/param"/>
         </genOperations>
@@ -48,6 +49,7 @@
       <genClasses image="false" ecoreClass="testmodel.ecore#//ast/AbstractD">
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference testmodel.ecore#//ast/AbstractD/refToSomeA"/>
       </genClasses>
+      <genClasses ecoreClass="testmodel.ecore#//ast/E"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Attributes" basePackage="org.jastemf.test.test" disposableProviderFactory="true"
         ecorePackage="testmodel.ecore#//attributes"/>

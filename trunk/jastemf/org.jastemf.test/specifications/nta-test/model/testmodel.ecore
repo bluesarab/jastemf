@@ -49,6 +49,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="someQCollection" lowerBound="1"
           eType="#//ast/QCollection"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="someCollection" eType="#//ast/Collection"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="UpperA" lowerBound="1"
+          eType="#//ntas/A" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="QCollection" instanceClassName="java.util.Collection"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceTypeName="Collection"/>
@@ -56,6 +58,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="refToSomeA" lowerBound="1"
           eType="#//ntas/A" changeable="false" derived="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="E" eSuperTypes="#//ast/D"/>
   </eSubpackages>
   <eSubpackages name="attributes" nsURI="http://www.jastemf.org/test/attributes" nsPrefix="attributes"/>
 </ecore:EPackage>
