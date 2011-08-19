@@ -129,6 +129,7 @@
 		<jastemf 
 			programmaticrefactorings="true"
 			loglevel="ALL"
+			reconcile="false"
 			generateeditcode="true" 
 			genmodel="${test_basedir}/specifications/nta-test/model/testmodel.genmodel" 
 			outpackage="jastemf.adaptation" 

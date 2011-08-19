@@ -1,3 +1,5 @@
+import java.util.Collection;
+
 aspect SomeAttributes{
 
 	syn A AbstractD.refToSomeA();
