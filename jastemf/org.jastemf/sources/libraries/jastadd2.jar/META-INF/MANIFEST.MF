@@ -1,8 +1,14 @@
 Manifest-Version: 1.0
-Implementation-Vendor: The JastAdd Team
-Implementation-Title: JastAdd II
-Implementation-Version: R20101210
-Created-By: 1.6.0_18 (Sun Microsystems Inc.)
-Implementation-URL: http://jastadd.cs.lth.se
-Main-Class: jastadd.JastAdd
 
+Name: org/aspectj/lang/
+Specification-Title: AspectJ Runtime Classes 
+Specification-Version: 1.6
+Specification-Vendor: aspectj.org
+Implementation-Title: org.aspectj.tools
+Implementation-Version: 1.6.11
+Implementation-Vendor: aspectj.org
+Bundle-Name: AspectJ Runtime
+Bundle-Version: 1.6.11
+Bundle-Copyright: (C) Copyright 1999-2001 Xerox Corporation, 2002 Palo 
+  Alto Research Center, Incorporated (PARC), 2003-2009 Contributors. 
+  All Rights Reserved.
