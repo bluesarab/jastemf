@@ -154,7 +154,7 @@ public class ProgrammaticRefactorings {
 			
 			//renaming accessors that correspond to EAttributes in Ecore
 			if(genFeature.getEcoreFeature() instanceof EAttribute){
-				replaceTerminalAccessors(genFeature, type);
+				replaceEAttributeAccessors(genFeature, type);
 			}
 			else if(genFeature.getEcoreFeature() instanceof EReference){
 				renameEReferenceAccessor(genFeature, type);
@@ -277,7 +277,7 @@ public class ProgrammaticRefactorings {
 	 * @param type
 	 * @throws CoreException
 	 */
-	public static void replaceTerminalAccessors(GenFeature genFeature,IType type) throws CoreException{
+	public static void replaceEAttributeAccessors(GenFeature genFeature,IType type) throws CoreException{
 		EAttribute eAttribute = (EAttribute)genFeature.getEcoreFeature();
 		//replacing getter			
 		{
@@ -296,8 +296,16 @@ public class ProgrammaticRefactorings {
 				IMethod getter = type.getMethod(oldGetterName, new String[0]);
 				if(getter.exists()){
 					String getterReturnType =Signature.getSignatureSimpleName( getter.getReturnType());
-					getter.delete(true,null);
-					String newMethod = "public "+ getterReturnType +" "+oldGetterName+"(){ return " + newGetterName + "();}";
+					String newMethod = null;
+					if(eAttribute.isDerived()){
+						//Attribute: EMF getter needs to call attribute computation method of JastAdd
+						newMethod = "public "+ getterReturnType +" "+newGetterName+"(){ return " + oldGetterName + "();}";	
+					}
+					else{
+						//Terminal: Access new repository by delegating to EMF getter
+						getter.delete(true,null);
+						newMethod = "public "+ getterReturnType +" "+oldGetterName+"(){ return " + newGetterName + "();}";												
+					}
 					type.createMethod(newMethod,null,true,null);
 				}
 			}
