@@ -225,33 +225,37 @@ public class ProgrammaticRefactorings {
 		else if(!eReference.isMany()){
 			//if signatures are in conflict, add jastadd_ prefix 
 			if(genFeature.getName().equals(genFeature.getAccessorName())){
-				oldGetterName = "get"+genFeature.getName();
-				newGetterName = "jastadd_get"+toFirstUpper(genFeature.getName());
-				IOSupport.log("Renaming containment EReference getter '"+oldGetterName+" to '" + newGetterName + "'.");
+			
+				oldGetterName = genFeature.getGetAccessor();
+				IOSupport.log("Inserting replacement for '"+oldGetterName+"' for safe containment access.");
 				IMethod getter = type.getMethod(oldGetterName, new String[0]);
-				if(getter.exists())
-					performRename(getter,newGetterName);
+				String getterReturnType = Signature.getSignatureSimpleName( getter.getReturnType());
+				String newMethod = "public " + getterReturnType +" "+oldGetterName+"(){ return ("+genFeature.getTypeGenClassifier().getName()+")"+genFeature.getSafeName()+";}";
+				getter.delete(false,null);
+				type.createMethod(newMethod, null,true,null);
 				
 				//case 3a rename setters
 				String oldSetterName = "set" + genFeature.getName();
-				String newSetterName = "jastadd_set" + toFirstUpper(genFeature.getName());
 				String[] parameterSignature = new String[1];
 				String typeName = getRefactoringTypeString(eReference.getEGenericType());
 				if(typeName==null)
 					typeName = eReference.getEReferenceType().getName();
 				parameterSignature[0] = typeName;
+		
 				IMethod setter = type.getMethod(oldSetterName, parameterSignature);
-				if(setter.exists())
-					performRename(setter, newSetterName);
+				if(setter.exists()){
+					String paramName = setter.getParameterNames()[0];
+					String paramType = Signature.getSignatureSimpleName(setter.getParameterTypes()[0]);
+					setter.delete(true,null);
+					String newSetterMethod = "public void "+oldSetterName+"("+paramType+" "+paramName+"){ this." + genFeature.getSafeName() + " = "+paramName+";}";		
+					type.createMethod(newSetterMethod,null,true,null);
+				}
 			}
 
 		}
 		else{
 			//case 4: list containments ... do not rename	
 		}
-
-
-
 	}
 
 
