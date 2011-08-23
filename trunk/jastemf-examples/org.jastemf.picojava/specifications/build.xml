@@ -29,6 +29,8 @@
 		<echo message="========================> Generate picojava &lt;======================="/>
 		<jastemf
 			generateeditcode="true"
+			programmaticrefactorings="true"
+			reconcile="true"
 			genmodel="${basedir}/model/picojava.genmodel"
 			outpackage="jastemf.adaptation"
 			astpackage="org.jastemf.picojava.ast">
