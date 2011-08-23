@@ -1,0 +1,931 @@
+<?xml version='1.0'?><?xml-stylesheet type='text/xsl' href='log.xslt' ?>
+<archiveLog>
+    <info msg="Configuration [JastAdd] changed" date="2010-05-12+02:00">
+        <testInformation test="JastAdd" priority="0" msg="Configuration JastAdd added. (Lexer: siple.symbols.SIPLELexer, Parser: siple.syntax.SIPLEParser)"/>
+    </info>
+    <info msg="New Files added for testsuite [correct]" date="2010-05-12+02:00">
+        <testInformation test="boolean_arithmetics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: correct]"/>
+        <testInformation test="control_flow" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\control_flow.expr as Testcase control_flow [Testsuite: correct]"/>
+        <testInformation test="integer_and_real_arithmetics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\integer_and_real_arithmetics.expr as Testcase integer_and_real_arithmetics [Testsuite: correct]"/>
+        <testInformation test="nested_procedures" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\nested_procedures.expr as Testcase nested_procedures [Testsuite: correct]"/>
+        <testInformation test="procedure_basics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\procedure_basics.expr as Testcase procedure_basics [Testsuite: correct]"/>
+        <testInformation test="relational_arithmetics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\relational_arithmetics.expr as Testcase relational_arithmetics [Testsuite: correct]"/>
+        <testInformation test="scopes" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\correct\scopes.expr as Testcase scopes [Testsuite: correct]"/>
+    </info>
+    <info msg="New Files added for testsuite [incorrect]" date="2010-05-12+02:00">
+        <testInformation test="boolean_arithmetics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\boolean_arithmetics.expr as Testcase boolean_arithmetics [Testsuite: incorrect]"/>
+        <testInformation test="control_flow" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\control_flow.expr as Testcase control_flow [Testsuite: incorrect]"/>
+        <testInformation test="integer_and_real_arithmetics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\integer_and_real_arithmetics.expr as Testcase integer_and_real_arithmetics [Testsuite: incorrect]"/>
+        <testInformation test="procedure_basics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\procedure_basics.expr as Testcase procedure_basics [Testsuite: incorrect]"/>
+        <testInformation test="relational_arithmetics" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\relational_arithmetics.expr as Testcase relational_arithmetics [Testsuite: incorrect]"/>
+        <testInformation test="scopes" priority="0" msg="Testcase added: D:\Development\Java\JastEMF\calculator\tests\source_code_examples\incorrect\scopes.expr as Testcase scopes [Testsuite: incorrect]"/>
+    </info>
+    <info msg="Testresults generated for configuration: JastAdd" date="2010-05-12+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Generated Results for testCase: boolean_arithmetics [Testsuite: correct]"/>
+        <testInformation test="control_flow" priority="1" msg="Generated Results for testCase: control_flow [Testsuite: correct]"/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Generated Results for testCase: integer_and_real_arithmetics [Testsuite: correct]"/>
+        <testInformation test="nested_procedures" priority="1" msg="Generated Results for testCase: nested_procedures [Testsuite: correct]"/>
+        <testInformation test="procedure_basics" priority="1" msg="Generated Results for testCase: procedure_basics [Testsuite: correct]"/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Generated Results for testCase: relational_arithmetics [Testsuite: correct]"/>
+        <testInformation test="scopes" priority="1" msg="Generated Results for testCase: scopes [Testsuite: correct]"/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Generated Results for testCase: boolean_arithmetics [Testsuite: incorrect]"/>
+        <testInformation test="control_flow" priority="1" msg="Generated Results for testCase: control_flow [Testsuite: incorrect]"/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Generated Results for testCase: integer_and_real_arithmetics [Testsuite: incorrect]"/>
+        <testInformation test="procedure_basics" priority="1" msg="Generated Results for testCase: procedure_basics [Testsuite: incorrect]"/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Generated Results for testCase: relational_arithmetics [Testsuite: incorrect]"/>
+        <testInformation test="scopes" priority="1" msg="Generated Results for testCase: scopes [Testsuite: incorrect]"/>
+    </info>
+    <testrun configuration="JastAdd" date="2010-05-12+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-12+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node" msg="Node Node: [toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-12+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-12+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-05-31+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-15+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T16:06:54.584+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T17:27:46.231+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T17:43:07.522+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node/children/node[1]" msg="Node Node: [IsCorrectLocal:true|Name:x|Type:Integer|toString:(Node-Type: VariableDeclaration | Node-Address: 1.1.1)()](Children:0) differs from expected node Node: [Name:x|Type:Integer|toString:(Node-Type: VariableDeclaration | Node-Address: 1.1.1)()](Children:0)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node/children/node[1]" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node/children/node" msg="Node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+    </testrun>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2010-06-16T17:44:54.260+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2010-06-16T17:50:11.642+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T17:52:45.556+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2010-06-16T17:54:00.472+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2010-06-16T17:54:30.660+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T18:06:59.176+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|isIsCorrect:false|isIsCorrectLocal:true|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T20:38:45.991+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:04:44.531+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:6) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:6)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:7) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:7)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:05:29.118+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:6) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:6)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:7) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:7)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:07:22.735+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:6) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:6)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:7) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:7)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:13:15.981+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/nodeAttribute[2]" msg="Node Node: [IsCorrect:true|IsCorrect:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/nodeAttribute[2]" msg="Node Node: [IsCorrect:true|IsCorrect:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/nodeAttribute[2]" msg="Node Node: [IsCorrect:true|IsCorrect:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/nodeAttribute[2]" msg="Node Node: [IsCorrect:true|IsCorrect:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/nodeAttribute[2]" msg="Node Node: [IsCorrect:true|IsCorrect:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/nodeAttribute[2]" msg="Node Node: [IsCorrect:true|IsCorrect:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/nodeAttribute[2]" msg="Node Node: [IsCorrect:true|IsCorrect:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:true|IsCorrect:false|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:true|IsCorrect:false|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:true|IsCorrect:false|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:true|IsCorrect:false|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:true|IsCorrect:false|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:true|IsCorrect:false|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:13:56.981+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:6) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:6)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:7) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:7)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:15:39.537+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:6) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:6)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:7) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:7)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:16:33.529+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:18:24.169+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:29:50.459+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/nodeAttribute[1]" msg="Node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node" msg="Node Node: [IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node" msg="Node Node: [IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node" msg="Node Node: [IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node" msg="Node Node: [IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|toString:(Node-Type: List | Node-Address: 1.1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:54:09.873+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node" msg="Node Node: [MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T21:59:26.320+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-16T22:02:18.513+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2010-06-28T11:27:49.620+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-02-09T16:07:29.078+01:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-02-10T17:37:27.000+01:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-18T20:20:56.968+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-18T20:21:10.359+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-18T20:21:32.468+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[3]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[3]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[3]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node/children/node[4]/children/node[2]/children/node/children/node[1]/children/node" msg="Node Node: [Declaration:(Node-Type: VariableDeclaration | Node-Address: 1.1.1)|IsCorrect:true|IsCorrectLocal:true|Name:x|Type:Integer|toString:(Node-Type: Reference | Node-Address: 1.1.4.2.1.1.1)()](Children:0) differs from expected node Node: [ConstantValue:|Declaration:(Node-Type: VariableDeclaration | Node-Address: 1.1.1)|IsCorrect:true|IsCorrectLocal:true|Name:x|Type:Integer|toString:(Node-Type: Reference | Node-Address: 1.1.4.2.1.1.1)()](Children:0)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node/children/node[1]/children/node[2]/children/node/children/node[1]/children/node" msg="Node Node: [Declaration:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.2)|IsCorrect:true|IsCorrectLocal:true|Name:id|Type:Integer|toString:(Node-Type: ProcedureCall | Node-Address: 1.1.1.2.1.1.1)()](Children:1) differs from expected node Node: [ConstantValue:|Declaration:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.2)|IsCorrect:true|IsCorrectLocal:true|Name:id|Type:Integer|toString:(Node-Type: ProcedureCall | Node-Address: 1.1.1.2.1.1.1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[5]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.5.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.5.1)()](Children:0)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[3]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[4]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.4.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.4.1)()](Children:0)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[3]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.3.1)()](Children:0)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[4]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.4.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.4.1)()](Children:0)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[2]" msg="Node Node: [Declaration:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1.2.1.1)|IsCorrect:false|IsCorrectLocal:false|Name:proc|Type:ERROR_TYPE|toString:(Node-Type: ProcedureCall | Node-Address: 1.1.1.2.1.2)()](Children:1) differs from expected node Node: [ConstantValue:|Declaration:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1.2.1.1)|IsCorrect:false|IsCorrectLocal:false|Name:proc|Type:ERROR_TYPE|toString:(Node-Type: ProcedureCall | Node-Address: 1.1.1.2.1.2)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[4]/children/node" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.4.1)()](Children:0) differs from expected node Node: [ConstantValue:|IsCorrect:true|IsCorrectLocal:true|Type:Boolean|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.4.1)()](Children:0)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[1]/children/node" msg="Node Node: [Declaration:|IsCorrect:false|IsCorrectLocal:false|Name:y|Type:ERROR_TYPE|toString:(Node-Type: Reference | Node-Address: 1.1.1.2.1.1.1)()](Children:0) differs from expected node Node: [ConstantValue:|Declaration:|IsCorrect:false|IsCorrectLocal:false|Name:y|Type:ERROR_TYPE|toString:(Node-Type: Reference | Node-Address: 1.1.1.2.1.1.1)()](Children:0)"/>
+    </testrun>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2011-05-18T20:21:47.515+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2011-05-18T20:21:53.765+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-18T20:24:04.734+02:00">
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[6]/children/node/children/node[1]" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Real|toString:(Node-Type: RealCoercion | Node-Address: 1.1.1.2.1.6.1.1)()](Children:1) differs from expected node Node: [Declaration:(Node-Type: VariableDeclaration | Node-Address: 1.1.1.2.1.1)|IsCorrect:true|IsCorrectLocal:true|Name:i|Type:Integer|toString:(Node-Type: Reference | Node-Address: 1.1.1.2.1.6.1.1)()](Children:0)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[33]/children/node/children/node[1]" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Real|toString:(Node-Type: RealCoercion | Node-Address: 1.1.1.2.1.33.1.1)()](Children:1) differs from expected node Node: [Declaration:(Node-Type: VariableDeclaration | Node-Address: 1.1.1.2.1.3)|IsCorrect:true|IsCorrectLocal:true|Name:i|Type:Integer|toString:(Node-Type: Reference | Node-Address: 1.1.1.2.1.33.1.1)()](Children:0)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[17]/children/node/children/node[2]/children/node[1]/children/node/children/node[2]/children/node[1]" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Real|toString:(Node-Type: RealCoercion | Node-Address: 1.1.1.2.1.17.1.2.1.1.2.1)()](Children:1) differs from expected node Node: [Declaration:(Node-Type: VariableDeclaration | Node-Address: 1.1.1.2.1.2)|IsCorrect:true|IsCorrectLocal:true|Name:i|Type:Integer|toString:(Node-Type: Reference | Node-Address: 1.1.1.2.1.17.1.2.1.1.2.1)()](Children:0)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node/children/node[2]/children/node/children/node[23]/children/node/children/node[1]/children/node[2]/children/node/children/node[1]/children/node/children/node[2]/nodeAttribute[3]" msg="Node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Real|toString:(Node-Type: RealCoercion | Node-Address: 1.1.1.2.1.23.1.1.2.1.1.1.2)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|Type:Integer|toString:(Node-Type: Constant | Node-Address: 1.1.1.2.1.23.1.1.2.1.1.1.2)()](Children:0)"/>
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2011-05-18T20:25:06.718+02:00">
+        <testInformation test="boolean_arithmetics" priority="0" msg="Results for test [boolean_arithmetics] in testsuite [correct] were not changed."/>
+        <testInformation test="control_flow" priority="0" msg="Results for test [control_flow] in testsuite [correct] were not changed."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="0" msg="Results for test [nested_procedures] in testsuite [correct] were not changed."/>
+        <testInformation test="procedure_basics" priority="0" msg="Results for test [procedure_basics] in testsuite [correct] were not changed."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="0" msg="Results for test [scopes] in testsuite [correct] were not changed."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="0" msg="Results for test [control_flow] in testsuite [incorrect] were not changed."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="0" msg="Results for test [procedure_basics] in testsuite [incorrect] were not changed."/>
+        <testInformation test="relational_arithmetics" priority="0" msg="Results for test [relational_arithmetics] in testsuite [incorrect] were not changed."/>
+        <testInformation test="scopes" priority="0" msg="Results for test [scopes] in testsuite [incorrect] were not changed."/>
+    </info>
+    <testrun configuration="JastAdd" date="2011-05-18T20:25:14.046+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-18T20:28:23.875+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:true|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrect:false|IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2011-05-18T20:28:39.515+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2011-05-18T20:28:43.281+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-19T13:56:43.453+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:siple.semantics.State@1f58923|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:siple.semantics.State@8a5f8b|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:siple.semantics.State@fbd200|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|rttInterpret:siple.semantics.State@66bee|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:siple.semantics.State@226e75|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:siple.semantics.State@179b474|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:siple.semantics.State@8e26fe|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-19T13:59:42.218+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:true&#xA;false&#xA;false&#xA;true&#xA;true&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;false&#xA;true&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:1&#xA;2&#xA;6&#xA;479001600&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:6&#xA;6.5&#xA;0&#xA;-0.5&#xA;9&#xA;10.5&#xA;1&#xA;0.85714287&#xA;7.0&#xA;6.5&#xA;0.0&#xA;0.5&#xA;12.25&#xA;10.5&#xA;1.0&#xA;1.1666666&#xA;5.0&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|rttInterpret:1&#xA;1&#xA;1&#xA;100&#xA;1&#xA;1&#xA;100&#xA;200&#xA;1&#xA;100&#xA;200&#xA;300&#xA;2&#xA;2&#xA;2&#xA;100&#xA;2&#xA;2&#xA;100&#xA;200&#xA;2&#xA;3&#xA;3&#xA;3&#xA;100&#xA;3&#xA;3&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.6)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:3&#xA;479001600&#xA;89&#xA;10&#xA;10&#xA;9&#xA;11&#xA;8&#xA;12&#xA;7&#xA;13&#xA;6&#xA;14&#xA;5&#xA;15&#xA;4&#xA;16&#xA;3&#xA;17&#xA;2&#xA;18&#xA;1&#xA;19&#xA;0&#xA;20&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;true&#xA;false&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;true&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;false&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:1&#xA;2&#xA;1&#xA;2&#xA;true&#xA;2&#xA;true&#xA;2&#xA;true&#xA;true&#xA;true&#xA;2&#xA;true&#xA;2&#xA;1.0&#xA;2.0&#xA;true&#xA;2&#xA;1&#xA;2&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:Compilation Errors|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+    </testrun>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2011-05-19T14:04:33.140+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2011-05-19T14:04:49.734+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <testrun configuration="JastAdd" date="2011-05-27T19:26:15.968+02:00">
+        <failed testsuit="correct" test="boolean_arithmetics" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="control_flow" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="nested_procedures" path="/archiveLog/node/children/node/children/node[4]/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:writeGlob|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.4)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:writeGlob|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.4)()](Children:2)"/>
+        <failed testsuit="correct" test="procedure_basics" path="/archiveLog/node/children/node/children/node[1]/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="correct" test="relational_arithmetics" path="/archiveLog/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;false&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1) differs from expected node Node: [IsCorrectLocal:true|MainProcedure:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)|rttInterpret:true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;true&#xA;false&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;true&#xA;false&#xA;false&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;true&#xA;false&#xA;true&#xA;false&#xA;false&#xA;true&#xA;true&#xA;true&#xA;false&#xA;|toString:(Node-Type: CompilationUnit | Node-Address: 1)()](Children:1)"/>
+        <failed testsuit="correct" test="scopes" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="boolean_arithmetics" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="control_flow" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="integer_and_real_arithmetics" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="procedure_basics" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="relational_arithmetics" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+        <failed testsuit="incorrect" test="scopes" path="/archiveLog/node/children/node/children/node/nodeAttribute[3]" msg="Node Node: [IsCorrectLocal:true|Name:main|Type:Procedure ():Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2) differs from expected node Node: [IsCorrectLocal:true|Name:main|ReturnType:Undefined|toString:(Node-Type: ProcedureDeclaration | Node-Address: 1.1.1)()](Children:2)"/>
+    </testrun>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2011-05-27T19:27:01.843+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2011-05-27T19:27:11.171+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+    <info suffix="correct" msg="New Files added for testsuite: " date="2011-06-01T16:22:04.406+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Testcase [boolean_arithmetics] in [correct] overwritten."/>
+        <testInformation test="closures" priority="0" msg="Testcase added: C:\Development\JastEMF\workspace\calculator\tests\source_code_examples\correct\closures.siple as Testcase closures [Testsuite: correct]"/>
+        <testInformation test="control_flow" priority="1" msg="Testcase [control_flow] in [correct] overwritten."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Testcase [integer_and_real_arithmetics] in [correct] overwritten."/>
+        <testInformation test="nested_procedures" priority="1" msg="Testcase [nested_procedures] in [correct] overwritten."/>
+        <testInformation test="pointers" priority="0" msg="Testcase added: C:\Development\JastEMF\workspace\calculator\tests\source_code_examples\correct\pointers.siple as Testcase pointers [Testsuite: correct]"/>
+        <testInformation test="procedure_basics" priority="1" msg="Testcase [procedure_basics] in [correct] overwritten."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Testcase [relational_arithmetics] in [correct] overwritten."/>
+        <testInformation test="scopes" priority="1" msg="Testcase [scopes] in [correct] overwritten."/>
+    </info>
+    <info suffix="incorrect" msg="New Files added for testsuite: " date="2011-06-01T16:22:05.062+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Testcase [boolean_arithmetics] in [incorrect] overwritten."/>
+        <testInformation test="control_flow" priority="1" msg="Testcase [control_flow] in [incorrect] overwritten."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Testcase [integer_and_real_arithmetics] in [incorrect] overwritten."/>
+        <testInformation test="procedure_basics" priority="1" msg="Testcase [procedure_basics] in [incorrect] overwritten."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Testcase [relational_arithmetics] in [incorrect] overwritten."/>
+        <testInformation test="scopes" priority="1" msg="Testcase [scopes] in [incorrect] overwritten."/>
+    </info>
+    <info suffix="JastAdd" msg="Testresults generated for configuration: " date="2011-06-01T16:22:31.796+02:00">
+        <testInformation test="boolean_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [boolean_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Lexer and Parser Results for testCase [control_flow] in testsuite [correct] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [integer_and_real_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="nested_procedures" priority="1" msg="Lexer and Parser Results for testCase [nested_procedures] in testsuite [correct] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Lexer and Parser Results for testCase [procedure_basics] in testsuite [correct] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [relational_arithmetics] in testsuite [correct] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Lexer and Parser Results for testCase [scopes] in testsuite [correct] were generated."/>
+        <testInformation test="closures" priority="1" msg="Lexer and Parser Results for testCase [closures] in testsuite [correct] were generated."/>
+        <testInformation test="pointers" priority="1" msg="Lexer and Parser Results for testCase [pointers] in testsuite [correct] were generated."/>
+        <testInformation test="boolean_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [boolean_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="control_flow" priority="1" msg="Lexer and Parser Results for testCase [control_flow] in testsuite [incorrect] were generated."/>
+        <testInformation test="integer_and_real_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [integer_and_real_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="procedure_basics" priority="1" msg="Lexer and Parser Results for testCase [procedure_basics] in testsuite [incorrect] were generated."/>
+        <testInformation test="relational_arithmetics" priority="1" msg="Lexer and Parser Results for testCase [relational_arithmetics] in testsuite [incorrect] were generated."/>
+        <testInformation test="scopes" priority="1" msg="Lexer and Parser Results for testCase [scopes] in testsuite [incorrect] were generated."/>
+    </info>
+    <testrun configuration="JastAdd" date="2011-06-01T16:22:42.718+02:00">
+        <passed testSuite="correct" test="boolean_arithmetics"/>
+        <passed testSuite="correct" test="control_flow"/>
+        <passed testSuite="correct" test="integer_and_real_arithmetics"/>
+        <passed testSuite="correct" test="nested_procedures"/>
+        <passed testSuite="correct" test="procedure_basics"/>
+        <passed testSuite="correct" test="relational_arithmetics"/>
+        <passed testSuite="correct" test="scopes"/>
+        <passed testSuite="correct" test="closures"/>
+        <passed testSuite="correct" test="pointers"/>
+        <passed testSuite="incorrect" test="boolean_arithmetics"/>
+        <passed testSuite="incorrect" test="control_flow"/>
+        <passed testSuite="incorrect" test="integer_and_real_arithmetics"/>
+        <passed testSuite="incorrect" test="procedure_basics"/>
+        <passed testSuite="incorrect" test="relational_arithmetics"/>
+        <passed testSuite="incorrect" test="scopes"/>
+    </testrun>
+</archiveLog>
