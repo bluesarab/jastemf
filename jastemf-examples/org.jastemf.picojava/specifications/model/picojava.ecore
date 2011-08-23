@@ -13,6 +13,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -29,6 +30,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NullObjects.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="#//PrimitiveDecl"
@@ -40,6 +42,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -52,6 +55,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -63,6 +67,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -77,6 +82,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NullObjects.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -89,6 +95,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -105,6 +112,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NullObjects.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeDecl"
@@ -116,6 +124,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="#//PrimitiveDecl"
@@ -127,6 +136,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -139,6 +149,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -150,6 +161,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
       <eParameters name="typeDecl" eType="#//TypeDecl"/>
     </eOperations>
@@ -161,6 +173,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
       <eParameters name="typeDecl" eType="#//TypeDecl"/>
     </eOperations>
@@ -172,6 +185,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
       <eParameters name="typeDecl" eType="#//ClassDecl"/>
     </eOperations>
@@ -183,6 +197,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -195,6 +210,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="#//Access"
@@ -206,6 +222,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unknownDecl" eType="#//Decl"
@@ -217,6 +234,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NullObjects.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -235,6 +253,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="true"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" eType="#//ClassDecl"
@@ -246,6 +265,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -273,6 +293,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -286,6 +307,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -297,6 +319,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -310,6 +333,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -322,6 +346,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/NameResolution.jrag"/>
       </eAnnotations>
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -335,6 +360,7 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="#//Access"
@@ -346,6 +372,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -367,6 +394,7 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/development/workspaces/jastadd-pico-java/org.jastemf.picojava/specifications/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
