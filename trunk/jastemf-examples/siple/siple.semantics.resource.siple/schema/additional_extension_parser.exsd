@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<schema targetNamespace="siple.semantics.resource.siple" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.jastemf.siple.resource.siple" xmlns="http://www.w3.org/2001/XMLSchema">
 	<annotation>
 		<appinfo>
-			<meta.schema plugin="siple.semantics.resource.siple" id="siple.semantics.resource.siple.additional_extension_parser" name="Additional Extension Parser"/>
+			<meta.schema plugin="org.jastemf.siple.resource.siple" id="org.jastemf.siple.resource.siple.additional_extension_parser" name="Additional Extension Parser"/>
 		</appinfo>
 		<documentation>
 			This extension point can be used to add another parser for 'siple' files.		</documentation>
