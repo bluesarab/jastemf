@@ -6,14 +6,14 @@
  *
  * </copyright>
  */
-package siple.semantics.resource.siple.analysis;
+package org.jastemf.siple.resource.siple.analysis;
 
 import java.util.*;
 
 import org.eclipse.emf.ecore.*;
+import org.jastemf.siple.semantics.*;
 
-import siple.semantics.*;
-import siple.semantics.resource.siple.*;
+import org.jastemf.siple.resource.siple.*;
 
 public class SipleTYPETokenResolver implements ISipleTokenResolver {
 

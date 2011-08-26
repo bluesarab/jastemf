@@ -6,7 +6,7 @@
  *
  * </copyright>
  */
-package siple.emftext.support;
+package org.jastemf.siple.emftext.support;
 
 import java.io.*;
 import java.util.*;
@@ -14,11 +14,10 @@ import java.util.*;
 import org.antlr.runtime3_3_0.*;
 import org.eclipse.emf.ecore.resource.*;
 import org.eclipse.emf.ecore.resource.Resource.*;
+import org.jastemf.siple.interfaces.*;
+import org.jastemf.siple.resource.siple.mopp.*;
 
-import siple.semantics.impl.*;
-import siple.semantics.interfaces.*;
-import siple.semantics.resource.siple.*;
-import siple.semantics.resource.siple.mopp.*;
+import org.jastemf.siple.resource.siple.*;
 
 public class ParserHelper {
 	private ISipleParseResult parse(String stringStatement) {

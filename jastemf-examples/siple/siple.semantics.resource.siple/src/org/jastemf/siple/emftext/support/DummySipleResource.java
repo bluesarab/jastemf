@@ -6,7 +6,7 @@
  *
  * </copyright>
  */
-package siple.emftext.support;
+package org.jastemf.siple.emftext.support;
 
 import java.io.*;
 import java.util.*;
@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.emf.ecore.resource.*;
 
-import siple.semantics.resource.siple.*;
+import org.jastemf.siple.resource.siple.*;
 
 public class DummySipleResource implements ISipleTextResource {
 

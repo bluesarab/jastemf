@@ -6,7 +6,7 @@
  *
  * </copyright>
  */
-package siple.emftext.gui;
+package org.jastemf.siple.emftext.gui;
 
 import java.util.*;
 
@@ -17,11 +17,11 @@ import org.eclipse.emf.ecore.resource.impl.*;
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.ui.*;
+import org.jastemf.siple.emftext.support.*;
+import org.jastemf.siple.impl.*;
+import org.jastemf.siple.interfaces.*;
 
-import siple.semantics.impl.*;
-import siple.semantics.interfaces.*;
 
-import siple.emftext.support.*;
 
 public class InterpretSipleProgramAction implements IObjectActionDelegate {
 	private ISelection selection;
