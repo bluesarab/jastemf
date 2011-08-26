@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JastEMF - SIPLE Example
-Bundle-SymbolicName: siple;singleton:=true
+Bundle-SymbolicName: org.jastemf.siple;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Vendor: Software Technology Group - Technische Universität Dresden - Germany
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.jastemf.siple.semantics,
- siple.provider,
- siple.semantics.ast,
- siple.semantics.impl,
- siple.semantics.interfaces,
- siple.semantics.meta,
- siple.semantics.provider,
- siple.semantics.util
+ org.jastemf.siple.provider,
+ org.jastemf.siple.ast,
+ org.jastemf.siple.impl,
+ org.jastemf.siple.interfaces,
+ org.jastemf.siple.meta,
+ org.jastemf.siple.provider,
+ org.jastemf.siple.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.aspectj.runtime,
  org.eclipse.emf.edit
-Bundle-Activator: siple.provider.SIPLEEditPlugin.Implementation
+Bundle-Activator: org.jastemf.siple.provider.SIPLEEditPlugin.Implementation

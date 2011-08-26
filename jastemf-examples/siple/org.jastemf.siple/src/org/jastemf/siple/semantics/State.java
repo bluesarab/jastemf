@@ -9,8 +9,8 @@
 package org.jastemf.siple.semantics;
 
 import java.util.*;
-
-import org.jastemf.siple.semantics.ast.*;
+import org.jastemf.siple.ast.*;
+import org.jastemf.siple.impl.*;
 
 
 /**

@@ -76,7 +76,7 @@
 		<emftext.GenerateTextResource
 			syntax="syntax/siple.cs"
 			rootFolder="${_basedir}/.."
-			syntaxProjectName="siple.semantics.resource.siple"
+			syntaxProjectName="org.jastemf.siple.semantics.resource.siple"
 		/>
 		<eclipse.refreshLocal depth="infinite" resource="/"/>
 	</target>
