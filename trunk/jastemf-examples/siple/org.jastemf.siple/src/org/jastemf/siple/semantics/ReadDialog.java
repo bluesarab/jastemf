@@ -4,7 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import org.jastemf.siple.semantics.ast.*;
+import org.jastemf.siple.ast.*;
+import org.jastemf.siple.impl.*;
 
 
 /**

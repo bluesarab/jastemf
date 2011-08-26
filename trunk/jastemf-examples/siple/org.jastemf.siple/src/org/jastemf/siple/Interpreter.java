@@ -11,9 +11,10 @@ package org.jastemf.siple;
 import java.io.*;
 
 import org.jastemf.siple.semantics.*;
-import org.jastemf.siple.semantics.ast.*;
-import org.jastemf.siple.symbols.*;
-import org.jastemf.siple.syntax.*;
+import org.jastemf.siple.ast.*;
+import org.jastemf.siple.impl.*;
+import siple.symbols.*;
+import siple.syntax.*;
 
 
 /**
