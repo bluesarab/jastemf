@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="semantics"
-    nsURI="http://siple/1.0" nsPrefix="semantics">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="siple"
+    nsURI="http://org.jastemf.siple/1.0" nsPrefix="siple">
   <eClassifiers xsi:type="ecore:EClass" name="CompilationUnit">
     <eOperations name="Interpret" lowerBound="1" eType="#//State"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" upperBound="-1"
@@ -138,6 +138,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Type" instanceClassName="siple.semantics.Type"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="State" instanceClassName="siple.semantics.State"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Type" instanceClassName="org.jastemf.siple.semantics.Type"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="State" instanceClassName="org.jastemf.siple.semantics.State"/>
 </ecore:EPackage>

@@ -6,7 +6,7 @@
  *
  * </copyright>
  */
-package siple.semantics;
+package org.jastemf.siple.semantics;
 
 import java.util.*;
 

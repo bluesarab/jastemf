@@ -6,11 +6,12 @@
  *
  * </copyright>
  */
-package siple.semantics;
+package org.jastemf.siple.semantics;
 
 import java.util.*;
 
-import siple.semantics.ast.*;
+import org.jastemf.siple.semantics.ast.*;
+
 
 /**
  * Instances of this class represent <i>SiPLE</i> interpreter states. The
@@ -47,7 +48,7 @@ public final class State {
 	 * entity is not initialized during its allocation the parameter has to be
 	 * <tt>null</tt>.
 	 */
-	public void allocate(Declaration decl, Object value) {
+	public void allocate(DeclarationImpl decl, Object value) {
 		if (!currentFrame.environment.containsKey(decl)) {
 			MemoryLocation loc = new MemoryLocation();
 			loc.value = value;
@@ -63,7 +64,7 @@ public final class State {
 	 * @throws InterpretationException Thrown, iff the given entity is not
 	 * allocated.
 	 */
-	public MemoryLocation access(Declaration decl)
+	public MemoryLocation access(DeclarationImpl decl)
 	throws InterpretationException {
 		for (Frame cf = currentFrame; cf != null; cf = cf.closure) {
 			MemoryLocation loc = cf.environment.get(decl);
@@ -89,12 +90,12 @@ public final class State {
 	 */
 	public static final class Frame {
 		/** See {@link Frame}. */
-		public ProcedureDeclaration implementation = null;
+		public ProcedureDeclarationImpl implementation = null;
 		/** See {@link Frame}. */
 		public Frame closure = null;
 		/** See {@link Frame}. */
-		public Map<Declaration, MemoryLocation> environment =
-			new TreeMap<Declaration, MemoryLocation>();
+		public Map<DeclarationImpl, MemoryLocation> environment =
+			new TreeMap<DeclarationImpl, MemoryLocation>();
 		/** See {@link Frame}. */
 		public Object returnValue = null;
 	}
