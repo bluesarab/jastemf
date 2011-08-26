@@ -2,7 +2,7 @@
 // terms of the BSD 3-clause license which accompanies this distribution.
 
 SYNTAXDEF siple
-FOR <http://siple/1.0><../model/siple.genmodel>
+FOR <http://org.jastemf.siple/1.0><../model/siple.genmodel>
 START CompilationUnit
 
 OPTIONS {

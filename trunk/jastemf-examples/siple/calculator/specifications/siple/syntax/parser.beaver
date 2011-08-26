@@ -11,7 +11,7 @@
  * @author C. Bürger
  */
 %package "siple.syntax";
-%import "siple.semantics.ast.*", "siple.semantics.Type";
+%import "org.jastemf.siple.semantics.ast.*", "org.jastemf.siple.semantics.Type";
 
 %class "SIPLEParser";
 

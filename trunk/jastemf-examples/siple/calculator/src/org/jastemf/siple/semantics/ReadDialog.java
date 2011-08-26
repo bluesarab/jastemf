@@ -1,10 +1,11 @@
-package siple.semantics;
+package org.jastemf.siple.semantics;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import siple.semantics.ast.*;
+import org.jastemf.siple.semantics.ast.*;
+
 
 /**
  * Simple dialog used throughout interpretation to ask the user for a new value
@@ -60,7 +61,7 @@ public class ReadDialog {
 				String inputText = input.getText();
 				if (inputText == null || inputText.length() == 0)
 					return;
-				Constant inputValue = new Constant(inputText);
+				ConstantImpl inputValue = new ConstantImpl(inputText);
 				switch (type.domain) {
 				case Boolean:
 					result = inputValue.Type() == Type.Boolean ?

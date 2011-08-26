@@ -6,14 +6,15 @@
  *
  * </copyright>
  */
-package siple;
+package org.jastemf.siple;
 
 import java.io.*;
 
-import siple.symbols.*;
-import siple.syntax.*;
-import siple.semantics.*;
-import siple.semantics.ast.*;
+import org.jastemf.siple.semantics.*;
+import org.jastemf.siple.semantics.ast.*;
+import org.jastemf.siple.symbols.*;
+import org.jastemf.siple.syntax.*;
+
 
 /**
  * Class for command line {@link #main(String[]) execution} of
@@ -61,7 +62,7 @@ public class Interpreter {
 	throws InterpretationException, IOException, beaver.Parser.Exception {
 		SIPLELexer scanner = new SIPLELexer(new FileReader(program));
 		SIPLEParser parser = new SIPLEParser();
-		CompilationUnit ast = (CompilationUnit)parser.parse(scanner);
+		CompilationUnitImpl ast = (CompilationUnitImpl)parser.parse(scanner);
 		return ast.Interpret();
 	}
 }

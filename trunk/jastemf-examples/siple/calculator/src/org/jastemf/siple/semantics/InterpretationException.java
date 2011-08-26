@@ -1,4 +1,4 @@
-package siple.semantics;
+package org.jastemf.siple.semantics;
 
 /**
  * Exception type thrown iff an error occurs throughout a <i>SiPLE</i>
