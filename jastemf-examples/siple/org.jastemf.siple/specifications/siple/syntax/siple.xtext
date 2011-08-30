@@ -1,0 +1,141 @@
+grammar org.jastemf.siple.Siple
+hidden(WHITESPACE,COMMENT,LINEBREAK)
+
+import 'platform:/resource/org.jastemf.siple/specifications/siple/model/siple.ecore'
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+
+Start returns CompilationUnit:
+	CompilationUnit
+;
+	
+terminal VALUE returns ecore::EString :
+	(('0'..'9')+) | (('0'..'9')+ ( '.' ('0'..'9')+ )) | 'true' | 'false'
+;
+
+terminal IDENTIFIER :
+	('A'..'Z'|'a'..'z') ('A'..'Z'|'a'..'z'|'0'..'9'|'_')*
+;
+
+terminal COMMENT : 
+'%'(!('\n'|'\r'))*
+;
+
+terminal WHITESPACE :
+	(' '|'\t'|'\f')
+;
+
+terminal LINEBREAK : 
+	('\r\n'|'\r'|'\n')
+;
+
+CompilationUnit :  
+	{CompilationUnit} 
+	( Declaration+=Declaration ";" )*
+	;
+
+Block : 
+	{Block}
+	( "Begin" Statement+=Block "End" )*
+	;
+
+Declaration : 
+	VariableDeclaration ";"
+	| ProcedureDeclaration ";"
+	;
+
+VariableDeclaration : 
+	{VariableDeclaration}
+	"Var" id=IDENTIFIER ":" type=Type
+	;
+
+ProcedureDeclaration :
+	{ProcedureDeclaration}
+     "Procedure" id=IDENTIFIER "(" ( Parameter+=VariableDeclaration ("," Parameter+=VariableDeclaration)* )? ")" ( ":" returnType=Type )? body=Block
+	;
+	
+Statement : Declaration |
+	Block ";" |
+	{If} "If" Condition=Expression "Then" Body=Block ("Else" Alternative=Block )? "Fi" ";"|
+	{While} "While" Condition=Expression "Do" Body=Block "Od" ";"|
+	{VariableAssignment} lexpr=LValueExpression "=" rexpr=Expression ";" |
+	{Write} "Write" Expression=Expression ";"|
+	{Read}  "Read" Expression=Expression ";"|
+	{ProcedureReturn} "Return" (Expression=Expression)? ";"|
+	ProcedureCall ";"
+	;
+
+LValueExpression returns Expression : 
+	{Reference} id=IDENTIFIER | 
+	{Dereference} "Deref" "(" expr=LValueExpression ")"
+	;
+
+Expression : OrExpr
+	;
+
+OrExpr returns Expression : 
+	{Or} expr1=OrExpr "Or" expr2=AndExpr
+	| AndExpr
+	;
+
+AndExpr returns Expression : 
+	{And} expr1=AndExpr "And" expr2=EqExpr
+	| EqExpr
+	;
+
+EqExpr returns Expression : 
+	{Equal} expr1=EqExpr "=" expr2=RelExpr| 
+	{Equal} expr1=EqExpr "#" expr2=RelExpr {Not.Operand = current}|
+	RelExpr
+	;
+
+RelExpr returns Expression : 
+	{GreaterThan} expr1=RelExpr ">" expr2=AddExpr | 
+	{LesserThan} expr1=RelExpr "<" expr2=AddExpr |
+	{GreaterThanEqual} expr1=RelExpr ">=" expr2=AddExpr |
+	{LesserThanEqual} expr1=RelExpr "<=" expr2=AddExpr |
+	AddExpr
+	;
+
+AddExpr returns Expression : 
+	{Addition} expr1=AddExpr "+" expr2=MulExpr | 
+	{Subtraction} expr1=AddExpr "-" expr2=MulExpr| 
+	MulExpr
+	;
+
+MulExpr returns Expression : 
+	{Multiplication} expr1=MulExpr "*" expr2=UnaryExpr |
+	{Division} expr1=MulExpr "/" expr2=UnaryExpr |
+	UnaryExpr
+	;
+
+UnaryExpr returns Expression :
+	{UMinus} "-" expr=PrimExpr | 
+	{Not} "Not" expr=PrimExpr | 
+	PrimExpr
+	;
+
+PrimExpr returns Expression : 
+	{Constant} co=VALUE | 
+	{Reference} id=IDENTIFIER {Dereference.Operand=current}| 
+	{Reference} "Adress" "(" id=IDENTIFIER ")" |
+	{Dereference} "Deref" "(" expr=Expression ")"|
+	ProcedureCall|
+	{NestedExpression} "(" expr=Expression ")"
+	;
+
+ProcedureCall returns Expression: 
+	{ProcedureCall} "Call" "(" expr=Expression ":" ( arguments+=Expression ( "," arguments+=Expression)*)? ")" |
+	{Reference}  id=IDENTIFIER {Dereference.Operand=current} {ProcedureCall.Procedure=current} "(" ( arguments+=Expression ( "," arguments+=Expression)*)? ")"
+	;
+
+
+Type returns Type : 
+	"Boolean" | 
+	"Integer" |
+	"Real" 
+	//|
+	//"Pointer" "(" type=Type ")" |
+	//"Procedure" "(" (paras+=Type ("," paras+=Type)*) ")" ( ":" rtype=Type )?
+	;
+
+
