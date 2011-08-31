@@ -103,7 +103,7 @@ public class ProgrammaticRefactorings {
 				try {
 					ICompilationUnit renamedCU = packageFragment.getCompilationUnit(genClass.getClassName()+".java");
 					IPackageFragmentRoot packageRoot = (IPackageFragmentRoot) packageFragment.getParent();
-					IPackageFragment targetPackage = packageRoot.getPackageFragment(genPackage.getPackageName());
+					IPackageFragment targetPackage = packageRoot.getPackageFragment(genPackage.getClassPackageName());
 					if(!targetPackage.exists())
 						targetPackage = packageRoot.createPackageFragment(genPackage.getClassPackageName(),true,null);
 					renamedCU.move(targetPackage, null,null,true,null);
