@@ -45,19 +45,19 @@ Declaration :
 
 VariableDeclaration : 
 	{VariableDeclaration}
-	"Var" id=IDENTIFIER ":" type=Type
+	"Var" Name=IDENTIFIER ":" DeclaredType=Type
 	;
 
 ProcedureDeclaration :
 	{ProcedureDeclaration}
-     "Procedure" id=IDENTIFIER "(" ( Parameter+=VariableDeclaration ("," Parameter+=VariableDeclaration)* )? ")" ( ":" returnType=Type )? body=Block
+     "Procedure" Name=IDENTIFIER "(" ( Parameter+=VariableDeclaration ("," Parameter+=VariableDeclaration)* )? ")" ( ":" ReturnType=Type )? Body=Block
 	;
 	
 Statement : Declaration |
 	Block ";" |
 	{If} "If" Condition=Expression "Then" Body=Block ("Else" Alternative=Block )? "Fi" ";"|
 	{While} "While" Condition=Expression "Do" Body=Block "Od" ";"|
-	{VariableAssignment} lexpr=LValueExpression "=" rexpr=Expression ";" |
+	{VariableAssignment} LValue=LValueExpression "=" RValue=Expression ";" |
 	{Write} "Write" Expression=Expression ";"|
 	{Read}  "Read" Expression=Expression ";"|
 	{ProcedureReturn} "Return" (Expression=Expression)? ";"|
@@ -65,77 +65,71 @@ Statement : Declaration |
 	;
 
 LValueExpression returns Expression : 
-	{Reference} id=IDENTIFIER | 
-	{Dereference} "Deref" "(" expr=LValueExpression ")"
+	{Reference} Name=IDENTIFIER | 
+	{Dereference} "Deref" "(" Operand=LValueExpression ")"
 	;
 
 Expression : OrExpr
 	;
 
 OrExpr returns Expression : 
-	{Or} expr1=OrExpr "Or" expr2=AndExpr
-	| AndExpr
+	AndExpr ( {Or.Operand1=current} "Or" Operand2=AndExpr )*
 	;
 
 AndExpr returns Expression : 
-	{And} expr1=AndExpr "And" expr2=EqExpr
-	| EqExpr
+	EqExpr ( {And.Operand1=current} "And" Operand2=EqExpr )*
+	 
 	;
 
 EqExpr returns Expression : 
-	{Equal} expr1=EqExpr "=" expr2=RelExpr| 
-	{Equal} expr1=EqExpr "#" expr2=RelExpr {Not.Operand = current}|
-	RelExpr
+	RelExpr ({Equal.Operand1=current}"=" Operand2=RelExpr |
+	 	     {Equal.Operand1=current} "#" Operand2=RelExpr {Not.Operand=current})*		
 	;
 
 RelExpr returns Expression : 
-	{GreaterThan} expr1=RelExpr ">" expr2=AddExpr | 
-	{LesserThan} expr1=RelExpr "<" expr2=AddExpr |
-	{GreaterThanEqual} expr1=RelExpr ">=" expr2=AddExpr |
-	{LesserThanEqual} expr1=RelExpr "<=" expr2=AddExpr |
-	AddExpr
+	AddExpr ({GreaterThan.Operand1=current} ">" Operand2=AddExpr | 
+	  		 {LesserThan.Operand1=current} "<" Operand2=AddExpr |
+	   		 {GreaterThanEqual.Operand1=current} ">=" Operand2=AddExpr |
+	   		 {LesserThanEqual.Operand1=current} "<=" Operand2=AddExpr)*	
 	;
 
 AddExpr returns Expression : 
-	{Addition} expr1=AddExpr "+" expr2=MulExpr | 
-	{Subtraction} expr1=AddExpr "-" expr2=MulExpr| 
-	MulExpr
+	MulExpr ({Addition.Operand1=current} "+" Operand2=MulExpr | 
+			{Subtraction.Operand1=current} "-" Operand2=MulExpr )*
 	;
 
 MulExpr returns Expression : 
-	{Multiplication} expr1=MulExpr "*" expr2=UnaryExpr |
-	{Division} expr1=MulExpr "/" expr2=UnaryExpr |
-	UnaryExpr
+	UnaryExpr ({Multiplication.Operand1=current} "*" Operand2=UnaryExpr |
+			   {Division.Operand1=current} "/" Operand2=UnaryExpr )*
 	;
 
 UnaryExpr returns Expression :
-	{UMinus} "-" expr=PrimExpr | 
-	{Not} "Not" expr=PrimExpr | 
+	{UMinus} "-" Operand=PrimExpr | 
+	{Not} "Not" Operand=PrimExpr | 
 	PrimExpr
 	;
 
 PrimExpr returns Expression : 
-	{Constant} co=VALUE | 
-	{Reference} id=IDENTIFIER {Dereference.Operand=current}| 
-	{Reference} "Adress" "(" id=IDENTIFIER ")" |
-	{Dereference} "Deref" "(" expr=Expression ")"|
+	{Constant} Lexem=VALUE | 
+	{Reference} Name=IDENTIFIER {Dereference.Operand=current}| 
+	{Reference} "Adress" "(" Name=IDENTIFIER ")" |
+	{Dereference} "Deref" "(" Operand=Expression ")"|
 	ProcedureCall|
-	{NestedExpression} "(" expr=Expression ")"
+	{NestedExpression} "(" Expression=Expression ")"
 	;
 
 ProcedureCall returns Expression: 
-	{ProcedureCall} "Call" "(" expr=Expression ":" ( arguments+=Expression ( "," arguments+=Expression)*)? ")" |
-	{Reference}  id=IDENTIFIER {Dereference.Operand=current} {ProcedureCall.Procedure=current} "(" ( arguments+=Expression ( "," arguments+=Expression)*)? ")"
+	{ProcedureCall} "Call" "(" Procedure=Expression ":" ( Argument+=Expression ( "," Argument+=Expression)*)? ")" |
+	{Reference}  Name=IDENTIFIER {Dereference.Operand=current} {ProcedureCall.Procedure=current} "(" ( Argument+=Expression ( "," Argument+=Expression)*)? ")"
 	;
 
 
 Type returns Type : 
 	"Boolean" | 
 	"Integer" |
-	"Real" 
-	//|
-	//"Pointer" "(" type=Type ")" |
-	//"Procedure" "(" (paras+=Type ("," paras+=Type)*) ")" ( ":" rtype=Type )?
+	"Real" |
+	"Pointer" "(" Type ")" |
+	"Procedure" "(" (Type ("," Type)*) ")" ( ":" Type )?
 	;
 
 

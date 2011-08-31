@@ -38,12 +38,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableAssignment" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="LValue" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="LValue" lowerBound="1"
+        eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="RValue" lowerBound="1"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//VariableDeclaration"
-        changeable="false" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
         derived="true"/>
   </eClassifiers>
@@ -56,22 +54,26 @@
   <eClassifiers xsi:type="ecore:EClass" name="Write" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
         eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Read" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="LValue" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Declaration" abstract="true" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsParameterDeclaration"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="DeclaredType" lowerBound="1"
         eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
-        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureDeclaration" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Parameter" upperBound="-1"
@@ -85,8 +87,6 @@
     <eOperations name="Value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
       <eParameters name="vm" lowerBound="1" eType="#//State"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConstantValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
-        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="#//Type"
         derived="true"/>
   </eClassifiers>
@@ -101,7 +101,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//VariableDeclaration"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//Declaration"
         changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureCall" eSuperTypes="#//Expression">
@@ -110,6 +110,8 @@
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Declaration" eType="#//ProcedureDeclaration"
         changeable="false" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Procedure" lowerBound="1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NestedExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
@@ -121,23 +123,30 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//UnaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="UMinus" eSuperTypes="#//UnaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RealCoercion" eSuperTypes="#//UnaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Dereference" eSuperTypes="#//UnaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression" abstract="true" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Operand1" lowerBound="1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Operand2" lowerBound="1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GreaterThan" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LesserThan" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GreaterThanEqual" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LesserThanEqual" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicExpression" abstract="true" eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//LogicExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//LogicExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualityExpression" abstract="true"
+      eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="#//EqualityExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThan" eSuperTypes="#//EqualityExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LesserThan" eSuperTypes="#//EqualityExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThanEqual" eSuperTypes="#//EqualityExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LesserThanEqual" eSuperTypes="#//EqualityExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression" abstract="true"
+      eSuperTypes="#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//ArithmeticExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="#//ArithmeticExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//ArithmeticExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//ArithmeticExpression"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Type" instanceClassName="org.jastemf.siple.semantics.Type"/>
   <eClassifiers xsi:type="ecore:EDataType" name="State" instanceClassName="org.jastemf.siple.semantics.State"/>
 </ecore:EPackage>
