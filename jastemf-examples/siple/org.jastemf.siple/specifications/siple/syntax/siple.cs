@@ -32,7 +32,7 @@ RULES {
 	
 	Write ::= "Write" Expression;
 	
-	Read ::= "Read" LValue[IDENTIFIER];
+	Read ::= "Read" Expression;
 	
 	ProcedureReturn ::= "Return" (Expression)?;
 	
@@ -40,7 +40,7 @@ RULES {
 	
 	ProcedureDeclaration ::= "Procedure" Name[IDENTIFIER] "(" ( Parameter ("," Parameter)* )? ")" (":" ReturnType[TYPE] )? "Begin" Body:Block "End";
 	
-	VariableAssignment ::= LValue[IDENTIFIER] ":=" RValue; 
+	VariableAssignment ::= LValue ":=" RValue; 
 	
 	@Operator(type="binary_left_associative",weight="101",superclass="Expression")
 	Or ::= Operand1 "Or" Operand2;
@@ -81,15 +81,18 @@ RULES {
 	@Operator(type="unary_prefix",weight="302",superclass="Expression")
 	UMinus ::= "-" Operand;
 	
-	@Operator(type="primitive",weight="303",superclass="Expression")
+	@Operator(type="primitive",weight="403",superclass="Expression")
+	Dereference ::= "Deref" "(" Operand ")";
+		
+	@Operator(type="primitive",weight="403",superclass="Expression")
 	Constant ::= Lexem[VALUE];
 	
-	@Operator(type="primitive",weight="303",superclass="Expression")
+	@Operator(type="primitive",weight="403",superclass="Expression")
 	Reference ::= Name[IDENTIFIER];
 	
-	@Operator(type="primitive",weight="303",superclass="Expression")
+	@Operator(type="primitive",weight="403",superclass="Expression")
 	NestedExpression ::= "(" Expression ")";
 	
-	@Operator(type="primitive",weight="303",superclass="Expression")
+	@Operator(type="primitive",weight="403",superclass="Expression")
 	ProcedureCall ::= Name[IDENTIFIER] "(" ( Argument ("," Argument)*)? ")";
 }
