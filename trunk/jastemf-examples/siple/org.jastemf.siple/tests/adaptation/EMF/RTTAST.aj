@@ -10,9 +10,8 @@ package rtt.adaptation;
 
 import rtt.annotations.*;
 
-import siple.semantics.ast.*;
-import siple.semantics.impl.*;
-
+import org.jastemf.siple.ast.*;
+import org.jastemf.siple.impl.*;
 /**
  * AspectJ specification to adapt the syntax and semantics for RTT.
  * @author C. Bürger
