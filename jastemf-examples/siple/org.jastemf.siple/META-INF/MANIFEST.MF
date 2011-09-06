@@ -4,19 +4,47 @@ Bundle-Name: JastEMF - SIPLE Example
 Bundle-SymbolicName: org.jastemf.siple;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
+Bundle-Activator: org.jastemf.siple.provider.SIPLEEditPlugin$Implementation
 Bundle-Vendor: Software Technology Group - Technische Universität Dresden - Germany
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.jastemf.siple.semantics,
- org.jastemf.siple.provider,
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.jastemf.siple,
  org.jastemf.siple.ast,
- org.jastemf.siple.impl,
- org.jastemf.siple.interfaces,
- org.jastemf.siple.meta,
- org.jastemf.siple.provider,
- org.jastemf.siple.util
+ org.jastemf.siple.impl;
+  uses:="org.eclipse.emf.ecore,
+   org.jastemf.siple.meta,
+   org.eclipse.emf.common.util,
+   org.jastemf.siple.semantics,
+   org.jastemf.siple.ast,
+   org.eclipse.emf.ecore.impl,
+   org.eclipse.emf.common.notify,
+   org.jastemf.siple.interfaces",
+ org.jastemf.siple.interfaces;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.util,org.jastemf.siple.semantics",
+ org.jastemf.siple.meta;uses:="org.eclipse.emf.ecore,org.jastemf.siple.interfaces",
+ org.jastemf.siple.provider;
+  uses:="org.eclipse.emf.ecore,
+   org.jastemf.siple.util,
+   org.eclipse.emf.common.util,
+   org.eclipse.emf.common,
+   org.eclipse.emf.edit.provider,
+   org.eclipse.emf.common.notify",
+ org.jastemf.siple.semantics;uses:="org.jastemf.siple.impl",
+ org.jastemf.siple.util;
+  uses:="org.eclipse.emf.ecore.util,
+   org.eclipse.emf.ecore,
+   org.jastemf.siple.meta,
+   org.eclipse.emf.common.notify.impl,
+   org.eclipse.emf.common.notify,
+   org.jastemf.siple.interfaces"
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.aspectj.runtime,
- org.eclipse.emf.edit
-Bundle-Activator: org.jastemf.siple.provider.SIPLEEditPlugin.Implementation
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
+ org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional
+Bundle-ActivationPolicy: lazy
