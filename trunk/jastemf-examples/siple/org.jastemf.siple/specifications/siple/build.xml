@@ -63,7 +63,7 @@
 		<antcall target="EMF Semantic"/>
 		<antcall target="RTT EMF Integration"/>
 	</target>
-	
+
 	<target
 		name="EMFText Resources"
 		description="Generate an editor for the EMF adapted compiler using EMFText (version 3).">

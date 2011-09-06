@@ -14,7 +14,7 @@ Workflow {
         scanClassPath = true
         platformUri = "${runtimeProject}/.."
         registerGenModelFile = "./specifications/siple/model/siple.genmodel"
-        
+       
     }
 
     component = DirectoryCleaner {

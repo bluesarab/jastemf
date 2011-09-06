@@ -8,9 +8,9 @@
  */
 import java.util.*;
 
-import siple.semantics.*;
-import siple.semantics.Type.*;
-import siple.semantics.State.*;
+import org.jastemf.siple.*;
+import org.jastemf.siple.semantics.*;
+import org.jastemf.siple.semantics.State.*;
 
 /**
  * For complicated computations about SiPLE programs, often simple support

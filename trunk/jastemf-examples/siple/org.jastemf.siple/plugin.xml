@@ -12,8 +12,8 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://siple/1.0"
-            class="siple.semantics.provider.SemanticsItemProviderAdapterFactory"
+            uri="http://org.jastemf.siple/1.0"
+            class="org.jastemf.siple.provider.SipleItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -24,9 +24,8 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://siple/1.0"
-            class="siple.semantics.meta.SemanticsPackage"
-            genModel="specifications/siple/model/siple.genmodel"/>
+            uri="http://org.jastemf.siple/1.0"
+            class="org.jastemf.siple.meta.SiplePackage"/>
    </extension>
 
 </plugin>
