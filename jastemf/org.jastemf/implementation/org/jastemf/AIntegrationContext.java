@@ -93,11 +93,9 @@ public abstract class AIntegrationContext implements IIntegrationContext {
 	}
 	
 	public IPackageFragment packageFragment(String packageName){
-		try {
-			return (IPackageFragment)javaProject().findElement(new Path(packageName.replace('.','/')));
-		} catch (JavaModelException e) {
-			return null;
-		}
+		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IResource modelDirectory = workspace.getRoot().findMember(genmodel().getModelDirectory());
+		return javaProject().getPackageFragmentRoot(modelDirectory).getPackageFragment(packageName);
 	}
 	
 }
