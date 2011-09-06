@@ -3,13 +3,15 @@
 	terms of the BSD 3-clause license which accompanies this distribution.
 -->
 
-<project name="UpdateSite" default="UpdateSite">
+<project name="UpdateSite" default="All">
 	<import file="../org.jastemf/build.xml"/>
 	<import file="../org.jastemf.converter/build.xml"/>
 	<import file="macros.xml"/>
 	
 	<dirname property="UpdateSite.basedir" file="${ant.fileUpdateSite}"/>
 
+	<target name="All" depends="UpdateSite,CleanProjects"></target>
+	
 	<target name="SetUp" depends="JastEMF.Eclipse-Plugin,Converter.Eclipse-Plugin">		
 			<mkdir dir="${UpdateSite.basedir}/distribution/plugins"/>
 			<mkdir dir="${UpdateSite.basedir}/distribution/features"/>
@@ -73,5 +75,6 @@
 			</fileset>
 		</delete>
 	</target> 
+	
 
 </project>
