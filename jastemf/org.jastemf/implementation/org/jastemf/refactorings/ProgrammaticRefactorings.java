@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
@@ -29,7 +28,6 @@ import org.eclipse.jdt.core.Signature;
 import org.eclipse.jdt.internal.corext.refactoring.rename.JavaRenameProcessor;
 import org.eclipse.jdt.internal.corext.refactoring.rename.RenameFieldProcessor;
 import org.eclipse.jdt.internal.corext.refactoring.rename.RenameCompilationUnitProcessor;
-import org.eclipse.jdt.internal.corext.refactoring.rename.RenameNonVirtualMethodProcessor;
 import org.eclipse.jdt.internal.corext.refactoring.rename.RenameVirtualMethodProcessor;
 import org.eclipse.ltk.core.refactoring.CheckConditionsOperation;
 import org.eclipse.ltk.core.refactoring.CreateChangeOperation;
@@ -39,11 +37,6 @@ import org.eclipse.ltk.core.refactoring.participants.RenameRefactoring;
 import org.jastemf.IIntegrationContext;
 import org.jastemf.JastEMFException;
 import org.jastemf.util.IOSupport;
-
-import java.util.logging.Logger;
-
-
-
 
 /**
  * Implementation of the API renamings required for merging JastAdd classes and EMF classes. 
@@ -97,7 +90,7 @@ public class ProgrammaticRefactorings {
 					IOSupport.log("Renaming AST class " + genClass.getClassName() + ".");
 					performRename(correspondingCU, newname);
 				} catch (CoreException e) {
-					throw new JastEMFException("Could not rename GenClass '" + genClass.getClassName() + "'.",e);
+					throw new JastEMFException("Could not rename AST class '" + genClass.getClassName() + "'.",e);
 				}
 				
 				try {
@@ -108,8 +101,7 @@ public class ProgrammaticRefactorings {
 						targetPackage = packageRoot.createPackageFragment(genPackage.getClassPackageName(),true,null);
 					renamedCU.move(targetPackage, null,null,true,null);
 				} catch (JavaModelException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					throw new JastEMFException("Could not move AST class '" + genClass.getClassName() + "'.",e);
 				}
 			}
 			renameClasses(genPackage.getNestedGenPackages(), packageFragment);
