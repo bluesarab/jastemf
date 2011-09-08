@@ -21,7 +21,8 @@ terminal COMMENT :
 ;
 
 terminal WHITESPACE :
-	(' '|'\t'|'\f')
+//formfeed \f causes problems in XMI representation of the grammar, we leave it out
+	(' '|'\t')
 ;
 
 terminal LINEBREAK : 
