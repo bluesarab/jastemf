@@ -11,6 +11,7 @@ import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.IPostSelectionProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -46,13 +47,16 @@ public class PropertiesViewAwareEditor extends XtextEditor {
 	@Override
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
-		propertiesViewUpdater = createPropertiesViewUpdater();
-		getSelectionProvider().addSelectionChangedListener(
-				propertiesViewUpdater);
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		propertiesViewUpdater = createPropertiesViewUpdater();
+		getSelectionProvider().addSelectionChangedListener(
+				propertiesViewUpdater);
+		if(getSelectionProvider() instanceof IPostSelectionProvider)
+			((IPostSelectionProvider)getSelectionProvider()).addPostSelectionChangedListener(
+				propertiesViewUpdater);
 	}
 
 	@Override
@@ -100,6 +104,7 @@ public class PropertiesViewAwareEditor extends XtextEditor {
 								PropertiesViewAwareEditor.this, selection);
 					}
 				} catch (Exception e) {
+					//e.printStackTrace();
 				}
 			}
 		};
@@ -113,7 +118,6 @@ public class PropertiesViewAwareEditor extends XtextEditor {
 		int offset = textSelection.getOffset();
 		INode node = NodeModelUtils.findLeafNodeAtOffset(rootNode,offset);
 		final EObject object = NodeModelUtils.findActualSemanticObjectFor(node);
-
 		final IItemPropertySource source = (IItemPropertySource) adapterFactory.adapt(object, IItemPropertySource.class);
 		return new StructuredSelection(){
 			public Object[] toArray() {  
