@@ -31,12 +31,12 @@ terminal LINEBREAK :
 
 CompilationUnit :  
 	{CompilationUnit} 
-	( Declaration+=Declaration ";" )*
+	( Declaration+=Declaration )*
 	;
 
 Block : 
 	{Block}
-	( "Begin" Statement+=Block "End" )*
+	 "Begin"(Statement+=Statement )*"End" 
 	;
 
 Declaration : 
@@ -58,7 +58,7 @@ Statement : Declaration |
 	Block ";" |
 	{If} "If" Condition=Expression "Then" Body=Block ("Else" Alternative=Block )? "Fi" ";"|
 	{While} "While" Condition=Expression "Do" Body=Block "Od" ";"|
-	{VariableAssignment} LValue=LValueExpression "=" RValue=Expression ";" |
+	{VariableAssignment} LValue=LValueExpression ":=" RValue=Expression ";" |
 	{Write} "Write" Expression=Expression ";"|
 	{Read}  "Read" Expression=Expression ";"|
 	{ProcedureReturn} "Return" (Expression=Expression)? ";"|
