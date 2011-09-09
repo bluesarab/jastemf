@@ -60,7 +60,7 @@ Statement : Declaration |
 	{While} "While" Condition=Expression "Do" Body=Block "Od" ";"|
 	{VariableAssignment} LValue=LValueExpression ":=" RValue=Expression ";" |
 	{Write} "Write" Expression=Expression ";"|
-	{Read}  "Read" Expression=Expression ";"|
+	{Read}  "Read" Expression=LValueExpression ";"|
 	{ProcedureReturn} "Return" (Expression=Expression)? ";"|
 	ProcedureCall ";"
 	;
