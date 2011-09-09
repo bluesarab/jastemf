@@ -8,7 +8,8 @@ Bundle-Activator: org.jastemf.siple.provider.SIPLEEditPlugin$Implementation
 Bundle-Vendor: Software Technology Group - Technische Universität Dresden - Germany
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.jastemf.siple,
+Export-Package: beaver,
+ org.jastemf.siple,
  org.jastemf.siple.ast,
  org.jastemf.siple.impl;
   uses:="org.eclipse.emf.ecore,
@@ -35,7 +36,10 @@ Export-Package: org.jastemf.siple,
    org.jastemf.siple.meta,
    org.eclipse.emf.common.notify.impl,
    org.eclipse.emf.common.notify,
-   org.jastemf.siple.interfaces"
+   org.jastemf.siple.interfaces",
+ rtt.adaptation,
+ siple.symbols,
+ siple.syntax
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.aspectj.runtime,
