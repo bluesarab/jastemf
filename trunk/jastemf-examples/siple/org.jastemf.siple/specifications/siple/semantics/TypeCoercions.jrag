@@ -13,7 +13,7 @@
 aspect TypeCoercions {
 	// Coercion can only happen once! The following hack --- to use a flag to
 	// test for rewrite applicability --- avoids horrible execution times and
-	// memory requirements because of JastAdd's bad rewrite implementation.
+	// memory requirements because of some JastAdd issues.
 	
 	private boolean BinaryExpression.coercionTested = false;
 	private boolean VariableAssignment.coercionTested = false;
