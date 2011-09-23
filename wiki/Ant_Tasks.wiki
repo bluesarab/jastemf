@@ -41,7 +41,7 @@ loglevel="ALL"
 reconcile="false"
 }}}
 
-The `programmticrefactorings` switch enables the new refactoring processor. It can be up to 4 times faster. However, the API changes slightly differ from the original implementation. `loglevel` can be used to adjust to log output of the new implementation using standard Java logging API levels, e.g., ALL, INFO, WARN, OFF. `reconcile` is also new. Setting it to true, forces !JastEMF to reconcile your !EMF !GenModel, which may be required in the build process, e.g., if some ecore files are regenerated.
+The `programmticrefactorings` switch enables the new refactoring processor. It can be up to 4 times faster. However, the API changes slightly differ from the original implementation. `loglevel` can be used to adjust to log output of the new implementation using standard Java logging API levels, e.g., ALL, INFO, WARN, OFF. `reconcile` is also new. Setting it to true, forces JastEMF to reconcile your EMF GenModel, which may be required in the build process, e.g., if some ecore files are regenerated.
 
 The new version is available from the Live update-site:
 * http://jastemf.googlecode.com/svn/trunk/build/org.jastemf.build/distribution
