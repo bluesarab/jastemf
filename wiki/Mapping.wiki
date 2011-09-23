@@ -29,6 +29,6 @@ _Imperative mode_: Using a model editor (e.g., the default editor shipped with t
 || ||containment=*false*, derived=*true*, changeable=*true*||lazy reference attribute|| 
 || ||containment=*true*||parent-child relation in AST||
 ||EAttribute||derived=*false*||terminal||
-|| ||derived=*true*||synthesized attribute||
+|| ||derived=*true*||synthesized/inherited attribute||
 || ||derived=*true*,changeable=*true*||lazy attribute (imperative mode)|| 
 ||EOperation|| ||attribute,java method||
