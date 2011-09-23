@@ -28,10 +28,10 @@ Details and a tutorial for the example can be found [SIPLE here].
 
 SiPLE-Statemachine is a graphical language to specify finite state machines. Besides labeled states and transitions, it supports global variables, entry actions, transition conditions and transition actions in the form of annotated SiPLE code. State machines are modeled in a graphical Eclipse editor, that can also visualize state's reachability (i.e., their transitive closure). The correctness of annotated actions is checked reusing SiPLE's metamodel semantics. Last but not least, SiPLE implementations for specified state machines can be generated.
 
-Throughout the example we use JastAdd to specify the SiPLE-Statemachine language's static semantics. Further, we generate a [http://www.eclipse.org/gmf GMF] editor and integrate SiPLE's semantic metamodel implementation.
+Throughout the example we use !JastAdd to specify the SiPLE-Statemachine language's static semantics. Further, we generate a [http://www.eclipse.org/gmf GMF] editor and integrate SiPLE's semantic metamodel implementation.
 
 Example Objectives:
- * To show, how JastEMF can be used realize a graphical modeling language's static semantics.
+ * To show, how JastEMF can be used to realize a graphical modeling language's static semantics.
  * To show the benefits of semantics integrated metamodelling w.r.t. reuse and tool integration.
 
 Details and a tutorial for the example can be found [Statemachine here].
