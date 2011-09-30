@@ -43,6 +43,8 @@
 %terminals IDENTIFIER, CONSTANT;
 
 %goal CompilationUnit;
+// Add to construct EDataType instances of Type in xText. Type is not part of the AST.
+%goal Type;
 
 %typeof IDENTIFIER = "String";
 %typeof CONSTANT = "String";

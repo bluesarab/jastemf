@@ -26,8 +26,8 @@
 			<fileset dir="${_basedir}">
 				<!-- all these artefacts are generated -->
 				<include name="src-gen/**/*"/>
-				<include name="icons/**/*"/>
-				<include name="icons"/>
+				<!-- <include name="icons/**/*"/>
+				<include name="icons"/> -->
 			</fileset>
 		</delete>
 	</target>

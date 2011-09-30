@@ -85,10 +85,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//Reference/Declaration"/>
     </genClasses>
     <genClasses ecoreClass="siple.ecore#//ProcedureCall">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//ProcedureCall/Name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Argument"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Declaration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Procedure"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Argument"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//ProcedureCall/Name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Declaration"/>
     </genClasses>
     <genClasses ecoreClass="siple.ecore#//NestedExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//NestedExpression/Expression"/>

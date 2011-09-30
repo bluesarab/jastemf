@@ -8,6 +8,17 @@
  */
 package org.jastemf.siple.semantics;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
+
+import org.jastemf.siple.impl.CompilationUnitImpl;
+
+import beaver.Parser.Exception;
+
+import siple.symbols.SIPLELexer;
+import siple.syntax.SIPLEParser;
+
 /**
  * Instances of this class represent <i>SiPLE</i> types. Constraints:<br>
  * 1) Iff {@link Type#domain} <tt>==</tt> {@link Domains#Procedure} or
@@ -78,6 +89,18 @@ public class Type {
 		}
 		else if("Real".equals(value)){
 			return Real;
+		}  
+		else if(value.startsWith("Pointer") || value.startsWith("Procedure")){
+			SIPLELexer scanner = new SIPLELexer(new StringReader(value));
+			SIPLEParser parser = new SIPLEParser();	
+			try {
+				Type type = (Type)parser.parse(scanner,SIPLEParser.AltGoals.Type);
+				return type;
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}
 		//consider pointers and procedure types too!	
 		return  Undefined;
