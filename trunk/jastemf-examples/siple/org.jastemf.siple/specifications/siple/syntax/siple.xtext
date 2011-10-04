@@ -113,7 +113,7 @@ UnaryExpr returns Expression :
 PrimExpr returns Expression : 
 	{Constant} Lexem=VALUE | 
 	{Reference} Name=IDENTIFIER {Dereference.Operand=current}| 
-	{Reference} "Adress" "(" Name=IDENTIFIER ")" |
+	{Reference} "Address" "(" Name=IDENTIFIER ")" |
 	{Dereference} "Deref" "(" Operand=Expression ")"|
 	ProcedureCall|
 	{NestedExpression} "(" Expression=Expression ")"

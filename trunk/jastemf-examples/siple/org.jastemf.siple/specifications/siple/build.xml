@@ -20,6 +20,7 @@
 		<pathelement location="./../.."/>
 	</path>
 	<property name="_basedir" refid="_basedir"/>
+	<echo message="Base directory is ${_basedir}." />
 	
 	<target name="Clean" description="Delete all generated artefacts.">
 		<delete includeemptydirs="true">
@@ -62,8 +63,9 @@
 		<antcall target="Beaver Parser"/>
 		<antcall target="EMF Semantic"/>
 		<antcall target="RTT EMF Integration"/>
+		<eclipse.refreshLocal depth="infinite" resource="/"/>
 	</target>
-
+<!--
 	<target
 		name="EMFText Resources"
 		description="Generate an editor for the EMF adapted compiler using EMFText (version 3).">
@@ -80,6 +82,7 @@
 		/>
 		<eclipse.refreshLocal depth="infinite" resource="/"/>
 	</target>
+-->	
 	
 	<target
 		name="JFlex Lexer"
