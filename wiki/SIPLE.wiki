@@ -8,18 +8,18 @@ In this tutorial we will present SIPLE --- a simple imperative programming langu
 
  * *[#JastAdd_Version JastAdd Version]:* A standard compiler implemented based on [http://jflex.de/ JFlex], [http://beaver.sourceforge.net/ Beaver] and [http://www.jastadd.org/ JastAdd].
  * *[#EMF_Version EMF Version]:* A compiler with an EMF repository implemented based on JFlex, Beaver, !JastAdd and JastEMF.
- * *[#EMFText_Version EMFText Version]:* A compiler with EMF repository and an Eclipse editor with syntax highlighting, code completion and semantic property view implemented based on [http://www.emftext.org EMFText] (including [http://www.antlr.org/ ANTLR]), !JastAdd and JastEMF.
+ * *[#xText_Version xText Version]:* A compiler with EMF repository and an Eclipse editor with syntax highlighting, code completion and semantic property view implemented based on [http://www.eclipse.org/Xtext/ xText] (including [http://www.antlr.org/ ANTLR]), !JastAdd and JastEMF.
 
 Of course, our main focus is on the EMF integrated versions. The tutorial will not only describe how to generate these using JastEMF, but also how to use the semantic metamodel implementation and what its benefits are. The !JastAdd version, which represents an ordinary compiler project without any reference to metamodelling and the EMF, is used for validation issues. Its SIPLE compiler and the EMF integrated one share the same !JastAdd specifications for SIPLE's semantics and are compared by a [#Regression_Tests regression test suite], to show, that the integration performed by JastEMF is correct.
 
-For all SIPLE versions the same concrete syntax is supported. Also, all SIPLE versions have the same static semantics, including a nested block structured name analysis supporting nested procedure declarations and lexic scopes (closures) and a strong type analysis. Additionally, all SIPLE versions support the interpretation of programs. The !JastAdd and EMF versions support a command line interpreter and the EMFText version integrates this interpreter into Eclipse so it can be started from `*.siple` files' right-click menu. Last but not least, the !JastAdd and EMF versions are regression tested to each other to validate JastEMF's correctness.
+For all SIPLE versions the same concrete syntax is supported. Also, all SIPLE versions have the same static semantics, including a nested block structured name analysis supporting nested procedure declarations and lexic scopes (closures) and a strong type analysis. Additionally, all SIPLE versions support the interpretation of programs. The !JastAdd and EMF versions support a command line interpreter and the xText version integrates this interpreter into Eclipse so it can be started from `*.siple` files' right-click menu. Last but not least, the !JastAdd and EMF versions are regression tested to each other to validate JastEMF's correctness.
 
 The following table summarises and forecloses the features of the different SIPLE implementations investigated in this tutorial:
 
 || *Version* || *Semantics (Static & Execution)* || *Interpreter* || *Tests* || *Metamodel* || *Eclipse Model Editor* || *Eclipse Text Editor* ||
 || !JastAdd || Yes || Yes (Command line) || Yes || No || No || No ||
 || EMF || Yes || Yes (Command line) || Yes || Yes || Yes || No ||
-|| EMFText || Yes || Yes (Eclipse Menu Extension) || Supports the EMF version's tests || Yes || Yes || Yes ||
+|| xText || Yes || Yes (Eclipse Menu Extension) || Supports the EMF version's tests || Yes || Yes || Yes ||
 
 == A First Look at SIPLE ==
 
@@ -64,7 +64,7 @@ It consists of two procedures. The first computes the well-known [http://en.wiki
 
 == Installation ==
 
-The SIPLE tutorial can be checked out from the project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The EMFText SIPLE version additionally requires the _"siple.semantics.resource.siple"_ project (same SVN), into which the EMFText parser is generated. To get a stable version of SIPLE it should be checked out from [http://jastemf.googlecode.com/svn/tags/beta_0.1.5/jastemf-examples].
+The SIPLE tutorial can be checked out from the project's SVN repository. It is named _"calculator"_ and a subfolder of _"jastemf-examples"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The xText SIPLE version additionally requires the _"siple.semantics.resource.siple"_ project (same SVN), into which the xText parser is generated. To get a stable version of SIPLE it should be checked out from [http://jastemf.googlecode.com/svn/tags/beta_0.1.5/jastemf-examples].
 
 To install Subclipse use its Eclipse update site via _Help => Install new Software => Work with: "http://subclipse.tigris.org/update_1.6.x" =>_ select the required components _=> Next =>_ ... _=> Finish_. After installation, make sure that the correct SVN interface is configurated (_Window => Preferences => Team => SVN => SVN interface:_ Usually it should be the _"SVNKit (Pure Java)" => Apply => OK_).
 
