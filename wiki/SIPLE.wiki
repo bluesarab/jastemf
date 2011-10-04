@@ -421,7 +421,7 @@ We think the short editor session demonstrated, that JastEMF successfully integr
 
 By providing an Ecore metamodel for the !JastAdd semantics presented in the previous section, JastEMF enabled us to generate a metamodel implementation with integrated semantics. The resulting SIPLE implementation has on the one hand a very convenient semantics specification and on the other hand an appropriate metamodel. Thus, it satisfies both compiler developers' concerns (to conveniently implement a reliable, easy maintainable and extensible/changeable compiler) and metamodellers' concerns (convenient tool API, repository and integration into a common software development environment).
 
-= xText Version =
+= EMF+xText Version =
 
 == Introduction ==
 
