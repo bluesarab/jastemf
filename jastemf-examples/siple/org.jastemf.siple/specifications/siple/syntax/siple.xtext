@@ -35,9 +35,13 @@ CompilationUnit :
 	;
 
 Block : 
-	{Block}
-	 "Begin"(Statement+=Statement )*"End" 
+	 "Begin" StatementList "End" 
 	;
+	
+StatementList returns Block:
+	{Block}
+	(Statement+=Statement )*
+;	
 
 Declaration : 
 	VariableDeclaration ";"
@@ -56,8 +60,8 @@ ProcedureDeclaration :
 	
 Statement : Declaration |
 	Block ";" |
-	{If} "If" Condition=Expression "Then" Body=Block ("Else" Alternative=Block )? "Fi" ";"|
-	{While} "While" Condition=Expression "Do" Body=Block "Od" ";"|
+	{If} "If" Condition=Expression "Then" Body=StatementList ("Else" Alternative=StatementList )? "Fi" ";"|
+	{While} "While" Condition=Expression "Do" Body=StatementList "Od" ";"|
 	{VariableAssignment} LValue=LValueExpression ":=" RValue=Expression ";" |
 	{Write} "Write" Expression=Expression ";"|
 	{Read}  "Read" Expression=LValueExpression ";"|
