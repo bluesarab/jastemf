@@ -235,5 +235,20 @@
             extensions="siple">
     </provider>
   </extension>
+   <extension
+       point="org.eclipse.ui.popupMenus">
+    <objectContribution
+          adaptable="true"
+          id="siple.emftext.gui.interpretation"
+          nameFilter="*.siple"
+          objectClass="org.eclipse.core.resources.IFile">
+           <action
+               class="org.jastemf.siple.ui.InterpretSipleProgramAction"
+               enablesFor="1"
+               id="siple.emftext.gui.interpretation"
+               label="Interpret"
+               menubarPath="additions"/>
+    </objectContribution>
+ </extension>
 
 </plugin>
