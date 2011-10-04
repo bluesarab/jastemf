@@ -77,7 +77,7 @@ The following table summarises the tools used by the SIPLE project, their purpos
 || *Tool* || *Purpose* || *Must be Installed* || *Shiped with SIPLE* ||
 || [http://subclipse.tigris.org/ Subclipse] || To check out the project from its SVN || Yes || No ||
 || JastEMF || To integrate !JastAdd semantics into EMF metamodel implementations || [Installation Yes] || No ||
-|| [http://www.emftext.org EMFText] || Required to generate the EMFText SIPLE version || Yes || No ||
+|| [http://www.xtext.org xText] || Required to generate the xText SIPLE editor || Yes || No ||
 || [http://www.eclipse.org/ajdt/ AspectJ] || To weave regression test support into the !JastAdd and EMF SIPLE versions || Yes || No ||
 || [http://code.google.com/p/rtt/ RTT] || Regression test tool || No || Yes ||
 || [http://beaver.sourceforge.net/ Beaver] || LALR(1) parsergenerator || No || Yes ||
@@ -85,7 +85,7 @@ The following table summarises the tools used by the SIPLE project, their purpos
 
 == Configuration ==
 
-After checking out SIPLE, deploying EMFText and installing the Eclipse AspectJ tools and JastEMF no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
+After checking out SIPLE, deploying xText and installing the Eclipse AspectJ tools and JastEMF no further configurations are required. The different SIPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
 
 To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SIPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
 
