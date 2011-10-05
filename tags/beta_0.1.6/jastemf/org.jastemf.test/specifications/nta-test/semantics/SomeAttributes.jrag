@@ -1,0 +1,24 @@
+import java.util.Collection;
+
+aspect SomeAttributes{
+
+	//reference attribute overloading
+	
+	syn A AbstractD.refToSomeA();
+	
+	eq D.refToSomeA() = (A)((Root)getParent().getParent()).getMyA();
+	
+	syn Root AbstractD.operationAttribute(String param);
+	
+	eq D.operationAttribute(String param) = null;
+	
+	
+	// primitive attributes
+	
+	syn String D.derivedString();
+	
+	syn String AbstractD.derivedString();
+	
+	eq D.derivedString() = "AG_COMPUTED_STRING";
+	
+}

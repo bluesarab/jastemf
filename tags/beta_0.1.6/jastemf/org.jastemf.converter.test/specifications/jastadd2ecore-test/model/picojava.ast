@@ -1,0 +1,55 @@
+// Created by parser
+Program ::= Block /PredefinedType:TypeDecl*/;
+Block ::= BlockStmt*;
+abstract BlockStmt;
+abstract Stmt: BlockStmt;
+abstract Decl: BlockStmt ::= <Name:String>;
+abstract TypeDecl:Decl;
+ClassDecl: TypeDecl ::= [Superclass:IdUse] Body:Block;
+VarDecl: Decl ::= Type:Access;
+AssignStmt: Stmt ::= Variable:Access Value:Exp;
+WhileStmt: Stmt ::= Condition:Exp Body:Stmt;
+abstract Exp;
+abstract Access:Exp;
+abstract IdUse: Access ::= <Name:String>;
+Use: IdUse;
+Dot:Access ::= ObjectReference:Access IdUse;
+BooleanLiteral : Exp ::= <Value:String>;
+
+// Created by NTA equations
+PrimitiveDecl: TypeDecl;
+UnknownDecl: TypeDecl;
+
+// Created by Rewrites
+TypeUse : IdUse;
+VariableUse : IdUse; 
+
+
+// EXPLANATION OF THE CLASSES
+// *Program*: the root of the AST. It contains a block and a nonterminal attribute holding a
+//     list of predefined type declarations (added to the AST during attribute evaluation).
+// *Block*: contains a list of BlockStmt.
+// *BlockStmt*:  either a declaration or an ordinary statement.
+//     I.e., it is the kind of thing that can appear immediately inside a block.
+// *Stmt*: an ordinary imperative statement, like an assignment or a while-statement.
+// *Decl*: a declaration of some named entity.
+// *TypeDecl*: a declaration of a type, e.g., classes and primitive types like int.
+// *ClassDecl*: a declaration of a class.
+//     In addition to the name, it has an optional superclass and a block.
+// *VarDecl*: a declaration of a variable. In addition to the name, It has a type.
+// *AssignStmt*: an assignment statement with a left-hand side variable and a right-hand side
+//     value in the form of an expression.
+// *WhileStmt*: a while statement with a condition and a loop body.
+// *Exp*: an expression
+// *Access*: an expression that accesses a declared entity in the program.
+// *IdUse*: an access that is a simple identifier
+// *Use*: An IdUse whose declaration kind is not yet known. Replaced by rewrite rules.
+// *Dot*: a qualified access with an object reference and a identifier naming an entity in that object.
+
+// *PrimitiveDecl*: a declaration of a primitive type, e.g., boolean or int. Created by NTA equation.
+// *UnknownDecl*: represents missing or otherwise unknown declarations. Created by NTA equation.
+ 
+// *TypeUse*: an IdUse that is bound to a type declaration. Result of context-dependent rewrite from Use node.
+// *VariableUse*: an IdUse that is bound to a variable declaration. Result of context-dependent rewrite from Use node.
+
+ 

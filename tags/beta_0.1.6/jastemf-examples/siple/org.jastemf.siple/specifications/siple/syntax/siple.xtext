@@ -1,0 +1,140 @@
+grammar org.jastemf.siple.Siple
+hidden(WHITESPACE,COMMENT,LINEBREAK)
+
+import 'platform:/resource/org.jastemf.siple/specifications/siple/model/siple.ecore'
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+
+Start returns CompilationUnit:
+	CompilationUnit
+;
+	
+terminal VALUE returns ecore::EString :
+	(('0'..'9')+) | (('0'..'9')+ ( '.' ('0'..'9')+ )) | 'true' | 'false'
+;
+
+terminal IDENTIFIER :
+	('A'..'Z'|'a'..'z') ('A'..'Z'|'a'..'z'|'0'..'9'|'_')*
+;
+
+terminal COMMENT : 
+'%'(!('\n'|'\r'))*
+;
+
+terminal WHITESPACE :
+//formfeed \f causes problems in XMI representation of the grammar, we leave it out
+	(' '|'\t')
+;
+
+terminal LINEBREAK : 
+	('\r\n'|'\r'|'\n')
+;
+
+CompilationUnit :  
+	{CompilationUnit} 
+	( Declaration+=Declaration )*
+	;
+
+Block : 
+	 "Begin" StatementList "End" 
+	;
+	
+StatementList returns Block:
+	{Block}
+	(Statement+=Statement )*
+;	
+
+Declaration : 
+	VariableDeclaration ";"
+	| ProcedureDeclaration ";"
+	;
+
+VariableDeclaration : 
+	{VariableDeclaration}
+	"Var" Name=IDENTIFIER ":" DeclaredType=Type
+	;
+
+ProcedureDeclaration :
+	{ProcedureDeclaration}
+     "Procedure" Name=IDENTIFIER "(" ( Parameter+=VariableDeclaration ("," Parameter+=VariableDeclaration)* )? ")" ( ":" ReturnType=Type )? Body=Block
+	;
+	
+Statement : Declaration |
+	Block ";" |
+	{If} "If" Condition=Expression "Then" Body=StatementList ("Else" Alternative=StatementList )? "Fi" ";"|
+	{While} "While" Condition=Expression "Do" Body=StatementList "Od" ";"|
+	{VariableAssignment} LValue=LValueExpression ":=" RValue=Expression ";" |
+	{Write} "Write" Expression=Expression ";"|
+	{Read}  "Read" Expression=LValueExpression ";"|
+	{ProcedureReturn} "Return" (Expression=Expression)? ";"|
+	ProcedureCall ";"
+	;
+
+LValueExpression returns Expression : 
+	{Reference} Name=IDENTIFIER | 
+	{Dereference} "Deref" "(" Operand=LValueExpression ")"
+	;
+
+Expression : OrExpr
+	;
+
+OrExpr returns Expression : 
+	AndExpr ( {Or.Operand1=current} "Or" Operand2=AndExpr )*
+	;
+
+AndExpr returns Expression : 
+	EqExpr ( {And.Operand1=current} "And" Operand2=EqExpr )*
+	 
+	;
+
+EqExpr returns Expression : 
+	RelExpr ({Equal.Operand1=current}"=" Operand2=RelExpr |
+	 	     {Equal.Operand1=current} "#" Operand2=RelExpr {Not.Operand=current})*		
+	;
+
+RelExpr returns Expression : 
+	AddExpr ({GreaterThan.Operand1=current} ">" Operand2=AddExpr | 
+	  		 {LesserThan.Operand1=current} "<" Operand2=AddExpr |
+	   		 {GreaterThanEqual.Operand1=current} ">=" Operand2=AddExpr |
+	   		 {LesserThanEqual.Operand1=current} "<=" Operand2=AddExpr)*	
+	;
+
+AddExpr returns Expression : 
+	MulExpr ({Addition.Operand1=current} "+" Operand2=MulExpr | 
+			{Subtraction.Operand1=current} "-" Operand2=MulExpr )*
+	;
+
+MulExpr returns Expression : 
+	UnaryExpr ({Multiplication.Operand1=current} "*" Operand2=UnaryExpr |
+			   {Division.Operand1=current} "/" Operand2=UnaryExpr )*
+	;
+
+UnaryExpr returns Expression :
+	{UMinus} "-" Operand=PrimExpr | 
+	{Not} "Not" Operand=PrimExpr | 
+	PrimExpr
+	;
+
+PrimExpr returns Expression : 
+	{Constant} Lexem=VALUE | 
+	{Reference} Name=IDENTIFIER {Dereference.Operand=current}| 
+	{Reference} "Address" "(" Name=IDENTIFIER ")" |
+	{Dereference} "Deref" "(" Operand=Expression ")"|
+	ProcedureCall|
+	{NestedExpression} "(" Expression=Expression ")"
+	;
+
+ProcedureCall returns Expression: 
+	{ProcedureCall} "Call" "(" Procedure=Expression ":" ( Argument+=Expression ( "," Argument+=Expression)*)? ")" |
+	{Reference}  Name=IDENTIFIER {Dereference.Operand=current} {ProcedureCall.Procedure=current} "(" ( Argument+=Expression ( "," Argument+=Expression)*)? ")"
+	;
+
+
+Type returns Type : 
+	"Boolean" | 
+	"Integer" |
+	"Real" |
+	"Pointer" "(" Type ")" |
+	"Procedure" "(" (Type ("," Type)*) ")" ( ":" Type )?
+	;
+
+

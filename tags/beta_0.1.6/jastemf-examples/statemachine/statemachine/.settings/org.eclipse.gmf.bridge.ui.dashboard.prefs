@@ -1,0 +1,8 @@
+#Wed Jun 09 17:58:58 CEST 2010
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/statemachine/specifications/metamodel/Statemachine.genmodel
+gmf_dashboard/domainModel=platform\:/resource/statemachine/specifications/metamodel/Statemachine.ecore
+gmf_dashboard/generationModel=platform\:/resource/statemachine/specifications/metamodel/Statemachine.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/statemachine/specifications/metamodel/Statemachine.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/statemachine/specifications/metamodel/Statemachine.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/statemachine/specifications/metamodel/Statemachine.gmftool

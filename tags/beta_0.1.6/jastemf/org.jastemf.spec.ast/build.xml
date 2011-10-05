@@ -1,0 +1,79 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+
+<project name="Generation" default="EMFText Version">
+	<path id="_basedir">
+		<pathelement location="."/>
+	</path>
+	<property name="_basedir" refid="_basedir"/>
+	
+	<!-- Delete all generated artefacts. -->
+	<target name="Clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${_basedir}">
+				<!-- all these artefacts are generated -->
+				<include name="src-gen/**/*"/>
+				<include name="icons/**/*"/>
+				<include name="icons"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!-- Generate the EMF adapted compiler with editor support. -->
+	<target name="EMFText Version">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                      Generate Implementation                       ||"/>
+		<echo message="||                         (EMFText Version)                          ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<!-- Clean before building to avoid errors due to refactoring -->
+		<antcall target="Clean"/>
+		<antcall target="EMF Semantic"/>
+		<antcall target="EMFText Resources"/>
+	</target>
+
+	<target name="EMF Semantic">
+		<echo message="========================> Generate EMF Semantic &lt;======================="/>
+		<jastemf
+			generateeditcode="true"
+			genmodel="${_basedir}/specifications/metamodel/ast.genmodel"
+			outpackage="jastemf.adaptation"
+			astpackage="org.jastemf.spec.ast.ast">
+			<fileset dir="${_basedir}/specifications">
+				<include name="semantics/**/*.ast"/>
+				<include name="semantics/**/*.jrag"/>
+				<include name="semantics/**/*.jadd"/>
+				<exclude name="semantics/jastadd2-src/**/*.*"/>
+			</fileset>
+		</jastemf>
+	</target>
+	
+	<target name="EMFText Resources" description="Generate the EMF text resource plug-in">
+		<emftext.GenerateTextResource
+			syntax="specifications/syntax/ast.cs"
+			rootFolder="${_basedir}/.."
+			syntaxProjectName="org.jastemf.spec.ast.resource.ast"
+		/>
+	<eclipse.refreshLocal depth="infinite" resource="/"/>
+	</target>
+	
+	<target name="Generate AST Spec">
+		<echo message="========================> Generate AST Spec &lt;======================="/>
+		<jastemf.ecore2ast
+			modelFile="${_basedir}/specifications/metamodel/ast.ecore"
+			outputDirectory="${_basedir}/src-gen/jastemf/adaptation">
+		</jastemf.ecore2ast>
+	</target>
+	
+	<target name="Generate initial Jrag Spec">
+		<echo message="========================> Generate AST Spec &lt;======================="/>
+		<jastemf.ecore2jrag
+			modelFile="${_basedir}/specifications/metamodel/ast.ecore"
+			outputDirectory="${_basedir}/src-gen/jastemf/adaptation">
+		</jastemf.ecore2jrag>
+	</target>
+</project>

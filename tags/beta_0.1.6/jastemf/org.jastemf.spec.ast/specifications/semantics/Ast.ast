@@ -1,0 +1,37 @@
+Grammar ::= TypeDecl*;
+
+abstract TypeDecl ::= IdDecl 
+  <FileName> <StartLine:int> <EndLine:int> <Comment:String>;
+
+ASTDecl : TypeDecl ::= [Abstract] IdDecl [SuperClassId:IdUse] Components*
+  <FileName> <StartLine:int> <EndLine:int> <Comment:String>;
+
+Abstract ;
+
+abstract Components;
+
+ListComponents : Components ::= Id;
+
+ListComponentsNTA : ListComponents;
+
+OptionalComponent : Components ::= Id;
+
+OptionalComponentNTA : OptionalComponent;
+
+TokenComponent : Components ::= TokenId;
+
+TokenComponentNTA : TokenComponent;
+
+AggregateComponents : Components ::= Id;
+
+AggregateComponentsNTA : AggregateComponents;
+
+Id ::= [NameNode] IdUse;
+
+NameNode ::= <ID:String>;
+
+IdUse ::= <ID:String>;
+
+IdDecl ::= <ID:String>;
+
+TokenId ::= <ID:String> <TYPE:String>;

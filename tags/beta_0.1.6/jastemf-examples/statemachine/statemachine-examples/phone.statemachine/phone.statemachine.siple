@@ -1,0 +1,92 @@
+% Generated SIPLE state machine implementation
+Procedure main() Begin
+	% Global variables:
+	Var t:Real;
+	Var x:Integer;
+	Var event:Integer;
+	Var current_state:Integer;
+	current_state := 0;
+	While Not (current_state = 16) Do
+		Write current_state;
+		Var done:Boolean;
+		done := false;
+		Read event;
+		If Not done And current_state = 0 Then
+			
+
+			
+			If Not done And 0=event And true Then
+
+				current_state := 1;
+				done := true;
+			Fi;
+			If Not done And 1=event And true Then
+
+				current_state := 8;
+				done := true;
+			Fi;
+			If Not done And 2=event And true Then
+
+				current_state := 16;
+				done := true;
+			Fi;
+		Fi;
+		If Not done And current_state = 1 Then
+			
+
+			
+			If Not done And 0=event And true Then
+
+				current_state := 2;
+				done := true;
+			Fi;
+		Fi;
+		If Not done And current_state = 2 Then
+			
+
+			
+			If Not done And 0=event And true Then
+
+				current_state := 0;
+				done := true;
+			Fi;
+		Fi;
+		If Not done And current_state = 5 Then
+			true;
+
+			
+			If Not done And 0=event And true Then
+
+				current_state := 2;
+				done := true;
+			Fi;
+			If Not done And 1=event And x=-1 Then
+
+				current_state := 8;
+				done := true;
+			Fi;
+			If Not done And 2=event And x=-2 Then
+
+				current_state := 0;
+				done := true;
+			Fi;
+		Fi;
+		If Not done And current_state = 8 Then
+			
+
+			
+			If Not done And 0=event And true Then
+
+				Read x;
+				current_state := 5;
+				done := true;
+			Fi;
+			If Not done And 1=event And true Then
+
+				Write t;
+				current_state := 0;
+				done := true;
+			Fi;
+		Fi;
+	Od;
+End;
