@@ -48,6 +48,7 @@
       </genClasses>
       <genClasses image="false" ecoreClass="testmodel.ecore#//ast/AbstractD">
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference testmodel.ecore#//ast/AbstractD/refToSomeA"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/AbstractD/derivedString"/>
       </genClasses>
       <genClasses ecoreClass="testmodel.ecore#//ast/E"/>
     </nestedGenPackages>
