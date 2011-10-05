@@ -14,7 +14,6 @@ import java.util.*;
 import org.eclipse.core.resources.*;
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.resource.*;
-import org.eclipse.emf.ecore.resource.impl.*;
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.ui.*;
@@ -28,7 +27,6 @@ import org.jastemf.siple.semantics.State;
 
 import com.google.inject.Injector;
 
-//import siple.emftext.support.*;
 
 public class InterpretSipleProgramAction implements IObjectActionDelegate {
 	private ISelection selection;
