@@ -12,6 +12,13 @@ import org.jastemf.siple.semantics.Type;
 public class SipleJavaValidator extends AbstractSipleJavaValidator {
 
 	@Check
+	public void checkReference(Reference reference){
+		if(reference.getDeclaration()==null){
+			error("Unable to find declaration with name '" + reference.getName() + "'.",SiplePackage.Literals.REFERENCE__DECLARATION);
+		}
+	}
+	
+	@Check
 	public void checkType(Expression expression){
 		ExpressionImpl impl = (ExpressionImpl)(expression);
 		if(impl.getType()==Type.ERROR_TYPE){
@@ -26,11 +33,6 @@ public class SipleJavaValidator extends AbstractSipleJavaValidator {
 		}
 	}
 	
-	@Check
-	public void checkReference(Reference reference){
-		if(reference.getDeclaration()==null){
-			error("Unable to find declaration with name '" + reference.getName() + "'.",SiplePackage.Literals.REFERENCE__DECLARATION);
-		}
-	}
+
 
 }
