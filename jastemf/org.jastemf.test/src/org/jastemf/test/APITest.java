@@ -152,7 +152,13 @@ public class APITest {
 	@Test
 	public void testRef() throws Exception {
 		DImpl d = (DImpl) root.getContainmentD().get(0);
-		Assert.assertTrue("Name was '"+ d.getRefToSomeA().getName() +"' exptected 'MyA'.","MyA".equals(d.getRefToSomeA().getName()));
+		Assert.assertTrue("Name was '"+ d.getRefToSomeA().getName() +"' expected 'MyA'.","MyA".equals(d.getRefToSomeA().getName()));
+	}
+	
+	@Test
+	public void testDerivedEAttribute() throws Exception{
+		DImpl d = (DImpl) root.getContainmentD().get(0);
+		Assert.assertTrue("Value was not computed by AG.","AG_COMPUTED_STRING".equals(d.getDerivedString()));
 	}
 }
 

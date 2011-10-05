@@ -57,6 +57,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="AbstractD" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="refToSomeA" lowerBound="1"
           eType="#//ntas/A" changeable="false" derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivedString" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          derived="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="E" eSuperTypes="#//ast/D"/>
   </eSubpackages>
