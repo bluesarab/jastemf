@@ -43,7 +43,7 @@ aspect TypeAnalysis {
 		Type type = getExpression().Type();
 		if (!type.isPointer())
 			return Type.ERROR_TYPE;
-		if (type.rtype.isPointer() || type.rtype.isProcedure())
+		if (type.rtype.isPointer() || type.rtype.isProcedure() || type.rtype.isUndefined())
 			return Type.ERROR_TYPE;
 		return type;
 	}
