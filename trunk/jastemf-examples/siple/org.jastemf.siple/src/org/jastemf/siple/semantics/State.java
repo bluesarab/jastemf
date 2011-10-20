@@ -36,24 +36,15 @@ public final class State {
 	/**
 	 * Allocate memory for the given entity in the current frame and
 	 * initialize its value.
-	 * 
-	 * To avoid reallocation errors in programs like<br>
-	 * <tt>While </tt>a condition<tt> Do<br>
-	 *  Var j:Integer; % Variable only allocated once throughout the loop<br>
-	 * Od;</tt><br>
-	 * the state is not changed, iff the entity is already allocated <b>in the
-	 * current frame</b>.
 	 * @param decl The entity to allocate and initialize.
 	 * @param value The entities' initialization value; To specify, that the
 	 * entity is not initialized during its allocation the parameter has to be
 	 * <tt>null</tt>.
 	 */
 	public void allocate(DeclarationImpl decl, Object value) {
-		if (!currentFrame.environment.containsKey(decl)) {
-			MemoryLocation loc = new MemoryLocation();
-			loc.value = value;
-			currentFrame.environment.put(decl, loc);
-		}
+		MemoryLocation loc = new MemoryLocation();
+		loc.value = value;
+		currentFrame.environment.put(decl, loc);
 	}
 	
 	/**
