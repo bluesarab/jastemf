@@ -96,9 +96,9 @@ public aspect RTTAST {
 	
 	// Compare programs' correctness:
 	declare @method:
-		public * ASTNode+.isIsCorrect() : @Parser.Node.Compare("IsCorrect");
+		public * ASTNode+.IsCorrect() : @Parser.Node.Compare;
 	declare @method:
-		public * ASTNode+.isIsCorrectLocal() : @Parser.Node.Compare("IsCorrectLocal");
+		public * ASTNode+.IsCorrectLocal() : @Parser.Node.Compare;
 	
 	/** Interpretation */
 	
