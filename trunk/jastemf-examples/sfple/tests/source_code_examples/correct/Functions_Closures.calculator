@@ -1,0 +1,41 @@
+-- This program and the accompanying materials are made available under the
+-- terms of the MIT license (X11 license) which accompanies this distribution.
+
+-- Author: C. Bürger
+Let
+	outer(N) :=
+		Let -- Basic closure test
+			ClosedOver := N - 2
+			inner(N) := ClosedOver * N
+		In inner(N - 1) + inner(N - 1)
+	
+	f1(N) :=
+		Let -- Static binding test (lexical scope)
+			B := 2 * N
+			f2(N) := B
+			f3(N) :=
+				Let
+					B := 3 * N
+				In f2(N) + B - 3 * N
+		In f3(N)
+In [
+	[
+	outer(-5),
+	outer(-3),
+	outer(-2),
+	outer(-1),
+	outer(0),
+	outer(1),
+	outer(2),
+	outer(3),
+	outer(5)
+	],
+	
+	[
+	f1(1),
+	f1(2),
+	f1(3),
+	f1(5),
+	f1(10)
+	]
+	]

@@ -1,0 +1,15 @@
+-- This program and the accompanying materials are made available under the
+-- terms of the MIT license (X11 license) which accompanies this distribution.
+
+-- Author: C. Bürger
+Let
+	V := [1,2,3]
+In [
+	V[0],
+	V[4],
+	V[3..2],
+	V[3..V[2]],
+	V[2.5],
+	V[true],
+	V[V]
+	]

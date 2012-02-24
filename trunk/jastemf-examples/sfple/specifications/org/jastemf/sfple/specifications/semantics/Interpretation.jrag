@@ -1,0 +1,419 @@
+/**
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT license (X11 license) which accompanies this distribution.
+ */
+
+/**
+ * @author C. Bürger
+ */
+aspect Interpretation {
+	eq Expression.IsEvaluated() = IsConstant();
+	eq Vector.IsEvaluated() {
+		for (int i = 0; i < Length(); i++)
+			if (!getExpression(i).IsEvaluated())
+				return false;
+		return true;
+	}
+	
+	eq Expression.IsConstant() = false;
+	eq Computation.IsConstant() = IsFunction();
+	eq Constant.IsConstant() = true;
+	eq Expression.IsBoolean() = AsBoolean() != null;
+	eq Expression.IsNumber() = IsInteger() || IsReal();
+	eq Expression.IsInteger() = AsInteger() != null;
+	eq Expression.IsReal() = false;
+	eq RealValue.IsReal() = true;
+	eq Expression.IsVector() = AsVector() != null;
+	eq Expression.IsFunction() = false;
+	eq Computation.IsFunction() = Parameters().size() > 0;
+	eq Expression.IsError() = false;
+	eq ErrorValue.IsError() = true;
+	
+	eq Expression.AsBoolean() = null;
+	eq BooleanValue.AsBoolean() = getValue();
+	eq Expression.AsInteger() = null;
+	eq IntegerValue.AsInteger() = getValue();
+	eq IntegerValue.AsReal() = new Float(getValue());
+	eq Expression.AsReal() = null;
+	eq RealValue.AsReal() = getValue();
+	eq Expression.AsVector() = null;
+	eq Vector.AsVector() = this;
+	eq Expression.AsFunction() = null;
+	eq Computation.AsFunction() = IsFunction() ?
+			this :
+			null;
+	
+	rewrite Computation {
+		when (!IsFunction() &&
+				// STATIC BINDING: A computation's result must
+				// 	be evaluated within the computation's context:
+				getExpression().IsEvaluated())
+		to Constant (Constant)getExpression();
+	}
+	
+	rewrite Reference {
+		when (Definition() == null || Definition().IsCyclic())
+		to Constant new ErrorValue();
+		when (Definition().hasRValue() &&
+				// STATIC BINDING: A reference's value must be
+				// 	evaluated in its context:
+				Definition().getRValue().IsEvaluated())
+		to Constant (Constant)Definition().getRValue().DeepCopy();
+	}
+	
+	rewrite VectorElementAccess {
+		when (getVector().IsVector() &&
+				getIndex().IsInteger() &&
+				getIndex().AsInteger() >= 1 &&
+				getIndex().AsInteger() <= getVector().AsVector().Length())
+		to Expression {
+			return getVector().AsVector().getExpression(getIndex().AsInteger() - 1);
+		}
+		when (getVector().IsConstant() &&
+				getIndex().IsConstant())
+		to Constant new ErrorValue();
+	}
+	
+	rewrite VectorRangeAccess {
+		when (!hasUb() && getVector().IsVector())
+		to VectorAccess {
+			setUb(new IntegerValue(getVector().AsVector().Length()));
+			return this;
+		}
+		when (!hasUb() && getVector().IsConstant())
+		to Constant new ErrorValue();
+		when (hasUb() &&
+				getVector().IsVector() &&
+				getLb().IsInteger() &&
+				getUb().IsInteger() &&
+				getLb().AsInteger() >= 1 &&
+				getUb().AsInteger() >= 1 &&
+				getUb().AsInteger() <= getVector().AsVector().Length() &&
+				getLb().AsInteger() <= getUb().AsInteger())
+		to Constant {
+			int lb = getLb().AsInteger() - 1;
+			int ub = getUb().AsInteger() - 1;
+			Vector vec = getVector().AsVector();
+			List<Expression> elems = new List<Expression>();
+			for (int i = lb; i <= ub; i++)
+				elems.add((Constant)vec.getExpression(i));
+			return new Vector(elems);
+		}
+		when (hasUb() &&
+				getVector().IsConstant() &&
+				getLb().IsConstant() &&
+				getUb().IsConstant())
+		to Constant new ErrorValue();
+	}
+	
+	rewrite VectorTailAccess {
+		when (getVector().IsVector() &&
+				getVector().AsVector().Length() > 0)
+		to Constant {
+			getVector().AsVector().getExpressionList().removeChild(0);
+			return (Vector)getVector();
+		}
+		when (getVector().IsConstant())
+		to Constant new ErrorValue();
+	}
+	
+	rewrite VectorLengthAccess {
+		when (getVector().IsVector())
+		to Constant new IntegerValue(getVector().AsVector().Length());
+		when (getVector().IsConstant())
+		to Constant new ErrorValue();
+	}
+	
+	rewrite FunctionCall {
+		when (Definition() == null ||
+				Definition().IsCyclic() ||
+				!Definition().IsFunction() ||
+				Definition().AsFunction().Parameters().size() !=
+				getArguments().Length())
+		to Constant new ErrorValue();
+		when (// STATIC BINDING: A function call's arguments
+			  // 	must be evaluated in the call's context,...
+				getArguments().IsEvaluated())
+		// ...before the called function can be executed in its context:
+		to Constant {
+			// To execute the function, we find the entity representing it,
+			// 	the function itself and the computation (i.e., context) it is part of...
+			Definition funEntity = Definition();
+			Computation fun = funEntity.AsFunction();
+			Computation context = funEntity.Context();
+			// ...and create an entity associated with a copy of the
+			// 	function in the function's original context...
+			Computation copy = (Computation)fun.DeepCopy();
+			Definition copyEntity = new Definition(
+					NodeAddress().toString(),
+					new Opt(copy));
+			context.getDefinitionList().add(copyEntity);
+			// ...and bind the copies' parameters to the arguments,...
+			Iterator<Expression> arg = getArguments().getExpressionList().iterator();
+			for (Definition para:copy.Parameters())
+				para.setRValue((Constant)arg.next().DeepCopy());
+			// ...so the copy becomes executable and can be used to execute
+			// 	the function in its original context for the given arguments:
+			Expression result;
+			while (true) {
+				result = copyEntity.getRValue();
+				if (result.IsEvaluated())
+					break;
+			}
+			// Finally, the computation is done and we remove the
+			// 	copy from the function's context...
+			context.getDefinitionList().removeChild(
+					context.getNumDefinition() - 1);
+			// ...and return the copies' result as the
+			//    function call's value:
+			return (Constant)result;
+		}
+	}
+	
+	rewrite If {
+		when (getCondition().IsBoolean())
+		to Expression getCondition().AsBoolean() ?
+				getThen() :
+				getElse();
+		when (getCondition().IsConstant())
+		to Constant new ErrorValue();
+	}
+	
+	rewrite UnaryExpression {
+		when (getOperand().IsConstant())
+		to Constant new ErrorValue();
+	}
+	
+	rewrite BinaryExpression {
+		when (getOperand1().IsConstant() &&
+				getOperand2().IsConstant())
+		to Constant new ErrorValue();
+	}
+	
+	rewrite Not {
+		when (getOperand().IsBoolean())
+		to Constant new BooleanValue(
+				!getOperand().AsBoolean());
+	}
+	
+	rewrite UMinus {
+		when (getOperand().IsInteger())
+		to Constant new IntegerValue(
+				-getOperand().AsInteger());
+		when (getOperand().IsReal())
+		to Constant new RealValue(
+				-getOperand().AsReal());
+		when (getOperand().IsVector())
+		to Expression new ArithmeticOp(
+				new IntegerValue(-1), Op.MUL, getOperand());
+	}
+	
+	rewrite BooleanOp {
+		when (getOperand1().IsBoolean() &&
+				getOperand2().IsBoolean())
+		to Constant {
+			switch (getOp()) {
+			case AND: return new BooleanValue(
+					getOperand1().AsBoolean() &&
+					getOperand2().AsBoolean());
+			case OR: return new BooleanValue(
+					getOperand1().AsBoolean() ||
+					getOperand2().AsBoolean());
+			}
+			return new ErrorValue(); 
+		}
+	}
+	
+	rewrite RelationalOp {
+		// Integer relation:
+		when (getOperand1().IsInteger() &&
+				getOperand2().IsInteger())
+		to Constant {
+			switch (getOp()) {
+			case LESSER: return new BooleanValue(
+					getOperand1().AsInteger() <
+					getOperand2().AsInteger());
+			case GREATER: return new BooleanValue(
+					getOperand1().AsInteger() >
+					getOperand2().AsInteger());
+			case LESSERTHANEQUAL: return new BooleanValue(
+					getOperand1().AsInteger() <=
+					getOperand2().AsInteger());
+			case GREATERTHANEQUAL: return new BooleanValue(
+					getOperand1().AsInteger() >=
+					getOperand2().AsInteger());
+			}
+			return new ErrorValue();
+		}
+		// Real relation:
+		when (getOperand1().IsNumber() &&
+				getOperand2().IsNumber())
+		to Constant {
+			switch (getOp()) {
+			case LESSER: return new BooleanValue(
+					getOperand1().AsReal() <
+					getOperand2().AsReal());
+			case GREATER: return new BooleanValue(
+					getOperand1().AsReal() >
+					getOperand2().AsReal());
+			case LESSERTHANEQUAL: return new BooleanValue(
+					getOperand1().AsReal() <=
+					getOperand2().AsReal());
+			case GREATERTHANEQUAL: return new BooleanValue(
+					getOperand1().AsReal() >=
+					getOperand2().AsReal());
+			}
+			return new ErrorValue();
+		}
+		// Vector relation:
+		when (getOperand1().IsVector() &&
+				getOperand2().IsVector() &&
+				getOperand1().AsVector().Length() ==
+				getOperand2().AsVector().Length())
+		to Constant {
+			Vector v1 = getOperand1().AsVector();
+			Vector v2 = getOperand2().AsVector();
+			List<Expression> elems = new List<Expression>();
+			for (int i = 0; i < v1.Length(); i++)
+				elems.add(new RelationalOp(
+						v1.getExpression(i),
+						getOp(),
+						v2.getExpression(i)));
+			return new Vector(elems);
+		}
+	}
+	
+	rewrite EqualityOp {
+		// Boolean equality:
+		when (getOperand1().IsBoolean() &&
+				getOperand2().IsBoolean())
+		to Constant {
+			switch (getOp()) {
+			case EQUAL: return new BooleanValue(
+					getOperand1().AsBoolean().booleanValue() ==
+					getOperand2().AsBoolean().booleanValue());
+			case NEQUAL: return new BooleanValue(
+					getOperand1().AsBoolean().booleanValue() !=
+					getOperand2().AsBoolean().booleanValue());
+			}
+			return new ErrorValue();
+		}
+		// Integer equality:
+		when (getOperand1().IsInteger() &&
+				getOperand2().IsInteger())
+		to Constant {
+			switch (getOp()) {
+			case EQUAL: return new BooleanValue(
+					getOperand1().AsInteger().intValue() ==
+					getOperand2().AsInteger().intValue());
+			case NEQUAL: return new BooleanValue(
+					getOperand1().AsInteger().intValue() !=
+					getOperand2().AsInteger().intValue());
+			}
+			return new ErrorValue();
+		}
+		// Real equality:
+		when (getOperand1().IsNumber() &&
+				getOperand2().IsNumber() &&
+				(getOperand1().IsReal() || getOperand2().IsReal()))
+		to Constant {
+			switch (getOp()) {
+			case EQUAL: return new BooleanValue(
+					getOperand1().AsReal().floatValue() ==
+					getOperand2().AsReal().floatValue());
+			case NEQUAL: return new BooleanValue(
+					getOperand1().AsReal().floatValue() !=
+					getOperand2().AsReal().floatValue());
+			}
+			return new ErrorValue();
+		}
+		// Vector equality:
+		when (getOperand1().IsVector() &&
+				getOperand2().IsVector())
+		to Expression {
+			switch (getOp()) {
+			case EQUAL:
+				Vector v1 = getOperand1().AsVector();
+				Vector v2 = getOperand2().AsVector();
+				if (v1.Length() != v2.Length())
+					return new BooleanValue(false);
+				Expression res = new BooleanValue(true);
+				for (int i = 0; i < v1.Length(); i++)
+					res = new BooleanOp(res, Op.AND, new EqualityOp(
+							(Constant)v1.getExpression(i).DeepCopy(),
+							getOp(),
+							(Constant)v2.getExpression(i).DeepCopy()));
+				return res;
+			case NEQUAL:
+				setOp(Op.EQUAL);
+				return new Not(this);
+			}
+			return new ErrorValue();
+		}
+	}
+	
+	rewrite ArithmeticOp {
+		// Integer arithmetics:
+		when (getOperand1().IsInteger() &&
+				getOperand2().IsInteger())
+		to Constant {
+			switch (getOp()) {
+			case ADD: return new IntegerValue(
+					getOperand1().AsInteger() + getOperand2().AsInteger());
+			case SUB: return new IntegerValue(
+					getOperand1().AsInteger() - getOperand2().AsInteger());
+			case MUL: return new IntegerValue(
+					getOperand1().AsInteger() * getOperand2().AsInteger());
+			case DIV: return new RealValue(
+					getOperand1().AsReal() / getOperand2().AsReal());
+			}
+			return new ErrorValue();
+		}
+		// Real arithmetics:
+		when (getOperand1().IsNumber() &&
+				getOperand2().IsNumber() &&
+				(getOperand1().IsReal() || getOperand2().IsReal()))
+		to Constant {
+			switch (getOp()) {
+			case ADD: return new RealValue(
+					getOperand1().AsReal() + getOperand2().AsReal());
+			case SUB: return new RealValue(
+					getOperand1().AsReal() - getOperand2().AsReal());
+			case MUL: return new RealValue(
+					getOperand1().AsReal() * getOperand2().AsReal());
+			case DIV: return new RealValue(
+					getOperand1().AsReal() / getOperand2().AsReal());
+			}
+			return new ErrorValue();
+		}
+		// Vector arithmetics:
+		when (getOperand1().IsVector() &&
+				getOperand2().IsVector() &&
+				getOperand1().AsVector().Length() ==
+				getOperand2().AsVector().Length())
+		to Constant {
+			Vector v1 = getOperand1().AsVector();
+			Vector v2 = getOperand2().AsVector();
+			List<Expression> elems = new List<Expression>();
+			for (int i = 0; i < v1.Length(); i++)
+				elems.add(new ArithmeticOp(
+						v1.getExpression(i),
+						getOp(),
+						v2.getExpression(i)));
+			return new Vector(elems);
+		}
+		when (getOperand1().IsNumber() &&
+				getOperand2().IsVector() &&
+				getOp() == Op.MUL)
+		to Constant {
+			Vector vec = getOperand2().AsVector();
+			List<Expression> elems = new List<Expression>();
+			for (int i = 0; i < vec.Length(); i++)
+				elems.add(new ArithmeticOp(
+						(Constant)getOperand1().DeepCopy(),
+						getOp(),
+						(Constant)vec.getExpression(i)));
+			return new Vector(elems);
+		}
+	}
+}
