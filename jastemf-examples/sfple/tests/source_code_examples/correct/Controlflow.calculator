@@ -1,0 +1,21 @@
+-- This program and the accompanying materials are made available under the
+-- terms of the MIT license (X11 license) which accompanies this distribution.
+
+-- Author: C. Bürger
+Let
+	T := true
+	F := false
+In [
+	If T Then 1 Else 2 Fi,
+	If F Then 1 Else 2 Fi,
+	If
+		If T Then F Else T Fi
+		Then 1
+		Else 2
+	Fi,
+	If
+		If F Then F Else T Fi
+		Then 1
+		Else 2
+	Fi
+	]

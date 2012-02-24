@@ -1,0 +1,37 @@
+/**
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT license (X11 license) which accompanies this distribution.
+ */
+
+/**
+ * @author C. Bürger
+ */
+aspect NameAnalysis {	
+	syn Set<Definition> CompilationUnit.LookUp(String name) =
+		new HashSet<Definition>();
+	eq CompilationUnit.getExpression().LookUp(String name) =
+		new HashSet<Definition>();
+	eq Computation.getExpression().LookUp(String name) =
+		getNumDefinition() > 0 ?
+				getDefinition(getNumDefinition() - 1).LookUp(name) :
+				LookUp(name);
+	eq Computation.getDefinition(int index).LookUp(String name) {
+		Set<Definition> result = new HashSet<Definition>();
+		for (int i = 0; i < getNumDefinition(); i++)
+			if (getDefinition(i).getLValue().equals(name))
+				result.add(getDefinition(i));
+		return !result.isEmpty() ?
+				result :
+				LookUp(name);
+	}
+	
+	eq Reference.Definition() =
+		LookUp(getName()).size() == 1 ?
+				LookUp(getName()).iterator().next() :
+				null;
+	
+	eq FunctionCall.Definition() =
+		LookUp(getName()).size() == 1 ?
+				LookUp(getName()).iterator().next() :
+				null;
+}

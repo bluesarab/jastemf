@@ -1,0 +1,146 @@
+/**
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT license (X11 license) which accompanies this distribution.
+ */
+import java.util.*;
+
+import org.jastemf.sfple.semantics.*;
+
+/**
+ * @author C. Bürger
+ */
+aspect AccessSupport {
+	/**
+	 * Each node and the subtree it spans can be copied.
+	 */
+	syn ASTNode<T> ASTNode.DeepCopy();
+	
+	/**
+	 * Each node knowns the AST's root node.
+	 */
+	syn CompilationUnit ASTNode.ASTRoot();
+	
+	/**
+	 * Each AST node has an unique Dewey address.
+	 */
+	inh DeweyAddress ASTNode.NodeAddress();
+	
+	/**
+	 * Each entity knows, whether it represents a function or a function
+	 * parameter. Of course, functions know their parameters. The
+	 * interpretation of an entity as a function returns null, iff the
+	 * entity represents no function.
+	 */
+	syn boolean Definition.IsFunction();
+	syn Computation Definition.AsFunction();
+	syn java.util.List<Definition> Computation.Parameters();
+	syn boolean Definition.IsFunctionParameter();
+	
+	/**
+	 * Each definition knows its context, i.e., the computation it is part of.
+	 */
+	inh Computation Definition.Context();
+	
+	/**
+	 * Nodes can define entities, i.e., be part of a definition's rvalue.
+	 * If a node is not part of a definition its Defines() attribute's
+	 * value is null.
+	 */
+	inh Definition ASTNode.Defines();
+	
+	/**
+	 * Each used variable, i.e., reference, must be defined. In the error
+	 * case of an undefined reference, its Definition() attribute's value
+	 * is null.
+	 */
+	syn Definition Reference.Definition();
+	
+	/**
+	 * Each called function must be defined. Iff not its Definition()
+	 * attribute's value is null.
+	 */
+	syn Definition FunctionCall.Definition();
+	
+	/**
+	 * Each vector has a length.
+	 */
+	syn int Vector.Length();
+	
+	/**
+	 * Each constant can be pretty printed.
+	 */
+	syn String Constant.Print();
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect DataflowAnalysis {
+	/**
+	 * Each entity knows, if it depends on another entity.
+	 */
+	syn boolean Definition.DependsOn(Definition def) circular [false];
+	
+	/**
+	 * Each entity knows if its value depends on itself, in which case
+	 * the program is erroneous. However, recursive functions are
+	 * permitted and not treated to be cyclic, unless they depend on a
+	 * cyclic entity.
+	 */
+	syn boolean Definition.IsCyclic() circular [false];
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect NameAnalysis {
+	/**
+	 * Any AST node can search for a variable with a given name which is in scope.
+	 */
+	inh Set<Definition> ASTNode.LookUp(String name);
+}
+
+/**
+ * @author C. Bürger
+ */
+aspect Interpretation {
+	/**
+	 * Each expression knows, whether it is completely evaluated or
+	 * not. E.g., even vectors are constants, they still may contain
+	 * not yet evaluated expressions. On the other hand, boolean,
+	 * integer and real constants are always evaluated. A function is
+	 * also an evaluated constant, since the computation it represents
+	 * is its value.
+	 */
+	syn boolean Expression.IsEvaluated() circular [false];
+	
+	/**
+	 * Each expression knows, whether it is a constant of a certain type or not.
+	 */
+	syn boolean Expression.IsConstant();
+	syn boolean Expression.IsBoolean();
+	syn boolean Expression.IsNumber();
+	syn boolean Expression.IsInteger();
+	syn boolean Expression.IsReal();
+	syn boolean Expression.IsVector();
+	syn boolean Expression.IsFunction();
+	syn boolean Expression.IsError();
+	
+	/**
+	 * For each expression it can be tried to interpret its value as a constant of
+	 * a certain type. If the interpretation fails, null is returned.
+	 */
+	syn Boolean Expression.AsBoolean();
+	syn Integer Expression.AsInteger();
+	syn Float Expression.AsReal();
+	syn Vector Expression.AsVector();
+	syn Computation Expression.AsFunction();
+	
+	/**
+	 * MAIN INVARIANT: Each evaluable expression has to be evaluated, i.e.,
+	 * 	rewritten to a constant. Iff the expression's semantics are not
+	 * 	specified, because of input program errors, the expression's value
+	 * 	is an error.
+	 */
+	syn Constant Expression.AsConstant() = (Constant)this;
+}

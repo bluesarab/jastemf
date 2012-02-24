@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="This program and the accompanying materials are made available under the terms of the MIT license (X11 license) which accompanies this distribution."
+    modelDirectory="/org.jastemf.sfple/src-gen" editDirectory="/org.jastemf.sfple.edit/src"
+    editorDirectory="/org.jastemf.sfple.editor/src" modelPluginID="org.jastemf.sfple"
+    modelName="sfple" testsDirectory="/org.jastemf.sfple.tests/src" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.jastemf.sfple.edit"
+    editorPluginID="org.jastemf.sfple.editor" language="English">
+  <foreignModel>sfple.ecore</foreignModel>
+  <genPackages prefix="semantics" basePackage="org.jastemf.sfple" disposableProviderFactory="true"
+      interfacePackageSuffix="interfaces" metaDataPackageSuffix="meta" ecorePackage="sfple.ecore#/">
+    <genDataTypes ecoreDataType="sfple.ecore#//Op"/>
+    <genDataTypes ecoreDataType="sfple.ecore#//List">
+      <genTypeParameters ecoreTypeParameter="sfple.ecore#//List/E"/>
+    </genDataTypes>
+    <genClasses ecoreClass="sfple.ecore#//CompilationUnit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//CompilationUnit/Expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sfple.ecore#//Expression">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsCyclic"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsConstant"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsBoolean"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsNumber"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsInteger"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsReal"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsVector"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsFunction"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsError"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Expression/IsEvaluated"/>
+      <genOperations ecoreOperation="sfple.ecore#//Expression/DependsOn">
+        <genParameters ecoreParameter="sfple.ecore#//Expression/DependsOn/def"/>
+      </genOperations>
+      <genOperations ecoreOperation="sfple.ecore#//Expression/AsConstant"/>
+      <genOperations ecoreOperation="sfple.ecore#//Expression/AsBoolean"/>
+      <genOperations ecoreOperation="sfple.ecore#//Expression/AsInteger"/>
+      <genOperations ecoreOperation="sfple.ecore#//Expression/AsReal"/>
+      <genOperations ecoreOperation="sfple.ecore#//Expression/AsVector"/>
+      <genOperations ecoreOperation="sfple.ecore#//Expression/AsFunction"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//Computation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//Computation/Definition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//Computation/Expression"/>
+      <genOperations ecoreOperation="sfple.ecore#//Computation/Parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Reference/Name"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference sfple.ecore#//Reference/Definition"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sfple.ecore#//VectorAccess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//VectorAccess/Vector"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//FunctionCall">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//FunctionCall/Name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//FunctionCall/Arguments"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference sfple.ecore#//FunctionCall/Definition"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//If">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//If/Condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//If/Then"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//If/Else"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sfple.ecore#//Constant">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Constant/Print"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//BooleanValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//BooleanValue/Value"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//IntegerValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//IntegerValue/Value"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//RealValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//RealValue/Value"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//Vector">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//Vector/Expression"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Vector/Length"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//ErrorValue"/>
+    <genClasses image="false" ecoreClass="sfple.ecore#//UnaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//UnaryExpression/Operand"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//Not"/>
+    <genClasses ecoreClass="sfple.ecore#//UMinus"/>
+    <genClasses image="false" ecoreClass="sfple.ecore#//BinaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//BinaryExpression/Operand1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//BinaryExpression/Op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//BinaryExpression/Operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//BooleanOp"/>
+    <genClasses ecoreClass="sfple.ecore#//RelationalOp"/>
+    <genClasses ecoreClass="sfple.ecore#//ArithmeticOp"/>
+    <genClasses ecoreClass="sfple.ecore#//Definition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Definition/LValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//Definition/RValue"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Definition/IsFunction"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Definition/IsFunctionParameter"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference sfple.ecore#//Definition/Context"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sfple.ecore#//Definition/IsCyclic"/>
+      <genOperations ecoreOperation="sfple.ecore#//Definition/AsFunction"/>
+      <genOperations ecoreOperation="sfple.ecore#//Definition/DependsOn">
+        <genParameters ecoreParameter="sfple.ecore#//Definition/DependsOn/def"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//VectorElementAccess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//VectorElementAccess/Index"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//VectorRangeAccess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//VectorRangeAccess/Lb"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sfple.ecore#//VectorRangeAccess/Ub"/>
+    </genClasses>
+    <genClasses ecoreClass="sfple.ecore#//VectorTailAccess"/>
+    <genClasses ecoreClass="sfple.ecore#//VectorLengthAccess"/>
+    <genClasses ecoreClass="sfple.ecore#//EqualityOp"/>
+  </genPackages>
+</genmodel:GenModel>

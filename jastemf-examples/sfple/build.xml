@@ -1,0 +1,138 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the MIT license (X11 license) which accompanies this distribution.
+-->
+
+<!--
+	Ant script to generate the interpreter. There exist two different interpreter versions:
+	 1) A version implemented based on JFlex, Beaver and JastAdd (command line Version).
+	 2) An EMF-integrated version based on JFlex, Beaver, JastAdd and JastEMF (EMF Version).
+	@author C. Bürger
+-->
+<project name="Generation" default="Command-Line Version">
+	<path id="_basedir">
+		<pathelement location="."/>
+	</path>
+	<property name="_basedir" refid="_basedir"/>
+	
+	<target name="Clean" description="Delete all generated artefacts.">
+		<delete includeemptydirs="true">
+			<fileset dir="${_basedir}">
+				<!-- all these artefacts are generated -->
+				<include name="src-gen/**/*"/>
+				<include name="icons/**/*"/>
+				<include name="icons"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target
+		name="Command-Line Version"
+		description="Generate the command line interpreter."
+		depends="Clean">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Interpreter                        ||"/>
+		<echo message="||                       (Command Line Version)                       ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<copy
+			file="${_basedir}/command-line-interpreter/CommandLineInterpreter.java"
+			todir="${_basedir}/src-gen/org/jastemf/sfple"/>
+		<antcall target="JFlex Lexer"/>
+		<antcall target="Beaver Parser"/>
+		<antcall target="JastAdd Semantic"/>
+	</target>
+	
+	<target
+		name="EMF Version"
+		description="Generate the EMF-integrated interpreter."
+		depends="Clean">
+		<echo message="========================================================================"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="||                        Generate Interpreter                        ||"/>
+		<echo message="||                           (EMF Version)                            ||"/>
+		<echo message="||                                                                    ||"/>
+		<echo message="========================================================================"/>
+		<copy
+			file="${_basedir}/command-line-interpreter/CommandLineInterpreter.java"
+			todir="${_basedir}/src-gen/org/jastemf/sfple"/>
+		<antcall target="JFlex Lexer"/>
+		<antcall target="Beaver Parser"/>
+		<antcall target="EMF Semantic"/>
+	</target>
+	
+	<target
+		name="JFlex Lexer"
+		description="Generate the lexer.">
+		<echo message="========================> Generate JFlex Lexer &lt;========================"/>
+		<taskdef
+			classname	= "JFlex.anttask.JFlexTask"
+			name		= "jflex"
+			classpath	= "${_basedir}/sources/libraries/JFlex.jar"
+		/>
+		<jflex
+			file		= "${_basedir}/specifications/org/jastemf/sfple/specifications/symbols/lexer.jflex"
+			destdir		= "${_basedir}/src-gen"
+			nobak		= "on"
+			verbose		= "off"
+		/>
+	</target>
+	
+	<target
+		name="Beaver Parser"
+		description="Generate the parser.">
+		<echo message="========================> Generate Beaver Parser &lt;======================"/>
+		<taskdef
+			name		= "beaver"
+			classname	= "beaver.comp.run.AntTask"
+			classpath	= "${_basedir}/sources/libraries/beaver-ant.jar"
+		/>
+		<property name="beaver.available" value="yes"/>
+		<beaver
+			file				= "${_basedir}/specifications/org/jastemf/sfple/specifications/syntax/parser.beaver"
+			destdir				= "${_basedir}/src-gen"
+			compress			= "yes"
+			exportTables		= "no"
+			sortTerminals		= "no"
+			terminalNames		= "yes"
+			exportTerminals		= "no"
+			useSwitch			= "no"
+			anonymousActions	= "yes"
+			reportActions		= "no"
+		/>
+	</target>
+	
+	<target
+		name="JastAdd Semantic"
+		description="Generate the command line semantic evaluator.">
+		<echo message="======================> Generate JastAdd Semantic &lt;====================="/>
+		<jastadd
+			outdir="${_basedir}/src-gen"
+			package="org.jastemf.sfple.semantics.ast"
+			rewrite		= "true">
+			<fileset dir="${_basedir}/specifications/org/jastemf/sfple/specifications/">
+				<include name="semantics/**/*.ast"/>
+				<include name="semantics/**/*.jrag"/>
+				<include name="semantics/**/*.jadd"/>
+			</fileset>
+		</jastadd>
+	</target>
+	
+	<target
+		name="EMF Semantic"
+		description="Generate the EMF-integrated semantic evaluator.">
+		<echo message="========================> Generate EMF Semantic &lt;======================="/>
+		<jastemf
+			generateeditcode="true"
+			genmodel="${_basedir}/specifications/org/jastemf/sfple/specifications/model/sfple.genmodel"
+			outpackage="org.jastemf.sfple.emfadaptation"
+			astpackage="org.jastemf.sfple.semantics.ast">
+			<fileset dir="${_basedir}/specifications/org/jastemf/sfple/specifications">
+				<include name="semantics/**/*.ast"/>
+				<include name="semantics/**/*.jrag"/>
+				<include name="semantics/**/*.jadd"/>
+			</fileset>
+		</jastemf>
+	</target>
+</project>

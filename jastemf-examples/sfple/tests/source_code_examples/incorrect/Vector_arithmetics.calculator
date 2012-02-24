@@ -1,0 +1,62 @@
+-- This program and the accompanying materials are made available under the
+-- terms of the MIT license (X11 license) which accompanies this distribution.
+
+-- Author: C. Bürger
+Let
+	I := 2
+	R := 3.5
+	B := true
+	Vn := [1,[2,3],4]
+	Vb := [true,[false,true],false]
+In [
+	[
+	B + Vn,
+	B - Vn,
+	B * Vn,
+	B / Vn,
+	I + Vn,
+	I - Vn,
+	I / Vn,
+	R + Vn,
+	R - Vn,
+	R / Vn
+	],
+	
+	[
+	Vn + B,
+	Vn - B,
+	Vn * B,
+	Vn / B,
+	Vn + I,
+	Vn - I,
+	Vn / I,
+	Vn + R,
+	Vn - R,
+	Vn / R
+	],
+	
+	[
+	I * Vb,
+	R * Vb,
+	Vb * I,
+	Vb * R
+	],
+	
+	[
+	Vn = B,
+	Vn = I,
+	Vn = R,
+	B = Vn,
+	I = Vn,
+	R = Vn
+	],
+	
+	[
+	Vn # B,
+	Vn # I,
+	Vn # R,
+	B # Vn,
+	I # Vn,
+	R # Vn
+	]
+	]
