@@ -3,8 +3,11 @@
 
 -- Author: C. Bürger
 Let
-	I :=
-		Let
-			V := [1,2,3]
-		In V[1]
-In V[I] -- V is not in scope
+	I := 1
+	R := 1.5
+	V := {true}
+In {
+	If I Then true Else false Fi,
+	If R Then true Else false Fi,
+	If V Then true Else false Fi
+	}

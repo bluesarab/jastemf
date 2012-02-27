@@ -59,6 +59,8 @@ Function		= [a-z] ([a-z0-9]|"_")*
 	"]"				{ return createToken(Terminals.pBRACKETCLOSESQUARE); }
 	"("				{ return createToken(Terminals.pBRACKETOPENROUND); }
 	")"				{ return createToken(Terminals.pBRACKETCLOSEROUND); }
+	"{"				{ return createToken(Terminals.pBRACKETOPENCURLY); }
+	"}"				{ return createToken(Terminals.pBRACKETCLOSECURLY); }
 	"<="			{ return createToken(Terminals.pANGLEBRACKETLEFT_EQUALS); }
 	">="			{ return createToken(Terminals.pANGLEBRACKETRIGHT_EQUALS); }
 	"<"				{ return createToken(Terminals.pANGLEBRACKETLEFT); }
