@@ -42,8 +42,8 @@
 
 %terminals kLET, kIN, kIF, kTHEN, kELSE, kFI;
 %terminals kNOT, kAND, kOR;
-// [,],(,)
-%terminals pBRACKETOPENSQUARE, pBRACKETCLOSESQUARE, pBRACKETOPENROUND, pBRACKETCLOSEROUND;
+// [,],(,),{,}
+%terminals pBRACKETOPENSQUARE, pBRACKETCLOSESQUARE, pBRACKETOPENROUND, pBRACKETCLOSEROUND, pBRACKETOPENCURLY, pBRACKETCLOSECURLY;
 // <, >, <=, >=
 %terminals pANGLEBRACKETLEFT, pANGLEBRACKETRIGHT, pANGLEBRACKETLEFT_EQUALS, pANGLEBRACKETRIGHT_EQUALS;
 // +,-,*,/
@@ -187,11 +187,11 @@ PrimExpr = BOOLEAN.value
 		return new Symbol(new Reference(name));
 	:}
 	| VectorAccess
-	| pBRACKETOPENSQUARE pBRACKETCLOSESQUARE
+	| pBRACKETOPENCURLY pBRACKETCLOSECURLY
 	{:
 		return new Symbol(new Vector(new List()));
 	:}
-	| pBRACKETOPENSQUARE ExpressionList.list pBRACKETCLOSESQUARE
+	| pBRACKETOPENCURLY ExpressionList.list pBRACKETCLOSECURLY
 	{:
 		return new Symbol(new Vector(list));
 	:}

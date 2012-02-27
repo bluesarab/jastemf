@@ -6,59 +6,59 @@ Let
 	B := true
 	I := 1
 	R := 2.5
-	V := [1,2,3]
-In [
-	[
+	V := {1,2,3}
+In {
+	{
 	B + I,
 	B + R,
 	B + V,
 	I + B,
 	R + B,
 	V + B
-	],
+	},
 	
-	[
+	{
 	B - I,
 	B - R,
 	B - V,
 	I - B,
 	R - B,
 	V - B
-	],
+	},
 	
-	[
+	{
 	B * I,
 	B * R,
 	B * V,
 	I * B,
 	R * B,
 	V * B
-	],
+	},
 	
-	[
+	{
 	B / I,
 	B / R,
 	B / V,
 	I / B,
 	R / B,
 	V / B
-	],
+	},
 	
-	[
+	{
 	B = I,
 	B = R,
 	B = V,
 	I = B,
 	R = B,
 	V = B
-	],
+	},
 	
-	[
+	{
 	B # I,
 	B # R,
 	B # V,
 	I # B,
 	R # B,
 	V # B
-	]
-	]
+	}
+	}

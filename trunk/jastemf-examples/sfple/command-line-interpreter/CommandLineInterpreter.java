@@ -27,15 +27,22 @@ public class CommandLineInterpreter {
 		new CompilationUnit(globalProg);
 		
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("===================================================================================================");		
+		System.out.println("|                    Simple functional Programming Language Example Interpreter                   |");
+		System.out.println("|                                        SfPLE  Version 0.1                                       |");
+		System.out.println("|                           Type \"exit.\" to terminate the interpreter.                            |");
+		System.out.println("===================================================================================================");		
 		while (true) {
 			StringBuffer input = new StringBuffer();
-			input.append('\n');
-			while (input.charAt(input.length() - 1) != '.') {
-				input.append('\n');
-				input.append(in.readLine());
+			while (true) {
+				String read = "\n" + in.readLine();
+				input.append(read);
+				if (read.endsWith(".") && !read.contains("--")) {
+					input.deleteCharAt(input.length() - 1); // delete the "."
+					break;
+				}
 			}
-			input.deleteCharAt(input.length() - 1); // delete the "."
-			if (input.toString().equals("\n\nexit")) {
+			if (input.toString().equals("\nexit")) {
 				break;
 			} else {
 				Reader r = new StringReader(input.toString());
@@ -47,21 +54,22 @@ public class CommandLineInterpreter {
 								globalDefs.removeChild(i);
 						//read.setParent(globalDefs);
 						globalDefs.add(read);
-						System.out.println(read.getLValue());
+						System.out.println("> " + read.getLValue());
 					} catch (Parser.Exception e) {
 						r.reset();
 						Expression read =  (Expression)new Parser().parse(new Lexer(r), AltGoals.Expression);
 						//read.setParent(globalProg);
 						globalProg.setExpression(read);
-						System.out.println(globalProg.getExpression().AsConstant().Print());
+						System.out.println("> " + globalProg.getExpression().AsConstant().Print());
 					}
 				} catch (IOException e) {
-					System.out.println("IO-ERROR: " + e.getLocalizedMessage());
+					System.out.println(">> IO-ERROR: " + e.getLocalizedMessage() + " <<");
 				} catch (Parser.Exception e) {
-					System.out.println("SYNTAX-ERROR");
+					System.out.println(">> SYNTAX-ERROR <<");
 				} finally {r.close();}
 			}
 		}
+		System.out.println(">> TERMINATED <<");
 		in.close();
 	}
 }

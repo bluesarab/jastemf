@@ -6,10 +6,10 @@ Let
 	I := 2
 	R := 3.5
 	B := true
-	Vn := [1,[2,3],4]
-	Vb := [true,[false,true],false]
-In [
-	[
+	Vn := {1,{2,3},4}
+	Vb := {true,{false,true},false}
+In {
+	{
 	B + Vn,
 	B - Vn,
 	B * Vn,
@@ -20,9 +20,9 @@ In [
 	R + Vn,
 	R - Vn,
 	R / Vn
-	],
+	},
 	
-	[
+	{
 	Vn + B,
 	Vn - B,
 	Vn * B,
@@ -33,30 +33,30 @@ In [
 	Vn + R,
 	Vn - R,
 	Vn / R
-	],
+	},
 	
-	[
+	{
 	I * Vb,
 	R * Vb,
 	Vb * I,
 	Vb * R
-	],
+	},
 	
-	[
+	{
 	Vn = B,
 	Vn = I,
 	Vn = R,
 	B = Vn,
 	I = Vn,
 	R = Vn
-	],
+	},
 	
-	[
+	{
 	Vn # B,
 	Vn # I,
 	Vn # R,
 	B # Vn,
 	I # Vn,
 	R # Vn
-	]
-	]
+	}
+	}

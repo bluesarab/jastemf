@@ -49,14 +49,14 @@ aspect AccessSupport {
 	eq RealValue.Print() = getValue().toString();
 	eq Vector.Print() {
 		StringBuilder result = new StringBuilder();
-		result.append('[');
+		result.append('{');
 		for (Expression e:getExpressionList()) {
 			result.append(e.AsConstant().Print());
 			result.append(',');
 		}
 		if (getNumExpression() > 0)
 			result.deleteCharAt(result.length() - 1);
-		result.append(']');
+		result.append('}');
 		return result.toString();
 	}
 	eq ErrorValue.Print() = "ERROR";

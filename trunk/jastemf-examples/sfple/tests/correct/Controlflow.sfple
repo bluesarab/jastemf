@@ -5,7 +5,7 @@
 Let
 	T := true
 	F := false
-In [
+In {
 	If T Then 1 Else 2 Fi,
 	If F Then 1 Else 2 Fi,
 	If
@@ -18,4 +18,4 @@ In [
 		Then 1
 		Else 2
 	Fi
-	]
+	}

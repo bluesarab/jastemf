@@ -5,45 +5,45 @@
 Let
 	T := true
 	F := false
-In [
-	[
+In {
+	{
 	T and T,
 	T and F,
 	F and T,
 	F and F
-	],
+	},
 	
-	[
+	{
 	T or T,
 	T or F,
 	F or T,
 	F or F
-	],
+	},
 	
-	[
+	{
 	not T,
 	not F
-	],
+	},
 	
-	[
+	{
 	not T or F,
 	T and not F,
 	not (T and F)
-	],
+	},
 	
 	not (T and F) and not (T and F),
 	
-	[
+	{
 	T = T,
 	T = F,
 	F = T,
 	F = F
-	],
+	},
 	
-	[
+	{
 	T # T,
 	T # F,
 	F # T,
 	F # F
-	]
-	]
+	}
+	}
