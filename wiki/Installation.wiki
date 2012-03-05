@@ -14,8 +14,8 @@ In detail JastEMF requires at least:
 = Installing JastEMF =
 
   # Download, install and configure an Eclipse distribibution 
-  # Download the most recent _org.jastemf_ plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to the eclipse dropins directory (_DIR_/dropins).
-  # Optionally download the most recent _org.jastemf.converter_ plugin JAR from this webpage's [http://code.google.com/p/jastemf/downloads/list download] section and move it to _DIR_/dropins.
+  # Download the most recent _org.jastemf_ plugin JAR from our [http://code.google.com/p/jastemf/downloads/list download] section and move it to the eclipse dropins directory (_DIR_/dropins).
+  # Optionally download the most recent _org.jastemf.converter_ plugin JAR from our [http://code.google.com/p/jastemf/downloads/list download] section and move it to _DIR_/dropins.
   # Run Eclipse and select an arbitrary workspace. Check if all JastEMF ANT tasks have been properly registered to Eclipse by investigating _Preferences => Ant => Runtime =>_ Tab _Tasks_. You should find the `jastemf` task and, if you installed the converter, the `jastemf.ecore2ast` and `jastemf.ecore2jrag` tasks.
 
 = Installing JastEMF from Update-Site =
