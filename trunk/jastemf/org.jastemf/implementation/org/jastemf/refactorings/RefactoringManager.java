@@ -42,6 +42,7 @@ public class RefactoringManager {
 	 * @throws JastEMFException
 	 *             Thrown, iff the script cannot be accessed.
 	 */
+	@Deprecated
 	public static void applyRefactoringScript(URI scriptURI)
 			throws JastEMFException {
 		IRefactoringHistoryService historyService = RefactoringCore
