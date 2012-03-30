@@ -419,7 +419,7 @@ W.r.t. _semantics integrated metamodelling_, the EMF SiPLE version demonstrated 
 
 xText specifications basically specify a set of regular expressions representing tokens and a context-free grammar to describe a concrete syntax, whereas non-terminals refer to metaclasses of a metamodel, such that generated parsers construct model instances while parsing. Therefore, we reused the context-free grammar specification of the previous SiPLE versions' Beaver parser to develop an xText specification for SiPLE (_"specifications/siple/syntax/siple.xtext"_). xText automatically generates an Eclipse editor from this specification.
 
-The semantic specifications of the previous SiPLE versions are reused. The generated editor immediately benefits from these semantics, such that its properties view shows SIPLE programs' semantics while editing them.
+The semantic specifications of the previous SiPLE versions are reused. The generated editor immediately benefits from these semantics, such that its properties view shows SiPLE programs' semantics while editing them.
 
 == Generation ==
 
