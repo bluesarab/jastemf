@@ -214,12 +214,9 @@ In SiPLE we use these techniques to specify a clear compiler API --- the _compil
 
 {{{
 aspect NameAnalysis {
-    // Procedure name space:
-    ...
-    
     // Variable name space:
-    inh Collection<VariableDeclaration> ASTNode.LookUpVDecl(String name);
-    syn VariableDeclaration Reference.Declaration();
+    inh Collection<Declaration> ASTNode.LookUp(String name);
+    syn Declaration Reference.Declaration();
     ...
 }
 
@@ -231,8 +228,6 @@ aspect TypeAnalysis {
 }
 
 aspect Interpretation {
-    // Returns null, iff the expression is not constant.
-    syn Object Expression.ConstantValue();
     public abstract Object Expression.Value(State vm)
         throws InterpretationException;
     
@@ -250,7 +245,6 @@ Besides the above mentioned name analysis API (Each reference has a method that 
    * It can be statically checked which type an assignment has, i.e. if an assignment's right hand side can be assigned to the variable referenced on its left hand side.
    * It can be statically checked if a return statement's type is valid w.r.t. the signature of the procedure containing it.
  * SiPLE implementations support an interpreter:
-   * Partial evaluation for constant folding is supported.
    * Complete programs can be interpreterd by just calling the root node's `Interpret` method.
    * Single program statements can be executed based on a predefined (that includes user defined) execution state. Interpretation results are captured by changes of the input state.
 
