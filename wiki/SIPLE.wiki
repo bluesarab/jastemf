@@ -214,7 +214,6 @@ In SiPLE we use these techniques to specify a clear compiler API --- the _compil
 
 {{{
 aspect NameAnalysis {
-    // Variable name space:
     inh Collection<Declaration> ASTNode.LookUp(String name);
     syn Declaration Reference.Declaration();
     ...
