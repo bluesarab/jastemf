@@ -62,7 +62,7 @@ It consists of two procedures. The first computes the well-known [http://en.wiki
 
 == Installation ==
 
-The SiPLE tutorial can be checked out from the project's SVN repository. It is named _"org.jastemf.siple"_ and a subfolder of _"jastemf-examples/siple"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The xText SiPLE version additionally requires the _"org.jastemf.siple.editor"_ project (same SVN), into which the xText parser is generated. To get a stable version of SIPLE it should be checked out from [http://jastemf.googlecode.com/svn/tags/beta_0.1.6/jastemf-examples].
+The SiPLE tutorial can be checked out from the project's SVN repository. It is named _"org.jastemf.siple"_ and a subfolder of _"jastemf-examples/siple"_. It is recommended to check it out within Eclipse, e.g. using [http://subclipse.tigris.org/ Subclipse]. The xText SiPLE version additionally requires the _"org.jastemf.siple.editor"_ project (same SVN), into which the xText parser is generated. To get a stable version of SiPLE it should be checked out from [http://jastemf.googlecode.com/svn/tags/beta_0.1.6/jastemf-examples].
 
 The xText SiPLE version additionally requires the [http://www.xtext.org xText] plugin to be deployed. The xText update site is _"http://download.eclipse.org/modeling/tmf/updates/releases/"_.
 
@@ -72,10 +72,10 @@ Last but not least, JastEMF is required to integrate SiPLE's Ecore metamodel and
 
 The following table summarises the tools used by the SiPLE project, their purpose, whether they must be manually installed or configurated and if they are already contained in the project's repository:
 
-|| *Tool* || *Purpose* || *Must be Installed* || *Shiped with SIPLE* ||
+|| *Tool* || *Purpose* || *Must be Installed* || *Shiped with SiPLE* ||
 || JastEMF || To integrate !JastAdd semantics into EMF metamodel implementations || [Installation Yes] || No ||
-|| [http://www.xtext.org xText] || Required to generate the xText SIPLE editor || Yes || No ||
-|| [http://www.eclipse.org/ajdt/ AspectJ] || To weave regression test support into the !JastAdd and EMF SIPLE versions || Yes || No ||
+|| [http://www.xtext.org xText] || Required to generate the xText SiPLE editor || Yes || No ||
+|| [http://www.eclipse.org/ajdt/ AspectJ] || To weave regression test support into the !JastAdd and EMF SiPLE versions || Yes || No ||
 || [http://code.google.com/p/rtt/ RTT] || Regression test tool || No || Yes ||
 || [http://beaver.sourceforge.net/ Beaver] || LALR(1) parsergenerator || No || Yes ||
 || [http://jflex.de/ JFlex] || Lexer generator || No || Yes ||
@@ -84,13 +84,13 @@ The following table summarises the tools used by the SiPLE project, their purpos
 
 After checking out SiPLE, deploying xText and installing the Eclipse AspectJ tools and JastEMF no further configurations are required. The different SiPLE versions can be immediately generated using [http://ant.apache.org/ Ant] build scripts. It is only important to remember, that all build scripts must be executed within the JRE in which Eclipse is executed.
 
-To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SIPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
+To execute a build script within the same JRE, select _Run => External Tools => External Tool Configurations =>_ double click _Ant Build =>_ give the script a name and select it (_Buildfile:_ e.g. `${workspace_loc:/calculator/specifications/siple/build.xml}`) _=> JRE => Run in the same JRE as the workspace => Apply_. Of course, also the desired target has to be selected under the _Targets_ tab. In SiPLE's case it is also recommended to automatically refresh and build the workspace after generation (_Refresh => The project containing the selected resource => Recoursively include sub-folders_ should be selected; _Build => The project containing the selected resource_).
 
 Further steps, how to deploy and use generated implementations, are given in the respective version's description.
 
 = Project Repository Overview =
 
-Before we investigate how to generate and use the different SIPLE versions, let us take a short look on the project's structure. The project consists of five relevant resources:
+Before we investigate how to generate and use the different SiPLE versions, let us take a short look on the project's structure. The project consists of five relevant resources:
  * Generated SiPLE implementation parts (source code folder _"src-gen"_)
  * Hand-written SiPLE implementation parts (source code folder _"src"_)
  * SiPLE specifications (source code folder _"specifications"_)
@@ -124,7 +124,7 @@ To generate the desired SiPLE implementation, of course, appropriate specificati
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_specifications.png
 
  * _model_: Specification of the SiPLE compiler's API --- i.e. its metamodel (_siple.ecore_) --- and how to generate an appropriate EMF implementation (_siple.genmodel_). Also a diagram of the metamodel is given (_siple.ecorediag_). *Note:* Only the EMF version has an Ecore metamodel.
- * _semantics_: Specification of the SIPLE compiler's static semantics and its interpreter functionallities (dynamic/execution semantics). The semantics are separated w.r.t. SIPLE's different semantic concerns, which are name analysis, type analysis, constraint checking, data flow analysis, interpretation and helper methods subsumed in the access support concern. To declare all these concerns a so called compiler core is defined, which specifies the functionallity each concern must support, i.e. the compiler core declares all supported semantics whereas each concern's !JastAdd specification (the _`*`.jrag_ files) specifies it.
+ * _semantics_: Specification of the SiPLE compiler's static semantics and its interpreter functionallities (dynamic/execution semantics). The semantics are separated w.r.t. SiPLE's different semantic concerns, which are name analysis, type analysis, constraint checking, data flow analysis, interpretation and helper methods subsumed in the access support concern. To declare all these concerns a so called compiler core is defined, which specifies the functionallity each concern must support, i.e. the compiler core declares all supported semantics whereas each concern's !JastAdd specification (the _`*`.jrag_ files) specifies it.
  * _syntax_: Specification of the SiPLE compiler's parser. In the !JastAdd and EMF version a LALR(1) Beaver parser is used (_parser.beaver_). The xText version is based on an LL(`*`) ANTLR parser, which is generated based on an xText concrete syntax definition (_siple.xtext_).
  * _symbols_: Specification of an appropriate JFlex lexer (_lexer.jflex_) for the Beaver parser (_parser.beaver_).
 
@@ -136,7 +136,7 @@ Another important project resource are test programs that check SiPLE's implemen
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/repository_tests.png
 
- * _adaptation_: Contains AspectJ aspects, that prepare the !JastAdd and EMF version's implementation for regression tests with RTT. The respective adaptation aspects are copied verbatim into the `rtt.adaptation` package while generating a concrete SIPLE version.
+ * _adaptation_: Contains AspectJ aspects, that prepare the !JastAdd and EMF version's implementation for regression tests with RTT. The respective adaptation aspects are copied verbatim into the `rtt.adaptation` package while generating a concrete SiPLE version.
  * _source`_`code`_`examples_: Contains example SiPLE programs used for testing. The programs are classified, whether they are correct or contain static semantic errors. Each program (i.e. testcase) tests a certain aspect of the SiPLE language. All example programs are packed together into a single RTT testsuite.
  * _testsuites_: Contains the RTT testsuite against which the !JastAdd and EMF versions are regression tested.
 
@@ -189,7 +189,7 @@ abstract Statement;
 It specifies, that:
 
  * A `CompilationUnit` node type has arbitrary many `Declaration` child nodes.
- * `Statement` and `Expression` are abstract node types. Statements and expressions as such do not exist; only specific kinds of statements and expressions exist. Also, in SIPLE every expression is a statement.
+ * `Statement` and `Expression` are abstract node types. Statements and expressions as such do not exist; only specific kinds of statements and expressions exist. Also, in SiPLE every expression is a statement.
  * `If` is a `Statement` with an `Expression` child named _Condition_, a `Block` child named _Body_ and an optional `Block` child named _Alternative_.
  * `Block` is a `Statement` that has arbitrary many `Statement` child nodes.
  * `Declaration` is an abstract node type that is a `Statement`. Every `Declaration` has a terminal child named _Name_ of type `String`.
@@ -249,7 +249,7 @@ Besides the above mentioned name analysis API (Each reference has a method that 
    * Each expression has a type.
    * It can be statically checked which type an assignment has, i.e. if an assignment's right hand side can be assigned to the variable referenced on its left hand side.
    * It can be statically checked if a return statement's type is valid w.r.t. the signature of the procedure containing it.
- * SIPLE implementations support an interpreter:
+ * SiPLE implementations support an interpreter:
    * Partial evaluation for constant folding is supported.
    * Complete programs can be interpreterd by just calling the root node's `Interpret` method.
    * Single program statements can be executed based on a predefined (that includes user defined) execution state. Interpretation results are captured by changes of the input state.
@@ -329,7 +329,7 @@ Even if we did not investigate the RAG specifications of SiPLE's semantics in de
  * It is no problem to monotonic extend languages, i.e. to add further language constructs' semantics as modules. Thus, RAGs permit the specification-driven development of extensible compilers (E.g. see Tobjörn Ekmans PhD. thesis _"Extensible Compiler Construction"_ which describes the implementation of a Java compiler using !JastAdd).
  * The complicated part of semantics --- the distribution of local information w.r.t. certain constraints accross a structure, to combine such information and further redistribute the results --- can be very convenient specified using RAGs. In essence attribute equations are specified w.r.t. a local --- i.e. easy to understand --- context and resulting complicated tree traversals and dependencies are automatically handled by the evaluator, such that there is no need to worry about traversal and dependency strategies (It is the manual implementation/specification of such traversal and dependency strategies that make semantics complicated. And many approaches that do not scale and only fit for toy examples do so because of this issue.).
 
-So, from a compiler developers viewpoint (to conveniently implement a reliable, easy maintainable and extensible/changeable compiler) the !JastAdd SIPLE version is fine. However, from a tool developers and metamodelers viewpoint, who is interested to integrate SiPLE into existing environments and likes to provide a convenient tool API and repository, the just presented solution is not so well. Its main problem is the proprietary API (generated based on the !JastAdd AST and `jrag` specifications) and repository.
+So, from a compiler developers viewpoint (to conveniently implement a reliable, easy maintainable and extensible/changeable compiler) the !JastAdd SiPLE version is fine. However, from a tool developers and metamodelers viewpoint, who is interested to integrate SiPLE into existing environments and likes to provide a convenient tool API and repository, the just presented solution is not so well. Its main problem is the proprietary API (generated based on the !JastAdd AST and `jrag` specifications) and repository.
 
 In the next section we present the EMF version, which improves in that direction. It has the same semantics as the just presented !JastAdd version and additionally an Ecore metamodel, which defines its API.
 
@@ -337,7 +337,7 @@ In the next section we present the EMF version, which improves in that direction
 
 == Introduction ==
 
-The second SiPLE version we investigate is an extension of the just presented [#JastAdd_Version JastAdd version] and has its focus on tool integration and language API. It complements the !JastAdd version's lexic, syntactic and semantic specifications and the components generated based on them with an appropriate Ecore metamodel, such that the SIPLE compiler as well as SIPLE programs are integrated in the EMF world. To realise this integration --- i.e. an Ecore metamodel implementation with semantics --- JastEMF is used.
+The second SiPLE version we investigate is an extension of the just presented [#JastAdd_Version JastAdd version] and has its focus on tool integration and language API. It complements the !JastAdd version's lexic, syntactic and semantic specifications and the components generated based on them with an appropriate Ecore metamodel, such that the SiPLE compiler as well as SiPLE programs are integrated in the EMF world. To realise this integration --- i.e. an Ecore metamodel implementation with semantics --- JastEMF is used.
 
 *Note:* The viewpoint, that we first developed a compiler with !JastAdd and now extend it with an appropriate API is just by chance. We can also do it the other way around --- i.e. the metamodeler's way --- and first specify the desired tool API and functionality via a metamodel and than extend it with semantics using !JastAdd.
 
@@ -381,7 +381,7 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/emf_genmodel_generate_dial
 
 Eclipse's standard EMF tooling will generate a plugin project named _siple.editor_.
 
-== Application: Editing SIPLE Programs as Models via generated Eclipse Model Editors ==
+== Application: Editing SiPLE Programs as Models via generated Eclipse Model Editors ==
 
 The Eclipse editor, generated in the previous section, is based on the JastEMF integrated SiPLE implementation. Thus, one can browse SiPLE programs' static semantics --- i.e. derived properties and non-containment references --- while editing them.
 
@@ -391,7 +391,7 @@ http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/editor_pluginxml_launch.pn
 
 *Note:* If you have other projects in your workspace, that are erroneous, you will get an error message. Just ignore it and select _Proceed_.
 
-Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SiPLE program models and edit them with the SIPLE model editor. Let us create a SiPLE model named `mymodel.siple` and do an example editor session to construct the following model:
+Create a new empty project in the started Eclipse (_New => Other => General => Project_). Within projects you can now create SiPLE program models and edit them with the SiPLE model editor. Let us create a SiPLE model named `mymodel.siple` and do an example editor session to construct the following model:
 
 http://jastemf.googlecode.com/svn/wiki/Examples/SIPLE/model_tree_editor.png
  
@@ -418,13 +418,13 @@ We think the short editor session demonstrated, that JastEMF successfully integr
 
 By providing an Ecore metamodel for the !JastAdd semantics presented in the previous section, JastEMF enabled us to generate a metamodel implementation with integrated semantics. The resulting SiPLE implementation has on the one hand a very convenient semantics specification and on the other hand an appropriate metamodel. Thus, it satisfies both compiler developers' concerns (to conveniently implement a reliable, easy maintainable and extensible/changeable compiler) and metamodellers' concerns (convenient tool API, repository and integration into a common software development environment).
 
-= EMF+Editor Version =
+= EMF + Editor Version =
 
 == Introduction ==
 
 W.r.t. _semantics integrated metamodelling_, the EMF SiPLE version demonstrated reference attribute grammars practicability to specify metamodel semantics. To further elaborate and exemplify the benefits of _semantics integrated metamodelling_ we used [http://www.xtext.org xText] to develop a text to model parser for SiPLE, that supports an Eclipse editor with syntax highlighting, code completion and integrated SiPLE semantics (note that in previous versions we used EMFText instead of xText). The only difference between the xText and the plain EMF SiPLE version is that xText complements SiPLE's existing textual user interface --- i.e., the Beaver parser and JFlex lexer --- by a generated text editor.
 
-xText specifications basically specify a set of regular expressions representing tokens and a context-free grammar to describe a concrete syntax, whereas non-terminals refer to metaclasses of a metamodel, such that generated parsers construct model instances while parsing. Therefore, we reused the context-free grammar specification of the previous SiPLE versions' Beaver parser to develop an xText specification for SIPLE (_"specifications/siple/syntax/siple.xtext"_). xText automatically generates an Eclipse editor from this specification.
+xText specifications basically specify a set of regular expressions representing tokens and a context-free grammar to describe a concrete syntax, whereas non-terminals refer to metaclasses of a metamodel, such that generated parsers construct model instances while parsing. Therefore, we reused the context-free grammar specification of the previous SiPLE versions' Beaver parser to develop an xText specification for SiPLE (_"specifications/siple/syntax/siple.xtext"_). xText automatically generates an Eclipse editor from this specification.
 
 The semantic specifications of the previous SiPLE versions are reused. The generated editor immediately benefits from these semantics, such that its properties view shows SIPLE programs' semantics while editing them.
 
@@ -436,7 +436,7 @@ Since the _"org.jastemf.siple.editor"_ project already exists (checked out from 
 
 == Application: Editing SiPLE Programs as Models in a generated Eclipse Text Editor ==
 
-To use the generated editor open the _"org.jastemf.siple.editor"_ project's _plugin.xml_ and select _Launch an Eclipse application_. Similar to the EMF version, you can now edit SIPLE programs using the generated editor.
+To use the generated editor open the _"org.jastemf.siple.editor"_ project's _plugin.xml_ and select _Launch an Eclipse application_. Similar to the EMF version, you can now edit SiPLE programs using the generated editor.
 
 Let us demonstrate the editor using the second faculty numbers example from above. Just create a new SiPLE program (_File => New => Other => General => File => Next => Container:_ Select any project within the workspace _=> File name:_ `faculty.siple` _=> Finish_). Open the xText siple editor for the program (Right click the `faculty.siple` file and select _Open With => Other => Internal editors => Siple editor => OK_) and copy and paste the program, which was:
 {{{
@@ -467,4 +467,4 @@ Last but not least, you can still open SiPLE programs in the editor generated fo
 
 == Conclusion ==
 
-The xText SIPLE version demonstrates that EMF tools and compiler projects benefit from _semantics integrated metamodelling_. The great advantage of JastEMF's approach is: It does not matter which editor or EMF tool you use. Since JastEMF integrates a metamodel's semantics into its implementation, all tools working with model instances of the metamodel benefit from its semantics and can reuse them for their own tasks.
+The xText SiPLE version demonstrates that EMF tools and compiler projects benefit from _semantics integrated metamodelling_. The great advantage of JastEMF's approach is: It does not matter which editor or EMF tool you use. Since JastEMF integrates a metamodel's semantics into its implementation, all tools working with model instances of the metamodel benefit from its semantics and can reuse them for their own tasks.
