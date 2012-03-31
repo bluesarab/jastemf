@@ -13,6 +13,7 @@ SiPLE is a simple imperative programming language. Its language concepts are:
  * A block-structured name space and nested procedures
  * lexically-scoped first-class functions (i.e., lexical closures)
  * `While` and `If` control-flow statements
+ * Automatic integer to real type coercions (e.g., when assigning an integer value to a variable of type real)
  * A save interpreter, that calmly terminates in the presence of errors
 SiPLE is strongly typed, such that a static type analysis can be performed.
 
