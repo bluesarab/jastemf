@@ -9,7 +9,7 @@ In the following we shortly summarise the example [Approach#Integration_Projects
 
 SiPLE is a simple imperative programming language. Its language concepts are:
  * Integer, real and Boolean arithmetics
- * Pointers
+ * Pointers (including pointers to procedures and pointers)
  * A block-structured name space and nested procedures
  * lexically-scoped first-class functions (i.e., lexical closures)
  * `While` and `If` control-flow statements
