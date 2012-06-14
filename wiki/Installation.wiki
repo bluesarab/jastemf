@@ -14,14 +14,14 @@ In detail JastEMF requires at least:
 = Installing JastEMF =
 
 We highly recommend to use the [#Installing_JastEMF_from_Update-Site Eclipse Update Site]. To install JastEMF manually:
-
   # Download, install and configure an Eclipse distribibution 
   # Download the most recent _org.jastemf_ plugin JAR from our [http://code.google.com/a/eclipselabs.org/p/jastemf/downloads/list download] section and move it to the eclipse dropins directory (_DIR_/dropins).
   # Optionally download the most recent _org.jastemf.converter_ plugin JAR from our [http://code.google.com/a/eclipselabs.org/p/jastemf/downloads/list download] section and move it to _DIR_/dropins.
   # Run Eclipse and select an arbitrary workspace. Check if all JastEMF ANT tasks have been properly registered to Eclipse by investigating _Preferences => Ant => Runtime =>_ Tab _Tasks_. You should find the `jastemf` task and, if you installed the converter, the `jastemf.ecore2ast` and `jastemf.ecore2jrag` tasks.
 
 = Installing JastEMF from Update-Site =
- * JastEMF now also provides an Eclipse Update Site. 
+
+JastEMF provides an Eclipse Update Site:
  * The update-site for JastEMF 0.1.6 can be found here: 
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/tags/beta_0.1.6/build/org.jastemf.build/distribution
  * An update-site providing intermediate builds of the current trunk, that we do from time to time, can be found here: 
