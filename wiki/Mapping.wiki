@@ -4,7 +4,7 @@
 = Introduction =
 This page discusses the mapping between Ecore and JastAdd features.
 
-= Mapping between JastAdd and Ecore = 
+= Mapping between JastAdd! and Ecore = 
 == Properties of Ecore `EStructuralFeatures` ==
 Each structural feature of an Ecore model's metaclasses can be configured by a bunch of options. Some of them even directly influence Ecore code generation. The following figure highlights which of them are important for the integration of the generated Ecore and JastAdd code generation. 
 
