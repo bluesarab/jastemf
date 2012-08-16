@@ -1,0 +1,71 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+
+<project name="TestCases" default="JastAdd Semantic">
+
+	<path id="test_basedir">
+		<pathelement location="./.." />
+	</path>
+	
+	<property name="test_basedir" refid="test_basedir" />
+	
+
+	<path id="jastadd.classpath">
+		<fileset dir="${test_basedir}/../jastadd_modifications">
+			<include name="jastadd2.jar"/>
+		</fileset>
+	</path>
+	
+	<taskdef 
+		name="jastadd" 
+		classname="jastadd.JastAddTask">
+		<classpath refid="jastadd.classpath"/>
+	</taskdef>
+	
+	
+	
+	<target name="Clean" description="Delete all generated artefacts.">
+		<delete includeemptydirs="true">
+			<fileset dir="${test_basedir}">
+				<!-- all these artefacts are generated -->
+				<include name="src-gen/**/*" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="JastAdd Semantic" depends="Clean">
+		<echo message="======================> Generate JastAdd Semantic &lt;=====================" />
+		<jastadd 
+			outdir="${test_basedir}/src-gen" 
+			package="jastadd.test" 
+			rewrite="true">
+			<fileset dir="${test_basedir}/specifications">
+				<include name="semantics/**/*.ast" />
+				<include name="semantics/**/*.jrag" />
+				<include name="semantics/**/*.jadd" />
+			</fileset>
+			
+		</jastadd>
+	</target>
+
+	
+	<!-- <target name="Test">
+		<echo message="========================> Running Test Cases &lt;=======================" />
+		<junit>
+			 <test name="org.jastemf.test.NTATest" />
+			 <test name="org.jastemf.test.APITest" />
+			 <formatter type="plain" usefile="false" />
+			 <classpath refid="eclipse.classpath" />
+			 <classpath>
+			 	<path>
+			 		<pathelement path="${test_basedir}/bin"/>
+			 	</path>
+			 </classpath>
+		</junit>
+	</target>-->
+	
+	
+</project>
