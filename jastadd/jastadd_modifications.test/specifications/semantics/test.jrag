@@ -1,0 +1,10 @@
+aspect test {
+	
+	syn String A.test() = "true";
+	
+	syn B A.computeSomeB() = new BImpl();
+	
+	inh Root C.root();
+	eq Root.getC().root() = this;
+	
+}
