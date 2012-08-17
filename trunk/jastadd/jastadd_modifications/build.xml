@@ -1,0 +1,52 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+
+<project name="Make" default="jar">
+	
+	<path id="basedir">
+		<pathelement location="." />
+	</path>
+	
+	<target name="all">
+	  <exec executable="make">
+	    <arg value="all"/>
+	  </exec>
+		<eclipse.refreshLocal resource="jastadd_modifications"/>
+	</target>
+	
+	<target name="jar">
+		<exec executable="make">
+		    <arg value="jar"/>
+		</exec>
+		<eclipse.refreshLocal resource="jastadd_modifications"/>
+	</target>
+	
+	<target name="source-jar">
+		<exec executable="make">
+		    <arg value="source-jar"/>
+		</exec>
+		<eclipse.refreshLocal resource="jastadd_modifications"/>
+	</target>
+	
+	<target name="release">
+		<exec executable="make">
+		    <arg value="release"/>
+		</exec>
+		<eclipse.refreshLocal resource="jastadd_modifications"/>
+	</target>
+	
+	
+	<target name="Clean" description="Delete all generated artefacts.">
+		<delete includeemptydirs="true">
+			<fileset dir="${basedir}">
+				<!-- all these artefacts are generated -->
+				<include name="build-bin/**/*" />
+			</fileset>
+		</delete>
+		<eclipse.refreshLocal resource="jastadd_modifications"/>
+	</target>
+	
+</project>
