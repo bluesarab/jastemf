@@ -77,8 +77,8 @@ aspect NTADetector {
 
 aspect ConstructorParameterTypes {
   syn String Components.constrParmType();
-  eq ListComponents.constrParmType() =  ASTNode.listName+"<" + computeImplName(getId().type()) + ">" ;
-  eq OptionalComponent.constrParmType() = "Opt<" + computeImplName(getId().type()) + ">" ;
+  eq ListComponents.constrParmType() =  ASTNode.listName + "<" + computeImplName(getId().type()) + ">" ;
+  eq OptionalComponent.constrParmType() = ASTNode.optName + "<" + computeImplName(getId().type()) + ">" ;
   eq TokenComponent.constrParmType() = getTokenId().getTYPE();
   eq AggregateComponents.constrParmType() = getId().type();
 }

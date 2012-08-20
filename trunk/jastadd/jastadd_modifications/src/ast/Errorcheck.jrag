@@ -43,7 +43,7 @@ aspect ErrorCollector {
     return l;
   }
   syn boolean TypeDecl.isRootNode() = false;
-  eq ASTDecl.isRootNode() = !hasAbstract() && !name().equals("ASTNode") && !name().equals("Opt") && !name().equals("List") && fathers().isEmpty();
+  eq ASTDecl.isRootNode() = !hasAbstract() && !name().equals("ASTNode") && !name().equals(ASTNode.optName) && !name().equals(ASTNode.listName) && fathers().isEmpty();
   
   syn String TypeDecl.collectAstErrors() = astError();
   

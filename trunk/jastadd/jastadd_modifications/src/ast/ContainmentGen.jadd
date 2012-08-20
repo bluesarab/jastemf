@@ -379,7 +379,7 @@ aspect ASTDeclContainmentGen {
 	        "        return #INDEX#;\n" +
 	        "    }\n\n";
 	    }
-	    s = s.replaceAll("#OPTTYPE#", "Opt<" + computeImplName(getId().type()) + ">" );
+	    s = s.replaceAll("#OPTTYPE#", ASTNode.optName + "<" + computeImplName(getId().type()) + ">" );
 	    s = s.replaceAll("#ANNOTATIONS#", ASTNode.suppressWarnings());
 	    s = s.replaceAll("#TYPE#", computeImplName(getId().type()));
 	    s = s.replaceAll("#NAME#", getId().name());
