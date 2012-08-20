@@ -91,7 +91,7 @@ public class JastAdd {
 
             {
                 java.io.StringWriter writer = new java.io.StringWriter();
-                root.jjtGenASTNode$State(new PrintWriter(writer), grammar, ASTNode.jjtree, ASTNode.rewriteEnabled);
+                root.jjtGenASTNode$State(new PrintWriter(writer), grammar, ASTNode.rewriteEnabled);
       
                 jrag.AST.JragParser jp = new jrag.AST.JragParser(new java.io.StringReader(writer.toString()));
                 jp.root = root;
@@ -138,7 +138,7 @@ public class JastAdd {
               if(root.getTypeDecl(i) instanceof ASTDecl) {
                 ASTDecl decl = (ASTDecl)root.getTypeDecl(i);
                 java.io.StringWriter writer = new java.io.StringWriter();
-                decl.jjtGen(new PrintWriter(writer), grammar, ASTNode.jjtree, ASTNode.rewriteEnabled);
+                decl.jjtGen(new PrintWriter(writer), grammar, ASTNode.rewriteEnabled);
       
                 jrag.AST.JragParser jp = new jrag.AST.JragParser(new java.io.StringReader(writer.toString()));
                 jp.root = root;
@@ -248,11 +248,6 @@ public class JastAdd {
     /* Read and process commandline */
     public boolean readArgs(String[] args) {
         CommandLineArguments cla = new CommandLineArguments(args);
-        if(cla.hasLongOption("jjtree") && !cla.hasLongOption("grammar")) {
-          System.out.println("Missing grammar option that is required in jjtree-mode");
-          return true;
-        }
-        ASTNode.jjtree = cla.hasLongOption("jjtree");
         grammar = cla.getLongOptionValue("grammar", "Unknown");
 
         ASTNode.createDefaultMap = cla.getLongOptionValue("defaultMap", "new java.util.HashMap(4)");
@@ -292,8 +287,6 @@ public class JastAdd {
           }
         }
 
-        ASTNode.java5 = !cla.hasLongOption("java1.4");
-
         if(cla.hasLongOption("debug")) {
           ASTNode.debugMode = true;
           ASTNode.cycleLimit = 100;
@@ -310,8 +303,6 @@ public class JastAdd {
           ASTNode.createDefaultMap = "new java.util.LinkedHashMap(4)";
           ASTNode.createDefaultSet = "new java.util.LinkedHashSet(4)";
         }
-
-        ASTNode.j2me = cla.hasLongOption("j2me");
         
         String outputDirName = cla.getLongOptionValue("o", System.getProperty("user.dir"));
         outputDir = new File(outputDirName);
@@ -327,26 +318,6 @@ public class JastAdd {
         if(!outputDir.canWrite()) {
           System.out.println("Output directory is write protected");
           System.exit(1);
-        }
-
-        if(ASTNode.j2me) {
-          if(ASTNode.deterministic) {
-            System.out.println("J2ME can not be used in deterministic mode");
-            System.exit(1);
-          }
-          if(ASTNode.debugMode) {
-            System.out.println("J2ME can not be used in debug mode");
-            System.exit(1);
-          }
-          if(ASTNode.java5) {
-            System.out.println("J2ME can not be used in java5 mode");
-            System.exit(1);
-          }
-          ASTNode.createDefaultMap = "new java.util.Hashtable(4)";
-          ASTNode.createDefaultSet = "new ASTNode$State.HashtableBasedSet(4)";
-          ASTNode.typeDefaultMap = "java.util.Hashtable";
-          ASTNode.typeDefaultSet = "ASTNode$State.HashtableBasedSet";
-          ASTNode.createContributorSet = "new ASTNode$State.HashtableBasedSet(4)";
         }
         
         ASTNode.tracing = cla.hasLongOption("tracing");

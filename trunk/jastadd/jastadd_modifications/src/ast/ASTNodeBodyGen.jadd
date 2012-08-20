@@ -1,0 +1,268 @@
+ 
+aspect ASTNodeBodyGen{
+	
+	
+	public void ASTDecl.jjtGenASTNode(PrintWriter stream, String parserName, boolean rewriteEnabled) {
+	      stream.println("   public static final boolean ASTNode.generatedWithCircularEnabled = " + ASTNode.circularEnabled + ";");
+	      stream.println("   public static final boolean ASTNode.generatedWithCacheCycle = " + ASTNode.cacheCycle + ";");
+	      stream.println("   public static final boolean ASTNode.generatedWithComponentCheck = " + ASTNode.componentCheck + ";");
+	      if(ASTNode.noStatic) {
+	        stream.println("    protected ASTNode$State ASTNode.state = null;");
+	        stream.println("    public final ASTNode$State ASTNode.state() {");
+	        stream.println("        if(state == null) {");
+	        stream.println("            if(parent == null) {");
+	        stream.println("                 state = new ASTNode$State();");
+	        if(ASTNode.debugMode) {
+	          // check if a new state object is created for a node that is not a root node
+	          StringBuffer s = new StringBuffer();
+	          s.append("if(");
+	          boolean first = true;
+	          for(Iterator iter = env().roots().iterator(); iter.hasNext(); ) {
+	            ASTDecl root = (ASTDecl)iter.next();
+	            if(!first)
+	              s.append(" && ");
+	            first = false;
+	            s.append("!(this instanceof " + root.name() + ")");
+	          }
+	          s.append(") throw new RuntimeException(\"Trying to evaluate state in a node which is not attached to the main tree\");");
+	          stream.println(s.toString());
+	        }
+	        stream.println("            }");
+	        stream.println("            else {");
+	        stream.println("                state = parent.state();");
+	        stream.println("            }");
+	        stream.println("        }");
+	        stream.println("        return state;");
+	        stream.println("    }");
+	      }
+	      else {
+	        stream.println("   protected static ASTNode$State ASTNode.state = new ASTNode$State();");
+	        stream.println("   public final ASTNode$State ASTNode.state() { return state; }");
+	      }
+
+	      if(rewriteEnabled) {
+	        if(rewriteLimit > 0) {
+	          stream.println("  public void ASTNode.debugRewrite(String info) {");
+	          stream.println("    if(!parent.is$Final()) return;");
+	          stream.println("    java.util.ArrayList key = new java.util.ArrayList(2);");
+	          stream.println("    key.add(getParent());");
+	          stream.println("    key.add(new Integer(getParent().getIndexOfChild(this)));");
+	          stream.println("    java.util.ArrayList list;");
+	          stream.println("    if(state().debugRewrite.containsKey(key))");
+	          stream.println("      list = (java.util.ArrayList)state().debugRewrite.get(key);");
+	          stream.println("    else {");
+	          stream.println("      list = new java.util.ArrayList();");
+	          stream.println("      state().debugRewrite.put(key, list);");
+	          stream.println("    }");
+	          stream.println("    list.add(info);");
+	          stream.println("    if(list.size() > " + rewriteLimit + ") {");
+	          stream.println("      StringBuffer buf = new StringBuffer(\"Iteration count exceeded for rewrite:\");");
+	          stream.println("      for(java.util.Iterator iter = list.iterator(); iter.hasNext(); ) buf.append(\"\\n\" + iter.next());");
+	          stream.println("      throw new RuntimeException(buf.toString());");
+	          stream.println("    }");
+	          stream.println("  }");
+	          stream.println("  public void ASTNode.debugRewriteRemove() {");
+	          stream.println("    java.util.ArrayList key = new java.util.ArrayList(2);");
+	          stream.println("    key.add(getParent());");
+	          stream.println("    key.add(new Integer(getParent().getIndexOfChild(this)));");
+	          stream.println("    state().debugRewrite.remove(key);");
+	          stream.println("  }\n");
+	        }
+	        stream.println("  public boolean ASTNode.in$Circle = false;");
+	        stream.println("  public boolean ASTNode.in$Circle() { return in$Circle; }");
+	        stream.println("  public void ASTNode.in$Circle(boolean b) { in$Circle = b; }");
+	        if(ASTNode.stagedRewrites) {
+	          stream.println("  public int ASTNode.is$Final = 0;");
+	          stream.println("  public boolean ASTNode.is$Final() { return is$Final >= state().rewritePhase; }");
+	          stream.println("  public void ASTNode.is$Final(int phase) { is$Final = phase; }");
+	          stream.println("  public void ASTNode.enterRewritePhase(int phase) { state().rewritePhase = phase; }");
+	          stream.println("  public boolean ASTNode.inRewritePhase(int phase) { return state().rewritePhase >= phase; }");
+	        }
+	        else {
+	          stream.println("  public boolean ASTNode.is$Final = false;");
+	          stream.println("  public boolean ASTNode.is$Final() { return is$Final; }");
+	          stream.println("  public void ASTNode.is$Final(boolean b) { is$Final = b; }");
+	        }
+	        
+	        stream.println("  @SuppressWarnings(\"cast\") public T ASTNode.getChild(int i) {");
+	        stream.println("    return (T)ASTNode.getChild(this, i);");
+	        stream.println("  }");
+
+	        stream.println("  public static ASTNode ASTNode.getChild(ASTNode that, int i) {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        stream.println("    ASTNode node = that.getChildNoTransform(i);");
+	        stream.println("    if(node.is$Final()) return node;");
+	       stream.println("    if(!node.mayHaveRewrite()) {");
+	        if(ASTNode.stagedRewrites)
+	          stream.println("      node.is$Final(that.is$Final);");
+	        else
+	          stream.println("      node.is$Final(that.is$Final());");
+	        stream.println("      return node;");
+	        stream.println("    }");
+	        stream.println("    if(!node.in$Circle()) {");
+	        stream.println("      int rewriteState;");
+	        stream.println("      int num = that.state().boundariesCrossed;");
+	        stream.println("      do {");
+	        stream.println("        that.state().push(ASTNode$State.REWRITE_CHANGE);");
+	        stream.println("        ASTNode oldNode = node;");
+	        stream.println("        oldNode.in$Circle(true);");
+	        stream.println("        node = node.rewriteTo();");
+	        stream.println("        if(node != oldNode)");
+	        stream.println("          that.setChild(node, i);");
+	        stream.println("        oldNode.in$Circle(false);");
+	        stream.println("        rewriteState = that.state().pop();");
+	        stream.println("      } while(rewriteState == ASTNode$State.REWRITE_CHANGE);");
+	        stream.println("      if(rewriteState == ASTNode$State.REWRITE_NOCHANGE && that.is$Final()) {");
+	        if(ASTNode.stagedRewrites)
+	          stream.println("        node.is$Final(that.state().rewritePhase);");
+	        else
+	          stream.println("        node.is$Final(true);");
+	        stream.println("        that.state().boundariesCrossed = num;");
+	        if(rewriteLimit > 0)
+	          stream.println("        node.debugRewriteRemove();");
+	        stream.println("      }");
+	        stream.println("    }");
+	        stream.println("    else if(that.is$Final() != node.is$Final()) that.state().boundariesCrossed++;");
+	        stream.println("    return node;");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+	      }
+	      else {
+	        stream.println("  @SuppressWarnings(\"cast\") public T ASTNode.getChild(int i) {");
+	        stream.println("    return (T)getChildNoTransform(i);");
+	        stream.println("  }");
+	      }
+	      stream.println("  private int ASTNode.childIndex;");
+	      stream.println("  public int ASTNode.getIndexOfChild(ASTNode node) {");
+	      stream.println("    if(node != null && node.childIndex < getNumChildNoTransform() && node == getChildNoTransform(node.childIndex))");
+	      stream.println("      return node.childIndex;");
+	      stream.println("    for(int i = 0; i < getNumChildNoTransform(); i++)");
+	      stream.println("      if(getChildNoTransform(i) == node) {");
+	      stream.println("        node.childIndex = i;");
+	      stream.println("        return i;");
+	      stream.println("      }");
+	      stream.println("    return -1;");
+	      stream.println("  }\n");
+	      stream.println("  public void ASTNode.addChild(T node) {");
+	      stream.println("    setChild(node, getNumChildNoTransform());");
+	      stream.println("  }");
+
+
+	     
+	      stream.println("  @SuppressWarnings(\"cast\") public final T ASTNode.getChildNoTransform(int i) {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	          stream.println("    return (T)children[i];");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	          stream.println("  }");
+	        }
+	        else {
+	          stream.println("  public final ASTNode ASTNode.getChildNoTransform(int i) {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	          stream.println("    return (ASTNode)children[i];");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	          stream.println("  }");
+	        }
+	        stream.println("  protected int ASTNode.numChildren;"); // added
+	        stream.println("  protected int ASTNode.numChildren() {");
+	        stream.println("    return numChildren;");
+	        stream.println("  }");
+	        stream.println("  public int ASTNode.getNumChild() {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        stream.println("    return numChildren();");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+	        stream.println("  public final int ASTNode.getNumChildNoTransform() {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        stream.println("    return numChildren();");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+
+	        stream.println("  public void ASTNode.setChild(T node, int i) {");
+	 
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        if(debugMode)
+	          stream.println("        debugNodeAttachment(node);");
+	        stream.println("    if(children == null) {");
+	        stream.println("      children = new ASTNode[i + 1];");
+	        stream.println("    } else if (i >= children.length) {");
+	        stream.println("      ASTNode c[] = new ASTNode[i << 1];");
+	        stream.println("      System.arraycopy(children, 0, c, 0, children.length);");
+	        stream.println("      children = c;");
+	        stream.println("    }");
+	        stream.println("    children[i] = node;");
+	        stream.println("    if(i >= numChildren) numChildren = i+1;");
+	        stream.println("    if(node != null) { node.setParent(this); node.childIndex = i; }");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+
+	        stream.println("  public void ASTNode.insertChild(T node, int i) {");
+	 
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        if(debugMode)
+	          stream.println("        debugNodeAttachment(node);");
+	        stream.println("    if(children == null) {");
+	        stream.println("      children = new ASTNode[i + 1];");
+	        stream.println("      children[i] = node;");
+	        stream.println("    } else {");
+	        stream.println("      ASTNode c[] = new ASTNode[children.length + 1];");
+	        stream.println("      System.arraycopy(children, 0, c, 0, i);");
+	        stream.println("      c[i] = node;");
+	        stream.println("      if(i < children.length)");
+	        stream.println("        System.arraycopy(children, i, c, i+1, children.length-i);");
+	        stream.println("      children = c;");
+	        stream.println("    }");
+	        stream.println("    numChildren++;");
+	        stream.println("    if(node != null) { node.setParent(this); node.childIndex = i; }");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+
+	        stream.println("  public void ASTNode.removeChild(int i) {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        stream.println("    if(children != null) {");
+	        stream.println("      ASTNode child = (ASTNode)children[i];");
+	        stream.println("      if(child != null) {");
+	        stream.println("        child.setParent(null);");
+	        stream.println("        child.childIndex = -1;");
+	        stream.println("      }");
+	        stream.println("      System.arraycopy(children, i+1, children, i, children.length-i-1);");
+	        stream.println("      numChildren--;");
+	        stream.println("    }");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+
+	        stream.println("  public ASTNode ASTNode.getParent() {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        if(rewriteEnabled) {
+	          stream.println("    if(parent != null && ((ASTNode)parent).is$Final() != is$Final()) {");
+	          stream.println("      state().boundariesCrossed++;");
+	          stream.println("    }");
+	        }
+	        stream.println("    return (ASTNode)parent;");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+	        stream.println("  public void ASTNode.setParent(ASTNode node) {");
+	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        stream.println("    parent = node;");
+	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
+	        stream.println("  }");
+	        stream.println("  protected ASTNode ASTNode.parent;");
+	        stream.println("  protected ASTNode[] ASTNode.children;");
+	        if(debugMode) {
+	        stream.println("    protected boolean ASTNode.debugNodeAttachmentIsRoot() { return false; }");
+	        stream.println("    private static void ASTNode.debugNodeAttachment(ASTNode node) {");
+	        stream.println("        if(node == null) throw new RuntimeException(\"Trying to assign null to a tree child node\");");
+	        stream.println("        while(node != null && !node.debugNodeAttachmentIsRoot()) {");
+	        if(rewriteEnabled)
+	          stream.println("            if(node.in$Circle()) return;");
+	        stream.println("            ASTNode parent = (ASTNode)node.parent;");
+	        stream.println("            if(parent != null && parent.getIndexOfChild(node) == -1) return;");
+	        stream.println("            node = parent;");
+	        stream.println("        }");
+	        stream.println("        if(node == null) return;");
+	        stream.println("        throw new RuntimeException(\"Trying to insert the same tree at multiple tree locations\");");
+	        stream.println("    }");
+	      }
+	  }
+
+}
+

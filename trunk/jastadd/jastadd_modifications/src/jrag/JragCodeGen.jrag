@@ -11,7 +11,6 @@ import jastadd.JastAdd;
 
 aspect JragCodeGen {
 
-  public static boolean ASTNode.jjtree;
   public static boolean ASTNode.beaver;
   public static boolean ASTNode.lazyMaps;
   public static boolean ASTNode.noInhEqCheck;
@@ -32,16 +31,14 @@ aspect JragCodeGen {
 
   public static String ASTNode.license = "";
 
-  public static boolean ASTNode.java5 = true;
-
   public static boolean ASTNode.refineLegacy = false;
   public static boolean ASTNode.stagedRewrites = false;
   
   //--->added options and helpers for JastEMF
-  public static String ASTNode.listName = "List";
-  public static String ASTNode.nodeName = "ASTNode";
-  public static String ASTNode.optName = "Opt";
-  public static String ASTNode.implSuffix = "Impl";
+  public static final String ASTNode.listName = "ASTList";
+  public static final String ASTNode.nodeName = "ASTNode";
+  public static final String ASTNode.optName = "Opt";
+  public static final String ASTNode.implSuffix = "Impl";
   
   public static boolean ASTNode.isBuiltInType(String typeName) {
 	  return ASTNode.listName.equals(typeName)||
@@ -89,7 +86,6 @@ aspect JragCodeGen {
   public static String ASTNode.typeDefaultSet = "java.util.Set";
 
   public static boolean ASTNode.deterministic;
-  public static boolean ASTNode.j2me;
 
   public static boolean ASTNode.tracing;
   public static boolean ASTNode.cacheAll = false;
@@ -219,7 +215,7 @@ aspect JragCodeGen {
   }
 
   public static String ASTNode.suppressWarnings() {
-    return (suppressWarnings || java5) ? " @SuppressWarnings({\"unchecked\", \"cast\"}) " : "";
+    return " @SuppressWarnings({\"unchecked\", \"cast\"}) " ;
   }
   
   public String TypeDecl.genAbstractSyns() {
@@ -430,11 +426,7 @@ aspect JragCodeGen {
         return "        if(#NAME#_visited == state().boundariesCrossed)\n" + 
                           visitedException();
       else {
-        if(ASTNode.java5)
           return "        if(Integer.valueOf(state().boundariesCrossed).equals(#NAME#_visited.get(_parameters)))\n" + 
-                          visitedException();
-        else
-          return "        if(new Integer(state().boundariesCrossed).equals(#NAME#_visited.get(_parameters)))\n" + 
                           visitedException();
       }
     }
@@ -452,10 +444,7 @@ aspect JragCodeGen {
       if(getNumParameter() == 0)
         return "        #NAME#_visited = state().boundariesCrossed;\n";
       else {
-        if(ASTNode.java5)
-            return "        #NAME#_visited.put(_parameters, Integer.valueOf(state().boundariesCrossed));\n";
-        else
-            return "        #NAME#_visited.put(_parameters, new Integer(state().boundariesCrossed));\n";
+        return "        #NAME#_visited.put(_parameters, Integer.valueOf(state().boundariesCrossed));\n";
       }
     }
     if(getNumParameter() == 0)
@@ -487,10 +476,10 @@ aspect JragCodeGen {
     else if(declaredNTA()) {
       if(ASTNode.lazyMaps)
         return "    protected " + typeDefaultMap + " #CLASS#.#NAME#_values;\n" +
-               "    protected List #CLASS#.#NAME#_list;\n";
+               "    protected " + ASTNode.listName + " #CLASS#.#NAME#_list;\n";
       else
         return "    protected " + typeDefaultMap + " #CLASS#.#NAME#_values = " + createDefaultMap + ";\n" +
-               "    protected List #CLASS#.#NAME#_list;\n";
+               "    protected " + ASTNode.listName + " #CLASS#.#NAME#_list;\n";
     }
     else {
       if(ASTNode.lazyMaps)
@@ -542,19 +531,19 @@ aspect JragCodeGen {
   
   public String ASTNode.toReferenceType(String value, String type) {
     if(type.equals("int"))
-      return java5 ? "Integer.valueOf(" + value + ")" : "new Integer(" + value + ")";
+      return "Integer.valueOf(" + value + ")" ;
     else if(type.equals("short"))
-      return java5 ? "Short.valueOf(" + value + ")" : "new Short(" + value + ")";
+      return "Short.valueOf(" + value + ")" ;
     else if(type.equals("long"))
-      return java5 ? "Long.valueOf(" + value + ")" : "new Long(" + value + ")";
+      return "Long.valueOf(" + value + ")" ;
     else if(type.equals("float"))
-      return java5 ? "Float.valueOf(" + value + ")" : "new Float(" + value + ")";
+      return "Float.valueOf(" + value + ")" ;
     else if(type.equals("double"))
-      return java5 ? "Double.valueOf(" + value + ")" : "new Double(" + value + ")";
+      return "Double.valueOf(" + value + ")" ;
     else if(type.equals("boolean"))
-      return j2me ? ("new Boolean(" + value + ")") : ("Boolean.valueOf(" + value + ")");
+      return  ("Boolean.valueOf(" + value + ")");
     else if(type.equals("char"))
-      return java5 ? "Character.valueOf(" + value + ")" : "new Character(" + value + ")";
+      return "Character.valueOf(" + value + ")" ;
     else return value;
   }
   
@@ -636,15 +625,9 @@ aspect JragCodeGen {
       return "        Object _parameters = " + getParameter(0).toReferenceType() + ";\n";
     else {
       StringBuffer s = new StringBuffer();
-      if(j2me)
-        s.append("        java.util.Vector _parameters = new java.util.Vector(" + getNumParameter() + ");\n");
-      else
         s.append("        java.util.List _parameters = new java.util.ArrayList(" + getNumParameter() + ");\n");
       for(int i = 0; i < getNumParameter(); i++) {
-        if(j2me)
-          s.append("        _parameters.addElement(" + getParameter(i).toReferenceType() + ");\n");
-        else
-          s.append("        _parameters.add(" + getParameter(i).toReferenceType() + ");\n");
+        s.append("        _parameters.add(" + getParameter(i).toReferenceType() + ");\n");
       }
       return s.toString();
     }
@@ -1090,6 +1073,7 @@ aspect JragCodeGen {
        s = s.replaceAll("#METHODNAME#", attr.attributeName());
        s = s.replaceAll("#PARMDECL#", equ.parametersDecl());
        s = s.replaceAll("#PARM#", attr.parameters());
+       s = s.replaceAll("#LISTTYPE#", ASTNode.listName);
        buf.append(s);
     }
     return buf.toString();
@@ -1161,7 +1145,7 @@ aspect JragCodeGen {
               "        #NAME#_value.is$Final = java.lang.Integer.MAX_VALUE;\n";
           else 
             return "        if(#NAME#_list == null) {\n" +
-              "            #NAME#_list = new List();\n" +
+              "            #NAME#_list = new #LISTTYPE#();\n" +
               "            #NAME#_list.is$Final = java.lang.Integer.MAX_VALUE;\n" +
               "            #NAME#_list.setParent(this);\n" + 
               "        }\n" +
@@ -1174,7 +1158,7 @@ aspect JragCodeGen {
               "        #NAME#_value.is$Final = true;\n";
           else 
             return "        if(#NAME#_list == null) {\n" +
-              "            #NAME#_list = new List();\n" +
+              "            #NAME#_list = new #LISTTYPE#();\n" +
               "            #NAME#_list.is$Final = true;\n" +
               "            #NAME#_list.setParent(this);\n" + 
               "        }\n" +
@@ -1187,7 +1171,7 @@ aspect JragCodeGen {
           return "        #NAME#_value.setParent(this);\n";
         else 
           return "        if(#NAME#_list == null) {\n" +
-            "            #NAME#_list = new List();\n" +
+            "            #NAME#_list = new #LISTTYPE#();\n" +
             "            #NAME#_list.setParent(this);\n" + 
             "        }\n" +
             "        #NAME#_list.add(#NAME#_value);\n";
@@ -1526,7 +1510,7 @@ aspect JragCodeGen {
     StringBuffer buf = new StringBuffer();
     boolean unconditional = false;
     buf.append("public ASTNode rewriteTo() {\n");
-    if(name().equals("List")) {
+    if(name().equals(ASTNode.listName)) {
       buf.append("    if(list_touched) {\n");
       buf.append("        for(int i = 0 ; i < getNumChildNoTransform(); i++)\n");
       buf.append("            getChild(i);\n");
@@ -1590,9 +1574,9 @@ aspect JragCodeGen {
 
       buf.append("        state().during" + aspectName() + "++;\n");
       
-      buf.append("      List list = (List)getParent();\n");
+      buf.append("      " + ASTNode.listName + " list = (" + ASTNode.listName + ")getParent();\n");
       buf.append("      int i = list.getIndexOfChild(this);\n");
-      buf.append("      List newList = rewrite" + getParentName() + "_" + getChildName() + "();\n");
+      buf.append("      " + ASTNode.listName + " newList = rewrite" + getParentName() + "_" + getChildName() + "();\n");
       // the first child is set by the normal rewrite loop
       //buf.append("      list.setChild(newList.getChildNoTransform(0), i);\n");
       buf.append("      for(int j = 1; j < newList.getNumChildNoTransform(); j++)\n");

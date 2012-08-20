@@ -268,23 +268,18 @@ aspect JastAddCodeGen {
         stream.print("abstract ");
       }
       stream.print("class " + implName());
-      if(ASTNode.java5 && (isBuiltInType(name())))
+      if(isBuiltInType(name()))
         stream.print("<T extends " + ASTNode.nodeName + ">");
-      if(ASTNode.jjtree && isBuiltInNode(name())) {
-        stream.print(" extends SimpleNode ");
-      }
-      else if(ASTNode.beaver && isBuiltInNode(name())) {
+      if(ASTNode.beaver && isBuiltInNode(name())) {
         stream.print(" extends beaver.Symbol ");
       }
       else if(hasSuperClass()) {
         stream.print(" extends ");
         String name = computeImplName(getSuperClass().getID());
-        if(ASTNode.java5) {
-          if(ASTNode.isBuiltInList(name())|| ASTNode.isBuiltInOpt(name()))
-            name = name + "<T>";
-          else if(isBuiltInNode(name()))
-            name = name + "<" + ASTNode.nodeName + ">";
-        }
+        if(ASTNode.isBuiltInList(name())|| ASTNode.isBuiltInOpt(name()))
+          name = name + "<T>";
+        else if(isBuiltInNode(name()))
+          name = name + "<" + ASTNode.nodeName + ">";
         stream.print(name);
       }
       stream.print(jastAddImplementsList());
@@ -292,7 +287,7 @@ aspect JastAddCodeGen {
 
       java.io.PrintWriter writer = new java.io.PrintWriter(stream);
       jjtGenFlushCache(writer);
-      jjtGenCloneNode(writer, grammarName, ASTNode.jjtree, ASTNode.rewriteEnabled);
+      jjtGenCloneNode(writer, grammarName, ASTNode.rewriteEnabled);
       writer.flush();
 
       /*
@@ -329,15 +324,9 @@ aspect JastAddCodeGen {
     for(Iterator iter = implementsList.iterator(); iter.hasNext(); ) {
       buf.append(", " + ((SimpleNode)iter.next()).unparse());
     }
-    if(name().equals("ASTNode") && ASTNode.java5)
+    if(name().equals("ASTNode"))
       buf.append(", Iterable<T>");
     String s = buf.toString();
-    if(ASTNode.j2me) {
-      if(s.equals(" implements Cloneable"))
-        s = "";
-      else 
-        s = s.replace("Cloneable, ", "");
-    }
     return s;
   }
 
