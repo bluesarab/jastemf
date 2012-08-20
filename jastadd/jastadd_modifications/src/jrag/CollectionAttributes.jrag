@@ -348,17 +348,17 @@ aspect CollectionAttributes {
   }
 
   static String ASTNode.filterIterators(String s) {
-    if(!j2me)
+   // if(!j2me)
       return s;
     // if we are using iterators we need to replace them enumerations
     // this is a dirty hack but gets the job done
 
-    s = s.replaceAll("java\\.util\\.Iterator", "java.util.Enumeration");
-    s = s.replaceAll("iter\\.hasNext", "iter.hasMoreElements");
-    s = s.replaceAll("iter\\.next", "iter.nextElement");
-    s = s.replaceAll("iterator", "elements");
+  //  s = s.replaceAll("java\\.util\\.Iterator", "java.util.Enumeration");
+   // s = s.replaceAll("iter\\.hasNext", "iter.hasMoreElements");
+   // s = s.replaceAll("iter\\.next", "iter.nextElement");
+   // s = s.replaceAll("iterator", "elements");
 
-    return s;
+   // return s;
   }
 
 

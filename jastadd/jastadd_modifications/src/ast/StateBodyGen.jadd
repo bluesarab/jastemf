@@ -1,0 +1,204 @@
+
+
+aspect StateBodyGen {
+	 public void Grammar.genReset(PrintWriter stream) {
+		    stream.println("    public void ASTNode$State.reset() {");
+		    if(ASTNode.block) stream.print(ASTNode.blockBegin);
+		    if(circularEnabled) {
+		      stream.println("        IN_CIRCLE = false;");
+		      stream.println("        CIRCLE_INDEX = 1;"); // TOBBE
+		      stream.println("        CHANGE = false;");
+		      if(cacheCycle)
+		          stream.println("        LAST_CYCLE = false;");
+		      if(componentCheck) {
+		          stream.println("        circularEvalSet = " + ASTNode.createDefaultSet + ";");
+		          stream.println("        circularEvalStack = new java.util.Stack();");
+		      }
+		    }
+		    if(rewriteEnabled) {
+		      stream.println("        boundariesCrossed = 0;");
+		      genResetDuringCounters(stream);
+		      if(rewriteLimit > 0)
+		        stream.println("        debugRewrite = " + ASTNode.createDefaultMap + ";\n");
+		      if(stagedRewrites)
+		        stream.println("        rewritePhase = 1;\n");
+		    }
+		    if(ASTNode.block) stream.print(ASTNode.blockEnd);
+		    stream.println("    }");
+		  }
+
+		  public void Grammar.jjtGenASTNode$State(PrintWriter stream, String parserName, boolean rewriteEnabled) {
+		      stream.println("   static public class ASTNode$State {");
+		      if(circularEnabled) {
+		         stream.println("  public boolean IN_CIRCLE = false;");
+		         stream.println("  public int CIRCLE_INDEX = 1;");
+		         stream.println("  public boolean CHANGE = false;");
+		         if(cacheCycle) {
+		            stream.println("  public boolean LAST_CYCLE = false;");
+		         }
+		         stream.println("  public boolean RESET_CYCLE = false;");
+
+		         stream.println("  static public class CircularValue {");
+		         stream.println("    Object value;");
+		         stream.println("    int visited = -1;");
+		         stream.println("  }");
+
+		         if(componentCheck) {
+		           stream.println("  public " + ASTNode.typeDefaultSet + " circularEvalSet = " + ASTNode.createDefaultSet + ";");
+		           stream.println("  public java.util.Stack circularEvalStack = new java.util.Stack();");
+
+		           stream.println("  static class CircularEvalEntry {");
+		           stream.println("  	 ASTNode node;");
+		           stream.println("  	 String attrName;");
+		           stream.println("  	 Object parameters;");
+
+		           stream.println("  	 public CircularEvalEntry(ASTNode node, String attrName, Object parameters) {");
+		           stream.println("  	   this.node = node;");
+		           stream.println("   	 this.attrName = attrName;");
+		           stream.println("  		 this.parameters = parameters;");
+		           stream.println("  	 }");
+
+		           stream.println("  	 public boolean equals(Object rhs) {");
+		           stream.println("  	   CircularEvalEntry s = (CircularEvalEntry) rhs;");
+		           stream.println("  		 if (parameters == null && s.parameters == null)");
+		           stream.println("  			 return node == s.node && attrName.equals(s.attrName);");
+		           stream.println("  		 else if (parameters != null && s.parameters != null)");
+		           stream.println("  			 return node == s.node && attrName.equals(s.attrName) && parameters.equals(s.parameters);");
+		           stream.println("  		 else");
+		           stream.println("  			 return false;");
+		           stream.println("  	 }");
+
+		           stream.println("  	 public int hashCode() {");
+		           stream.println("  		 return node.hashCode();");
+		           stream.println("  	 }");
+		           stream.println("  }");
+
+		           stream.println("  public void addEvalEntry(ASTNode node, String attrName, Object parameters) {");
+		           stream.println("    circularEvalSet.add(new CircularEvalEntry(node,attrName,parameters));");
+		           stream.println("  }");
+
+		           stream.println("  public boolean containsEvalEntry(ASTNode node, String attrName, Object parameters) {");
+		           stream.println("    return circularEvalSet.contains(new CircularEvalEntry(node,attrName,parameters));");
+		           stream.println("  }");
+
+		           stream.println("  static class CircularStackEntry {");
+		           stream.println("    " + ASTNode.typeDefaultSet + " circularEvalSet;");
+		           stream.println("  	 boolean changeValue;");
+
+		           stream.println("  	 public CircularStackEntry(" + ASTNode.typeDefaultSet + " set, boolean change) {");
+		           stream.println("  		 circularEvalSet = set;");
+		           stream.println("  		 changeValue = change;");
+		           stream.println("  	 }");
+		           stream.println("  }");
+
+		           stream.println("  public void pushEvalStack() {");
+		           stream.println("  	 circularEvalStack.push(new CircularStackEntry(circularEvalSet, CHANGE));");
+		           stream.println("  	 circularEvalSet = " + ASTNode.createDefaultSet + ";");
+		           stream.println("  	 CHANGE = false;");
+		           stream.println("  }");
+
+		           stream.println("  public void popEvalStack() {");
+		           stream.println("  	 CircularStackEntry c = (CircularStackEntry) circularEvalStack.pop();");
+		           stream.println("  	 circularEvalSet = c.circularEvalSet;");
+		           stream.println("  	 CHANGE = c.changeValue;");
+		           stream.println("  }");
+
+		         }
+		      }
+		      if(rewriteEnabled) {
+		        stream.println("  public static final int REWRITE_CHANGE = 1;");
+		        stream.println("  public static final int REWRITE_NOCHANGE = 2;");
+		        stream.println("  public static final int REWRITE_INTERRUPT = 3;");
+		        if(rewriteLimit > 0) {
+		          stream.println("  public java.util.HashMap debugRewrite = " + ASTNode.createDefaultMap + ";\n");
+		        }
+		        stream.println("  public int boundariesCrossed = 0;\n");
+		        if(stagedRewrites)
+		          stream.println("public int rewritePhase = 1;");
+		        // state code
+		        stream.println("   private int[] stack;");
+		        stream.println("   private int pos;");
+		        stream.println("   public ASTNode$State() {");
+		        stream.println("     stack = new int[64];");
+		        stream.println("     pos = 0;");
+		        stream.println("   }");
+		        stream.println("   private void ensureSize(int size) {");
+		        stream.println("     if(size < stack.length)");
+		        stream.println("       return;");
+		        stream.println("     int[] newStack = new int[stack.length * 2];");
+		        stream.println("     System.arraycopy(stack, 0, newStack, 0, stack.length);");
+		        stream.println("     stack = newStack;");
+		        stream.println("   }");
+		        stream.println("   public void push(int i) {");
+		        stream.println("     ensureSize(pos+1);");
+		        stream.println("     stack[pos++] = i;");
+		        stream.println("   }");
+		        stream.println("   public int pop() {");
+		        stream.println("     return stack[--pos];");
+		        stream.println("   }");
+		        stream.println("   public int peek() {");
+		        stream.println("     return stack[pos-1];");
+		        stream.println("   }");
+		      }
+
+		/*      if(j2me) {
+		        stream.println("  static class HashtableBasedSet  {");
+		        stream.println("    public HashtableBasedSet(int initialCapacity) {");
+		        stream.println("      map = new java.util.Hashtable(initialCapacity);");
+		        stream.println("    }");
+		        stream.println("    private java.util.Hashtable map;");
+		        stream.println("    private static final Object PRESENT = new Object();");
+		        stream.println("    public java.util.Enumeration elements() { return map.keys(); }");
+		        stream.println("    public int size() { return map.size(); }");
+		        stream.println("    public boolean isEmpty() { return map.isEmpty(); }");
+		        stream.println("    public boolean contains(Object o) { return map.containsKey(o); }");
+		        stream.println("    public boolean add(Object o) { return map.put(o, PRESENT)==null; }");
+		        stream.println("    public boolean remove(Object o) { return map.remove(o)==PRESENT; }");
+		        stream.println("    public void clear() { map.clear(); }");
+		        stream.println("  }");
+		      }
+		      else */
+		    	  if(deterministic) {
+		        stream.println("  static class IdentityHashSet extends java.util.LinkedHashSet {");
+		        stream.println("    public IdentityHashSet(int initialCapacity) { super(initialCapacity); }");
+		        stream.println("    public java.util.Iterator iterator() {");
+		        stream.println("      final java.util.Iterator i = super.iterator();");
+		        stream.println("      return new java.util.Iterator() {");
+		        stream.println("        public boolean hasNext() { return i.hasNext(); }");
+		        stream.println("        public Object next() { return ((Wrapper)i.next()).o; }");
+		        stream.println("        public void remove() { i.remove(); }");
+		        stream.println("      };");
+		        stream.println("    }");
+		        stream.println("    public boolean contains(Object o) { return super.contains(wrap(o)); }");
+		        stream.println("    public boolean add(Object o) { return super.add(wrap(o)); }");
+		        stream.println("    public boolean remove(Object o) { return super.remove(wrap(o)); }");
+		        stream.println("    private Wrapper wrap(Object o) { return new Wrapper(o); }");
+		        stream.println("    private static class Wrapper {");
+		        stream.println("      private Object o;");
+		        stream.println("      private Wrapper(Object o) { this.o = o; }");
+		        stream.println("      public boolean equals(Object other) { return other instanceof Wrapper && ((Wrapper)other).o == o; }");
+		        stream.println("      public int hashCode() { return System.identityHashCode(o); }");
+		        stream.println("    }");
+		        stream.println("  }");
+		      }
+		      else {
+		        stream.println("  static class IdentityHashSet extends java.util.AbstractSet implements java.util.Set {");
+		        stream.println("    public IdentityHashSet(int initialCapacity) {");
+		        stream.println("      map = new java.util.IdentityHashMap(initialCapacity);");
+		        stream.println("    }");
+		        stream.println("    private java.util.IdentityHashMap map;");
+		        stream.println("    private static final Object PRESENT = new Object();");
+		        stream.println("    public java.util.Iterator iterator() { return map.keySet().iterator(); }");
+		        stream.println("    public int size() { return map.size(); }");
+		        stream.println("    public boolean isEmpty() { return map.isEmpty(); }");
+		        stream.println("    public boolean contains(Object o) { return map.containsKey(o); }");
+		        stream.println("    public boolean add(Object o) { return map.put(o, PRESENT)==null; }");
+		        stream.println("    public boolean remove(Object o) { return map.remove(o)==PRESENT; }");
+		        stream.println("    public void clear() { map.clear(); }");
+		        stream.println("  }");
+		      }
+
+		      stream.println("  }"); // End ASTNode$State
+		  }
+
+}
