@@ -147,21 +147,14 @@ aspect ASTNodeBodyGen{
 	      stream.println("    setChild(node, getNumChildNoTransform());");
 	      stream.println("  }");
 
-
-	     
 	      stream.println("  @SuppressWarnings(\"cast\") public final T ASTNode.getChildNoTransform(int i) {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
-	          stream.println("    return (T)children[i];");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
-	          stream.println("  }");
-	        }
-	        else {
-	          stream.println("  public final ASTNode ASTNode.getChildNoTransform(int i) {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
-	          stream.println("    return (ASTNode)children[i];");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
-	          stream.println("  }");
-	        }
+	      if(ASTNode.block) 
+	    	  stream.print(ASTNode.blockBegin);
+	      stream.println("    return (T)children[i];");
+	      if(ASTNode.block) 
+	    	  stream.print(ASTNode.blockEnd);
+	      stream.println("  }");
+	      
 	        stream.println("  protected int ASTNode.numChildren;"); // added
 	        stream.println("  protected int ASTNode.numChildren() {");
 	        stream.println("    return numChildren;");

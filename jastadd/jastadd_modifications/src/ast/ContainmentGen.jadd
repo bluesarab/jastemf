@@ -318,7 +318,8 @@ aspect ASTDeclContainmentGen {
 	        "        return #INDEX#;\n" +
 	        "    }\n\n";
 	    }
-	    s = s.replaceAll("#LISTTYPE#", ASTNode.listName+"<" + computeImplName(getId().type()) + ">" ;
+	    
+	    s = s.replaceAll("#LISTTYPE#", ASTNode.listName+ "<" + computeImplName(getId().type()) + ">");
 	    s = s.replaceAll("#ANNOTATIONS#", ASTNode.suppressWarnings());
 	    s = s.replaceAll("#TYPE#", computeImplName(getId().type()));
 	    s = s.replaceAll("#NAME#", getId().name());
