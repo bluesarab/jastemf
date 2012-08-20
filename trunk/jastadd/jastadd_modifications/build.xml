@@ -43,6 +43,7 @@
 		<delete includeemptydirs="true">
 			<fileset dir="${basedir}">
 				<!-- all these artefacts are generated -->
+				<include name="src-gen/**/*" />
 				<include name="build-bin/**/*" />
 			</fileset>
 		</delete>
