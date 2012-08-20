@@ -7,7 +7,7 @@ SOURCE=./src
 TARGET=./src-gen
 BUILD=./build-bin
 
-JRAGFILES=$(SOURCE)/ast/ClassRelations.jrag $(SOURCE)/ast/ComponentsUtil.jrag $(SOURCE)/ast/Errorcheck.jrag $(SOURCE)/ast/JaddCodeGen.jrag $(SOURCE)/ast/NameBinding.jrag \
+JRAGFILES=$(SOURCE)/ast/ClassRelations.jrag $(SOURCE)/ast/ComponentsUtil.jrag $(SOURCE)/ast/Errorcheck.jrag $(SOURCE)/ast/JaddCodeGen.jrag $(SOURCE)/ast/ContainmentGen.jadd $(SOURCE)/ast/StateBodyGen.jadd $(SOURCE)/ast/ASTNodeBodyGen.jadd $(SOURCE)/ast/NameBinding.jrag \
  $(SOURCE)/jrag/Attributes.jrag $(SOURCE)/jrag/Circular.jrag $(SOURCE)/jrag/CollectionAttributes.jrag $(SOURCE)/jrag/Errorcheck.jrag $(SOURCE)/jrag/JragCodeGen.jrag $(SOURCE)/jrag/NameBinding.jrag
 
 all : ast/AST/Grammar.java ast/AST/Ast.java jrag/AST/JragParser.java 
