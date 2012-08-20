@@ -17,7 +17,7 @@
 		<eclipse.refreshLocal resource="jastadd_modifications"/>
 	</target>
 	
-	<target name="jar">
+	<target name="jar" depends="Clean">
 		<exec executable="make">
 		    <arg value="jar"/>
 		</exec>
