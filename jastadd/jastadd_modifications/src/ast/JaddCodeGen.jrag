@@ -141,9 +141,9 @@ aspect JaddCodeGen {
     	  stream.append(ASTNode.blockBegin);
       if(debugMode) {
           stream.println("        if(node instanceof #LISTTYPE#)");
-          stream.println("            throw new RuntimeException(\"Lists can not have children of type List\");");
-          stream.println("        if(node instanceof Opt)");
-          stream.println("            throw new RuntimeException(\"Lists can not have children of type Opt\");");
+          stream.println("            throw new RuntimeException(\"Lists can not have children of type #LISTTYPE#\");");
+          stream.println("        if(node instanceof #OPTTYPE#)");
+          stream.println("            throw new RuntimeException(\"Lists can not have children of type #OPTTYPE#\");");
         }
         stream.println("          addChild(node);");
         stream.println("          return this;");
@@ -183,6 +183,7 @@ aspect JaddCodeGen {
         
         stream.flush();
         String result = stringWriter.toString().replaceAll("#LISTTYPE#",ASTNode.listName);
+        result = result.replaceAll("#OPTTYPE#",ASTNode.listName);
         return result;
   }
 	  
@@ -221,7 +222,7 @@ aspect JaddCodeGen {
     else if(name().equals(ASTNode.listName)) {
     	stream.print(jjtGenListAPI());
     }
-    else if(name().equals("Opt")) {
+    else if(name().equals(ASTNode.optName)) {
       // do not override getNumChild with implementation below
     }
     else {

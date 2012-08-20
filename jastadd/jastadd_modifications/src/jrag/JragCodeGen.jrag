@@ -37,7 +37,7 @@ aspect JragCodeGen {
   //--->added options and helpers for JastEMF
   public static final String ASTNode.listName = "ASTList";
   public static final String ASTNode.nodeName = "ASTNode";
-  public static final String ASTNode.optName = "Opt";
+  public static final String ASTNode.optName = "ASTOpt";
   public static final String ASTNode.implSuffix = "Impl";
   
   public static boolean ASTNode.isBuiltInType(String typeName) {
