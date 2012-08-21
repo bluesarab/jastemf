@@ -3,7 +3,6 @@
 aspect StateBodyGen {
 	 public void Grammar.genReset(PrintWriter stream) {
 		    stream.println("    public void ASTNode$State.reset() {");
-		    if(ASTNode.block) stream.print(ASTNode.blockBegin);
 		    if(circularEnabled) {
 		      stream.println("        IN_CIRCLE = false;");
 		      stream.println("        CIRCLE_INDEX = 1;"); // TOBBE
@@ -23,7 +22,6 @@ aspect StateBodyGen {
 		      if(stagedRewrites)
 		        stream.println("        rewritePhase = 1;\n");
 		    }
-		    if(ASTNode.block) stream.print(ASTNode.blockEnd);
 		    stream.println("    }");
 		  }
 

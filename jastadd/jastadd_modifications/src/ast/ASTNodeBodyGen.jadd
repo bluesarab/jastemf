@@ -89,7 +89,6 @@ aspect ASTNodeBodyGen{
 	        stream.println("  }");
 
 	        stream.println("  public static ASTNode ASTNode.getChild(ASTNode that, int i) {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
 	        stream.println("    ASTNode node = that.getChildNoTransform(i);");
 	        stream.println("    if(node.is$Final()) return node;");
 	       stream.println("    if(!node.mayHaveRewrite()) {");
@@ -124,7 +123,6 @@ aspect ASTNodeBodyGen{
 	        stream.println("    }");
 	        stream.println("    else if(that.is$Final() != node.is$Final()) that.state().boundariesCrossed++;");
 	        stream.println("    return node;");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 	      }
 	      else {
@@ -148,11 +146,7 @@ aspect ASTNodeBodyGen{
 	      stream.println("  }");
 
 	      stream.println("  @SuppressWarnings(\"cast\") public final T ASTNode.getChildNoTransform(int i) {");
-	      if(ASTNode.block) 
-	    	  stream.print(ASTNode.blockBegin);
 	      stream.println("    return (T)children[i];");
-	      if(ASTNode.block) 
-	    	  stream.print(ASTNode.blockEnd);
 	      stream.println("  }");
 	      
 	        stream.println("  protected int ASTNode.numChildren;"); // added
@@ -160,19 +154,14 @@ aspect ASTNodeBodyGen{
 	        stream.println("    return numChildren;");
 	        stream.println("  }");
 	        stream.println("  public int ASTNode.getNumChild() {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
 	        stream.println("    return numChildren();");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 	        stream.println("  public final int ASTNode.getNumChildNoTransform() {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
 	        stream.println("    return numChildren();");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 
 	        stream.println("  public void ASTNode.setChild(T node, int i) {");
 	 
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
 	        if(debugMode)
 	          stream.println("        debugNodeAttachment(node);");
 	        stream.println("    if(children == null) {");
@@ -185,12 +174,9 @@ aspect ASTNodeBodyGen{
 	        stream.println("    children[i] = node;");
 	        stream.println("    if(i >= numChildren) numChildren = i+1;");
 	        stream.println("    if(node != null) { node.setParent(this); node.childIndex = i; }");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 
-	        stream.println("  public void ASTNode.insertChild(T node, int i) {");
-	 
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
+	        stream.println("  public void ASTNode.insertChild(T node, int i) {");	 
 	        if(debugMode)
 	          stream.println("        debugNodeAttachment(node);");
 	        stream.println("    if(children == null) {");
@@ -206,11 +192,9 @@ aspect ASTNodeBodyGen{
 	        stream.println("    }");
 	        stream.println("    numChildren++;");
 	        stream.println("    if(node != null) { node.setParent(this); node.childIndex = i; }");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 
 	        stream.println("  public void ASTNode.removeChild(int i) {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
 	        stream.println("    if(children != null) {");
 	        stream.println("      ASTNode child = (ASTNode)children[i];");
 	        stream.println("      if(child != null) {");
@@ -220,23 +204,18 @@ aspect ASTNodeBodyGen{
 	        stream.println("      System.arraycopy(children, i+1, children, i, children.length-i-1);");
 	        stream.println("      numChildren--;");
 	        stream.println("    }");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 
 	        stream.println("  public ASTNode ASTNode.getParent() {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
 	        if(rewriteEnabled) {
 	          stream.println("    if(parent != null && ((ASTNode)parent).is$Final() != is$Final()) {");
 	          stream.println("      state().boundariesCrossed++;");
 	          stream.println("    }");
 	        }
 	        stream.println("    return (ASTNode)parent;");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 	        stream.println("  public void ASTNode.setParent(ASTNode node) {");
-	        if(ASTNode.block) stream.print(ASTNode.blockBegin);
 	        stream.println("    parent = node;");
-	        if(ASTNode.block) stream.print(ASTNode.blockEnd);
 	        stream.println("  }");
 	        stream.println("  protected ASTNode ASTNode.parent;");
 	        stream.println("  protected ASTNode[] ASTNode.children;");

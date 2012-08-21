@@ -79,7 +79,6 @@ aspect CollectionAttributes {
          (separateEvaluation ? "    protected #TYPE# #CLASS#.new_#NAME#_value;\n" : "") + 
          comment + suppressWarnings() +
          "    public #TYPE# #CLASS#.#METHODNAME#(#PARMDECL#) {\n" + 
-         (ASTNode.block ? ASTNode.blockBegin : "") +
          attr.parameterStructure() + 
          attr.cacheCheck() +
          "        ASTNode node = this;\n" +
@@ -143,7 +142,6 @@ aspect CollectionAttributes {
          "    " + attr.returnStmt() +
          "        }\n" +
          attr.returnStmt() + 
-         (ASTNode.block ? ASTNode.blockEnd : "") +
          "    }\n\n";
     else
       return attr.visitedDeclarations() + 
@@ -152,7 +150,6 @@ aspect CollectionAttributes {
          "    protected " + typeDefaultMap + " #CLASS#.#NAME#_values = " + createDefaultMap + ";\n" +
          comment + suppressWarnings() + 
          "    public #TYPE# #CLASS#.#METHODNAME#(#PARMDECL#) {\n" + 
-         (ASTNode.block ? ASTNode.blockBegin : "") +
          attr.parameterStructure() + 
          attr.initLazyMaps() +
          attr.cacheCheck() + 
@@ -202,7 +199,6 @@ aspect CollectionAttributes {
          "            return new_#NAME#_value;\n" + 
          "        }\n" +
          "        return " + fromReferenceType("#NAME#_values.get(_parameters)" , attr.getType()) + ";\n" + 
-         (ASTNode.block ? ASTNode.blockEnd : "") +
          "    }\n\n";
   }
 

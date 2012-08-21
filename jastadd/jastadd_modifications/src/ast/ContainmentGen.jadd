@@ -20,7 +20,6 @@ aspect ASTDeclContainmentGen {
 	      }
 	    }
 	    s.append(") {\n");
-	    if(ASTNode.block) s.append(ASTNode.blockBegin);
 	    i = 0;
 	    int j = 0;
 	    for(Iterator iter = getComponents(); iter.hasNext(); ) {
@@ -57,7 +56,6 @@ aspect ASTDeclContainmentGen {
 	      else
 	        s.append("        is$Final(true);\n");
 	    }
-	    if(ASTNode.block) s.append(ASTNode.blockEnd);
 	    s.append("    }\n\n");
 	    //JastEMF beware: TypeDecl is different from printed code
 	    return s.toString().replaceAll("#ID#", name()).replaceAll("#ID_IMPL#", implName());
@@ -92,7 +90,6 @@ aspect ASTDeclContainmentGen {
 	      }
 	    }
 	    s.append(") {\n");
-	    if(ASTNode.block) s.append(ASTNode.blockBegin);
 	    i = 0;
 	    int j = 0;
 	    for(Iterator iter = getComponents(); iter.hasNext(); ) {
@@ -129,14 +126,12 @@ aspect ASTDeclContainmentGen {
 	      else
 	        s.append("        is$Final(true);\n");
 	    }
-	    if(ASTNode.block) s.append(ASTNode.blockEnd);
 	    s.append("    }\n\n");
 	    return s.toString().replaceAll("#ID#", name()).replaceAll("#ID_IMPL#", implName());
 	  }
 	  
 	  public void ASTDecl.jjtGenFlushCache(PrintWriter stream) {
 		    stream.print("    public void flushCache() {\n");
-		    if(ASTNode.block) stream.print(ASTNode.blockBegin);
 		    if(!name().equals("ASTNode"))
 		      stream.print("        super.flushCache();\n");
 		    for(int k = 0; k < getNumSynEq(); k++) {
@@ -153,9 +148,8 @@ aspect ASTDeclContainmentGen {
 		      stream.print(u);
 		    }
 		    stream.print(flushCollectionCache());
-		    if(ASTNode.block) stream.print(ASTNode.blockEnd);
-
 		    stream.print("    }\n");
+
 		    stream.print("    public void flushCollectionCache() {\n");
 		    if(!name().equals("ASTNode"))
 		      stream.print("        super.flushCollectionCache();\n");
@@ -170,8 +164,6 @@ aspect ASTDeclContainmentGen {
 		    if(ASTNode.isBuiltInType(name))
 		      name = name + "<T>";
 		    stream.print("    " + ASTNode.suppressWarnings() + " public " + name + " clone() throws CloneNotSupportedException {\n");
-		    if(ASTNode.block) stream.print(ASTNode.blockBegin);
-
 		    stream.print("        " + implName() + " node = (" + implName() + ")super.clone();\n");
 
 		    for(int k = 0; k < getNumSynEq(); k++) {
@@ -198,7 +190,6 @@ aspect ASTDeclContainmentGen {
 
 		
 		    stream.print("        return node;\n");
-		    if(ASTNode.block) stream.print(ASTNode.blockEnd);
 		    stream.print("    }\n");
 		    
 		    if(!hasAbstract()) {
@@ -215,20 +206,16 @@ aspect ASTDeclContainmentGen {
 		          "      return null;\n";
 	
 		      String s = "    #ANNOTATIONS# public #RETURN# copy() {\n" + 
-		          (ASTNode.block ? ASTNode.blockBegin : "") +
 		          copyBody +
-		          (ASTNode.block ? ASTNode.blockEnd : "") +
 		          "    }\n" +
 		          "    #ANNOTATIONS# public #RETURN# fullCopy() {\n" + 
-		          (ASTNode.block ? ASTNode.blockBegin : "") +
 		          "        #ID# res = (#ID#)copy();\n" +
 		          "        for(int i = 0; i < getNumChildNoTransform(); i++) {\n" + 
 		          "          ASTNode node = getChildNoTransform(i);\n" +
 		          "          if(node != null) node = node.fullCopy();\n" +
 		          "          res.setChild(node, i);\n" +
 		          "        }\n" +
-		          "        return res;\n    }\n" +
-		          (ASTNode.block ? ASTNode.blockEnd : "");
+		          "        return res;\n    }\n";
 
 		      String returnName = implName();
 		      if(ASTNode.isBuiltInType(name()))
@@ -248,71 +235,49 @@ aspect ASTDeclContainmentGen {
 	    // Generate getNum- and get-method for the list component
 	    s = "    // Declared in " + hostClass().getFileName() + " line " + hostClass().getStartLine() + "\n" +
 	        "    public void #HOST#.set#NAME#List(#LISTTYPE# list) {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        setChild(list, #INDEX#);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" +
 	        //"    private int #HOST#.getNum#NAME# = 0;\n" +
 	        "    public int #HOST#.getNum#NAME#() {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return get#NAME#List().getNumChild();\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" +
 	        "    #ANNOTATIONS# public #TYPE# #HOST#.get#NAME#(int i) {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#TYPE#)get#NAME#List().getChild(i);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" + 
 	        "    public void #HOST#.add#NAME#(#TYPE# node) {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        #LISTTYPE# list = (parent == null || state == null) ? get#NAME#ListNoTransform() : get#NAME#List();\n" +
 	        "        list.addChild(node);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" + 
 	        "    public void #HOST#.add#NAME#NoTransform(#TYPE# node) {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        #LISTTYPE# list = get#NAME#ListNoTransform();\n" +
 	        "        list.addChild(node);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" + 
 	        "    public void #HOST#.set#NAME#(#TYPE# node, int i) {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        #LISTTYPE# list = get#NAME#List();\n" +
 	        "        list.setChild(node, i);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n";
 	        s = s +
 	        "    public #LISTTYPE# #HOST#.get#NAME#s() {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return get#NAME#List();\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n" +
 	        "    public #LISTTYPE# #HOST#.get#NAME#sNoTransform() {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return get#NAME#ListNoTransform();\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n";
 	    if(!isNTA()) {
 	      s = s +
 	        "    #ANNOTATIONS# public #LISTTYPE# #HOST#.get#NAME#List() {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        #LISTTYPE# list = (#LISTTYPE#)getChild(#INDEX#);\n" +
 	        "        list.getNumChild();\n" +
 	        "        return list;\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" + 
 	        "    #ANNOTATIONS# public #LISTTYPE# #HOST#.get#NAME#ListNoTransform() {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#LISTTYPE#)getChildNoTransform(#INDEX#);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n";
 	    }
 	    else {
 	      s = s +
 	        "    public #LISTTYPE# #HOST#.get#NAME#ListNoTransform() {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#LISTTYPE#)getChildNoTransform(#INDEX#);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" +
 	        "    protected int #HOST#.get#NAME#ListChildPosition() {\n" +
 	        "        return #INDEX#;\n" +
@@ -337,43 +302,29 @@ aspect ASTDeclContainmentGen {
 	    // Generate has- and get-method for the optional component
 	    s = "    // Declared in " + hostClass().getFileName() + " line " + hostClass().getStartLine() + "\n" +
 	        "    public void #HOST#.set#NAME#Opt(#OPTTYPE# opt) {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        setChild(opt, #INDEX#);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" + 
 	        "    public boolean #HOST#.has#NAME#() {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return get#NAME#Opt().getNumChild() != 0;\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" +
 	        "    #ANNOTATIONS# public #TYPE# #HOST#.get#NAME#() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#TYPE#)get#NAME#Opt().getChild(0);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" + 
 	        "    public void #HOST#.set#NAME#(#TYPE# node) {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        get#NAME#Opt().setChild(node, 0);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n";
 	    if(!isNTA()) {
 	      s = s +
 	        "    #ANNOTATIONS# public #OPTTYPE# #HOST#.get#NAME#Opt() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#OPTTYPE#)getChild(#INDEX#);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" +
 	        "    #ANNOTATIONS# public #OPTTYPE# #HOST#.get#NAME#OptNoTransform() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#OPTTYPE#)getChildNoTransform(#INDEX#);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n";
 	    }
 	    else {
 	        s = s + "    #ANNOTATIONS# public #OPTTYPE# #HOST#.get#NAME#OptNoTransform() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#OPTTYPE#)getChildNoTransform(#INDEX#);\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" +
 	        "    protected int #HOST#.get#NAME#OptChildPosition() {\n" +
 	        "        return #INDEX#;\n" +
@@ -403,9 +354,7 @@ aspect ASTDeclContainmentGen {
 	    // Generate attribute, get- and set-method for the token string
 	    buf.append(
 	        "    public void #HOST#.set#ID#(#TYPE# value) {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        token#TYPEINSIGNATURE#_#ID# = value;\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n"
 	    );
 	    if(!isNTA()) {
@@ -419,29 +368,23 @@ aspect ASTDeclContainmentGen {
 	        }
 	        buf.append(
 	        "    public void #HOST#.set#ID#(beaver.Symbol symbol) {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        if(symbol.value != null && !(symbol.value instanceof String))\n" +
 	        "          throw new UnsupportedOperationException(\"set#ID# is only valid for String lexemes\");\n" +
 	        "        token#TYPEINSIGNATURE#_#ID# = (String)symbol.value;\n" +
 	        "        #ID#start = symbol.getStart();\n" +
 	        "        #ID#end = symbol.getEnd();\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n"
 	        );
 	      }
 	      if(isStringToken)
 	        buf.append(
 	        "    public #TYPE# #HOST#.get#ID#() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return token#TYPEINSIGNATURE#_#ID# != null ? token#TYPEINSIGNATURE#_#ID# : \"\";\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n");
 	      else
 	        buf.append(
 	        "    public #TYPE# #HOST#.get#ID#() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return token#TYPEINSIGNATURE#_#ID#;\n" +
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n");
 	    }
 	    String s = buf.toString();
@@ -462,28 +405,20 @@ aspect ASTDeclContainmentGen {
 	    // Generate get-method for component
 	    s = "    // Declared in " + hostClass().getFileName() + " line " + hostClass().getStartLine() + "\n" +
 	        "    public void #HOST#.set#NAME#(#TYPE# node) {\n" + 
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        setChild(node, #INDEX#);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n";
 	    if(!isNTA()) {
 	      s = s +
 	        "    public #TYPE# #HOST#.get#NAME#() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#TYPE#)getChild(#INDEX#);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" + 
 	        "    public #TYPE# #HOST#.get#NAME#NoTransform() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#TYPE#)getChildNoTransform(#INDEX#);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n";
 	    }
 	    else {
 	        s = s + "    public #TYPE# #HOST#.get#NAME#NoTransform() {\n" +
-	        (ASTNode.block ? ASTNode.blockBegin : "") +
 	        "        return (#TYPE#)getChildNoTransform(#INDEX#);\n" + 
-	        (ASTNode.block ? ASTNode.blockEnd : "") +
 	        "    }\n\n" +
 	        "    protected int #HOST#.get#NAME#ChildPosition() {\n" +
 	        "        return #INDEX#;\n" +

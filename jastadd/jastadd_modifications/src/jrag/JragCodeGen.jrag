@@ -74,10 +74,6 @@ aspect JragCodeGen {
   public static int ASTNode.rewriteLimit = 0;
   public static boolean ASTNode.debugMode = false;
 
-  public static boolean ASTNode.block = false;
-  public static String ASTNode.blockBegin = "        synchronized(ASTNode.class) {\n";
-  public static String ASTNode.blockEnd =   "        }\n";
-
   public static boolean ASTNode.noStatic = false;
   
   public static String ASTNode.createDefaultMap = "new java.util.HashMap(4)";
@@ -755,7 +751,6 @@ aspect JragCodeGen {
            comment +
            suppressWarnings() +
            "    public #TYPE# #CLASS#.#METHODNAME#(#PARMDECL#) {\n" + 
-           (ASTNode.block ? ASTNode.blockBegin : "") +
            attr.parameterStructure() +
            attr.traceBeginAttr() +
            attr.initLazyMaps() +
@@ -773,7 +768,6 @@ aspect JragCodeGen {
            attr.addClearInterruptedCircle() +
            attr.traceEndAttr() +
            attr.returnStmt() + 
-           (ASTNode.block ? ASTNode.blockEnd : "") +
            "    }\n\n";
     }
     else {   
@@ -793,7 +787,6 @@ aspect JragCodeGen {
            comment +
            suppressWarnings() +
            "    public #TYPE# #CLASS#.#METHODNAME#(#PARMDECL#) {\n" + 
-           (ASTNode.block ? ASTNode.blockBegin : "") +
            attr.traceComputeContext() +
            attr.parameterStructure() + 
            attr.cacheCheck() +
@@ -852,7 +845,6 @@ aspect JragCodeGen {
            "        }\n" +
            attr.tracePrintReturnPreviousValue("#NAME#_value") +
            attr.returnStmt() + 
-           (ASTNode.block ? ASTNode.blockEnd : "") +
            "    }\n\n";
       }
       else
@@ -864,7 +856,6 @@ aspect JragCodeGen {
            comment +
            suppressWarnings() + 
            "    public #TYPE# #CLASS#.#METHODNAME#(#PARMDECL#) {\n" + 
-           (ASTNode.block ? ASTNode.blockBegin : "") +
            attr.traceComputeContext() +
            attr.parameterStructure() + 
            attr.initLazyMaps() +
@@ -927,7 +918,6 @@ aspect JragCodeGen {
            "        }\n" +
            attr.tracePrintReturnPreviousValue(fromReferenceType("#NAME#_values.get(_parameters)" , attr.getType())) +
            "        return " + fromReferenceType("_value.value" , attr.getType()) + ";\n" + 
-           (ASTNode.block ? ASTNode.blockEnd : "") +
            "    }\n\n";
     }
   }

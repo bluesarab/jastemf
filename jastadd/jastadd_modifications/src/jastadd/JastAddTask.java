@@ -23,11 +23,7 @@ public class JastAddTask extends Task {
     for(int i = 0; i < files.length; i++)
       this.files.add(baseDir + File.separator + files[i]);
   }
-  
-  // use jjtree node as base node type, requires the grammar option
-  private boolean jjtree = false;
-  public void setJjtree(boolean b) { jjtree = b; }
-  
+    
   private String grammar = null;
   public void setGrammar(String g) { grammar = g; }
 
@@ -92,15 +88,9 @@ public class JastAddTask extends Task {
     this.license = license;
   }
 
-  private boolean java14 = false;
-  public void setJava14(boolean b) { java14 = b; }
-
   // generate run-time checks for debugging
   private boolean debug = false;
   public void setDebug(boolean b) { debug = b; }
-
-  private boolean synch = false;
-  public void setSynch(boolean b) { synch = b; }
 
   private boolean noStatic = false;
   public void setNoStatic(boolean b) { noStatic = b; }
@@ -113,9 +103,6 @@ public class JastAddTask extends Task {
 
   private boolean deterministic = false;
   public void setDeterministic(boolean b) { deterministic = b; }
-
-  private boolean j2me = false;
-  public void setj2me(boolean b) { j2me = b; }
 
   private boolean tracing = false;
   public void setTracing(boolean b) { tracing = b; }
@@ -130,10 +117,6 @@ public class JastAddTask extends Task {
   }
   
   public void execute() throws BuildException {
-    if(jjtree && grammar == null)
-      throw new BuildException("JJTree option requires grammar to be set");
-    if(jjtree && beaver)
-      throw new BuildException("Can not generate AST for both JJTree and Beaver");
     if(files.size() == 0)
       throw new BuildException("JastAdd requires grammar and aspect files");
 
@@ -161,10 +144,6 @@ public class JastAddTask extends Task {
       }
     }
     ArrayList args = new ArrayList();
-    if(jjtree) {
-      args.add("--jjtree");
-      args.add("--grammar=" + grammar);
-    }
     if(beaver)              args.add("--beaver");
     
     if(packageName != null) args.add("--package=" + packageName);
@@ -188,10 +167,6 @@ public class JastAddTask extends Task {
 
     if(license != null)     args.add("--license=" + license);
 
-    if(java14) args.add("--java1.4");
-
-    if(synch) args.add("--synch");
-
     if(noStatic) args.add("--noStatic");
 
     if(refineLegacy) args.add("--refineLegacy");
@@ -199,8 +174,6 @@ public class JastAddTask extends Task {
     if(stagedRewrites) args.add("--stagedRewrites");
 
     if(deterministic) args.add("--deterministic");
-
-    if(j2me) args.add("--j2me");
 
     if(tracing) args.add("--tracing");
     if(cacheAll) {
