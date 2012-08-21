@@ -137,8 +137,6 @@ aspect JaddCodeGen {
 	  StringWriter stringWriter = new StringWriter();
 	  PrintWriter stream = new PrintWriter(stringWriter);
       stream.println("     public #LISTTYPE#<T> #LISTTYPE#.add(T node) {");
-      if(ASTNode.block) 
-    	  stream.append(ASTNode.blockBegin);
       if(debugMode) {
           stream.println("        if(node instanceof #LISTTYPE#)");
           stream.println("            throw new RuntimeException(\"Lists can not have children of type #LISTTYPE#\");");
@@ -147,37 +145,30 @@ aspect JaddCodeGen {
         }
         stream.println("          addChild(node);");
         stream.println("          return this;");
-        if(ASTNode.block) stream.append(ASTNode.blockEnd);
         stream.println("     }\n");
        
         stream.println("     public void #LISTTYPE#.insertChild(T node, int i) {");
-        if(ASTNode.block) stream.append(ASTNode.blockBegin);
         stream.println("          list_touched = true;");
         stream.println("          super.insertChild(node, i);");
-        if(ASTNode.block) stream.append(ASTNode.blockEnd);
         stream.println("     }");
         
         stream.println("     public void #LISTTYPE#.addChild(T node) {");
-        if(ASTNode.block) stream.append(ASTNode.blockBegin);
         stream.println("          list_touched = true;");
         stream.println("          super.addChild(node);");
-        if(ASTNode.block) stream.append(ASTNode.blockEnd);
         stream.println("     }");
+
         stream.println("     public void #LISTTYPE#.removeChild(int i) {");
-        if(ASTNode.block) stream.append(ASTNode.blockBegin);
         stream.println("          list_touched = true;");
         stream.println("          super.removeChild(i);");
-        if(ASTNode.block) stream.append(ASTNode.blockEnd);
         stream.println("     }");
+
         stream.println("     public int #LISTTYPE#.getNumChild() {");
-        if(ASTNode.block) stream.append(ASTNode.blockBegin);
         stream.println("          if(list_touched) {");
         stream.println("              for(int i = 0; i < getNumChildNoTransform(); i++)");
         stream.println("                  getChild(i);");
         stream.println("              list_touched = false;");
         stream.println("          }");
         stream.println("          return getNumChildNoTransform();");
-        if(ASTNode.block) stream.append(ASTNode.blockEnd);
         stream.println("     }");
         stream.println("     private boolean #LISTTYPE#.list_touched = true;");
         
@@ -198,8 +189,6 @@ aspect JaddCodeGen {
       env().genRewriteOrderChecks(stream);
       env().genReset(stream);
       stream.println("    public java.util.Iterator<T> ASTNode.iterator() {");
-      if(ASTNode.block) 
-    	  stream.append(ASTNode.blockBegin);
       stream.println("        return new java.util.Iterator<T>() {");
       stream.println("            private int counter = 0;");
       stream.println("            public boolean hasNext() {");
@@ -215,8 +204,6 @@ aspect JaddCodeGen {
       stream.println("                throw new UnsupportedOperationException();");
       stream.println("            }");
       stream.println("        };");
-      if(ASTNode.block) 
-    	  stream.append(ASTNode.blockEnd);
       stream.println("    }");
     }
     else if(name().equals(ASTNode.listName)) {

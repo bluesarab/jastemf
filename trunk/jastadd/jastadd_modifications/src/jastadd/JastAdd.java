@@ -294,7 +294,7 @@ public class JastAdd {
           ASTNode.visitCheckEnabled = true;
         }
 
-        ASTNode.block = cla.hasLongOption("synch");
+        //ASTNode.block = cla.hasLongOption("synch");
 
         ASTNode.noStatic = cla.hasLongOption("noStatic");
   
