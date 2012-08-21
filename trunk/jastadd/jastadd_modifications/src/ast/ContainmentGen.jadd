@@ -349,12 +349,12 @@ aspect ASTDeclContainmentGen {
 	    StringBuffer buf = new StringBuffer();
 	    buf.append("    // Declared in " + hostClass().getFileName() + " line " + hostClass().getStartLine() + "\n");
 	    if(decl.redefinesTokenComponent(this)) {
-	        buf.append("    protected #TYPE# #HOST#.token#TYPEINSIGNATURE#_#ID#;\n");
+	        buf.append("    protected #TYPE# #HOST#.#VARID#;\n");
 	    }
 	    // Generate attribute, get- and set-method for the token string
 	    buf.append(
 	        "    public void #HOST#.set#ID#(#TYPE# value) {\n" +
-	        "        token#TYPEINSIGNATURE#_#ID# = value;\n" +
+	        "        #VARID# = value;\n" +
 	        "    }\n"
 	    );
 	    if(!isNTA()) {
@@ -362,33 +362,34 @@ aspect ASTDeclContainmentGen {
 	      if(isStringToken && ASTNode.beaver) {
 	        if(decl.redefinesTokenComponent(this)) {
 	          buf.append(
-	          "    public int #HOST#.#ID#start;\n" +
-	          "    public int #HOST#.#ID#end;\n"
+	          "    public int #HOST#.#VARID#start;\n" +
+	          "    public int #HOST#.#VARID#end;\n"
 	          );
 	        }
 	        buf.append(
 	        "    public void #HOST#.set#ID#(beaver.Symbol symbol) {\n" +
 	        "        if(symbol.value != null && !(symbol.value instanceof String))\n" +
 	        "          throw new UnsupportedOperationException(\"set#ID# is only valid for String lexemes\");\n" +
-	        "        token#TYPEINSIGNATURE#_#ID# = (String)symbol.value;\n" +
-	        "        #ID#start = symbol.getStart();\n" +
-	        "        #ID#end = symbol.getEnd();\n" +
+	        "        #VARID# = (String)symbol.value;\n" +
+	        "        #VARID#start = symbol.getStart();\n" +
+	        "        #VARID#end = symbol.getEnd();\n" +
 	        "    }\n"
 	        );
 	      }
 	      if(isStringToken)
 	        buf.append(
 	        "    public #TYPE# #HOST#.get#ID#() {\n" +
-	        "        return token#TYPEINSIGNATURE#_#ID# != null ? token#TYPEINSIGNATURE#_#ID# : \"\";\n" +
+	        "        return #VARID# != null ? #VARID# : \"\";\n" +
 	        "    }\n\n");
 	      else
 	        buf.append(
 	        "    public #TYPE# #HOST#.get#ID#() {\n" +
-	        "        return token#TYPEINSIGNATURE#_#ID#;\n" +
+	        "        return #VARID#;\n" +
 	        "    }\n\n");
 	    }
 	    String s = buf.toString();
-	    s = s.replaceAll("#ID#", getTokenId().getID());
+	    s = s.replaceAll("#ID#", emf.GenSupport.computeAccName(getTokenId().getID()));
+	    s = s.replaceAll("#VARID#", emf.GenSupport.computeVarName(getTokenId().getID()));
 	    s = s.replaceAll("#TYPE#", getTokenId().getTYPE());
 	    s = s.replaceAll("#TYPEINSIGNATURE#", ASTNode.convTypeNameToSignature(getTokenId().getTYPE()));
 	    s = s.replaceAll("#HOST#", name);
@@ -404,6 +405,7 @@ aspect ASTDeclContainmentGen {
 	    String s;
 	    // Generate get-method for component
 	    s = "    // Declared in " + hostClass().getFileName() + " line " + hostClass().getStartLine() + "\n" +
+	    	"    private #TYPE# #HOST#.#VARNAME# = null;\n" +
 	        "    public void #HOST#.set#NAME#(#TYPE# node) {\n" + 
 	        "        setChild(node, #INDEX#);\n" + 
 	        "    }\n";
@@ -425,7 +427,8 @@ aspect ASTDeclContainmentGen {
 	        "    }\n\n";
 	    }
 	    s = s.replaceAll("#TYPE#", computeImplName(getId().type()));
-	    s = s.replaceAll("#NAME#", getId().name());
+	    s = s.replaceAll("#NAME#", emf.GenSupport.computeAccName((getId().name())));
+	    s = s.replaceAll("#VARNAME#", emf.GenSupport.computeVarName((getId().name())));
 	    s = s.replaceAll("#INDEX#", String.valueOf(index));
 	    s = s.replaceAll("#HOST#", name);
 	    if(!publicModifier)

@@ -217,8 +217,8 @@ aspect ASTNodeBodyGen{
 	        stream.println("  public void ASTNode.setParent(ASTNode node) {");
 	        stream.println("    parent = node;");
 	        stream.println("  }");
-	        stream.println("  protected ASTNode ASTNode.parent;");
-	        stream.println("  protected ASTNode[] ASTNode.children;");
+	        //stream.println("  protected ASTNode ASTNode.parent;");
+	        //stream.println("  protected ASTNode[] ASTNode.children;");
 	        if(debugMode) {
 	        stream.println("    protected boolean ASTNode.debugNodeAttachmentIsRoot() { return false; }");
 	        stream.println("    private static void ASTNode.debugNodeAttachment(ASTNode node) {");
