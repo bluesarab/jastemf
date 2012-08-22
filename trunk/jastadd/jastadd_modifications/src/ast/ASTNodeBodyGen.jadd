@@ -37,6 +37,9 @@ aspect ASTNodeBodyGen{
 	   }
 	   
 	   jjtGenIteratorAccessor(stream);
+	   
+	   env().genRewriteOrderChecks(stream);
+	   env().genReset(stream);
 	}
 	
 	public void ASTDecl.jjtGenInternalState(PrintWriter stream){

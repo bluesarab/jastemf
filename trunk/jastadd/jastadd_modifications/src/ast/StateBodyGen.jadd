@@ -139,24 +139,7 @@ aspect StateBodyGen {
 		        stream.println("   }");
 		      }
 
-		/*      if(j2me) {
-		        stream.println("  static class HashtableBasedSet  {");
-		        stream.println("    public HashtableBasedSet(int initialCapacity) {");
-		        stream.println("      map = new java.util.Hashtable(initialCapacity);");
-		        stream.println("    }");
-		        stream.println("    private java.util.Hashtable map;");
-		        stream.println("    private static final Object PRESENT = new Object();");
-		        stream.println("    public java.util.Enumeration elements() { return map.keys(); }");
-		        stream.println("    public int size() { return map.size(); }");
-		        stream.println("    public boolean isEmpty() { return map.isEmpty(); }");
-		        stream.println("    public boolean contains(Object o) { return map.containsKey(o); }");
-		        stream.println("    public boolean add(Object o) { return map.put(o, PRESENT)==null; }");
-		        stream.println("    public boolean remove(Object o) { return map.remove(o)==PRESENT; }");
-		        stream.println("    public void clear() { map.clear(); }");
-		        stream.println("  }");
-		      }
-		      else */
-		    	  if(deterministic) {
+		      if(deterministic) {
 		        stream.println("  static class IdentityHashSet extends java.util.LinkedHashSet {");
 		        stream.println("    public IdentityHashSet(int initialCapacity) { super(initialCapacity); }");
 		        stream.println("    public java.util.Iterator iterator() {");
