@@ -1,0 +1,52 @@
+aspect RepositoryAdaptations {
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	
+	/**
+	 * An instance of this class represents the access methods associated with
+	 * an <i>EMF</i> model element's containment-element. Using a mapping from
+	 * child indexes to {@link IAccessProceed access object instances} a
+	 * generated <i>JastAdd</i> evaluator's AST access methods can be delegated
+	 * to appropriate <i>EMF</i>-compatible model access methods.
+	 * @author C. Bürger
+	 * @param <T> The adapted AST node's type parameter.
+	 */
+	public interface IAccessMethods {
+		/**
+		 * Execute the model element's get method to retrieve its value.
+		 * If the model element is an <tt>EList</tt> <tt>L</tt> a
+		 * <i>JastAdd</i> list backed by <tt>L</tt> is returned. If the model
+		 * element <tt>O</tt> represents an optional <i>JastAdd</i> child, a
+		 * <i>JastAdd</i> optional backed by <tt>O</tt> is returned.
+		 * @return The value of the <i>EMF</i> model element this object
+		 * accesses.
+		 */
+		ASTNode getChild();
+		/**
+		 * Execute the model element's set method to set its value. If the
+		 * model element represents a <i>JastAdd</i> list -- thus, the given
+		 * new value must be a <i>JastAdd</i> list <tt>L</tt> -- the content
+		 * of the model element's <tt>EList</tt> will be replaced by the
+		 * content of <tt>L</tt>. If the model element represents a
+		 * <i>JastAdd</i> optional -- thus, the given new value must be a
+		 * <i>JastAdd</i> optional <tt>O</tt> -- <tt>O's</tt> content is the
+		 * model element's new value.
+		 * @param newValue The model element's new value.
+		 */
+		void setChild(ASTNode newValue);
+	}
+	
+	/**
+	 * Map the given <i>JastAdd</i> AST node child index to its associated
+	 * <i>EMF</i> model element access methods. This method must be implemented
+	 * for each AST node, that introduces additional children to the ones
+	 * already inherited.
+	 * @param index Index of the child for which to find its access methods.
+	 * @return The associated access methods or <tt>null</tt> iff such a child
+	 * does not exist.
+	 */
+	public IAccessMethods ASTNode.resolveAccess(final int index) {
+		return null;
+	}
+}

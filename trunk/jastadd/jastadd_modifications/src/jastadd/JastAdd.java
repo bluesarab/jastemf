@@ -15,8 +15,8 @@ public class JastAdd {
 	public static final String VERSIONINFO = "\n// Generated with " + VERSION
 			+ "\n\n";
 
-	protected java.util.List files;
-	protected java.util.List cacheFiles;
+	protected java.util.List<String> files;
+	protected java.util.List<String> cacheFiles;
 
 	protected Grammar root; // root of the ast for the ast-grammar file
 	protected String pack;
@@ -31,8 +31,8 @@ public class JastAdd {
 
 	public void compile(String[] args) {
 		try {
-			files = new ArrayList();
-			cacheFiles = new ArrayList();
+			files = new ArrayList<String>();
+			cacheFiles = new ArrayList<String>();
 			if (readArgs(args))
 				System.exit(1);
 			;
@@ -42,68 +42,25 @@ public class JastAdd {
 			root = new Grammar();
 			root.abstractAncestors();
 
-			// Parse ast-grammar
-			Collection errors = new ArrayList();
-			for (Iterator iter = files.iterator(); iter.hasNext();) {
-				String fileName = (String) iter.next();
-				if (fileName.endsWith(".ast")) {
-					try {
-						Ast parser = new Ast(new FileInputStream(fileName));
-						parser.fileName = new File(fileName).getName();
-						Grammar g = parser.Grammar();
-						for (int i = 0; i < g.getNumTypeDecl(); i++) {
-							root.addTypeDecl(g.getTypeDecl(i));
-						}
-						for (Iterator errorIter = parser.getErrors(); errorIter
-								.hasNext();) {
-							String[] s = ((String) errorIter.next()).split(";");
-							errors.add("Syntax error in " + fileName
-									+ " at line " + s[0] + ", column " + s[1]);
-						}
-
-					} catch (ast.AST.TokenMgrError e) {
-						System.out.println("Lexical error in " + fileName
-								+ ": " + e.getMessage());
-						System.exit(1);
-					} catch (ast.AST.ParseException e) {
-						// Exceptions actually caught by error recovery in
-						// parser
-					} catch (FileNotFoundException e) {
-						System.out
-								.println("File error: Abstract syntax grammar file "
-										+ fileName + " not found");
-						System.exit(1);
-					}
-				}
-			}
+			//parse and analyse ast-grammar
+			Collection<String> errors = parseASTFiles(files);
 
 			if (!errors.isEmpty()) {
-				for (Iterator iter = errors.iterator(); iter.hasNext();)
+				for (Iterator<String> iter = errors.iterator(); iter.hasNext();)
 					System.out.println(iter.next());
 				System.exit(1);
 			}
 
-			long astParseTime = System.currentTimeMillis() - time;
-
-			String astErrors = root.astErrors();
-
-			long astErrorTime = System.currentTimeMillis() - time
-					- astParseTime;
-
-			if (!astErrors.equals("")) {
-				System.out.println("Semantic error:");
-				System.out.println(astErrors);
-				System.exit(1);
-			}
+			long astErrorTime = System.currentTimeMillis() - time;
 
 			ASTNode.resetGlobalErrors();
 
 			{
-				java.io.StringWriter writer = new java.io.StringWriter();
+				StringWriter writer = new StringWriter();
 				root.jjtGenASTNode$State(new PrintWriter(writer), grammar,
 						ASTNode.rewriteEnabled);
 
-				jrag.AST.JragParser jp = new jrag.AST.JragParser(
+				JragParser jp = new jrag.AST.JragParser(
 						new java.io.StringReader(writer.toString()));
 				jp.root = root;
 				jp.setFileName("ASTNode");
@@ -429,10 +386,6 @@ public class JastAdd {
 		System.out
 				.println("  --o=DDD (optional base output directory, default is current directory");
 		System.out.println("  --beaver (use beaver base node)");
-		System.out
-				.println("  --jjtree (use jjtree base node, this requires --grammar to be set)");
-		System.out
-				.println("  --grammar=GGG (the parser for the grammar is called GGG, required when using jjtree)");
 		System.out.println("  --rewrite (enable ReRAGs support)");
 		System.out
 				.println("  --novisitcheck (disable circularity check for attributes)");
@@ -457,5 +410,50 @@ public class JastAdd {
 				.println("JastAdd --package=ast Toy.ast NameAnalysis.jrag TypeAnalysis.jrag PrettyPrinter.jadd");
 		System.out.println();
 		System.out.println("Stopping program");
+	}
+	
+	public Collection<String> parseASTFiles(Collection<String> fileNames){
+		// Parse ast-grammar
+		Collection<String> errors = new ArrayList<String>();
+		for (Iterator<String> iter = fileNames.iterator(); iter.hasNext();) {
+			String fileName = (String) iter.next();
+			if (fileName.endsWith(".ast")) {
+				try {
+					Ast parser = new Ast(new FileInputStream(fileName));
+					parser.fileName = new File(fileName).getName();
+					Grammar g = parser.Grammar();
+					for (int i = 0; i < g.getNumTypeDecl(); i++) {
+						root.addTypeDecl(g.getTypeDecl(i));
+					}
+					for (Iterator<String> errorIter = parser.getErrors(); errorIter
+							.hasNext();) {
+						String[] s = errorIter.next().split(";");
+						errors.add("Syntax error in " + fileName
+								+ " at line " + s[0] + ", column " + s[1]);
+					}
+
+				} catch (ast.AST.TokenMgrError e) {
+					errors.add("Lexical error in " + fileName
+							+ ": " + e.getMessage());
+				} catch (ast.AST.ParseException e) {
+					// Exceptions actually caught by error recovery in
+					// parser
+				} catch (FileNotFoundException e) {
+					errors.add("File error: Abstract syntax grammar file "
+									+ fileName + " not found");
+				}
+			}
+		}
+		
+		if(!errors.isEmpty()){
+			return errors;
+		}
+		
+		String semanticErrors = root.astErrors();
+		if(semanticErrors!=null && semanticErrors.length()>0){
+			errors.add("Semantic error:\n"+semanticErrors);			
+		}
+		return errors;
+
 	}
 }
