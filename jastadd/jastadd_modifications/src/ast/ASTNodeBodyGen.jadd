@@ -38,56 +38,66 @@ aspect ASTNodeBodyGen{
 		      }
 	}
 	
+	public void ASTDecl.jjtGenRewriteDebugs(PrintWriter stream){      
+		stream.println("  public void ASTNode.debugRewrite(String info) {");
+        stream.println("    if(!parent.is$Final()) return;");
+        stream.println("    java.util.ArrayList key = new java.util.ArrayList(2);");
+        stream.println("    key.add(getParent());");
+        stream.println("    key.add(new Integer(getParent().getIndexOfChild(this)));");
+        stream.println("    java.util.ArrayList list;");
+        stream.println("    if(state().debugRewrite.containsKey(key))");
+        stream.println("      list = (java.util.ArrayList)state().debugRewrite.get(key);");
+        stream.println("    else {");
+        stream.println("      list = new java.util.ArrayList();");
+        stream.println("      state().debugRewrite.put(key, list);");
+        stream.println("    }");
+        stream.println("    list.add(info);");
+        stream.println("    if(list.size() > " + rewriteLimit + ") {");
+        stream.println("      StringBuffer buf = new StringBuffer(\"Iteration count exceeded for rewrite:\");");
+        stream.println("      for(java.util.Iterator iter = list.iterator(); iter.hasNext(); ) buf.append(\"\\n\" + iter.next());");
+        stream.println("      throw new RuntimeException(buf.toString());");
+        stream.println("    }");
+        stream.println("  }");
+        
+        stream.println("  public void ASTNode.debugRewriteRemove() {");
+        stream.println("    java.util.ArrayList key = new java.util.ArrayList(2);");
+        stream.println("    key.add(getParent());");
+        stream.println("    key.add(new Integer(getParent().getIndexOfChild(this)));");
+        stream.println("    state().debugRewrite.remove(key);");
+        stream.println("  }\n");
+	}
+	
+	public void ASTDecl.jjtGenRewriteFields(PrintWriter stream){      
+        stream.println("  public boolean ASTNode.in$Circle = false;");
+        stream.println("  public boolean ASTNode.in$Circle() { return in$Circle; }");
+        stream.println("  public void ASTNode.in$Circle(boolean b) { in$Circle = b; }");
+        if(ASTNode.stagedRewrites) {
+          stream.println("  public int ASTNode.is$Final = 0;");
+          stream.println("  public boolean ASTNode.is$Final() { return is$Final >= state().rewritePhase; }");
+          stream.println("  public void ASTNode.is$Final(int phase) { is$Final = phase; }");
+          stream.println("  public void ASTNode.enterRewritePhase(int phase) { state().rewritePhase = phase; }");
+          stream.println("  public boolean ASTNode.inRewritePhase(int phase) { return state().rewritePhase >= phase; }");
+        }
+        else {
+          stream.println("  public boolean ASTNode.is$Final = false;");
+          stream.println("  public boolean ASTNode.is$Final() { return is$Final; }");
+          stream.println("  public void ASTNode.is$Final(boolean b) { is$Final = b; }");
+        }
+	}
+	
 	public void ASTDecl.jjtGenASTNode(PrintWriter stream, String parserName, boolean rewriteEnabled) {
 	      stream.println("   public static final boolean ASTNode.generatedWithCircularEnabled = " + ASTNode.circularEnabled + ";");
 	      stream.println("   public static final boolean ASTNode.generatedWithCacheCycle = " + ASTNode.cacheCycle + ";");
 	      stream.println("   public static final boolean ASTNode.generatedWithComponentCheck = " + ASTNode.componentCheck + ";");
 	      
 	      jjtGenInternalState(stream);
-
+	      
 	      if(rewriteEnabled) {
 	        if(rewriteLimit > 0) {
-	          stream.println("  public void ASTNode.debugRewrite(String info) {");
-	          stream.println("    if(!parent.is$Final()) return;");
-	          stream.println("    java.util.ArrayList key = new java.util.ArrayList(2);");
-	          stream.println("    key.add(getParent());");
-	          stream.println("    key.add(new Integer(getParent().getIndexOfChild(this)));");
-	          stream.println("    java.util.ArrayList list;");
-	          stream.println("    if(state().debugRewrite.containsKey(key))");
-	          stream.println("      list = (java.util.ArrayList)state().debugRewrite.get(key);");
-	          stream.println("    else {");
-	          stream.println("      list = new java.util.ArrayList();");
-	          stream.println("      state().debugRewrite.put(key, list);");
-	          stream.println("    }");
-	          stream.println("    list.add(info);");
-	          stream.println("    if(list.size() > " + rewriteLimit + ") {");
-	          stream.println("      StringBuffer buf = new StringBuffer(\"Iteration count exceeded for rewrite:\");");
-	          stream.println("      for(java.util.Iterator iter = list.iterator(); iter.hasNext(); ) buf.append(\"\\n\" + iter.next());");
-	          stream.println("      throw new RuntimeException(buf.toString());");
-	          stream.println("    }");
-	          stream.println("  }");
-	          stream.println("  public void ASTNode.debugRewriteRemove() {");
-	          stream.println("    java.util.ArrayList key = new java.util.ArrayList(2);");
-	          stream.println("    key.add(getParent());");
-	          stream.println("    key.add(new Integer(getParent().getIndexOfChild(this)));");
-	          stream.println("    state().debugRewrite.remove(key);");
-	          stream.println("  }\n");
+	        	jjtGenRewriteDebugs(stream);
 	        }
-	        stream.println("  public boolean ASTNode.in$Circle = false;");
-	        stream.println("  public boolean ASTNode.in$Circle() { return in$Circle; }");
-	        stream.println("  public void ASTNode.in$Circle(boolean b) { in$Circle = b; }");
-	        if(ASTNode.stagedRewrites) {
-	          stream.println("  public int ASTNode.is$Final = 0;");
-	          stream.println("  public boolean ASTNode.is$Final() { return is$Final >= state().rewritePhase; }");
-	          stream.println("  public void ASTNode.is$Final(int phase) { is$Final = phase; }");
-	          stream.println("  public void ASTNode.enterRewritePhase(int phase) { state().rewritePhase = phase; }");
-	          stream.println("  public boolean ASTNode.inRewritePhase(int phase) { return state().rewritePhase >= phase; }");
-	        }
-	        else {
-	          stream.println("  public boolean ASTNode.is$Final = false;");
-	          stream.println("  public boolean ASTNode.is$Final() { return is$Final; }");
-	          stream.println("  public void ASTNode.is$Final(boolean b) { is$Final = b; }");
-	        }
+	        
+	        jjtGenRewriteFields(stream);
 	        
 	        stream.println("  @SuppressWarnings(\"cast\") public T ASTNode.getChild(int i) {");
 	        stream.println("    return (T)ASTNode.getChild(this, i);");
