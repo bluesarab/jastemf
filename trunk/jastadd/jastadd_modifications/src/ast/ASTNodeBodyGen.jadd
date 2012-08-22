@@ -1,6 +1,43 @@
  
 aspect ASTNodeBodyGen{
 	
+	public void ASTDecl.jjtGenASTNode(PrintWriter stream, String parserName, boolean rewriteEnabled) {
+	   stream.println("   public static final boolean ASTNode.generatedWithCircularEnabled = " + ASTNode.circularEnabled + ";");
+	   stream.println("   public static final boolean ASTNode.generatedWithCacheCycle = " + ASTNode.cacheCycle + ";");
+	   stream.println("   public static final boolean ASTNode.generatedWithComponentCheck = " + ASTNode.componentCheck + ";");
+	   
+	   jjtGenInternalState(stream);
+	   
+	   if(rewriteEnabled) {
+	     if(rewriteLimit > 0) {
+	    	 jjtGenRewriteDebugs(stream);
+	     }
+	        
+	     jjtGenRewriteFields(stream);
+	     jjtGenGetChildRewrite(stream);
+	   }
+	   else {
+	     jjtGenGetChild(stream);
+	   }
+	      
+	   jjtGenGetChildNoTransform(stream);
+	   
+	   jjtGenIndexOf(stream);
+	      
+	   jjtGenNumChildren(stream);
+	      
+	   jjtGenChildAdders(stream);
+	      
+	   jjtGenChildRemove(stream);
+	   
+	   jjtGenParentAccessors(stream);
+
+	   if(debugMode) {
+	     jjtGenDebugAccessors(stream);
+	   }
+	   
+	   jjtGenIteratorAccessor(stream);
+	}
 	
 	public void ASTDecl.jjtGenInternalState(PrintWriter stream){
 	      if(ASTNode.noStatic) {
@@ -257,41 +294,25 @@ aspect ASTNodeBodyGen{
         stream.println("    }");		
 	}
 	
-	public void ASTDecl.jjtGenASTNode(PrintWriter stream, String parserName, boolean rewriteEnabled) {
-	      stream.println("   public static final boolean ASTNode.generatedWithCircularEnabled = " + ASTNode.circularEnabled + ";");
-	      stream.println("   public static final boolean ASTNode.generatedWithCacheCycle = " + ASTNode.cacheCycle + ";");
-	      stream.println("   public static final boolean ASTNode.generatedWithComponentCheck = " + ASTNode.componentCheck + ";");
-	      
-	      jjtGenInternalState(stream);
-	      
-	      if(rewriteEnabled) {
-	        if(rewriteLimit > 0) {
-	        	jjtGenRewriteDebugs(stream);
-	        }
-	        
-	        jjtGenRewriteFields(stream);
-	        jjtGenGetChildRewrite(stream);
-	      }
-	      else {
-	    	jjtGenGetChild(stream);
-	      }
-	      
-	      jjtGenGetChildNoTransform(stream);
-	      
-	      jjtGenIndexOf(stream);
-	      
-	      jjtGenNumChildren(stream);
-	      
-	      jjtGenChildAdders(stream);
-	      
-	      jjtGenChildRemove(stream);
-	      
-	      jjtGenParentAccessors(stream);
-
-	      if(debugMode) {
-	    	  jjtGenDebugAccessors(stream);
-	      }
-	  }
+	public void ASTDecl.jjtGenIteratorAccessor(PrintWriter stream){
+	     stream.println("    public java.util.Iterator<T> ASTNode.iterator() {");
+	      stream.println("        return new java.util.Iterator<T>() {");
+	      stream.println("            private int counter = 0;");
+	      stream.println("            public boolean hasNext() {");
+	      stream.println("                return counter < getNumChild();");
+	      stream.println("            }");
+	      stream.println("            @SuppressWarnings(\"unchecked\") public T next() {");
+	      stream.println("                if(hasNext())");
+	      stream.println("                    return (T)getChild(counter++);");
+	      stream.println("                else");
+	      stream.println("                    return null;");
+	      stream.println("            }");
+	      stream.println("            public void remove() {");
+	      stream.println("                throw new UnsupportedOperationException();");
+	      stream.println("            }");
+	      stream.println("        };");
+	      stream.println("    }");
+	}
 
 }
 
