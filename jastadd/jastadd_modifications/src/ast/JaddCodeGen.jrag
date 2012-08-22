@@ -188,24 +188,7 @@ aspect JaddCodeGen {
       jjtGenASTNode(stream, parserName, rewriteEnabled);
       env().genRewriteOrderChecks(stream);
       env().genReset(stream);
-      stream.println("    public java.util.Iterator<T> ASTNode.iterator() {");
-      stream.println("        return new java.util.Iterator<T>() {");
-      stream.println("            private int counter = 0;");
-      stream.println("            public boolean hasNext() {");
-      stream.println("                return counter < getNumChild();");
-      stream.println("            }");
-      stream.println("            @SuppressWarnings(\"unchecked\") public T next() {");
-      stream.println("                if(hasNext())");
-      stream.println("                    return (T)getChild(counter++);");
-      stream.println("                else");
-      stream.println("                    return null;");
-      stream.println("            }");
-      stream.println("            public void remove() {");
-      stream.println("                throw new UnsupportedOperationException();");
-      stream.println("            }");
-      stream.println("        };");
-      stream.println("    }");
-    }
+     }
     else if(name().equals(ASTNode.listName)) {
     	stream.print(jjtGenListAPI());
     }
