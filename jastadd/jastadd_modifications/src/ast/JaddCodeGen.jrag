@@ -63,44 +63,60 @@ aspect JaddCodeGen {
     return i;
   }
 
+  public void ASTDecl.jjtGen(PrintWriter stream, String parserName, boolean rewriteEnabled) {
+	    String s;
+
+	    jjtGenConstructor(stream, parserName, rewriteEnabled);
+	    
+	    // Generate code common for all nodes by adding them to ASTNode
+	    if(name().equals("ASTNode")) {
+	      jjtGenASTNode(stream, parserName, rewriteEnabled);
+	    }
+	    else if(name().equals(ASTNode.listName)) {
+	    	stream.print(jjtGenListAPI());
+	    }
+	    else if(name().equals(ASTNode.optName)) {
+	      // do not override getNumChild with implementation below
+	    }
+	    else {
+	      stream.println("  protected int " +name() + ".numChildren() {");
+	      stream.println("    return " + numRegularChildren() + ";");
+	      stream.println("  }");
+	     
+	      if(debugMode && isRootNode()) {
+	        stream.println("    protected boolean " + name() + ".debugNodeAttachmentIsRoot() { return true; }");
+	      }
+	    }
+	    if(rewriteEnabled) {
+	      stream.println("    public boolean " + name() + ".mayHaveRewrite() {");
+	      if(name().equals("List"))
+	        stream.println("        return true;");
+	      else if(!hasRewrites())
+	        stream.println("        return false;");
+	      else if(!stagedRewrites || rewriteWithNoPhaseCondition())
+	        stream.println("        return true;");
+	      else {
+	        for(Iterator iter = rewritePhaseConditions().iterator(); iter.hasNext(); ) {
+	          String condition = (String)iter.next();
+	          stream.println("        if(" + condition + ") return true;");
+	        }
+	        stream.println("        return false;");
+	      }
+	      stream.println("    }");
+	    }
+	  }
  
   
   
   public void ASTDecl.jjtGenConstructor(PrintWriter stream, String parserName, boolean rewriteEnabled) {
-    String finalInit = "";
-    if(rewriteEnabled && isRootNode()) {
-      if(ASTNode.stagedRewrites)
-        finalInit = "        is$Final(state().rewritePhase);\n";
-      else
-        finalInit = "        is$Final(true);\n";
-    }
     stream.println("    // Declared in " + getFileName() + " line " + getStartLine() + "\n");
     String s = "    public #ID#.#ID_IMPL#() {\n" + // L�gg till null f�r agg, tom lista f�r list, false f�r opt
-    		   "        super();\n" + 
-              "#NTA#";
-    String t = new String();
-    int i = 0;
-    for(Iterator iter = getComponents(); iter.hasNext(); ) {
-      Components c = (Components)iter.next();
-      if(c instanceof ListComponentsNTA) {
-        //t = t + "        setChild(null, " + String.valueOf(i) + ");\n";
-        i++;
-      }
-      if(c instanceof OptionalComponentNTA) {
-        //t = t + "        setChild(new Opt(), " + String.valueOf(i) + ");\n";
-        i++;
-      }
-      if(c instanceof AggregateComponentsNTA) {
-        //t = t + "        setChild(null, " + String.valueOf(i) + ");\n";
-        i++;
-      }
-    }
+    		   "        super();\n";
     s = s.replaceAll("#ID#", name());
     s = s.replaceAll("#ID_IMPL#", implName());
-    s = s.replaceAll("#NTA#", t);
     stream.println(s);
-    // Initialize node
-    i = 0;
+   
+    int i = 0;
     for(Iterator iter = getComponents(); iter.hasNext(); ) {
       Components c = (Components)iter.next();
       if(c instanceof ListComponents) {
@@ -116,7 +132,15 @@ aspect JaddCodeGen {
         i++;
       }
     }
-    stream.println(finalInit);
+    
+ 
+    if(rewriteEnabled && isRootNode()) {
+      if(ASTNode.stagedRewrites)
+    	stream.println("        is$Final(state().rewritePhase);\n");
+      else
+        stream.println("        is$Final(true);\n");
+    }
+
     stream.println("    }\n");
 
     if(numNonNTAComponents() != 0) {
@@ -178,50 +202,6 @@ aspect JaddCodeGen {
         return result;
   }
 	  
-  public void ASTDecl.jjtGen(PrintWriter stream, String parserName, boolean rewriteEnabled) {
-    String s;
-
-    jjtGenConstructor(stream, parserName, rewriteEnabled);
-    
-    // Generate code common for all nodes by adding them to ASTNode
-    if(name().equals("ASTNode")) {
-      jjtGenASTNode(stream, parserName, rewriteEnabled);
-      env().genRewriteOrderChecks(stream);
-      env().genReset(stream);
-     }
-    else if(name().equals(ASTNode.listName)) {
-    	stream.print(jjtGenListAPI());
-    }
-    else if(name().equals(ASTNode.optName)) {
-      // do not override getNumChild with implementation below
-    }
-    else {
-      stream.println("  protected int " +name() + ".numChildren() {");
-      stream.println("    return " + numRegularChildren() + ";");
-      stream.println("  }");
-     
-      if(debugMode && isRootNode()) {
-        stream.println("    protected boolean " + name() + ".debugNodeAttachmentIsRoot() { return true; }");
-      }
-    }
-    if(rewriteEnabled) {
-      stream.println("    public boolean " + name() + ".mayHaveRewrite() {");
-      if(name().equals("List"))
-        stream.println("        return true;");
-      else if(!hasRewrites())
-        stream.println("        return false;");
-      else if(!stagedRewrites || rewriteWithNoPhaseCondition())
-        stream.println("        return true;");
-      else {
-        for(Iterator iter = rewritePhaseConditions().iterator(); iter.hasNext(); ) {
-          String condition = (String)iter.next();
-          stream.println("        if(" + condition + ") return true;");
-        }
-        stream.println("        return false;");
-      }
-      stream.println("    }");
-    }
-  }
 
   syn boolean ASTDecl.rewriteWithNoPhaseCondition() {
     for(int i = 0; i < getNumRewrite(); i++) {
