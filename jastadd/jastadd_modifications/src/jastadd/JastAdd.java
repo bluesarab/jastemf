@@ -43,7 +43,7 @@ public class JastAdd {
 			root.abstractAncestors();
 
 			//parse and analyse ast-grammar
-			Collection<String> errors = parseASTFiles(files);
+			Collection<String> errors = parseASTFiles(files,root);
 
 			if (!errors.isEmpty()) {
 				for (Iterator<String> iter = errors.iterator(); iter.hasNext();)
@@ -76,35 +76,14 @@ public class JastAdd {
 			}
 
 			// Parse all jrag files and build tables
-			for (Iterator iter = files.iterator(); iter.hasNext();) {
-				String fileName = (String) iter.next();
-				if (fileName.endsWith(".jrag") || fileName.endsWith(".jadd")) {
-					try {
-						FileInputStream inputStream = new FileInputStream(
-								fileName);
-						JragParser jp = new JragParser(inputStream);
-						jp.inputStream = inputStream; // Hack to make input
-														// stream visible for
-														// ast-parser
-						jp.root = root;
-						jp.setFileName(new File(fileName).getName());
-						ASTCompilationUnit au = jp.CompilationUnit();
-						root.addCompUnit(au);
-					} catch (jrag.AST.ParseException e) {
-						StringBuffer msg = new StringBuffer();
-						msg.append("Syntax error in " + fileName + " at line "
-								+ e.currentToken.next.beginLine + ", column "
-								+ e.currentToken.next.beginColumn);
-						System.out.println(msg.toString());
-						System.exit(1);
-					} catch (FileNotFoundException e) {
-						System.out.println("File error: Aspect file "
-								+ fileName + " not found");
-						System.exit(1);
-					}
-				}
+			errors = parseAGFiles(files,root);
+			
+			if (!errors.isEmpty()) {
+				for (Iterator<String> iter = errors.iterator(); iter.hasNext();)
+					System.out.println(iter.next());
+				System.exit(1);
 			}
-
+			
 			long jragParseTime = System.currentTimeMillis() - time
 					- astErrorTime;
 
@@ -412,7 +391,7 @@ public class JastAdd {
 		System.out.println("Stopping program");
 	}
 	
-	public Collection<String> parseASTFiles(Collection<String> fileNames){
+	private Collection<String> parseASTFiles(Collection<String> fileNames, Grammar grammar){
 		// Parse ast-grammar
 		Collection<String> errors = new ArrayList<String>();
 		for (Iterator<String> iter = fileNames.iterator(); iter.hasNext();) {
@@ -423,7 +402,7 @@ public class JastAdd {
 					parser.fileName = new File(fileName).getName();
 					Grammar g = parser.Grammar();
 					for (int i = 0; i < g.getNumTypeDecl(); i++) {
-						root.addTypeDecl(g.getTypeDecl(i));
+						grammar.addTypeDecl(g.getTypeDecl(i));
 					}
 					for (Iterator<String> errorIter = parser.getErrors(); errorIter
 							.hasNext();) {
@@ -455,5 +434,38 @@ public class JastAdd {
 		}
 		return errors;
 
+	}
+	
+	private Collection<String> parseAGFiles(Collection<String> fileNames, Grammar grammar){
+		// Parse all jrag files and build tables
+		Collection<String> problems = new LinkedList<String>();
+		for (Iterator<String> iter = fileNames.iterator(); iter.hasNext();) {
+			String fileName = iter.next();
+			if (fileName.endsWith(".jrag") || fileName.endsWith(".jadd")) {
+				try {
+					FileInputStream inputStream = new FileInputStream(
+							fileName);
+					JragParser jp = new JragParser(inputStream);
+					jp.inputStream = inputStream; // Hack to make input
+													// stream visible for
+													// ast-parser
+					jp.root = grammar;
+					jp.setFileName(new File(fileName).getName());
+					ASTCompilationUnit au = jp.CompilationUnit();
+					grammar.addCompUnit(au);
+				} catch (jrag.AST.ParseException e) {
+					StringBuffer msg = new StringBuffer();
+					msg.append("Syntax error in " + fileName + " at line "
+							+ e.currentToken.next.beginLine + ", column "
+							+ e.currentToken.next.beginColumn);
+					problems.add(msg.toString());
+					
+				} catch (FileNotFoundException e) {
+					problems.add("File error: Aspect file "
+							+ fileName + " not found");
+				}
+			}
+		}
+		return problems;
 	}
 }
