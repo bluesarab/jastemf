@@ -1,0 +1,17 @@
+aspect #ID#Constructor{
+	
+	// Declared in #FILENAME# line #LINE#
+	public #ID#.#ID_IMPL#() {
+		super();
+		
+		#VARIANTS#SETCHILD#
+			#VAR#LIST#
+		setChild(new #LISTTYPE#(), #INDEX#);		
+			#VAR#OPT#
+		setChild(new #OPTTYPE#(), #INDEX#);
+			#VARIANTS#SETCHILD#
+		
+		is$Final(true);
+	}
+
+} 

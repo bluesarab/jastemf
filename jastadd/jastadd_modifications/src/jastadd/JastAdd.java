@@ -1,13 +1,10 @@
 package jastadd;
 
 import ast.AST.*;
-
 import jrag.AST.*;
-
 import java.util.*;
 import java.io.*;
-
-import jrag.*;
+import ast.Util;
 
 public class JastAdd {
 
@@ -40,11 +37,12 @@ public class JastAdd {
 			long time = System.currentTimeMillis();
 
 			root = new Grammar();
-			root.abstractAncestors();
+			//root.abstractAncestors();
 
 			//parse and analyse ast-grammar
-			Collection<String> errors = parseASTFiles(files,root);
-
+			Collection<String> errors = parseInternalASTSpecs(root);
+			errors.addAll(Util.parseASTFiles(files,root));
+			
 			checkProblemsAndExit(errors);
 
 			long astErrorTime = System.currentTimeMillis() - time;
@@ -54,9 +52,14 @@ public class JastAdd {
 			addASTNodeState(root,grammar);
 
 			// Parse all jrag files and build tables
-			errors = parseAGFiles(files,root);
+			errors = Util.parseAGFiles(files,root);
+						
+			checkProblemsAndExit(errors);
+			
+			errors = parseInternalSpecs(root);
 			
 			checkProblemsAndExit(errors);
+
 			
 			long jragParseTime = System.currentTimeMillis() - time
 					- astErrorTime;
@@ -66,7 +69,7 @@ public class JastAdd {
 			root.processRefinements();
 			root.weaveInterfaceIntroductions();
 			
-			errors = parseCacheFiles(files, root);
+			errors = parseCacheFiles(cacheFiles, root);
 			
 			checkProblemsAndExit(errors);
 			
@@ -110,162 +113,6 @@ public class JastAdd {
 	}
 
 
-	private static String readFile(String name) throws java.io.IOException {
-		StringBuffer buf = new StringBuffer();
-		java.io.Reader reader = new java.io.BufferedReader(
-				new java.io.FileReader(name));
-		char[] cbuf = new char[1024];
-		int i = 0;
-		while ((i = reader.read(cbuf)) != -1)
-			buf.append(String.valueOf(cbuf, 0, i));
-		reader.close();
-		return buf.toString();
-	}
-
-	private static void checkMem() {
-		Runtime runtime = Runtime.getRuntime();
-		long total = runtime.totalMemory();
-		long free = runtime.freeMemory();
-		long use = total - free;
-		System.out.println("Before GC: Total " + total + ", use " + use);
-		runtime.gc();
-		total = runtime.totalMemory();
-		free = runtime.freeMemory();
-		use = total - free;
-		System.out.println("After GC: Total " + total + ", use " + use);
-	}
-
-	/**
-	 * Print help
-	 */
-	public static void printHelp() {
-		System.out
-				.println("This program reads a number of .jrag, .jadd, and .ast files");
-		System.out.println("and creates the nodes in the abstract syntax tree");
-		System.out.println();
-		System.out
-				.println("The .jrag source files may contain declarations of synthesized ");
-		System.out
-				.println("and inherited attributes and their corresponding equations.");
-		System.out
-				.println("It may also contain ordinary Java methods and fields.");
-		System.out.println();
-		System.out
-				.println("Source file syntax can be found at http://jastadd.cs.lth.se");
-		System.out.println();
-		System.out.println("Options:");
-		System.out.println("  --help (prints this text and stops)");
-		System.out
-				.println("  --version (prints version information and stops)");
-		System.out
-				.println("  --package=PPP (optional package for generated files, default is none)");
-		System.out
-				.println("  --o=DDD (optional base output directory, default is current directory");
-		System.out.println("  --beaver (use beaver base node)");
-		System.out.println("  --rewrite (enable ReRAGs support)");
-		System.out
-				.println("  --novisitcheck (disable circularity check for attributes)");
-		System.out
-				.println("  --noCacheCycle (disable cache cyle optimization for circular attributes)");
-		System.out
-				.println("  --license=LICENSE (include the file LICENSE in each generated file)");
-		System.out.println();
-		System.out.println("Arguments:");
-		System.out.println("Names of .ast, .jrag and .jadd source files");
-		System.out.println();
-		System.out
-				.println("Example: The following command reads and translates files NameAnalysis.jrag");
-		System.out
-				.println("and TypeAnalysis.jrag, weaves PrettyPrint.jadd into the abstract syntax tree");
-		System.out.println("defined in the grammar Toy.ast.");
-		System.out
-				.println("The result is the generated classes for the nodes in the AST that are placed");
-		System.out.println("in the package ast.");
-		System.out.println();
-		System.out
-				.println("JastAdd --package=ast Toy.ast NameAnalysis.jrag TypeAnalysis.jrag PrettyPrinter.jadd");
-		System.out.println();
-		System.out.println("Stopping program");
-	}
-	
-	private static Collection<String> parseASTFiles(Collection<String> fileNames, Grammar grammar){
-		// Parse ast-grammar
-		Collection<String> errors = new ArrayList<String>();
-		for (Iterator<String> iter = fileNames.iterator(); iter.hasNext();) {
-			String fileName = (String) iter.next();
-			if (fileName.endsWith(".ast")) {
-				try {
-					Ast parser = new Ast(new FileInputStream(fileName));
-					parser.fileName = new File(fileName).getName();
-					Grammar g = parser.Grammar();
-					for (int i = 0; i < g.getNumTypeDecl(); i++) {
-						grammar.addTypeDecl(g.getTypeDecl(i));
-					}
-					for (
-					Iterator<String> errorIter = parser.getErrors(); errorIter
-							.hasNext();) {
-						String[] s = errorIter.next().split(";");
-						errors.add("Syntax error in " + fileName
-								+ " at line " + s[0] + ", column " + s[1]);
-					}
-
-				} catch (ast.AST.TokenMgrError e) {
-					errors.add("Lexical error in " + fileName
-							+ ": " + e.getMessage());
-				} catch (ast.AST.ParseException e) {
-					// Exceptions actually caught by error recovery in
-					// parser
-				} catch (FileNotFoundException e) {
-					errors.add("File error: Abstract syntax grammar file "
-									+ fileName + " not found");
-				}
-			}
-		}
-		
-		if(!errors.isEmpty()){
-			return errors;
-		}
-		
-		String semanticErrors = grammar.astErrors();
-		if(semanticErrors!=null && semanticErrors.length()>0){
-			errors.add("Semantic error:\n"+semanticErrors);			
-		}
-		return errors;
-
-	}
-	
-	private static Collection<String> parseAGFiles(Collection<String> fileNames, Grammar grammar){
-		// Parse all jrag files and build tables
-		Collection<String> problems = new LinkedList<String>();
-		for (Iterator<String> iter = fileNames.iterator(); iter.hasNext();) {
-			String fileName = iter.next();
-			if (fileName.endsWith(".jrag") || fileName.endsWith(".jadd")) {
-				try {
-					FileInputStream inputStream = new FileInputStream(
-							fileName);
-					JragParser jp = new JragParser(inputStream);
-					jp.inputStream = inputStream; // Hack to make input
-													// stream visible for
-													// ast-parser
-					jp.root = grammar;
-					jp.setFileName(new File(fileName).getName());
-					ASTCompilationUnit au = jp.CompilationUnit();
-					grammar.addCompUnit(au);
-				} catch (jrag.AST.ParseException e) {
-					StringBuffer msg = new StringBuffer();
-					msg.append("Syntax error in " + fileName + " at line "
-							+ e.currentToken.next.beginLine + ", column "
-							+ e.currentToken.next.beginColumn);
-					problems.add(msg.toString());
-					
-				} catch (FileNotFoundException e) {
-					problems.add("File error: Aspect file "
-							+ fileName + " not found");
-				}
-			}
-		}
-		return problems;
-	}
 	
 	private static void addASTNodeState(Grammar grammar, String grammarName){
 		StringWriter writer = new StringWriter();
@@ -368,6 +215,74 @@ public class JastAdd {
 		return problems;
 	}
 	
+	//added for JastEMF
+	private static Collection<String> parseInternalASTs(Grammar grammar) throws IOException{
+		Collection<String> problems = new LinkedList<String>();
+		Collection<String> internalSpecs = new LinkedList<String>();
+		internalSpecs.add("/emf/Base.internal.ast");
+
+		for(String specURI:internalSpecs){
+			InputStream stream = JastAdd.class.getResourceAsStream(specURI);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+			String spec = Util.readStream(reader);
+			spec = spec.replaceAll("#LISTTYPE#", ASTNode.listName);
+			spec = spec.replaceAll("#OPTTYPE#", ASTNode.optName);
+			spec = spec.replaceFirst("#ASTNode.circularEnabled#", Boolean.toString(ASTNode.circularEnabled));
+			spec = spec.replaceFirst("#ASTNode.cacheCycle#", Boolean.toString(ASTNode.cacheCycle));
+			spec = spec.replaceFirst("#ASTNode.componentCheck#", Boolean.toString(ASTNode.componentCheck));
+			stream = new ByteArrayInputStream(spec.getBytes());
+			String problem = ast.Util.parseAGSpecFromStream(stream, specURI, grammar);
+			if(problem!=null)
+				problems.add(problem);
+		}
+
+		return problems;
+	}
+	
+	//added by JastEMF
+	private static Collection<String> parseInternalASTSpecs(Grammar grammar) throws IOException{
+		Collection<String> problems = new LinkedList<String>();
+		Collection<String> internalSpecs = new LinkedList<String>();
+		internalSpecs.add("/emf/Base.internal.ast");
+
+		for(String specURI:internalSpecs){
+			InputStream stream = JastAdd.class.getResourceAsStream(specURI);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+			String spec = Util.readStream(reader);
+			spec = spec.replaceAll("#LISTTYPE#", ASTNode.listName);
+			spec = spec.replaceAll("#OPTTYPE#", ASTNode.optName);
+			stream = new ByteArrayInputStream(spec.getBytes());
+			problems.addAll(Util.parseASTSpecFromStream(stream, specURI, grammar));
+		}
+
+		return problems;
+	}
+	
+	//added by JastEMF
+	private static Collection<String> parseInternalSpecs(Grammar grammar) throws IOException{
+		Collection<String> problems = new LinkedList<String>();
+		Collection<String> internalSpecs = new LinkedList<String>();
+		internalSpecs.add("/emf/ASTNodeAPI.internal.jrag");
+		internalSpecs.add("/emf/ResolveAccess.internal.jrag");
+		internalSpecs.add("/emf/ListAPI.internal.jrag");
+		for(String specURI:internalSpecs){
+			InputStream stream = JastAdd.class.getResourceAsStream(specURI);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+			String spec = Util.readStream(reader);
+			spec = spec.replaceAll("#LISTTYPE#", ASTNode.listName);
+			spec = spec.replaceAll("#OPTTYPE#", ASTNode.optName);
+			spec = spec.replaceFirst("#ASTNode.circularEnabled#", Boolean.toString(ASTNode.circularEnabled));
+			spec = spec.replaceFirst("#ASTNode.cacheCycle#", Boolean.toString(ASTNode.cacheCycle));
+			spec = spec.replaceFirst("#ASTNode.componentCheck#", Boolean.toString(ASTNode.componentCheck));
+			stream = new ByteArrayInputStream(spec.getBytes());
+			String problem = Util.parseAGSpecFromStream(stream, specURI, grammar);
+			if(problem!=null)
+				problems.add(problem);
+		}
+
+		return problems;
+	}
+	
 	private static void checkProblemsAndExit(Collection<String> problems){
 		if (!problems.isEmpty()) {
 			for (Iterator<String> iter = problems.iterator(); iter.hasNext();)
@@ -412,7 +327,7 @@ public class JastAdd {
 			String fileName = cla.getLongOptionValue("license", null);
 			try {
 				if (fileName != null) {
-					ASTNode.license = readFile(fileName);
+					ASTNode.license = Util.readFile(fileName);
 				}
 			} catch (java.io.IOException e) {
 				System.err.println("Error loading license file " + fileName);
@@ -486,6 +401,76 @@ public class JastAdd {
 		}
 		return false;
 	}
+	
+
+
+
+	private static void checkMem() {
+		Runtime runtime = Runtime.getRuntime();
+		long total = runtime.totalMemory();
+		long free = runtime.freeMemory();
+		long use = total - free;
+		System.out.println("Before GC: Total " + total + ", use " + use);
+		runtime.gc();
+		total = runtime.totalMemory();
+		free = runtime.freeMemory();
+		use = total - free;
+		System.out.println("After GC: Total " + total + ", use " + use);
+	}
+
+	/**
+	 * Print help
+	 */
+	public static void printHelp() {
+		System.out
+				.println("This program reads a number of .jrag, .jadd, and .ast files");
+		System.out.println("and creates the nodes in the abstract syntax tree");
+		System.out.println();
+		System.out
+				.println("The .jrag source files may contain declarations of synthesized ");
+		System.out
+				.println("and inherited attributes and their corresponding equations.");
+		System.out
+				.println("It may also contain ordinary Java methods and fields.");
+		System.out.println();
+		System.out
+				.println("Source file syntax can be found at http://jastadd.cs.lth.se");
+		System.out.println();
+		System.out.println("Options:");
+		System.out.println("  --help (prints this text and stops)");
+		System.out
+				.println("  --version (prints version information and stops)");
+		System.out
+				.println("  --package=PPP (optional package for generated files, default is none)");
+		System.out
+				.println("  --o=DDD (optional base output directory, default is current directory");
+		System.out.println("  --beaver (use beaver base node)");
+		System.out.println("  --rewrite (enable ReRAGs support)");
+		System.out
+				.println("  --novisitcheck (disable circularity check for attributes)");
+		System.out
+				.println("  --noCacheCycle (disable cache cyle optimization for circular attributes)");
+		System.out
+				.println("  --license=LICENSE (include the file LICENSE in each generated file)");
+		System.out.println();
+		System.out.println("Arguments:");
+		System.out.println("Names of .ast, .jrag and .jadd source files");
+		System.out.println();
+		System.out
+				.println("Example: The following command reads and translates files NameAnalysis.jrag");
+		System.out
+				.println("and TypeAnalysis.jrag, weaves PrettyPrint.jadd into the abstract syntax tree");
+		System.out.println("defined in the grammar Toy.ast.");
+		System.out
+				.println("The result is the generated classes for the nodes in the AST that are placed");
+		System.out.println("in the package ast.");
+		System.out.println();
+		System.out
+				.println("JastAdd --package=ast Toy.ast NameAnalysis.jrag TypeAnalysis.jrag PrettyPrinter.jadd");
+		System.out.println();
+		System.out.println("Stopping program");
+	}
+	
 
 	
 }

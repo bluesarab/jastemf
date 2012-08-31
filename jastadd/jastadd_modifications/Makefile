@@ -1,7 +1,7 @@
 ANTPATH=./tools/ant.jar;./tools/ant-launcher.jar
-ASPECTJ="tools/aspectj/bin/ajc" -cp "./tools/aspectj/lib/aspectjrt.jar;$(ANTPATH)" -d $(BUILD)
-JAVACC=java -classpath tools/JavaCC.jar org.javacc.parser.Main -JDK_VERSION=1.4
-JJTREE=java -classpath tools/JavaCC.jar org.javacc.jjtree.Main -JDK_VERSION=1.4
+ASPECTJ="tools/aspectj/bin/ajc" -1.5 -cp "./tools/aspectj/lib/aspectjrt.jar;$(ANTPATH)" -d $(BUILD)
+JAVACC=java -classpath tools/JavaCC.jar org.javacc.parser.Main -JDK_VERSION=5.0
+JJTREE=java -classpath tools/JavaCC.jar org.javacc.jjtree.Main -JDK_VERSION=5.0
 JASTADD=java -jar tools/jastadd2.jar
 SOURCE=./src
 TARGET=./src-gen
@@ -30,6 +30,8 @@ jrag/AST/Jrag.jj : $(SOURCE)/jrag/Jrag.jjt
 
 jar : all unzip-aj
 	cp manifest LICENSE $(BUILD)
+	cp src/emf/*.internal.jrag $(BUILD)/emf 
+	cp src/emf/*.internal.ast $(BUILD)/emf 
 	jar -cmf manifest jastadd2.jar -C $(BUILD) ast -C $(BUILD) LICENSE -C $(BUILD) jastadd -C $(BUILD) emf -C $(BUILD) jrag  -C $(BUILD) org/aspectj/lang  -C $(BUILD) org/aspectj/runtime 
 
 	
