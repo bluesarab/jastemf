@@ -15,7 +15,7 @@ aspect JaddCodeGen {
   public void Grammar.abstractAncestors() {
     ASTDecl cl;
     IdDecl name;
-    
+   /* 
     // Add ASTNode
     cl = new ASTDecl();
     name = new IdDecl();
@@ -38,7 +38,7 @@ aspect JaddCodeGen {
     name.setID(ASTNode.optName);
     cl.setIdDecl(name);
     cl.setFileName(ASTNode.optName+".ast");
-    addTypeDecl(cl);
+    addTypeDecl(cl);*/
   }
 
   syn int ASTDecl.numNonNTAComponents() {
@@ -79,17 +79,17 @@ aspect JaddCodeGen {
 	      // do not override getNumChild with implementation below
 	    }
 	    else {
-	      stream.println("  protected int " +name() + ".numChildren() {");
+	     /* stream.println("  protected int " +name() + ".numChildren() {");
 	      stream.println("    return " + numRegularChildren() + ";");
 	      stream.println("  }");
 	     
 	      if(debugMode && isRootNode()) {
 	        stream.println("    protected boolean " + name() + ".debugNodeAttachmentIsRoot() { return true; }");
-	      }
+	      }*/
 	    }
 	    if(rewriteEnabled) {
 	      stream.println("    public boolean " + name() + ".mayHaveRewrite() {");
-	      if(name().equals("List"))
+	      if(name().equals(ASTNode.listName))
 	        stream.println("        return true;");
 	      else if(!hasRewrites())
 	        stream.println("        return false;");

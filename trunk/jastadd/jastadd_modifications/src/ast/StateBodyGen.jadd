@@ -1,8 +1,8 @@
 
 
 aspect StateBodyGen {
-	 public void Grammar.genReset(PrintWriter stream) {
-		    stream.println("    public void ASTNode$State.reset() {");
+	 	   public void Grammar.genReset(PrintWriter stream) {
+		    stream.println("    public void reset() {");
 		    if(circularEnabled) {
 		      stream.println("        IN_CIRCLE = false;");
 		      stream.println("        CIRCLE_INDEX = 1;"); // TOBBE
@@ -24,6 +24,19 @@ aspect StateBodyGen {
 		    }
 		    stream.println("    }");
 		  }
+	 	   
+	 	  public void Grammar.genResetDuringCounters(PrintWriter out) {
+	 		    for(Iterator iter = rewriteAspects().iterator(); iter.hasNext(); ) {
+	 		      String name = (String)iter.next();
+	 		      String s = 
+	 		                 "        if(during" + name + " != 0) {\n" + 
+	 		                 "            System.out.println(\"Warning: resetting during" + name + "\");\n" +
+	 		                 "            during" + name + " = 0;\n" +
+	 		                 "        }\n";
+	 		      out.print(s);
+	 		    }
+
+	 	  }
 
 		  public void Grammar.jjtGenASTNode$State(PrintWriter stream, String parserName, boolean rewriteEnabled) {
 		      stream.println("   static public class ASTNode$State {");
@@ -178,6 +191,8 @@ aspect StateBodyGen {
 		        stream.println("    public void clear() { map.clear(); }");
 		        stream.println("  }");
 		      }
+		      
+		      genReset(stream);
 
 		      stream.println("  }"); // End ASTNode$State
 		  }

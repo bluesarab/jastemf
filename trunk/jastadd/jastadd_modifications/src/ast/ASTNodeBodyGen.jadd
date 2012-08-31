@@ -2,44 +2,44 @@
 aspect ASTNodeBodyGen{
 	
 	public void ASTDecl.jjtGenASTNode(PrintWriter stream, String parserName, boolean rewriteEnabled) {
-	   stream.println("   public static final boolean ASTNode.generatedWithCircularEnabled = " + ASTNode.circularEnabled + ";");
-	   stream.println("   public static final boolean ASTNode.generatedWithCacheCycle = " + ASTNode.cacheCycle + ";");
-	   stream.println("   public static final boolean ASTNode.generatedWithComponentCheck = " + ASTNode.componentCheck + ";");
+	   //stream.println("   public static final boolean ASTNode.generatedWithCircularEnabled = " + ASTNode.circularEnabled + ";");
+	   //stream.println("   public static final boolean ASTNode.generatedWithCacheCycle = " + ASTNode.cacheCycle + ";");
+	   //stream.println("   public static final boolean ASTNode.generatedWithComponentCheck = " + ASTNode.componentCheck + ";");
 	   
-	   jjtGenInternalState(stream);
+	   //jjtGenInternalState(stream);
 	   
 	   if(rewriteEnabled) {
-	     if(rewriteLimit > 0) {
-	    	 jjtGenRewriteDebugs(stream);
-	     }
+	    // if(rewriteLimit > 0) {
+	    //	 jjtGenRewriteDebugs(stream);
+	    // }
 	        
-	     jjtGenRewriteFields(stream);
-	     jjtGenGetChildRewrite(stream);
+	     //jjtGenRewriteFields(stream);
+	    // jjtGenGetChildRewrite(stream);
 	   }
 	   else {
-	     jjtGenGetChild(stream);
+	    // jjtGenGetChild(stream);
 	   }
 	      
-	   jjtGenGetChildNoTransform(stream);
+	   //jjtGenGetChildNoTransform(stream);
 	   
-	   jjtGenIndexOf(stream);
+	   //jjtGenIndexOf(stream);
 	      
-	   jjtGenNumChildren(stream);
+	   //jjtGenNumChildren(stream);
 	      
-	   jjtGenChildAdders(stream);
+	   //jjtGenChildAdders(stream);
 	      
-	   jjtGenChildRemove(stream);
+	   //jjtGenChildRemove(stream);
 	   
-	   jjtGenParentAccessors(stream);
+	   //jjtGenParentAccessors(stream);
 
-	   if(debugMode) {
-	     jjtGenDebugAccessors(stream);
-	   }
+	  // if(debugMode) {
+	   //  jjtGenDebugAccessors(stream);
+	  // }
 	   
-	   jjtGenIteratorAccessor(stream);
+	   //jjtGenIteratorAccessor(stream);
 	   
 	   env().genRewriteOrderChecks(stream);
-	   env().genReset(stream);
+	   //env().genReset(stream);
 	}
 	
 	public void ASTDecl.jjtGenInternalState(PrintWriter stream){
@@ -181,7 +181,7 @@ aspect ASTNodeBodyGen{
 	}
 	
 	public void ASTDecl.jjtGenIndexOf(PrintWriter stream){
-	    stream.println("  private int ASTNode.childIndex;");
+	    stream.println("  protected int ASTNode.childIndex;");
 	    stream.println("  public int ASTNode.getIndexOfChild(ASTNode node) {");
 	    stream.println("    if(node != null && node.childIndex < getNumChildNoTransform() && node == getChildNoTransform(node.childIndex))");
 	    stream.println("      return node.childIndex;");
@@ -212,11 +212,11 @@ aspect ASTNodeBodyGen{
 	
 	public void ASTDecl.jjtGenChildAdders(PrintWriter stream){
 	    //stream.println("  protected ASTNode[] ASTNode.children;");	
-	    stream.println("  public void ASTNode.addChild(T node) {");
-	    stream.println("    setChild(node, getNumChildNoTransform());");
-	    stream.println("  }");
+	    //stream.println("  public void ASTNode.addChild(T node) {");
+	    //stream.println("    setChild(node, getNumChildNoTransform());");
+	    //stream.println("  }");
 	    
-	    stream.println("  public void ASTNode.setChild(T node, int i) {");
+	    /*stream.println("  public void ASTNode.setChild(T node, int i) {");
 	    if(debugMode)
 	       stream.println("        debugNodeAttachment(node);");
 	    stream.println("    if(children == null) {");
@@ -247,7 +247,7 @@ aspect ASTNodeBodyGen{
 	    stream.println("    }");
 	    stream.println("    numChildren++;");
 	    stream.println("    if(node != null) { node.setParent(this); node.childIndex = i; }");
-	    stream.println("  }");
+	    stream.println("  }");*/
 	}
 	
 	public void ASTDecl.jjtGenChildRemove(PrintWriter stream){
@@ -263,6 +263,7 @@ aspect ASTNodeBodyGen{
         stream.println("    }");
         stream.println("  }");	
 	}
+	
 	
 	public void ASTDecl.jjtGenParentAccessors(PrintWriter stream){
 		//stream.println("  protected ASTNode ASTNode.parent;");

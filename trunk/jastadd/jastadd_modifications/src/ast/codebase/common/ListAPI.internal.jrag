@@ -1,0 +1,37 @@
+aspect ListAPI{
+	
+	private boolean #LISTTYPE#.list_touched = true;
+	
+	public #LISTTYPE#<T> #LISTTYPE#.add(T node) {
+		 if(node instanceof #LISTTYPE#)
+			 throw new RuntimeException("Lists can not have children of type #LISTTYPE#");
+		 if(node instanceof #OPTTYPE#)
+			 throw new RuntimeException("Lists can not have children of type #OPTTYPE#");
+		 addChild(node);
+		 return this;
+	}
+	
+	public void #LISTTYPE#.insertChild(T node, int i) {
+		list_touched = true;
+		super.insertChild(node, i);
+	}
+	
+	public void #LISTTYPE#.addChild(T node) {
+		list_touched = true;
+		super.addChild(node);
+	}
+	
+	public void #LISTTYPE#.removeChild(int i) {
+		list_touched = true;
+		super.removeChild(i);
+	}
+	
+	public int #LISTTYPE#.getNumChild() {
+        if(list_touched) {
+        for(int i = 0; i < getNumChildNoTransform(); i++)
+        	getChild(i);
+        	list_touched = false;
+        }
+        return getNumChildNoTransform();		
+	}
+}

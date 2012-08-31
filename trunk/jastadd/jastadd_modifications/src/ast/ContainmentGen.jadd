@@ -388,8 +388,8 @@ aspect ASTDeclContainmentGen {
 	        "    }\n\n");
 	    }
 	    String s = buf.toString();
-	    s = s.replaceAll("#ID#", emf.GenSupport.computeAccName(getTokenId().getID()));
-	    s = s.replaceAll("#VARID#", emf.GenSupport.computeVarName(getTokenId().getID()));
+	    s = s.replaceAll("#ID#", ast.Util.computeAccName(getTokenId().getID()));
+	    s = s.replaceAll("#VARID#", ast.Util.computeVarName(getTokenId().getID()));
 	    s = s.replaceAll("#TYPE#", getTokenId().getTYPE());
 	    s = s.replaceAll("#TYPEINSIGNATURE#", ASTNode.convTypeNameToSignature(getTokenId().getTYPE()));
 	    s = s.replaceAll("#HOST#", name);
@@ -427,8 +427,8 @@ aspect ASTDeclContainmentGen {
 	        "    }\n\n";
 	    }
 	    s = s.replaceAll("#TYPE#", computeImplName(getId().type()));
-	    s = s.replaceAll("#NAME#", emf.GenSupport.computeAccName((getId().name())));
-	    s = s.replaceAll("#VARNAME#", emf.GenSupport.computeVarName((getId().name())));
+	    s = s.replaceAll("#NAME#", ast.Util.computeAccName((getId().name())));
+	    s = s.replaceAll("#VARNAME#", ast.Util.computeVarName((getId().name())));
 	    s = s.replaceAll("#INDEX#", String.valueOf(index));
 	    s = s.replaceAll("#HOST#", name);
 	    if(!publicModifier)

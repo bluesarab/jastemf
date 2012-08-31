@@ -1463,19 +1463,6 @@ aspect JragCodeGen {
     return name;
   }
 
-  public void Grammar.genResetDuringCounters(PrintWriter out) {
-    for(Iterator iter = rewriteAspects().iterator(); iter.hasNext(); ) {
-      String name = (String)iter.next();
-      String s = 
-                 "        if(during" + name + " != 0) {\n" + 
-                 "            System.out.println(\"Warning: resetting during" + name + "\");\n" +
-                 "            during" + name + " = 0;\n" +
-                 "        }\n";
-      out.print(s);
-    }
-
-  }
-
   public void Grammar.genRewriteOrderChecks(PrintWriter out) {
     for(Iterator iter = rewriteAspects().iterator(); iter.hasNext(); ) {
       String name = (String)iter.next();
