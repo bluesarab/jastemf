@@ -1,16 +1,26 @@
-aspect #ID#Constructor{
+aspect #ID#Constructors{
 	
 	// Declared in #FILENAME# line #LINE#
 	public #ID#.#ID_IMPL#() {
 		super();
 		
-		#VARIANTS#SETCHILD#
-			#VAR#LIST#
-		setChild(new #LISTTYPE#(), #INDEX#);		
-			#VAR#OPT#
-		setChild(new #OPTTYPE#(), #INDEX#);
-			#VARIANTS#SETCHILD#
+		#PROTOTYPE#SETCHILD#
+			setChild(new §ARGTYPE§(), §ARRAY_IDX§);
+		#PROTOTYPE#SETCHILD#
 		
+		is$Final(true);
+	}
+	
+	// Declared in #FILENAME# line #LINE#
+	public #ID#.#ID_IMPL#(#PROTOTYPE#ARGLIST# §ARGTYPE§ p§IDX§ #PROTOTYPE#ARGLIST#){		
+		#PROTOTYPE#SETVARIANTS#  
+			§VARIANTS§SETCHILD§
+				§VAR§TERMINAL§ set§NAME§(p§IDX§);
+				§VAR§NONTERMINAL§ setChild(p§IDX§,§ARRAY_IDX§);
+				§VAR§NTA1§ setChild(new §ARGTYPE§(), §ARRAY_IDX§);
+				§VAR§NTA2§ setChild(null, §ARRAY_IDX§);
+			§VARIANTS§SETCHILD§
+		#PROTOTYPE#SETVARIANTS#  
 		is$Final(true);
 	}
 

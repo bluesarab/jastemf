@@ -30,8 +30,10 @@ jrag/AST/Jrag.jj : $(SOURCE)/jrag/Jrag.jjt
 
 jar : all unzip-aj
 	cp manifest LICENSE $(BUILD)
-	cp src/emf/*.internal.jrag $(BUILD)/emf 
-	cp src/emf/*.internal.ast $(BUILD)/emf 
+	mkdir "$(BUILD)/ast/codebase/common"
+	mkdir "$(BUILD)/ast/codebase/containment"
+	cp src/ast/codebase/common/*.internal.* $(BUILD)/ast/codebase/common
+	cp src/ast/codebase/containment/*.internal.* $(BUILD)/ast/codebase/containment
 	jar -cmf manifest jastadd2.jar -C $(BUILD) ast -C $(BUILD) LICENSE -C $(BUILD) jastadd -C $(BUILD) emf -C $(BUILD) jrag  -C $(BUILD) org/aspectj/lang  -C $(BUILD) org/aspectj/runtime 
 
 	

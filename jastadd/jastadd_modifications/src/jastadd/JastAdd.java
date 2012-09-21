@@ -4,6 +4,8 @@ import ast.AST.*;
 import jrag.AST.*;
 import java.util.*;
 import java.io.*;
+
+import ast.Template;
 import ast.Util;
 
 public class JastAdd {
@@ -37,9 +39,7 @@ public class JastAdd {
 			long time = System.currentTimeMillis();
 
 			root = new Grammar();
-			//root.abstractAncestors();
-
-			//parse and analyse ast-grammar
+				//parse and analyse ast-grammar
 			Collection<String> errors = parseInternalASTSpecs(root);
 			errors.addAll(Util.parseASTFiles(files,root));
 			
@@ -49,10 +49,10 @@ public class JastAdd {
 
 			ASTNode.resetGlobalErrors();
 
-			addASTNodeState(root,grammar);
+			errors = parseInternalStateSpec(root);
 
 			// Parse all jrag files and build tables
-			errors = Util.parseAGFiles(files,root);
+			errors.addAll(Util.parseAGFiles(files,root));
 						
 			checkProblemsAndExit(errors);
 			
@@ -113,26 +113,36 @@ public class JastAdd {
 	}
 
 
-	
-	private static void addASTNodeState(Grammar grammar, String grammarName){
-		StringWriter writer = new StringWriter();
-		grammar.jjtGenASTNode$State(new PrintWriter(writer), grammarName,
-				ASTNode.rewriteEnabled);
+	private static Collection<String> addConstructors(Grammar grammar,ASTDecl decl) throws IOException{
+		Collection<String> problems = new LinkedList<String>();
+		if(decl.getComponents().hasNext()){
+			String specURI = "/ast/codebase/contaiment/Constructor.internal.jrag";
+			Template tpl =  new Template(ast.Util.readStream(ast.Util.class.getResourceAsStream(specURI)));
+			tpl.bind("ID",decl.name());
+			tpl.bind("ID_IMPL", decl.implName());		
+			tpl.bind("FILENAME",decl.getFileName());
+			tpl.bind("LINE",String.valueOf(decl.getStartLine()));
+			int i = 0;
+			Iterator<Components> it = (Iterator<Components>)decl.getComponents();
+			while(it.hasNext()){
+				Components component = it.next();
+				if(component instanceof ListComponents){
+					tpl.instanciatePrototype("SETCHILD", "ARGTYPE", ASTNode.listName,"ARRAY_IDX",String.valueOf(i)); 		
+				}
+				else if(component instanceof OptionalComponent){
+					tpl.instanciatePrototype("SETCHILD", "ARGTYPE", ASTNode.optName,"ARRAY_IDX",String.valueOf(i)); 		
+				}
+				i++;
+			}
+			tpl.removePrototype("SETCHILD");
+			if(decl.numNonNTAComponents() != 0){
+				//TODO CONTINUE
+			}
 
-		JragParser jp = new jrag.AST.JragParser(
-				new java.io.StringReader(writer.toString()));
-		jp.root = grammar;
-		jp.setFileName("ASTNode");
-		jp.className = "ASTNode";
-		jp.pushTopLevelOrAspect(true);
-		try {
-			while (true)
-				jp.AspectBodyDeclaration();
-		} catch (Exception e) {
-			//String s = e.getMessage();
 		}
-		jp.popTopLevelOrAspect();
+		return problems;
 	}
+	
 	
 	private static void addContainmentAPI(Grammar grammar,String grammarName,boolean usePublicModifier){
 		for (int i = 0; i < grammar.getNumTypeDecl(); i++) {
@@ -159,16 +169,6 @@ public class JastAdd {
 				int j = 0;
 				for (Iterator iter = decl.getComponents(); iter.hasNext();) {
 					Components components = (Components) iter.next();
-
-					// TODO Modified by skarol, avoiding generation of
-					// getters and
-					// setters which already exist in superclasses
-
-					/*
-					 * if(c instanceof TokenComponent) { c.jaddGen(null, j,
-					 * publicModifier, decl); } else { c.jaddGen(null, j,
-					 * publicModifier, decl); j++; }
-					 */
 
 					if (components instanceof TokenComponent) {
 						if (components.hostClass().equals(decl))
@@ -215,43 +215,64 @@ public class JastAdd {
 		return problems;
 	}
 	
-	//added for JastEMF
-	private static Collection<String> parseInternalASTs(Grammar grammar) throws IOException{
-		Collection<String> problems = new LinkedList<String>();
-		Collection<String> internalSpecs = new LinkedList<String>();
-		internalSpecs.add("/emf/Base.internal.ast");
-
-		for(String specURI:internalSpecs){
-			InputStream stream = JastAdd.class.getResourceAsStream(specURI);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-			String spec = Util.readStream(reader);
-			spec = spec.replaceAll("#LISTTYPE#", ASTNode.listName);
-			spec = spec.replaceAll("#OPTTYPE#", ASTNode.optName);
-			spec = spec.replaceFirst("#ASTNode.circularEnabled#", Boolean.toString(ASTNode.circularEnabled));
-			spec = spec.replaceFirst("#ASTNode.cacheCycle#", Boolean.toString(ASTNode.cacheCycle));
-			spec = spec.replaceFirst("#ASTNode.componentCheck#", Boolean.toString(ASTNode.componentCheck));
-			stream = new ByteArrayInputStream(spec.getBytes());
-			String problem = ast.Util.parseAGSpecFromStream(stream, specURI, grammar);
-			if(problem!=null)
-				problems.add(problem);
+	
+	
+	
+	private static Collection<String> parseInternalStateSpec(Grammar grammar) throws IOException{
+		/*StringWriter writer = new StringWriter();
+		JragParser jp = new jrag.AST.JragParser(
+				new java.io.StringReader(writer.toString()));
+		jp.root = grammar;
+		jp.setFileName("ASTNode");
+		jp.className = "ASTNode";
+		TODO: check if push command needed
+		jp.pushTopLevelOrAspect(true);
+		try {
+			while (true)
+				jp.AspectBodyDeclaration();
+		} catch (Exception e) {
+			//String s = e.getMessage();
 		}
+		jp.popTopLevelOrAspect(); */
+		Collection<String> problems = new LinkedList<String>();
+		String specURI = "/ast/codebase/common/StateAPI.internal.jrag";
+		String spec =  ast.Util.readStream(ast.Util.class.getResourceAsStream(specURI));
 
-		return problems;
-	}
+	      ast.Template template = new ast.Template(spec);			
+		  template.extractVariant("CYCLE", ASTNode.cacheCycle?"ENABLED":"DISABLED");
+		  template.extractVariant("HASHSET", "NONDETERMINISTIC");
+		  template.bind("TYPEDEFAULTSET",ASTNode.typeDefaultSet);
+		  template.bind("CREATEDEFAULTSET",ASTNode.createDefaultSet);
+		  template.extractVariant("COMPONENTCHECK", ASTNode.componentCheck?"ENABLED":"DISABLED");
+		  template.extractVariant("CIRCULAR", ASTNode.circularEnabled?"ENABLED":"DISABLED");
+		  @SuppressWarnings("rawtypes")
+		  Iterator it = grammar.rewriteAspects().iterator();
+		  while(it.hasNext()){
+			  String name = (String)it.next();
+			  template.instanciatePrototype("DURINGRESET", "ASPECTNAME", name);
+		  }
+		  template.removePrototype("DURINGRESET");
+		  InputStream stream = new ByteArrayInputStream(template.toString().getBytes());
+		  String problem = Util.parseAGSpecFromStream(stream, specURI, grammar);
+		 if(problem!=null)
+			 problems.add(problem);
+		  return problems;
+	  }
+	
 	
 	//added by JastEMF
 	private static Collection<String> parseInternalASTSpecs(Grammar grammar) throws IOException{
 		Collection<String> problems = new LinkedList<String>();
 		Collection<String> internalSpecs = new LinkedList<String>();
-		internalSpecs.add("/emf/Base.internal.ast");
+		internalSpecs.add("/ast/codebase/common/Base.internal.ast");
 
 		for(String specURI:internalSpecs){
 			InputStream stream = JastAdd.class.getResourceAsStream(specURI);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-			String spec = Util.readStream(reader);
-			spec = spec.replaceAll("#LISTTYPE#", ASTNode.listName);
-			spec = spec.replaceAll("#OPTTYPE#", ASTNode.optName);
-			stream = new ByteArrayInputStream(spec.getBytes());
+			Template tpl = new Template(Util.readStream(reader));
+			tpl.bind("LISTTYPE", ASTNode.listName);
+		    tpl.bind("OPTTYPE", ASTNode.optName);
+			stream = new ByteArrayInputStream(tpl.toString().getBytes());
 			problems.addAll(Util.parseASTSpecFromStream(stream, specURI, grammar));
 		}
 
@@ -262,19 +283,19 @@ public class JastAdd {
 	private static Collection<String> parseInternalSpecs(Grammar grammar) throws IOException{
 		Collection<String> problems = new LinkedList<String>();
 		Collection<String> internalSpecs = new LinkedList<String>();
-		internalSpecs.add("/emf/ASTNodeAPI.internal.jrag");
-		internalSpecs.add("/emf/ResolveAccess.internal.jrag");
-		internalSpecs.add("/emf/ListAPI.internal.jrag");
+		internalSpecs.add("/ast/codebase/common/ASTNodeAPI.internal.jrag");
+		internalSpecs.add("/ast/codebase/common/ResolveAccess.internal.jrag");
+		internalSpecs.add("/ast/codebase/common/ListAPI.internal.jrag");
 		for(String specURI:internalSpecs){
 			InputStream stream = JastAdd.class.getResourceAsStream(specURI);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-			String spec = Util.readStream(reader);
-			spec = spec.replaceAll("#LISTTYPE#", ASTNode.listName);
-			spec = spec.replaceAll("#OPTTYPE#", ASTNode.optName);
-			spec = spec.replaceFirst("#ASTNode.circularEnabled#", Boolean.toString(ASTNode.circularEnabled));
-			spec = spec.replaceFirst("#ASTNode.cacheCycle#", Boolean.toString(ASTNode.cacheCycle));
-			spec = spec.replaceFirst("#ASTNode.componentCheck#", Boolean.toString(ASTNode.componentCheck));
-			stream = new ByteArrayInputStream(spec.getBytes());
+			Template tpl = new Template(Util.readStream(reader));
+			tpl.bind("LISTTYPE", ASTNode.listName);
+			tpl.bind("OPTTYPE", ASTNode.optName);
+			tpl.bind("ASTNode.circularEnabled", Boolean.toString(ASTNode.circularEnabled));
+			tpl.bind("ASTNode.cacheCycle", Boolean.toString(ASTNode.cacheCycle));
+			tpl.bind("ASTNode.componentCheck", Boolean.toString(ASTNode.componentCheck));
+			stream = new ByteArrayInputStream(tpl.toString().getBytes());
 			String problem = Util.parseAGSpecFromStream(stream, specURI, grammar);
 			if(problem!=null)
 				problems.add(problem);

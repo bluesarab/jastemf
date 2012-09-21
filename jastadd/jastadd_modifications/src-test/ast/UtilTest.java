@@ -22,6 +22,8 @@ public class UtilTest {
 		System.out.println(template.bind("CREATEDEFAULTSET",ASTNode.createDefaultSet));
 		System.out.println(template.extractVariant("COMPONENTCHECK", "ENABLED"));
 		System.out.println(template.extractVariant("CIRCULAR", "ENABLED"));
+		System.out.println(template.instanciatePrototype("DURINGRESET", "ASPECTNAME", "MyAspect"));
+		System.out.println(template.removePrototype("DURINGRESET"));
 		System.out.println(template);
 		//code = Util.extractVariant(code,"CYCLE","ENABLED");
 		

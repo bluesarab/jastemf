@@ -62,7 +62,7 @@ public aspect Unparse {
     String className, boolean aspectJ) {
     // MethodDeclaration <- ClassBodyDeclaration <- 
     // ClassBody <- UnmodifiedClassDecl <- ClassDecl <- TypeDecl <- CompilationUnit
-
+ 
 	  jrag.AST.Node node = this;
     for(int i = 0; node != null && !(node instanceof ASTCompilationUnit) && i < 8; i++) {
       node = node.jjtGetParent();
