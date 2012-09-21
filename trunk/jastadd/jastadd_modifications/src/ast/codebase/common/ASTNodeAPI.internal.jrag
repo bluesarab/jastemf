@@ -185,6 +185,10 @@ aspect ASTNodeAPI {
 		return null;
 	}
 	
+    public #OPTTYPE#.#OPTTYPE#(T opt) {
+         setChild(opt, 0);
+    }
+	
 	public #OPTTYPE# #OPTTYPE#.copy() {
 		try {
 			return (#OPTTYPE#) clone();

@@ -12,34 +12,7 @@ import java.util.regex.*;
  */
 
 aspect JaddCodeGen {
-  public void Grammar.abstractAncestors() {
-    ASTDecl cl;
-    IdDecl name;
-   /* 
-    // Add ASTNode
-    cl = new ASTDecl();
-    name = new IdDecl();
-    name.setID(ASTNode.nodeName);
-    cl.setIdDecl(name);
-    cl.setFileName(ASTNode.nodeName+".ast");
-    addTypeDecl(cl);
-    
-    // Add List
-    cl = new ASTDecl();
-    name = new IdDecl();
-    name.setID(ASTNode.listName);
-    cl.setIdDecl(name);
-    cl.setFileName(ASTNode.listName+".ast");
-    addTypeDecl(cl);
-
-    // Add Opt
-    cl = new ASTDecl();
-    name = new IdDecl();
-    name.setID(ASTNode.optName);
-    cl.setIdDecl(name);
-    cl.setFileName(ASTNode.optName+".ast");
-    addTypeDecl(cl);*/
-  }
+ 
 
   syn int ASTDecl.numNonNTAComponents() {
     int num = 0;
@@ -70,7 +43,8 @@ aspect JaddCodeGen {
 	    
 	    // Generate code common for all nodes by adding them to ASTNode
 	    if(name().equals("ASTNode")) {
-	      jjtGenASTNode(stream, parserName, rewriteEnabled);
+	    	env().genRewriteOrderChecks(stream);
+	       //SVEN:OLD jjtGenASTNode(stream, parserName, rewriteEnabled);
 	    }
 	    else if(name().equals(ASTNode.listName)) {
 	    	stream.print(jjtGenListAPI());
@@ -109,7 +83,7 @@ aspect JaddCodeGen {
   
   
   public void ASTDecl.jjtGenConstructor(PrintWriter stream, String parserName, boolean rewriteEnabled) {
-    stream.println("    // Declared in " + getFileName() + " line " + getStartLine() + "\n");
+   /* stream.println("    // Declared in " + getFileName() + " line " + getStartLine() + "\n");
     String s = "    public #ID#.#ID_IMPL#() {\n" + // L�gg till null f�r agg, tom lista f�r list, false f�r opt
     		   "        super();\n";
     s = s.replaceAll("#ID#", name());
@@ -141,19 +115,20 @@ aspect JaddCodeGen {
         stream.println("        is$Final(true);\n");
     }
 
-    stream.println("    }\n");
+    stream.println("    }\n");*/
 
     if(numNonNTAComponents() != 0) {
       stream.print(buildingConstructor());
       if(ASTNode.beaver)
         stream.print(buildingSymbolConstructor());
     }
-    
+   
+    /*
     if(ASTNode.isBuiltInOpt(name())) {
       stream.println("     public " + ASTNode.optName + "." + ASTNode.optName + "(T opt) {");
       stream.println("         setChild(opt, 0);");
       stream.println("     }\n");
-    }
+    }*/
 
   }
   

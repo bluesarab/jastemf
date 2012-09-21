@@ -4,6 +4,7 @@ aspect ASTDeclContainmentGen {
 	
 	// Constructor to build trees bottom up
 	public String ASTDecl.buildingConstructor() {
+		/*
 	    // we only build constructors if there are components
 	    if(!getComponents().hasNext())
 	      return "";
@@ -59,10 +60,12 @@ aspect ASTDeclContainmentGen {
 	    s.append("    }\n\n");
 	    //JastEMF beware: TypeDecl is different from printed code
 	    return s.toString().replaceAll("#ID#", name()).replaceAll("#ID_IMPL#", implName());
+	    */
 	  }
 
 	  public String ASTDecl.buildingSymbolConstructor() {
-	    // we only build constructors if there are components ...
+	    /*
+		  // we only build constructors if there are components ...
 	    if(!getComponents().hasNext())
 	      return "";
 	    // ... and one of these components is a string token component
@@ -128,6 +131,7 @@ aspect ASTDeclContainmentGen {
 	    }
 	    s.append("    }\n\n");
 	    return s.toString().replaceAll("#ID#", name()).replaceAll("#ID_IMPL#", implName());
+	 	*/
 	  }
 	  
 	  public void ASTDecl.jjtGenFlushCache(PrintWriter stream) {

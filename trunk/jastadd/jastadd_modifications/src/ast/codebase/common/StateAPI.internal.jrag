@@ -234,12 +234,12 @@ static public class ASTNode$State {
  	#VARIANTS#CIRCULAR#
 	boundariesCrossed = 0;
 	
-	#MULTI#DURINGRESET# 		
-    if(during\#ASPECTNAME\# != 0) { 
-             System.out.println("Warning: resetting during\#ASPECTNAME\#.");
-             during\#ASPECTNAME\# = 0;
+	#PROTOTYPE#DURINGRESET# 		
+    if(during§ASPECTNAME§ != 0) { 
+             System.out.println("Warning: resetting during§ASPECTNAME§.");
+             during§ASPECTNAME§ = 0;
     }
-	#MULTI#DURINGRESET#
+	#PROTOTYPE#DURINGRESET#
 	
   }
  
