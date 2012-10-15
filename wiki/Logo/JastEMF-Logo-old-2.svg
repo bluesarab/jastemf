@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="JastEMF-Logo-Alternative.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.05"
+     inkscape:cx="350.20106"
+     inkscape:cy="594.96598"
+     inkscape:document-units="px"
+     inkscape:current-layer="text3020"
+     showgrid="false"
+     inkscape:snap-global="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:object-nodes="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="852"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffcc00;fill-opacity:1"
+       id="rect3166"
+       width="228.41554"
+       height="21.340649"
+       x="314.41873"
+       y="350.10599" />
+    <path
+       style="fill:#ffcc00;fill-opacity:1"
+       d="m 143.16641,339.45583 194.96037,-1.6645 8.35513,13.43452 -11.28422,61.90946 -214.32378,0 -0.86199,-5.82362 z"
+       id="rect3162"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       style="fill:#442178"
+       d="m 308.34308,439.85672 195.6764,0 22.70427,-68.39639 -201.01673,-0.35933 -13.7525,34.53816 -17.39118,13.79414 z"
+       id="rect2993"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <g
+       transform="matrix(1.0634568,0,-0.32594349,0.94032969,-8.7804879,60.487805)"
+       style="font-size:76.52294922px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffcc00;fill-opacity:1;stroke:none;font-family:Sans"
+       id="text3020">
+      <text
+         xml:space="preserve"
+         style="font-size:86.00143433px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffcc00;fill-opacity:1;stroke:none;font-family:Sans"
+         x="407.4874"
+         y="424.35507"
+         id="text3071"
+         sodipodi:linespacing="125%"
+         transform="matrix(1.0716277,0,-0.0359084,0.9331599,0,0)"><tspan
+           sodipodi:role="line"
+           id="tspan3073"
+           x="407.4874"
+           y="424.35507"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ffcc00;fill-opacity:1;font-family:Helvetica CY;-inkscape-font-specification:Helvetica CY Bold">EMF</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:89.38846588px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#442178;fill-opacity:1;stroke:none;font-family:Sans"
+         x="259.16925"
+         y="397.66916"
+         id="text3075"
+         sodipodi:linespacing="125%"
+         transform="matrix(1.0835022,0,-0.0578955,0.92293306,0,0)"><tspan
+           sodipodi:role="line"
+           id="tspan3077"
+           x="259.16925"
+           y="397.66916"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#442178;fill-opacity:1;font-family:Helvetica CY;-inkscape-font-specification:Helvetica CY Bold">Jast</tspan></text>
+    </g>
+    <rect
+       style="fill:#442178;fill-opacity:1"
+       id="rect3164"
+       width="208.35536"
+       height="21.340649"
+       x="106.79144"
+       y="404.69833" />
+    <path
+       style="fill:#ffcc00;fill-opacity:1"
+       inkscape:transform-center-x="-3.508819"
+       inkscape:transform-center-y="0.34855439"
+       d="m 565.58159,360.58357 -34.51312,23.71751 6.35321,-13.13894 c 5.03757,-10.41811 0.56876,-8.4638 0.40453,-21.59702 -0.0316,-2.52638 -7.04604,-9.27007 -7.10417,-12.37961 z"
+       id="path3030"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsscc" />
+    <path
+       sodipodi:nodetypes="ccsscc"
+       inkscape:connector-curvature="0"
+       id="path3123"
+       d="m 83.711013,414.38121 34.927057,-23.10362 -6.58451,13.02456 c -5.22097,10.32742 -0.71831,8.45243 -0.7863,21.5865 -0.0131,2.52654 6.88105,9.39319 6.88419,12.50327 z"
+       inkscape:transform-center-y="-0.10544561"
+       inkscape:transform-center-x="3.468461"
+       style="fill:#442178;fill-opacity:1" />
+  </g>
+</svg>
