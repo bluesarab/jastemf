@@ -1,0 +1,10 @@
+aspect testMe2{
+	
+	#PROTOTYPE#DURINGRESET# 		
+    if(during#ASPECTNAME# != 0) { 
+             System.out.println("Warning: resetting during#ASPECTNAME#.");
+             during#ASPECTNAME# = 0;
+    }
+	#PROTOTYPE#
+	
+}

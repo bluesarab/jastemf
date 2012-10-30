@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configurations xmlns="regression.test.tool" default="JastEMFTemplate">
+    <configuration name="JastEMFTemplate">
+        <lexerClass></lexerClass>
+        <parserClass>org.jastemf.template.TemplateParser</parserClass>
+        <classpath>
+            <path>../bin</path>
+            <path>../../org.jastemf.template/tools/rats/rats.jar</path>
+            <path>D:\development\eclipse_3.7\plugins\org.aspectj.runtime_1.6.12.20110613132200\aspectjrt.jar</path>
+        </classpath>
+    </configuration>
+</configurations>

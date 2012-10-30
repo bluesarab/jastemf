@@ -1,0 +1,140 @@
+module org.jastemf.template.TemplateParser();
+
+header {
+	import org.jastemf.template.ast.*;
+	import java.io.InputStream;
+	import java.io.InputStreamReader;
+}
+
+
+/*
+ * First: the "Lexer" part 
+ * 
+ */
+
+body {
+	  static {
+	    add(TEMPLATE_KEYWORDS, new String[] {
+			"VAR","VARIANTS","PROTOTYPE"
+	    });
+	  }
+	  
+	public TemplateParser(final InputStream in) {
+		    super(new InputStreamReader(in),"<resource>");
+	}
+}
+
+
+
+
+option setOfString(TEMPLATE_KEYWORDS);
+
+
+/*generic QualifiedIdentifier =
+	  Identifier ( void:".":Symbol Identifier )*
+	  ;
+*/
+String LowerIdentifier =
+	    yyValue:LowerWord &{ ! TEMPLATE_KEYWORDS.contains(yyValue) }
+	  ;
+
+String UpperIdentifier =
+	    yyValue:UpperWord &{ ! TEMPLATE_KEYWORDS.contains(yyValue) } 
+	  ;
+
+String Identifier = ident:Word &{ ! TEMPLATE_KEYWORDS.contains(ident) } {
+			yyValue = ident;
+	  };
+
+String LowerWord = [a-z] [a-zA-Z0-9]* ;
+String UpperWord = [A-Z] [a-zA-Z0-9]* ;
+String Word = [a-zA-Z] [a-zA-Z0-9]* ;
+
+String Keyword =
+	   yyValue:Word &{ TEMPLATE_KEYWORDS.contains(yyValue) }
+;
+
+
+void EndOfFile = !_;
+
+//transient void Spacing            =
+//( Space / LineTerminator / TraditionalComment / EndOfLineComment )*
+//;
+
+//transient void Space              = ' ' / '\t' / '\f' ;
+//transient void TraditionalComment = "/*" ( '*' !'/' / !'*' _ )* "*/" ;
+//transient void EndOfLineComment   =
+//"//" ( ![\n\r] _ )* (LineTerminator / &EndOfFile) ;
+//transient void LineTerminator     = '\r' '\n' / '\r' / '\n' ;
+
+
+/*
+ * Seconde: Grammar Productions
+ *  
+ */
+
+public GenericSource GenericSource_Declaration =  content:TemplateElements_Declaration EndOfFile
+{
+	yyValue = new GenericSource(content);
+};
+
+
+TemplateElements TemplateElements_Declaration = content:( (yyValue:Island  / yyValue:Water) )*  
+{
+	List<Element> elements = new List<Element>();
+	for(Object element:content)
+		elements.add((Element)element);
+	yyValue = new TemplateElements(elements);
+};
+
+TextElement Water = yyValue:TextElement_Declaration
+{
+	
+};
+
+//match until next char is # and concatenate, afterwards try to match and concatenate the last char before #
+//could also be done via post check, e.g. !{yyValue==#}, but this would hinder recovery and thus is encapsulated 
+//in extra method call 
+TextElement TextElement_Declaration =  chars:(!'#' yyValue:_ )+
+{
+	String result = "";
+	for(Object character:chars){
+		result+=character; 
+	}
+	
+	yyValue = new TextElement(result);	
+};
+
+RootElement Island =  yyValue:VariantList_Declaration  / yyVaule:Prototype_Declaration / yyValue:Slot_Declaration
+{
+		
+};
+
+
+Slot Slot_Declaration = "#" name:Identifier "#"
+{
+	yyValue = new Slot(name);
+};
+
+
+VariantList VariantList_Declaration = "#" "VARIANTS" "#" name:Identifier "#" content:(yyValue:Variant_Declaration / yyValue:TextElement_Declaration)* "#" "VARIANTS" "#"
+{
+	List<Element> variants = new List();
+	for(Object element:content)
+		variants.add((Element)element);
+	yyValue = new VariantList(name,variants);
+};
+
+
+
+Variant Variant_Declaration = "#" "VAR" "#" name:Identifier "#" content:TemplateElements_Declaration
+{
+	yyValue = new Variant(name,content);
+};
+
+Prototype Prototype_Declaration = "#" "PROTOTYPE" "#" name:Identifier "#" content:TemplateElements_Declaration "#" "PROTOTYPE" "#"
+{
+	yyValue = new Prototype(name,content);
+};
+
+

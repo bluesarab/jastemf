@@ -1,0 +1,145 @@
+aspect SlotConcepts{
+	
+
+	/*********************default slot stuff begin************************************************/
+	
+	syn lazy boolean ASTNode.IsSlot();
+	syn java.util.List<ASTNode> ASTNode.Slots();
+	
+//	inh boolean ASTNode.isInSlot();
+//	syn ASTNode TerminalSlot.SlotOwner();
+	
+	eq ASTNode.IsSlot() = false;
+	eq List.IsSlot() = false;
+	eq Opt.IsSlot() = false;
+	eq Slot.IsSlot() = true;
+	
+	syn ASTNode ASTNode.findSlot(String name) { 
+		for(ASTNode slot:Slots()){
+			if(slot.hasQualifiedPointName(name))
+				return slot;
+		}
+		return null;
+	}
+		
+	eq ASTNode.Slots() {
+		java.util.List list = new java.util.LinkedList<ASTNode>();
+		if(IsSlot()){
+			list.add(this);
+		}
+		for(int i=0;i<getNumChild();i++){
+			ASTNode node = getChild(i);
+			list = union(list,node.Slots());
+		}
+		return list;
+	}
+	
+	
+}
+
+aspect PrototypeConcepts{
+	
+
+	/*********************default prototype stuff begin************************************************/
+	
+	syn lazy boolean ASTNode.IsPrototype();
+	syn java.util.List<ASTNode> ASTNode.Prototypes();
+	
+	eq ASTNode.IsPrototype() = false;
+	eq List.IsPrototype() = false;
+	eq Opt.IsPrototype() = false;
+	eq Prototype.IsPrototype() = true;
+	
+	syn ASTNode CompositionEnvironment.findPrototype(String name) { 
+		for(ASTNode prototype:Prototypes()){
+			if(prototype.hasQualifiedPointName(name))
+				return prototype;
+		}
+		return null;
+	}
+		
+	eq ASTNode.Prototypes() {
+		java.util.List list = new java.util.LinkedList<ASTNode>();
+		if(IsPrototype()){
+			list.add(this);
+		}
+		for(int i=0;i<getNumChild();i++){
+			ASTNode node = getChild(i);
+			list = union(list,node.Prototypes());
+		}
+		return list;
+	}
+	
+	
+}
+
+aspect VariantsConcepts{
+	
+
+	/*********************default variants stuff begin************************************************/
+	
+	syn lazy boolean ASTNode.IsVariants();
+	syn java.util.List<ASTNode> ASTNode.Variants();
+		
+	eq ASTNode.IsVariants() = false;
+	eq List.IsVariants() = false;
+	eq Opt.IsVariants() = false;
+	eq VariantList.IsVariants() = true;
+	
+	syn ASTNode CompositionEnvironment.findVariants(String name) { 
+		for(ASTNode variants:Variants()){
+			if(variants.hasQualifiedPointName(name))
+				return variants;
+		}
+		return null;
+	}
+		
+	eq ASTNode.Variants() {
+		java.util.List list = new java.util.LinkedList<ASTNode>();
+		if(IsVariants()){
+			list.add(this);
+		}
+		for(int i=0;i<getNumChild();i++){
+			ASTNode node = getChild(i);
+			list = union(list,node.Variants());
+		}
+		return list;
+	}
+	
+	
+}
+
+aspect GeneralPoints{
+	syn boolean ASTNode.hasQualifiedPointName(String name) = IsPoint() && name.equals(PointName());
+
+	syn boolean ASTNode.IsPoint() = false;
+	eq Slot.IsPoint() = true;
+	eq VariantList.IsPoint() = true;
+	eq Prototype.IsPoint() = true;
+	
+	syn lazy java.lang.String ASTNode.PointName();	
+	eq ASTNode.PointName() = "";
+	eq RootElement.PointName() = getname();
+	
+	syn ASTNode CompositionEnvironment.findPoint(String name) { 
+		for(ASTNode point:Points()){
+			if(point.hasQualifiedPointName(name))
+				return point;
+		}
+		return null;
+	}
+		
+	syn java.util.List<ASTNode> ASTNode.Points();
+	eq ASTNode.Points() {
+		java.util.List list = new java.util.LinkedList<ASTNode>();
+		if(IsPoint()){
+			list.add(this);
+		}
+		for(int i=0;i<getNumChild();i++){
+			ASTNode node = getChild(i);
+			list = union(list,node.Points());
+		}
+		return list;
+	}
+	
+}

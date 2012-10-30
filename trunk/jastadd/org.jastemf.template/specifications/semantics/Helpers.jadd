@@ -1,0 +1,61 @@
+aspect Helpers{
+	
+	public List<T> List.addAll(List<T> list){
+		for(T element:list){
+			this.add(element);
+		}	
+		return this;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static java.util.List<?> ASTNode.union(java.util.Collection list1, java.util.Collection list2){
+		java.util.List<?> result = new java.util.LinkedList();
+		if(list1 != null)
+			result.addAll(list1);
+		if(list2 != null)
+			result.addAll(list2);
+		return result;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static java.util.List<?> ASTNode.newList(Object arg){
+		java.util.List result = new java.util.LinkedList();
+		if(arg !=null)
+			result.add(arg);
+		return result;
+	}
+	
+	
+	public int ASTNode.indexInParent(){
+		ASTNode parent = this.getParent();
+		if(parent!=null){
+			for(int i=0;i<parent.numChildren();i++){
+				if(parent.getChild(i)==this){
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
+
+   public static boolean ASTNode.isHedged(String string, String prefix, String suffix){
+	   return string.endsWith(suffix) && string.startsWith(prefix); 
+   }
+	
+	
+   public static String ASTNode.extract(String string,String prefix, String suffix){
+    	int pLength = prefix.length();
+    	int sLength = suffix.length();
+    	if(pLength<=string.length())
+    		string = string.substring(pLength);
+    	if(sLength<=string.length())
+    		string = string.substring(0,string.length()-sLength);
+    	return string;
+    }
+   
+   public static String ASTNode.appendPathSegment(String prefix, String segment){
+	   return (prefix==null || "".equals(prefix))?
+			    segment : prefix + "." + segment;
+   }
+   
+}

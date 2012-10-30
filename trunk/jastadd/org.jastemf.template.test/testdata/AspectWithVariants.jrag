@@ -1,0 +1,19 @@
+/**
+ * 
+ * Test Aspect
+ * 
+ */
+
+aspect b {
+	  public void someMethod() {
+#VARIANTS#CIRCULAR#
+				#VAR#ENABLED# Blih blah blub
+				#VAR#Disabled# Blih #mySlot# blub
+				#VAR#NoneOfBoth# 
+					#VARIANTS#NESTED#
+						#VAR#VARIANT1# return true;
+					#VARIANTS#
+		 	#VARIANTS#
+	  }
+	
+}
