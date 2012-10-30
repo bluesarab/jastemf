@@ -1,0 +1,68 @@
+<project name="core-build" default="gen.all" basedir=".">
+	<echo message="Executing in ${basedir} ..."></echo>	
+	
+    <property name="source.dir" value="${basedir}/src"/>
+	<property name="spec.dir" value="${basedir}/specifications"/>
+ 	<property name="gen.dir" value="${basedir}/src-gen"/>
+	
+	<property name="tools.dir" value="${basedir}/tools"/>
+	
+	<property name="temp.dir" value="${basedir}/tmp"/>
+    <property name="build.dir" value="${basedir}/classes" />
+    <property name="dist.dir" value="${basedir}/distribution" />
+	<property name="build.compiler" value="modern" />
+	
+	<property name="grammar" value="TemplateParser.rats"/>
+	<property name="package.dir" value="org/jastemf/template"/>
+	<property name="ast.package.name" value="org.jastemf.template.ast"/>
+	<property name="ast.package.dir" value="org/jastemf/template/ast"/>
+
+	
+	<taskdef classname="jastadd.JastAddTask" name="jastadd" classpath="${tools.dir}/jastadd/jastadd2.jar" />
+
+	<target name="gen.parser">		
+		 <mkdir dir="${gen.dir}/${package.dir}"/>
+		 <java classpath="${tools.dir}/rats/rats.jar" classname="xtc.parser.Rats">
+		 	<arg value="-in"/><arg value="${spec.dir}"/>
+		 	<arg value="-out"/><arg value="${gen.dir}/${package.dir}"/>
+		 	<arg value="${spec.dir}/parser/${grammar}"/>
+		 </java>
+	</target>
+
+	<target name="gen.ast" depends="cleanGen,gen.parser">
+		<mkdir dir="${gen.dir}/${ast.package.dir}"/>
+		<jastadd package="${ast.package.name}" outdir="${gen.dir}">
+			<fileset dir="${spec.dir}">
+				<include name="**/*.ast"/>
+				<include name="**/*.jrag"/>
+				<include name="**/*.jadd"/>
+			</fileset>
+		</jastadd>
+	</target>
+	
+	<target name="gen.all" depends="cleanGen,gen.parser,gen.ast">
+		<eclipse.refreshLocal resource="org.jastemf.template"/>
+	</target>
+	
+	<target name="build" depends="gen.ast">
+		<javac compiler="javac1.4" debug="true" srcdir="." classpath="${tools}/junit.jar" />
+	</target>
+
+	<target name="cleanGen">
+		<delete dir="${gen.dir}/${ast.package.dir}"/>
+		<delete dir="${gen.dir}/${package.dir}"/>
+	</target>
+
+	<!-- TARGET test
+	<target name="test" depends="build">
+		 Run all tests in dir by using the TestAll java program 
+		<java 
+      classname="testframework.TestAll"
+      classpath=".:${tools}/junit.jar" 
+      fork="true" 
+      dir="."
+    />
+	</target>	 -->
+
+
+</project>

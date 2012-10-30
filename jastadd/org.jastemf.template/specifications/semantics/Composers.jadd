@@ -1,0 +1,80 @@
+aspect Composers{
+	
+	public boolean RootElement.removeSelf(){
+		if(IsPoint()){
+			ASTNode parent = this.getParent();
+			for(int i=0;i<parent.numChildren();i++){
+				if(parent.getChild(i)==this){
+					parent.removeChild(i);
+					return true;
+				}
+			}
+			return true;
+		}
+		return false;	
+	}
+	
+	public boolean Slot.bind(String content){
+		TextElement element = new TextElement(content);
+		ASTNode parent = this.getParent();
+		for(int i=0;i<parent.numChildren();i++){
+			if(parent.getChild(i)==this){
+				parent.removeChild(i);
+				parent.insertChild(element,i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean Slot.extend(String content){
+		TextElement element = new TextElement(content);
+		ASTNode parent = this.getParent();
+		for(int i=0;i<parent.numChildren();i++){
+			if(parent.getChild(i)==this){
+				parent.insertChild(element,++i);
+				return true;
+			}
+		}
+		return false;		
+	}
+	
+	public boolean Prototype.instanciate(java.util.Map<String, String> instanceValues){
+		TemplateElements content = getcontent().fullCopy();
+		if(instanceValues!=null&&!instanceValues.isEmpty()){
+			for(String slotName:instanceValues.keySet()){
+				Slot slot = (Slot)content.findSlot(slotName);
+				slot.bind(instanceValues.get(slotName));
+			}
+			int index = indexInParent();
+			if(index>-1){
+				ASTNode parent = getParent();
+				for(Element element:content.getelementsList()){
+					parent.insertChild(element,++index);
+				}
+				return true;
+			}			
+		}
+		return false;
+	}
+	
+	public boolean VariantList.extract(String variantName){
+		for(Element element:getvariantsList()){
+			if(element instanceof Variant){
+				Variant variant = (Variant)element;
+				if(variant.getname().equals(variantName)){
+					TemplateElements elements = variant.getcontent();
+					ASTNode parent = this.getParent();
+					int index = this.indexInParent();
+					this.removeSelf();
+					for(Element variantContent:elements.getelementsList()){
+						parent.setChild(variantContent,index++);
+					}
+					return true;			
+				}
+			}
+		}
+		return false;	
+	}
+	
+}
