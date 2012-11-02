@@ -44,8 +44,16 @@
 		<eclipse.refreshLocal resource="org.jastemf.template"/>
 	</target>
 	
-	<target name="build" depends="gen.ast">
-		<javac compiler="javac1.4" debug="true" srcdir="." classpath="${tools}/junit.jar" />
+	<target name="build" depends="gen.ast" >
+		<mkdir dir="${build.dir}"/>
+		<javac compiler="javac1.6" 
+			   debug="true" 
+			   destdir="${build.dir}" 
+			   classpath="${tools.dir}/rats/rats.jar">
+			<src path="${gen.dir}"/>
+			<src path="${source.dir}"/>
+		</javac>
+		<eclipse.refreshLocal resource="org.jastemf.template"/>
 	</target>
 
 	<target name="cleanGen">
