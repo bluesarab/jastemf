@@ -1,0 +1,24 @@
+/**
+ * 
+ * Test Aspect
+ * 
+ */
+
+aspect b {
+	  public void someMethod() {
+ 
+					
+					test
+					test2;
+		 	
+	  }
+	  
+	  #SomeSlot#
+	
+	   
+	  public String toString(){
+		  return super();
+	  }
+		
+	  
+}

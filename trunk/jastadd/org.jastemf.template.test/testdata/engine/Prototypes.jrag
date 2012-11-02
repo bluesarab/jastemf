@@ -1,4 +1,4 @@
-aspect testMe2{
+aspect testMe3{
 	
 	[[PROTOTYPE::DURINGRESET]] 		
     if(during#ASPECTNAME# != 0) { 
@@ -6,5 +6,12 @@ aspect testMe2{
              during#ASPECTNAME# = 0;
     }
 	[[PROTOTYPE]]
-	
+			
+	[[PROTOTYPE::DURINGRESET]] 		
+			[[VARIANTS::TEST]]
+					[[VAR::A]]test
+			[[VARIANTS]]
+	[[PROTOTYPE]]
+					
+	#Someslot#
 }

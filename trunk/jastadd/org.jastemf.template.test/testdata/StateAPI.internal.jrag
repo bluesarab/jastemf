@@ -2,17 +2,17 @@ aspect StateAPI {
 
 static public class ASTNode$State {
 		      
-	#VARIANTS#CIRCULAR#
-		#VAR#ENABLED#
+	[[VARIANTS::CIRCULAR]]
+		[[VAR::ENABLED]]
 		public boolean IN_CIRCLE = false;
 		public int CIRCLE_INDEX = 1;
 		public boolean CHANGE = false;
 		
-		#VARIANTS#CYCLE#
-			#VAR#ENABLED#
+		[[VARIANTS::CYCLE]]
+			[[VAR::ENABLED]]
 		public boolean LAST_CYCLE = false;
-			#VAR#DISABLED#
-		#VARIANTS#CYCLE#
+			[[VAR::DISABLED]]
+		[[VARIANTS]]
 		
 		public boolean RESET_CYCLE = false;
 		
@@ -21,8 +21,8 @@ static public class ASTNode$State {
 			int visited = -1;
 		}
 		
-		#VARIANTS#COMPONENTCHECK#
-			#VAR#ENABLED#
+		[[VARIANTS::COMPONENTCHECK]]
+			[[VAR::ENABLED]]
 	    public #TYPEDEFAULTSET# circularEvalSet = #CREATEDEFAULTSET#;
 	    public java.util.Stack circularEvalStack = new java.util.Stack();
 	    
@@ -81,10 +81,10 @@ static public class ASTNode$State {
 	       circularEvalSet = c.circularEvalSet;
 	       CHANGE = c.changeValue;
 	    }
-		#VAR#DISABLED# 
-	    #VARIANTS#COMPONENTCHECK#
-		#VAR#DISABLED# 
-	#VARIANTS#CIRCULAR#
+		[[VAR::DISABLED]] 
+	    [[VARIANTS]]
+	   [[VAR::DISABLED]] 
+	[[VARIANTS]]
 	
 	public static final int REWRITE_CHANGE = 1;
 	public static final int REWRITE_NOCHANGE = 2;
@@ -120,8 +120,8 @@ static public class ASTNode$State {
     	return stack[pos-1];
     }
     
-    #VARIANTS#HASHSET#
-		#VAR#DETERMINISTIC#
+   [[VARIANTS::HASHSET]]
+		[[VAR::DETERMINISTIC]]
     static class IdentityHashSet extends java.util.LinkedHashSet {
        
     	public IdentityHashSet(int initialCapacity) { 
@@ -172,7 +172,7 @@ static public class ASTNode$State {
         	
        }
    }
-   #VAR#NONDETERMINISTIC#
+   [[VAR::NONDETERMINISTIC]]
    static class IdentityHashSet extends java.util.AbstractSet implements java.util.Set {
 	   
 	   public IdentityHashSet(int initialCapacity) {
@@ -209,37 +209,37 @@ static public class ASTNode$State {
 		   map.clear(); 
 	   }
   }
-  #VARIANTS#HASHSET#
+  [[VARIANTS]]
 
 
   public void reset() {
-	 #VARIANTS#CIRCULAR#
-		#VAR#ENABLED#
+	 [[VARIANTS::CIRCULAR]]
+		[[VAR::ENABLED]]
 		IN_CIRCLE = false;
 	 	CIRCLE_INDEX = 1;
 	 	CHANGE = false;
-	 	#VARIANTS#CYCLE#
-	 		#VAR#ENABLED#
+	 	[[VARIANTS::CYCLE]]
+	 		[[VAR::ENABLED]]
 	 	public boolean LAST_CYCLE = false;
-	 		#VAR#DISABLED#
-		#VARIANTS#CYCLE#
+	 		[[VAR::DISABLED]]
+		[[VARIANTS]]
 	
-		#VARIANTS#COMPONENTCHECK#
-			#VAR#ENABLED#	
+		[[VARIANTS::COMPONENTCHECK]]
+			[[VAR::ENABLED]]	
 		circularEvalSet = #CREATEDEFAULTSET#;
 	 	circularEvalStack = new java.util.Stack();
-	 		#VAR#DISABLED#
-	 	#VARIANTS#COMPONENTCHECK#
-	 	#VAR#DISABLED#
- 	#VARIANTS#CIRCULAR#
+	 		[[VAR::DISABLED]]
+	 	[[VARIANTS]]
+	 	[[VAR::DISABLED]]
+ 	[[VARIANTS]]
 	boundariesCrossed = 0;
 	
-	#PROTOTYPE#DURINGRESET# 		
-    if(during§ASPECTNAME§ != 0) { 
-             System.out.println("Warning: resetting during§ASPECTNAME§.");
-             during§ASPECTNAME§ = 0;
+	[[PROTOTYPE::DURINGRESET]] 		
+    if(during#ASPECTNAME# != 0) { 
+             System.out.println("Warning: resetting during#ASPECTNAME#.");
+             during#ASPECTNAME# = 0;
     }
-	#PROTOTYPE#DURINGRESET#
+	[[PROTOTYPE::DURINGRESET]]
 	
   }
  
