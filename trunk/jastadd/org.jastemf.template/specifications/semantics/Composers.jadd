@@ -44,18 +44,24 @@ aspect Composers{
 		if(instanceValues!=null&&!instanceValues.isEmpty()){
 			for(String slotName:instanceValues.keySet()){
 				Slot slot = (Slot)content.findSlot(slotName);
-				slot.bind(instanceValues.get(slotName));
-			}
-			int index = indexInParent();
-			if(index>-1){
-				ASTNode parent = getParent();
-				for(Element element:content.getelementsList()){
-					parent.insertChild(element,++index);
+				while(slot!=null){
+					slot.bind(instanceValues.get(slotName));
+					slot = (Slot)content.findSlot(slotName);
 				}
-				return true;
-			}			
+
+			}
 		}
+		int index = indexInParent();
+		if(index>-1){
+			ASTNode parent = getParent();
+			for(Element element:content.getelementsList()){
+				parent.insertChild(element,++index);
+			}
+			return true;
+		}			
+
 		return false;
+
 	}
 	
 	public boolean VariantList.extract(String variantName){
@@ -68,7 +74,7 @@ aspect Composers{
 					int index = this.indexInParent();
 					this.removeSelf();
 					for(Element variantContent:elements.getelementsList()){
-						parent.setChild(variantContent,index++);
+						parent.insertChild(variantContent,index++);
 					}
 					return true;			
 				}
