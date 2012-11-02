@@ -77,11 +77,14 @@ public class RAGTemplate implements TemplateAPI {
 	@Override
 	public boolean extractVariant(String variantListName, String variantName) {
 		VariantList variants = (VariantList) ast.findVariants(variantListName);
+		boolean atLeastOneExtracted = false;
 		while(variants!=null){
-			variants.extract(variantName);
+			if(!variants.extract(variantName))
+				break;
+			atLeastOneExtracted = true;
 			variants = (VariantList) ast.findVariants(variantListName);
 		}
-		return false;
+		return atLeastOneExtracted;
 	}
 
 	@Override

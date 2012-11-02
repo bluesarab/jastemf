@@ -2,9 +2,10 @@ import java.util.Iterator;
 
 aspect Printing{
 	
-	public static String ASTNode.PREFIX = "#";
-	public static String ASTNode.INFIX = "#";
-	public static String ASTNode.SUFFIX = "#";
+	public static String ASTNode.SLOT_DELIMITER = "#";
+	public static String ASTNode.PREFIX_DELIMITER = "[[";
+	public static String ASTNode.INFIX_DELIMITER = "::";
+	public static String ASTNode.SUFFIX_DELIMITER = "]]";
 	
 	public String ASTNode.genString(){
 		String result = "";
@@ -28,26 +29,26 @@ aspect Printing{
 	}
 	
 	public String Slot.genString(){
-		return PREFIX + getname() + SUFFIX;
+		return SLOT_DELIMITER + getname() + SLOT_DELIMITER;
 	}
 	
 	public String VariantList.genString(){
-		String openingTag = PREFIX + "VARIANTS" + INFIX + getname() + SUFFIX;
+		String openingTag = PREFIX_DELIMITER + "VARIANTS" + INFIX_DELIMITER + getname() + SUFFIX_DELIMITER;
 		String content = super.genString();
-		String closingTag = PREFIX + "VARIANTS" + SUFFIX;
+		String closingTag = PREFIX_DELIMITER + "VARIANTS" + SUFFIX_DELIMITER;
 		return openingTag + content + closingTag; 
 	}
 	
 	public String Variant.genString(){
-		String openingTag = PREFIX + "VAR" + INFIX + getname() + SUFFIX;
+		String openingTag = PREFIX_DELIMITER + "VAR" + INFIX_DELIMITER + getname() + SUFFIX_DELIMITER;
 		String content = super.genString();
 		return openingTag + content;
 	}
 	
 	public String Prototype.genString(){	
-		String openingTag = PREFIX + "PROTOTYPE" + INFIX + getname() + SUFFIX;
+		String openingTag = PREFIX_DELIMITER + "PROTOTYPE" + INFIX_DELIMITER + getname() + SUFFIX_DELIMITER;
 		String content = super.genString();
-		String closingTag = PREFIX + "PROTOTYPE" + SUFFIX;
+		String closingTag = PREFIX_DELIMITER + "PROTOTYPE" + SUFFIX_DELIMITER;
 		return openingTag + content + closingTag;
 	}
 	

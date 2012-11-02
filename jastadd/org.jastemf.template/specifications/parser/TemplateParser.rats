@@ -54,6 +54,13 @@ String Keyword =
 	   yyValue:Word &{ TEMPLATE_KEYWORDS.contains(yyValue) }
 ;
 
+String SlotDelimiter = "#";
+
+String LeftDelimiter = "<?"/"[[";
+
+String RightDelimiter = "<?"/"]]"; 
+
+String InfixDelimiter = "::"; 
 
 void EndOfFile = !_;
 
@@ -95,7 +102,7 @@ TextElement Water = yyValue:TextElement_Declaration
 //match until next char is # and concatenate, afterwards try to match and concatenate the last char before #
 //could also be done via post check, e.g. !{yyValue==#}, but this would hinder recovery and thus is encapsulated 
 //in extra method call 
-TextElement TextElement_Declaration =  chars:(!'#' yyValue:_ )+
+TextElement TextElement_Declaration =  chars:(!(SlotDelimiter/LeftDelimiter/RightDelimiter) yyValue:_ )+
 {
 	String result = "";
 	for(Object character:chars){
@@ -111,13 +118,13 @@ RootElement Island =  yyValue:VariantList_Declaration  / yyVaule:Prototype_Decla
 };
 
 
-Slot Slot_Declaration = "#" name:Identifier "#"
+Slot Slot_Declaration = SlotDelimiter name:Identifier SlotDelimiter
 {
 	yyValue = new Slot(name);
 };
 
 
-VariantList VariantList_Declaration = "#" "VARIANTS" "#" name:Identifier "#" content:(yyValue:Variant_Declaration / yyValue:TextElement_Declaration)* "#" "VARIANTS" "#"
+VariantList VariantList_Declaration = LeftDelimiter "VARIANTS" InfixDelimiter name:Identifier RightDelimiter content:(yyValue:Variant_Declaration / yyValue:TextElement_Declaration)* LeftDelimiter "VARIANTS" RightDelimiter
 {
 	List<Element> variants = new List();
 	for(Object element:content)
@@ -127,12 +134,12 @@ VariantList VariantList_Declaration = "#" "VARIANTS" "#" name:Identifier "#" con
 
 
 
-Variant Variant_Declaration = "#" "VAR" "#" name:Identifier "#" content:TemplateElements_Declaration
+Variant Variant_Declaration = LeftDelimiter "VAR" InfixDelimiter name:Identifier RightDelimiter content:TemplateElements_Declaration
 {
 	yyValue = new Variant(name,content);
 };
 
-Prototype Prototype_Declaration = "#" "PROTOTYPE" "#" name:Identifier "#" content:TemplateElements_Declaration "#" "PROTOTYPE" "#"
+Prototype Prototype_Declaration = LeftDelimiter "PROTOTYPE" InfixDelimiter name:Identifier RightDelimiter content:TemplateElements_Declaration LeftDelimiter "PROTOTYPE" RightDelimiter
 {
 	yyValue = new Prototype(name,content);
 };
