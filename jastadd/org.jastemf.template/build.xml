@@ -1,64 +1,71 @@
-<project name="core-build" default="gen.all" basedir=".">
-	<echo message="Executing in ${basedir} ..."></echo>	
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+<project name="Template" default="tpl.build" >
+	<dirname property="tpl.basedir" file="${ant.file.Template}"/>
+	<echo message="[Template] Executing in ${tpl.basedir} ..."></echo>	
 	
-    <property name="source.dir" value="${basedir}/src"/>
-	<property name="spec.dir" value="${basedir}/specifications"/>
- 	<property name="gen.dir" value="${basedir}/src-gen"/>
+    <property name="tpl.source.dir" value="${tpl.basedir}/src"/>
+	<property name="tpl.spec.dir" value="${tpl.basedir}/specifications"/>
+ 	<property name="tpl.gen.dir" value="${tpl.basedir}/src-gen"/>
 	
-	<property name="tools.dir" value="${basedir}/tools"/>
+	<property name="tpl.tools.dir" value="${tpl.basedir}/tools"/>
 	
-	<property name="temp.dir" value="${basedir}/tmp"/>
-    <property name="build.dir" value="${basedir}/classes" />
-    <property name="dist.dir" value="${basedir}/distribution" />
-	<property name="build.compiler" value="modern" />
+	<property name="tpl.temp.dir" value="${tpl.basedir}/tmp"/>
+    <property name="tpl.build.dir" value="${tpl.basedir}/classes" />
+    <property name="tpl.dist.dir" value="${tpl.basedir}/distribution" />
+	<property name="tpl.build.compiler" value="modern" />
 	
-	<property name="grammar" value="TemplateParser.rats"/>
-	<property name="package.dir" value="org/jastemf/template"/>
-	<property name="ast.package.name" value="org.jastemf.template.ast"/>
-	<property name="ast.package.dir" value="org/jastemf/template/ast"/>
+	<property name="tpl.grammar" value="TemplateParser.rats"/>
+	<property name="tpl.package.dir" value="org/jastemf/template"/>
+	<property name="tpl.ast.package.name" value="org.jastemf.template.ast"/>
+	<property name="tpl.ast.package.dir" value="org/jastemf/template/ast"/>
 
 	
-	<taskdef classname="jastadd.JastAddTask" name="jastadd" classpath="${tools.dir}/jastadd/jastadd2.jar" />
+	<taskdef classname="jastadd.JastAddTask" name="tpl.jastadd" classpath="${tpl.tools.dir}/jastadd/jastadd2.jar" />
 
-	<target name="gen.parser">		
-		 <mkdir dir="${gen.dir}/${package.dir}"/>
-		 <java classpath="${tools.dir}/rats/rats.jar" classname="xtc.parser.Rats">
-		 	<arg value="-in"/><arg value="${spec.dir}"/>
-		 	<arg value="-out"/><arg value="${gen.dir}/${package.dir}"/>
-		 	<arg value="${spec.dir}/parser/${grammar}"/>
+	<target name="tpl.gen.parser">		
+		 <mkdir dir="${tpl.gen.dir}/${tpl.package.dir}"/>
+		 <java classpath="${tpl.tools.dir}/rats/rats.jar" classname="xtc.parser.Rats">
+		 	<arg value="-in"/><arg value="${tpl.spec.dir}"/>
+		 	<arg value="-out"/><arg value="${tpl.gen.dir}/${tpl.package.dir}"/>
+		 	<arg value="${tpl.spec.dir}/parser/${tpl.grammar}"/>
 		 </java>
 	</target>
 
-	<target name="gen.ast" depends="cleanGen,gen.parser">
-		<mkdir dir="${gen.dir}/${ast.package.dir}"/>
-		<jastadd package="${ast.package.name}" outdir="${gen.dir}">
-			<fileset dir="${spec.dir}">
+	<target name="tpl.gen.ast" depends="tpl.cleanGen,tpl.gen.parser">
+		<mkdir dir="${tpl.gen.dir}/${tpl.ast.package.dir}"/>
+		<tpl.jastadd package="${tpl.ast.package.name}" outdir="${tpl.gen.dir}">
+			<fileset dir="${tpl.spec.dir}">
 				<include name="**/*.ast"/>
 				<include name="**/*.jrag"/>
 				<include name="**/*.jadd"/>
 			</fileset>
-		</jastadd>
+		</tpl.jastadd>
 	</target>
 	
-	<target name="gen.all" depends="cleanGen,gen.parser,gen.ast">
+	<target name="tpl.gen.all" depends="tpl.cleanGen,tpl.gen.parser,tpl.gen.ast">
 		<eclipse.refreshLocal resource="org.jastemf.template"/>
 	</target>
 	
-	<target name="build" depends="gen.ast" >
-		<mkdir dir="${build.dir}"/>
+	<target name="tpl.build" depends="tpl.gen.ast" >
+		<mkdir dir="${tpl.build.dir}"/>
 		<javac compiler="javac1.6" 
 			   debug="true" 
-			   destdir="${build.dir}" 
-			   classpath="${tools.dir}/rats/rats.jar">
-			<src path="${gen.dir}"/>
-			<src path="${source.dir}"/>
+			   destdir="${tpl.build.dir}" 
+			   classpath="${tpl.tools.dir}/rats/rats-runtime.jar">
+			<src path="${tpl.gen.dir}"/>
+			<src path="${tpl.source.dir}"/>
 		</javac>
+		<unzip src="${tpl.tools.dir}/rats/rats-runtime.jar" dest="${tpl.build.dir}"/>
 		<eclipse.refreshLocal resource="org.jastemf.template"/>
 	</target>
 
-	<target name="cleanGen">
-		<delete dir="${gen.dir}/${ast.package.dir}"/>
-		<delete dir="${gen.dir}/${package.dir}"/>
+	<target name="tpl.cleanGen">
+		<delete dir="${tpl.gen.dir}/${tpl.ast.package.dir}"/>
+		<delete dir="${tpl.gen.dir}/${tpl.package.dir}"/>
 	</target>
 
 	<!-- TARGET test
