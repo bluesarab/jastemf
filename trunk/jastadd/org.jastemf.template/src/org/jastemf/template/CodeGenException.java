@@ -1,6 +1,8 @@
 package org.jastemf.template;
 
-public class CodeGenException extends Exception{
+import java.io.IOException;
+
+public class CodeGenException extends IOException{
 
 	private static final long serialVersionUID = 1659807396698064740L;
 	
