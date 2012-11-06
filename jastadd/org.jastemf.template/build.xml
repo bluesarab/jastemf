@@ -1,9 +1,5 @@
-<!--
-	This program and the accompanying materials are made available under the
-	terms of the BSD 3-clause license which accompanies this distribution.
--->
 
-<project name="Template" default="tpl.build" >
+<project name="Template" default="tpl.build.jar" >
 	<dirname property="tpl.basedir" file="${ant.file.Template}"/>
 	<echo message="[Template] Executing in ${tpl.basedir} ..."></echo>	
 	
@@ -14,8 +10,8 @@
 	<property name="tpl.tools.dir" value="${tpl.basedir}/tools"/>
 	
 	<property name="tpl.temp.dir" value="${tpl.basedir}/tmp"/>
-    <property name="tpl.build.dir" value="${tpl.basedir}/classes" />
-    <property name="tpl.dist.dir" value="${tpl.basedir}/distribution" />
+    <property name="tpl.build.dir" value="${tpl.basedir}/build/classes" />
+    <property name="tpl.dist.dir" value="${tpl.basedir}/build" />
 	<property name="tpl.build.compiler" value="modern" />
 	
 	<property name="tpl.grammar" value="TemplateParser.rats"/>
@@ -60,6 +56,14 @@
 			<src path="${tpl.source.dir}"/>
 		</javac>
 		<unzip src="${tpl.tools.dir}/rats/rats-runtime.jar" dest="${tpl.build.dir}"/>
+		<eclipse.refreshLocal resource="org.jastemf.template"/>
+	</target>
+	
+	<target name="tpl.build.jar" depends="tpl.build" >
+		<jar destfile="${tpl.dist.dir}/tpl.jar"
+		       basedir="${tpl.build.dir}"
+		       includes="**/**"
+		  />
 		<eclipse.refreshLocal resource="org.jastemf.template"/>
 	</target>
 
