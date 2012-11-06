@@ -6,6 +6,8 @@
 
 <project name="Make" default="jar">
 	
+	<import file="../org.jastemf.template/build.xml"/>
+	
 	<path id="basedir">
 		<pathelement location="." />
 	</path>
@@ -48,6 +50,11 @@
 			</fileset>
 		</delete>
 		<eclipse.refreshLocal resource="jastadd_modifications"/>
+	</target>
+	
+	<!-- build jar in template project -->
+	<target name="update tpl.jar" depends="tpl.build.jar">
+		<copyfile  dest="./tools/tpl.jar" src="${tpl.dist.dir}/tpl.jar"/>
 	</target>
 	
 </project>

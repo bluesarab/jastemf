@@ -1,5 +1,6 @@
 ANTPATH=./tools/ant.jar;./tools/ant-launcher.jar
-ASPECTJ="tools/aspectj/bin/ajc" -1.5 -cp "./tools/aspectj/lib/aspectjrt.jar;$(ANTPATH)" -d $(BUILD)
+TPLENGINE=./tools/tpl.jar
+ASPECTJ="tools/aspectj/bin/ajc" -1.6 -cp "./tools/aspectj/lib/aspectjrt.jar;$(ANTPATH);$(TPLENGINE)" -d $(BUILD)
 JAVACC=java -classpath tools/JavaCC.jar org.javacc.parser.Main -JDK_VERSION=5.0
 JJTREE=java -classpath tools/JavaCC.jar org.javacc.jjtree.Main -JDK_VERSION=5.0
 JASTADD=java -jar tools/jastadd2.jar
@@ -7,7 +8,7 @@ SOURCE=./src
 TARGET=./src-gen
 BUILD=./build-bin
 
-JRAGFILES=$(SOURCE)/ast/ClassRelations.jrag $(SOURCE)/ast/ComponentsUtil.jrag $(SOURCE)/ast/Errorcheck.jrag $(SOURCE)/ast/JaddCodeGen.jrag $(SOURCE)/ast/ContainmentGen.jadd $(SOURCE)/ast/StateBodyGen.jadd $(SOURCE)/ast/ASTNodeBodyGen.jadd $(SOURCE)/ast/NameBinding.jrag \
+JRAGFILES=$(SOURCE)/ast/ClassRelations.jrag $(SOURCE)/ast/ComponentsUtil.jrag $(SOURCE)/ast/Errorcheck.jrag $(SOURCE)/ast/JaddCodeGen.jrag $(SOURCE)/ast/ContainmentGen.jadd $(SOURCE)/ast/NameBinding.jrag \
  $(SOURCE)/jrag/Attributes.jrag $(SOURCE)/jrag/Circular.jrag $(SOURCE)/jrag/CollectionAttributes.jrag $(SOURCE)/jrag/Errorcheck.jrag $(SOURCE)/jrag/JragCodeGen.jrag $(SOURCE)/jrag/NameBinding.jrag
 
 all : ast/AST/Grammar.java ast/AST/Ast.java jrag/AST/JragParser.java 
@@ -28,7 +29,7 @@ jrag/AST/JragParser.java : jrag/AST/Jrag.jj
 jrag/AST/Jrag.jj : $(SOURCE)/jrag/Jrag.jjt
 	$(JJTREE) -OUTPUT_DIRECTORY=$(TARGET)/jrag/AST  $(SOURCE)/jrag/Jrag.jjt
 
-jar : all unzip-aj
+jar : all unzip-tools
 	cp manifest LICENSE $(BUILD)
 	mkdir "$(BUILD)/ast/codebase/common"
 	mkdir "$(BUILD)/ast/codebase/containment"
@@ -37,8 +38,9 @@ jar : all unzip-aj
 	jar -cmf manifest jastadd2.jar -C $(BUILD) ast -C $(BUILD) LICENSE -C $(BUILD) jastadd -C $(BUILD) emf -C $(BUILD) jrag  -C $(BUILD) org/aspectj/lang  -C $(BUILD) org/aspectj/runtime 
 
 	
-unzip-aj : 
+unzip-tools : 
 	unzip ./tools/aspectj/lib/aspectjrt.jar -d $(BUILD)
+	unzip ./tools/tpl.jar -d $(BUILD)
 
 source-jar :
 	jar -cmf manifest jastadd2-src.jar LICENSE manifest $(SOURCE)/ast/*.aj $(SOURCE)/ast/*.ast $(SOURCE)/ast/*.jjt $(SOURCE)/ast/*.jrag \
