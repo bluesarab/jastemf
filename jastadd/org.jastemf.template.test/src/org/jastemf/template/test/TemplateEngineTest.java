@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import org.junit.Test;
 import org.jastemf.template.CodeGenException;
 import org.jastemf.template.RAGTemplate;
+import org.jastemf.template.ast.ASTNode;
 
 public class TemplateEngineTest {
 	
@@ -45,8 +46,11 @@ public class TemplateEngineTest {
 		String fileName = "./testdata/engine/Prototypes.jrag";
 		String resultFileName = "./testdata/engine/Prototypes_result_1.jrag";
 		RAGTemplate template = new RAGTemplate(RAGTemplate.readContent(new File(fileName)));
-		assertTrue(template.instanciatePrototype("DURINGRESET","ASPECTNAME","testMe3"));		
-		assertTrue(template.instanciatePrototype("DURINGRESET","ASPECTNAME","testMe4"));
+		System.out.println(ASTNode.convertQueryToRegex("DURINGRESET.ASPECTNAME"));
+		assertTrue("DURINGRESET.ASPECTNAME".matches(ASTNode.convertQueryToRegex("DURINGRESET.ASPECTNAME")));
+		assertTrue(template.hasPoint("DURINGRESET.ASPECTNAME"));
+		assertTrue(template.instanciatePrototype("DURINGRESET","DURINGRESET.ASPECTNAME","testMe3"));		
+		assertTrue(template.instanciatePrototype("DURINGRESET","DURINGRESET.ASPECTNAME","testMe4"));
 		assertTrue(template.removePrototype("DURINGRESET"));
 		assertFalse(template.hasPoint("ASPECTNAME"));
 		assertNotNull(template.hasPoint("DURINGRESET"));
@@ -54,7 +58,7 @@ public class TemplateEngineTest {
 		assertTrue(template.instanciatePrototype("DURINGRESET"));	
 		assertTrue(template.removePrototype("DURINGRESET"));
 		assertTrue(template.extractVariant("TEST","A"));
-		
+		System.out.println(template.getGenCode());
 		//String expectedResultCode = RAGTemplate.readContent(new File(resultFileName));
 		//assertEquals(expectedResultCode,template.getGenCode());
 	}
