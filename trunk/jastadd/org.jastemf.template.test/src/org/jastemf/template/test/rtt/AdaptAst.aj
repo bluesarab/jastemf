@@ -33,5 +33,9 @@ public aspect AdaptAst {
 	// Compare nodes' terminals:
 	declare @method:
 	   public * RootElement+.getname() : @Parser.Node.Compare;
+	   
+	// Compare nodes' terminals:
+	declare @method:
+	   public * RootElement+.PointName() : @Parser.Node.Compare;
 	
 }
