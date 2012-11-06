@@ -110,16 +110,20 @@ aspect VariantsConcepts{
 }
 
 aspect GeneralPoints{
-	syn boolean ASTNode.hasQualifiedPointName(String name) = IsPoint() && name.equals(PointName());
+	inh String ASTNode.pointPrefix();
+	eq CompositionEnvironment.getChild().pointPrefix() = "";
+	eq RootElement.getChild().pointPrefix() = pointPrefix().equals("")?getname(): pointPrefix() + "." + getname();
+	eq Variant.getChild().pointPrefix() = pointPrefix().equals("")?getname(): pointPrefix() + "." + getname();
+	syn boolean ASTNode.hasQualifiedPointName(String name) = IsPoint() && PointName().matches(convertQueryToRegex(name));
 
 	syn boolean ASTNode.IsPoint() = false;
 	eq Slot.IsPoint() = true;
 	eq VariantList.IsPoint() = true;
 	eq Prototype.IsPoint() = true;
 	
-	syn lazy java.lang.String ASTNode.PointName();	
+	syn java.lang.String ASTNode.PointName();	
 	eq ASTNode.PointName() = "";
-	eq RootElement.PointName() = getname();
+	eq RootElement.PointName() = pointPrefix().equals("")?getname(): pointPrefix() + "." + getname();
 	
 	syn ASTNode CompositionEnvironment.findPoint(String name) { 
 		for(ASTNode point:Points()){
