@@ -62,21 +62,13 @@ String RightDelimiter = "<?"/"]]";
 
 String InfixDelimiter = "::"; 
 
+String EscapeDelimiter = "\\";
+
 void EndOfFile = !_;
-
-//transient void Spacing            =
-//( Space / LineTerminator / TraditionalComment / EndOfLineComment )*
-//;
-
-//transient void Space              = ' ' / '\t' / '\f' ;
-//transient void TraditionalComment = "/*" ( '*' !'/' / !'*' _ )* "*/" ;
-//transient void EndOfLineComment   =
-//"//" ( ![\n\r] _ )* (LineTerminator / &EndOfFile) ;
-//transient void LineTerminator     = '\r' '\n' / '\r' / '\n' ;
 
 
 /*
- * Seconde: Grammar Productions
+ * Second: Grammar Productions
  *  
  */
 
@@ -102,7 +94,7 @@ TextElement Water = yyValue:TextElement_Declaration
 //match until next char is # and concatenate, afterwards try to match and concatenate the last char before #
 //could also be done via post check, e.g. !{yyValue==#}, but this would hinder recovery and thus is encapsulated 
 //in extra method call 
-TextElement TextElement_Declaration =  chars:(!(SlotDelimiter/LeftDelimiter/RightDelimiter) yyValue:_ )+
+TextElement TextElement_Declaration =  chars:( EscapeDelimiter yyValue:_(SlotDelimiter/LeftDelimiter/RightDelimiter)  /  !( SlotDelimiter/LeftDelimiter/RightDelimiter) yyValue:_ )+
 {
 	String result = "";
 	for(Object character:chars){
