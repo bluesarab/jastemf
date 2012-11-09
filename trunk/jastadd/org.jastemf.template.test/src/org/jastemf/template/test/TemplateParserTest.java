@@ -59,13 +59,14 @@ public class TemplateParserTest {
 		assertNotNull(result);
 
 		if(result instanceof ParsingError){
-			System.out.println(fileName+ ": "+ result);
+			System.out.println("Parsing " + fileName + ": "+ result);
 		}  
 		//instanceof GenericSource causes static aj compiler NullPointerException
 		assertTrue(result.getClass().getName().equals("org.jastemf.template.ast.GenericSource"));
-		System.out.println(fileName+ ": OK");
+		System.out.println("Parsing " + fileName + ": OK");
 		String source = (String) result.getClass().getMethod("genString").invoke(result);
-		assertEquals(content, source);		
+		//System.out.println(content.replaceAll("\\#","#"));
+		assertEquals(content.replaceAll("\\\\#","#"), source);		
 
 	}
 	

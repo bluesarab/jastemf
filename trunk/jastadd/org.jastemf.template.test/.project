@@ -14,6 +14,5 @@
 	<natures>
 		<nature>org.eclipse.ajdt.ui.ajnature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>rtt.ui.projectnature</nature>
 	</natures>
 </projectDescription>
