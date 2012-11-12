@@ -98,7 +98,7 @@ aspect ASTNodeAPI {
 	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i> list's
 	 * children are the ones of the <i>EMF</i> model's <tt>EList</tt> by which
 	 * the <i>JastAdd</i> list is backed. Thus, any access to the list must be
-	 * delegated to its {@link List#delegatee associated <tt>EList</tt>}.
+	 * delegated to its {@link List\#delegatee associated <tt>EList</tt>}.
 	 * @param index The index of the list child to access.
 	 * @return The backing <tt>EList's</tt> access methods.
 	 */
@@ -147,7 +147,7 @@ aspect ASTNodeAPI {
 	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i>
 	 * optional's content are the ones of the <i>EMF</i> model element the
 	 * optional wraps. Thus, any access to the optional must be delegated to
-	 * its {@link Opt#delegatee associated element}.
+	 * its {@link Opt\#delegatee associated element}.
 	 * @param index The index of the optional's child to access. Iff the index
 	 * is greater than 0 or the optional is not setted, i.e. has no value, any
 	 * access to its content will result in an exception as known from
@@ -258,9 +258,9 @@ aspect ASTNodeAPI {
     
 //other stuff from old generator follows (rewrites are always considered to be enabled,TODO: staged rewrites and debugs)
     
-	public static final boolean ASTNode.generatedWithCircularEnabled = #ASTNode.circularEnabled#;
-    public static final boolean ASTNode.generatedWithCacheCycle = #ASTNode.cacheCycle#;
-	public static final boolean ASTNode.generatedWithComponentCheck = #ASTNode.componentCheck#;
+	public static final boolean ASTNode.generatedWithCircularEnabled = #ASTNode_circularEnabled#;
+    public static final boolean ASTNode.generatedWithCacheCycle = #ASTNode_cacheCycle#;
+	public static final boolean ASTNode.generatedWithComponentCheck = #ASTNode_componentCheck#;
     
 	protected static ASTNode$State ASTNode.state = new ASTNode$State();
     public final ASTNode$State ASTNode.state() { return state; }

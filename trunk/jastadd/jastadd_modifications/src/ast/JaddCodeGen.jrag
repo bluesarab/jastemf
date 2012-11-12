@@ -39,7 +39,7 @@ aspect JaddCodeGen {
   public void ASTDecl.jjtGen(PrintWriter stream, String parserName, boolean rewriteEnabled) {
 	    String s;
 
-	    jjtGenConstructor(stream, parserName, rewriteEnabled);
+	   // jjtGenConstructor(stream, parserName, rewriteEnabled);
 	    
 	    // Generate code common for all nodes by adding them to ASTNode
 	    if(name().equals("ASTNode")) {
@@ -47,7 +47,7 @@ aspect JaddCodeGen {
 	       //SVEN:OLD jjtGenASTNode(stream, parserName, rewriteEnabled);
 	    }
 	    else if(name().equals(ASTNode.listName)) {
-	    	stream.print(jjtGenListAPI());
+	    	//stream.print(jjtGenListAPI());
 	    }
 	    else if(name().equals(ASTNode.optName)) {
 	      // do not override getNumChild with implementation below
@@ -117,11 +117,11 @@ aspect JaddCodeGen {
 
     stream.println("    }\n");*/
 
-    if(numNonNTAComponents() != 0) {
+   /* if(numNonNTAComponents() != 0) {
       stream.print(buildingConstructor());
       if(ASTNode.beaver)
         stream.print(buildingSymbolConstructor());
-    }
+    }*/
    
     /*
     if(ASTNode.isBuiltInOpt(name())) {
@@ -132,7 +132,7 @@ aspect JaddCodeGen {
 
   }
   
-  public String ASTDecl.jjtGenListAPI() {
+ /* public String ASTDecl.jjtGenListAPI() {
 	  StringWriter stringWriter = new StringWriter();
 	  PrintWriter stream = new PrintWriter(stringWriter);
       stream.println("     public #LISTTYPE#<T> #LISTTYPE#.add(T node) {");
@@ -175,7 +175,7 @@ aspect JaddCodeGen {
         String result = stringWriter.toString().replaceAll("#LISTTYPE#",ASTNode.listName);
         result = result.replaceAll("#OPTTYPE#",ASTNode.listName);
         return result;
-  }
+  }*/
 	  
 
   syn boolean ASTDecl.rewriteWithNoPhaseCondition() {
