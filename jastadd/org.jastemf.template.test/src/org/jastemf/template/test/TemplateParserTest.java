@@ -66,7 +66,7 @@ public class TemplateParserTest {
 		System.out.println("Parsing " + fileName + ": OK");
 		String source = (String) result.getClass().getMethod("genString").invoke(result);
 		//System.out.println(content.replaceAll("\\#","#"));
-		assertEquals(content.replaceAll("\\\\#","#"), source);		
+		assertEquals(content.replaceAll("\\\\#","#").replaceAll("\\\\<\\?", "<?").replaceAll("\\\\\\?>", "?>"), source);		
 
 	}
 	

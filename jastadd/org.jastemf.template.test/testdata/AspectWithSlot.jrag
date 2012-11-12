@@ -1,6 +1,6 @@
 aspect a {
 	/**
-	 * This is a comment with escaped slot delimiter: \#
+	 * This is a comment with escaped slot delimiter: \# \<? \?>
 	 */
 	syn ASTNode.x = doSomeStuff();
 	public #TYPEDEFAULTSET# circularEvalSet = #CREATEDEFAULTSET#;
