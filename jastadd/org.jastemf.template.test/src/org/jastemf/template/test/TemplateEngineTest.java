@@ -21,6 +21,7 @@ public class TemplateEngineTest {
 		template.bind("LISTTYPE","ASTList");
 		template.bind("OPTTYPE_WRONG","ASTOpt");
 		template.bind("OPTTYPE","ASTOpt");
+		template.bind("ASTNode_stuffName", "MyStuff");
 		String expectedResultCode = RAGTemplate.readContent(new File(resultFileName));
 		assertEquals(expectedResultCode,template.getGenCode());
 		assertFalse(template.hasPoints());
