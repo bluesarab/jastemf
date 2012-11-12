@@ -58,7 +58,7 @@ String SlotDelimiter = "#";
 
 String LeftDelimiter = "<?"/"[[";
 
-String RightDelimiter = "<?"/"]]"; 
+String RightDelimiter = "?>"/"]]"; 
 
 String InfixDelimiter = "::"; 
 
