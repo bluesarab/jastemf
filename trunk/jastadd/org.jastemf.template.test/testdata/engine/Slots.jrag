@@ -1,5 +1,7 @@
 aspect Stuff{
 
+	private static String stuffName = "#ASTNode_stuffName#";
+	
 	public ASTNode ASTNode.copy() {
 		try {
 			return (ASTNode) clone();
