@@ -1,27 +1,37 @@
 aspect #ID#Constructors{
 	
-	// Declared in #FILENAME# line #LINE#
+	
+	//Declared in #FILENAME# line #LINE#
+	/**
+	 * Constructor for creating empty #ID#-ASTNodes.
+	 */
 	public #ID#.#ID_IMPL#() {
 		super();
 		
-		#PROTOTYPE#SETCHILD#
-			setChild(new §ARGTYPE§(), §ARRAY_IDX§);
-		#PROTOTYPE#SETCHILD#
+		[[PROTOTYPE::SETCHILD]]
+			setChild(new #CONS#(), #IDX#);
+		[[PROTOTYPE]]
 		
 		is$Final(true);
 	}
 	
+	[[PROTOTYPE::ValueConstructor]]  			
 	// Declared in #FILENAME# line #LINE#
-	public #ID#.#ID_IMPL#(#PROTOTYPE#ARGLIST# §ARGTYPE§ p§IDX§ #PROTOTYPE#ARGLIST#){		
-		#PROTOTYPE#SETVARIANTS#  
-			§VARIANTS§SETCHILD§
-				§VAR§TERMINAL§ set§NAME§(p§IDX§);
-				§VAR§NONTERMINAL§ setChild(p§IDX§,§ARRAY_IDX§);
-				§VAR§NTA1§ setChild(new §ARGTYPE§(), §ARRAY_IDX§);
-				§VAR§NTA2§ setChild(null, §ARRAY_IDX§);
-			§VARIANTS§SETCHILD§
-		#PROTOTYPE#SETVARIANTS#  
+	/**
+	 * Constructor for creating #ID#-ASTNodes with values.
+	 */
+	public #ID#.#ID_IMPL#([[PROTOTYPE::ARGLIST]] #ARGTYPE# p#IDX# [[PROTOTYPE]]){		
+		#CONSHOOK#		
+		
+		[[PROTOTYPE::SETCHILDVARIANTS]]  
+			[[VARIANTS::SETCHILD]]
+				[[VAR::TERMINAL]] set#ARG#(p#IDX#);
+				[[VAR::NONTERMINAL]] setChild(p#IDX#,#IDX#);
+				[[VAR::NTA1]] setChild(new #CONS#(), #IDX#);
+				[[VAR::NTA2]] setChild(null, #IDX#);
+			[[VARIANTS]]
+		[[PROTOTYPE]] 
 		is$Final(true);
 	}
-
+	[[PROTOTYPE]]
 } 

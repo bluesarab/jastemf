@@ -4,6 +4,7 @@ aspect ASTDeclContainmentGen {
 	
 	// Constructor to build trees bottom up
 	public String ASTDecl.buildingConstructor() {
+		return null;
 		/*
 	    // we only build constructors if there are components
 	    if(!getComponents().hasNext())
@@ -64,6 +65,7 @@ aspect ASTDeclContainmentGen {
 	  }
 
 	  public String ASTDecl.buildingSymbolConstructor() {
+		  return null;
 	    /*
 		  // we only build constructors if there are components ...
 	    if(!getComponents().hasNext())

@@ -73,7 +73,7 @@ aspect RepositoryAdaptations {
 		 * @return An exception representing the illegal remove.
 		 */
 		public static JastEMFException illegalRemove(
-				ASTNode<?> parent, int index) {
+				ASTNode\<?> parent, int index) {
 			return new JastEMFException(
 					"JastAdd AST Manipulation Error\n"+
 					"\tCause : Removing ["+index+"]'th child of ["+parent+"].\n"+
@@ -89,7 +89,7 @@ aspect RepositoryAdaptations {
 		 * @return An exception representing the illegal insert.
 		 */
 		public static JastEMFException illegalInsert(
-				ASTNode<?> parent, int index, ASTNode<?> child) {
+				ASTNode\<?> parent, int index, ASTNode\<?> child) {
 			return new JastEMFException(
 					"JastAdd AST Manipulation Error\n"+
 					"\tCause : Inserting ["+child+"] at position ["+index+

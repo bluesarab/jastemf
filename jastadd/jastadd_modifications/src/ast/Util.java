@@ -127,6 +127,8 @@ public class Util {
 					+ e.currentToken.next.beginColumn);
 			return (msg.toString());
 			
+		} catch (jrag.AST.TokenMgrError e){
+			return "Problem with lexer in " + sourceName +"." + e.getMessage();
 		}
 		return null;
 	}

@@ -35,12 +35,12 @@ jar : all unzip-tools
 	mkdir "$(BUILD)/ast/codebase/containment"
 	cp src/ast/codebase/common/*.internal.* $(BUILD)/ast/codebase/common
 	cp src/ast/codebase/containment/*.internal.* $(BUILD)/ast/codebase/containment
-	jar -cmf manifest jastadd2.jar -C $(BUILD) ast -C $(BUILD) LICENSE -C $(BUILD) jastadd -C $(BUILD) emf -C $(BUILD) jrag  -C $(BUILD) org/aspectj/lang  -C $(BUILD) org/aspectj/runtime 
+	jar -cmf manifest jastadd2.jar -C $(BUILD) ast -C $(BUILD) LICENSE -C $(BUILD) jastadd -C $(BUILD) emf -C $(BUILD) xtc -C $(BUILD) org/jastemf -C $(BUILD) jrag  -C $(BUILD) org/aspectj/lang  -C $(BUILD) org/aspectj/runtime 
 
 	
 unzip-tools : 
-	unzip ./tools/aspectj/lib/aspectjrt.jar -d $(BUILD)
-	unzip ./tools/tpl.jar -d $(BUILD)
+	unzip -o ./tools/aspectj/lib/aspectjrt.jar -d $(BUILD)
+	unzip -o ./tools/tpl.jar -d $(BUILD)
 
 source-jar :
 	jar -cmf manifest jastadd2-src.jar LICENSE manifest $(SOURCE)/ast/*.aj $(SOURCE)/ast/*.ast $(SOURCE)/ast/*.jjt $(SOURCE)/ast/*.jrag \
