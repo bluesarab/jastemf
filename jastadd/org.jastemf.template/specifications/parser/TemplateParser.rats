@@ -62,7 +62,9 @@ String RightDelimiter = "?>"/"]]";
 
 String InfixDelimiter = "::"; 
 
-String EscapeDelimiter = '\\';
+String  EscapeDelimiter = '\\';
+
+transient String IslandContent = ( EscapeDelimiter (SlotDelimiter/LeftDelimiter/RightDelimiter)  /  !( SlotDelimiter/LeftDelimiter/RightDelimiter) _ )+ ;
 
 void EndOfFile = !_;
 
@@ -78,7 +80,7 @@ public GenericSource GenericSource_Declaration =  content:TemplateElements_Decla
 };
 
 
-TemplateElements TemplateElements_Declaration = content:( (yyValue:Island  / yyValue:Water) )*  
+TemplateElements TemplateElements_Declaration = content:(yyValue:Island  / yyValue:Water)*  
 {
 	List<Element> elements = new List<Element>();
 	for(Object element:content)
@@ -94,14 +96,9 @@ TextElement Water = yyValue:TextElement_Declaration
 //match until next char is # and concatenate, afterwards try to match and concatenate the last char before #
 //could also be done via post check, e.g. !{yyValue==#}, but this would hinder recovery and thus is encapsulated 
 //in extra method call 
-TextElement TextElement_Declaration =  chars:( EscapeDelimiter yyValue:(SlotDelimiter/LeftDelimiter/RightDelimiter)  /  !( SlotDelimiter/LeftDelimiter/RightDelimiter) yyValue:_ )+
-{
-	String result = "";
-	for(Object character:chars){
-		result+=character; 
-	}
-	
-	yyValue = new TextElement(result);	
+TextElement TextElement_Declaration =  value:IslandContent
+{	
+	yyValue = new TextElement(value.replaceAll("\\\\#","#").replaceAll("\\\\<\\?", "<?").replaceAll("\\\\\\?>", "?>").replaceAll("\\\\\\[\\[", "[[").replaceAll("\\\\\\]\\]", "]]"));	
 };
 
 RootElement Island =  yyValue:VariantList_Declaration  / yyVaule:Prototype_Declaration / yyValue:Slot_Declaration

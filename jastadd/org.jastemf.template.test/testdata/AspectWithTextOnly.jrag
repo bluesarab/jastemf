@@ -1,0 +1,612 @@
+aspect RepositoryAdaptations {
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */
+	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+	 */	/* 
+	 * Support mappings from JastAdd child indexes to EMF model access methods.
+
+
+	
+	
+
+}
