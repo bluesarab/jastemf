@@ -31,8 +31,16 @@ public interface TemplateAPI {
 	public abstract boolean removePrototype(String prototypeName);
 
 	public abstract boolean bind(String slotName, String replacement);
+	
+	public abstract boolean bind(String slotName, int replacement);
+	
+	public abstract boolean bind(String slotName, boolean replacement);
 
 	public abstract boolean bindOne(String slotName, String replacement);
+	
+	public abstract boolean bindOne(String slotName, int replacement);
+	
+	public abstract boolean bindOne(String slotName, boolean replacement);
 
 	public abstract boolean extend(String hookName, String argument);
 

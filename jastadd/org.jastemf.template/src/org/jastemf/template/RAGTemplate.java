@@ -211,6 +211,26 @@ public class RAGTemplate implements TemplateAPI {
 	public String getGenCode() {
 		return ast.genString();
 	}
+
+	@Override
+	public boolean bind(String slotName, int replacement) {
+		return bind(slotName,String.valueOf(replacement));
+	}
+
+	@Override
+	public boolean bind(String slotName, boolean replacement) {
+		return bind(slotName,String.valueOf(replacement));
+	}
+
+	@Override
+	public boolean bindOne(String slotName, int replacement) {
+		return bindOne(slotName,String.valueOf(replacement));
+	}
+
+	@Override
+	public boolean bindOne(String slotName, boolean replacement) {
+		return bindOne(slotName,String.valueOf(replacement));
+	}
 	
 	
 	
