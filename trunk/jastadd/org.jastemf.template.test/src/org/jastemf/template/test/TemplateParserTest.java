@@ -51,6 +51,14 @@ public class TemplateParserTest {
 		testParseAndReprint(content, fileName);
 	}
 	
+	@Test
+	public void testNoPoints() throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {		
+		String fileName = "./testdata/AspectWithTextOnly.jrag";
+		File file = new File(fileName);
+		String content = readContent(file);
+		testParseAndReprint(content, fileName);
+	}
+	
 	
 	private void testParseAndReprint(String content, String fileName) throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException{
 		StringReader reader = new StringReader(content);
@@ -66,7 +74,7 @@ public class TemplateParserTest {
 		System.out.println("Parsing " + fileName + ": OK");
 		String source = (String) result.getClass().getMethod("genString").invoke(result);
 		//System.out.println(content.replaceAll("\\#","#"));
-		assertEquals(content.replaceAll("\\\\#","#").replaceAll("\\\\<\\?", "<?").replaceAll("\\\\\\?>", "?>"), source);		
+		assertEquals(content.replaceAll("\\\\#","#").replaceAll("\\\\<\\?", "<?").replaceAll("\\\\\\?>", "?>").replaceAll("\\\\\\[\\[", "[[").replaceAll("\\\\\\]\\]", "]]"), source);		
 
 	}
 	
