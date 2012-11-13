@@ -20,11 +20,24 @@ public class TemplateEngineTest {
 		RAGTemplate template = new RAGTemplate(RAGTemplate.readContent(new File(fileName)));
 		template.bind("LISTTYPE","ASTList");
 		template.bind("OPTTYPE_WRONG","ASTOpt");
-		template.bind("OPTTYPE","ASTOpt");
+		template.bind("*.*.OPTTYPE","ASTOpt");
 		template.bind("ASTNode_stuffName", "MyStuff");
 		String expectedResultCode = RAGTemplate.readContent(new File(resultFileName));
 		assertEquals(expectedResultCode,template.getGenCode());
 		assertFalse(template.hasPoints());
+	}
+	
+	@Test
+	public void testQueries() throws FileNotFoundException, CodeGenException{
+		assertTrue("SLOT_NAME".matches(ASTNode.convertQueryToRegex("SLOT_NAME")));
+		assertTrue("SLOT_NAME".matches(ASTNode.convertQueryToRegex("*.SLOT_NAME")));
+		assertTrue("PREFIX1.PREFIX2.SLOT_NAME".matches(ASTNode.convertQueryToRegex("*.SLOT_NAME")));
+		assertTrue("PREFIX1.PREFIX2.SLOT_NAME".matches(ASTNode.convertQueryToRegex("PREFIX1.PREFIX2.SLOT_NAME")));		
+		assertTrue("PREFIX1.PREFIX2.SLOT_NAME".matches(ASTNode.convertQueryToRegex("PREFIX1.*.SLOT_NAME")));		
+		assertTrue("SLOT_NAME".matches(ASTNode.convertQueryToRegex("*.*.SLOT_NAME")));	
+		assertFalse("aSLOT_NAME".matches(ASTNode.convertQueryToRegex("*.*.SLOT_NAME")));
+		assertFalse("PREFIX.aSLOT_NAME".matches(ASTNode.convertQueryToRegex("SLOT_NAME")));
+		assertFalse("PREFIX.aSLOT_NAME".matches(ASTNode.convertQueryToRegex("*.*.SLOT_NAME")));
 	}
 	
 	@Test
