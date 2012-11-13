@@ -59,22 +59,37 @@ aspect Helpers{
    }
    
    public static String ASTNode.convertQueryToRegex(String nameQuery){
-		String resultExpr = "";
-		String[] splitName = nameQuery.split("\\.");
-		for(int i=0;i<splitName.length;i++){
-			if("*".equals(splitName[i])){
-				if(i>0)
-					resultExpr += "(\\.(.+))*";
-				else
-					resultExpr += "((.+)(\\.(.+))*)?";
-			}
-			else{
-				if(i>0)
-					resultExpr += "\\.";
-				resultExpr += splitName[i];
-			}
-		}
-		return resultExpr;
-   }
+ 		String resultExpr = "";
+ 		String[] splitName = nameQuery.split("\\.");
+ 		for(int i=0;i<splitName.length;i++){
+ 			if("*".equals(splitName[i])){
+ 				if(i>0)
+ 					resultExpr += "(\\.(.+))*";
+ 				else {
+ 					if(splitName.length==1)
+ 						//we should not accept empty names in this case
+ 						resultExpr += "(.+)(\\.(.+))*";	
+ 					else
+ 						resultExpr += "((.+)(\\.(.+))*)?";				
+ 				}
+ 			}
+ 			else{
+ 				if(i==0){
+ 					resultExpr += splitName[i];
+ 				}
+ 				else{
+ 					if("".matches(resultExpr)){
+ 						resultExpr += "\\." + splitName[i];	
+ 						resultExpr = "(" + "(" + resultExpr + ")" + "|" +  splitName[i] +")";
+ 					}
+ 					else{
+ 						resultExpr += "\\." + splitName[i];	
+ 					}					
+ 				}
+ 	
+ 			}
+ 		}
+ 		return resultExpr;
+    }
    
 }
