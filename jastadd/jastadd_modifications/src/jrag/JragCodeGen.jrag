@@ -39,6 +39,7 @@ aspect JragCodeGen {
   public static final String ASTNode.nodeName = "ASTNode";
   public static final String ASTNode.optName = "ASTOpt";
   public static final String ASTNode.implSuffix = "Impl";
+  public static final String ASTNode.backend = "plain";
   
   public static boolean ASTNode.isBuiltInType(String typeName) {
 	  return ASTNode.listName.equals(typeName)||

@@ -20,9 +20,7 @@ aspect #ID#Constructors{
 	/**
 	 * Constructor for creating #ID#-ASTNodes with values.
 	 */
-	public #ID#.#ID_IMPL#([[PROTOTYPE::ARGLIST]] #ARGTYPE# p#IDX# [[PROTOTYPE]]){		
-		#CONSHOOK#		
-		
+	public #ID#.#ID_IMPL#([[PROTOTYPE::ARGLIST]] #ARGTYPE# p#IDX# [[PROTOTYPE]]){				
 		[[PROTOTYPE::SETCHILDVARIANTS]]  
 			[[VARIANTS::SETCHILD]]
 				[[VAR::TERMINAL]] set#ARG#(p#IDX#);

@@ -1,5 +1,46 @@
 aspect ListAPI{
 	
+	public ASTNode #LISTTYPE#.parent;
+
+	public ASTNode #LISTTYPE#.getParent() {
+		if (parent != null && parent.is$Final() != is$Final())
+			state().boundariesCrossed++;
+		return parent;
+	}
+	
+	/**
+	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i> list's
+	 * children are the ones of the <i>backend list</i> by which
+	 * the <i>JastAdd</i> list is backed. Thus, any access to the list must be
+	 * delegated to its {@link List\#delegatee associated <tt>List</tt>}.
+	 * @param index The index of the list child to access.
+	 * @return The backing <tt>list's</tt> access methods.
+	 */
+	public IAccessMethods #LISTTYPE#.resolveAccess(final int index) {
+		return new IAccessMethods() {
+			public ASTNode getChild() {
+				return (ASTNode)delegatee.get(index);
+			}
+			public void setChild(ASTNode node) {
+				if (index < delegatee.size()) {
+					delegatee.set(index, node);
+				} else if (index == delegatee.size()) {
+					delegatee.add(node);
+				} else {
+					final int numToAdd = index + 1 - delegatee.size();
+					java.util.Collection toAdd =
+						new java.util.ArrayList(numToAdd);
+					for (int i = 1; i < numToAdd; i++)
+						toAdd.add(null);
+					toAdd.add(node);
+					delegatee.addAll(toAdd);
+				}
+				if (node != null)
+					node.childIndex = index;
+			}
+		};
+	}
+	
 	private boolean #LISTTYPE#.list_touched = true;
 	
 	public #LISTTYPE#<T> #LISTTYPE#.add(T node) {
@@ -34,4 +75,9 @@ aspect ListAPI{
         }
         return getNumChildNoTransform();		
 	}
+	
+	protected int #LISTTYPE#.numChildren() {
+		return delegatee.size();
+	}
+
 }
