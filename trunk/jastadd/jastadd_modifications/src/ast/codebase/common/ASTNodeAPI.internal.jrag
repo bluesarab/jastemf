@@ -1,12 +1,10 @@
+/*
+ * This file contains JastAdd code parts that are common to all Java-based backends (plain or emf).
+ */
 aspect ASTNodeAPI {
 	
-	/*
-	 * Replace JastAdd AST repository access methods by access
-	 * methods that delegate to the EMF model's ones.
-	 */
-	
 	/**
-	 * Get the requested child by calling its <i>EMF</i> model access method.
+	 * Get the requested child by calling its <i>specific backend</i> model access method.
 	 * @param i The child's index.
 	 * @return The child, iff it exists.
 	 * @throws IndexOutOfBoundsException Thrown, iff the child does not exist.
@@ -19,7 +17,7 @@ aspect ASTNodeAPI {
 	}
 	
 	/**
-	 * Set a child by calling its <i>EMF</i> model access method.
+	 * Set a child by calling its <i>specific backend</i> model access method.
 	 * @param node The child to set.
 	 * @param i The child's index.
 	 * @throws IndexOutOfBoundsException Thrown, iff the child does not exist.
@@ -32,7 +30,7 @@ aspect ASTNodeAPI {
 	}
 	
 	/**
-	 * Insert a child by calling its <i>EMF</i> model access method.
+	 * Insert a child by calling its <i>specific backend</i> model access method.
 	 * @param node The child to insert.
 	 * @param i The child's index.
 	 * @throws IndexOutOfBoundsException Thrown, iff the child does not exist.
@@ -59,10 +57,10 @@ aspect ASTNodeAPI {
 		if(node!=null)
 			node.childIndex = delegator.delegatee.indexOf(node);
     }
-
+    
 	
 	/**
-	 * Remove a child by calling its <i>EMF</i> model access method.
+	 * Remove a child by calling its <i>specific backend</i> model access method.
 	 * @param i The child's index.
 	 * @throws IndexOutOfBoundsException Thrown, iff the child does not exist.
 	 */
@@ -81,86 +79,70 @@ aspect ASTNodeAPI {
 		}
 	}
 	
-	/*
-	 * Adapt JastAdd lists and optionals to delegate accesses to model lists
-	 * and element access methods respectively.
-	 */
 	
-	/**
-	 * Associate with each <i>JastAdd</i> list <tt>JL</tt> an <tt>EList</tt>
-	 * <tt>ML</tt> of the model repository which represents <tt>JL's</tt>
-	 * content. Thus, <tt>JL</tt> is backed by <tt>ML</tt> and delegates all
-	 * its accesses to <tt>ML</tt>.
-	 */
-	public EList #LISTTYPE#.delegatee = new BasicEList();
 	
-	/**
-	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i> list's
-	 * children are the ones of the <i>EMF</i> model's <tt>EList</tt> by which
-	 * the <i>JastAdd</i> list is backed. Thus, any access to the list must be
-	 * delegated to its {@link List\#delegatee associated <tt>EList</tt>}.
-	 * @param index The index of the list child to access.
-	 * @return The backing <tt>EList's</tt> access methods.
-	 */
-	public IAccessMethods #LISTTYPE#.resolveAccess(final int index) {
-		return new IAccessMethods() {
-			public ASTNode getChild() {
-				return (ASTNode)delegatee.get(index);
-			}
-			public void setChild(ASTNode node) {
-				if (index < delegatee.size()) {
-					delegatee.set(index, node);
-				} else if (index == delegatee.size()) {
-					delegatee.add(node);
-				} else {
-					final int numToAdd = index + 1 - delegatee.size();
-					java.util.Collection toAdd =
-						new java.util.ArrayList(numToAdd);
-					for (int i = 1; i < numToAdd; i++)
-						toAdd.add(null);
-					toAdd.add(node);
-					delegatee.addAll(toAdd);
-				}
-				if (node != null)
-					node.childIndex = index;
-			}
-		};
-	}
+    public int ASTNode.getNumChild() {
+    	return numChildren();
+    }
+    
+    public final int ASTNode.getNumChildNoTransform() {
+    	return numChildren();
+    }	
+    
 	
-	/**
-	 * Associate with each <i>JastAdd</i> optional <tt>JO</tt> an element
-	 * <tt>MO</tt> of the model repository which represents <tt>JO's</tt>
-	 * content. Thus, <tt>JO</tt> is backed by <tt>MO</tt> and delegates all
-	 * its accesses to <tt>MO</tt>.
-	 */
-	public IAccessMethods #OPTTYPE#.delegatee = new IAccessMethods() {
-		private ASTNode value = null;
-		public ASTNode getChild() {return value;}
-		public void setChild(ASTNode node) {
-			this.value = node;
-			if (node != null)
-				node.childIndex = 0;
-		}
-	};
-	
-	/**
-	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i>
-	 * optional's content are the ones of the <i>EMF</i> model element the
-	 * optional wraps. Thus, any access to the optional must be delegated to
-	 * its {@link Opt\#delegatee associated element}.
-	 * @param index The index of the optional's child to access. Iff the index
-	 * is greater than 0 or the optional is not setted, i.e. has no value, any
-	 * access to its content will result in an exception as known from
-	 * <i>JastAdd</i>.
-	 * @return The backing element's access methods.
-	 */
-	public IAccessMethods #OPTTYPE#.resolveAccess(final int index) {
-		if (index != 0)
-			throw new IndexOutOfBoundsException();
-		return delegatee;
-	}
-	
-	/* 
+	//other stuff from old generator follows (rewrites are always considered to be enabled,TODO: staged rewrites and debugs)
+    
+	public static final boolean ASTNode.generatedWithCircularEnabled = #ASTNode_circularEnabled#;
+	public static final boolean ASTNode.generatedWithCacheCycle = #ASTNode_cacheCycle#;
+	public static final boolean ASTNode.generatedWithComponentCheck = #ASTNode_componentCheck#;
+	    
+	protected static ASTNode$State ASTNode.state = new ASTNode$State();
+	public final ASTNode$State ASTNode.state() { return state; }
+
+	public boolean ASTNode.in$Circle = false;
+    public boolean ASTNode.in$Circle() { return in$Circle; }
+    public void ASTNode.in$Circle(boolean b) { in$Circle = b; }
+    public boolean ASTNode.is$Final = false;
+    public boolean ASTNode.is$Final() { return is$Final; }
+    public void ASTNode.is$Final(boolean b) { is$Final = b; }
+	    
+    @SuppressWarnings("cast") 
+    public T ASTNode.getChild(int i){
+    	return (T)ASTNode.getChild(this, i);
+    }  
+
+    public static ASTNode ASTNode.getChild(ASTNode that, int i) {
+    	ASTNode node = that.getChildNoTransform(i);
+    	if(node.is$Final()) 
+    		return node;
+    	if(!node.mayHaveRewrite()) {
+    		node.is$Final(that.is$Final());
+    		return node;
+    	}
+    	if(!node.in$Circle()) {
+    		int rewriteState;
+    		int num = that.state().boundariesCrossed;
+    		do {
+    			that.state().push(ASTNode$State.REWRITE_CHANGE);
+    			ASTNode oldNode = node;
+    			oldNode.in$Circle(true);
+    			node = node.rewriteTo();
+    			if(node != oldNode)
+    				that.setChild(node, i);
+    			oldNode.in$Circle(false);
+    			rewriteState = that.state().pop();;
+    		} while(rewriteState == ASTNode$State.REWRITE_CHANGE);
+    		if(rewriteState == ASTNode$State.REWRITE_NOCHANGE && that.is$Final()) {
+    			node.is$Final(true);
+    			that.state().boundariesCrossed = num;
+    		}
+    	}
+    	else if(that.is$Final() != node.is$Final()) 
+    		that.state().boundariesCrossed++;
+    	return node;
+    }
+    
+    /* 
 	 * Replace each AST node's "copy()" method generated by JastAdd with an
 	 * implementation that is not anymore based on ASTNode's "children" array.
 	 * Thus, the new implementation uses the model repository instead of
@@ -175,136 +157,4 @@ aspect ASTNodeAPI {
 				+ getClass().getName() + "!");
 		return null;
 	}
-	
-	public #LISTTYPE# #LISTTYPE#.copy() {
-		try {
-			return (#LISTTYPE#) clone();
-		} catch (CloneNotSupportedException e) {}
-		System.err.println("Error: Could not clone node of type "
-				+ getClass().getName() + "!");
-		return null;
-	}
-	
-    public #OPTTYPE#.#OPTTYPE#(T opt) {
-         setChild(opt, 0);
-    }
-	
-	public #OPTTYPE# #OPTTYPE#.copy() {
-		try {
-			return (#OPTTYPE#) clone();
-		} catch (CloneNotSupportedException e) {
-		}
-		System.err.println("Error: Could not clone node of type "
-				+ getClass().getName() + "!");
-		return null;
-	}
-	
-	public ASTNode ASTNode.getParent() {
-		if (eContainer == null)
-			return null;
-		final ASTNode parent;
-		EStructuralFeature feature = this.eContainingFeature();
-		if (feature.isMany() || feature.getLowerBound() == 0) {
-			parent = ((ASTNode) eContainer).resolveAccess(
-					eContainer.eClass().getEAllContainments().indexOf(feature))
-					.getChild();
-		} else {
-			parent = (ASTNode) eContainer;
-		}
-		if (parent.is$Final() != is$Final())
-			state().boundariesCrossed++;
-		return parent;
-	}
-	
-	public ASTNode #LISTTYPE#.parent;
-
-	public ASTNode #LISTTYPE#.getParent() {
-		if (parent != null && parent.is$Final() != is$Final())
-			state().boundariesCrossed++;
-		return parent;
-	}
-	
-	public ASTNode #OPTTYPE#.parent;
-
-	public ASTNode #OPTTYPE#.getParent() {
-		if (parent != null && parent.is$Final() != is$Final())
-			state().boundariesCrossed++;
-		return parent;
-	}
-	
-
-	/* 
-	 * EMF dependent "numChild()" method for child count handling.
-	 */
-	protected int ASTNode.numChildren() {
-		return eClass().getEAllContainments().size();
-	}
-	
-	protected int #LISTTYPE#.numChildren() {
-		return delegatee.size();
-	}
-	
-	protected int #OPTTYPE#.numChildren() {
-		return delegatee.getChild() != null ? 1 : 0;
-	}
-	
-    public int ASTNode.getNumChild() {
-    	return numChildren();
-    }
-    
-    public final int ASTNode.getNumChildNoTransform() {
-    	return numChildren();
-    }	
-    
-//other stuff from old generator follows (rewrites are always considered to be enabled,TODO: staged rewrites and debugs)
-    
-	public static final boolean ASTNode.generatedWithCircularEnabled = #ASTNode_circularEnabled#;
-    public static final boolean ASTNode.generatedWithCacheCycle = #ASTNode_cacheCycle#;
-	public static final boolean ASTNode.generatedWithComponentCheck = #ASTNode_componentCheck#;
-    
-	protected static ASTNode$State ASTNode.state = new ASTNode$State();
-    public final ASTNode$State ASTNode.state() { return state; }
-      
-    public boolean ASTNode.in$Circle = false;
-    public boolean ASTNode.in$Circle() { return in$Circle; }
-    public void ASTNode.in$Circle(boolean b) { in$Circle = b; }
-    public boolean ASTNode.is$Final = false;
-    public boolean ASTNode.is$Final() { return is$Final; }
-    public void ASTNode.is$Final(boolean b) { is$Final = b; }
-    
-    @SuppressWarnings("cast") 
-    public T ASTNode.getChild(int i){
-    	return (T)ASTNode.getChild(this, i);
-	}  
-
-    public static ASTNode ASTNode.getChild(ASTNode that, int i) {
-        ASTNode node = that.getChildNoTransform(i);
-        if(node.is$Final()) 
-        	return node;
-        if(!node.mayHaveRewrite()) {
-            node.is$Final(that.is$Final());
-            return node;
-        }
-        if(!node.in$Circle()) {
-        	int rewriteState;
-        	int num = that.state().boundariesCrossed;
-        	do {
-        		that.state().push(ASTNode$State.REWRITE_CHANGE);
-        		ASTNode oldNode = node;
-        		oldNode.in$Circle(true);
-        		node = node.rewriteTo();
-        		if(node != oldNode)
-        			that.setChild(node, i);
-        			oldNode.in$Circle(false);
-        			rewriteState = that.state().pop();;
-        	} while(rewriteState == ASTNode$State.REWRITE_CHANGE);
-        	if(rewriteState == ASTNode$State.REWRITE_NOCHANGE && that.is$Final()) {
-        		node.is$Final(true);
-        		that.state().boundariesCrossed = num;
-        	}
-        }
-        else if(that.is$Final() != node.is$Final()) 
-        	that.state().boundariesCrossed++;
-        return node;
-   }
 }

@@ -1,0 +1,47 @@
+aspect OptAPI{
+	
+    public #OPTTYPE#.#OPTTYPE#(T opt) {
+        setChild(opt, 0);
+    }
+	
+	/**
+	 * Associate with each <i>JastAdd</i> optional <tt>JO</tt> an element
+	 * <tt>MO</tt> of the backend repository which represents <tt>JO's</tt>
+	 * content. Thus, <tt>JO</tt> is backed by <tt>MO</tt> and delegates all
+	 * its accesses to <tt>MO</tt>.
+	 */
+	public IAccessMethods #OPTTYPE#.delegatee = new IAccessMethods() {
+		private ASTNode value = null;
+		public ASTNode getChild() {return value;}
+		public void setChild(ASTNode node) {
+			this.value = node;
+			if (node != null)
+				node.childIndex = 0;
+		}
+	};
+	
+
+	/**
+	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i>
+	 * optional's content are the ones of the <i>specific backend</i> model element the
+	 * optional wraps. Thus, any access to the optional must be delegated to
+	 * its {@link Opt\#delegatee associated element}.
+	 * @param index The index of the optional's child to access. Iff the index
+	 * is greater than 0 or the optional is not setted, i.e. has no value, any
+	 * access to its content will result in an exception as known from
+	 * <i>JastAdd</i>.
+	 * @return The backing element's access methods.
+	 */
+	public IAccessMethods #OPTTYPE#.resolveAccess(final int index) {
+		if (index != 0)
+			throw new IndexOutOfBoundsException();
+		return delegatee;
+	}
+	
+	
+	protected int #OPTTYPE#.numChildren() {
+		return delegatee.getChild() != null ? 1 : 0;
+	}
+	
+	
+}

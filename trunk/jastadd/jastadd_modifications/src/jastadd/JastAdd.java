@@ -243,13 +243,16 @@ public class JastAdd {
 	
 	private Collection<String> addInternalConstructors(ASTDecl decl, Grammar grammar) throws IOException{
 		String specURI = "/ast/codebase/containment/Constructor.internal.jrag";
+		if(grammar.debugMode){
+			System.out.println("Handling internal spec "+ specURI +".");
+		}
 		String content = Util.readStream(ast.Util.class.getResourceAsStream(specURI));
 		RAGTemplate tpl = new RAGTemplate(content);
 		tpl.bind("*.ID", decl.name());
 		tpl.bind("*.ID_IMPL", decl.implName());
 		tpl.bind("*.FILENAME",decl.getFileName());
 		tpl.bind("*.LINE",String.valueOf(decl.getStartLine()));
-			boolean hasRegularComponents = decl.numNonNTAComponents()>0;
+		boolean hasRegularComponents = decl.numNonNTAComponents()>0;
 		
 		if(hasRegularComponents){
 			tpl.instanciatePrototype("ValueConstructor");
@@ -259,14 +262,16 @@ public class JastAdd {
 		@SuppressWarnings("rawtypes")
 		Iterator it = decl.getComponents();
 		int index = 0;
+		String sep = "";
 		
 		while(it.hasNext()){
 			Components component = (Components) it.next();
 			if(hasRegularComponents){
 				tpl.instanciatePrototype("SETCHILDVARIANTS");
-				tpl.bind("SETCHILD.IDX",String.valueOf(index));
+				tpl.bind("SETCHILD.*.IDX",String.valueOf(index));
 				if(!component.isNTA()){
-					tpl.instanciatePrototype("ARGLIST", "ARGLIST.ARGTYPE",component.constrParmType(),"ARGLIST.IDX",String.valueOf(index));
+					tpl.instanciatePrototype("ARGLIST", "ARGLIST.ARGTYPE",component.constrParmType(),"ARGLIST.IDX",String.valueOf(index)+sep);
+					sep = ",";
 				}
 			}
 			
@@ -297,7 +302,10 @@ public class JastAdd {
 
 			index++;
 		}
+		tpl.removePrototype("SETCHILDVARIANTS");
+		tpl.removePrototype("ARGLIST");
 		tpl.removePrototype("SETCHILD");
+		System.out.println(tpl.getGenCode());
 		return addToGrammar(tpl.getGenCode(),specURI,grammar);
 	}
 	
@@ -369,8 +377,10 @@ public class JastAdd {
 		Collection<String> problems = new LinkedList<String>();
 		Collection<String> internalSpecs = new LinkedList<String>();
 		internalSpecs.add("/ast/codebase/common/Base.internal.ast");
-
 		for(String specURI:internalSpecs){
+			if(grammar.debugMode){
+				System.out.println("Handling internal spec "+ specURI +".");
+			}
 			InputStream stream = JastAdd.class.getResourceAsStream(specURI);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 			RAGTemplate tpl = new RAGTemplate(Util.readStream(reader));
@@ -390,6 +400,13 @@ public class JastAdd {
 		internalSpecs.add("/ast/codebase/common/ASTNodeAPI.internal.jrag");
 		internalSpecs.add("/ast/codebase/common/ResolveAccess.internal.jrag");
 		internalSpecs.add("/ast/codebase/common/ListAPI.internal.jrag");
+		internalSpecs.add("/ast/codebase/common/OptAPI.internal.jrag");
+		if("plain".equals(ASTNode.backend)){
+			internalSpecs.add("/ast/codebase/common/ASTNodeAPI.internal.plain.jrag");
+		}
+		else if("emf".equals(ASTNode.backend)){
+			internalSpecs.add("/ast/codebase/common/ASTNodeAPI.internal.emf.jrag");
+		}
 		for(String specURI:internalSpecs){
 			if(grammar.debugMode){
 				System.out.println("Handling internal spec "+ specURI +".");
