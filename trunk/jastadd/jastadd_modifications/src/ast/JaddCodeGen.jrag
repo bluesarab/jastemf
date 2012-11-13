@@ -12,57 +12,99 @@ import java.util.regex.*;
  */
 
 aspect JaddCodeGen {
- 
 
-  syn int ASTDecl.numNonNTAComponents() {
-    int num = 0;
-    for(Iterator iter = getComponents(); iter.hasNext(); ) {
-      Components c = (Components)iter.next();
-      if(!c.isNTA()) {
-        num++;
-      }
-    }
-    return num;
-  }
 
-  syn int ASTDecl.numRegularChildren() {
-    int i = 0;
-    for(Iterator iter = getComponents(); iter.hasNext(); ) {
-      Components c = (Components)iter.next();
-      if(!c.isNTA() && !(c instanceof TokenComponent)) {
-        i++;
-      }
-    }
-    return i;
-  }
+	syn int ASTDecl.numNonNTAComponents() {
+		int num = 0;
+		for(Iterator iter = getComponents(); iter.hasNext(); ) {
+			Components c = (Components)iter.next();
+			if(!c.isNTA()) {
+				num++;
+			}
+		}
+		return num;
+	}
 
-  public void ASTDecl.jjtGen(PrintWriter stream, String parserName, boolean rewriteEnabled) {
-	    String s;
+	syn int ASTDecl.numRegularChildren() {
+		int i = 0;
+		for(Iterator iter = getComponents(); iter.hasNext(); ) {
+			Components c = (Components)iter.next();
+			if(!c.isNTA() && !(c instanceof TokenComponent)) {
+				i++;
+			}
+		}
+		return i;
+	}
 
-	   // jjtGenConstructor(stream, parserName, rewriteEnabled);
-	    
-	    // Generate code common for all nodes by adding them to ASTNode
-	    if(name().equals("ASTNode")) {
-	    	env().genRewriteOrderChecks(stream);
-	       //SVEN:OLD jjtGenASTNode(stream, parserName, rewriteEnabled);
-	    }
-	    else if(name().equals(ASTNode.listName)) {
-	    	//stream.print(jjtGenListAPI());
-	    }
-	    else if(name().equals(ASTNode.optName)) {
-	      // do not override getNumChild with implementation below
-	    }
-	    else {
-	     /* stream.println("  protected int " +name() + ".numChildren() {");
+	syn boolean ASTDecl.rewriteWithNoPhaseCondition() {
+		for(int i = 0; i < getNumRewrite(); i++) {
+			if(getRewrite(i).getCondition() == null)
+				return true;
+			String condition = getRewrite(i).getCondition().unparse();
+			if(condition.indexOf("inRewritePhase") == -1 && condition.indexOf("inExactRewritePhase") == -1)
+				return true;
+		}
+		return superClass() instanceof ASTDecl && ((ASTDecl)superClass()).rewriteWithNoPhaseCondition();
+	}
+
+	syn java.util.Set ASTDecl.rewritePhaseConditions() {
+		java.util.Set set = new java.util.LinkedHashSet();
+		Pattern p = Pattern.compile("inRewritePhase\\(\\w*\\)|inExactRewritePhase\\(\\w*\\)");
+		for(int i = 0; i < getNumRewrite(); i++) {
+			if(getRewrite(i).getCondition() != null) {
+				String condition = getRewrite(i).getCondition().unparse();
+				Matcher m = p.matcher(condition);
+				while(m.find()) {
+					String match = m.group();
+					set.add(match);
+				}
+			}
+		}
+		if(superClass() instanceof ASTDecl)
+			set.addAll(((ASTDecl)superClass()).rewritePhaseConditions());
+		return set;
+	}
+
+
+
+	protected void Components.parse(String s) {
+		jrag.AST.JragParser jp = new jrag.AST.JragParser(new java.io.StringReader(s));
+		jp.root = hostClass().env();
+		jp.setFileName(hostClass().getFileName());
+		try {
+			while(true)
+				jp.AspectBodyDeclaration();
+		} catch (Exception e) {
+		}
+	}
+
+	public void ASTDecl.jjtGen(PrintWriter stream, String parserName, boolean rewriteEnabled) {
+		String s;
+
+		// jjtGenConstructor(stream, parserName, rewriteEnabled);
+
+		// Generate code common for all nodes by adding them to ASTNode
+		if(name().equals("ASTNode")) {
+			env().genRewriteOrderChecks(stream);
+			//SVEN:OLD jjtGenASTNode(stream, parserName, rewriteEnabled);
+		}
+		else if(name().equals(ASTNode.listName)) {
+			//stream.print(jjtGenListAPI());
+		}
+		else if(name().equals(ASTNode.optName)) {
+			// do not override getNumChild with implementation below
+		}
+		else {
+			/* stream.println("  protected int " +name() + ".numChildren() {");
 	      stream.println("    return " + numRegularChildren() + ";");
 	      stream.println("  }");
-	     
+
 	      if(debugMode && isRootNode()) {
 	        stream.println("    protected boolean " + name() + ".debugNodeAttachmentIsRoot() { return true; }");
 	      }*/
-	    }
-	    if(rewriteEnabled) {
-	      stream.println("    public boolean " + name() + ".mayHaveRewrite() {");
+		}
+		if(rewriteEnabled) {
+			/*   stream.println("    public boolean " + name() + ".mayHaveRewrite() {");
 	      if(name().equals(ASTNode.listName))
 	        stream.println("        return true;");
 	      else if(!hasRewrites())
@@ -76,20 +118,20 @@ aspect JaddCodeGen {
 	        }
 	        stream.println("        return false;");
 	      }
-	      stream.println("    }");
-	    }
-	  }
- 
-  
-  
-  public void ASTDecl.jjtGenConstructor(PrintWriter stream, String parserName, boolean rewriteEnabled) {
-   /* stream.println("    // Declared in " + getFileName() + " line " + getStartLine() + "\n");
+	      stream.println("    }");*/
+		}
+	}
+
+
+
+	public void ASTDecl.jjtGenConstructor(PrintWriter stream, String parserName, boolean rewriteEnabled) {
+		/* stream.println("    // Declared in " + getFileName() + " line " + getStartLine() + "\n");
     String s = "    public #ID#.#ID_IMPL#() {\n" + // L�gg till null f�r agg, tom lista f�r list, false f�r opt
     		   "        super();\n";
     s = s.replaceAll("#ID#", name());
     s = s.replaceAll("#ID_IMPL#", implName());
     stream.println(s);
-   
+
     int i = 0;
     for(Iterator iter = getComponents(); iter.hasNext(); ) {
       Components c = (Components)iter.next();
@@ -106,8 +148,8 @@ aspect JaddCodeGen {
         i++;
       }
     }
-    
- 
+
+
     if(rewriteEnabled && isRootNode()) {
       if(ASTNode.stagedRewrites)
     	stream.println("        is$Final(state().rewritePhase);\n");
@@ -117,22 +159,22 @@ aspect JaddCodeGen {
 
     stream.println("    }\n");*/
 
-   /* if(numNonNTAComponents() != 0) {
+		/* if(numNonNTAComponents() != 0) {
       stream.print(buildingConstructor());
       if(ASTNode.beaver)
         stream.print(buildingSymbolConstructor());
     }*/
-   
-    /*
+
+		/*
     if(ASTNode.isBuiltInOpt(name())) {
       stream.println("     public " + ASTNode.optName + "." + ASTNode.optName + "(T opt) {");
       stream.println("         setChild(opt, 0);");
       stream.println("     }\n");
     }*/
 
-  }
-  
- /* public String ASTDecl.jjtGenListAPI() {
+	}
+
+	/* public String ASTDecl.jjtGenListAPI() {
 	  StringWriter stringWriter = new StringWriter();
 	  PrintWriter stream = new PrintWriter(stringWriter);
       stream.println("     public #LISTTYPE#<T> #LISTTYPE#.add(T node) {");
@@ -145,12 +187,12 @@ aspect JaddCodeGen {
         stream.println("          addChild(node);");
         stream.println("          return this;");
         stream.println("     }\n");
-       
+
         stream.println("     public void #LISTTYPE#.insertChild(T node, int i) {");
         stream.println("          list_touched = true;");
         stream.println("          super.insertChild(node, i);");
         stream.println("     }");
-        
+
         stream.println("     public void #LISTTYPE#.addChild(T node) {");
         stream.println("          list_touched = true;");
         stream.println("          super.addChild(node);");
@@ -170,53 +212,13 @@ aspect JaddCodeGen {
         stream.println("          return getNumChildNoTransform();");
         stream.println("     }");
         stream.println("     private boolean #LISTTYPE#.list_touched = true;");
-        
+
         stream.flush();
         String result = stringWriter.toString().replaceAll("#LISTTYPE#",ASTNode.listName);
         result = result.replaceAll("#OPTTYPE#",ASTNode.listName);
         return result;
   }*/
-	  
-
-  syn boolean ASTDecl.rewriteWithNoPhaseCondition() {
-    for(int i = 0; i < getNumRewrite(); i++) {
-      if(getRewrite(i).getCondition() == null)
-       return true;
-      String condition = getRewrite(i).getCondition().unparse();
-      if(condition.indexOf("inRewritePhase") == -1 && condition.indexOf("inExactRewritePhase") == -1)
-        return true;
-    }
-    return superClass() instanceof ASTDecl && ((ASTDecl)superClass()).rewriteWithNoPhaseCondition();
-  }
-
-  syn java.util.Set ASTDecl.rewritePhaseConditions() {
-    java.util.Set set = new java.util.LinkedHashSet();
-    Pattern p = Pattern.compile("inRewritePhase\\(\\w*\\)|inExactRewritePhase\\(\\w*\\)");
-    for(int i = 0; i < getNumRewrite(); i++) {
-      if(getRewrite(i).getCondition() != null) {
-        String condition = getRewrite(i).getCondition().unparse();
-        Matcher m = p.matcher(condition);
-        while(m.find()) {
-          String match = m.group();
-          set.add(match);
-        }
-      }
-    }
-    if(superClass() instanceof ASTDecl)
-      set.addAll(((ASTDecl)superClass()).rewritePhaseConditions());
-    return set;
-  }
 
 
 
-  protected void Components.parse(String s) {
-    jrag.AST.JragParser jp = new jrag.AST.JragParser(new java.io.StringReader(s));
-    jp.root = hostClass().env();
-    jp.setFileName(hostClass().getFileName());
-    try {
-      while(true)
-        jp.AspectBodyDeclaration();
-    } catch (Exception e) {
-    }
-  }
 }

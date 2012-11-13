@@ -24,7 +24,7 @@ aspect ASTNodeAPI {
 	}
 	
 	@Override
-	public java.util.Iterator<T> iterator() {
+	public java.util.Iterator<T> ASTNode.iterator() {
 		//java.util.Collections.
 		return null;
 	}

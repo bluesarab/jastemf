@@ -171,6 +171,7 @@ public class JastAdd {
 			if (grammar.getTypeDecl(i) instanceof ASTDecl) {
 				ASTDecl decl = (ASTDecl) grammar.getTypeDecl(i);
 				addInternalConstructors(decl, grammar);
+				addInternalContainments(decl, grammar);
 				
 				StringWriter writer = new StringWriter();
 				
@@ -240,6 +241,34 @@ public class JastAdd {
 		return problems;
 	}
 	
+	private Collection<String> addInternalContainments(ASTDecl decl, Grammar grammar) throws IOException{
+		String specURI = "/ast/codebase/containment/Containments.internal.jrag";
+		if(grammar.debugMode){
+			System.out.println("Handling internal spec "+ specURI +".");
+		}
+		String content = Util.readStream(ast.Util.class.getResourceAsStream(specURI));
+		RAGTemplate tpl = new RAGTemplate(content);
+		tpl.bind("*.ID", decl.name());
+		tpl.bind("numRegularChildren", decl.numRegularChildren());
+		if(decl.name().equals(ASTNode.listName)){
+			tpl.extractVariant("CONDITIONS", "REWRITES");
+		}
+		else if(!decl.hasRewrites()){
+			tpl.extractVariant("CONDITIONS", "NOREWRITES");
+		}
+		else if(!decl.stagedRewrites || decl.rewriteWithNoPhaseCondition()){
+			tpl.extractVariant("CONDITIONS", "REWRITES");
+		}
+		else{
+			tpl.extractVariant("CONDITIONS", "STAGED_REWRITES");
+			Iterator it = decl.rewritePhaseConditions().iterator();
+			while(it.hasNext()){
+				tpl.instanciatePrototype("PHASES", "CONDITION",it.next().toString());
+			}
+			tpl.removePrototype("PHASES");
+		}
+		return addToGrammar(tpl.getGenCode(),specURI,grammar);
+	}
 	
 	private Collection<String> addInternalConstructors(ASTDecl decl, Grammar grammar) throws IOException{
 		String specURI = "/ast/codebase/containment/Constructor.internal.jrag";
@@ -305,7 +334,6 @@ public class JastAdd {
 		tpl.removePrototype("SETCHILDVARIANTS");
 		tpl.removePrototype("ARGLIST");
 		tpl.removePrototype("SETCHILD");
-		System.out.println(tpl.getGenCode());
 		return addToGrammar(tpl.getGenCode(),specURI,grammar);
 	}
 	
@@ -336,21 +364,6 @@ public class JastAdd {
 	}
 	
 	private Collection<String> addInternalStateSpec(Grammar grammar) throws IOException{
-		/*StringWriter writer = new StringWriter();
-		JragParser jp = new jrag.AST.JragParser(
-				new java.io.StringReader(writer.toString()));
-		jp.root = grammar;
-		jp.setFileName("ASTNode");
-		jp.className = "ASTNode";
-		TODO: check if push command needed
-		jp.pushTopLevelOrAspect(true);
-		try {
-			while (true)
-				jp.AspectBodyDeclaration();
-		} catch (Exception e) {
-			//String s = e.getMessage();
-		}
-		jp.popTopLevelOrAspect(); */
 		String specURI = "/ast/codebase/common/StateAPI.internal.jrag";
 		String spec =  ast.Util.readStream(ast.Util.class.getResourceAsStream(specURI));
 		RAGTemplate tpl = new RAGTemplate(spec);			
