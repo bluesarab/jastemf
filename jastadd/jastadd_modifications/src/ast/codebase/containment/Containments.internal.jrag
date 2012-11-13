@@ -1,4 +1,19 @@
-aspect Containments{
+aspect #ID#Containments{
 	
+	public boolean #ID#.mayHaveRewrite() {
+		[[VARIANTS::CONDITIONS]]
+				[[VAR::NOREWRITES]]return false;
+				[[VAR::REWRITES]]return true;
+				[[VAR::STAGED_REWRITES]]
+						[[PROTOTYPE::PHASES]]
+						if(#CONDITION#) return true;
+						[[PROTOTYPE]]
+						return false;
+		[[VARIANTS]]
+	}
+	
+    protected int #ID#.numChildren() {
+          return #numRegularChildren#;
+    }
 	
 }
