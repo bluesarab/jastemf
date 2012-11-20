@@ -13,7 +13,7 @@ In detail JastEMF requires at least:
 
 = Installing JastEMF from Update-Site =
 JastEMF provides different Update Sites:
-== Current Version for Eclipse Juno ==
+== Current Version for Eclipse Juno (recommended) ==
 
  * The update-site for JastEMF 0.1.7 (tested with Eclipse 4.2) can be found here: 
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/tags/beta_0.1.7/build/org.jastemf.build/distribution
@@ -26,7 +26,7 @@ JastEMF provides different Update Sites:
  * An update-site providing intermediate (potentially instable) builds of the current trunk, that we do from time to time, can be found here: 
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/trunk/build/org.jastemf.build/distribution
 
-= Installing JastEMF Manually =
+= Installing JastEMF Manually (not recommended) =
 
 We highly recommend to use the [#Installing_JastEMF_from_Update-Site Eclipse Update Site]. To install JastEMF manually:
   # Download, install and configure an Eclipse distribibution 
