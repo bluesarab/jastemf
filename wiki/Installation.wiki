@@ -23,7 +23,7 @@ JastEMF provides different Update Sites:
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/tags/beta_0.1.6/build/org.jastemf.build/distribution
 
 == Trunk Version (not stable) ==
- * An update-site providing intermediate (potentially instable) builds of the current trunk, that we do from time to time, can be found here: 
+ * An update-site providing intermediate (potentially unstable) builds of the current trunk, that we do from time to time, can be found here: 
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/trunk/build/org.jastemf.build/distribution
 
 = Installing JastEMF Manually (not recommended) =
