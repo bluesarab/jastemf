@@ -42,6 +42,8 @@ Details and a tutorial for the example can be found [Statemachine here].
 
 !PicoJava can be considered as a very small subset of the Java programming language. It supports nested class declarations with inhertance, variable declarations and while loops. The example and its !JastAdd sources have been taken form the !PicoJava tutorial from the [http://jastadd.org/old/examples/picojava-checker JastAdd website], which can be consulted for details.
 
+Troubleshoot: If the class hierarchies are not merged correctly in PicoJava, please close all other projects and re-run the integration again.  
+
 Example Objectives:
  * This example demontrates, how an Ecore representation can be automatically derived from a set of existing !JastAdd specification using JastEMF.
  * Furthermore, it demonstrates how a very powerful textual editor for !PicoJava can be immediately created by briding the !JastAdd semantics implementation and a corresponding [http://www.emftext.org EMFText] grammer using JastEMF.
