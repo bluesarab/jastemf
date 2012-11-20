@@ -12,9 +12,9 @@ In detail JastEMF requires at least:
    ** Eclipse Modelling Weaving Engine (including _xTend_ and _xPand_) version 1.0.2 or higher
 
 = Installing JastEMF from Update-Site =
-
+JastEMF provides different Update Sites:
 == Current Version for Eclipse Juno ==
-JastEMF provides an Eclipse Update Site:
+
  * The update-site for JastEMF 0.1.7 (tested with Eclipse 4.2) can be found here: 
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/tags/beta_0.1.7/build/org.jastemf.build/distribution
 
