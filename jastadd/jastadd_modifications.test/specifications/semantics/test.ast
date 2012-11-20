@@ -1,7 +1,0 @@
-Root ::= A* [C] <index:int> ;
-
-A ::= <name:String> someC:C;
-
-C;
-
-B:A;

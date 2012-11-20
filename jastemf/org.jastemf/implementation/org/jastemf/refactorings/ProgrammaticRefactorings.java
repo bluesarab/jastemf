@@ -1,7 +1,6 @@
 package org.jastemf.refactorings;
 
 import java.util.Collection;
-import java.util.Timer;
 
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -414,13 +413,8 @@ public class ProgrammaticRefactorings {
 	}
 	
 	public static boolean performRename(ICompilationUnit cu, String newname) throws CoreException {
-	    long time1 = System.currentTimeMillis();
 		RenameCompilationUnitProcessor processor = new RenameCompilationUnitProcessor(cu);
-		boolean result = performRename(processor, newname);
-		long time2 = System.currentTimeMillis();
-		long resultingTime = time2-time1;
-		IOSupport.getLogger().info("Compilation unit rename took " +resultingTime+"ms.");
-		return result;
+		return performRename(processor, newname);
 	}
 	
 	public static boolean performRename(IMethod method, String newname) throws CoreException {		 

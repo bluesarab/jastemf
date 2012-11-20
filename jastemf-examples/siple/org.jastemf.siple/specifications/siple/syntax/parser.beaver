@@ -185,7 +185,7 @@ Statement = Declaration
 	{:
 		return new Symbol(new Write(expr));
 	:}
-	| kREAD LValueExpression.expr pSEMICOLON
+	| kREAD Expression.expr pSEMICOLON
 	{:
 		return new Symbol(new Read(expr));
 	:}

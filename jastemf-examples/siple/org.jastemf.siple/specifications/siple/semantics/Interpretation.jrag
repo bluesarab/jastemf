@@ -120,13 +120,12 @@ aspect Interpretation {
 	public Object ProcedureCall.Value(State vm) {
 		if (!IsCorrectLocal())
 			throw new InterpretationException();
-		// Evaluate the Procedure operand:
-		Frame envPrototype = (Frame)getProcedure().Value(vm);
 		// Evaluate the arguments:
 		Object[] args = new Object[getNumArgument()];
 		for (int i = 0; i < args.length; i++)
 			args[i] = getArgument(i).Value(vm);
 		// Prepare the execution environment:
+		Frame envPrototype = (Frame)getProcedure().Value(vm);
 		Frame newEnv = new Frame();
 		newEnv.implementation = envPrototype.implementation;
 		newEnv.closure = envPrototype.closure;

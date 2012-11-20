@@ -1,1 +1,0 @@
-xtc is released mostly under the GNU GPL version 2. The main exception is the Rats! runtime, which is released under the GNU LGPL version 2.1. See xtc’s sources and Javadoc documentation for a detailed list of these classes.
