@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.jastemf.siple/src-gen"
+    creationSubmenus="true" editDirectory="/org.jastemf.siple/src-gen" editorDirectory="/org.jastemf.siple.basiceditor/src-gen"
+    modelPluginID="org.jastemf.siple" modelName="SIPLE" modelPluginClass="" editPluginClass="org.jastemf.siple.provider.SIPLEEditPlugin"
+    editorPluginClass="org.jastemf.siple.presentation.SIPLEEditorPlugin" testsDirectory="/org.jastemf.siple.tests/src"
+    testSuiteClass="org.jastemf.siple.tests.SIPLEAllTests" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.jastemf.siple"
+    editorPluginID="org.jastemf.siple.basiceditor" testsPluginID="org.jastemf.siple.tests">
+  <foreignModel>siple.ecore</foreignModel>
+  <genPackages prefix="Siple" basePackage="org.jastemf" disposableProviderFactory="true"
+      interfacePackageSuffix="interfaces" metaDataPackageSuffix="meta" fileExtensions="siple"
+      ecorePackage="siple.ecore#/">
+    <genDataTypes ecoreDataType="siple.ecore#//Type"/>
+    <genDataTypes ecoreDataType="siple.ecore#//State"/>
+    <genClasses ecoreClass="siple.ecore#//CompilationUnit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//CompilationUnit/Declaration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//CompilationUnit/MainProcedure"/>
+      <genOperations ecoreOperation="siple.ecore#//CompilationUnit/Interpret"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="siple.ecore#//Statement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//Statement/ProcedureInContext"/>
+      <genOperations ecoreOperation="siple.ecore#//Statement/Interpret">
+        <genParameters ecoreParameter="siple.ecore#//Statement/Interpret/vm"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//Block/Statement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//Block/IsProcedureBody"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//If">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//If/Condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//If/Body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//If/Alternative"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//While">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//While/Condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//While/Body"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//VariableAssignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference siple.ecore#//VariableAssignment/LValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//VariableAssignment/RValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//VariableAssignment/Type"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//ProcedureReturn">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureReturn/Expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//ProcedureReturn/Type"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//Write">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//Write/Expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Write/Type"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//Read">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//Read/Expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Read/Type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="siple.ecore#//Declaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Declaration/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Declaration/IsParameterDeclaration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Declaration/Type"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//VariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//VariableDeclaration/DeclaredType"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//ProcedureDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureDeclaration/Parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//ProcedureDeclaration/ReturnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureDeclaration/Body"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="siple.ecore#//Expression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Expression/Type"/>
+      <genOperations ecoreOperation="siple.ecore#//Expression/Value">
+        <genParameters ecoreParameter="siple.ecore#//Expression/Value/vm"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//Constant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Constant/Lexem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Constant/AsBoolean"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Constant/AsInteger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Constant/AsReal"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute siple.ecore#//Reference/Name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//Reference/Declaration"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//ProcedureCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Procedure"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Argument"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference siple.ecore#//ProcedureCall/Declaration"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//NestedExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//NestedExpression/Expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="siple.ecore#//UnaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//UnaryExpression/Operand"/>
+    </genClasses>
+    <genClasses ecoreClass="siple.ecore#//Not"/>
+    <genClasses ecoreClass="siple.ecore#//UMinus"/>
+    <genClasses ecoreClass="siple.ecore#//RealCoercion"/>
+    <genClasses ecoreClass="siple.ecore#//Dereference"/>
+    <genClasses image="false" ecoreClass="siple.ecore#//BinaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//BinaryExpression/Operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference siple.ecore#//BinaryExpression/Operand2"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="siple.ecore#//LogicExpression"/>
+    <genClasses ecoreClass="siple.ecore#//And"/>
+    <genClasses ecoreClass="siple.ecore#//Or"/>
+    <genClasses image="false" ecoreClass="siple.ecore#//EqualityExpression"/>
+    <genClasses ecoreClass="siple.ecore#//Equal"/>
+    <genClasses ecoreClass="siple.ecore#//GreaterThan"/>
+    <genClasses ecoreClass="siple.ecore#//LesserThan"/>
+    <genClasses ecoreClass="siple.ecore#//GreaterThanEqual"/>
+    <genClasses ecoreClass="siple.ecore#//LesserThanEqual"/>
+    <genClasses image="false" ecoreClass="siple.ecore#//ArithmeticExpression"/>
+    <genClasses ecoreClass="siple.ecore#//Addition"/>
+    <genClasses ecoreClass="siple.ecore#//Subtraction"/>
+    <genClasses ecoreClass="siple.ecore#//Multiplication"/>
+    <genClasses ecoreClass="siple.ecore#//Division"/>
+  </genPackages>
+</genmodel:GenModel>

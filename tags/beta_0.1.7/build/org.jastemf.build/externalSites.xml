@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<associateSites>
+	<associateSite label="Helios Release"
+		url="http://download.eclipse.org/releases/helios"/>
+	<associateSite label="The Eclipse Project Updates"
+		url="http://download.eclipse.org/eclipse/updates/3.6"/>		
+	<associateSite label="Indigo Release"
+		url="http://download.eclipse.org/releases/indigo"/>
+	<associateSite label="The Eclipse Project Updates"
+		url="http://download.eclipse.org/eclipse/updates/3.7"/>	
+	<associateSite label="The Eclipse M2T Tooling"
+	  url="http://download.eclipse.org/modeling/m2t/updates/releases/">
+	 </associateSite>	
+</associateSites>

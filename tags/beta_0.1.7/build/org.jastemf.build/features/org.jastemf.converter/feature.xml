@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jastemf.converter"
+      label="JastEMF Ecore - AST Converter"
+      version="0.1.0"
+      provider-name="Software Technology Group - TU Dresden">
+
+   <description url="http://www.jastemf.org">
+      
+   </description>
+
+   <copyright>
+      Copyright (c) 2010, TU Dresden, Christoff Bürger, Sven Karol
+ All rights reserved.
+   </copyright>
+
+   <license>
+      Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * The name of the authors may not be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+EVENT SHALL THE AUTHORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   </license>
+
+   <requires>
+      <import plugin="org.apache.ant" version="1.7.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ant.core" version="3.2.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.5.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext.xtend2.lib" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.mwe2.launch" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.jastemf" version="0.1.4" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.logging" version="1.0.4" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.codegen.ecore" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xpand" version="1.1.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.emf.codegen" version="2.6.0.v20100914-1218"/>
+      <import feature="org.eclipse.emf.codegen.ecore" version="2.6.1.v20100914-1218"/>
+      <import feature="org.eclipse.emf" version="2.6.1.v20100914-1218"/>
+      <import plugin="org.eclipse.xtend" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.typesystem.emf" version="1.0.1" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.jastemf.converter"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

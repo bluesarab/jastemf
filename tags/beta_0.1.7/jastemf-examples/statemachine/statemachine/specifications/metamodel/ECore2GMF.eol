@@ -1,0 +1,28 @@
+-- add compound transition labels for transitions
+var transitionLabelMapping = GmfMap!FeatureLabelMapping.all.
+      selectOne(fml|fml.diagramLabel.name="TransitionLabel"); 
+      
+transitionLabelMapping.viewPattern = "{0} [{1}] {2}";
+transitionLabelMapping.editPattern = "{0} [{1}] {2}";
+transitionLabelMapping.editorPattern = "{0} [{1}] {2}";
+
+
+-- add compound labels for variable declarations
+var variableDeclarationLabelMapping = GmfMap!FeatureLabelMapping.all.
+      selectOne(fml|fml.diagramLabel.name="StateMachineVariableLabel"); 
+      
+variableDeclarationLabelMapping.viewPattern = "{1}:{0}";
+variableDeclarationLabelMapping.editPattern = "{1}:{0}";
+variableDeclarationLabelMapping.editorPattern = "{1}:{0}";
+
+
+-- remove tool to create reachable links
+var reachableToolReferencingMapping = GmfMap!LinkMapping.all.
+	selectOne(lm|lm.tool.title ="Reachable");
+	
+reachableToolReferencingMapping.tool = null;	
+
+var reachableTool = GmfTool!CreationTool.all.
+		selectOne(tool|tool.title = "Reachable");
+
+delete reachableTool;

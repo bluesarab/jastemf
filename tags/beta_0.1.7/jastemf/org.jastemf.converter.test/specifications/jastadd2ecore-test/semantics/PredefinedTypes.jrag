@@ -1,0 +1,16 @@
+aspect PredefinedTypes {
+  // Define the NTA
+  syn lazy List<TypeDecl> Program.getPredefinedTypeList() {
+  return new List().
+    add(new UnknownDecl("$unknown")).
+    add(new PrimitiveDecl("boolean"));
+  }
+    
+  // Broadcast the predefined types to useful places in the AST
+  syn lazy PrimitiveDecl Program.booleanType() = (PrimitiveDecl) localLookup("boolean");
+  eq Program.getBlock().booleanType() = booleanType();
+  eq Program.getPredefinedType().booleanType() = booleanType();
+  inh PrimitiveDecl BooleanLiteral.booleanType();
+  inh PrimitiveDecl WhileStmt.booleanType();
+  inh PrimitiveDecl Decl.booleanType();
+}

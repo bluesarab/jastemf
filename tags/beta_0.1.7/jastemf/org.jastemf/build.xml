@@ -1,0 +1,157 @@
+<!--
+	This program and the accompanying materials are made available under the
+	terms of the BSD 3-clause license which accompanies this distribution.
+-->
+
+<!--
+	Ant build script to generate JastEMF's distributions.
+	@author C. Bürger, Sven Karol
+-->
+<project name="JastEMF" default="Eclipse-Plugin">
+	
+	<import file="../org.jastemf.build/macros.xml"/>
+	
+	<property name="JastEMF.version" value="0.1.6"/>
+	
+	<!-- loads this project file's base dir into a project specific property such that 
+		this script can be used standalone or by import. -->
+	<dirname property="JastEMF.basedir" file="${ant.file.JastEMF}"/>
+
+	<!-- Create Eclipse plugin *.jar distribution -->
+	<target name="Eclipse-Plugin">
+		<mkdir dir="${JastEMF.basedir}/temp"/>
+		
+		<copy todir="${JastEMF.basedir}/temp">
+		   <fileset dir="${JastEMF.basedir}/sources/libraries/jastadd2.jar"/>
+	    </copy>
+
+		<move
+			file="${JastEMF.basedir}/temp/LICENSE"
+			tofile="${JastEMF.basedir}/temp/JastAdd-License.txt"
+			overwrite="true"
+		/>
+		<jar
+			destfile="${JastEMF.basedir}/temp/jastadd-ant-tasks.jar"
+			index="false"
+			update="false"
+			compress="false">
+			<fileset dir="${JastEMF.basedir}/temp">
+				<include name="jastadd/JastAddTask.class"/>
+			</fileset>
+		</jar>
+		<jar
+			destfile="${JastEMF.basedir}/temp/jastemf-ant-tasks.jar"
+			index="false"
+			update="false"
+			compress="false">
+			<fileset dir="${JastEMF.basedir}/bin">
+				<include name="org/jastemf/ant/*.class"/>
+			</fileset>
+		</jar>
+		<delete >
+			<fileset dir="${JastEMF.basedir}/temp">
+				<include name="META-INF"/>
+				<include name="META_INF/**/*"/>
+				<include name="LICENSE"/>
+				<include name="jastadd/JastAddTask.class"/>
+			</fileset>
+		</delete>
+		 
+		<pluginjar name="JastEMF Eclipse Plugin" version="${JastEMF.version}" package="org.jastemf" basedir="${JastEMF.basedir}" src="implementation"/>
+
+		<move
+			file="${JastEMF.basedir}/temp/jastemf-ant-tasks.jar"
+			todir="${JastEMF.basedir}/distribution"
+			overwrite="true"
+		/>
+		<move
+				file="${JastEMF.basedir}/temp/jastadd-ant-tasks.jar"
+				todir="${JastEMF.basedir}/distribution"
+				overwrite="true"
+		/>
+	</target>
+	
+	<!-- Create source code distribution -->
+	<target name="SrcDistribution">
+		<zip
+			destfile="${JastEMF.basedir}/distribution/jastemf_src.zip"
+			encoding="UTF-8"
+			compress="true"
+			update="false">
+			<fileset dir="${JastEMF.basedir}">
+				<include name="**/*"/>
+				<include name="sources/libraries/**"/>
+				<exclude name="bin"/>
+				<exclude name="bin/**/*"/>
+				<exclude name="distribution"/>
+				<exclude name="distribution/**/*"/>
+				<exclude name="sources"/>
+				<exclude name="sources/applications"/>
+				<exclude name="sources/applications/**/*"/>
+				<exclude name="sources/support"/>
+				<exclude name="sources/support/**/*"/>
+			</fileset>
+		</zip>
+	</target>
+	
+	<!-- Delete generated distributions -->
+	<target name="Clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${JastEMF.basedir}/distribution">
+				<include name="org.jastemf*.jar"/>
+				<include name="jastemf_src.zip"/>
+				<include name="JavaDoc/**/*"/>
+				<include name="*ant-tasks.jar"/>
+			</fileset>						
+		</delete>
+		<delete dir="${JastEMF.basedir}/temp"/>
+	</target>
+	
+	<!-- Generate the JavaDoc -->
+	<target name="Javadoc">
+		<javadoc
+			access="public"
+			author="true"
+			destdir="${JastEMF.basedir}/distribution/JavaDoc"
+			doctitle="JastEMF"
+			nodeprecated="false"
+			nodeprecatedlist="false"
+			noindex="false"
+			nonavbar="false"
+			notree="false"
+			source="1.6"
+			sourcepath="${JastEMF.basedir}/implementation"
+			splitindex="true"
+			use="true"
+			version="true"
+			overview="${JastEMF.basedir}/implementation/overview.html">
+			<package name="org.jastemf"/>
+			<package name="org.jastemf.ant"/>
+			<package name="org.jastemf.aspects"/>
+			<package name="org.jastemf.refactorings"/>
+			<package name="org.jastemf.util"/>
+			<classpath>
+				<fileset dir="${JastEMF.basedir}/sources/libraries">
+					<include name="*.jar"/>
+				</fileset>
+				<!-- HACK; Build script must run within same JVM as eclipse -->
+				<fileset dir="${eclipse.home}">
+					<include name="plugins/**/org.eclipse.ltk.*.jar"/>
+					<include name="plugins/**/org.eclipse.core.*.jar"/>
+					<include name="plugins/**/org.eclipse.emf.*.jar"/>
+					<include name="plugins/**/org.eclipse.jface.*.jar"/>
+					<include name="plugins/**/org.eclipse.jdt.*.jar"/>
+					<include name="plugins/**/org.eclipse.text*.jar"/>
+				</fileset>
+			</classpath>
+		</javadoc>
+		<copy
+			todir="${JastEMF.basedir}/distribution/JavaDoc"
+			file="${JastEMF.basedir}/implementation/JastEMF_Integration_Process.png"
+		/>
+		<copy
+			todir="${JastEMF.basedir}/distribution/JavaDoc"
+			file="${JastEMF.basedir}/implementation/JastEMF_Use_Cases.png"
+		/>
+	</target>
+</project>
