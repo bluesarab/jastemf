@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="ASCII"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="picojava" nsURI="file:/D:/development/workspaces/jastadd/org.jastemf.converter.test/specifications/jastadd2ecore-test/model/picojava.ast" nsPrefix="picojava">
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="picojava" nsURI="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/model/picojava.ast"
+    nsPrefix="picojava">
   <eClassifiers xsi:type="ecore:EClass" name="Program">
-    <eOperations name="localLookup" eType="//Decl">
+    <eOperations name="localLookup" eType="#//Decl">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -9,14 +11,16 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
-      <eParameters name="name">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eParameters>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Block" lowerBound="1" eType="//Block" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="PredefinedType" upperBound="-1" eType="//TypeDecl" changeable="false" transient="true" derived="true" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="unknownDecl" eType="//UnknownDecl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Block" lowerBound="1" eType="#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PredefinedType" upperBound="-1"
+        eType="#//TypeDecl" changeable="false" transient="true" derived="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unknownDecl" eType="#//UnknownDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -24,19 +28,11 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NullObjects.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="getPredefinedTypeList" upperBound="-1" eType="//TypeDecl" changeable="false" transient="true" derived="true" containment="true">
-      <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
-        <details key="is_nta" value="true"/>
-        <details key="kind" value="syn"/>
-        <details key="is_cached" value="true"/>
-        <details key="is_primitive" value="false"/>
-        <details key="is_circular" value="false"/>
-        <details key="aspect" value="PredefinedTypes"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="//PrimitiveDecl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="#//PrimitiveDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -44,11 +40,12 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block">
-    <eOperations name="localLookup" eType="//Decl">
+    <eOperations name="localLookup" eType="#//Decl">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -56,12 +53,11 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
-      <eParameters name="name">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eParameters>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="lookup" eType="//Decl">
+    <eOperations name="lookup" eType="#//Decl">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -69,13 +65,14 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
-      <eParameters name="name">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eParameters>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="BlockStmt" upperBound="-1" eType="//BlockStmt" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="unknownDecl" eType="//Decl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="BlockStmt" upperBound="-1"
+        eType="#//BlockStmt" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unknownDecl" eType="#//Decl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -83,11 +80,12 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NullObjects.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlockStmt" abstract="true">
-    <eOperations name="declarationOf" eType="//Decl">
+    <eOperations name="declarationOf" eType="#//Decl">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -95,18 +93,16 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
-      <eParameters name="name">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eParameters>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Stmt" abstract="true" eSuperTypes="//BlockStmt"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Decl" abstract="true" eSuperTypes="//BlockStmt">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnknown" changeable="false" transient="true" derived="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Stmt" abstract="true" eSuperTypes="#//BlockStmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Decl" abstract="true" eSuperTypes="#//BlockStmt">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnknown" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" transient="true" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -114,10 +110,11 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NullObjects.jrag"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="//TypeDecl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -125,9 +122,11 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="//PrimitiveDecl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="#//PrimitiveDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -135,11 +134,12 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDecl" abstract="true" eSuperTypes="//Decl">
-    <eOperations name="remoteLookup" eType="//Decl">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDecl" abstract="true" eSuperTypes="#//Decl">
+    <eOperations name="remoteLookup" eType="#//Decl">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -147,12 +147,11 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
-      <eParameters name="name">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eParameters>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="isSubtypeOf">
+    <eOperations name="isSubtypeOf" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -160,11 +159,11 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="typeDecl" eType="//TypeDecl"/>
+      <eParameters name="typeDecl" eType="#//TypeDecl"/>
     </eOperations>
-    <eOperations name="isSuperTypeOf">
+    <eOperations name="isSuperTypeOf" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -172,11 +171,11 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="typeDecl" eType="//TypeDecl"/>
+      <eParameters name="typeDecl" eType="#//TypeDecl"/>
     </eOperations>
-    <eOperations name="isSuperTypeOfClassDecl">
+    <eOperations name="isSuperTypeOfClassDecl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -184,11 +183,11 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="typeDecl" eType="//ClassDecl"/>
+      <eParameters name="typeDecl" eType="#//ClassDecl"/>
     </eOperations>
-    <eOperations name="lookup" eType="//Decl">
+    <eOperations name="lookup" eType="#//Decl">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -196,12 +195,12 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
-      <eParameters name="name">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eParameters>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isQualified" changeable="false" transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isQualified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" transient="true" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -209,10 +208,11 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="//Access" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="#//Access"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -220,9 +220,11 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="unknownDecl" eType="//Decl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unknownDecl" eType="#//Decl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -230,13 +232,18 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NullObjects"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NullObjects.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" eSuperTypes="//TypeDecl">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Superclass" eType="//IdUse" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="//Block" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasCycleOnSuperclassChain" transient="true" derived="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" eSuperTypes="#//TypeDecl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Superclass" eType="#//IdUse"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasCycleOnSuperclassChain"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" transient="true"
+        derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -244,10 +251,11 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="true"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" eType="//ClassDecl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" eType="#//ClassDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -255,20 +263,27 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VarDecl" eSuperTypes="//Decl">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Type" lowerBound="1" eType="//Access" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VarDecl" eSuperTypes="#//Decl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Type" lowerBound="1" eType="#//Access"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssignStmt" eSuperTypes="//Stmt">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Variable" lowerBound="1" eType="//Access" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Value" lowerBound="1" eType="//Exp" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignStmt" eSuperTypes="#//Stmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Variable" lowerBound="1"
+        eType="#//Access" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Value" lowerBound="1" eType="#//Exp"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="WhileStmt" eSuperTypes="//Stmt">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1" eType="//Exp" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="//Stmt" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="//PrimitiveDecl" changeable="false" derived="true">
+  <eClassifiers xsi:type="ecore:EClass" name="WhileStmt" eSuperTypes="#//Stmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Condition" lowerBound="1"
+        eType="#//Exp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Body" lowerBound="1" eType="#//Stmt"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="#//PrimitiveDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -276,11 +291,13 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Exp" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="//TypeDecl" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -288,9 +305,11 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isValue" changeable="false" transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" transient="true" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -298,12 +317,13 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="TypeAnalysis"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/TypeAnalysis.jrag"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Access" abstract="true" eSuperTypes="//Exp">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="decl" eType="//Decl" changeable="false" derived="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Access" abstract="true" eSuperTypes="#//Exp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decl" eType="#//Decl" changeable="false"
+        derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="syn"/>
@@ -311,11 +331,12 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IdUse" abstract="true" eSuperTypes="//Access">
-    <eOperations name="lookup" eType="//Decl">
+  <eClassifiers xsi:type="ecore:EClass" name="IdUse" abstract="true" eSuperTypes="#//Access">
+    <eOperations name="lookup" eType="#//Decl">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -323,15 +344,13 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="NameResolution"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/NameResolution.jrag"/>
       </eAnnotations>
-      <eParameters name="name">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eParameters>
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isQualified" changeable="false" transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isQualified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" transient="true" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -339,10 +358,11 @@
         <details key="is_primitive" value="true"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="//Access" changeable="false" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="#//Access"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -350,19 +370,21 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="ErrorCheck"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/ErrorCheck.jadd"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Use" eSuperTypes="//IdUse"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Dot" eSuperTypes="//Access">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ObjectReference" lowerBound="1" eType="//Access" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="IdUse" lowerBound="1" eType="//IdUse" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Use" eSuperTypes="#//IdUse"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Dot" eSuperTypes="#//Access">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ObjectReference" lowerBound="1"
+        eType="#//Access" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="IdUse" lowerBound="1" eType="#//IdUse"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="//Exp">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Value">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="//PrimitiveDecl" changeable="false" derived="true">
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Exp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanType" eType="#//PrimitiveDecl"
+        changeable="false" derived="true">
       <eAnnotations source="http://www.jastemf.org/jastemf-annotations">
         <details key="is_nta" value="false"/>
         <details key="kind" value="inh"/>
@@ -370,11 +392,12 @@
         <details key="is_primitive" value="false"/>
         <details key="is_circular" value="false"/>
         <details key="aspect" value="PredefinedTypes"/>
+        <details key="file" value="file:/D:/demos/jastemf/jastemf/siple_jastemf/workspaces/siple/org.jastemf.converter.test/specifications/jastadd2ecore-test/semantics/PredefinedTypes.jrag"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveDecl" eSuperTypes="//TypeDecl"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnknownDecl" eSuperTypes="//TypeDecl"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeUse" eSuperTypes="//IdUse"/>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableUse" eSuperTypes="//IdUse"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveDecl" eSuperTypes="#//TypeDecl"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnknownDecl" eSuperTypes="#//TypeDecl"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeUse" eSuperTypes="#//IdUse"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableUse" eSuperTypes="#//IdUse"/>
 </ecore:EPackage>

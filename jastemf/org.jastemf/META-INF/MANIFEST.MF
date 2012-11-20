@@ -33,6 +33,7 @@ Export-Package: ast,
  org.jastemf.aspects,
  org.jastemf.refactorings,
  org.jastemf.util
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: J2SE-1.5,
+ JavaSE-1.6
 Bundle-ClassPath: .,
  sources/libraries/jastadd2.jar/
