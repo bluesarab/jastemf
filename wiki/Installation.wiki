@@ -13,12 +13,12 @@ In detail JastEMF requires at least:
 
 = Installing JastEMF from Update-Site (recommended) =
 JastEMF provides different Update Sites:
-== Current Version for Eclipse Juno (recommended) ==
+== JastEMF for Eclipse Juno (recommended) ==
 
  * The update-site for JastEMF 0.1.7 (tested with Eclipse 4.2) can be found here: 
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/tags/beta_0.1.7/build/org.jastemf.build/distribution
 
-== Previous Version for Eclipse Indigo ==
+== JastEMF for Eclipse Indigo ==
  * The update-site for JastEMF 0.1.6 (tested with Eclipse 3.6 and 3.7) can be found here: 
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/tags/beta_0.1.6/build/org.jastemf.build/distribution
 
