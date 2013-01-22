@@ -6,7 +6,6 @@
   # Sven Karol, _Towards Well-formed Fragment Composition with Reference Attribute Grammars_, 15th ACM SIGSOFT symposium on Component Based Software Engineering (CBSE 2012), 26.06.2012, Bertinoro, Italy, [https://svn.codespot.com/a/eclipselabs.org/jastemf/wiki/publications/Presentation_CBSE_2012.pdf pdf]
 
   # Christoff Bürger and Sven Karol, _Reference Attribute Grammars for Metamodel Semantics_, 3rd International Conference on Software Language Engineering (SLE 2010), 12.10.2010, Eindhoven, Netherlands [https://svn.codespot.com/a/eclipselabs.org/jastemf/wiki/publications/Presentation_SLE_12_10_2010.pdf pdf]
-
   # Christoff Bürger, _Applying Attribute Grammars for Metamodel Semantics_, International Workshop on  Formalization of Modeling Languages (FML 2010), 21.06.2010, Maribor, Slovenia [https://svn.codespot.com/a/eclipselabs.org/jastemf/wiki/publications/Presentation_FML_21_06_2010.pdf pdf]
 
 = Publications =
