@@ -1,8 +1,16 @@
 
 <project name="Template" default="tpl.build.jar" >
+	
+	
 	<dirname property="tpl.basedir" file="${ant.file.Template}"/>
 	<echo message="[Template] Executing in ${tpl.basedir} ..."></echo>	
 	
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+	  <classpath>
+	    <pathelement location="${tpl.basedir}/tools/ant-contrib/ant-contrib-0.6.jar" />
+	  </classpath>
+	</taskdef>
+
     <property name="tpl.source.dir" value="${tpl.basedir}/src"/>
 	<property name="tpl.spec.dir" value="${tpl.basedir}/specifications"/>
  	<property name="tpl.gen.dir" value="${tpl.basedir}/src-gen"/>
@@ -56,15 +64,19 @@
 			<src path="${tpl.source.dir}"/>
 		</javac>
 		<unzip src="${tpl.tools.dir}/rats/rats-runtime.jar" dest="${tpl.build.dir}"/>
-		<eclipse.refreshLocal resource="org.jastemf.template"/>
-	</target>
+		<if><equals arg1="${eclipse.running}" arg2="true" /> <then>
+			 	<eclipse.refreshLocal resource="org.jastemf.template" />	
+		</then></if>
+		</target>
 	
 	<target name="tpl.build.jar" depends="tpl.build" >
 		<jar destfile="${tpl.dist.dir}/tpl.jar"
 		       basedir="${tpl.build.dir}"
 		       includes="**/**"
 		  />
-		<eclipse.refreshLocal resource="org.jastemf.template"/>
+		<if><equals arg1="${eclipse.running}" arg2="true" /> <then>
+			 	<eclipse.refreshLocal resource="org.jastemf.template" />	
+		</then></if>
 	</target>
 
 	<target name="tpl.cleanGen">
