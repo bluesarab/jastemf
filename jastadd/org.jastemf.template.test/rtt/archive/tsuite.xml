@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<testsuites xmlns="regression.test.tool">
-    <testsuite name="SimpleTests">
-        <testcase inputID="1" name="AspectWithSlot"/>
-        <testcase inputID="1" name="AspectWithVariants"/>
-        <testcase inputID="1" name="SimpleAspect"/>
-    </testsuite>
-</testsuites>

@@ -3,13 +3,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/development/workspaces/jastadd/org.jastemf.template/tools/rats/rats.jar"/>
-	<classpathentry kind="con" path="RTT.ClasspathContainer"/>
 	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
 	<classpathentry kind="src" path="/org.jastemf.template">
 		<attributes>
 			<attribute name="org.eclipse.ajdt.inpath" value="org.eclipse.ajdt.inpath"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="tools/rtt/rtt-1.5.0.jar"/>
+	<classpathentry kind="con" path="RTT.ClasspathContainer"/>
+	<classpathentry kind="lib" path="/org.jastemf.template/tools/rats/rats-runtime.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

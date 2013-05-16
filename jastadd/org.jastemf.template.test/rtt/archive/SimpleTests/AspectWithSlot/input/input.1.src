@@ -1,5 +1,0 @@
-aspect a {
-	
-	syn ASTNode.x = doSomeStuff();
-    public #TYPEDEFAULTSET# circularEvalSet = #CREATEDEFAULTSET#;
-}
