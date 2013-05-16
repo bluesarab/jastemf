@@ -1,0 +1,5 @@
+- Rats! is a scannerless recursive descent parser generator for Java. 
+See https://cs.nyu.edu/rgrimm/xtc/rats-intro.html for documentation.
+
+- JastAdd2 is a demand-driven attribute grammar tool for Java.
+See http://jastadd.org/web/ for documentation and the latest release.

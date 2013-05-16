@@ -1,0 +1,3 @@
+- Rats! is a tool for regression testing in Java. See https://code.google.com/p/rtt/ for documentation. 
+Also a plug-in for Eclipse is provided, available from http://rtt.googlecode.com/svn/trunk/RTT_Update. 
+Installation is recommended
