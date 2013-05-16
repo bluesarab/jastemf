@@ -1,7 +1,4 @@
-These modifications of the original JastAdd tool are covered by the 
-BSD license. 
-
-Copyright (c) 2010-2012 Christoff Bürger, Sven Karol
+Copyright (c) 2013 Sven Karol
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
