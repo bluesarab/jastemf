@@ -45,7 +45,6 @@
 		<antcall target="JFlex Lexer"/>
 		<antcall target="Beaver Parser"/>
 		<antcall target="JastAdd Semantic"/>
-		<antcall target="RTT JastAdd Integration"/>
 	</target>
 	
 	<target
@@ -62,7 +61,6 @@
 		<antcall target="JFlex Lexer"/>
 		<antcall target="Beaver Parser"/>
 		<antcall target="EMF Semantic"/>
-		<antcall target="RTT EMF Integration"/>
 		<eclipse.refreshLocal depth="infinite" resource="/"/>
 	</target>
 <!--
@@ -157,30 +155,6 @@
 				<include name="siple/semantics/**/*.jadd"/>
 			</fileset>
 		</jastemf>
-	</target>
-	
-	<target
-		name="RTT JastAdd Integration"
-		description="Generate regression test tool support for compiler version 1.">
-		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
-		<copy todir="${_basedir}/src-gen/rtt/adaptation">
-			<fileset dir="${_basedir}/tests/adaptation/JastAdd">
-				<include name="**/*.aj"/>
-				<include name="**/*.java"/>
-			</fileset>
-		</copy>
-	</target>
-	
-	<target
-		name="RTT EMF Integration"
-		description="Generate regression test tool support for compiler version 2.">
-		<echo message="================> Integrate Regression-Test-Tool (RTT) &lt;================"/>
-		<copy todir="${_basedir}/src-gen/rtt/adaptation">
-			<fileset dir="${_basedir}/tests/adaptation/EMF">
-				<include name="**/*.aj"/>
-				<include name="**/*.java"/>
-			</fileset>
-		</copy>
 	</target>
 	
 	<!--
