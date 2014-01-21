@@ -8,16 +8,13 @@
  */
 package org.jastemf.siple.semantics;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.jastemf.siple.impl.CompilationUnitImpl;
-
 import beaver.Parser.Exception;
 
-import siple.symbols.SIPLELexer;
-import siple.syntax.SIPLEParser;
+import org.jastemf.siple.symbols.SIPLELexer;
+import org.jastemf.siple.syntax.SIPLEParser;
 
 /**
  * Instances of this class represent <i>SiPLE</i> types. Constraints:<br>

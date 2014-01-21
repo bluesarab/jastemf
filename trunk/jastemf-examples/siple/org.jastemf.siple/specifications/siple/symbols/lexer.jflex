@@ -10,12 +10,12 @@
 /**
  * @author C. Bürger
  */
-package siple.symbols;
+package org.jastemf.siple.symbols;
 
 import beaver.Symbol;
 import beaver.Scanner;
 
-import siple.syntax.SIPLEParser.Terminals;
+import org.jastemf.siple.syntax.SIPLEParser.Terminals;
 
 %%
 

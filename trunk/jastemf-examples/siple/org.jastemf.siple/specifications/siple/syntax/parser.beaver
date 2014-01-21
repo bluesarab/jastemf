@@ -10,7 +10,7 @@
 /*
  * @author C. Bürger
  */
-%package "siple.syntax";
+%package "org.jastemf.siple.syntax";
 %import "org.jastemf.siple.ast.*", "org.jastemf.siple.impl.*", "org.jastemf.siple.semantics.Type";
 
 %class "SIPLEParser";

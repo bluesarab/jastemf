@@ -37,7 +37,6 @@ Export-Package: beaver,
    org.eclipse.emf.common.notify.impl,
    org.eclipse.emf.common.notify,
    org.jastemf.siple.interfaces",
- rtt.adaptation,
  siple.symbols,
  siple.syntax
 Require-Bundle: org.eclipse.core.runtime,
