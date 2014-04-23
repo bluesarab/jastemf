@@ -9,7 +9,7 @@
 
 = Publications =
 
-  # Sven Karol, Christoff Bürger, und Uwe Aßmann. 2012. _Towards Well-formed Fragment Composition with Reference Attribute Grammars_. In Proceedings of the 15th ACM SIGSOFT symposium on Component Based Software Engineering, 109–114. CBSE  ’12. New York, NY, USA: ACM. doi:10.1145/2304736.2304755. http://doi.acm.org/10.1145/2304736.2304755.
+  # Sven Karol, Christoff Bürger, und Uwe Aßmann. 2012. _Towards Well-formed Fragment Composition with Reference Attribute Grammars_. In Proceedings of the 15th ACM SIGSOFT symposium on Component Based Software Engineering, 109–114. CBSE  ’12. New York, NY, USA: ACM. doi:10.1145/2304736.2304755. [http://doi.acm.org/10.1145/2304736.2304755 Web (ACM Digital Library)]
   # Heidenreich, F., J. Johannes, S. Karol, M. Seifert, und C. Wende. „Model-based Language Engineering with EMFText.“ Proceedings of GTTSE 2011.
   # Aßmann, Uwe, Andreas Bartho, Christoff Bürger, Sebastian Cech, Birgit Demuth, Florian Heidenreich, Jendrik Johannes, u. a. 2012. „DropsBox: the Dresden Open Software Toolbox“. Software & Systems Modeling: 1–37. doi:10.1007/s10270-012-0284-6.
   # Christoff Bürger and Sven Karol and Christian Wende and Uwe Aßmann, _Reference Attribute Grammars for Metamodel Semantics_, Proceedings of the 3rd International Conference on Software Language Engineering, Springer 2010, Lecture Notes in Computer Science Vol. 6563, ISBN 978-3-642-19439-9, [http://www.springer.com/computer/swe/book/978-3-642-19439-9?changeHeader Web (Proceedings)] [http://www.springerlink.com/content/d87547q744673r20/ Web (Springer Link)] [http://st.inf.tu-dresden.de/files/publications/Archived_Preprint_SLE_12_10_2010.pdf pdf (Authors version)]
