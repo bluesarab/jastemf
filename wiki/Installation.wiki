@@ -15,7 +15,7 @@ In detail JastEMF requires at least:
 JastEMF provides different Update Sites:
 == JastEMF for Eclipse Juno (recommended) ==
 
- * The update-site for JastEMF 0.1.7 (tested with Eclipse 4.2) can be found here: 
+ * The update-site for JastEMF 0.1.7 can be found below. The version has been tested with Eclipse 4.2 (Juno). It also installs on Eclipse 4.3 (Kepler) and 4.4 (Luna), however this has not been tested yet.
   * http://svn.codespot.com/a/eclipselabs.org/jastemf/tags/beta_0.1.7/build/org.jastemf.build/distribution
 
 == JastEMF for Eclipse Indigo ==
