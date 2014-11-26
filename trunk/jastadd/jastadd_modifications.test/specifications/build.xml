@@ -41,7 +41,8 @@
 		<jastadd 
 			outdir="${test_basedir}/src-gen" 
 			package="jastadd.test" 
-			rewrite="true">
+			rewrite="true"
+			debug="true">
 			<fileset dir="${test_basedir}/specifications">
 				<include name="semantics/**/*.ast" />
 				<include name="semantics/**/*.jrag" />
