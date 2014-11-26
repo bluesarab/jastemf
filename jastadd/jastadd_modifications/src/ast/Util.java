@@ -170,11 +170,15 @@ public class Util {
 		return errors;
 	}
 	
-
-	
 	public static String readFile(String name) throws java.io.IOException {
 		java.io.Reader reader = new java.io.BufferedReader(
 				new java.io.FileReader(name));
+		return readStream(reader);
+	}
+	
+	public static String readFile(File file) throws java.io.IOException {
+		java.io.Reader reader = new java.io.BufferedReader(
+				new java.io.FileReader(file));
 		return readStream(reader);
 	}
 	
