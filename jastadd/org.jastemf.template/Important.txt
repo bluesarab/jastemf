@@ -1,0 +1,2 @@
+This project now is a part of SkAT at http://fusionforge.zih.tu-dresden.de/projects/skat/.
+So this implementation is deprecated and should be removed/replaced.
