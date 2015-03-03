@@ -10,7 +10,6 @@ import java.util.Map;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
-import org.apache.tools.ant.TaskAdapter;
 import org.apache.tools.ant.types.FileSet;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -23,7 +22,7 @@ import org.jastemf.converter.jastadd.EcoreSerializer;
 import org.jastemf.converter.jastadd.GrammarLoader;
 import org.jastemf.converter.jastadd.JastAdd2Ecore;
 
-import ast.AST.Grammar;
+import org.jastadd.ast.AST.Grammar;
 
 public class JastAdd2EcoreTask extends Task {
 
@@ -111,9 +110,7 @@ public class JastAdd2EcoreTask extends Task {
 			EcoreSerializer.serializeEPackages(ePackages, resultURI, !oneFilePerPackage,rootPackageName);
 		} catch (JastEMFException e) {
 			throw new BuildException("An Error occured during ecore model serialization.",e);
-
 		}
-
 	}
 
 	public void setOneFilePerPackage(boolean oneFilePerPackage) {

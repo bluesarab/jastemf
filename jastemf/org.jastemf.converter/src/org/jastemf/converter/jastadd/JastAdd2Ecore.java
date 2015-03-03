@@ -18,19 +18,19 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.jastemf.JastEMFException;
 
-import ast.AST.ASTDecl;
-import ast.AST.AggregateComponents;
-import ast.AST.AttrDecl;
-import ast.AST.Components;
-import ast.AST.Grammar;
-import ast.AST.InhDecl;
-import ast.AST.List;
-import ast.AST.ListComponents;
-import ast.AST.OptionalComponent;
-import ast.AST.TokenComponent;
-import ast.AST.TypeDecl;
-import ast.AST.SynDecl;
-import ast.AST.Parameter;
+import org.jastadd.ast.AST.ASTDecl;
+import org.jastadd.ast.AST.AggregateComponents;
+import org.jastadd.ast.AST.AttrDecl;
+import org.jastadd.ast.AST.Components;
+import org.jastadd.ast.AST.Grammar;
+import org.jastadd.ast.AST.InhDecl;
+import org.jastadd.ast.AST.List;
+import org.jastadd.ast.AST.ListComponents;
+import org.jastadd.ast.AST.OptionalComponent;
+import org.jastadd.ast.AST.TokenComponent;
+import org.jastadd.ast.AST.TypeDecl;
+import org.jastadd.ast.AST.SynDecl;
+import org.jastadd.ast.AST.Parameter;
 
 /**
  * This class realizes a mapping from JastAdd2 to Ecore.
@@ -130,7 +130,7 @@ public class JastAdd2Ecore {
 						// we have to exclude one from the mapping
 						// (may also be required to be checked over the whole hierarchy)
 						if(hasNTAFeatureFromAST(attrDecl, eClass)){
-							System.out.println("Skipping already added NTA '"+attrDecl.attributeSignature()+"'.");
+							System.out.println("Skipping already added NTA '"+attrDecl.signature()+"'.");
 							continue;
 						}
 						// is NTA attribute -> we have to check if it refers to
@@ -363,12 +363,12 @@ public class JastAdd2Ecore {
 			for(AttrDecl currentAttrDecl:getAllAttrDecls((ASTDecl)(typeDecl))){
 				if(currentAttrDecl.getParameterList().getNumChild()==
 						attrDecl.getParameterList().getNumChild()){
-					if(attrDecl.attributeSignature().equals(currentAttrDecl.attributeSignature())){
+					if(attrDecl.signature().equals(currentAttrDecl.signature())){
 						return true;
 					}
 			
 					if(attrDecl.name().equals(currentAttrDecl.name())){
-						System.out.println("Warning: "+attrDecl.signature()+" overloads "+currentAttrDecl.attributeSignature() + ". Duplicate names are not allowed in Ecore");
+						System.out.println("Warning: "+attrDecl.signature()+" overloads "+currentAttrDecl.signature() + ". Duplicate names are not allowed in Ecore");
 						return true;
 					}
 
