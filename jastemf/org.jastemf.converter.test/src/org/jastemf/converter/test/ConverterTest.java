@@ -1,7 +1,5 @@
 package org.jastemf.converter.test;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,37 +7,30 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-
-
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import org.jastemf.JastEMFException;
 import org.jastemf.converter.jastadd.EcoreSerializer;
 import org.jastemf.converter.jastadd.GrammarLoader;
-//import org.jastemf.converter.jastadd.GrammarLoader;
 import org.jastemf.converter.jastadd.JastAdd2Ecore;
+
 import org.jastadd.ast.AST.ASTDecl;
 import org.jastadd.ast.AST.List;
 import org.jastadd.ast.AST.Grammar;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EcoreValidator;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.EcoreFactory;
 
-
+// TODO make this a real test!
 public class ConverterTest {
-	
-	
+		
 	@Before
 	public void setUp(){
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
@@ -75,9 +66,8 @@ public class ConverterTest {
 		
 		Assert.assertNotNull(g);
 		
-		List l = g.getTypeDeclList();
-		for(int i=0;i<l.getNumChild();i++){
-			
+		List<?> l = g.getTypeDeclList();
+		for(int i=0;i<l.getNumChild();i++){			
 			if(l.getChild(i) instanceof ASTDecl){
 				ASTDecl astDecl = (ASTDecl) l.getChild(i);
 			}
