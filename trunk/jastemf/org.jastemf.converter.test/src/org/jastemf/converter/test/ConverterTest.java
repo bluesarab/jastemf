@@ -10,20 +10,19 @@ import java.util.LinkedList;
 import java.util.Map;
 
 
+
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import org.jastemf.JastEMFException;
 import org.jastemf.converter.jastadd.EcoreSerializer;
 import org.jastemf.converter.jastadd.GrammarLoader;
+//import org.jastemf.converter.jastadd.GrammarLoader;
 import org.jastemf.converter.jastadd.JastAdd2Ecore;
-
-import ast.AST.ASTDecl;
-import ast.AST.Grammar;
-import ast.AST.List;
-
+import org.jastadd.ast.AST.ASTDecl;
+import org.jastadd.ast.AST.List;
+import org.jastadd.ast.AST.Grammar;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;

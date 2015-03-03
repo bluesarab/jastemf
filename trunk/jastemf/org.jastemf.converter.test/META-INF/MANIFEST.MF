@@ -6,12 +6,12 @@ Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.junit,
+Require-Bundle: org.junit,
  org.jastemf,
  org.jastemf.converter,
- org.eclipse.emf.ecore.xmi;bundle-version="2.7.0"
+ org.eclipse.emf.common;bundle-version="2.5.0",
+ org.eclipse.emf.ecore;bundle-version="2.5.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.jastemf.converter.test

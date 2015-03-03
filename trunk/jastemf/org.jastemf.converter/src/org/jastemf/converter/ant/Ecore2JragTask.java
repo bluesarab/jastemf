@@ -1,16 +1,20 @@
 package org.jastemf.converter.ant;
 
 import java.io.File;
-import java.util.HashMap;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.Collection;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
-
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.mwe.core.resources.OsgiResourceLoader;
 
 import org.jastemf.JastEMFException;
-import org.jastemf.util.WorkflowManager;
+import org.jastemf.converter.ecore.Ecore2JastAdd;
+import org.jastemf.converter.ecore.JastAddSpec;
+import org.jastemf.converter.jastadd.EcoreSerializer;
 
 public class Ecore2JragTask extends Task {
 	
@@ -27,20 +31,24 @@ public class Ecore2JragTask extends Task {
 		/* Initialize integration resources */
 		URI modelURI = URI.createFileURI(
 				modelFile.getAbsolutePath());
-		URI outputDirectoryURI = URI.createFileURI(outputDirectory.getAbsolutePath());
-		
-		
-		HashMap<String,String> properties = new HashMap<String,String>();
-		properties.put("modelFile",modelURI.toString());
-		properties.put("outputDirectory",outputDirectoryURI.path());
-		properties.put("fileEncoding",fileEncoding);
-		
-		OsgiResourceLoader resourceLoader = 
-		    new OsgiResourceLoader("org.jastemf.converter",this.getClass().getClassLoader());
-		
+				
 		try {
-			WorkflowManager.executeWorkflow("org/jastemf/converter/ecore/JragGenerator.oaw", properties, resourceLoader);
+			GenModel model = EcoreSerializer.loadGenModelRoot(modelURI);
+			Collection<JastAddSpec> specs = Ecore2JastAdd.convertPackages2Jrag(model);
+			if(!outputDirectory.exists())
+				outputDirectory.mkdirs();
+			for(JastAddSpec spec:specs){
+				File current = new File(outputDirectory,spec.getResourceName());
+				OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(current),fileEncoding);
+				out.write(spec.getContents());
+				out.flush();
+				out.close();
+			}
+			
 		} catch (JastEMFException e) {
+			e.printStackTrace();
+			throw new BuildException(e);
+		} catch (IOException e) {
 			e.printStackTrace();
 			throw new BuildException(e);
 		}
