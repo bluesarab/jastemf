@@ -167,25 +167,26 @@ public class Ecore2JastAdd {
 						String typeName = eRef.getEReferenceType().getName()
 								.equals("EObject") ? "ASTNode" : eRef
 								.getEReferenceType().getName();
+						String refName = eRef.getName();
 						// For now, we consider EStringToStringMapEntry as a
 						// terminal type.
 						if (eRef.getName().equals("EStringToStringMapEntry"))
-							val = " <%1$sS>";
+							val = " <%1$s:%2$s>";
 						else if (eRef.getLowerBound() == 0
 								&& (eRef.getUpperBound() == 1 || eRef
 										.getUpperBound() == -2)) {
 							// optionals
-							val = eRef.isDerived() ? " /[%1$s]/" : " [%1$s]";
+							val = eRef.isDerived() ? " /[%1$s:%2$s]/" : " [%1$s:%2$s]";
 						} else if (eRef.getLowerBound() == 1
 								&& eRef.getUpperBound() == 1) {
 							// regular children
-							val = eRef.isDerived() ? " /%1$s/" : " %1$s";
+							val = eRef.isDerived() ? " /%1$s:%2$s/" : " %1$s:%2$s";
 						} else if (eRef.getUpperBound() > 1
 								|| eRef.getUpperBound() == -1) {
 							// list children
-							val = eRef.isDerived() ? " /%1$s*/" : " %1$s*";
+							val = eRef.isDerived() ? " /%1$s:%2$s*/" : " %1$s:%2$s*";
 						}
-						out.append(String.format(val, typeName));
+						out.append(String.format(val,refName,typeName));
 					}
 				}
 
