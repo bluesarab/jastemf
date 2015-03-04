@@ -73,7 +73,6 @@ public class XTendUtil {
 	/**
 	 * Derives the simple instance type name from a given classifier.
 	 * 
-	 * 
 	 * @param type
 	 * @return
 	 */

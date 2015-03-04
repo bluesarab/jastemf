@@ -348,7 +348,7 @@ public class RefactoringManager {
 	public static void performOptAdaptations(final IIntegrationContext context)
 			throws JastEMFException {
 		final IFile compilationUnitFile = IOSupport.getFile(
-				context.astfolder(), "Opt.java");
+				context.astfolder(), "ASTOpt.java");
 		final CompilationUnit compilationUnit = JDTSupport
 				.loadCompilationUnit(compilationUnitFile);
 		compilationUnit.recordModifications();

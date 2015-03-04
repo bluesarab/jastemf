@@ -12,10 +12,10 @@ import java.util.*;
 import java.net.*;
 
 import org.eclipse.emf.ecore.resource.*;
-import org.eclipse.emf.mwe.core.WorkflowFacade;
-import org.eclipse.emf.mwe.core.issues.*;
-import org.eclipse.emf.mwe.core.monitor.*;
-import org.eclipse.emf.mwe.core.resources.*;
+//import org.eclipse.emf.mwe.core.WorkflowFacade;
+//import org.eclipse.emf.mwe.core.issues.*;
+//import org.eclipse.emf.mwe.core.monitor.*;
+//import org.eclipse.emf.mwe.core.resources.*;
 import org.jastemf.*;
 
 /**
@@ -24,11 +24,12 @@ import org.jastemf.*;
  * 
  * @author Sven Karol
  */
+@Deprecated
 final public class WorkflowManager {
 	private final static String WORKFLOW_LOG_SYSTEM_PROPERTY_KEY = "org.apache.commons.logging.Log";
 	private final static String WORKFLOW_LOG_CLASSNAME = "org.apache.commons.logging.impl.SimpleLog";
 
-	/**
+/*	*//**
 	 * Executes an <i>OAW</i> workflow.
 	 * 
 	 * @param context
@@ -38,14 +39,14 @@ final public class WorkflowManager {
 	 *            The workflow to execute.
 	 * @throws JastEMFException
 	 *             Thrown, if the workflow's execution failed.
-	 */
+	 *//*
 	public static void executeWorkflow(IIntegrationContext context,
 			String workflow) throws JastEMFException {
-
-		OsgiResourceLoader resourceLoader = new OsgiResourceLoader(
-				"org.jastemf", IntegrationManager.class.getClassLoader());
-		executeWorkflow(workflow, context, resourceLoader);
-
+//
+//		OsgiResourceLoader resourceLoader = new OsgiResourceLoader(
+//				"org.jastemf", IntegrationManager.class.getClassLoader());
+//		executeWorkflow(workflow, context, resourceLoader);
+//
 	}
 
 	private static void executeWorkflow(String workflow,
@@ -71,7 +72,7 @@ final public class WorkflowManager {
 		properties.put("outPackage", context.outpackage());
 		properties.put("astPackage", context.astpackage());
 
-		/* Prepare and execute the workflow */
+		 Prepare and execute the workflow 
 
 		IOSupport.log("Runnig workflow [" + workflow + "] on model ["
 				+ modelFile + "] with target [" + srcGenPath + "].");
@@ -80,7 +81,7 @@ final public class WorkflowManager {
 
 	}
 
-	/**
+	*//**
 	 * Execute an <i>OAW</i> workflow, whereas a (Key, Value) property set
 	 * represents the integration context and an <i>EMF</i> resource loader is
 	 * used by <i>OAW</i> to find and load resources required by the template to
@@ -105,7 +106,7 @@ final public class WorkflowManager {
 	 *            required resources for template execution.
 	 * @throws JastEMFException
 	 *             Thrown, if the workflow's execution failed.
-	 */
+	 *//*
 	public static void executeWorkflow(String workflow,
 			Map<String, String> properties, ResourceLoader resourceLoader)
 			throws JastEMFException {
@@ -127,5 +128,5 @@ final public class WorkflowManager {
 			System.clearProperty(WORKFLOW_LOG_SYSTEM_PROPERTY_KEY);
 		}
 
-	}
+	}*/
 }

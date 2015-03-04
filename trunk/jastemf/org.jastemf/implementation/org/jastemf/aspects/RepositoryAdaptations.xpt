@@ -138,7 +138,7 @@ aspect RepositoryAdaptations {
 		}
 	}
 	
-	/**
+	/** DONE
 	 * Remove a child by calling its <i>EMF</i> model access method.
 	 * @param i The child's index.
 	 * @throws IndexOutOfBoundsException Thrown, iff the child does not exist.
@@ -164,7 +164,7 @@ aspect RepositoryAdaptations {
 	 * and element access methods respectively.
 	 */
 	
-	/**
+	/** DONE
 	 * Associate with each <i>JastAdd</i> list <tt>JL</tt> an <tt>EList</tt>
 	 * <tt>ML</tt> of the model repository which represents <tt>JL's</tt>
 	 * content. Thus, <tt>JL</tt> is backed by <tt>ML</tt> and delegates all
@@ -172,7 +172,7 @@ aspect RepositoryAdaptations {
 	 */
 	public EList List.delegatee = new BasicEList();
 	
-	/**
+	/**DONE
 	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i> list's
 	 * children are the ones of the <i>EMF</i> model's <tt>EList</tt> by which
 	 * the <i>JastAdd</i> list is backed. Thus, any access to the list must be
@@ -205,7 +205,7 @@ aspect RepositoryAdaptations {
 		};
 	}
 	
-	/**
+	/** DONE
 	 * Associate with each <i>JastAdd</i> optional <tt>JO</tt> an element
 	 * <tt>MO</tt> of the model repository which represents <tt>JO's</tt>
 	 * content. Thus, <tt>JO</tt> is backed by <tt>MO</tt> and delegates all
@@ -221,7 +221,7 @@ aspect RepositoryAdaptations {
 		}
 	};
 	
-	/**
+	/** DONE
 	 * The {@link IAccessMethods access methods} for a <i>JastAdd</i>
 	 * optional's content are the ones of the <i>EMF</i> model element the
 	 * optional wraps. Thus, any access to the optional must be delegated to
@@ -285,7 +285,7 @@ aspect RepositoryAdaptations {
 	 * Thus, the new implementation uses the model repository instead of
 	 * JastAdd's repository.
 	 */
-	
+	//DONE
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public ASTNode ASTNode.copy() {
 		try {
@@ -296,7 +296,7 @@ aspect RepositoryAdaptations {
 				+ getClass().getName() + "!");
 		return null;
 	}
-	
+	//excluded
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public List List.copy() {
 		try {
@@ -306,7 +306,7 @@ aspect RepositoryAdaptations {
 				+ getClass().getName() + "!");
 		return null;
 	}
-	
+	//excluded
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public Opt Opt.copy() {
 		try {
@@ -326,10 +326,11 @@ aspect RepositoryAdaptations {
 	 * child-parent relationships are automatically handled by the EMF. There
 	 * is no need to set a parent.
 	 */
-	
+	//DONE
 	@«outPackage».JastEMFAnnotations.SuicideCopycat
 	public void ASTNode.setParent(ASTNode node) {}
 	
+	//DONE 
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public ASTNode ASTNode.getParent() {
 		if (eContainer == null)
@@ -348,6 +349,7 @@ aspect RepositoryAdaptations {
 		return parent;
 	}
 	
+	//DONE
 	public ASTNode List.parent;
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public ASTNode List.getParent() {
@@ -355,7 +357,7 @@ aspect RepositoryAdaptations {
 			state().boundariesCrossed++;
 		return parent;
 	}
-	
+	//DONE
 	public ASTNode Opt.parent;
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	public ASTNode Opt.getParent() {
@@ -370,17 +372,17 @@ aspect RepositoryAdaptations {
 	/* 
 	 * Replace AST nodes' "numChild()" method to ease child count handling.
 	 */
-	
+	//DONE
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	protected int ASTNode.numChildren() {
 		return eClass().getEAllContainments().size();
 	}
-	
+	//DONE
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	protected int List.numChildren() {
 		return delegatee.size();
 	}
-	
+	//DONE
 	@«outPackage».JastEMFAnnotations.CannibalicCopycat
 	protected int Opt.numChildren() {
 		return delegatee.getChild() != null ? 1 : 0;
@@ -636,22 +638,22 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «EXPAND NewSetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
 «ENDDEFINE»
 
-«DEFINE NewNTAGetters(String astPackage, String outPackage) FOR GenPackage»
-«FOREACH this.genClasses AS genClass-»
-«IF !genClass.ecoreClass.interface-»
-«LET genClass.ecoreClass.eReferences.select(e|e.containment&&e.derived&&e.many) AS listNtaReferences-»
-«FOREACH listNtaReferences AS ntaReference-»
-	@«outPackage».JastEMFAnnotations.CannibalicCopycat
-	public EList «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
-		get«ntaReference.name.toString()»List();
-		return «ntaReference.name.toString().toFirstLower()»;
-	}	
-«ENDFOREACH-»	
-«ENDLET-»
-«ENDIF-»
-«ENDFOREACH-»
-«EXPAND NewNTAGetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
-«ENDDEFINE»
+//«DEFINE NewNTAGetters(String astPackage, String outPackage) FOR GenPackage»
+//«FOREACH this.genClasses AS genClass-»
+//«IF !genClass.ecoreClass.interface-»
+//«LET genClass.ecoreClass.eReferences.select(e|e.containment&&e.derived&&e.many) AS listNtaReferences-»
+//«FOREACH listNtaReferences AS ntaReference-»
+//	@«outPackage».JastEMFAnnotations.CannibalicCopycat
+//	public EList «genClass.ecoreClass.name».get«ntaReference.name.toString().toFirstUpper()»(){
+//		get«ntaReference.name.toString()»List();
+//		return «ntaReference.name.toString().toFirstLower()»;
+//	}	
+//«ENDFOREACH-»	
+//«ENDLET-»
+//«ENDIF-»
+//«ENDFOREACH-»
+//«EXPAND NewNTAGetters(astPackage, outPackage) FOREACH this.nestedGenPackages-»
+//«ENDDEFINE»
 
 
 «DEFINE InsertHooks(String astPackage, String outPackage) FOR GenPackage»
