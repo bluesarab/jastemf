@@ -10,12 +10,11 @@ package org.jastemf;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
-
-import jastadd.JastAdd;
-
+import org.jastadd.JastAdd;
 import org.jastemf.util.*;
 import org.jastemf.refactorings.*;
 
@@ -38,38 +37,40 @@ final public class IntegrationManager {
 	throws JastEMFException {
 		refreshIntegrationArtifacts(context);
 		
-		// Generate adaptation aspects
-		WorkflowManager.executeWorkflow(context,
-				"org/jastemf/aspects/workflow.oaw");
-		
-		if(!context.useProgrammaticRefactorings()){
-			// Generate refactoring scripts and artifacts
-			WorkflowManager.executeWorkflow(context,
-					"org/jastemf/refactorings/workflow.oaw");
-		}
+//		// Generate adaptation aspects
+//		WorkflowManager.executeWorkflow(context,
+//				"org/jastemf/aspects/workflow.oaw");
+//		
+//		if(!context.useProgrammaticRefactorings()){
+//			// Generate refactoring scripts and artifacts
+//			WorkflowManager.executeWorkflow(context,
+//					"org/jastemf/refactorings/workflow.oaw");
+//		}
 
-		
-		// Generate JastAdd evaluator
-		int argCount = context.useProgrammaticRefactorings()?4:5; 
-		String[] args = new String[argCount + context.jragspecs().size()];
-		args[0] = "--rewrite";
-		args[1] = "--package=" + context.astpackage();
-		args[2] = "--o=" + new File(context.srcfolder()).getAbsolutePath();
-		int i = 3;
+		// Generate JastAdd evaluator TODO: use JastAdd2 configuration!
+		ArrayList<String> args = new ArrayList<String>(32);
+		//int argCount = context.useProgrammaticRefactorings()?5:6; 
+		args.add("--rewrite");
+		args.add("--package=" + context.astpackage());
+		args.add("--emf");
+		args.add("--List=ASTList");
+		args.add("--Opt=ASTOpt");
+		args.add("--ASTNodeSuper=EObject");
+		args.add("--o=" + new File(context.srcfolder()).getAbsolutePath());
 		for (String spec:context.jragspecs())
-			args[i++] = spec;
-		args[i++] = new File(
+			args.add(spec);
+		/*args.add(new File(
 				context.packagefolder(
 						context.outpackage())).getAbsolutePath() +
-			File.separator + "RepositoryAdaptations.jrag";			
+			File.separator + "RepositoryAdaptations.jrag");	*/		
 		
 		if(!context.useProgrammaticRefactorings()){
-			args[i++] = new File(
+			args.add(new File(
 				context.packagefolder(
 						context.outpackage())).getAbsolutePath() +
-			File.separator + "Refactorings.jrag";
+			File.separator + "Refactorings.jrag");
 		}
-		JastAdd.main(args);
+		JastAdd.main(args.toArray(new String[0]));
 		refreshIntegrationArtifacts(context);
 		
 		// Execute refactorings
