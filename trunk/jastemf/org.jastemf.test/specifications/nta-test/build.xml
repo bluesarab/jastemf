@@ -46,7 +46,7 @@
 			<include name="plugins/org.eclipse.xtend*.jar" />-->
 		</fileset>
 	</path>
-	
+<!--	
 	<path id="mwe.classpath">
 		<fileset dir="${eclipse.home}">
 			<include name="plugins/org.eclipse.emf.mwe.core_*.jar" />
@@ -61,13 +61,14 @@
 			<include name="plugins/org.antlr.runtime_3.2.0*.jar" />
 		</fileset>
 	</path>
+-->
 	
 	<path id="jastemf.classpath">
 		<pathelement path="${test_basedir}/../org.jastemf/bin"/>
 		<pathelement path="${test_basedir}/../org.jastemf/implementation"/>
 		<pathelement path="${test_basedir}/../org.jastemf.converter/src"/>
 		<pathelement path="${test_basedir}/../org.jastemf.converter/bin"/>
-		<pathelement path="${test_basedir}/../org.jastemf/sources/libraries/jastadd2.jar"/>
+		<pathelement path="${test_basedir}/../../jastadd2-emf/ant-bin"/>
 	</path>
 	
 	<!-- NOTE: jastemf tasks from eclipse workspace are redefined here.
@@ -84,7 +85,12 @@
 		reverseloader="true" 
 		classname="org.jastemf.ant.JastemfTask">
 		<classpath refid="jastemf.classpath"/>
-		<classpath refid="mwe.classpath"/>
+	</taskdef>
+	
+	<taskdef 
+		name="jastadd" 
+		classname="org.jastadd.JastAddTask">
+		<classpath refid="jastemf.classpath"/>
 	</taskdef>
 	
 	<taskdef 
@@ -92,7 +98,6 @@
 		reverseloader="true" 
 		classname="org.jastemf.converter.ant.Ecore2ASTTask">
 		<classpath refid="jastemf.classpath"/>
-		<classpath refid="mwe.classpath"/>
 	</taskdef>
 
 	
@@ -107,16 +112,17 @@
 		</delete>
 	</target>
 
-	<target name="JastAdd Semantic" depends="Generate AST Spec" description="Generate basic JastAdd code only.">
+	<target name="JastAdd Semantic" description="Generate basic JastAdd code only.">
 		<echo message="======================> Generate JastAdd Semantic &lt;=====================" />
 		<jastadd 
 			outdir="${test_basedir}/src-gen" 
 			package="org.jastemf.test.ast" 
+			emf="true"
 			rewrite="true">
 			<fileset dir="${test_basedir}/specifications">
-				<include name="nta-test/semantics/**/*.ast" />
-				<include name="nta-test/semantics/**/*.jrag" />
-				<include name="nta-test/semantics/**/*.jadd" />
+				<include name="api-test/semantics/**/*.ast" />
+				<include name="api-test/semantics/**/*.jrag" />
+				<include name="api-test/semantics/**/*.jadd" />
 			</fileset>
 			<fileset dir="${test_basedir}/src-gen">
 				<include name="jastemf/adaptation/**/*.ast" />
@@ -194,8 +200,8 @@
 	<target name="Generate AST Spec">
 		<echo message="========================> Generate AST Spec &lt;======================="/>
 		<jastemf.ecore2ast
-			modelFile="${test_basedir}/specifications/nta-test/model/testmodel.ecore"
-			outputDirectory="${test_basedir}/src-gen/jastemf/adaptation">
+			modelFile="${test_basedir}/specifications/nta-test/model/testmodel.genmodel"
+			outputDirectory="${test_basedir}/src-gen/jastemf/adaptation/">
 		</jastemf.ecore2ast>
 	</target>
 </project>
