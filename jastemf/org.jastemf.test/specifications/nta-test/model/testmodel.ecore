@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="test"
-    nsURI="http://www.jastemf.org/test" nsPrefix="test">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="test" nsURI="http://www.jastemf.org/test" nsPrefix="test">
   <eSubpackages name="ntas" nsURI="http://www.jastemf.org/test/ntas" nsPrefix="ntas">
     <eClassifiers xsi:type="ecore:EClass" name="Root">
       <eStructuralFeatures xsi:type="ecore:EReference" name="derivedA" lowerBound="1"
@@ -51,6 +49,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="someCollection" eType="#//ast/Collection"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="UpperA" lowerBound="1"
           eType="#//ntas/A" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="derivedMultipleLowerA"
+          upperBound="-1" eType="#//ntas/A" derived="true" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="QCollection" instanceClassName="java.util.Collection"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceTypeName="Collection"/>

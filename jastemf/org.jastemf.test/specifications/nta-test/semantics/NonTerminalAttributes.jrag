@@ -4,22 +4,27 @@ aspect NonTerminalAttributes{
 	 * Definition of simple NTA derivedA(). Note that for compatibility reasons
 	 * we only support the older JastAdd notation for NTAs.
 	 */
-	syn A Root.getderivedA() = new A("test");
+	syn A Root.derivedA() = new A("test");
 	
 	/**
 	 * Definition of simple NTA DerivedUpperD().
 	 */
-	syn D D.getDerivedUpperD() = new D();
+	syn D D.DerivedUpperD() = new D();
 	
 	/**
 	 * Definition of List-based NTA derivedB(). Note that for compatibility reasons
 	 * we only support the older JastAdd notation for NTAs.
 	 */
-	syn List<B> Root.getderivedBList() = new List<B>().add(new B());
+	syn ASTList<B> Root.derivedB() = new ASTList<B>().add(new B());
 	
 	/**
 	 * Definition of List-based NTA DerivedMultipleUpperB().
 	 */
-	syn List<C> D.getDerivedMultipleUpperCList() = new List<C>();
+	syn ASTList<C> D.DerivedMultipleUpperC() = new ASTList<C>();
+	
+	/**
+	 * Definition of List-based NTA derivedMultipleLowerA().
+	 */
+	syn ASTList<A> D.derivedMultipleLowerA() = new ASTList<A>();
 
 }

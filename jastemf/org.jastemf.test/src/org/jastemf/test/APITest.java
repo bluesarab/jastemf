@@ -35,7 +35,7 @@ public class APITest {
 		rootImplAccessors = new LinkedList<Signature>();
 		rootImplAccessors.add(new Signature() {
 			public String getReturnTypeName() {
-				return "C";
+				return "CImpl";
 			}
 
 			public String getMethodName() {
@@ -77,7 +77,7 @@ public class APITest {
 			}
 
 			public String getMethodName() {
-				return "getderivedBs";
+				return "getDerivedBs";
 			}
 		});
 		
@@ -97,7 +97,7 @@ public class APITest {
 			}
 
 			public String getMethodName() {
-				return "getcontainmentDs";
+				return "getContainmentDs";
 			}
 		});
 
@@ -143,7 +143,7 @@ public class APITest {
 		do{
 			Assert.assertTrue("Each node in this model should be an ASTNode.",o instanceof ASTNode);
 			ASTNode node = (ASTNode)o;
-			Assert.assertTrue("Child number should be the same as defined in the EClass.",node.getNumChild()==node.eClass().getEAllContainments().size());
+			Assert.assertTrue(o.eClass().getName() + ": Child number (" + node.getNumChild() + ") should be the same as defined in the EClass (" + node.eClass().getEAllContainments().size() + ").",node.getNumChild()==node.eClass().getEAllContainments().size());
 			o = it.hasNext()?it.next():null;
 		}
 		while(o!=null);

@@ -7,6 +7,12 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.jastemf.test.test.ast,
+ org.jastemf.test.test.ast.impl,
+ org.jastemf.test.test.ast.util,
+ org.jastemf.test.test.ntas,
+ org.jastemf.test.test.ntas.impl,
+ org.jastemf.test.test.ntas.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.junit,

@@ -16,4 +16,17 @@
             class="org.jastemf.tests.tests.TestsPackage"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated testmodel -->
+      <package
+            uri="http://www.jastemf.org/test/ntas"
+            class="org.jastemf.test.test.ntas.NtasPackage"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated testmodel -->
+      <package
+            uri="http://www.jastemf.org/test/ast"
+            class="org.jastemf.test.test.ast.AstPackage"/>
+   </extension>
 </plugin>
