@@ -88,7 +88,9 @@ public final class JDTSupport {
 
 	/**
 	 * Apply a compilation unit's pending rewrites and save the result to the
-	 * given workspace file.
+	 * given workspace file. Additionally, if the file contains strings with 
+	 * "jastemf_no_refactor_" these are removed before saving. Hence this method 
+	 * should be only applied after the refactoring engine has been used.
 	 * 
 	 * @param compilationUnit
 	 *            The compilation unit with pending rewrites.
@@ -104,7 +106,9 @@ public final class JDTSupport {
 					.getSource());
 			TextEdit edit = compilationUnit.rewrite(document, null);
 			edit.apply(document);
-			IOSupport.save(document.get(), file);
+			//TODO bad style: remove replacement after refactorings were removed
+			// or better solution is found.
+			IOSupport.save(document.get().replaceAll("jastemf_no_refactor_",""), file);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new JastEMFException(e);

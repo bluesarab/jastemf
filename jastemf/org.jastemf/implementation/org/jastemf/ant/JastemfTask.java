@@ -91,27 +91,6 @@ public class JastemfTask extends Task {
 		if(!Platform.isRunning()){
 			throw new BuildException("This ANT task must be run within an active Eclipse instance. Please active the 'Run in the same JRE as the workspace.' option.");
 		}
-		//TODO: Workspace job would be nice since it has its own thread and cannot be interrupted by other 
-		//builders. However, the current code leads to a NullPointerException in the programmatic refactorings
-		//because the JDT tools do no discover the Java files generated via the JastAdd main method.
-		/*
-		Job runnable = new WorkspaceJob("JastEMF") {
-			
-			@Override
-			public IStatus runInWorkspace(IProgressMonitor monitor)
-					throws CoreException {
-				do_execute();
-				monitor.done();
-				return new Status(IStatus.OK,"org.jastemf","JastEMF Task finished.");
-			}
-			
-		};
-		runnable.setRule(ResourcesPlugin.getWorkspace().getRoot());
-
-		runnable.schedule();
-		while(runnable.getResult()==null){
-			//wait
-		}*/
 		do_execute();
 	}
 	
