@@ -14,7 +14,10 @@ import java.util.ArrayList;
 
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.jastadd.Configuration;
 import org.jastadd.JastAdd;
+import org.jastadd.ast.AST.Grammar;
 import org.jastemf.util.*;
 import org.jastemf.refactorings.*;
 
@@ -70,7 +73,11 @@ final public class IntegrationManager {
 						context.outpackage())).getAbsolutePath() +
 			File.separator + "Refactorings.jrag");
 		}
-		JastAdd.main(args.toArray(new String[0]));
+		
+		Configuration conf = new GenModelConfiguration(args.toArray(new String[0]),System.err,context.genmodel());
+		
+		JastAdd jastAdd = new JastAdd(conf);
+		jastAdd.compile(System.out,System.err);
 		refreshIntegrationArtifacts(context);
 		
 		// Execute refactorings
@@ -82,6 +89,7 @@ final public class IntegrationManager {
 					context.packagefolder(context.outpackage()) +
 					"/Refactorings.xml"));			
 		}
+
 		RefactoringManager.performASTNodeAdaptations(context);
 		RefactoringManager.performASTNodeStateAdaptations(context);
 		RefactoringManager.performASTListAdaptations(context);
@@ -105,6 +113,22 @@ final public class IntegrationManager {
 							new NullProgressMonitor());
 		} catch (CoreException e) {
 			throw new JastEMFException(e);
+		}
+	}
+	
+	private static class GenModelConfiguration extends Configuration {
+		
+		private GenModel genModel = null;
+		
+		public GenModelConfiguration(String[] args, PrintStream out, GenModel genModel){
+			super(args,out);
+			this.genModel = genModel;
+		}
+		
+		public Grammar buildRoot(){
+			Grammar grammar = super.buildRoot();
+			grammar.setGeneratorModel(genModel);
+			return grammar;
 		}
 	}
 }

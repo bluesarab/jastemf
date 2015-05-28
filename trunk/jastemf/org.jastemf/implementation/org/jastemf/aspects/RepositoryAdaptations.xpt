@@ -392,6 +392,7 @@ aspect RepositoryAdaptations {
 «ENDFILE»
 «ENDDEFINE»
 
+// DONE
 «DEFINE PackageImports FOR GenPackage»
 «IF this.genClassifiers.size>0-»
 import «this.ecorePackage()».*;
@@ -405,6 +406,7 @@ import «qualifiedPackage(this, this.classPackageSuffix)».*;
 «EXPAND PackageImports FOREACH nestedGenPackages-»
 «ENDDEFINE»
 
+// below in progress in Components.tt:
 «DEFINE ChildIndexMapping(String astPackage, String outPackage) FOR GenPackage»
 «FOREACH this.genClasses AS genClass-»
 «IF !genClass.ecoreClass.interface-»

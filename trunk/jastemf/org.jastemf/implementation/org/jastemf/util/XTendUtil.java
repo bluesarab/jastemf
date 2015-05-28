@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EClassifier;
  * 
  * @author Sven Karol
  */
-
+@Deprecated
 public class XTendUtil {
 	
 	
