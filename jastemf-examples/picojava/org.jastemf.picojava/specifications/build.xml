@@ -5,6 +5,7 @@
 
 
 <project name="Generation" default="All">
+	
 	<path id="basedir">
 		<pathelement location="."/>
 	</path>
@@ -21,7 +22,7 @@
 		</delete>
 		<eclipse.refreshLocal resource="/org.jastemf.picojava" depth="infinite"/>
 	</target>
-
+	
 	<target
 		name="EMF Semantic"
 		depends="Clean"
@@ -63,5 +64,90 @@
 	</target>
 	
 	<target name="All" depends="Generate Ecore,EMF Semantic"/>
+
+	<!-- tasks for running generator if JastEMF is not loaded as a plug-in but 
+		 locally available as a project.
+	-->	
+	<path id="project_basedir">
+		<pathelement location="./.." />
+	</path>
 	
+	<property name="project_basedir" refid="project_basedir" />
+	
+	<path id="eclipse.classpath">
+		<fileset dir="${eclipse.home}">
+			<include name="plugins/org.eclipse.core.runtime_*.jar" />
+			<include name="plugins/org.eclipse.osgi_*.jar" />
+			<include name="plugins/org.eclipse.equinox.weaving.hook_*.jar" />
+			<include name="plugins/org.eclipse.equinox.common_*.jar" />
+			<include name="plugins/org.eclipse.core.jobs_*.jar" />
+			<include name="plugins/org.eclipse.core.runtime.compatibility.registry_*/runtime_registry_compatibility.jar" />
+			<include name="plugins/org.eclipse.core.runtime.compatibility.registry_*" />
+			<include name="plugins/org.eclipse.equinox.registry_*.jar" />
+			<include name="plugins/org.eclipse.equinox.preferences_*.jar" />
+			<include name="plugins/org.eclipse.core.contenttype_*.jar" />
+			<include name="plugins/org.eclipse.core.runtime.compatibility.auth_*.jar" />
+			<include name="plugins/org.eclipse.equinox.app_*.jar" />
+			<include name="plugins/org.eclipse.osgi.services_*.jar" />
+			<include name="plugins/javax.servlet_*.jar" />
+			<include name="plugins/org.eclipse.emf.ecore_*.jar" />
+			<include name="plugins/org.eclipse.emf.common_*.jar" />
+			<include name="plugins/org.eclipse.core.resources_*.jar" />
+			<include name="plugins/org.eclipse.core.resources.win32.x86_*.jar" />
+			<include name="plugins/org.eclipse.ant.core_*.jar" />
+			<include name="plugins/org.eclipse.core.variables_*.jar" />
+			<include name="plugins/org.eclipse.core.expressions_*.jar" />
+			<include name="plugins/org.eclipse.core.filesystem_*.jar" />
+			<include name="plugins/org.eclipse.core.filesystem.win32.x86_*.jar" />
+			<include name="plugins/org.junit_*/junit.jar" />
+			<include name="plugins/org.hamcrest.core_*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="jastemf.classpath">
+		<pathelement path="${project_basedir}/../org.jastemf/bin"/>
+		<pathelement path="${project_basedir}/../org.jastemf/implementation"/>
+		<pathelement path="${project_basedir}/../org.jastemf.converter/src"/>
+		<pathelement path="${project_basedir}/../org.jastemf.converter/bin"/>
+		<pathelement path="${project_basedir}/../../jastadd2-emf/ant-bin"/>
+	</path>
+	
+    <target name="WorkspaceTasks" description="Use tasks defined in project instead of plug-in">
+
+    	<taskdef 
+    		name="jastemf" 
+    		reverseloader="true" 
+    		classname="org.jastemf.ant.JastemfTask">
+    		<classpath refid="jastemf.classpath"/>
+    	</taskdef>
+    	
+    	<taskdef 
+    		name="jastadd" 
+    		classname="org.jastadd.JastAddTask">
+    		<classpath refid="jastemf.classpath"/>
+    	</taskdef>
+    	
+    	<taskdef 
+    		name="jastemf.ecore2ast" 
+    		reverseloader="true" 
+    		classname="org.jastemf.converter.ant.Ecore2ASTTask">
+    		<classpath refid="jastemf.classpath"/>
+    	</taskdef>
+    	
+       	<taskdef 
+        	name="jastemf.jastadd2ecore" 
+        	reverseloader="true" 
+        	classname="org.jastemf.converter.ant.JastAdd2EcoreTask">
+        	<classpath refid="jastemf.classpath"/>
+        </taskdef>
+    </target>	
+	
+	<target
+		name="EMF Semantic Local"
+		depends="WorkspaceTasks,EMF Semantic"/>
+
+	<target 
+		name="Generate Ecore Local" 
+		depends="WorkspaceTasks,EMF Semantic"/>
+
 </project>
