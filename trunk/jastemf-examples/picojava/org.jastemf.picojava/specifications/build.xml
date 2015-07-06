@@ -69,7 +69,7 @@
 		 locally available as a project.
 	-->	
 	<path id="project_basedir">
-		<pathelement location="./.." />
+		<pathelement location="./../../../../jastemf" />
 	</path>
 	
 	<property name="project_basedir" refid="project_basedir" />
@@ -105,14 +105,15 @@
 	</path>
 	
 	<path id="jastemf.classpath">
-		<pathelement path="${project_basedir}/../org.jastemf/bin"/>
-		<pathelement path="${project_basedir}/../org.jastemf/implementation"/>
-		<pathelement path="${project_basedir}/../org.jastemf.converter/src"/>
-		<pathelement path="${project_basedir}/../org.jastemf.converter/bin"/>
-		<pathelement path="${project_basedir}/../../jastadd2-emf/ant-bin"/>
+		<pathelement path="${project_basedir}/org.jastemf/bin"/>
+		<pathelement path="${project_basedir}/org.jastemf/implementation"/>
+		<pathelement path="${project_basedir}/org.jastemf.converter/src"/>
+		<pathelement path="${project_basedir}/org.jastemf.converter/bin"/>
+		<pathelement path="${project_basedir}/../jastadd2-emf/ant-bin"/>
 	</path>
 	
     <target name="WorkspaceTasks" description="Use tasks defined in project instead of plug-in">
+		<echo message="${project_basedir}========================> Generate Ecore Model &lt;======================="/>
 
     	<taskdef 
     		name="jastemf" 
