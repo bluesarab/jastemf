@@ -21,4 +21,7 @@ aspect SomeAttributes{
 	
 	eq D.derivedString() = "AG_COMPUTED_STRING";
 	
+	syn boolean E.derivedBool() = true;
+	
+	syn lazy boolean E.lazyBool() = false;
 }
