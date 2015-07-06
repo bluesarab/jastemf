@@ -40,16 +40,6 @@ final public class IntegrationManager {
 	throws JastEMFException {
 		refreshIntegrationArtifacts(context);
 		
-//		// Generate adaptation aspects
-//		WorkflowManager.executeWorkflow(context,
-//				"org/jastemf/aspects/workflow.oaw");
-//		
-//		if(!context.useProgrammaticRefactorings()){
-//			// Generate refactoring scripts and artifacts
-//			WorkflowManager.executeWorkflow(context,
-//					"org/jastemf/refactorings/workflow.oaw");
-//		}
-
 		// Generate JastAdd evaluator TODO: use JastAdd2 configuration!
 		ArrayList<String> args = new ArrayList<String>(32);
 		//int argCount = context.useProgrammaticRefactorings()?5:6; 
@@ -58,7 +48,6 @@ final public class IntegrationManager {
 		args.add("--emf");
 		args.add("--List=ASTList");
 		args.add("--Opt=ASTOpt");
-		args.add("--ASTNodeSuper=EObject");
 		args.add("--o=" + new File(context.srcfolder()).getAbsolutePath());
 		for (String spec:context.jragspecs())
 			args.add(spec);
@@ -80,16 +69,8 @@ final public class IntegrationManager {
 		jastAdd.compile(System.out,System.err);
 		refreshIntegrationArtifacts(context);
 		
-		// Execute refactorings
-		if(context.useProgrammaticRefactorings()){
-			ProgrammaticRefactorings.renameASTClasses(context);			
-		}
-		else{
-			RefactoringManager.applyRefactoringScript(URI.create(
-					context.packagefolder(context.outpackage()) +
-					"/Refactorings.xml"));			
-		}
-
+		ProgrammaticRefactorings.renameASTClasses(context);
+		
 		RefactoringManager.performASTNodeAdaptations(context);
 		RefactoringManager.performASTNodeStateAdaptations(context);
 		RefactoringManager.performASTListAdaptations(context);
