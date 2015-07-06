@@ -42,6 +42,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someCollection"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/UpperA"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//ast/D/derivedMultipleLowerA"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someBool"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/D/someOtherBool"/>
         <genOperations ecoreOperation="testmodel.ecore#//ast/D/operationAttribute">
           <genParameters ecoreParameter="testmodel.ecore#//ast/D/operationAttribute/param"/>
         </genOperations>
@@ -50,7 +52,10 @@
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference testmodel.ecore#//ast/AbstractD/refToSomeA"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/AbstractD/derivedString"/>
       </genClasses>
-      <genClasses ecoreClass="testmodel.ecore#//ast/E"/>
+      <genClasses ecoreClass="testmodel.ecore#//ast/E">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/E/derivedBool"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//ast/E/lazyBool"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Attributes" basePackage="org.jastemf.test.test" disposableProviderFactory="true"
         ecorePackage="testmodel.ecore#//attributes"/>

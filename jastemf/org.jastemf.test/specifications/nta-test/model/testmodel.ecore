@@ -51,6 +51,8 @@
           eType="#//ntas/A" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="derivedMultipleLowerA"
           upperBound="-1" eType="#//ntas/A" derived="true" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="someBool" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="someOtherBool" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="QCollection" instanceClassName="java.util.Collection"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceTypeName="Collection"/>
@@ -61,7 +63,12 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           derived="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="E" eSuperTypes="#//ast/D"/>
+    <eClassifiers xsi:type="ecore:EClass" name="E" eSuperTypes="#//ast/D">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivedBool" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          derived="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lazyBool" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          changeable="false" derived="true"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="attributes" nsURI="http://www.jastemf.org/test/attributes" nsPrefix="attributes"/>
 </ecore:EPackage>
