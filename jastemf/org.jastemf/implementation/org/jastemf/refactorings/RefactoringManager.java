@@ -227,7 +227,7 @@ public class RefactoringManager {
 			}
 		};
 
-		compilationUnit.accept(visitor);
+		//compilationUnit.accept(visitor);
 
 		JDTSupport.applyRewritesAndSave(compilationUnit, compilationUnitFile);
 	}
@@ -306,7 +306,7 @@ public class RefactoringManager {
 		};
 
 		IOSupport.log("Visiting ASTNode ...");
-		compilationUnit.accept(visitor);
+		//compilationUnit.accept(visitor);
 
 		JDTSupport.applyRewritesAndSave(compilationUnit, compilationUnitFile);
 	}
