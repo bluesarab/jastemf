@@ -1,0 +1,8 @@
+  * [JastEMF's Approach in a Nutshell](Approach.md)
+  * [Installation](Installation.md)
+  * [Ant User Interface](Ant_Tasks.md)
+  * [Ecore &lt;-&gt; JastAdd Mappings](Mapping.md)
+  * [Example Projects](Examples.md)
+    * [SIPLE](SIPLE.md)
+    * [Statemachine](Statemachine.md)
+  * [Publications](Publications.md)
